@@ -50,11 +50,6 @@
 						left: 0;
 						bottom: 5px;
 					}
-					&:last-of-type {
-						margin: {
-							bottom: 0;
-						}
-					}
 				}
 				// @include media("<phoneSmall") {
 				// 	width: calc(50% - 5px);
