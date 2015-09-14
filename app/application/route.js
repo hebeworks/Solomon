@@ -18,8 +18,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     // Actions 
     actions: {
-        showLoginPopup: function () {
-            this.controller.showModal('ui/login-form', 'Register/Sign In');  
+        showLoginPopup: function (intro) {
+            this.controller.showModal('ui/login-form', 'Register/Sign In', intro);  
         },
         
         mailToFeedback: function () {
@@ -28,6 +28,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         
         showFeedbackmodal: function() {
             this.controller.showModal('ui/feedback-form');  
+        },
+        
+        hideModal: function() {
+            this.controller.hideModal();  
         },
 
         gotoRoute: function (route, model) {
@@ -55,8 +59,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.closeBottomDrawer();
         },
 
-        createACanvas: function () {
-            this.controller.openBottomDrawer({ contentType: 'canvas-gallery/create-a-canvas' });
+        createACanvas: function (model) {
+            this.controller.createACanvas(model);
         },
 
         showAddAStory: function () {

@@ -26,7 +26,7 @@
             <button class="btn -selected -toggable -on" data-btn-type="location" {{action "clearPlace"}}>{{filterPlace.NAME1}}</button>
         {{/if}}
         
-        <button class="btn -action -right" {{action "notifyMe"}}>Notify Me</button>
+        <button class="btn -action -right -notify" {{action "notifyMe"}}>Notify Me</button>
     </div>
 
 
@@ -43,7 +43,7 @@
             <li class="list__row dotted-area -dark -bottom -dark pad-top">
                 <div class="list-item">
                     <p class="list-item__summary">
-                        <div class="v-align--middle" {{action "gotoRoute" 'statnotices.view' item}}>
+                        <div class="" {{action "gotoRoute" 'statnotices.view' item}}>
                             {{item.proposal}} at {{item.fullAddressSingleLine}}.
                         </div>
                     </p>

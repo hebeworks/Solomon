@@ -5,7 +5,7 @@ export default Ember.Object.extend({
   open: function (username) {
     // debugger;
     return new Ember.RSVP.Promise(function (resolve, reject) {
-      alert('app/torii-providers/unique-token.js');
+      // alert('app/torii-providers/unique-token.js');
       var url = this.get('config.APP.dashAPIURL') + '/users/';
       $.ajax({
         url: url,
@@ -13,11 +13,11 @@ export default Ember.Object.extend({
         data: JSON.stringify({ token: username })
       })
         .done(function (msg) {
-          alert("success");
+          // alert("success");
           Ember.run.bind(null, resolve, user);
         })
         .fail(function (jqXHR, textStatus) {
-          alert("error");
+          // alert("error");
           Ember.run.bind(null, reject, new Error(textStatus));
           // Ember.run.bind(null, reject, error);
         });

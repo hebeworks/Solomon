@@ -74,14 +74,14 @@ export default Ember.Component.extend({
 		
 		var success = function (user) {
 			// user created 
-			alert('user saved: ' + user);
+			// alert('user saved: ' + user);
 			login(user);
 		};
 
 		var failed = function (err) {
 			// user failed
 			obj.set('message',err.message);
-			alert(err);
+			// alert(err);
 		};
 
 		var login = function (savedUser) {
@@ -120,6 +120,9 @@ export default Ember.Component.extend({
 		},
 		submit: function () {
 			this.submit();
+		},
+		logout: function() {
+			this.get('session').invalidate();
 		}
 	}
 });

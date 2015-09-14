@@ -3,24 +3,38 @@ import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
 
 export default Ember.Component.extend(BottomDrawerContent, {
 	canvas: null,
+	mainTitle: 'Create a Canvas',
 	title: 'Create a Canvas',
 	message: '',
 	model: null,
 	categories: [],
 	stories: [],
+	appController: null,
+	
+	didInsertElement: function () {
+		var config = this.get('appController.bottomDrawerConfig');
+		if (!Ember.isEmpty(config)) {
+			if (!Ember.isEmpty(config.model)) {
+				this.set('model', config.model);
+			}
+			if (!Ember.isEmpty(config.mainTitle)) {
+				this.set('mainTitle', config.mainTitle);
+			}
+		}
+	},
 
-	onModelChanged: function() {
+	onModelChanged: function () {
 		var model = this.get('model');
 		this.setProperties({
 			title: model.get('title'),
 			description: model.get('description'),
 			stories: model.get('stories'),
-			categories: model.get('categories'),
 			author: model.get('author'),
 			twitter: model.get('twitter')
 		});
+		// categories: model.get('categories')
 	}.observes('model'),
-	
+
 	allCategories: Ember.computed({
 		get() {
 			return this.store.query('category', {})
@@ -57,8 +71,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			if (session.isAuthenticated) {
 				var userID = session.get('content.secure.token');
 				if (!Ember.isEmpty(userID)) {
-					debugger;
-					
+
 					var canvas = obj.store.createRecord('canvas', {
 						title: obj.get('title'),
 						description: obj.get('description'),
@@ -78,7 +91,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 						});
 				}
 			} else {
-				alert('You need to login');
+				// alert('You need to login');
 				this.set('action', 'showLoginPopup');
 				this.sendAction();
 				return false;

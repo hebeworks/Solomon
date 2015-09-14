@@ -23,20 +23,21 @@ perspective effects (not including the modals and the overlay).
 .md-modal {
 	position: fixed;
 	top: 50%;
-	left: 50%;
-	width: 50%;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 90%;
 	max-width: 630px;
-	min-width: 320px;
+	max-height: 90%;
+	overflow: auto;
 	height: auto;
 	z-index: 2000;
 	visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
-	-webkit-transform: translateX(-50%) translateY(-50%);
-	-moz-transform: translateX(-50%) translateY(-50%);
-	-ms-transform: translateX(-50%) translateY(-50%);
-	transform: translateX(-50%) translateY(-50%);
+	border: 1px solid $grey;
+	background-color: #fff;
 }
 
 .md-show {
@@ -68,9 +69,7 @@ perspective effects (not including the modals and the overlay).
 	position: relative;
 	margin: 0 auto;
 	padding: 20px;
-	border: 1px solid $grey;
 	color: #000;
-	background-color: #fff;
 }
 
 .md-title {
@@ -92,6 +91,11 @@ perspective effects (not including the modals and the overlay).
 /* Individual modal styles with animations/transitions */
 
 /* Effect 1: Fade in and scale up */
+.md-effect-1 {
+	top: 0;
+	bottom: 0;
+}
+
 .md-effect-1 .md-content {
 	-webkit-transform: scale(0.7);
 	-moz-transform: scale(0.7);
@@ -236,14 +240,8 @@ perspective effects (not including the modals and the overlay).
 /* Effect 7:  slide and stick to top */
 .md-effect-7{
 	top: 0;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	transform: translateX(-50%);
 	border-top: 0;
-}
-
-.md-effect-7 .md-content {
+	border-radius: 0 0 5px 5px;
 	-webkit-transform: translateY(-200%);
 	-moz-transform: translateY(-200%);
 	-ms-transform: translateY(-200%);
@@ -253,16 +251,15 @@ perspective effects (not including the modals and the overlay).
 	transition: all .3s;
 	opacity: 0;
 	border-top: 0;
-	border-radius: 0 0 5px 5px;
-}
-
-.md-show.md-effect-7 .md-content {
-	-webkit-transform: translateY(0%);
-	-moz-transform: translateY(0%);
-	-ms-transform: translateY(0%);
-	transform: translateY(0%);
 	border-radius: 0 0 3px 3px;
-	opacity: 1;
+	
+	&.md-show {
+		-webkit-transform: translateY(0%);
+		-moz-transform: translateY(0%);
+		-ms-transform: translateY(0%);
+		transform: translateY(0%);
+		opacity: 1;
+	}
 }
 
 /* Effect 8: 3D flip horizontal */

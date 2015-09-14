@@ -1,7 +1,8 @@
-# Hebe-dash
+# Solomon 
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Solomon Dashboard. Copyright (C) 2015 Hebe Works Limited.
+The Solomon Dashboard was born from partnerships with Public Sector organisations looking to make Open Data easy to understand.
+
 
 ## Prerequisites
 
@@ -42,8 +43,7 @@ This should configure your project to run much faster
 
 
 ## Running / Development
-
-* `grunt serve` ~~ember server~~ (changed to include grunt tasks)
+* `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### SVGs
@@ -52,19 +52,17 @@ This should configure your project to run much faster
 * grunticon (run using `grunt svg` in terminal) takes a folder full of SVGs (/public/assets/img/svg/embed), converts them to data URIs and injects them into a stylesheet. It then generates & uses grunticon.loader.js to match the generated CSS classnames from the stylesheet against specific markup in the DOM, such as: <span class="svg-toolbox" data-grunticon-embed></span>, and injects the SVG code inside that element. For config options, check Gruntfile.js
 
 ### Code Generators
-
 Make use of the many generators for code, try `ember help generate` for more details
+To create a new story try `ember generate story my-story-name` (note all component names must contain at least on hyphen)
 
 ### Running Tests
 
 * `ember test`
 * `ember test --server`
 
-### Building
+### Building for deployment
 
 * `grunt` (production) (changed to include grunt tasks)
-* ~~ember build (development)~~
-* ~~ember build --environment production~~ (production)
 
 ### Deploying
 

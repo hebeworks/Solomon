@@ -50,11 +50,6 @@
 						left: 0;
 						bottom: 5px;
 					}
-					&:last-of-type {
-						margin: {
-							bottom: 0;
-						}
-					}
 				}
 				// @include media("<phoneSmall") {
 				// 	width: calc(50% - 5px);
@@ -71,6 +66,10 @@
 	}
 
 	.stat-notices-body  {
+		.md-modal {
+			// Make the modal relative to the section body, rather than the viewport
+			position: absolute;
+		}
 	
 		.btn-list {
 			// border top & bottom?
@@ -102,6 +101,13 @@
 						right:0;
 					}
 				}
+				
+				&.-notify {
+					@include breakpoint(max-width 865px) {
+						float: none;
+						margin-left: 0;
+					}
+				}
 			}
 		}
 	}
@@ -122,10 +128,7 @@
 		.stat-notices__filter-place-search {
 			display: inline-block;
 			min-width: 250px;
-			margin: {
-				left:15px;
-				right:15px;
-			}
+			margin-right: 15px;
 			padding: {
 				top:10px;
 			}
@@ -136,9 +139,6 @@
 			}
 			@include breakpoint(max-width 510px) {
 				width: 100%;
-				margin: {
-					left: 0;
-				}
 			}
 			
 			.select2-container {
@@ -504,6 +504,10 @@
 									padding: {
 										left: 2rem;
 									}
+									
+									@include breakpoint(max-width 32em) {
+										padding-left: 10px;
+									}
 								}
 							}
 						}
@@ -518,7 +522,7 @@
 						margin: {
 							top:15px;
 						}
-						height:50px;
+
 						padding: {
 							right: 20px;
 						}
