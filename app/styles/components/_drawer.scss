@@ -35,6 +35,7 @@
 		// Hack to get scrolling working properly
 		&.-overflow-y-scroll {
 			overflow-y: auto;
+			overflow-x: hidden;
 		}
 
 		&.-open {
