@@ -1,2 +1,6 @@
 app/.vscode
 jsconfig.json
+node_modules
+bower_components
+tmp
+dist
