@@ -1,0 +1,13 @@
+<main class="site-body">
+	{{#if model}}
+		{{#each model as |canvas|}}
+			{{#link-to 'canvas' canvas.id}}<h1>{{canvas.title}}</h1>{{/link-to}}
+		{{/each}}
+	{{else}}
+		<p>Sorry this canvas can't be found</p>
+	{{/if}}
+	
+	{{!-- canvas-switcher --}}
+</main>
+{{bottom-drawer}}
+{{outlet}}

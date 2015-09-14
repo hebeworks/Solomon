@@ -1,0 +1,49 @@
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-white" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+    
+    dataSourceUrl="http://leedsdatamill.org/dataset/foi-and-eir-statistics"
+    feedbackEmail="nathan@hebeworks.com"
+    description="This Story uses statistics of FOIs/EIRs data from Leeds Data Mill"
+    license="Open Government License"
+    author="Nathan Smith"
+}}
+<main class="foi-request">
+    
+    <div>
+        {{
+            select-2
+            content=months
+            value=selectedMonth
+            optionLabelPath="month"
+            placeholder="Choose a month"
+        }}
+    </div>
+    
+    <div class="headline-figures">
+        <strong>FOI</strong> &amp; <strong>EIR</strong> Requests received <span class="headline-figure__value">{{total}}</span>
+    </div>
+    
+    <div class="response-times">
+        <div class="response-times__section svg-foi-timer"></div>
+        <div class="response-times__section -lime">Within <strong>20 days</strong> <span class="response-times__value">{{within_20_days_percent}}%</span></div>
+        <div class="response-times__section -red">Over <strong>20 days</strong> <span class="response-times__value">{{over_20_days_percent}}%</span></div>
+    </div>
+    
+    <aside class="disclosure-stats">
+        <div class="dotted-area -right pad-right">
+            Full Disclosure<br /><span class="disclosure-stat__stat">{{full_disclosure}}</span>
+        </div>
+            <div class="dotted-area">
+            Partial Disclosure<br /><span class="disclosure-stat__stat">{{partial_disclosure}}</span>
+        </div>
+            <div class="dotted-area -left pad-left">
+            Withheld<br /><span class="disclosure-stat__stat">{{withheld}}</span>
+        </div>
+    </aside>
+</main>
+{{/stories/story-base}}

@@ -1,0 +1,52 @@
+/* Lists */
+/* e.g. 
+	Stat Notices
+	Story Lister
+	Canvas Gallery
+*/
+
+.list__section {
+	
+	&.-notices {
+		
+	}
+}
+	.list {
+		margin:0;
+		list-style:none;
+		
+		&__row {
+			
+		}
+		
+		&-item {
+			@extend .dashed-area.bottom;
+			
+			&.-full-width {
+				width:100%;
+				float:none;
+				@extend .cf;
+			}
+			
+			&__details {
+				@extend .float--right;
+			}
+			
+				&__title {
+					color: $blue;
+				}
+				
+				&__description {
+					margin : {
+						top:10px;
+						bottom:10px;
+					}
+				}
+	
+				&__summary {
+					
+				}
+		}
+	}
+	
+

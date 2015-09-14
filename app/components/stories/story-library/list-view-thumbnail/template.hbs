@@ -1,0 +1,8 @@
+	<div class="thumb__icon {{thumbIcon}}"></div>
+	<h4 class="thumb__title">{{model.title}}</h4>
+	<p class="thumb__category -zeta">
+		{{#each model.categories as |cat|}}
+			{{cat.title}}
+		{{/each}}
+	</p>
+	{{yield}}

@@ -1,0 +1,21 @@
+<div class="list-item__details float--left">
+	<h4 class="list-item__title">{{model.title}}</h4>
+	<p class="list-item__description">{{model.description}}</p>
+	<p class="list-item__category -zeta">
+		{{#each model.categories as |cat|}}
+			{{cat.title}}
+		{{/each}}
+	</p>
+</div>
+
+<div class="float--right -width-quarter">
+	<button class="btn -blue -full" {{action "loadACanvas" model }}>Go to Canvas</button>
+	<div class="cf"></div>
+	<div class="btn-list -borderless">
+		<button class="btn -white -half" {{action "viewCanvasDetails" model }}>Details</button>
+		<!--<button class="btn -white -half" {{action "editACanvas" model }}>Edit</button>-->
+		<button class="btn -red -half" {{action "deleteACanvas" model }}>Remove</button>
+	</div>
+</div>
+
+{{yield}}

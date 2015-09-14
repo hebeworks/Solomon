@@ -1,0 +1,12 @@
+{{#if holdingPage}}
+	<div class="drawer__header">
+		{{#ui/generic-element action="closeBottomDrawer" tagName="a" classes="js-close-bottom-drawer btn -close"}}
+			<span class="icon icon-close-drawer svg-close-drawer" data-grunticon-embed></span>
+		{{/ui/generic-element}}
+
+	</div>
+	<div class="drawer__inner">
+	</div>
+{{else}}
+	{{stories/story-library}}
+{{/if}}

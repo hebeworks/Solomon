@@ -1,0 +1,20 @@
+<section class="gallery__section -categories">
+	<h3 class="thumb-list-heading float--left">Your Canvasses</h3>
+	{{!-- <a href="#" class="link -light float--right">See all ></a> --}}
+	<div class="cf"></div>
+	<div class="js-thumb-list thumb-list">
+		<ul class="thumb-list__inner">
+			{{#if items}}
+				{{#each items as |canvas|}}
+					{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}
+				{{/each}}
+			{{else}}
+				<li class="thumb">
+					<h5 class="thumb__title">Sorry there are no featured canvasses at the moment</h5>
+					<p class="thumb__category -zeta">&nbsp;</p>
+				</li>
+			{{/if}}
+		</ul>
+	</div>
+	{{yield}}
+</section>

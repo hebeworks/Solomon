@@ -1,0 +1,30 @@
+.creator {
+    width: 224px;
+    position: relative;
+}
+
+    .creator__inner {
+        position: absolute;
+        top: 0;
+        right: 24px;
+        bottom: 0;
+        left: 0;
+        background-color: $blue;
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($blue, 5%);
+        }
+    }
+        .creator__title {
+            @include middle(xy);
+            width: 140px;
+            display: block;
+            position: absolute;
+            color: #fff;
+            text-align: center;
+            font-size: rem(21px);
+            .icon-conversation {
+                display: block;
+            }
+        }

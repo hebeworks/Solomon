@@ -1,0 +1,30 @@
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-black" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+
+    dataSourceUrl="http://api.open-notify.org"
+    feedbackEmail="joel@hebeworks.com"
+    description="This Story uses data from Nasa via the ISS's Open Notify API"
+    license="<a href='http://spotthestation.nasa.gov/sightings/xml_files/United_Kingdom_England_Leeds.xml' target='_blank'>International Space Station data</a>, retrieved from NASA, 2015. "
+
+    author="Joel Mercer"
+    }}
+    <main class="space-station">
+        {{#stories/story-slider loaded=loaded}}
+            {{#each item in items}}
+                {{#stories/story-slide}}
+                    <div class="space-station__bg svg-space-station"></div>
+                    <div class="space-station__inner">
+                        <time class="space-station__date">{{item.date}}</time><br>
+                        <time class="space-station__duration">Visible for {{item.duration}} mins</time>
+                    </div>
+                {{/stories/story-slide}}
+            {{/each}}
+        {{/stories/story-slider}}
+    </main>
+<!--    http://spotthestation.nasa.gov/sightings/view.cfm?country=United_Kingdom&region=England&city=Leeds#.VSenec6aZrj-->
+{{/stories/story-base}}

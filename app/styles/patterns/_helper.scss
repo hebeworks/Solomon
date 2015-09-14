@@ -1,0 +1,176 @@
+.float--right {
+    float: right;
+}
+
+.float--left {
+    float: left;
+}
+
+.cf {
+    @include cf;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.text--left {
+    text-align: left;
+}
+
+.text--right {
+    text-align: right;
+}
+
+.v-align--middle {
+	@include middle(y);
+	display: block;
+	position: relative;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.bold {
+    font-weight: bold;
+}
+.helvbold {
+    font-family: $helvneuebold;
+}
+
+.block {
+    display: block;
+}
+
+.body-text {
+    > * {
+        margin-bottom: 0;
+        ~ * {
+            margin-top: 1.5em;
+        }
+    }
+}
+
+/*** PADDING ***/
+.pad-top {
+    padding-top: $helper-spacing;
+    
+    &.pad-double {
+        padding-top: $helper-spacing * 2;
+    }
+}
+.pad-top-half {
+    padding-top: $helper-spacing / 2;
+}
+.pad-right {
+    padding-right: $helper-spacing;
+
+    &.pad-double {
+        padding-right: $helper-spacing * 2;
+    }
+}
+.pad-right-half {
+    padding-right: $helper-spacing / 2;
+}
+.pad-bottom {
+    padding-bottom: $helper-spacing;
+
+    &.pad-double {
+        padding-bottom: $helper-spacing * 2;
+    }
+}
+.pad-bottom-half {
+    padding-bottom: $helper-spacing / 2;
+}
+.pad-left {
+    padding-left: $helper-spacing;
+
+    &.pad-double {
+        padding-left: $helper-spacing * 2;
+    }
+}
+.pad-all {
+    @extend .pad-top;
+    @extend .pad-right;
+    @extend .pad-bottom;
+    @extend .pad-left;
+}
+.pad-top-no {
+    padding-top: 0;
+}
+.pad-bottom-no {
+    padding-bottom: 0;
+}
+
+/*** MARGIN ***/
+.margin-top {
+    margin-top: $helper-spacing;
+}
+.margin-bottom {
+    margin-bottom: $helper-spacing;
+}
+.half-margin-top {
+    margin-top: $helper-spacing / 2;
+}
+.margin-right {
+    margin-right: $helper-spacing;
+}
+.half-margin-bottom {
+    margin-bottom: $helper-spacing / 2;
+}
+.double-margin-bottom {
+    margin-bottom: $helper-spacing * 2;
+}
+
+.margin-bottom-no {
+    margin-bottom: 0;
+}
+
+.margin-left {
+    margin-left: $helper-spacing;
+}
+
+/*** WIDTH BLOCKS ***/
+.-width-half {
+    width:50%;
+}
+.-width-quarter {
+    width:25%;
+}
+
+.-width-third {
+    width: 33.333%;
+}
+
+.-width-two-thirds {
+    width: 66.666%;
+}
+
+/*** V-ALIGNED GRIDS ***/
+.aligned-grid {
+    font-size: 0; // remove whitespace
+    
+    > * {
+        display: inline-block;
+        font-size: rem(15px); // reset the font size
+    }
+    
+    &.-top {
+        > * {
+            vertical-align: top;
+        }
+    }
+    
+    &.-middle {
+        > * {
+            vertical-align: middle;
+        }
+    }
+    
+    &.-bottom {
+        > * {
+            vertical-align: bottom;
+        }
+    }
+}

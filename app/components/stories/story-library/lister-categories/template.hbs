@@ -1,0 +1,167 @@
+{{yield}}
+		<section class="drawer__section -categories">
+			{{#each categories as |cat|}}
+				<h3 class="thumb-list-heading">{{cat.category.title}}</h3>
+				<div class="js-thumb-list thumb-list">
+					<ul class="thumb-list__inner">
+						{{#each cat.stories as |story|}}
+							{{stories/story-library/list-view-thumbnail model=story action="addAStory" thumbIcon="-add-story"}}
+						{{/each}}
+					</ul>
+				</div>
+			{{/each}}
+			
+			{{!-- 
+			<h3 class="thumb-list-heading">Transport</h3>
+			<div class="js-thumb-list thumb-list">
+				<ul class="thumb-list__inner">
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+				</ul>
+			</div>
+			<h3 class="thumb-list-heading">Health</h3>
+			<div class="js-thumb-list thumb-list">
+				<ul class="thumb-list__inner">
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+				</ul>
+			</div>
+			<h3 class="thumb-list-heading">Transport</h3>
+			<div class="js-thumb-list thumb-list">
+				<ul class="thumb-list__inner">
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+					<li class="thumb">
+					    <div class="thumb__icon"></div>
+					    <h4 class="thumb__title">Sport news &amp; events in Leeds</h4>
+					    <p class="thumb__category -zeta">Sport &amp; Events</p>
+					</li>
+				</ul>
+			</div>
+			
+			--}}
+		</section>

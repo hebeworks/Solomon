@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Group + Oval 80 Copy 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Add-a-Story" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Gallery-Tapped" sketch:type="MSArtboardGroup" transform="translate(-414.000000, -504.000000)">
+            <g id="Group-+-Oval-80-Copy-8" sketch:type="MSLayerGroup" transform="translate(414.000000, 504.000000)">
+                <g id="Group" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-81" fill="#DE4B63" x="-7.71465032e-14" y="-9.19546494e-14" width="150" height="150" rx="10"></rect>
+                    <rect id="Rectangle-378" opacity="0.337978078" fill="#FFFFFF" x="13.2133711" y="21.608102" width="55.9032293" height="5.1209065"></rect>
+                    <rect id="Rectangle-378-Copy" opacity="0.337978078" fill="#FFFFFF" x="13" y="13.5" width="71.692691" height="7.04124644"></rect>
+                    <rect id="Rectangle-381" opacity="0.337978078" fill="#FFFFFF" x="13" y="134" width="19" height="3"></rect>
+                    <rect id="Rectangle-381-Copy" opacity="0.337978078" fill="#FFFFFF" x="103" y="134" width="32" height="3"></rect>
+                </g>
+                <circle id="Oval-80-Copy-8" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="134" cy="16" r="6"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

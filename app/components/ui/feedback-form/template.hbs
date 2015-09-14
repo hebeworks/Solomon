@@ -1,0 +1,16 @@
+{{yield}}
+
+<div class="feedback-form" id="feedback-container">
+
+</div>
+
+<script type="text/javascript">
+    window.doorbellOptions = {
+        appKey: 'Fdr1fxHysojwld2yUiOqKErzpyiimWmJ8HPui3OnLxrf1MlSTG3BhWtWhQPLfnsx',
+        hideButton: true,
+        container: document.getElementById('feedback-container')
+    };
+    (function(d, t) {
+        var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/2016?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g);
+    }(document, 'script'));
+</script>

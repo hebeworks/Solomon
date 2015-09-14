@@ -1,0 +1,14 @@
+
+		<div class="md-modal {{effect}}">
+			<div class="md-content">
+				{{#if modalTitle}}
+					<div class="dotted-area -bottom pad-bottom pad-double double-margin-bottom -black cf">
+						<h3 class="md-title float--left margin-bottom-no">{{modalTitle}}</h3>
+						<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
+					</div>
+				{{/if}}
+				{{yield}}
+			</div>
+		</div>
+
+		<div class="md-overlay" {{action "close"}}></div>

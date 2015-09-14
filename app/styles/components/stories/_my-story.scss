@@ -1,0 +1,61 @@
+.my-story {
+	.heading {
+		font: {
+			family: $georgia;
+			size: em(18px);
+		}
+		margin: {
+			bottom: 10px;
+		}
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	p {
+		font: {
+			size: em(11px);
+		}
+		margin: {
+			bottom: 5px;
+		}
+	}
+}
+	.my-story__details {
+		border: {
+			top: dotted 1px #7e7d73;
+			bottom: dotted 1px #7e7d73;
+		}
+		padding: {
+			top: 5px;
+			bottom: 5px;
+		}
+		margin: {
+			bottom: 5px;
+		}
+	}
+		.my-story__datetime {
+			width: 32%;
+			font: {
+				family: $georgia;
+				size: em(12px);
+				style: italic;
+			}
+			float: left;
+		}
+		.my-story__address {
+			padding: {
+				top: 2px;
+			}
+			font: {
+				size: em(12px);
+			}
+			em {
+				font: {
+					family: $helvneuemed;
+					style: normal;
+				}
+			}
+		}

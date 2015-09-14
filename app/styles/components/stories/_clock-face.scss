@@ -1,0 +1,177 @@
+.clock-face {
+    border-radius: 50%;
+    background: radial-gradient(#000, #000 0.1em, #fff 0.1em, #fff), #fff;
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 120px;
+//    opacity: 0;
+//    transform: translateY(-40%);
+
+// Put in a no-js alternative so they're not invisible
+
+//.clock-face.show {
+//    opacity: 1;
+//    transform: translateY(-50%);
+//    transition: all 2.5s 0.5s cubic-bezier(.12,1.03,.34,1);
+//}
+}
+
+    .minutes-container, .hours-container, .seconds-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    
+    .hours-container {
+    //    animation: rotate 43200s infinite linear;
+    }
+    
+    .linear {
+        .minutes-container {
+            animation: rotate 3600s infinite linear;
+        }
+    
+        .seconds-container {
+            animation: rotate 60s infinite linear;
+        }
+    }
+    
+    .steps {
+        .minutes-container {
+            animation: rotate 3600s infinite steps(60);
+        }
+    
+        .seconds-container {
+            animation: rotate 60s infinite steps(60);
+        }
+    }
+    
+    .local.steps {
+        .minutes-container {
+            animation: none;
+        }
+    }
+    
+    .bounce {
+        &.minutes-container {
+            transition: transform 0.3s cubic-bezier(.4,2.08,.55,.44);
+        }
+    
+        &.seconds-container {
+            transition: transform 0.2s cubic-bezier(.4,2.08,.55,.44);
+        }
+    }
+    
+    .hours {
+        background: #000;
+        width: 13px;
+        height: 38px;
+        position: absolute;
+        left: 54px;
+        top: 25px;
+        -webkit-transform-origin: 0 0;
+        z-index: 8;
+    }
+    
+    .minutes {
+        background: #000;
+        width: 10px;
+        height: 55px;
+        position: absolute;
+        left: 55px;
+        top: 8px;
+        -webkit-transform-origin: 0 0;
+        z-index: 8;
+    }
+    
+    .seconds {
+        background: red;
+        width: 10px;
+        height: 62px;
+        position: absolute;
+        left: 6px;
+        top: -96px;
+        -webkit-transform-origin: 0 0;
+        -webkit-transform: translate(50px,100px);
+    }
+    
+    // .label {
+    //     background: #fff;
+    //     border-radius: 0.25em;
+    //     color: #000;
+    //     font-family: MyriadPro-Regular, 'Myriad Pro Regular', MyriadPro, 'Myriad Pro', Helvetica, Arial, sans-serif;
+    //     font-size: 1em;
+    //     font-weight: bold;
+    //     text-transform: uppercase;
+    //     padding: 0.5em 0.75em 0.25em;
+    //     position: absolute;
+    //     top: -4em;
+    //     left: 50%;
+    //     transform: translate(-50%, 0);
+    // }
+    
+    @keyframes rotate {
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+    
+    
+    
+    .clock-face.hebe {
+        background-color: transparent;
+        background-image: url('/assets/img/svg/embed/clock-face.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        box-shadow: 0 0 0.5em rgba(0,0,0,0.2) inset;
+    }
+    
+    .clock-face.hebe .seconds {
+        background: none;
+        background-image: url(/assets/img/svg/embed/clock-face-seconds.svg);
+        background-repeat: no-repeat;
+    }
+    
+    .clock-face.hebe .minutes {
+        background: none;
+        background-image: url(/assets/img/svg/embed/clock-face-minutes.svg);
+        background-repeat: no-repeat;
+    }
+    
+    .clock-face.hebe .hours {
+        background: none;
+        background-image: url(/assets/img/svg/embed/clock-face-hours.svg);
+        background-repeat: no-repeat;
+    }
+    
+    
+    
+    .clock-face.station {
+        background: #fff url(//cssanimation.rocks/assets/images/posts/clocks/station_clock.svg) no-repeat center;
+        background-size: 95%;
+        box-shadow: 0 0 0.5em rgba(0,0,0,0.2) inset;
+    }
+    
+    .clock-face.station .seconds::before {
+        background: red;
+        border-radius: 50%;
+        content: "";
+        position: absolute;
+        top: -9%;
+        left: -200%;
+        height: 18%;
+        width: 500%;
+    }
+    
+    
+    .hours.angled {
+        transform: rotateZ(-40deg);
+    }
+    
+    .minutes.angled {
+        transform: rotateZ(40deg);
+    }

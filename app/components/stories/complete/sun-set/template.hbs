@@ -1,0 +1,22 @@
+
+{{#stories/story-base
+    title=title
+    subTitle=subTitle
+    color="-black"
+    width="-w1"
+    height="-h1"
+    data-ss-colspan="1"
+    viewOnly="true"
+}}
+    <main class="sunrise-sunset">
+        <div class="circle-indicator-ring -medium">
+            <div>
+                <i class="sunrise-sunset__sun" aria-hidden="true">Sun icon</i>
+                <i class="sunrise-sunset__indicator -down" aria-hidden="true">Down icon</i>
+                <span class="number-stat block helvbold">{{sunsetCountdown}}</span><!--
+                --><span class="sunrise-sunset__description gamma helvbold block">Until Sunset</span>
+                <span class="gamma helvbold block">{{item.sunsetFormatted}}</span>
+            </div>
+        </div>
+    </main>
+{{/stories/story-base}}

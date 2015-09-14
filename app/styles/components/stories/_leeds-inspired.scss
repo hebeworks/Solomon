@@ -1,0 +1,72 @@
+.leeds-inspired-event {
+	height:215px;
+	overflow-y: hidden;
+	display:block;
+	
+	.image {
+		max-width: 50%;
+		float: right;
+		display: block;
+		padding: {
+			left: 10px;
+		}
+	}	
+	p {		
+		font: {
+			size: em(11px);
+		}
+		margin: {
+			bottom: 5px;
+		}
+	}
+	&__heading {
+		font: {
+			family: $georgia;
+			size: em(18px);
+		}
+		margin: {
+			bottom: 5px;
+		}
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	&__datetime {
+		width: 100%;
+		font: {
+			family: $georgia;
+			size: em(15px);
+			style: italic;
+		}
+		line-height: 1.35;
+		display: block;
+		margin-bottom: 2px;
+	}
+	&__address {
+		padding: {
+			top: 2px;
+		}
+		font: {
+			size: em(13px);
+			family: $helvneuemed;
+			style: normal;
+		}
+	}
+	&__description {
+		font: {
+			size: em(11px);
+		}
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    padding: 3px;
+    margin: 0 auto;	
+	}
+}

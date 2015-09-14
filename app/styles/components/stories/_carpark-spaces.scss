@@ -1,0 +1,101 @@
+.carpark-spaces {
+	
+	.icon-parking {
+		margin: {
+			top:2px;
+		}
+		svg {
+			width:18px;
+			height:18px;
+		}
+	}
+}
+	.car-park {
+		.svg-parking-icon {
+			width: 25px;
+			height: 25px;
+			padding: 5px;
+			border: solid 1px #fff;
+			float:left;
+			background: {
+				size:60%;
+				position:center center;
+			}
+			border-radius: 3px;
+			margin: {
+				right: 6px;
+				bottom: 10px;
+			}
+			display: inline-block;
+			text-indent: -99999px;
+			> svg {
+				width: 13px;
+				height: 13px;
+				display: block;
+				fill: #fff;
+			}
+		}
+		.heading {
+			float: left;
+			display: inline-block;
+			margin: {
+				top: 2px;
+				bottom: 0;
+			}
+		}
+	}
+		.car-park__wrapper {
+			width: 100%;
+			overflow: auto;
+			float: left;
+			padding: {
+				top:8px;
+				bottom:8px;
+			}
+			margin-bottom: 5px;
+			border: {
+				top: dotted 1px white;
+				bottom: dotted 1px white;
+			}
+		}
+		
+		.car-park__section {
+			float:left;
+			border: {
+				left: dotted 1px white;
+			}
+			
+			padding: {
+				left:8px;
+				right:8px;
+			}
+			
+			&:first-of-type {
+				border-left:none;
+				padding-left:0px;
+			}
+			
+			.-value {
+				font-size: 22px;
+				line-height: 0.9545454545;
+			}
+			
+			.-label {
+				font: {
+					size:em(11px);
+				}
+				white-space: nowrap;
+			}
+		}
+
+// Map
+.story {
+	&.-w2 {
+		.carpark-spaces {
+			.map-canvas {
+				height: 82px;
+				float: left;
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+<div class="create-a-category -form -admin">
+	<h3>Create a category</h3>
+	<h4>Current Categories</h4>
+	{{
+		select-2
+		content=allCategories
+		value=id
+		optionLabelPath="title"
+		placeholder="Choose a category"
+		multiple=true
+	}}
+	
+	{{yield}}
+	<p>{{input value=category.title }}
+		{{#if category.errors.title}}
+			<br />{{category.errors.title.message}}
+		{{/if}}
+	</p>
+	
+	{{#each category.errors.messages as |message|}}
+		<div class="error">
+			{{message}}
+		</div>
+	{{/each}}
+	
+	<button class="btn" {{ action "save"}}>SAVE NEW CATEGORY</button>
+
+</div>

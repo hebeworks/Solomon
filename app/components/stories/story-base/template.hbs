@@ -1,0 +1,62 @@
+<div class="story__inner">
+    <div class="story__card -front {{if viewOnly 'js-drag-handle'}}">
+        {{!-- #unless viewOnly}}<a href="javascript:;" class="js-cogs icon icon-cogs svg-cogs" data-grunticon-embed>Settings</a>{{/unless --}}
+        
+        <a href="javascript:;" class="js-cogs icon icon-cogs svg-cogs" data-grunticon-embed>Settings</a>
+        
+        <div class="story__content">
+            {{#if title}}
+                <header class="story__header">
+                    <h2 class="heading beta">{{title}}</h2>
+                    <h3 class="heading gamma">{{subTitle}}</h3>
+                </header>
+            {{/if}}
+        	{{yield}}
+            
+            {{#unless viewOnly}}<footer class="story__footer gamma">
+                {{#if author}}
+                        {{#if author}}<div class="author">Author: {{author}}</div>{{/if}}
+                {{/if}}
+            </footer>{{/unless}}
+        </div>
+    </div>
+
+    <div class="story__card -back">
+        <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a>
+        <div class="story__content">
+            {{#if viewOnly}}
+                <div class="btn-list -borderless">
+                    <button class="btn -red -full margin-top" {{action 'removeAStory' storyModel}}>
+                        Remove Story    
+                    </button>
+                </div>
+            {{else}}
+                <header class="story__header">
+                    <h2 class="heading beta">{{title}}</h2>
+                    <h3 class="heading gamma">{{subTitle}}</h3>
+                </header>
+                <div class="btn-list">
+                    {{ui/button-link href=dataSourceUrl title="View Data Source" class="btn -blue -half"}}
+                    {{ui/button-link href=feedbackEmail type="mail" title="Contact Author" class="btn -blue -half"}}
+                    <div class="cf"></div>
+                    <button class="btn -red -full half-margin-top" {{action 'removeAStory' storyModel}}>
+                        Remove from canvas    
+                    </button>
+                </div>
+                
+                {{#if description}}
+                    <div class="">
+                        <h2 class="beta bold half-margin-bottom">Description</h2>
+                        <p class="story__para">{{description}}</p>
+                    </div><br />
+                {{/if}}
+                {{#if license}}
+                    <div class="">
+                        <h2 class="beta bold half-margin-bottom">Licence / Attribution</h2>
+                        <p class="story__para">{{{license}}}</p>
+                    </div>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.tabs {
+    position:relative;
+}
+
+.tabs--links {
+    text-align:center;
+}
+
+.tabs__link {
+    display:inline-block;
+}
+
+.tabs__content {
+    position:relative;
+    width:100%;
+    height:200px;
+    border:solid 1px red;
+}
+
+.tabs--content__active {
+    display:block;
+}

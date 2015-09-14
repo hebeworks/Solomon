@@ -1,0 +1,48 @@
+.dotted-area, .solid-area {
+    &.-all {
+        border: dotted 1px $light-grey;
+        &.solid-area {
+            border-style:solid;
+        }
+    }
+    &.-top {
+        border-top: dotted 1px $light-grey;
+        &.solid-area {
+            border-top-style:solid;
+        }
+    }
+    &.-right {
+        border-right: dotted 1px $light-grey;
+        &.solid-area {
+            border-right-style:solid;
+        }
+    }
+    &.-bottom {
+        border-bottom: dotted 1px $light-grey;
+        &.solid-area {
+            border-bottom-style:solid;
+        }
+    }
+    &.-left {
+        border-left: dotted 1px $light-grey;
+        &.solid-area {
+            border-left-style:solid;
+        }
+    }
+        
+    &.-rounded {
+        border-radius: 5px;
+    }
+    
+    &.-dark {
+        border: {
+            color: $dark-grey;
+        }
+    }
+    
+    &.-black {
+        border-color: #000;
+    }
+}
+
+

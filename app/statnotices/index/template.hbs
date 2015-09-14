@@ -1,0 +1,23 @@
+
+    {{header-nav navItems=topNavItems action="gotoRoute"}}
+
+    <main class="stat-notices-body">
+		<h1 class="alpha">Filter</h1>
+		{{#stat-notices-list-view items=model}}
+            {{!--
+                {{#if showMap}}
+                    <div class="btn-list -borderless">
+                        <button class="btn -grey -selected -full" {{action "toggleMap"}}>Hide map</button>
+                    </div>
+                    {{stat-notices-map-view items=model}}
+                {{else}}
+                    <div class="btn-list -borderless">
+                        <button class="btn -grey -full" {{action "toggleMap"}}>Show map</button>
+                    </div>
+                {{/if}}
+            --}}
+		{{/stat-notices-list-view}}
+		{{outlet}}
+    </main>
+
+    {{outlet}}

@@ -1,0 +1,12 @@
+<section class="gallery__section -featured">
+		<h3 class="thumb-list-heading float--left">Featured</h3>
+		<div class="cf"></div>
+		<div class="js-thumb-list thumb-list">
+			<ul class="thumb-list__inner">
+				{{#each stories as |canvas|}}
+					{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}
+				{{/each}}
+			</ul>
+		</div>
+	{{yield}}
+</section>

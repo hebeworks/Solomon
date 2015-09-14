@@ -1,0 +1,28 @@
+
+{{#stories/story-base title=title subTitle=subTitle color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
+    <main class="<%= dasherizedModuleName %>">
+        {{#stories/story-slider loaded=loaded}}
+            {{#stories/story-slide}}
+                <div class="<%= dasherizedModuleName %>__welcome">
+                    <h3 class="-delta"><%= classifiedModuleName %></h3>
+                    <p>This is a Datamill story.</p>
+                    <p>Slide left and right to move between content pages.</p>
+                </div>                   
+            {{/stories/story-slide}}            
+            {{#each item in items}}
+                {{#stories/story-slide}}
+                    <div class="<%= dasherizedModuleName %>__item">
+                        <p>This page's context item was loaded from Leeds Data Mill</p>
+                        <p>Some sample object properties...</p>
+                        <ul>
+                            <li>street: {{item.street}}</li>
+                            <li>lat: {{item.lat}}</li>
+                            <li>lng: {{item.lng}}</li>
+                            <li>colour: {{item.colour}}</li>
+                        </ul>
+                    </div>
+                {{/stories/story-slide}}
+            {{/each}}
+        {{/stories/story-slider}}
+    </main>
+{{/stories/story-base}}

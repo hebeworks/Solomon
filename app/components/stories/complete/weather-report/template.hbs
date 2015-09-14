@@ -1,0 +1,76 @@
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-black" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+    
+    dataSourceUrl="http://leedsdatamill.org/dataset/xxxx-xxxx-xxxx"
+    feedbackEmail="joel@hebeworks.com"
+    description="This Story uses Weather data from Leeds Data Mill"
+    license="<a href='http://leedsdatamill.org/dataset/xxxx-xxxx-xxxx' target='_blank'>Weather Data</a>, © Leeds City Council, 2015.  This information is licensed under the terms of the Open Government Licence"
+    author="Joel Mercer"
+}}
+<main class="weather-report">
+    <div class="dotted-area -top -bottom pad-top-half pad-bottom-half">
+        <h2 class="heading beta">Today Sat 15 Aug</h2>
+        <div>
+            <div class="weather-report__section weather-report__today-other">
+                <span class="gamma block">UV index:</span><span class="beta block">2-5 - Moderate</span>
+            </div><!--
+            --><div class="weather-report__section weather-report__today-other">
+                <span class="gamma block">Humidity:</span><span class="beta block">98%</span>
+            </div><!--
+            --><div class="weather-report__today-weather">
+                <i class="icon-weather -light-rain">Light rain</i>
+                <div class="weather-report__today">
+                    <span class="block"><span class="beta">20°</span><span class="gamma">15°</span></span>
+                    <span class="gamma block">Light rain</span>
+                </div>
+            </div><!--
+            --><ul class="weather-report__hourly">
+                <li class="weather-report__section weather-report__hour">
+                    <span class="beta">13:00</span><br /><i class="icon-weather -small -light-rain -grey">Light rain</i>
+                </li><!--
+                --><li class="weather-report__section weather-report__hour">
+                    <span class="beta">14:00</span><br /><i class="icon-weather -small -light-rain -grey">Light rain</i>
+                </li><!--
+                --><li class="weather-report__section weather-report__hour">
+                    <span class="beta">15:00</span><br /><i class="icon-weather -small -light-rain -grey">Light rain</i>
+                </li><!--
+                --><li class="weather-report__section weather-report__hour">
+                    <span class="beta">16:00</span><br /><i class="icon-weather -small -light-rain -grey">Light rain</i>
+                </li><!--
+                --><li class="weather-report__section weather-report__hour">
+                    <span class="beta">17:00</span><br /><i class="icon-weather -small -light-rain -grey">Light rain</i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="dotted-area pad-top-half pad-bottom-half">
+        <ul class="weather-report__other-days">
+            <li class="weather-report__section weather-report__other-day">
+                <h2 class="heading beta">Sun 16<br />Aug</h2>
+                <i class="icon-weather -small -light-rain">Light rain</i>
+                <span class="beta">20°</span><span class="gamma">15°</span>
+            </li><!--
+            --><li class="weather-report__section weather-report__other-day">
+                <h2 class="heading beta">Mon 17<br />Aug</h2>
+                <i class="icon-weather -small -light-rain">Light rain</i>
+                <span class="beta">20°</span><span class="gamma">15°</span>
+            </li><!--
+            --><li class="weather-report__section weather-report__other-day">
+                <h2 class="heading beta">Tue 18<br />Aug</h2>
+                <i class="icon-weather -small -light-rain">Light rain</i>
+                <span class="beta">20°</span><span class="gamma">15°</span>
+            </li><!--
+            --><li class="weather-report__section weather-report__other-day">
+                <h2 class="heading beta">Wed 19<br />Aug</h2>
+                <i class="icon-weather -small -light-rain">Light rain</i>
+                <span class="beta">20°</span><span class="gamma">15°</span>
+            </li>
+        </ul>
+    </div>
+</main>
+{{/stories/story-base}}

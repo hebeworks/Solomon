@@ -1,0 +1,36 @@
+
+	<!--<h3 class="thumb-list-heading float--left">Canvasses Chosen for You...</h3>-->
+	<h3 class="thumb-list-heading float--left">Suggested Canvasses</h3>
+	{{!-- <a href="#" class="link -light float--right">See all ></a> --}}
+	<div class="cf"></div>	<div class="js-thumb-list thumb-list">
+		<ul class="thumb-list__inner">
+			{{#if items}}
+				{{#each items as |canvas|}}
+					{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}
+				{{/each}}
+			{{else}}
+				<li class="thumb">
+					<h5 class="thumb__title">Sorry there are no featured canvasses at the moment</h5>
+					<p class="thumb__category -zeta">&nbsp;</p>
+				</li>
+			{{/if}}
+		</ul>
+	</div>
+
+
+<div class="table -fixed">
+	<div class="creator table-cell">
+		<div class="creator__inner" {{action 'createACanvas'}}>
+			<span class="creator__title">
+				<span class="icon-conversation svg-conversation" data-grunticon-embed></span>
+				Create a canvas
+			</span>
+		</div>
+	</div>
+	
+	{{canvas-gallery/lister-users}}
+	
+	{{yield}}
+	
+</div>
+

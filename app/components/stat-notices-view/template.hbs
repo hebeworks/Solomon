@@ -1,0 +1,93 @@
+<div class="stat-notice">
+	<div class="stat-notice__section -two-thirds">
+		<div class="btn-list -borderless pad-top-no">
+		    <div class="btn -white -inactive {{statnotice-type-icon model.type "-black"}} float--left">
+			    <span class="v-align--middle text--center">
+			        {{model.type}}
+			    </span>
+			</div>
+			<div class="btn -white -inactive float--right publication-date">
+				<span class="v-align--middle">
+					<span class="beta">Publication date: {{format-date "DD/MM/YYYY" model.publicationDate}}</span>
+				</span>
+			</div>
+		</div>
+		<div class="stat-notice__proposal dotted-area -top -bottom pad-top pad-bottom -dark">
+			<h2 class="alpha">{{model.proposal}}</h2>
+		</div>
+		<p class="stat-notice__description dotted-area -dark -bottom pad-top pad-bottom">
+			{{#if model.proposalDetails}}
+				{{model.proposalDetails}}
+			{{else}}
+				There are no further details for this notice.
+			{{/if}}
+		</p>
+		<div class="stat-notice__map">
+		        {{google-map 
+		            lat=model.lat 
+		            lng=model.lng 
+		            zoom=15
+					markers=model.markers
+		            gopt_zoomControl=false
+		            gopt_mapTypeControl=false
+					gopt_draggable=false
+					gopt_scrollwheel=false
+	            }}
+	            {{!-- 
+				todo: map marker stays centered regardless of zooming & panning
+					gopt_styles=mapStyle --}}
+		</div>
+		<div class="stat-notice__section -full">
+			<div class="stat-notice__section -half">
+				<div class="stat-notice__address solid-area -all -rounded -dark">
+					<div class="icon solid-area -right -dark svg-stat-notice-icon-location-pin"></div>
+					<p class="pad-all">{{{model.fullAddress}}}</p>
+				</div>
+{{!-- 				<div class="btn-list -borderless">
+					<button class="btn -half svg-stat-notices-icon-phone" data-grunticon-embed>Phone</button>
+					{{#if model.objectionEmail}}
+						<a href="mailto:{{model.objectionEmail}}" class="btn -full svg-stat-notices-icon-email" data-grunticon-embed>Email</a>
+					{{/if}}
+				</div> --}}
+			</div>
+			<div class="stat-notice__section -half">
+				<div class="stat-notice__sign-off pad-top dotted-area -top -bottom -dark">
+					<h3 class="-beta dotted-area -bottom -dark pad-bottom">Sign-off</h3>
+					<h4 class="beta">Contact name: {{model.signOffName}}</h4>
+					<p class="story__para">{{model.signOffDetails}}</p>
+				</div>
+			</div>
+			<div class="cf">&nbsp;</div>
+		</div>
+		<div class="cf">&nbsp;</div>
+	</div>
+	<div class="stat-notice__section -one-third">
+		<div class="stat-notice__represent pad-all">
+			<h2 class="alpha pad-top pad-bottom">Make your voice heard</h2>
+			<div class="dotted-area -top -bottom -light pad-top pad-bottom body-text">
+				<p>Use the link below to access Public Access, a Leeds City Council service that provides a simple way for you to make an official response to this application. The deadline for representations is {{{model.objectionDeadlineTime}}} on {{{format-date "DD/MM/YYYY" model.objectionDeadlineDate}}}.</p>
+			</div>
+			<div class="btn-list -borderless">
+				<div class="pad-top"><a href="{{model.publicAccessURL}}" class="btn" target="_blank">Visit Public Access</a></div>
+			</div>
+		</div>
+	</div>
+	<div class="stat-notice__section -one-third">
+		<div class="stat-notice__legislation pad-all">
+			<h2 class="alpha pad-top pad-bottom">The legal bit</h2>
+			<div class="dotted-area -top -bottom -light pad-top pad-bottom body-text">
+				<p>The advertisement of Public Notices like this one is required by law. Use the link below to view the {{{model.legislationTitle}}}, which governs all {{{model.type}}} applications.</p>
+			</div>
+			<div class="btn-list -borderless">
+				<div class="pad-top"><a href="{{model.legislationURI}}" class="btn" target="_blank">View the legislation</a>
+					{{!-- <p>
+						{{citation}}
+					</p> --}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{yield}}
+	<div class="cf">&nbsp;</div>
+	
+</div>

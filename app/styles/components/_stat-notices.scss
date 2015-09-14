@@ -1,0 +1,548 @@
+.stat-notices-body  {
+	@extend %site-body;
+	padding: {
+		top:30px;
+		right:40px;
+		bottom:10px;
+		left:40px;
+	}
+	overflow-y: scroll;
+	
+	&.-intro {
+		@extend .-full;
+		height:100%;
+		
+		top:0px;
+		text-align: center;
+		color: $dark-grey;
+		
+		img {
+			width: 100%;
+			margin: {
+				top:1em;
+				bottom:2em;
+			}
+		}
+		@include breakpoint(max-width 999px) {
+			.-centered {
+				width:80%;
+			}	
+		}
+		@include breakpoint(max-width 700px) {
+			.-centered {
+				width:100%;
+			}	
+		}
+	}
+}
+ 
+	.-stat-notices { 
+	// modifier on top level full page app's .wrapper
+	}
+
+	// we should not be using js- classes in the Style Sheets according to Andy's docs. What other solution can we apply?
+	.js-gallery-button {
+		&.btn-list {
+			.btn {
+				@include media("<phoneLarge") {
+					width: 100%;
+					margin: {
+						left: 0;
+						bottom: 5px;
+					}
+					&:last-of-type {
+						margin: {
+							bottom: 0;
+						}
+					}
+				}
+				// @include media("<phoneSmall") {
+				// 	width: calc(50% - 5px);
+				// 	float: left;
+				// 	margin: {
+				// 		right: 5px;
+				// 	}
+				// 	&:nth-of-type(even) {
+				// 		float: right;
+				// 	}
+				// }
+			}
+		}
+	}
+
+	.stat-notices-body  {
+	
+		.btn-list {
+			// border top & bottom?
+			margin: {
+				bottom: 0px;
+			}
+			
+			.btn {
+				&[data-btn-type="featured"] {
+					&.All {
+						@extend .-selected;
+					}
+				}
+				&[data-btn-type="planning"] {
+					&.Planning {
+						@extend .-selected;
+					}
+				}
+				&[data-btn-type="licensing"] {
+					&.Licensing {
+						@extend .-selected;
+					}
+				}
+				
+				@include breakpoint(max-width 510px) {
+					width: 100%;
+					margin: {
+						left: 0;
+						right:0;
+					}
+				}
+			}
+		}
+	}
+		.stat-notices__inner {
+			> .btn-list {
+				padding: {
+					top:0;
+				}
+				
+				.btn {
+					margin: {
+						top:10px;
+					}
+				}
+			}
+		}
+		
+		.stat-notices__filter-place-search {
+			display: inline-block;
+			min-width: 250px;
+			margin: {
+				left:15px;
+				right:15px;
+			}
+			padding: {
+				top:10px;
+			}
+			@include breakpoint(max-width 705px) {
+				margin: {
+					left:0;
+				}
+			}
+			@include breakpoint(max-width 510px) {
+				width: 100%;
+				margin: {
+					left: 0;
+				}
+			}
+			
+			.select2-container {
+				margin: {
+					bottom:0px;
+				}
+				
+				a.select2-default {
+				// a.select2-choice.select2-default {
+					height:40px;
+				}
+				
+				.select2-choice 
+				{
+					.select2-arrow {
+						background: {
+							color:transparent;
+						}
+					}
+					
+					.select2-chosen {
+						font-size: 1rem;
+						margin-top: 8px;
+					}
+				}
+			}
+		}
+		
+		.stat-notice {
+			
+			&__section {
+				float:left;
+				
+				margin: {
+					top:18px;
+				}
+				
+				&:first-of-type {
+					margin: {
+						right:18px;
+					}
+				}
+					
+				&.-full {
+					width:100%;
+					margin:0;
+				}
+				
+				&.-half {
+					width:calc(50% - 18px);
+					@include media("<=phoneLarge") {
+						width: 100%;
+					}
+				}
+				
+				&.-two-thirds {
+					width:calc(66% - 18px);
+					@include media("<tablet") {
+						width: 100%;
+					}
+				}
+				
+				&.-one-third {
+					width:calc(33%);
+					@include media(">tablet") {
+						float: right;
+					}
+					@include media(">phoneLarge", "<tablet") {
+						width: calc(50% - 18px);
+						margin: {
+							right: 18px;
+							bottom: 18px;
+						}
+					}
+					@include media("<=phoneLarge") {
+						width: 100%;
+						margin: {
+							bottom: 18px;
+						}
+					}
+				}
+				
+				.icon {
+					position: absolute;
+					left:0px;
+					top:0px;
+					bottom:0px;
+					width:50px;
+					height:100%;
+					background: {
+						size:20px auto;
+						position:center 10px;
+					}
+					&.svg-stat-notice-icon-document {
+						background: {
+							size:20px auto;
+							position:center 8px;
+						}
+					}
+				}	
+			}
+
+			&__proposal {
+				h2 {
+					margin: {
+						bottom:0;
+					}
+				}
+			}
+			
+			&__description {
+				margin: {
+					bottom:10px;
+				}
+			}
+			
+			&__map {
+				.map-canvas {
+					width:100%;
+					height:250px;
+				}
+				border:1px solid $light-grey;
+				border: {
+					radius: $radius;
+				}
+			}
+			
+			&__address, &__contribute {
+				position:relative;
+				padding: {
+					left:50px;
+				}			
+				p {
+					margin: {
+						bottom:0;
+					}
+				}
+			}
+			
+			&__contribute {
+				position:relative;
+				padding: {
+					left:50px;
+				}
+				margin: {
+					top:10px;
+				}	
+			}
+			
+			&__sign-off {
+				h3, h4 {
+					margin: {
+						bottom:10px;
+					}
+				}
+			}
+
+			&__legislation {
+				width: 100%;
+				height: 50%;
+				background-color: $blue;
+				border: {
+					radius: $radius;
+				}
+				color: $white;
+				h2 {
+					margin: {
+						bottom:0;
+					}
+				}
+				h3 {
+					margin: {
+						bottom: 0;
+					}
+				}
+				.btn-list	{
+					padding: {
+						top: 0px;
+						bottom: 0px;
+					}
+				}
+				.btn {
+					margin: auto;
+					background-color: $dark-blue;
+					color: $white;
+					&:hover {
+						background-color: lighten($dark-blue, 5%)
+					}
+				}
+			}
+			&__represent {
+				width: 100%;
+				height: 50%;
+				background-color: $red;
+				border: {
+					radius: $radius;
+				}
+				color: $white;
+				h2 {
+					margin: {
+						bottom:0;
+					}
+				}
+				h3 {
+					margin: {
+						bottom: 0;
+					}
+				}
+				.btn-list	{
+					padding: {
+						top: 0px;
+						bottom: 0px;
+					}
+				}
+				.btn {
+					margin: auto;
+					background-color: $dark-red;
+					color: $white;
+					&:hover {
+						background-color: lighten($dark-red, 5%);;
+					}
+				}
+			}
+			
+			.btn-list {
+				margin: {
+					top: 0;
+				}
+				.btn {
+					height:40px;
+					padding: {
+						left: 20px;
+						right: 20px;
+					}
+					svg {
+						height:20px;
+					}
+
+					&.svg-stat-notices-icon-phone {
+						svg {
+							height:12px;
+						}
+						background: {
+						color: transparent;
+						}
+						@extend .solid-area.-all;
+						@extend .solid-area.-dark;
+						@extend .solid-area.-rounded;
+					}
+					&.svg-stat-notices-icon-email {
+						svg {
+							height: 17px;
+						}
+						background: {
+							color: transparent;
+						}
+						@extend .solid-area.-all;
+						@extend .solid-area.-dark;
+						@extend .solid-area.-rounded;
+					}
+					&.svg-stat-notices-icon-planning-black, &.svg-stat-notices-icon-licensing-black {
+						background-position: 1em center;
+						background-size: 15% 60%;
+						padding: {
+							left: 2rem;
+						}
+						width: 25%;
+						@include media("<phoneLarge") {
+							width: 30%;
+							float: left;
+						}
+						@include media("<=phoneSmall") {
+							width: 100%;
+							margin-bottom: 5px;
+						}
+					}
+					&.publication-date {
+						@include media("<phoneSmall") {
+							width: 100%;
+						}
+					}
+				}
+				
+				a.btn {
+					padding: {
+						top: 11px;
+					}
+					text-align: center;
+				}
+			}
+		}
+		
+		.stat-notices__notify-me-popup {
+			// modal-popup
+			.label {
+				display: inline-block;
+				min-width: 10em;
+				margin-right:10px;
+			}
+			
+			input {
+				width:30em;
+			} 
+			
+			
+			.btn {
+				&.svg-stat-notices-icon-planning, &.svg-stat-notices-icon-licensing {
+					padding: {
+						left:3em;
+					}
+					background: {
+						position: 0.4em center;
+						size: 30% 70%;
+					}
+				}
+			}
+		}
+		
+			.list__section.-notices {
+				
+				.list-item
+				{
+					@extend .cf;
+					&__summary, .btn-list {
+						float:left;
+						width:50%;
+						
+						&.btn-list {
+							margin: {
+								top:0;
+							}
+							
+							.btn {
+								float:left;
+								width: 25%;
+								margin: {
+									top: 0.4em;
+								}
+	
+								@include breakpoint(max-width 1100px) {
+									width: 24%;
+								}
+	
+								@include breakpoint(max-width 510px) {
+									width: 100%;
+									margin-left: 0;
+								}
+								
+								&:first-child {
+									width:44%;
+									@include breakpoint(max-width 1100px) {
+										width: 45%;
+									}
+									@include breakpoint(max-width 510px) {
+										width: 100%;
+										margin-left: 0;
+									}
+								}			
+								
+								&.svg-stat-notices-icon-planning, &.svg-stat-notices-icon-licensing {
+									background-position: 1em center;
+									background-size: 15% 60%;
+									padding: {
+										left: 2rem;
+									}
+								}
+							}
+						}
+												
+						@include breakpoint(max-width 999px) {
+							width: 100%;
+							float:none;
+							margin-bottom: 0px;
+						}
+					}
+					&__summary {
+						margin: {
+							top:15px;
+						}
+						height:50px;
+						padding: {
+							right: 20px;
+						}
+						
+						a {
+							text-decoration: none;	
+						}
+						
+						.v-align--middle {
+							overflow:hidden;
+							max-height: 4.4em;
+						}
+					}
+				}
+			}
+
+
+		.stat-notices__map-view {
+				.map-canvas {
+					width:100%;
+					height:450px;
+				}
+				border:1px solid $light-grey;
+				border: {
+					radius: $radius;
+				}
+		}

@@ -1,0 +1,112 @@
+.foi-request {
+	font: {
+		size: em(12px);
+	}
+	
+}
+
+	.headline-figures {
+		
+	}
+	
+		.headline-figure__value {
+			float:right;
+			color: $lime;
+			font: {
+				size:em(20px);
+			}
+			@extend strong;
+		}
+		
+	
+	.response-times {
+		width:100%;
+		@include cf;
+		margin: {
+			top:10px;
+		}
+	}
+	
+		.response-times__section {
+			float:left;
+			width:84px;
+			height:84px;
+			border-radius: 100%;
+			text-align:center;
+			margin: {
+				right:10px;
+			}
+			padding: {
+				top:1em;
+			}
+			
+			&.-lime {
+				border:solid 3px $lime;
+				
+				.response-times__value {
+					color:$lime;
+				}
+			}
+			
+			&.-red {
+				border:solid 3px $red;
+				
+				.response-times__value {
+					color:$red;
+				}
+			}
+			
+			strong {
+				display: block;
+			}
+			
+			&:last-of-type {
+				margin: {
+					right:0;
+				}
+			}
+			
+			&.svg-foi-timer {
+				border:none;
+				background: {
+					size: 50%;
+					position: center;
+				}
+			}			
+		}
+
+			.response-times__value {
+				@extend strong;
+				font: {
+					size: em(20px);
+				}				
+			}
+		
+	.disclosure-stats {
+		margin: {
+			top:15px;
+		}
+		@include cf;
+		white-space:nowrap;
+		
+		.dotted-area {
+			width:90px;
+			float:left;
+			margin: {
+				right:10px;
+			}
+			
+			&:last-of-type {
+				margin: {
+					right:0;
+				}	
+			}
+		}
+	}
+	
+		.disclosure-stat__stat {
+			@extend strong;
+			font: {
+				size: em(20px);
+			}	
+		}

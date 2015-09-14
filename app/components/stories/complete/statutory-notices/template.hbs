@@ -1,0 +1,68 @@
+
+{{#stories/story-base 
+	title=title 
+	subTitle=subTitle 
+	color="-black" 
+	width="-w2" 
+	height="-h2" 
+	data-ss-colspan="2"
+	headerBorder=true
+
+    dataSourceUrl=""
+    feedbackEmail="simon@hebeworks.com"
+    description=""
+    license="Open Government License"
+    author="Simon Zimmerman"
+}}
+
+    <main class="empty-properties">
+        <div class="select2-wrapper -select2-wide">
+            {{
+                select-2
+                content=items
+                value=selectedItem
+                optionLabelPath="district"
+                placeholder="District values"
+            }}
+        </div><!--
+        --><div class="select2-wrapper -select2-small -select2-calendar">
+            {{
+                select-2
+                content=items
+                value=selectedItem
+                optionLabelPath="date"
+                placeholder="Date"
+            }}
+        </div>
+        <div class="empty-properties__statistics">
+            <div class="story__half empty-properties__half">
+                <div class="dotted-area -top pad-top pad-bottom">
+                    <span class="gamma helvbold block">Total properties in ward</span><span class="number-stat bold -lime">10,115</span><br />
+                    <span class="gamma helvbold block">Total empty in ward</span><span class="number-stat bold -lime">167</span>
+                </div><!--
+                --><div class="dotted-area -top pad-top-half pad-bottom">
+                    <i class="empty-properties__house" aria-hidden="true">House icon</i>
+                    <div class="circle-indicator-ring -small -lime">
+                        <div>
+                            <span class="number-stat bold -lime block">1.26%</span><span class="number-property gamma helvbold block">Empty</span>
+                        </div>
+                    </div>
+                </div>
+            </div><!--
+            --><div class="story__half empty-properties__half">
+                <div class="dotted-area -top pad-top pad-bottom">
+                    <span class="gamma helvbold block">Total properties in city</span><span class="number-stat bold -orange">335,643</span><br />
+                    <span class="gamma helvbold block">Total empty in city</span><span class="number-stat bold -orange">6,258</span>
+                </div><!--
+                --><div class="dotted-area -top pad-top-half pad-bottom">
+                    <i class="empty-properties__house" aria-hidden="true">House icon</i>
+                    <div class="circle-indicator-ring -small -orange">
+                        <div>
+                            <span class="number-stat bold -orange block">1.86%</span><span class="number-property gamma helvbold block">Empty</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{{/stories/story-base}}

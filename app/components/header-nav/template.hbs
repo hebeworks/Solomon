@@ -1,0 +1,17 @@
+<header class="js-site-header site-header">
+    <div class="site-header__inner">
+        {{yield}}
+        <nav class="nav">
+            <ul class="js-site-nav nav__list -main -header">
+                {{#each item in navItems}}
+                    <li {{bind-attr class="item.dashed"}}>
+                        {{gallery-nav-icon title=item.title jshook=item.jshook iconclass=item.iconclass svgclass=item.svgclass action=item.action route=item.route}}
+                    </li>
+                {{/each}}
+            </ul>
+        </nav>
+    </div>
+    <div class="js-top-drawer js-toolbox drawer -top {{topOpen}}">
+    	{{top-drawer navItems=subNavItems}}
+    </div>
+</header>

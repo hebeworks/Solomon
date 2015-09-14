@@ -1,0 +1,40 @@
+<div class="drawer__header">
+	{{#ui/generic-element action="closeBottomDrawer" tagName="a" classes="js-close-bottom-drawer btn -close"}}
+		<span class="icon icon-close-drawer svg-close-drawer" data-grunticon-embed></span>
+	{{/ui/generic-element}}
+</div>
+<div class="drawer__inner">
+	<h3>Create a story</h3>
+	<p>{{message}}</p>
+	{{yield}}
+	
+	{{!-- canvas-gallery/create-a-canvas --}}
+	
+	<div class="create-a-story -form -admin">
+		<p>{{input value=title placeholder="Story Title e.g. Analogue Clock"}}
+			{{#if story.errors.title}}
+				<br />{{story.errors.title.message}}
+			{{/if}}
+		</p>
+		<p>{{input value=storyType placeholder="Story Type e.g. clock-face"}}</p>
+		<p>{{input value=configJSON placeholder="Config JSON e.g. { 'test' : 'testy' }"}}</p>
+
+		{{ select-2
+			content=allCategories
+			value=categories
+			optionLabelPath="title"
+			placeholder="Choose a category"
+			multiple=true
+		}}
+		
+		{{#each story.errors.messages as |message|}}
+			<div class="error">
+				{{message}}
+			</div>
+		{{/each}}
+		
+		<button class="btn" {{ action "save"}}>SAVE NEW STORY</button>
+	</div>
+	
+	{{admin/create-a-category}}
+</div>

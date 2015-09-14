@@ -1,0 +1,120 @@
+.drawer {
+	width: 100%;
+	background: {
+		color: #fff;
+	}
+	position: absolute;
+	@include transition(transform .3s ease-in-out);
+
+	&.-top {
+		height: 100px;
+		@include transform(translateY(0));
+		z-index: 1;
+		border: {
+			top: solid 1px #A3A3A3;
+			bottom: solid 1px #A3A3A3;
+		}
+		&.-open {
+			@include transform(translateY(100%));
+		}
+	}
+	&.-bottom {
+		top: 40%;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: {
+			top: 30px;
+			right: 40px;
+			bottom: 30px;
+			left: 40px;
+		}
+		z-index: 2;
+		@include transform(translateY(100%));
+
+		// Hack to get scrolling working properly
+		&.-overflow-y-scroll {
+			overflow-y: auto;
+		}
+
+		&.-open {
+			@include transform(translateY(0%));
+			&.-full {
+				top:100px;
+				border: {
+					top: solid 1px #A3A3A3;
+				}
+				@include transform(translateY(0%));
+
+				.drawer__section {
+					&.-visible {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.drawer__section {
+			// &.-categories,
+			// &.-official,
+			// &.-search, {
+			// 	display: none;
+			// }
+		}
+
+		&.-bd-show-categories {
+			.drawer__section {
+				// &.-categories {
+				// 	display: block;
+				// }
+				// &.-featured {
+				// 	display: none;
+				// }
+			}
+		}
+
+		&.-bd-show-official {
+			.drawer__section {
+				// &.-official {
+				// 	display: block;
+				// }
+				// &.-featured {
+				// 	display: none;
+				// }
+			}
+		}
+
+		&.-bd-show-search {
+			.drawer__section {
+				// &.-search {
+				// 	display: block;
+				// }
+				// &.-featured {
+				// 	display: none;
+				// }
+			}
+		}
+	}
+}
+
+	.drawer__header {
+		> .-close {
+			top: 10px;
+		    right: -30px;
+		}
+	}
+
+		.drawer__heading {
+			display: inline-block;
+			margin-bottom: 0;
+			font-size: rem($large-heading);
+		}
+		
+		.drawer__close {
+			display: block;
+			width: 18px;
+			height: 18px;
+			background-size: 18px 18px;
+			margin-bottom: 10px;
+			cursor: pointer;
+		}

@@ -1,0 +1,65 @@
+<h1 class="js-canvas-heading canvas-heading">
+    {{#if currentCanvas}}
+        {{currentCanvas.title}}
+    {{/if}}
+</h1>
+
+<div class="js-canvas canvas">
+    <a href="javascript:;" class="js-canvas-overlay canvas__overlay"></a>
+    <div class="js-stories canvas__inner">
+
+        {{#if currentCanvas}}
+            
+            {{#each currentCanvas.stories as |story|}}
+                {{#if story.componentPath}}
+                    {{ component story.componentPath storyModel=story}}
+                {{/if}}
+            {{/each}}
+            
+        {{else}}
+        {{!-- IN DEV --}}
+        {{!-- stories/complete/weather-report --}}
+        {{!-- stories/complete/empty-properties --}}
+        {{!-- stories/complete/council-spending --}}
+        
+        {{!-- LIVE --}}
+        {{ stories/complete/sun-rise }}
+        {{ stories/complete/stat-notices-recent }}
+        {{ stories/complete/sun-set }}
+        {{ stories/complete/calendar-date }}
+        {{ stories/complete/stat-notices-summary }}
+        
+        {{ stories/complete/footfall-centre }}
+        {{ stories/complete/twitter-feed }}
+        {{ stories/complete/clock-face }}
+        {{ stories/complete/house-prices }}
+        {{ stories/complete/parking-fines }}
+        {{ stories/complete/bicycle-bays }}
+        {{ stories/complete/river-levels }}
+        {{ stories/complete/foi-request }}
+        {{ stories/complete/carpark-spaces }}
+        {{ stories/complete/lcc-enquiries }}
+        {{ stories/complete/leeds-inspired }}
+
+        {{!-- UN-USED --}}
+        {{!-- stories/complete/development-story --}}
+        {{!-- stories/complete/instagram-local --}}
+        {{!-- stories/complete/space-station --}}
+        {{/if}}
+         
+        {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
+            <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
+                <div class="js-add-story story__inner">
+                    <span class="icon-plus svg-plus" data-grunticon-embed></span>Add a new story
+                </div>
+            </div>
+        {{/ui/generic-element}}
+        
+        
+        <!--<div class="js-story story -w1 -h1 story--add">
+            <a href="javascript:;" class="js-add-story story__inner">
+                <span class="icon-plus svg-plus" data-grunticon-embed></span>Add a new story
+            </a>
+        </div>-->
+        </div>
+    </div>

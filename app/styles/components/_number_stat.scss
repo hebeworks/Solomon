@@ -1,0 +1,21 @@
+.number-stat {
+
+    &.-orange {
+        color: $orange;
+    }
+    &.-lime {
+        color: $lime;
+    }
+    &.-medium {
+        font: {
+            size: rem(20px);
+            weight: bold;
+        }
+    }
+    &.-large {
+        font: {
+            size: rem(24px);
+            weight: bold;
+        }
+    }
+}

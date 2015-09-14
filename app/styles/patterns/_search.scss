@@ -1,0 +1,73 @@
+// Animation for loading icon
+@include keyframes(full-rotate) {
+    from {
+        @include transform(rotate(0));
+    }
+    
+    to {
+        @include transform(rotate(360deg));
+    }
+}
+
+.search {
+    background-color: $off-white;
+    position: relative;
+    // padding:10px 10px 2px 10px;
+    margin: {
+        bottom:20px;
+    }
+    
+    // todo: this is for bottom drawer - check works elsewhere
+    padding: 20px 40px;
+    left: -40px;
+    right:-40px;
+    width:calc(100% + 80px);    
+}
+
+    .search__input-wrapper {
+        position: relative;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 13px;
+            margin: auto;
+            width: 15px;
+            height: 15px;
+            z-index: 1;
+            background-size: 15px 15px;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2232px%22%20height%3D%2232px%22%20viewBox%3D%220%200%2032%2032%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Asketch%3D%22http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%2Fns%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3EFill%20140%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22UI%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20sketch%3Atype%3D%22MSPage%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Search-Tapped-Copy%22%20sketch%3Atype%3D%22MSArtboardGroup%22%20transform%3D%22translate%28-98.000000%2C%20-490.000000%29%22%20stroke%3D%22%23BBBBBB%22%20fill%3D%22%23BBBBBB%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M128.844743%2C520.101418%20L118.192567%2C509.517106%20C120.0387%2C507.547948%20121.17902%2C504.916788%20121.17902%2C502.020265%20C121.17902%2C495.943605%20116.203719%2C491%20110.088097%2C491%20C103.973888%2C491%2099%2C495.943605%2099%2C502.020265%20C99%2C508.095521%20103.973888%2C513.039828%20110.088097%2C513.039828%20C112.907105%2C513.039828%20115.476005%2C511.980484%20117.434473%2C510.25282%20L128.095833%2C520.846258%20C128.198985%2C520.948753%20128.334636%2C521%20128.470288%2C521%20C128.605939%2C521%20128.741591%2C520.948753%20128.844743%2C520.846258%20C129.051752%2C520.640567%20129.051752%2C520.307109%20128.844743%2C520.101418%20L128.844743%2C520.101418%20Z%20M110.088097%2C511.986802%20C104.558885%2C511.986802%20100.059777%2C507.514953%20100.059777%2C502.020265%20C100.059777%2C496.524173%20104.558885%2C492.053026%20110.088097%2C492.053026%20C115.618722%2C492.053026%20120.119243%2C496.524173%20120.119243%2C502.020265%20C120.119243%2C507.514953%20115.618722%2C511.986802%20110.088097%2C511.986802%20L110.088097%2C511.986802%20Z%22%20id%3D%22Fill-140%22%20sketch%3Atype%3D%22MSShapeGroup%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+        }
+        
+        &.-loading::before {
+            @include animation(full-rotate 1.0s linear infinite);
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2284px%22%20height%3D%2284px%22%20viewBox%3D%220%200%2084%2084%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Asketch%3D%22http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%2Fns%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3EImported%20Layers%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20sketch%3Atype%3D%22MSPage%22%3E%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M41.625%2C0%20L41.625%2C5%20C61.821%2C5%2078.251%2C21.43%2078.251%2C41.626%20C78.251%2C61.822%2061.821%2C78.251%2041.625%2C78.251%20C21.43%2C78.251%205%2C61.822%205%2C41.626%20L0%2C41.626%20C0%2C64.578%2018.673%2C83.251%2041.625%2C83.251%20C64.578%2C83.251%2083.251%2C64.578%2083.251%2C41.626%20C83.251%2C18.673%2064.578%2C0%2041.625%2C0%22%20id%3D%22Imported-Layers%22%20fill%3D%22%23C7C7C7%22%20sketch%3Atype%3D%22MSShapeGroup%22%3E%3C%2Fpath%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E');
+        }
+    }
+
+        .search__input[type] {
+            // has type attribute in selector to match specificity of base input styles
+            width: 100%;
+            background-color: $white;
+            border: 0;
+            padding-right: 40px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .search__clear {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            background-size: 20px 20px;
+            font-size: 0;
+            border: 0;
+            background-color: transparent;
+            margin: auto;
+        }

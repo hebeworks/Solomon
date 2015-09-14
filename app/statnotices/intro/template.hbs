@@ -1,0 +1,39 @@
+
+    <main class="stat-notices-body -intro -background__city">
+        <div class="content -centered">
+    		<h1 class="alpha">Welcome to the Statutory Notices</h1>
+            <p>Welcome to Leeds Statutory Notices - thanks for dropping by.</p>
+            <p>This is one of 24 projects happening across the UK right now, exploring new ways to publish Statutory Notices. It’s the result of a partnership between Leeds City Council; Johnston Press, owners of the Yorkshire Evening Post; and a local technology company, Hebe Works, and is funded by the Department for Communities and Local Government (DCLG). If you tap the first button below the service will launch and you’ll be able to search through recent Licencing and Planning Notices advertised by Leeds City Council, view full details about individual Notices and set email notifications for new Notices in the areas you care about. </p>
+            <p>The service is currently in a pilot phase so please bear with us as we refine things, and please offer feedback or make feature requests: <a href="mailto:simon@hebeworks.com">simon@hebeworks.com</a>.</p>
+            
+            <div class="btn-list -borderless">            
+                {{#link-to "statnotices.index" }}
+                    <button class="btn -blue -full">View Notices</button>
+                {{/link-to}}
+            </div>
+            
+            <br />
+            
+            <p>The Leeds Statutory Notices service is a component of Leeds City Dashboard, which aims to make Open Data easy to reach and understandable for all. Tap the button below for the full Dashboard experience.</p>
+            
+            <div class="btn-list -borderless">
+                {{#link-to "index" }}
+                    <button class="btn -blue -full">Visit Dashboard</button>
+                {{/link-to}}
+            </div>
+            
+    		
+            <!--<p>Pellentesque dolor lectus, mollis at faucibus quis, viverra et eros. Sed vitae leo lectus. Nulla vitae ante in ligula maximus maximus ac ac tortor. Nullam vulputate hendrerit convallis. Sed elit diam, accumsan quis nisi viverra, vulputate ultrices justo. Morbi vel magna leo.</p>
+            <p>We are in beta please bare with us.</p>-->
+            
+                <br />
+                <br />
+            <p class="-beta">Created & Developed by 
+                <br />
+                <br />
+                <a href="http://www.hebeworks.com" target="_blank" class="svg-hebe-logo" data-grunticon-embed>Created and developed by Hebe Works</a>
+            </p>
+            {{outlet}}
+        </div>
+    </main>
+

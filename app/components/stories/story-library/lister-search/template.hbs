@@ -1,0 +1,30 @@
+{{yield}}
+<section class="drawer__section -search">
+	{{!-- <div class="search">
+		{{input value=debouncedSearchTerm class="search__input delta" placeholder="Search"}}
+	</div> --}}
+	
+	<div class="search">
+		<div class="search__input-wrapper {{if isLoading '-loading'}}">
+			{{input value=debouncedSearchTerm class="search__input delta" placeholder="Search"}}
+			{{#if showClear}}
+				<button value="clear" {{action 'clearSearchTerm'}} class="search__clear svg-input-clear">Clear</button>
+			{{/if}}
+		</div>
+	</div>
+
+	{{#if stories}}
+		<h3 class="thumb-list-heading">Search results</h3>
+		<div class="js-thumb-list thumb-list">
+			<ul class="thumb-list__inner">
+				{{#each stories as |story|}}
+					{{stories/story-library/list-view-thumbnail model=story action="addAStory"}}
+				{{/each}}
+			</ul>
+		</div>
+	{{/if}}
+	
+	{{#if noResults}}
+		<h3 class="thumb-list-heading">Sorry we couldn't find any stories, please try again.</h3>
+	{{/if}}
+</section>

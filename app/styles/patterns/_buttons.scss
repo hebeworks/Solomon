@@ -1,0 +1,222 @@
+.btn {
+    @extend %delta;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration:none;
+    height: auto;
+    line-height: 1.5;
+    // added from btn-list .btn below
+    min-width: 115px;
+    padding: 11px 10px 8px;
+    text-align: center;
+    @include transition(.3s);
+    font: {
+        size: em(14px);
+    }
+    
+    &:focus {
+        outline: none;
+    }
+    
+    // end added from btn-list .btn below
+        
+    &.-inactive {
+        cursor: default;
+    }
+
+    &.-grey {
+        background-color: $light-grey;
+    
+        &:hover:not(.-inactive) {
+            color: $white;
+            background-color: $lime;
+        }
+        &:active {
+            background-color: $dark-grey;
+        }
+    }
+
+    &.-dark {
+        background-color: $dark-grey;
+        color: $white;
+    }
+
+    &.-white {
+        background-color: $white;
+    
+        &:hover:not(.-inactive) {
+            color: $white;
+            background-color: $lime;
+        }
+    }
+
+    &.-blue {
+        background-color: $blue;
+        color: $white;
+    }
+    
+    &.-red {
+        background-color: $red;
+        color: $white;
+    }
+
+    &.-dark-red {
+        background-color: $dark-red;
+        color: $white;
+    }
+    
+    &.-toggable {
+        @include svg--btn-toggle-on;
+        background: {
+            position: 94% center;
+            size: auto 60%;
+        }
+        padding: {
+            right: 50px
+        }
+        &.-on {
+            @extend .-selected;
+        }
+    }
+
+    &.-close {
+        width: 30px;
+        height: 30px;
+        display: block;
+        position: absolute;
+        top: 28px;
+        right: 43px;
+        .icon {
+            width: 30px;
+            height: 30px;
+            display: block;
+        }
+        
+        @include breakpoint(max-width 700px) {
+            top:0px;
+            right:0px;
+        }
+    }
+
+    &.-back {
+        width: 50px;
+        height: 50px;
+        background: #aaa;
+    }
+    
+    &.-full {
+        width: 100%;
+    }
+    
+    // A button that triggers an action, such as a submit button
+    &.-action {
+        background-color: $red;
+        color: $white;
+        
+        &:hover, &:focus {
+            background-color: $light-red;
+        }
+        
+        &:active {
+            background-color: $dark-red;
+        }
+    }
+    
+    // A button that doesn't trigger an action, more like a checkbox/radio button
+    &.-toggle {
+        background-color: $light-grey;
+        color: #000;
+        
+        &:hover, &:focus {
+            background-color: $medium-grey;
+        }
+    }
+    
+    &.-selected {
+        &, &:hover, &:focus {
+            background-color: $lime;
+            color: #fff;
+        }
+    }
+}
+
+.btn-list {
+    overflow: hidden;
+    padding: {
+        top: 10px;
+        bottom: 10px;
+    }
+    margin: {
+        top: 5px;
+        bottom: 10px;
+    }
+    border: {
+        top: dotted 1px #868080;
+        bottom: dotted 1px #868080;
+    }
+    
+    &.-borderless {
+        border: 0;
+    }
+    
+    .btn {
+        &.-search {
+            width: 180px;
+        }
+        &.-create {
+            width: 180px;
+            float: right;
+            background-color: $blue;
+            cursor: pointer;
+            &:hover {
+                background-color: lighten($blue, 5%);
+            }
+            .icon-conversation {
+                width: 15px;
+                display: inline-block;
+                vertical-align: middle;
+                margin: {
+                    top: -1px;
+                    right: 3px;
+                }
+                svg {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+        }
+        + .btn {
+            margin-left: 15px;
+        }
+        &.-right {
+            float:right;
+            margin: {
+                right:0px;
+            }
+        }
+        &.-half {
+            float:left;
+            width:49%;
+            &:nth-child(even) {
+                margin: {
+                    top:0;
+                    right:0;
+                    bottom:0;
+                    left: 2%;
+                }
+            }
+        }
+        &.-one-third {
+            width:calc(33% - 10px);
+        }
+    }
+}
+
+a.btn {    
+    display: block;
+    padding: {
+        top:1em;
+    }
+}

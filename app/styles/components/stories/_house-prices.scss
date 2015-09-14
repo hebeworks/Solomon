@@ -1,0 +1,143 @@
+.house-prices {
+    height:215px;
+    
+    .heading {
+        font: {
+            family: $georgia;
+            size: em(18px);
+        }
+
+        margin: {
+            bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p {
+        margin: 0px;
+    }
+
+    .image {
+        display: block;
+        width:44%;
+        background: {
+            size:contain;
+            position:center;
+        }
+        margin:0;
+        position:absolute;
+        left:0px;
+        top:0px;
+        bottom:0px;
+    }
+}
+
+    .house-prices__top {
+        @include cf;    
+        position:relative;
+        margin: {
+            bottom:15px;
+        }
+    }
+    
+    .house-prices__info {
+        display: inline-block;
+        padding: 10px;
+        width: 52%;
+        float:right;
+//        margin: {
+//            left:2%;
+//        }
+
+//        border: dotted 1px #7e7d73;
+
+        .heading {
+            width:100%;
+            padding: {
+                bottom:5px;
+            }
+
+            margin: {
+                bottom:0px;
+            }
+
+            border: {
+			    bottom: dotted 1px #7e7d73;
+		    }
+        }
+    }
+
+        .house-prices__price {
+
+            padding: {
+                top: 5px;
+            }
+            margin: {
+                bottom: 5px;
+            }
+        }
+
+        .house-prices_sub-price {
+            line-height: 0.6em;
+            font: {
+                size: em(11px);
+            }
+        }
+    
+    .-w2.-h2 .story__carousel .house-prices__chart .story__chart {
+        height:100px;
+        margin-left: -10px;
+    }
+    
+    .house-prices_summary {
+        font: {
+            size: em(11px);
+        }
+
+        padding: {
+            top:5px;
+            bottom:5px;
+        }
+
+        border: {
+			top: dotted 1px #7e7d73;
+		}
+    }
+
+    .house-prices__breakdown {
+        border-collapse: collapse;
+        width:100%;
+        margin: {
+            bottom:10px;
+        }
+
+        font: {
+            size: em(11px);
+        }
+
+        thead {
+            font: {
+                weight:lighter;
+                size: em(9px);
+            }
+
+            text-transform:uppercase;
+        }
+
+        thead, tr {
+            border: {
+			    bottom: dotted 1px #7e7d73;
+		    }
+
+            &:last-of-type {
+                border:none;
+            }
+        }
+    }

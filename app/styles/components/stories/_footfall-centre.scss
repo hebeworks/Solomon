@@ -1,0 +1,50 @@
+.footfall-centre {
+	.dotted-area {
+		margin-bottom: 8px;
+		p {
+			margin-bottom: 0;
+		}
+	}
+	.circle-indicator {
+		margin-right: 20px;
+		float: left;
+	}
+	.circle-indicator-stat {
+		margin-bottom: 0;
+		&.pad-top {
+			padding-top: 4px;
+		}
+		&.pad-bottom {
+			padding-bottom: 4px;
+		}
+	}
+}
+	.footfall-centre__table {
+		border-top:solid 1px $dark-grey;
+		width: 100%;
+		border-spacing: 0px;
+    	border-collapse: separate;
+		font: {
+			size: em(11px);
+		}
+		tr {
+
+			td {
+				color:$dark-grey;
+				width: 70%;
+				padding: 2px 5px;
+				border:{
+					bottom:solid 1px $dark-grey;
+					right:solid 1px $dark-grey;
+					left:solid 1px $dark-grey;
+				}
+
+				&:nth-child(even){
+					width: 30%;
+					font-weight: bold;
+					text-align: center;
+					border-left:none;
+				}
+			}
+		}
+	}

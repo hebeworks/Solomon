@@ -1,0 +1,49 @@
+.story__chart {
+    margin-top: 5px;
+    height: 100%;
+    rect {
+        fill: steelblue;
+    }
+
+    .domain {
+        stroke-width: 1px;
+        stroke: #EBEBEB;
+    }
+
+    .tick line {
+        stroke: #EBEBEB;
+    }
+
+    .c3-axis-x {
+        .domain {
+            display: none;
+        }
+    }
+
+    .c3-ygrid {
+        stroke: #EBEBEB;
+        stroke-dasharray: 0;
+    }
+}
+
+.legend span {
+    margin-top: 5px;
+    position: relative;
+    width: 48%;
+    height: 35px;
+    padding-right: 10px;
+    line-height: 37px;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    text-align: right;
+
+    &:first-child {
+        margin-right: 2%;
+    }
+    &:last-child {
+        margin-left: 2%;
+    }
+}

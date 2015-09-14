@@ -1,0 +1,172 @@
+.weather-report {
+
+}
+    .weather-report__section {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .weather-report__today {
+        margin-bottom: 10px;
+        span {
+            &:nth-child(1) {
+                line-height: 21px;
+            }
+            &:nth-child(2) {
+                position: relative;
+                top: -3px;
+            }
+        }
+    }
+        .weather-report__today-weather {
+            .icon-weather {
+                float: left;
+                margin-right: 10px;
+            }
+        }
+        .weather-report__today-other {
+            float: right;
+            padding-right: 0;
+            margin-left: 10px;
+            border-left: solid 1px #747474;
+        }
+        .weather-report__hourly {
+            @include clean-list;
+            @include cf;
+            width: 100%;
+            display: table;
+            margin-bottom: 5px;
+        }
+            .weather-report__hour {
+                display: table-cell;
+                text-align: center;
+                border-left: solid 1px #747474;
+
+                &:first-child {
+                    border-left: 0;
+                    padding-left: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                    padding-right: 0;
+                }
+
+                .icon-weather {
+                    display: inline-block;
+                }
+            }
+
+    .weather-report__other-days {
+        @include clean-list;
+        @include cf;
+        width: 100%;
+        display: table;
+        margin-top: 5px;
+    }
+        .weather-report__other-day {
+            display: table-cell;
+            border-left: solid 1px #747474;
+            position: relative;
+
+            &:first-child {
+                border-left: 0;
+                padding-left: 0;
+            }
+            &:last-child {
+                border-right: 0;
+                padding-right: 0;
+            }
+
+            .icon-weather {
+                position: absolute;
+                top: 17px;
+                right: 3px;
+            }
+        }
+
+.icon-weather {
+    width: 26px;
+    height: 30px;
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+
+    &.-small {
+        width: 25px;
+        height: 25px;
+    }
+    &.-cloudy {
+        background-image: url(/assets/img/svg/datauri/icon-weather-cloudy.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-cloudy-grey.svg);
+        }
+    }
+    &.-fog {
+        background-image: url(/assets/img/svg/datauri/icon-weather-fog.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-fog-grey.svg);
+        }
+    }
+    &.-hail {
+        background-image: url(/assets/img/svg/datauri/icon-weather-hail.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-hail-grey.svg);
+        }
+    }
+    &.-heavy-rain {
+        background-image: url(/assets/img/svg/datauri/icon-weather-heavy-rain.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-heavy-rain-grey.svg);
+        }
+    }
+    &.-heavy-snow {
+        background-image: url(/assets/img/svg/datauri/icon-weather-heavy-snow.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-heavy-snow-grey.svg);
+        }
+    }
+    &.-light-rain {
+        background-image: url(/assets/img/svg/datauri/icon-weather-light-rain.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-light-rain-grey.svg);
+        }
+    }
+    &.-light-snow {
+        background-image: url(/assets/img/svg/datauri/icon-weather-light-snow.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-light-snow-grey.svg);
+        }
+    }
+    &.-mist {
+        background-image: url(/assets/img/svg/datauri/icon-weather-mist.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-mist-grey.svg);
+        }
+    }
+    &.-overcast {
+        background-image: url(/assets/img/svg/datauri/icon-weather-overcast.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-overcast-grey.svg);
+        }
+    }
+    &.-sleet {
+        background-image: url(/assets/img/svg/datauri/icon-weather-sleet.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-sleet-grey.svg);
+        }
+    }
+    &.-sunny {
+        background-image: url(/assets/img/svg/datauri/icon-weather-sunny.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-sunny-grey.svg);
+        }
+    }
+    &.-thunder {
+        background-image: url(/assets/img/svg/datauri/icon-weather-thunder.svg);
+        &.-grey {
+            background-image: url(/assets/img/svg/datauri/icon-weather-thunder-grey.svg);
+        }
+    }
+}

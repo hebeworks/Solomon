@@ -1,0 +1,22 @@
+.development-story {
+	font: {
+		size:em(10px);
+	}
+	
+	table {
+        border-collapse: collapse;
+		width:630px;
+		max-width:630px;
+		td {
+			border:solid 1px red;
+			overflow: hidden;
+			text-overflow:ellipsis;
+		}
+	}
+	
+	.-text__overflow {
+		width:100%;
+		overflow-x: hidden;
+		text-overflow:ellipsis;
+	}
+}

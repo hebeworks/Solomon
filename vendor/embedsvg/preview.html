@@ -1,0 +1,111 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Icons Preview!</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+				background-image: linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(transparent 75%, #eee 75%), linear-gradient(transparent 75%, #eee 75%);
+				width: auto;
+				background-size: 10px 10px;
+			}
+		</style>
+		<script>
+			/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+!function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
+			
+			grunticon(["icons.data.svg.css", "icons.data.png.css", "icons.fallback.css"], grunticon.svgLoadedCallback);
+		</script>
+		<noscript><link href="icons.fallback.css" rel="stylesheet"></noscript>
+	</head>
+	<body>
+
+		<h1>CUSTOM PREVIEW - you can change this in the previewTemplate option</h1>
+			<pre><code>.svg-add-a-story:</code></pre><div class="svg-add-a-story" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-back:</code></pre><div class="svg-back" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-browse:</code></pre><div class="svg-browse" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-calendar:</code></pre><div class="svg-calendar" style="width: 35px; height: 41.001px;" ></div><hr/>
+			<pre><code>.svg-change-canvas:</code></pre><div class="svg-change-canvas" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-circle-indicator:</code></pre><div class="svg-circle-indicator" style="width: 317px; height: 317px;" ></div><hr/>
+			<pre><code>.svg-clock-face-hours:</code></pre><div class="svg-clock-face-hours" style="width: 15px; height: 45px;" ></div><hr/>
+			<pre><code>.svg-clock-face-minutes:</code></pre><div class="svg-clock-face-minutes" style="width: 10px; height: 69px;" ></div><hr/>
+			<pre><code>.svg-clock-face-seconds:</code></pre><div class="svg-clock-face-seconds" style="width: 11px; height: 61px;" ></div><hr/>
+			<pre><code>.svg-clock-face:</code></pre><div class="svg-clock-face" style="width: 131px; height: 131px;" ></div><hr/>
+			<pre><code>.svg-close-drawer:</code></pre><div class="svg-close-drawer" style="width: 31px; height: 31px;" ></div><hr/>
+			<pre><code>.svg-cogs:</code></pre><div class="svg-cogs" style="width: 400px; height: 300px;" ></div><hr/>
+			<pre><code>.svg-conversation:</code></pre><div class="svg-conversation" style="width: 45px; height: 45px;" ></div><hr/>
+			<pre><code>.svg-duplicate:</code></pre><div class="svg-duplicate" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-edit-meta:</code></pre><div class="svg-edit-meta" style="width: 48px; height: 38px;" ></div><hr/>
+			<pre><code>.svg-foi-timer:</code></pre><div class="svg-foi-timer" style="width: 86px; height: 91px;" ></div><hr/>
+			<pre><code>.svg-gallery:</code></pre><div class="svg-gallery" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-hebe-logo:</code></pre><div class="svg-hebe-logo" style="width: 87px; height: 87px;" ></div><hr/>
+			<pre><code>.svg-help:</code></pre><div class="svg-help" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-house-price-icon-detached:</code></pre><div class="svg-house-price-icon-detached" style="width: 71px; height: 86px;" ></div><hr/>
+			<pre><code>.svg-house-price-icon-flat:</code></pre><div class="svg-house-price-icon-flat" style="width: 68px; height: 83px;" ></div><hr/>
+			<pre><code>.svg-house-price-icon-semi:</code></pre><div class="svg-house-price-icon-semi" style="width: 100px; height: 83px;" ></div><hr/>
+			<pre><code>.svg-house-price-icon-terrace:</code></pre><div class="svg-house-price-icon-terrace" style="width: 132px; height: 95px;" ></div><hr/>
+			<pre><code>.svg-icon-add-canvas:</code></pre><div class="svg-icon-add-canvas" style="width: 59px; height: 51px;" ></div><hr/>
+			<pre><code>.svg-icon-add-story:</code></pre><div class="svg-icon-add-story" style="width: 60px; height: 61px;" ></div><hr/>
+			<pre><code>.svg-icon-close-circular:</code></pre><div class="svg-icon-close-circular" style="width: 41px; height: 41px;" ></div><hr/>
+			<pre><code>.svg-icon-feedback:</code></pre><div class="svg-icon-feedback" style="width: 55px; height: 51px;" ></div><hr/>
+			<pre><code>.svg-input-clear:</code></pre><div class="svg-input-clear" style="width: 40px; height: 40px;" ></div><hr/>
+			<pre><code>.svg-login:</code></pre><div class="svg-login" style="width: 73px; height: 61px;" ></div><hr/>
+			<pre><code>.svg-logo-thin:</code></pre><div class="svg-logo-thin" style="width: 400px; height: 300px;" ></div><hr/>
+			<pre><code>.svg-logo:</code></pre><div class="svg-logo" style="width: 401px; height: 61px;" ></div><hr/>
+			<pre><code>.svg-modal-close:</code></pre><div class="svg-modal-close" style="width: 41px; height: 41px;" ></div><hr/>
+			<pre><code>.svg-my-collection:</code></pre><div class="svg-my-collection" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-parking-fines-icon:</code></pre><div class="svg-parking-fines-icon" style="width: 79px; height: 110px;" ></div><hr/>
+			<pre><code>.svg-parking-icon:</code></pre><div class="svg-parking-icon" style="width: 13px; height: 13px;" ></div><hr/>
+			<pre><code>.svg-plus:</code></pre><div class="svg-plus" style="width: 75px; height: 75px;" ></div><hr/>
+			<pre><code>.svg-presentation:</code></pre><div class="svg-presentation" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-reverse:</code></pre><div class="svg-reverse" style="width: 400px; height: 300px;" ></div><hr/>
+			<pre><code>.svg-search-grey:</code></pre><div class="svg-search-grey" style="width: 32px; height: 32px;" ></div><hr/>
+			<pre><code>.svg-search-loader:</code></pre><div class="svg-search-loader" style="width: 84px; height: 84px;" ></div><hr/>
+			<pre><code>.svg-search:</code></pre><div class="svg-search" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-select2-icon:</code></pre><div class="svg-select2-icon" style="width: 35px; height: 35px;" ></div><hr/>
+			<pre><code>.svg-share:</code></pre><div class="svg-share" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-space-station:</code></pre><div class="svg-space-station" style="width: 330px; height: 362px;" ></div><hr/>
+			<pre><code>.svg-stat-notice-icon-document:</code></pre><div class="svg-stat-notice-icon-document" style="width: 32px; height: 38px;" ></div><hr/>
+			<pre><code>.svg-stat-notice-icon-location-pin:</code></pre><div class="svg-stat-notice-icon-location-pin" style="width: 41px; height: 41px;" ></div><hr/>
+			<pre><code>.svg-stat-notices-icon-email:</code></pre><div class="svg-stat-notices-icon-email" style="width: 43px; height: 33px;" ></div><hr/>
+			<pre><code>.svg-stat-notices-icon-licensing-black:</code></pre><div class="svg-stat-notices-icon-licensing-black" style="width: 30px; height: 36px;" ></div><hr/>
+			<pre><code>.svg-stat-notices-icon-licensing:</code></pre><div class="svg-stat-notices-icon-licensing" style="width: 30px; height: 36px;" ></div><hr/>
+			<pre><code>.svg-stat-notices-icon-phone:</code></pre><div class="svg-stat-notices-icon-phone" style="width: 46px; height: 21px;" ></div><hr/>
+			<pre><code>.svg-stat-notices-icon-planning-black:</code></pre><div class="svg-stat-notices-icon-planning-black" style="width: 32px; height: 36px;" ></div><hr/>
+			<pre><code>.svg-stat-notices-icon-planning:</code></pre><div class="svg-stat-notices-icon-planning" style="width: 32px; height: 36px;" ></div><hr/>
+			<pre><code>.svg-toolbox:</code></pre><div class="svg-toolbox" style="width: 48px; height: 48px;" ></div><hr/>
+			<pre><code>.svg-up-down-arrow:</code></pre><div class="svg-up-down-arrow" style="width: 24px; height: 8px;" ></div><hr/>
+
+		<h2 id="embedded-svg-option">Embedded SVG option</h2>
+		<p>(The <code>data-grunticon-embed</code> attribute tells grunticon to inject SVG inline):</p>
+
+		<pre><code>icon-burger:</code></pre><div class="icon-burger" data-grunticon-embed style="width: px; height: px;" ></div><hr/>
+
+		<style>
+			.icon-burger {
+				width: 32px;
+				height: 30px;
+				display: inline-block;
+			}
+			  .icon-burger.alt .cheese {
+		                fill: red;
+		            }
+				 .icon-burger.alt .buns {
+		                fill: orange;
+		            }
+				  .icon-burger.alt .burger {
+		                fill: yellow;
+		            }
+		 		 .icon-burger.alt .lettuce {
+		                fill: green;
+		            }
+
+		</style>
+
+		<pre><code>icon-burger (styled variation):</code></pre><div class="icon-burger alt" data-grunticon-embed></div><hr/>
+
+
+
+</body>
+</html>

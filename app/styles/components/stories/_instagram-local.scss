@@ -1,0 +1,38 @@
+.instagram-local {
+	border: {
+	top: dotted 1px $light-grey;
+	}
+	display: inline-block;
+	overflow: hidden;
+	overflow-y: scroll;
+	height: 220px;
+	padding-top: 7px;
+    
+}
+	.instagram-local__details {
+		padding: {
+			top: 5px;
+			bottom: 5px;
+		}
+
+		margin: {
+			bottom: 0px;
+		}
+	}
+        .instagram-local__photo {
+            float:left;
+            width:48.5%;
+            height: auto;
+            overflow: hidden;
+            &:nth-child(odd) {
+               	margin-right: 3%;
+            }
+
+            .image {
+                margin: 0px;
+                img {
+                	width: 100%;
+                }
+            }
+        }
+

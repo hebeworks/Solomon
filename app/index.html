@@ -1,0 +1,895 @@
+﻿<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Leeds City Dashboard - Beta</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">{{content-for 'head'}}
+        <link rel="stylesheet" href="assets/vendor.css">
+        <link rel="stylesheet" href="assets/hebe-dash.css">{{content-for 'head-footer'}}</head>
+    
+    <body>{{content-for 'body'}}
+        <script src="assets/vendor.js"></script>
+        <script src="assets/hebe-dash.js"></script>{{content-for 'body-footer'}}
+        <script>
+            var isTouchDevice,
+                isDraggingCanvas = false,
+                currentSlideIndex = 0,
+                isDraggingStory = false,
+
+                $document = $(document),
+                $window = $(window),
+                $body,
+
+                header = {},
+                wrappers = {},
+                drawers = {},
+                canvas = {},
+                stories = {},
+                toolbox = {};
+
+            canvas.dimensions = {}; // width & height
+            canvas.carousel = {};
+
+            var Wrapper = (function(){
+
+                var setupEvents = function() {
+                    wrappers.$gallery
+                        .on('mousedown', '.js-gallery-back', function(e){
+                            e.preventDefault();
+                            Wrapper.switchToDashboard();
+                        });
+                    wrappers.$statNotices
+                        .on('mousedown', '.js-stat-notices-back', function(e){
+                            e.preventDefault();
+                            Wrapper.switchToDashboard();
+                        });
+                };
+
+                return {
+                    switchToDashboard: function() {
+                        wrappers.$dashboard.addClass('-open');
+                        wrappers.$gallery.removeClass('-open');
+                        wrappers.$statNotices.removeClass('-open');
+                    },
+
+                    switchToGallery: function() {
+                        wrappers.$dashboard.removeClass('-open');
+                        wrappers.$gallery.addClass('-open');
+                        wrappers.$statNotices.removeClass('-open');
+                    },
+                    
+                    switchToStatNotices: function() {
+                        wrappers.$dashboard.removeClass('-open');
+                        wrappers.$gallery.removeClass('-open');
+                        wrappers.$statNotices.addClass('-open');
+                    },
+
+                    setupEvents: function() {
+                        setupEvents();
+                    }
+                }
+            })();
+
+            var Header = (function(){
+
+                var setupEvents = function() {
+                    header.$siteNav
+                        // functionality moved to components & Application > Controller Properties
+                        // .on('mousedown', '.js-open-toolbox', function(e){
+                        //     $(this).toggleClass('-selected');
+
+                        //     canvas.carousel.$switcher.removeClass('-blurred');
+
+                        //     Drawer.toggleTop();
+                        //     Drawer.closeBottom();
+                        // })
+                        .on('mousedown', '.js-open-gallery', function(e){
+                            Wrapper.switchToGallery();
+                        });
+                    };
+
+                return {
+                    setupEvents: function() {
+                        setupEvents();
+                    }
+                }
+            })();
+
+            var Drawer = (function(){
+
+                // var bottomDrawerScrollHack = function() {
+                //     // Hack to reapply overflow otherwise vertical scroll doesn't work on drawer
+                //     drawers.$bottom.removeClass('-overflow-y-scroll');
+                //     setTimeout(function(){
+                //         drawers.$bottom.addClass('-overflow-y-scroll');
+                //     }, 500);
+                // };
+
+                var setupEvents = function() {
+                    drawers.$bottom
+                        .on('mousedown', function(e){
+                            $body.removeClass('-top-drawer');
+                        })
+                        .on('mousedown', '.js-bottom-drawer-button .btn', function(e){
+                            // moved to Application > Route actions
+                            // e.preventDefault();
+
+                            // var $el = $(this);
+                            // var drawerSection = $el.data('btn-type');
+
+                            // Drawer.openBottomFull();
+                            // drawers.$bottom
+                            //     .removeClass('-bd-show-categories -bd-show-official -bd-show-search')
+                            //     .addClass('-bd-show-' + drawerSection)
+                            //     .find('.btn.-selected').removeClass('-selected');
+
+                            // $el.addClass('-selected');
+                        })
+                        // todo: replace with an ember component action
+                        // .on('mousedown', '.js-close-bottom-drawer', function(e){
+                        //     e.preventDefault();
+
+                        //     header.$btnOpenToolbox.removeClass('-selected');
+                        //     toolbox.$btnAddStory.removeClass('-selected');
+                        //     canvas.carousel.$switcher.removeClass('-blurred');
+
+                        //     Drawer.closeBottom();
+
+                        //     // Wait for drawer to slide off page before reverting section visibility
+                        //     setTimeout(function() {
+                        //         drawers.$bottom.removeClass('-bd-show-categories -bd-show-official -bd-show-search');
+                        //     }, 300);
+                        // });
+                };
+
+                return {
+                    openTop: function() {
+                        drawers.$top.addClass('-open');
+                    },
+
+                    closeTop: function() {
+                        drawers.$top.removeClass('-open');
+                    },
+
+                    toggleTop: function() {
+                        drawers.$top.toggleClass('-open');
+                    },
+
+                    // openBottomHalf: function(drawer) {
+                    //     drawers.$bottom.addClass('-open');
+                    //     bottomDrawerScrollHack();
+                    // },
+
+                    // openBottomFull: function() {
+                    //     drawers.$bottom.addClass('-open -full');
+                    //     bottomDrawerScrollHack();
+                    // },
+
+                    // closeBottom: function() {
+                    //     drawers.$bottom.removeClass('-open -full');
+                    // },
+
+                    setupEvents: function() {
+                        setupEvents();
+                    }
+                };
+            })();
+
+            var Canvas = (function(){
+
+                var open = function() {
+                    canvas.$switcher.addClass('-switching');
+                };
+
+                var close = function() {
+                    canvas.$switcher.removeClass('-switching');
+                };
+
+                // var stretch = function() {
+
+                //     canvas.dimensions.width = $window.width();
+                //     canvas.dimensions.height = $window.height() - (header.$header ? header.$header.height() : 0);
+
+                //     // console.log(canvas.dimensions.height);
+
+                //     canvas.carousel.$switcher
+                //         .css({
+                //             height: canvas.dimensions.height + 'px'
+                //         });
+
+                //     var colCount = Math.floor(canvas.dimensions.width / 170);
+                //     var innerWidth = ((colCount * 170) < 340 ? 340 : (colCount * 170));
+                //     // need to give canvas__inner an extra class to remove padding
+                //     // also need to remove margin left auto
+                //     // also need to give .story no margin left 
+
+                //     canvas.carousel.$canvases
+                //         .css({
+                //             //'width': canvas.dimensions.width + 'px',
+                //             'width': innerWidth + 'px',
+                //             'height': canvas.dimensions.height + 'px'
+                //         })
+                //         .parent()
+                //         .css({
+                //             'width': canvas.dimensions.width + 'px',
+                //             'height': canvas.dimensions.height + 'px'
+                //         })
+                //         .find('.canvas__inner') // need to find out how many columns we currently have & * by the col width (170)
+                //         .css({
+                //             'width': canvas.dimensions.width + 'px',
+                //             'height': canvas.dimensions.height + 'px'
+                //         })
+                //         .style('height', canvas.dimensions.height + 'px', 'important');
+                // };
+
+                var setupCarousel = function(){
+
+                    Canvas.setupEvents();
+
+                    canvas.carousel.$overlays.show();
+
+                    canvas.carousel.$listItems.each(function(index){
+
+                        // Deal with <li>s
+                        var $el = $(this);
+                        var $canvasHeading = $el.find('.js-canvas-heading');
+                        var $canvas = $el.find('.js-canvas');
+
+                        var percent = 40;
+                        var diff = currentSlideIndex - index;
+                        percent = Math.abs(percent * diff);
+
+                        if (index < currentSlideIndex) {
+                            $el.css({
+                                'transform': 'translateX(' + (percent + (3 * diff)) + '%)'
+                            });
+                            $canvas.css({
+                                'transform': 'scale(0.45) translateY(-50px)'
+                            });
+                        }
+                        if (index == currentSlideIndex) {
+                            $el
+                                .addClass('-selected')
+                                .css({
+                                    'transform': 'translateX(0)'
+                                });
+                            $canvas.css({
+                                'transform': 'scale(0.6) translateY(-50px)'
+                            });
+                        }
+                        if (index > currentSlideIndex) {
+                            $el.css({
+                                'transform': 'translateX(-' + (percent - (3 * diff)) + '%)'
+                            });
+                            $canvas.css({
+                                'transform': 'scale(0.45) translateY(-50px)'
+                            });
+                        }
+                    });
+                    
+                    // Deal with <ul>
+                    var $currentLi = canvas.carousel.$listItems.eq(currentSlideIndex);
+
+                    var existingUlPosition = parseInt(canvas.carousel.$list.css('transform').split(/[()]/)[1].split(',')[4], 10);
+                    
+                    var newTranslateX = existingUlPosition - $currentLi.offset().left;
+
+                    canvas.carousel.$list.css({
+                        'transition': 'all .3s',
+                        'transform': 'translateX(' + newTranslateX + 'px)'
+                    });
+                    setTimeout(function(){
+                        canvas.carousel.$list.css({
+                            'transition': 'none'
+                        });
+                    }, 300);
+                };
+
+                var resetCarousel = function() {
+
+                    Canvas.slideTo(currentSlideIndex, function() {
+
+                        canvas.carousel.$footer.removeClass('-switching');
+                        canvas.carousel.$switcher.removeClass('-switching');
+
+                        Canvas.unbindEvents();
+
+                        canvas.carousel.$overlays.hide();
+
+                        canvas.carousel.$listItems.each(function(index){
+
+                            var $el = $(this);
+                            var $canvas = $el.find('.js-canvas');
+
+                            $el.css({
+                                'transform': 'translateX(0)'
+                            }).removeClass('-selected');
+                            $canvas.removeAttr('style');
+                        });
+                    });
+                };
+
+                var setupFooter = function(){
+                    canvas.carousel.$pageXofY.find('.pg-of__y').text(canvas.carousel.slideCount);
+
+                    // Generate pagination, which we'll manage ourselves for more control
+                    var pagerNumbersArr = [];
+                    for (var i = 1; i <= canvas.carousel.slideCount; i++) {
+                        var $link = $('<a href="javascript:;"><span></span></a>');
+                        if (i == 1) $link.addClass('selected');
+                        pagerNumbersArr.push($link);
+                    }
+                    canvas.carousel.$pagerNumbers.append(pagerNumbersArr);
+
+                    canvas.carousel.$pagerNumbers
+                        .on('mousedown', 'a', function(e){
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            var $link = $(this);
+                            var index = canvas.carousel.$pagerNumbers.children('a').index($link);
+
+                            canvas.carousel.$pagerNumbers.children('a').removeClass('selected');
+                            $link.addClass('selected');
+
+                            Canvas.slideTo(index);
+                        });
+                };
+
+                var initCarousel = function(){
+
+                    setTimeout(function(){
+
+                        canvas.carousel.$list
+                            .css({
+                                'transform': 'translateX(0px)',
+                                'width': (canvas.dimensions.width * canvas.carousel.$canvases.size()) + 'px',
+                                'height': canvas.dimensions.height + 'px',
+                            })
+                            .children('li')
+                            .each(function(){
+                                $(this).css({
+                                    width: canvas.dimensions.width + 'px'
+                                });
+                            });
+
+                        setupFooter();
+                    }, 0);
+                };
+
+                var setupEvents = function() {
+
+                    canvas.carousel.$listItems
+                        .bind('mousedown', function(e){
+
+                            // Drag detection
+                            //console.log('mousedown');
+                            $(window).mousemove(function() {
+                                // console.log('mousemove');
+                                isDraggingCanvas = true;
+                                //console.log('isDraggingCanvas: set to true');
+                                //console.log('unbind mousemove 1');
+                                $(window).unbind("mousemove");
+                            });
+                        })
+                        .bind('mouseup', function(e){
+
+                            var $li = $(this);
+                            var liIndex = canvas.carousel.$listItems.index($li);
+                            var $canvas = $li.find('.js-canvas');
+
+                            // If not dragging and we want to either highlight a canvas or if selected open it up
+                            //console.log('unbind mousemove 2');
+                            $(window).unbind("mousemove");
+                            //console.log('isDraggingCanvas: ' + isDraggingCanvas);
+                            if (! isDraggingCanvas) { // Was clicking
+
+                                if (! $li.hasClass('-selected')) {
+
+                                    // Move carousel along & highlight slide
+                                    Canvas.slideTo(liIndex);
+
+                                } else {
+
+                                    Canvas.slideTo(liIndex, function(){
+
+                                        // Open canvas up to full size
+                                        header.$btnOpenToolbox.removeClass('-selected');
+                                        toolbox.$btnChangeCanvas.removeClass('-selected');
+                                        canvas.carousel.$overlays.hide();
+                                        canvas.carousel.$switcher.removeClass('-switching');
+                                        canvas.carousel.$listItems.removeClass('-selected');
+                                        $li.addClass('-selected');
+                                        $canvas.css({
+                                            'transform': 'scale(1) translateY(0)'
+                                        });
+                                    });
+                                }
+                            }
+                            isDraggingCanvas = false;
+                        });
+                };
+
+                var unbindEvents = function() {
+                    canvas.carousel.$listItems
+                        .unbind('mousedown mouseup');
+                };
+
+                var growCanvas = function(liIndex) {
+                    var $canvas = canvas.carousel.$listItems.eq(liIndex).find('.js-canvas');
+                    $canvas.css({
+                        'transform': 'scale(0.6) translateY(-50px)'
+                    });
+                };
+
+                return {
+                    init: function() {
+                        var attempts = 0;
+                        function attemptInit() {
+                            attempts++;
+
+                            if (attempts > 9) {
+                                return;
+                            }
+                            if (typeof header.$header === 'undefined') {
+                                setTimeout(function(){
+                                    attemptInit();
+                                }, 150);
+                                return;
+                            }
+                            
+                            canvas.dimensions.width = $window.width();
+                            canvas.dimensions.height = $window.height() - (header.$header ? header.$header.height() : 0);
+
+                            // Now they're available, assign these hooks to global canvas carousel object
+                            $.extend(canvas.carousel, {
+                                $switcher:     $('.js-canvas-switcher'),
+                                $list:         $('.js-canvas-switcher-list'),
+                                $footer:       $('.js-canvas-switcher-footer'),
+                                $overlays:     $('.js-canvas-overlay'),
+                                $canvases:     $('.js-canvas')
+                            });
+
+                            // Now hooks are available, assign child hooks to global canvas carousel object
+                            $.extend(canvas.carousel, {
+                                $listItems:    canvas.carousel.$list.children('li'),
+                                $pageXofY:     canvas.carousel.$footer.find('.pg-of'),
+                                $pager:        canvas.carousel.$footer.find('.carousel-pager'),
+                                slideCount:    canvas.carousel.$list.children('li').size()
+                            });
+                            $.extend(canvas.carousel, {
+                                $pagerNumbers: canvas.carousel.$pager.find('.carousel-pager__numbers')
+                            });
+
+                            // Ensure the canvas fits the screen
+                            stretch();
+
+                            // Initialise caroufredsel
+                            initCarousel();
+                        }
+                        setTimeout(function(){
+                            attemptInit();
+                        }, 0);
+                    },
+
+                    stretch: function() {
+                        stretch();
+                    },
+
+                    setupCarousel: function() {
+                        setupCarousel(currentSlideIndex);
+                    },
+
+                    resetCarousel: function() {
+                        resetCarousel();
+                    },
+
+                    setupEvents: function() {
+                        setupEvents();
+                    },
+
+                    unbindEvents: function() {
+                        unbindEvents();
+                    },
+
+                    slideTo: function(liIndex, callback) {
+
+                        var indexDiff = Math.abs((currentSlideIndex - liIndex));
+                        var distance = indexDiff * 787; // 787 is distance between slides at this scale
+                        var moveTime = indexDiff * 300;
+
+                        currentSlideIndex = liIndex;
+
+                        var $li = canvas.carousel.$listItems.eq(liIndex);
+                        var $canvas = $li.find('.js-canvas');
+
+                        var currentX = parseInt(canvas.carousel.$list.css('transform').split(/[()]/)[1].split(',')[4], 10);
+                        var newTranslateX = currentX - $li.offset().left;
+
+                        canvas.carousel.$list.css({
+                            'transition': 'all ' + moveTime + 'ms',
+                            'transform': 'translateX(' + newTranslateX + 'px)'
+                        });
+                        canvas.carousel.$listItems.removeClass('-selected');
+                        canvas.carousel.$canvases
+                            .css({
+                                'transform': 'scale(0.45) translateY(0)'
+                            });
+
+                        setTimeout(function(){
+                            growCanvas(liIndex);
+                        }, 0);
+                        setTimeout(function(){
+                            $li.addClass('-selected');
+                            canvas.carousel.$list.css({
+                                'transition': 'none'
+                            });
+
+                            if (typeof callback == 'function') {
+                                callback();
+                            }
+                        }, moveTime);
+
+                        /*canvas.carousel.$listItems.each(function(index){
+
+                            if (index < canvas.carousel.$listItems.size()) {
+                                var $curr = $(this);
+                                var $next = $curr.next('li');
+
+                                var currX = parseInt($curr.css('transform').split(/[()]/)[1].split(',')[4], 10);
+                                var nextX;
+
+                                if (index < (canvas.carousel.$listItems.size()-1)) {
+                                    nextX = parseInt($next.css('transform').split(/[()]/)[1].split(',')[4], 10);
+                                } else {
+                                    nextX = currX - $li.width();
+                                }
+
+                                if (nextX <= existingUlPosition && existingUlPosition <= currX) {
+                                    var diff =  - currX;
+                                    var remainder = (existingUlPosition - currX) / (nextX - currX);
+                                    moveTime = (remainder + index) * 300;
+                                    console.log(moveTime);
+                                    slide(liIndex);
+                                    return;
+                                }
+                            }
+                        });*/
+                    }/*,
+
+                    growCanvas: function(liIndex) {
+
+                        growCanvas(liIndex);
+                    }*/
+                };
+            })();
+
+            var Story = (function(){
+
+                var setupEvents = function() {
+
+                    // stories.$container
+                    //     .on('mousedown', '.js-add-story', function(e){
+                    //         // e.preventDefault();
+                    //         // todo: move in to ember components
+                    //         // Drawer.openBottomHalf();
+                    //         // canvas.carousel.$switcher.addClass('-blurred');
+                    //     });
+
+                    // Moved to story-base
+                    // stories.$allStoryCogs
+                    //     .on('touchstart mousedown', function(e){
+                    //         isDraggingStory = false;
+                    //     })
+                    //     .on('touchmove mousemove', function(e){
+                    //         isDraggingStory = true;
+                    //     });
+
+                    // if (isTouchDevice) {
+                    //     stories.$allStoryCogs
+                    //         .on('touchend', function(e){
+
+                    //             var $el = $(this);
+                    //             if (! isDraggingStory) {
+                    //                 $el.closest('.story__inner').toggleClass('-flip');
+                    //             }
+                    //         });
+                    // } else {
+                    //     stories.$allStoryCogs
+                    //         .on('mouseup', function(e){
+
+                    //             var $el = $(this);
+                    //             if (! isDraggingStory) {
+                    //                 $el.closest('.story__inner').toggleClass('-flip');
+                    //             }
+                    //         });
+                    // }
+
+                    stories.$allThumbLists
+                        .on('mousedown', '.thumb', function(e) {
+                            e.preventDefault();
+
+                            $body.addClass('-story-meta');
+                        });
+
+                    stories.$metaSlide
+                        .on('mousedown', '.js-close-story-meta', function(e) {
+                            e.preventDefault();
+
+                            $body.removeClass('-story-meta');
+                        });
+                };
+
+                return {
+                    init: function() {
+
+                        if (Modernizr.cssanimations) {
+                            // moved to story-base
+                            // $('.story__inner').addClass('-support-3d');
+                        } else {
+                            $('.clock-face').closest('.js-story').parent().remove();
+                            // $('.story__inner').addClass('-fallback-3d');
+                        }
+
+                        // todo: move into Ember - canvas-element component.js
+                        // // Initialize packery
+                        // setTimeout(function(){
+                        //     stories.$container
+                        //         .packery({
+                        //             itemSelector: '.story',
+                        //             columnWidth: 170,
+                        //             rowHeight: 170
+                        //         });
+
+                        //     var $itemEls = stories.$allStories.draggable({
+                        //         cursor: 'move',
+                        //         containment: 'body',
+                        //         handle: '.js-cogs, .js-drag-handle',
+                        //         scroll: true,
+                        //         scrollSensitivity: 100,
+                        //         scrollSpeed: 25,
+                        //         zIndex: 4
+                        //     });
+                        //     stories.$container.packery('bindUIDraggableEvents', $itemEls);
+                        // }, 0);
+
+                        setTimeout(function(){
+                            stories.$allStories.each(function(){
+
+                                var thisStory = {
+                                    $story: $(this),
+                                    carousel: {}
+                                };
+                                thisStory.carousel.$list = thisStory.$story.find('.js-story-carousel');
+                                thisStory.carousel.$slides = thisStory.carousel.$list.children('li');
+                                thisStory.$footer = thisStory.carousel.$list.closest('.story__content').find('.story__footer');
+                                thisStory.$pageCounter = thisStory.$footer.find('.pg-of');
+                                thisStory.$pager = thisStory.$footer.find('.carousel-pager');
+
+                                if (thisStory.carousel.$list.length > 0) {
+
+                                    thisStory.$pageCounter.find('.pg-of__y').text(thisStory.carousel.$slides.size());
+
+                                    $('.carousel-pager__btn').css('display', 'inline-block');
+                                    
+//                                    thisStory.carousel.$list.caroufredsel({
+//                                        prev: {
+//                                            button: thisStory.$pager.find('.carousel-pager__btn.-prev')
+//                                        },
+//                                        pagination: thisStory.$pager.find('.carousel-pager__numbers'),
+//                                        next: {
+//                                            button: thisStory.$pager.find('.carousel-pager__btn.-next')
+//                                        },
+//                                        swipe: {
+//                                            onTouch: true,
+//                                            onMouse: true
+//                                        },
+//                                        auto: false,
+//                                        scroll: {
+//                                            onBefore: function(){
+//                                                thisStory.carousel.$list.trigger('currentPosition', function(index){
+//                                                    thisStory.$pageCounter.find('.pg-of__x').text((index+1));
+//                                                });
+//                                            }
+//                                        }
+//                                    });
+                                }
+                            });
+                        }, 1000);
+
+                        //setupEvents();
+                    },
+
+                    setupEvents: function() {
+                        setupEvents();
+                    }
+                }
+            })();
+
+            var Toolbox = (function(){
+
+                var setupEvents = function() {
+                    toolbox.$toolbox
+                        .on('mousedown', '.js-toolbox-change-canvas', function(e){
+                            e.preventDefault();
+
+                            var $el = $(this);
+                            $el.toggleClass('-selected');
+
+                            if ($el.hasClass('-selected')) {
+                                Canvas.setupCarousel();
+
+                                canvas.carousel.$footer.addClass('-switching');
+                                canvas.carousel.$switcher.addClass('-switching');
+                            } else {
+                                Canvas.resetCarousel();
+                            }
+
+                            var leftLimit = 0;
+                            // Get the translateX value of the last <li>, as they've all been condensed together
+                            var $lastLi = canvas.carousel.$list.children('li:last');
+                            var skew = parseInt($lastLi.css('transform').split(/[()]/)[1].split(',')[4], 10);
+                            var rightLimit = (canvas.carousel.$list.width() + skew - $lastLi.width()) * -1;
+
+                            canvas.carousel.$list
+                                .draggable({
+                                    cursor: 'move',
+                                    axis: 'x',
+                                    scroll: true,
+                                    scrollSpeed: 10,
+                                    drag: function() {
+                                        var left = parseInt(canvas.carousel.$list.css('left'), 10);
+                                        var translateX = parseInt(canvas.carousel.$list.css('transform').split(/[()]/)[1].split(',')[4], 10);
+                                        var diff = left + translateX;
+                                        
+                                        if (diff > leftLimit) {
+                                            canvas.carousel.$list.css({
+                                                'left': '0px',
+                                                'transform': 'translateX(0px)'
+                                            });
+                                            return false;
+                                        }
+                                        if (diff < rightLimit) {
+                                            canvas.carousel.$list.css({
+                                                'left': '0px',
+                                                'transform': 'translateX(' + rightLimit + 'px)'
+                                            });
+                                            return false;
+                                        }
+                                    },
+                                    stop: function() {
+                                        var left = parseInt(canvas.carousel.$list.css('left'), 10);
+                                        var existingUlPosition = parseInt(canvas.carousel.$list.css('transform').split(/[()]/)[1].split(',')[4], 10);
+
+                                        existingUlPosition += left;
+                                        
+                                        canvas.carousel.$list.css({
+                                            'left': 'auto',
+                                            'transform': 'translateX(' + existingUlPosition + 'px)'
+                                        });
+                                    }
+                                });
+                            
+                            Drawer.closeTop();
+                        })
+                        
+                        // todo: move all this into the component actions
+                        .on('mousedown', '.js-add-story', function(e){
+                            // e.preventDefault();
+
+                            // var $el = $(this);
+
+                            // $el.removeClass('-selected');
+                            // header.$btnOpenToolbox.removeClass('-selected');
+                            // canvas.carousel.$switcher.addClass('-blurred');
+                            
+                            // todo: make sure bottom drawer opening closes top drawer
+                            // Drawer.closeTop();
+                            // Drawer.openBottomHalf();
+                        });
+                };
+
+                return {
+                    init: function() {
+
+                    },
+
+                    setupEvents: function() {
+                        setupEvents();
+                    }
+                }
+            })();
+
+            var HebeDash = (function() {
+
+                var setupDOM = function() {
+
+                    isTouchDevice = 'ontouchstart' in document.documentElement;
+
+                    // When they become available, assign to global scope
+                    $body = $('body');
+
+                    // Header
+                    header.$header = $('.js-site-header');
+                    header.$btnOpenToolbox = $('.js-open-toolbox');
+                    header.$siteNav = $('.js-site-nav');
+
+                    // 'Screens'
+                    wrappers.$dashboard = $('.js-dashboard-wrapper');
+                    wrappers.$gallery = $('.js-gallery-wrapper');
+                    wrappers.$statNotices = $('.js-stat-notices-wrapper');
+
+                    // Drawers
+                    drawers.$top = $('.js-top-drawer');
+                    drawers.$bottom = $('.js-dashboard-bottom-drawer');
+
+                    // Stories
+                    stories.$container = $('.js-stories');
+                    stories.$allStories = $('.js-story');
+                    stories.$allStoryCogs = $('.js-cogs');
+                    //stories.$storyCarousels = $('.js-story-carousel');
+
+                    // Story thumbnails
+                    stories.$allThumbLists = $('.js-thumb-list');
+
+                    // Meta slide
+                    stories.$metaSlide = $('.js-story-meta');
+
+                    // Toolbox
+                    toolbox.$toolbox = $('.js-toolbox');
+                    toolbox.$btnAddStory = $('.js-add-story');
+                    toolbox.$btnChangeCanvas = $('.js-toolbox-change-canvas');
+
+                    Story.init();
+
+                    //loadCSS(svgCSS);
+                };
+
+                var setupEvents = function() {
+
+                    Header.setupEvents();
+                    Toolbox.setupEvents();
+                    Drawer.setupEvents();
+                    Story.setupEvents();
+                    Wrapper.setupEvents();
+
+                    // $window.bind('load', function(){
+                    //     $window
+                    //         .resize(function(){
+                    //             Canvas.stretch();
+                    //         });
+                    // });
+                };
+
+                function setup() {
+                    setupDOM();
+                    setupEvents();
+                }
+
+                return {
+                    init: function () {
+                        setup();
+                    }
+                };
+            })();
+//            Canvas.init();
+//
+//            $document.bind('ready', HebeDash.init);
+        </script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        
+          ga('create', 'UA-63204812-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+
+</html>

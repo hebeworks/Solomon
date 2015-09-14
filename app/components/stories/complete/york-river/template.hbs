@@ -1,0 +1,57 @@
+
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-dark-blue" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+    headerBorder=true
+
+    dataSourceUrl="http://environment.data.gov.uk/flood-monitoring/doc/reference"
+    feedbackEmail="simon@hebeworks.com"
+    description="This Story uses Environment Agency flood and river level data from the real-time data API (Beta)"
+    license="Open Government License"
+    author="Simon Zimmerman"
+}}
+
+    <main class="river-levels">
+{{!--       {{
+            select-2
+            content=stations
+            value=selectedStation
+            optionLabelPath="name"
+            placeholder="Select Measurment Station"
+            }} --}}
+            {{!-- optionValuePath="id" --}}
+
+        <div class="river-levels-gaugeChart">
+            {{stories/story-liquid-gauge-chart value=latestReading.value metres=true max=typicalRangeHigh}}
+            <span class="info-label">No risk of flooding</span>
+        </div>
+        <div class="river-levels-columnChart">
+            <div class="river-levels-columnChart-container">
+                <div class="river-levels-columnChart-container--header"></div>
+                <div class="river-levels-columnChart-container-inner">
+                    <div class="river-levels-columnChart-container-inner--label-light">Highest</div>
+                    <div class="river-levels-columnChart-container-inner--line"></div>
+                    <div class="river-levels-columnChart-container-inner--value-light">{{maxOnRecord.value}}m</div>
+                    <div class="river-levels-columnChart-container-inner--maxLevel"></div>
+                    <div class="river-levels-columnChart-container-inner--label">5yr High</div>
+                    <div class="river-levels-columnChart-container-inner--line"></div>
+                    <div class="river-levels-columnChart-container-inner--value">{{highestRecent.value}}m</div>
+                    <div class="river-levels-columnChart-container-inner--highestLevelRecent"></div>
+                    <div class="river-levels-columnChart-container-inner--label">Flood Risk</div>
+                    <div class="river-levels-columnChart-container-inner--line-floodRisk"></div>
+                    <div class="river-levels-columnChart-container-inner--value">{{typicalRangeHigh}}m</div>
+                    <div class="river-levels-columnChart-container-inner--typicalHighLevel"></div>
+                    <div class="river-levels-columnChart-container-inner--label-light">Lowest</div>
+                    <div class="river-levels-columnChart-container-inner--line"></div>
+                    <div class="river-levels-columnChart-container-inner--value-light">{{minOnRecord.value}}m</div>
+                    <div class="river-levels-columnChart-container-inner--lowestLevel"></div>
+                </div>
+                <div class="river-levels-columnChart-container--footer">0.00m</div>
+            </div>
+        </div>
+    </main>
+{{/stories/story-base}}

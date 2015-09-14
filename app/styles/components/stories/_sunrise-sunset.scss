@@ -1,0 +1,38 @@
+.sunrise-sunset {
+    text-align: center;
+    margin-top: 4px;
+    margin-left: 4px;
+
+    .number-stat {
+        line-height: 1.1875;
+    }
+}
+    .sunrise-sunset__sun,
+    .sunrise-sunset__indicator {
+        width: 100%;
+        display: block;
+        white-space: pre-line;
+        text-indent: -99999px;
+        overflow: hidden;
+        background-size: contain;
+        background-position: 50% 0;
+        margin-bottom: 2px;
+    }
+    .sunrise-sunset__sun {
+        @include svg--icon-sun-rise-set;
+        height: 23px;
+    }
+    .sunrise-sunset__indicator {
+        @include svg--icon-sun-rise-set-indicator;
+        height: 8px;
+
+        &.-up {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+    }
+    .sunrise-sunset__description {
+        color: #859ea2;
+        font-size: rem(9px);
+    }

@@ -1,0 +1,17 @@
+
+{{#stories/story-base title=title subTitle=subTitle color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
+    {{#stories/story-slider loaded=loaded}}
+        {{#each item in items}}
+            {{#stories/story-slide}}
+                <main class="council-tax">
+                    <div class="image -wide">
+                        <a href="javascript:;"><img {{bind-attr src=item.assetUrl}} {{bind-attr alt=item.title}} width="290" height="87" /></a>
+                    </div>
+                    <h2 class="heading"><a target="_blank" {{bind-attr href=item.url}}>{{item.title}}</a></h2>
+                    <time class="event__datetime">{{item.date}}</time><br>
+                    <p class="story__para">{{item.excerpt}}</p>
+                </main>
+            {{/stories/story-slide}}
+        {{/each}}
+    {{/stories/story-slider}}
+{{/stories/story-base}}

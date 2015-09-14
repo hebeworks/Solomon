@@ -1,0 +1,68 @@
+.calendar {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    font-family: $letrapro;
+}
+    .calendar__day-word {
+        color: #f5a623;
+        font-size: rem(15px);
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 5px;
+
+        ~ .dotted-area {
+            @include cf;
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 57%;
+                -webkit-transform: translateX(-50%) translateY(-50%);
+                -moz-transform: translateX(-50%) translateY(-50%);
+                transform: translateX(-50%) translateY(-50%);
+                width: 2px;
+                height: 52px;
+                border: 0;
+                border-right: dotted 1px #4a4a4a;
+            }
+        }
+    }
+    .calendar__day-number {
+        color: #fff;
+        font-size: rem(40px);
+        font-weight: bold;
+        line-height: 45px;
+        padding-top: 8px;
+        float: left;
+    }
+    .calendar__day-suffix {
+        color: #f5a623;
+        font-size: rem(25px);
+        font-weight: bold;
+        padding-top: 10px;
+        text-align: right;
+        text-transform: uppercase;
+        float: right;
+        margin-right: 3px;
+    }
+    .calendar__month,
+    .calendar__year {
+        font-size: rem(15px);
+        font-weight: bold;
+        display: block;
+        text-transform: uppercase;
+        line-height: 15px;
+        position: absolute;
+        bottom: 0;
+    }
+    .calendar__month {
+        color: #fff;
+        left: 0;
+    }
+    .calendar__year {
+        color: #f5a623;
+        right: 0;
+    }

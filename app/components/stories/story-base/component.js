@@ -1,0 +1,62 @@
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+    tagName: 'div',
+    classNames: ['js-story story'],
+    classNameBindings: ['color', 'width', 'height'],
+    attributeBindings: ['data-ss-colspan'],
+    
+    isDraggingStory: false,
+    
+    storyModel: Ember.computed.alias('target.storyModel'),
+    
+    didInsertElement: function () {
+        // todo: ensure this is run minimal times throughout the entire app
+        // possibly add to application route and ember.run once
+        grunticon.embedSVG();
+        this.setupDragEvents();
+        this.set('action', 'onStoryLoaded');
+        this.sendAction();
+    },
+    
+    setupDragEvents: function () {
+        var obj = this;
+        var cog = this.$('.js-cogs');
+
+        if (Modernizr.cssanimations) {
+            obj.$('.story__inner').addClass('-support-3d');
+        } else {
+            obj.$('.story__inner').addClass('-fallback-3d');
+        }
+
+        cog
+            .on('touchstart mousedown', function (e) {
+                obj.set('isDraggingStory', false);
+            })
+            .on('touchmove mousemove', function (e) {
+                obj.set('isDraggingStory', true);
+            });
+
+        var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+        if (isTouchDevice) {
+            cog
+                .on('touchend', function (e) {
+
+                    var $el = $(this);
+                    if (obj.get('isDraggingStory') == false) {
+                        $el.closest('.story__inner').toggleClass('-flip');
+                    }
+                });
+        } else {
+            cog
+                .on('mouseup', function (e) {
+
+                    var $el = $(this);
+                    if (obj.get('isDraggingStory') == false) {
+                        $el.closest('.story__inner').toggleClass('-flip');
+                    }
+                });
+        }
+    }
+});

@@ -1,0 +1,41 @@
+{{yield}}
+<main class="house-prices">
+
+    <div class="house-prices__top">
+        <div class="image {{svgClass}}"></div>
+        <div class="house-prices__info dotted-area -all">
+            <h2 class="heading">{{houseType}}</h2>
+            <p class="house-prices__price number-stat -large">&pound;{{number-thousand-format total}}</p>
+            <p class="house-prices_sub-price">Monthly Change {{change}}%</p>
+        </div>
+    </div>
+
+<!--    <p class="house-prices_summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer odio purus, pellentesque non fermentum at. </p>-->
+    <div class="house-prices__chart">
+        {{#if graphParams}}
+            {{stories/story-chart graphParams=graphParams}}
+        {{/if}}
+    </div>
+    
+<!--    <table class="house-prices__breakdown">
+        <thead>
+        <td>Most Valuable Postcode</td>
+        <td>Houses sold this year</td>
+        <td>% total</td></thead>
+        <tr>
+            <td>LS23</td>
+            <td>814</td>
+            <td>24%</td>
+        </tr>
+        <tr>
+            <td>LS23</td>
+            <td>814</td>
+            <td>24%</td>
+        </tr>
+        <tr>
+            <td>LS23</td>
+            <td>814</td>
+            <td>24%</td>
+        </tr>
+    </table>-->
+</main>

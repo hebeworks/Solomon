@@ -1,0 +1,38 @@
+
+{{#stories/story-base title=title subTitle=subTitle color="-white" width="-w4" height="-h4" data-ss-colspan="4"}}
+
+
+<!--SAMPLE IFRAME CONTENT-->
+<!--<iframe width='100%' height='520' frameborder='0' src='https://liamboltonuk.cartodb.com/viz/2e9392c0-ca99-11e4-ba4c-0e853d047bba/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>-->
+
+<!--LIST ALL DATASETS-->
+<!--TODO: FIRE CAROUSEL AFTER DATA LOADED-->
+    {{#stories/story-slider loaded=loaded}}
+        {{#each item in datasets}}
+            {{#stories/story-slide}}
+                <main class="development-story">
+                    <h2 class="heading">{{item.name}}</h2>
+                        <p class="story__para">{{#each field in item.fields}}{{field}} ||{{/each}}</p>
+                        <table>
+                            <thead>
+                                {{#each field in item.fields}}
+                                    <td><span class="-text__overflow">{{field}}</span></td>
+                                {{/each}}
+                            </thead>
+                            <tbody>
+                                {{#each row in item.items}}
+                                    <tr>
+                                        {{#each prop in row}}
+                                            <td>{{prop}}</td>
+                                        {{/each}}
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                </main>
+            {{/stories/story-slide}}
+        {{/each}}
+    {{/stories/story-slider}}
+    
+    
+{{/stories/story-base}}

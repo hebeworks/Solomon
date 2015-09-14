@@ -1,0 +1,88 @@
+@mixin svg--btn-toggle-on { background-image: url('png/btn-toggle-on.png'); background-repeat: no-repeat; }
+
+@mixin svg--dropdown-triangle-dark { background-image: url('png/dropdown-triangle-dark.png'); background-repeat: no-repeat; }
+
+@mixin svg--dropdown-triangle { background-image: url('png/dropdown-triangle.png'); background-repeat: no-repeat; }
+
+@mixin svg--error-icon { background-image: url('png/error-icon.png'); background-repeat: no-repeat; }
+
+@mixin svg--headset { background-image: url('png/headset.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-calendar { background-image: url('png/icon-calendar.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-house { background-image: url('png/icon-house.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-sun-rise-set-indicator { background-image: url('png/icon-sun-rise-set-indicator.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-sun-rise-set { background-image: url('png/icon-sun-rise-set.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-cloudy-grey { background-image: url('png/icon-weather-cloudy-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-cloudy { background-image: url('png/icon-weather-cloudy.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-fog-grey { background-image: url('png/icon-weather-fog-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-fog { background-image: url('png/icon-weather-fog.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-hail-grey { background-image: url('png/icon-weather-hail-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-hail { background-image: url('png/icon-weather-hail.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-heavy-rain-grey { background-image: url('png/icon-weather-heavy-rain-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-heavy-rain { background-image: url('png/icon-weather-heavy-rain.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-heavy-snow-grey { background-image: url('png/icon-weather-heavy-snow-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-heavy-snow { background-image: url('png/icon-weather-heavy-snow.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-light-rain-grey { background-image: url('png/icon-weather-light-rain-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-light-rain { background-image: url('png/icon-weather-light-rain.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-light-snow-grey { background-image: url('png/icon-weather-light-snow-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-light-snow { background-image: url('png/icon-weather-light-snow.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-mist-grey { background-image: url('png/icon-weather-mist-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-mist { background-image: url('png/icon-weather-mist.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-overcast-grey { background-image: url('png/icon-weather-overcast-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-overcast { background-image: url('png/icon-weather-overcast.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-sleet-grey { background-image: url('png/icon-weather-sleet-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-sleet { background-image: url('png/icon-weather-sleet.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-sunny-grey { background-image: url('png/icon-weather-sunny-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-sunny { background-image: url('png/icon-weather-sunny.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-thunder-grey { background-image: url('png/icon-weather-thunder-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--icon-weather-thunder { background-image: url('png/icon-weather-thunder.png'); background-repeat: no-repeat; }
+
+@mixin svg--list-view-thumb-add-canvas-active { background-image: url('png/list-view-thumb-add-canvas-active.png'); background-repeat: no-repeat; }
+
+@mixin svg--list-view-thumb-add-canvas { background-image: url('png/list-view-thumb-add-canvas.png'); background-repeat: no-repeat; }
+
+@mixin svg--list-view-thumb-add-story-active { background-image: url('png/list-view-thumb-add-story-active.png'); background-repeat: no-repeat; }
+
+@mixin svg--list-view-thumb-add-story { background-image: url('png/list-view-thumb-add-story.png'); background-repeat: no-repeat; }
+
+@mixin svg--list-view-thumb-default-active { background-image: url('png/list-view-thumb-default-active.png'); background-repeat: no-repeat; }
+
+@mixin svg--list-view-thumb-default { background-image: url('png/list-view-thumb-default.png'); background-repeat: no-repeat; }
+
+@mixin svg--msn-messenger { background-image: url('png/msn-messenger.png'); background-repeat: no-repeat; }
+
+@mixin svg--search-grey { background-image: url('png/search-grey.png'); background-repeat: no-repeat; }
+
+@mixin svg--search-loader { background-image: url('png/search-loader.png'); background-repeat: no-repeat; }
+
+@mixin svg--select2-icon { background-image: url('png/select2-icon.png'); background-repeat: no-repeat; }
+
+@mixin svg--twitter-follow { background-image: url('png/twitter-follow.png'); background-repeat: no-repeat; }
+

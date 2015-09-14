@@ -1,0 +1,127 @@
+.story__carousel {
+	@include clean-list;
+}
+
+.story {
+	&.-w2.-h2 {
+		.story__carousel {
+			
+			> li {
+				width: 290px;
+				float: left;
+			}
+
+            .story__chart {
+                height: 180px;
+            }
+		}
+	}
+	&.-w4.-h4 {
+		.story__carousel {
+			
+			> li {
+				width: 630px;
+				float: left;
+			}
+
+            .story__chart {
+                height: 390px;
+            }
+		}
+	}
+}
+
+.carousel-pager {
+	display: inline-block;
+	&__btn {
+		height: 11px;
+		float: left;
+		overflow: hidden;
+		outline: none;
+		cursor: pointer;
+		text-indent: -9999px;
+		background-color: transparent;
+		border: 0;
+		padding: 0;
+		margin: {
+			right: 5px;
+			left: 5px;
+		}
+		display: block;
+		&:before {
+			content: '';
+			display: block;
+			width: 7px;
+			height: 10px;
+		}
+		&.-prev {
+			&:before {
+				@include triangle(10px, #bfbdae, left);
+			}
+			&:hover {
+				&:before {
+					@include triangle(10px, #000, left);
+				}
+			}
+		}
+		&.-next {
+			&:before {
+				@include triangle(10px, #bfbdae, right);
+			}
+			&:hover {
+				&:before {
+					@include triangle(10px, #000, right);
+				}
+			}
+		}
+	}
+}
+	.carousel-pager__numbers {
+		float: left;
+		font: {
+			size: em(12px);
+		}
+		a {
+			width: 6px;
+			height: 8px;
+			float: left;
+			overflow: hidden;
+			display: inline-block;
+			float: left;
+			margin: {
+				right: 3px;
+				left: 3px;
+			}
+			text: {
+				decoration: none;
+				indent: -99999px;
+			}
+			&:before {
+				content: '';
+				display: block;
+				width: 6px;
+				height: 6px;
+				margin: {
+					top: 2px;
+				}
+				background: {
+					color: #bfbdae;
+				}
+				border-radius: 100%;
+			}
+			&:hover {
+				&:before {
+					background: {
+						color: #000;
+					}
+				}
+			}
+			&.selected {
+				&:before {
+					background: {
+						color: #000;
+					}
+				}
+			}
+		}
+	}

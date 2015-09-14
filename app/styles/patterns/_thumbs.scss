@@ -1,0 +1,101 @@
+.thumb-list {
+    position: relative;
+    margin-bottom: 1em;
+
+    // &:after {
+    //     content: '';
+    //     width: 18px;
+    //     position: absolute;
+    //     top: 14px;
+    //     bottom: 14px;
+    //     right: 0;
+    //     background-color: $off-white;
+    //     border-left: 1px solid $light-grey;
+    // }
+
+    &.-dark {
+        .thumb-list__inner {
+            background-color: $light-grey;
+        }
+
+        &:after {
+            background-color: $light-grey;
+            border-color: $grey;
+        }
+    }
+}
+
+.thumb-list-heading {
+    margin-bottom: 10px;
+    font-size: rem(13px);
+}
+
+.thumb-list__inner {
+    @include clean-list;
+    @include cf;
+    border-radius: 5px;
+    // background-color: $off-white;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 0; // remove whitespace
+
+    + .thumb-list {
+        margin-top: 1.5em;
+    }
+}
+
+    .thumb {
+        width: 75px;
+        display: inline-block;
+        vertical-align: top;
+        white-space: normal;
+        margin-right: 20px;
+        cursor: pointer;
+        font-size: rem(15px); // reset font size
+    }
+
+        .thumb__icon {
+            padding-top: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            
+            @include svg--list-view-thumb-default;
+            background: {
+                size:contain;
+            }
+            
+            &:hover {
+                @include svg--list-view-thumb-default-active;
+                background: {
+                    size:contain;
+                }
+            }
+            
+            
+            &.-add-story {
+                @include svg--list-view-thumb-add-story;
+                &:hover {
+                    @include svg--list-view-thumb-add-story-active;
+                }
+            }
+
+            &.-add-canvas {
+                @include svg--list-view-thumb-add-canvas;
+                &:hover {
+                    @include svg--list-view-thumb-add-canvas-active;
+                }
+            }
+        }
+
+        .thumb__title {
+            color: #000;
+            margin: 0;
+            font-size: rem(13px);
+        }
+
+        .thumb__category {
+            color: $grey;
+            margin: 0;
+            font-size: rem(10px);
+        }

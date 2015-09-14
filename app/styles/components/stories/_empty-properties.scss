@@ -1,0 +1,44 @@
+.empty-properties {
+    .select2-wrapper {
+        float: left;
+        margin-bottom: 0;
+    }
+
+    .circle-indicator-ring {
+        float: right;
+        margin-top: 2px;
+        margin-left: 10px;
+        border-width: 2px;
+        .number-stat {
+            line-height: 17px;
+            font-size: rem(15px);
+        }
+        .number-property {
+            font-size: rem(10px);
+        }
+    }
+}
+    .empty-properties__statistics {
+
+    }
+        .empty-properties__half {
+            &:nth-child(1) {
+                padding-right: 10px;
+                border-right: dotted 1px $light-grey;
+            }
+            &:nth-child(2) {
+                padding-left: 10px;
+            }
+        }
+            .empty-properties__house {
+                @include svg--icon-house;
+                width: 30px;
+                height: 30px;
+                float: left;
+                display: block;
+                text-indent: -99999px;
+                overflow: hidden;
+                margin-top: 21px;
+                margin-left: 12px;
+                background-size: contain;
+            }

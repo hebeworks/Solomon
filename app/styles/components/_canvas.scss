@@ -1,0 +1,192 @@
+.canvas-switcher {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	position: relative;
+	background-color: #f7f7f7;
+	opacity: 1;
+	@include transform(translateZ(0));
+	@include transition(all .3s);
+	/*@include filter(blur(0) brightness(100%));
+	@include transition(filter .3s, opacity .3s);
+	transition: -webkit-filter .3s, opacity .3s; */
+
+	.heading.-switch-canvas {
+		width: 90%;
+		position: absolute;
+		left: 5%;
+		top: 3%;
+		opacity: 0;
+		padding-bottom: 20px;
+		border-bottom: dashed 1px #aaa;
+		@include transition(all .3s);
+	}
+
+	&.-blurred {
+		@include filter(blur(40px) brightness(79%));
+		opacity: .16;
+	}
+
+	&.-switching {
+		background-color: #dfdfe4;
+		.heading.-switch-canvas {
+			opacity: 1;
+		}
+		.canvas-switcher__list {
+			> li {
+				z-index: 2;
+				&.-selected {
+					z-index: 1;
+					.canvas-heading {
+						top: 12%;
+						left: 20%;
+					}
+					.canvas {
+						.canvas__overlay {
+							background-color: transparent;
+							box-shadow: none;
+						}
+					}
+				}
+				.canvas-heading {
+					top: 22%;
+					opacity: 1;
+				}
+				&:hover {
+					.canvas {
+						box-shadow: 2px 2px 14px 0px #7ED321;
+					}
+					.canvas__overlay {
+						background-color: transparent;
+					}
+				}
+			}
+		}
+		.canvas {
+			overflow-y: hidden;
+			border: {
+				radius: 20px;
+			}
+			background: {
+				color: #f1f1f1;
+			}
+			box-shadow: 2px 2px 14px 0px rgba(0,0,0,0.20);
+		}
+		.canvas__inner {
+			overflow-y: hidden;
+		}
+	}
+}
+	.canvas-switcher__list {
+		@include cf;
+		@include clean-list;
+		width: 8000px;
+		height: 100%;
+		z-index: 1;
+		position: relative;
+		top: 0;
+		left: 0;
+		> li {
+			float: left;
+			position: relative;
+			z-index: 1;
+			&.-selected {
+				z-index: 2;
+			}
+			.canvas-heading {
+				width: 100%;
+				position: absolute;
+				top: -50px;
+				left: 27.5%;
+				opacity: 0;
+				@include transition(all .3s);
+			}
+			.canvas {
+				@include transition(all .3s);
+			}
+		}
+	}
+		.canvas {
+			height: 100%;
+			width:100%;
+			overflow-y: auto;
+			overflow-x: hidden;
+			z-index: 2;
+//			float: left;
+			list-style: none;
+			position: relative;
+			padding: {
+				top: 0px;
+				bottom: 40px;
+			}
+			background-color: #f7f7f7;
+			margin: {
+				left:auto;
+				right:auto;
+			}
+		}
+			.canvas__overlay {
+				width: 100%;
+				height: 100%;
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 4;
+				border: {
+					radius: 20px;
+				}
+				background-color: rgba(255, 255, 255, .8);
+			}
+			.canvas__inner {
+				@include cf;
+				@include centered;
+				width: 100%;
+				overflow: hidden;
+				overflow-x: hidden;
+				overflow-y: auto;
+				z-index: 3;
+				/* @for $i from 2 through 9 {
+					@include breakpoint(170px * $i) {
+						width: 170px * $i;
+					}
+				} */
+				
+			    @include breakpoint(max-width 360px) {
+					margin: {
+						left:0;
+						right:0;
+					}
+					padding: {
+						left:0;
+						right:0;
+					}
+				}
+			}
+
+.canvas-switcher-footer {
+	width: 100%;
+	height: 0px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	z-index: 2;
+	color: #d7d7d7;
+	opacity: 0;
+	@include transition(all .3s);
+
+	&.-switching {
+		opacity: 1;
+		height: 40px;
+	}
+	
+	.pg-of {
+		float: left;
+		margin-left: 30px;
+	}
+	.carousel-pager {
+		@include middle(x);
+		height: 20px;
+	}
+}

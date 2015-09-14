@@ -1,0 +1,7 @@
+<div class="thumb">
+    DASHBOARD THUMB
+    {{#if image}}<img {{bind-attr src=""}} />{{/if}}
+    {{#if title}}<h4 class="thumb__title">{{title}}</h4>{{/if}}
+    {{#if category}}<div class="thumb__category">{{category}}</div>{{/if}}
+    {{yield}}
+</div>

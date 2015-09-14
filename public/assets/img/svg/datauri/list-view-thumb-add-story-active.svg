@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Group Copy 3 + Fill 5848</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Featured-Tapped" sketch:type="MSArtboardGroup" transform="translate(-434.000000, -498.000000)">
+            <g id="Group-Copy-3-+-Fill-5848" sketch:type="MSLayerGroup" transform="translate(434.000000, 498.000000)">
+                <g id="Group-Copy-3" sketch:type="MSShapeGroup">
+                    <g id="Group-7" fill="#DE4B63">
+                        <rect id="Rectangle-81" x="-7.71465032e-14" y="-9.19546494e-14" width="150" height="150" rx="10"></rect>
+                    </g>
+                    <rect id="Rectangle-378-Copy-14" opacity="0.520720604" fill="#FFFFFF" x="13.2133711" y="21.608102" width="55.9032293" height="5.1209065"></rect>
+                    <rect id="Rectangle-378-Copy-12" opacity="0.520720604" fill="#FFFFFF" x="13" y="13.5" width="71.692691" height="7.04124644"></rect>
+                    <rect id="Rectangle-381-Copy-8" opacity="0.520720604" fill="#FFFFFF" x="13" y="134" width="19" height="3"></rect>
+                    <rect id="Rectangle-381-Copy-9" opacity="0.520720604" fill="#FFFFFF" x="103" y="134" width="32" height="3"></rect>
+                    <circle id="Oval-80-Copy-3" fill="#FFFFFF" cx="134" cy="16" r="6"></circle>
+                </g>
+                <path d="M85.2625227,83.3293645 L74.8277401,83.3293645 L74.8277401,93.7641472 C74.8277401,94.4867559 74.246001,95.068495 73.5233923,95.068495 C72.8033923,95.068495 72.2190444,94.4867559 72.2190444,93.7641472 L72.2190444,83.3293645 L61.7842618,83.3293645 C61.0642618,83.3293645 60.479914,82.7476254 60.479914,82.0250167 C60.479914,81.3076254 61.0642618,80.7206689 61.7842618,80.7206689 L72.2190444,80.7206689 L72.2190444,70.2858863 C72.2190444,69.568495 72.8033923,68.9815385 73.5233923,68.9815385 C74.246001,68.9815385 74.8277401,69.568495 74.8277401,70.2858863 L74.8277401,80.7206689 L85.2625227,80.7206689 C85.9851314,80.7206689 86.5668705,81.3076254 86.5668705,82.0250167 C86.5668705,82.7476254 85.9851314,83.3293645 85.2625227,83.3293645 L85.2625227,83.3293645 Z M73.5233923,52.0250167 C56.9816531,52.0250167 43.5233923,65.4832776 43.5233923,82.0250167 C43.5233923,98.5693645 56.9816531,112.025017 73.5233923,112.025017 C90.0677401,112.025017 103.523392,98.5693645 103.523392,82.0250167 C103.523392,65.4832776 90.0677401,52.0250167 73.5233923,52.0250167 L73.5233923,52.0250167 Z" id="Fill-5848" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,38 @@
+.parking-fines {
+	.heading {
+		font: {
+			size: em(16px);
+			family: $helvneue;
+		}
+		margin: {
+			bottom: 0px;
+		}
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	p {
+		font: {
+			size: em(11px);
+		}
+		margin: {
+			bottom: 0px;
+		}
+	}
+	&__inner {
+		height: 50px;
+		background-size: contain;
+		background-position: 99%;
+	}
+	&__total {
+		width: 50%;
+	}
+	&__footer {
+		position: absolute;
+		bottom: 0px;
+	}	
+} 
+

@@ -1,0 +1,112 @@
+.lcc-enquiries {
+    .caroufredsel_wrapper, .story__carousel {
+        min-height:100px;
+    }
+    .story__footer {
+        border: 0px;
+    }
+}
+    .lcc-enquiries__totals {
+        @include cf;
+        width: 100%;
+        margin-bottom: 10px;
+        .dotted-area {
+            width: 140px;
+            float: left;
+            &:nth-child(1) {
+                margin-right: 5px;
+            }
+            &:nth-child(2) {
+                margin-left: 5px;
+            }
+            &.-pad {
+                padding: {
+                    top: 8px;
+                    right: 8px;
+                    bottom: 3px;
+                    left: 8px;
+                }
+            }
+            .heading {
+                padding-bottom: 5px;
+                border-bottom: dotted 1px $black;
+                margin-bottom: 10px;
+            }
+        }
+        .svg-headset,
+        .svg-msn-messenger {
+            width: 29px;
+            height: 30px;
+            text-indent: -99999px;
+            float: left;
+            margin-right: 10px;
+            background-size: cover;
+        }
+        .svg-headset {
+            @include svg--headset;
+        }
+        .svg-msn-messenger {
+            @include svg--msn-messenger;
+        }
+    }
+        .lcc-enquiries__total {
+            width: 70px;
+            height: 35px;
+            font: {
+                size: 10px;
+            }
+            float: right;
+            display: block;
+            margin: {
+                top: 3px;
+                left: 10px;
+            }
+            line-height: 16px;
+            text-align: right;
+            em {
+                font: {
+                    style: normal;
+                    family: $helvneuemed;
+                }
+                display: block;
+            }
+        }
+    .lcc-enquiries__table {
+        width: 100%;
+
+        thead {
+            td {
+                border: {
+                    bottom:dashed 1px $light-grey;
+                }
+                
+                font: {
+                    size:em(11px);
+                }
+            }    
+        }
+        
+        tbody {
+            td {
+                font: {
+                    size:em(12px);
+                }
+                padding:1px 0;
+                border: {
+                    bottom:dashed 1px $light-grey;
+                }
+                
+                font-weight:bold;
+                &:first-of-type {
+                    font-weight: normal;
+                }     
+            }
+            tr {
+                &:last-of-type {
+                    td {
+                        border-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
