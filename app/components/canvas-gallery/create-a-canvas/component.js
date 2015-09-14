@@ -3,18 +3,22 @@ import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
 
 export default Ember.Component.extend(BottomDrawerContent, {
 	canvas: null,
+	mainTitle: 'Create a Canvas',
 	title: 'Create a Canvas',
 	message: '',
 	model: null,
 	categories: [],
 	stories: [],
-
+	appController: null,
+	
 	didInsertElement: function () {
 		var config = this.get('appController.bottomDrawerConfig');
-		debugger;
 		if (!Ember.isEmpty(config)) {
 			if (!Ember.isEmpty(config.model)) {
 				this.set('model', config.model);
+			}
+			if (!Ember.isEmpty(config.mainTitle)) {
+				this.set('mainTitle', config.mainTitle);
 			}
 		}
 	},
@@ -25,10 +29,10 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			title: model.get('title'),
 			description: model.get('description'),
 			stories: model.get('stories'),
-			categories: model.get('categories'),
 			author: model.get('author'),
 			twitter: model.get('twitter')
 		});
+		// categories: model.get('categories')
 	}.observes('model'),
 
 	allCategories: Ember.computed({

@@ -75,9 +75,7 @@ export default Ember.Controller.extend({
 		if (!Ember.isEmpty(title)) {
 			this.set('modalTitle', title);
 		}
-		if (!Ember.isEmpty(intro)) {
-			this.set('modalIntro', intro);
-		}
+		this.set('modalIntro', intro);
 		this.set('isModalVisible', true);
 	},
 
@@ -146,6 +144,7 @@ export default Ember.Controller.extend({
 		var params = { contentType: 'canvas-gallery/create-a-canvas' };
 		if(!Ember.isEmpty(model)) {
 			params.model = model;
+			params.mainTitle = 'Duplicate a canvas'
 		}
 		this.openBottomDrawer(params);
 	}

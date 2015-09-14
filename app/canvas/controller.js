@@ -125,7 +125,7 @@ export default Ember.Controller.extend({
                     userID: userID
                 });
 
-obj.get('appController').createACanvas(canvas);
+                obj.get('appController').createACanvas(canvas);
 
                 // canvas.save()
                 //     .then(function (savedCanvas) {

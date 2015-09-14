@@ -120,6 +120,9 @@ export default Ember.Component.extend({
 		},
 		submit: function () {
 			this.submit();
+		},
+		logout: function() {
+			this.get('session').invalidate();
 		}
 	}
 });
