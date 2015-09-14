@@ -39,7 +39,9 @@ export default DefaultStory.extend({
 
 	finaliseChartData: function () {
 		var obj = this;
-		this.set('chartData', this.get('tmpChartData'));
+setTimeout(function(){
+		obj.set('chartData', obj.get('tmpChartData'));
+},1000);
 		setTimeout(function () { obj.set('loaded', true); });
 	}.observes('allMonthsLoaded'),
 

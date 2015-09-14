@@ -10,10 +10,10 @@ export default DatamillStory.extend({
         this.loadAPIData();
     },
 
-    loadAPIData: function () {
+    loadAPIData: function (tomorrow) {
         var obj = this;
         var sunriseSelect = '';
-        var url = 'http://api.sunrise-sunset.org/json?lat=53.8007554&lng=-1.5490774&date=today&formatted=0';
+        var url = 'http://api.sunrise-sunset.org/json?lat=53.8007554&lng=-1.5490774&date=today&formatted=0' + (tomorrow ? '&date=tomorrow': '');
         this.getData(url)
             .then(
                 function (tmpItem) {
@@ -24,12 +24,16 @@ export default DatamillStory.extend({
                         sunset: tmpItem.results.sunset,
                     };
                     var millisecondsUntilNextRefresh = moment(new Date(item.sunset)).diff(moment(new Date()));
-                    setTimeout(function () { obj.loadAPIData(); }, millisecondsUntilNextRefresh);
-                    item.sunsetFormatted = moment(new Date(item.sunset)).locale('en').format('hh:mm A');
-                    obj.set('item', item);
-                    setTimeout(() => {
-                        obj.set('loaded', true);
-                    });
+                    if(millisecondsUntilNextRefresh < 0) {
+                        obj.loadAPIData(true);
+                    } else {
+                        setTimeout(function () { obj.loadAPIData(); }, millisecondsUntilNextRefresh);
+                        item.sunsetFormatted = moment(new Date(item.sunset)).locale('en').format('H:mm A');
+                        obj.set('item', item);
+                        setTimeout(() => {
+                            obj.set('loaded', true);
+                        });
+                    }
                 },
                 function (error) {
                     // console.log('sun-rise > getData > error: ' + error);
@@ -46,7 +50,7 @@ export default DatamillStory.extend({
             setTimeout(function () {
                 obj.setCountdown();
             }, 1000)
-            var timeUntilSunset = moment(moment(new Date(obj.get('item.sunset'))).diff(moment(new Date()))).format('hh:mm:ss');
+            var timeUntilSunset = moment(moment(new Date(obj.get('item.sunset'))).diff(moment(new Date()))).format('H:mm:ss');
             obj.set('sunsetCountdown', timeUntilSunset);
         }
     }.observes('item.sunset')
