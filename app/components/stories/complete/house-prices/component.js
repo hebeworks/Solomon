@@ -29,19 +29,19 @@ export default DefaultStory.extend({
 			var monthsToSubtract = i + 1; // seem to only have data starting 2 months back so start from there
 			this.getMonthData(moment().add(-(monthsToSubtract), 'month').format('YYYY-MM'))
 				.then(function (month) {
-				if (month != null) {
-					obj.get('months').push(month);
-				}
+					if (month != null) {
+						obj.get('months').push(month);
+					}
 					obj.set('loadedMonths', obj.get('loadedMonths') + 1);
-			});
+				});
 		}
 	},
 
 	finaliseChartData: function () {
 		var obj = this;
-setTimeout(function(){
-		obj.set('chartData', obj.get('tmpChartData'));
-},1000);
+		setTimeout(function () {
+			obj.set('chartData', obj.get('tmpChartData'));
+		}, 1000);
 		setTimeout(function () { obj.set('loaded', true); });
 	}.observes('allMonthsLoaded'),
 
@@ -65,36 +65,36 @@ setTimeout(function(){
 		//http://landregistry.data.gov.uk/data/hpi/region/england-and-wales/year/2014-02.json
 		return this.getData('http://landregistry.data.gov.uk/data/hpi/region/leeds/month/' + date + '.json')
 			.then((data) => {
-			var item = data.result.primaryTopic;
-			if (item != null && item != "elda:missingEndpoint") {
-				var resource = {
-					annualChange: item.annualChange,
-					averageDetached: item.averagePricesDetachedSASM,
-					averageFlat: item.averagePricesFlatMaisonetteSASM,
-					averageSA: item.averagePricesSA,
-					averageSASM: item.averagePricesSASM,
-					averageSemi: item.averagePricesSemiDetachedSASM,
-					averageTerraced: item.averagePricesTerracedSASM,
-					dataSet: item.dataSet,
-					indices: item.indices,
-					indicesSA: item.indicesSA,
-					indicesSASM: item.indicesSASM,
-					monthlyChange: item.monthlyChange
-				};
+				var item = data.result.primaryTopic;
+				if (item != null && item != "elda:missingEndpoint") {
+					var resource = {
+						annualChange: item.annualChange,
+						averageDetached: item.averagePricesDetachedSASM,
+						averageFlat: item.averagePricesFlatMaisonetteSASM,
+						averageSA: item.averagePricesSA,
+						averageSASM: item.averagePricesSASM,
+						averageSemi: item.averagePricesSemiDetachedSASM,
+						averageTerraced: item.averagePricesTerracedSASM,
+						dataSet: item.dataSet,
+						indices: item.indices,
+						indicesSA: item.indicesSA,
+						indicesSASM: item.indicesSASM,
+						monthlyChange: item.monthlyChange
+					};
 			
-				// append data to chart arrays
-				var chartData = this.get('tmpChartData');
-				var axisDate = date + '-01';
-				chartData.detached.push({ date: axisDate, value: resource.averageDetached });
-				chartData.flat.push({ date: axisDate, value: resource.averageFlat });
-				chartData.semi.push({ date: axisDate, value: resource.averageSemi });
-				chartData.terraced.push({ date: axisDate, value: resource.averageTerraced });
+					// append data to chart arrays
+					var chartData = this.get('tmpChartData');
+					var axisDate = date + '-01';
+					chartData.detached.push({ date: axisDate, value: resource.averageDetached });
+					chartData.flat.push({ date: axisDate, value: resource.averageFlat });
+					chartData.semi.push({ date: axisDate, value: resource.averageSemi });
+					chartData.terraced.push({ date: axisDate, value: resource.averageTerraced });
 
-				return resource;
-			} else {
-				return null;
-			}
-		});
+					return resource;
+				} else {
+					return null;
+				}
+			});
 	},
 
 	changeDetached: function () {

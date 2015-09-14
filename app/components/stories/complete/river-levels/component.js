@@ -18,11 +18,11 @@ export default DefaultStory.extend({
                 var typicalRangeHigh = item.stageScale.typicalRangeHigh;
                 var typicalRangeLow = item.stageScale.typicalRangeLow;
                 obj.setProperties({
-                    latestReading: latestReading,
+                    // latestReading: latestReading,
                     maxOnRecord: maxOnRecord,
                     minOnRecord: minOnRecord,
                     highestRecent: highestRecent,
-                    typicalRangeHigh: typicalRangeHigh,
+                    // typicalRangeHigh: typicalRangeHigh,
                     typicalRangeLow: typicalRangeLow,
                 });
                 // check for changes to the api data every fifteen minutes
@@ -30,6 +30,12 @@ export default DefaultStory.extend({
                 setTimeout(function () {
                     obj.set('loaded', true);
                 });
+                setTimeout(function() {
+                    obj.setProperties({
+                        latestReading:latestReading,
+                        typicalRangeHigh:typicalRangeHigh
+                    })
+                }, 500);
             });
     }.observes('selectedStation'),
 
