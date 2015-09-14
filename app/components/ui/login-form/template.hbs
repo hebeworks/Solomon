@@ -1,8 +1,8 @@
 <div class="form -login">
 	{{#if session.isAuthenticated}}
-		<div class="dotted-area -bottom -black cf double-margin-bottom pad-bottom pad-double">
+		<p class="dotted-area -bottom -black cf double-margin-bottom pad-bottom pad-double">
 			You're currently logged in as: {{currentUser.content.username}}
-		</div>
+		</p>
 	{{/if}}
 	
 	{{#unless hideLoginForm}}
