@@ -118,10 +118,10 @@ export default Ember.Component.extend({
 
 		// console.log(canvas.dimensions.height);
 
-		canvas.carousel.$switcher
-			.css({
-				height: canvas.dimensions.height + 'px'
-			});
+		// canvas.carousel.$switcher
+		// 	.css({
+		// 		height: canvas.dimensions.height + 'px'
+		// 	});
 
 		var colCount = Math.floor(canvas.dimensions.width / 170);
 		var innerWidth = ((colCount * 170) < 340 ? 340 : (colCount * 170));
@@ -133,19 +133,19 @@ export default Ember.Component.extend({
 			.css({
 				//'width': canvas.dimensions.width + 'px',
 				'width': innerWidth + 'px',
-				'height': canvas.dimensions.height + 'px'
+				// 'height': canvas.dimensions.height + 'px'
 			})
 			.parent()
 			.css({
 				'width': canvas.dimensions.width + 'px',
-				'height': canvas.dimensions.height + 'px'
+				// 'height': canvas.dimensions.height + 'px'
 			})
 			.find('.canvas__inner') // need to find out how many columns we currently have & * by the col width (170)
 			.css({
 				'width': canvas.dimensions.width + 'px',
-				'height': canvas.dimensions.height + 'px'
-			})
-			.style('height', canvas.dimensions.height + 'px', 'important');
+				// 'height': canvas.dimensions.height + 'px'
+			});
+			// .style('height', canvas.dimensions.height + 'px', 'important');
 	},
 
 	actions: {
