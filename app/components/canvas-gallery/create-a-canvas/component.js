@@ -78,7 +78,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 						});
 				}
 			} else {
-				alert('You need to login');
+				// alert('You need to login');
 				this.set('action', 'showLoginPopup');
 				this.sendAction();
 				return false;

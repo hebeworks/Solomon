@@ -12,7 +12,7 @@ export default Ember.Route.extend({
             // alert(params.canvas_id);
             // debugger;
             return this.store.findRecord('canvas', params.canvas_id)
-                .then(function(canvas) {
+                .then(function (canvas) {
                     return canvas;
                 });
         } else {
@@ -26,6 +26,9 @@ export default Ember.Route.extend({
     actions: {
         viewDashboard: function (id) {
             this.transitionTo('dashboard.view', id);
+        },
+        duplicateCanvas: function() {
+            this.controller.duplicateCanvas();
         }
     }
 });

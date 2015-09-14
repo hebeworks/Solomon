@@ -7,6 +7,9 @@
 						<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
 					</div>
 				{{/if}}
+				{{#if modalIntro}}
+					<p>{{modalIntro}}</p>
+				{{/if}}
 				{{yield}}
 			</div>
 		</div>

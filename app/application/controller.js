@@ -70,14 +70,21 @@ export default Ember.Controller.extend({
         });
     },
 
-	showModal: function (component, title) {
+	showModal: function (component, title, intro) {
 		this.set('modalComponent', component);
 		if(!Ember.isEmpty(title)) {
 			this.set('modalTitle',title);
 		}
+		if(!Ember.isEmpty(intro)) {
+			this.set('modalIntro',intro);
+		}
 		this.set('isModalVisible', true);
 	},
-
+	
+	hideModal: function() {
+		this.set('isModalVisible', false);
+	},
+	
 	openToolbox: function () {
 		// canvas.carousel.$switcher.removeClass('-blurred');
 		// Drawer.toggleTop();

@@ -18,8 +18,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     // Actions 
     actions: {
-        showLoginPopup: function () {
-            this.controller.showModal('ui/login-form', 'Register/Sign In');  
+        showLoginPopup: function (intro) {
+            this.controller.showModal('ui/login-form', 'Register/Sign In', intro);  
         },
         
         mailToFeedback: function () {
@@ -28,6 +28,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         
         showFeedbackmodal: function() {
             this.controller.showModal('ui/feedback-form');  
+        },
+        
+        hideModal: function() {
+            this.controller.hideModal();  
         },
 
         gotoRoute: function (route, model) {
