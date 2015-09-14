@@ -25,9 +25,9 @@ export default Ember.Component.extend({
 		this.$('.btn[data-btn-type="' + this.get('_currentView') + '"]').addClass('-selected');
 	}.observes('currentView'),
 
-	createACanvas: function() {
-		this.get('appController').openBottomDrawer({ contentType: 'canvas-gallery/create-a-canvas' });
-	},
+	// createACanvas: function() {
+	// 	this.get('appController').openBottomDrawer({ contentType: 'canvas-gallery/create-a-canvas' });
+	// },
 	
 	appController: function () {
 		return this.controllerFor('Application');
@@ -39,8 +39,8 @@ export default Ember.Component.extend({
 				this.set('currentView', view);
 			}
 		},
-		createACanvas: function() {
-			this.createACanvas();
-		}
+		// createACanvas: function() {
+		// 	this.createACanvas();
+		// }
 	}
 });

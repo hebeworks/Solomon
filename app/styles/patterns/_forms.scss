@@ -1,5 +1,32 @@
 .form {
     
+    // Temporary styles until refactor happens
+    &.-login {
+        @include media('<phoneLarge') {
+            .-width-third,
+            .-width-two-thirds {
+                width: 100%;
+            }
+            
+            .-width-third {
+                padding-bottom: 10px;
+            }
+            
+            .-width-two-thirds {
+                &.pad-left {
+                    padding-left: 0;
+                }
+            }
+            
+            .btn {
+                width: 100%;
+                
+                & + .btn {
+                    margin: 10px 0 0;
+                }
+            }
+        }
+    }
 }
 
     input,
@@ -52,7 +79,8 @@
     		height: 40px;
     		line-height: 1.5;
     		padding: 10px 9px 7px;
-    		min-width: 255px;
+    		width: 100%;
+            max-width: 100%;
     	}
     }
     

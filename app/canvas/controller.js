@@ -125,13 +125,15 @@ export default Ember.Controller.extend({
                     userID: userID
                 });
 
-                canvas.save()
-                    .then(function (savedCanvas) {
-                        if (!Ember.isEmpty(savedCanvas.get('id'))) {
-                            var newID = savedCanvas.get('id');
-                            obj.get('appController').loadACanvas(newID);
-                        }
-                    });
+obj.get('appController').createACanvas(canvas);
+
+                // canvas.save()
+                //     .then(function (savedCanvas) {
+                //         if (!Ember.isEmpty(savedCanvas.get('id'))) {
+                //             var newID = savedCanvas.get('id');
+                //             obj.get('appController').loadACanvas(newID);
+                //         }
+                //     });
             }
         } else {
             // alert('You need to login');

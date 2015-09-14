@@ -59,8 +59,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.closeBottomDrawer();
         },
 
-        createACanvas: function () {
-            this.controller.openBottomDrawer({ contentType: 'canvas-gallery/create-a-canvas' });
+        createACanvas: function (model) {
+            this.controller.createACanvas(model);
         },
 
         showAddAStory: function () {

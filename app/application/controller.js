@@ -72,19 +72,19 @@ export default Ember.Controller.extend({
 
 	showModal: function (component, title, intro) {
 		this.set('modalComponent', component);
-		if(!Ember.isEmpty(title)) {
-			this.set('modalTitle',title);
+		if (!Ember.isEmpty(title)) {
+			this.set('modalTitle', title);
 		}
-		if(!Ember.isEmpty(intro)) {
-			this.set('modalIntro',intro);
+		if (!Ember.isEmpty(intro)) {
+			this.set('modalIntro', intro);
 		}
 		this.set('isModalVisible', true);
 	},
-	
-	hideModal: function() {
+
+	hideModal: function () {
 		this.set('isModalVisible', false);
 	},
-	
+
 	openToolbox: function () {
 		// canvas.carousel.$switcher.removeClass('-blurred');
 		// Drawer.toggleTop();
@@ -141,5 +141,13 @@ export default Ember.Controller.extend({
         this.get('target').transitionTo('canvas', canvasID);
         this.get('appController').closeBottomDrawer();
     },
+
+	createACanvas: function (model) {
+		var params = { contentType: 'canvas-gallery/create-a-canvas' };
+		if(!Ember.isEmpty(model)) {
+			params.model = model;
+		}
+		this.openBottomDrawer(params);
+	}
 
 });

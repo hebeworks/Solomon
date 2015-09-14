@@ -9,7 +9,17 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	categories: [],
 	stories: [],
 
-	onModelChanged: function() {
+	didInsertElement: function () {
+		var config = this.get('appController.bottomDrawerConfig');
+		debugger;
+		if (!Ember.isEmpty(config)) {
+			if (!Ember.isEmpty(config.model)) {
+				this.set('model', config.model);
+			}
+		}
+	},
+
+	onModelChanged: function () {
 		var model = this.get('model');
 		this.setProperties({
 			title: model.get('title'),
@@ -20,7 +30,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			twitter: model.get('twitter')
 		});
 	}.observes('model'),
-	
+
 	allCategories: Ember.computed({
 		get() {
 			return this.store.query('category', {})
@@ -57,8 +67,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			if (session.isAuthenticated) {
 				var userID = session.get('content.secure.token');
 				if (!Ember.isEmpty(userID)) {
-					debugger;
-					
+
 					var canvas = obj.store.createRecord('canvas', {
 						title: obj.get('title'),
 						description: obj.get('description'),
