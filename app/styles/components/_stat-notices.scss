@@ -71,6 +71,10 @@
 	}
 
 	.stat-notices-body  {
+		.md-modal {
+			// Make the modal relative to the section body, rather than the viewport
+			position: absolute;
+		}
 	
 		.btn-list {
 			// border top & bottom?
