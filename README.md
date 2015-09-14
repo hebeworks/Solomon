@@ -3,10 +3,6 @@
 Solomon Dashboard. Copyright (C) 2015 Hebe Works Limited.
 The Solomon Dashboard was born from partnerships with Public Sector organisations looking to make Open Data easy to understand.
 
-This README outlines the details of collaborating on this application.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-[Please read the license in full before redistributing or modifying the code:](https://github.com/hebeworks/Solomon/blob/master/LICENSE.md)
 
 ## Prerequisites
 
