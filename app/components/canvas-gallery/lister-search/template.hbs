@@ -12,7 +12,7 @@
 		{{#if items}}
 			<h3 class="thumb-list-heading float--left">Search results</h3>
 			<div class="cf"></div>
-			<div class="js-thumb-list thumb-list">
+			<div class="js-thumb-list thumb-list dotted-area -bottom -dark pad-bottom">
 				<ul class="thumb-list__inner">
 					{{#each items as |canvas|}}
 						{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}

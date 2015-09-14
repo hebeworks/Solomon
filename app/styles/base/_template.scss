@@ -185,4 +185,14 @@ p {
 	@extend %site-body;
 	padding: 30px 40px;
 	overflow-y: scroll;
+	
+	.btn-list {
+		.btn {
+			&.-create {
+				@include breakpoint(max-width 665px) {
+					float: none;
+				}
+			}
+		}
+	}
 }

@@ -1,6 +1,11 @@
 .creator {
     width: 224px;
     position: relative;
+    
+    // hide on mobile until refactored
+    @include breakpoint(max-width 650px) {
+        display: none;
+    }
 }
 
     .creator__inner {

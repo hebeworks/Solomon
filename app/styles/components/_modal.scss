@@ -91,6 +91,11 @@ perspective effects (not including the modals and the overlay).
 /* Individual modal styles with animations/transitions */
 
 /* Effect 1: Fade in and scale up */
+.md-effect-1 {
+	top: 0;
+	bottom: 0;
+}
+
 .md-effect-1 .md-content {
 	-webkit-transform: scale(0.7);
 	-moz-transform: scale(0.7);
