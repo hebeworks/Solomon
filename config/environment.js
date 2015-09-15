@@ -20,7 +20,8 @@ module.exports = function (environment) {
       dataMillUrl: 'http://api.leedsdatamill.org/',
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW 
       // dashAPIURL: 'http://localhost:8080',
-      dashAPIURL: 'http://hebedashapi.azurewebsites.net',
+      // dashAPIURL: 'http://hebedashapi.azurewebsites.net',
+      dashAPIURL: 'http://hebedashapi-preview.azurewebsites.net',
       // statnoticeURL: 'http://statnotices.azurewebsites.net', // LIVE 
       googleMapStyles: {
         default: [
