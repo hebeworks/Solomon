@@ -48,13 +48,13 @@
                         </div>
                     </p>
                     <div class="btn-list -borderless">
-                        <div class="btn -white -inactive">
+                        <div class="btn -ghost">
                             {{!-- <span class="v-align--middle pad-left pad-right"> --}}
-                                <span class="beta">Publication date:</span>
-                                <time class="beta"> {{format-date "DD/MM/YYYY" item.publicationDate}}</time>
+                                <span>Publication date:</span>
+                                <time> {{format-date "DD/MM/YYYY" item.publicationDate}}</time>
                             {{!-- </span> --}}
                         </div>
-                        <div class="btn -dark -inactive {{statnotice-type-icon item.type}}">
+                        <div class="btn -ghost svg-stat-notices-icon-planning-black">
                             {{!-- <span class="v-align--middle text--center"> --}}
                                 {{item.type}}
                             {{!-- </span> --}}
