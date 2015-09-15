@@ -659,6 +659,8 @@
 			}
 			&.-back {
 				z-index: 1;
+				overflow-x: hidden;
+				overflow-y: auto;
 				@include transform(perspective(1000px) rotateY(180deg));
 				background-color: blue;
 				.story__content {
