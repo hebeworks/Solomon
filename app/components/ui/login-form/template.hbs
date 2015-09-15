@@ -2,7 +2,7 @@
 	{{#if session.isAuthenticated}}
 		<p class="dotted-area -bottom -black cf double-margin-bottom pad-bottom pad-double">
 			You're currently logged in as: {{currentUser.content.username}}
-			<button class="btn -red margin-left" {{action "logout"}}>
+			<button cpn-button="action" class="margin-left" {{action "logout"}}>
 				Log out
 			</button>
 		</p>
@@ -19,11 +19,11 @@
 			
 			<div class="-width-two-thirds pad-left">
 				<div class="aligned-grid -middle">
-					<button class="btn -toggle {{if existingUserSelected '-selected'}}" {{action "selectLoginType" "existingUser"}}>
+					<button cpn-button="{{if existingUserSelected 'chosen'}}" {{action "selectLoginType" "existingUser"}}>
 						Existing user
 					</button>
 					
-					<button class="btn -toggle {{if newUserSelected '-selected'}} margin-left" {{action "selectLoginType" "newUser"}}>
+					<button cpn-button="{{if newUserSelected 'chosen'}}" class="margin-left" {{action "selectLoginType" "newUser"}}>
 						New user
 					</button>
 				</div>
@@ -53,7 +53,7 @@
 				</p>
 			{{/if}}
 		
-			<button class="btn -action -full" {{action "submit"}}>
+			<button cpn-button="action full" {{action "submit"}}>
 				{{#if existingUserSelected}}
 					Log me in...
 				{{else}}

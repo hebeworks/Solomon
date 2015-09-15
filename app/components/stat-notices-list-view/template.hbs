@@ -47,22 +47,21 @@
                             {{item.proposal}} at {{item.fullAddressSingleLine}}.
                         </div>
                     </p>
-                    <div class="btn-list -borderless">
-                        <div class="btn -ghost">
-                            {{!-- <span class="v-align--middle pad-left pad-right"> --}}
+                    
+                    <div cpn-list>
+                        <div>
+                            <div cpn-button="ghost">
                                 <span>Publication date:</span>
                                 <time> {{format-date "DD/MM/YYYY" item.publicationDate}}</time>
-                            {{!-- </span> --}}
+                            </div>
                         </div>
-                        <div class="btn -ghost {{statnotice-type-icon item.type '-black'}}">
-                            {{!-- <span class="v-align--middle text--center"> --}}
+                        <div>
+                            <div class="btn -ghost {{statnotice-type-icon item.type '-black'}}">
                                 {{item.type}}
-                            {{!-- </span> --}}
+                            </div>
                         </div>
-                        <div {{action 'gotoRoute' 'statnotices.view' item}} class="btn -blue text--center">
-                            {{!-- <span class="v-align--middle"> --}}
-                                View Notice
-                            {{!-- </span> --}}
+                        <div>
+                            <button {{action 'gotoRoute' 'statnotices.view' item}} cpn-button="move">View Notice</button>
                         </div>
                     </div>
                 </div>

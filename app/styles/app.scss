@@ -47,6 +47,9 @@
 @import "patterns/lists";
 @import "patterns/forms";
 
+/* -- CPN (component attribute modules) --*/
+@import 'cpn/cpn-button';
+@import 'cpn/cpn-list';
 
 /* -- Components -- */
 @import "components/drawer";
