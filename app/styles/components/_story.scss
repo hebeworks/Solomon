@@ -44,6 +44,10 @@
 		.icon-cogs {
 			top:-2px;
 			right:3px;
+			
+			&.icon-reverse {
+				right: 10px;
+			}
 		}
 	}
 	&.-w2 {
@@ -296,9 +300,10 @@
 	        	opacity: 1;
 	        }
         }
-    	.dotted-area {
-			border-color: $white;
-		}
+    	.dotted-area,
+    	.btn-list {
+    		border-color: #fff;
+    	}
 		.select2-container {
 			.select2-choice, {
 				background-color: darken($lime,5);
@@ -342,6 +347,11 @@
 				border-color: $black;
 			}
 		}
+		.icon-reverse {
+			svg {
+				fill: #000;
+			}
+		}
 	}
 	&.-lighter-blue {
 		.story__card {
@@ -369,6 +379,10 @@
 					color: $white;
 				}
 			}
+		}
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
 		}
 		.btn {
 			color: $lighter-blue;
@@ -468,6 +482,10 @@
 				}
 			}
 		}
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
+		}
 	}
 	
 	&.-light-blue {
@@ -499,6 +517,10 @@
 					color: #fff;
 				}
 			}
+		}
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
 		}
 	}
 
