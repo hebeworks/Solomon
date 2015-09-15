@@ -158,6 +158,9 @@ export default Ember.Controller.extend({
 
     },
 
+    saveCurrentOrder: function() {
+        
+    },
 
     actions: {
         addAStory: function (story) {
@@ -167,6 +170,9 @@ export default Ember.Controller.extend({
         removeAStory: function (story) {
             // alert('addAStory');
             this.removeAStory(story);
+        },
+        saveCurrentOrder: function(orderArr) {
+            
         }
     }
 
