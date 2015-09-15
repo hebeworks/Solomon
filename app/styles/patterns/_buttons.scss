@@ -54,6 +54,14 @@
     &.-blue {
         background-color: $blue;
         color: $white;
+        
+        &:hover, &:focus {
+            background-color: lighten($blue, 5%);
+        }
+        
+        &:active {
+            background-color: darken($blue, 5%);
+        }
     }
     
     &.-red {
