@@ -203,15 +203,16 @@
             }
             .icon-conversation {
                 width: 15px;
+                height: 15px;
                 display: inline-block;
                 vertical-align: middle;
                 margin: {
-                    top: -1px;
+                    // top: -1px;
                     right: 3px;
                 }
                 svg {
-                    width: 100%;
-                    height: auto;
+                    width: 15px;
+                    height: 15px;
                     display: block;
                 }
             }
