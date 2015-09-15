@@ -101,11 +101,25 @@ export default Ember.Controller.extend({
 
     removeAStory: function (story) {
         if (story != null && this.get('model') != null) {
-            var model = this.get('model');
-            var stories = model.get('stories');
-            stories.removeObject(story)
-            model.save();
-            this.get('appController').closeBottomDrawer();
+            var obj = this;
+            this.checkCanvasAuth()
+                .then(
+                    function () {
+                        var model = obj.get('model');
+                        var stories = model.get('stories');
+                        stories.removeObject(story)
+                        model.save();
+                        obj.get('appController').closeBottomDrawer();
+                    },
+                    function (err) {
+                        if (err.notLoggedIn == true) {
+                            var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+                            obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                        } else if (err.hasPermissions == false) {
+                            obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                        }
+                    }
+                    );
         }
     },
 
@@ -141,7 +155,7 @@ export default Ember.Controller.extend({
             this.sendAction();
             return false;
         }
-    
+
     },
 
 
