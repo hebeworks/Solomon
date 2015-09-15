@@ -23,6 +23,7 @@ export default Ember.Component.extend({
 
 	login: function () {
 		var obj = this;
+		debugger;
 		var appController = this.get('appController');
 		var username = this.get('username');
 		appController.authLogin(username).then(

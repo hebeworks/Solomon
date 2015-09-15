@@ -210,6 +210,9 @@
         &.-half {
             float:left;
             width:49%;
+            margin: {
+                right:0px;
+            }
             &:nth-child(even) {
                 margin: {
                     top:0;
