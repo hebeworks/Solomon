@@ -38,6 +38,8 @@
         border-radius: 3px;
         @include transition(.3s);
         vertical-align: top; // default alignment to remove unwanted whitespace
+        @include appearance(none);
+        box-shadow: none;
         
         &:focus {
             outline: none;
