@@ -1,0 +1,34 @@
+
+{{#stories/story-base title=title subTitle=subTitle color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
+    <main class="find-my-bin-day">
+            {{
+                select-2
+                
+                content=addresses
+                optionLabelPath="address"
+                value=selectedAddress
+                
+                placeholder="Search for a place"
+                typeaheadSearchingText="Searching places"
+                typeaheadNoMatchesText="No places found for '%@'"
+                typeaheadErrorText="Loading failed: %@"
+                minimumInputLength=3
+                query="findPlaces"
+            }}
+            
+            <div>
+                <ul>
+                    {{#each currentAddress.routes as |route|}}
+                        <li>{{route.type}}
+                            <ul>
+                                {{#each route.orderedDates as |date|}}
+                                    <li>{{format-date "DD/MM/YYYY" date}}</li>
+                                {{/each}}
+                            </ul>                            
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            
+    </main>
+{{/stories/story-base}}
