@@ -19,13 +19,17 @@
 			
 			<div class="-width-two-thirds pad-left">
 				<div class="aligned-grid -middle">
-					<button cpn-button="{{if existingUserSelected 'chosen'}}" {{action "selectLoginType" "existingUser"}}>
-						Existing user
-					</button>
+					<div>
+						<button cpn-button="{{if existingUserSelected 'chosen'}}" {{action "selectLoginType" "existingUser"}}>
+							Existing user
+						</button>
+					</div>
 					
-					<button cpn-button="{{if newUserSelected 'chosen'}}" class="margin-left" {{action "selectLoginType" "newUser"}}>
-						New user
-					</button>
+					<div>
+						<button cpn-button="{{if newUserSelected 'chosen'}}" class="margin-left" {{action "selectLoginType" "newUser"}}>
+							New user
+						</button>
+					</div>
 				</div>
 			</div>
 			</div>

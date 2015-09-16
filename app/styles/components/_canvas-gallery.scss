@@ -1,0 +1,26 @@
+.toolbar-create-canvas {
+    float: right;
+    padding-bottom: rem($spacing-base / 2);
+    padding-left: rem($spacing-base / 2);
+    
+    @include breakpoint(max-width 643px) {
+        float: none;
+        width: 100%;
+        padding-bottom: rem($spacing-base);
+        padding-left: 0;
+    }
+}
+
+[id="gallery-buttons"] {
+    @include breakpoint(max-width 643px) {
+        > * {
+            width: 33.333%;
+        }
+    }
+    
+    @include breakpoint(max-width 450px) {
+        > * {
+            width: 100%;
+        }
+    }
+}

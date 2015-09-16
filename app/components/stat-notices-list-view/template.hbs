@@ -48,7 +48,7 @@
                         </div>
                     </p>
                     
-                    <div cpn-list>
+                    <div cpn-row-list cpn-overflow="hidden">
                         <div>
                             <div cpn-button="ghost">
                                 <span>Publication date:</span>
@@ -56,7 +56,8 @@
                             </div>
                         </div>
                         <div>
-                            <div class="btn -ghost {{statnotice-type-icon item.type '-black'}}">
+                            <div cpn-button="ghost">
+                                <span data-grunticon-embed class="{{statnotice-type-icon item.type '-black'}}"></span>
                                 {{item.type}}
                             </div>
                         </div>

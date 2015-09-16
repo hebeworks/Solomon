@@ -1,6 +1,27 @@
-	<h2>Canvas Gallery</h2>
-
-	<div class="js-gallery-button btn-list">
+	<h2 cpn-divide="bottom">Canvas Gallery</h2>
+	
+	<div cpn-divide="bottom" cpn-overflow="hidden">
+		<div class="toolbar-create-canvas">
+			<button cpn-button="move" class="" {{action 'createACanvas'}} data-btn-type="create">
+				<span class="icon-conversation svg-conversation" data-grunticon-embed></span>
+				Create a Canvas
+			</button>
+		</div>
+		
+		<div cpn-row-list id="gallery-buttons">
+			<div>
+				<button cpn-button {{action "switchView" 'featured' }} data-btn-type="featured">Browse</button>
+			</div>
+			<div>
+				<button cpn-button {{action "switchView" 'categories' }} data-btn-type="categories">Categories</button>
+			</div>
+			<div>
+				<button cpn-button {{action "switchView" 'search' }} data-btn-type="search">Search</button>
+			</div>
+		</div>
+	</div>
+	
+	{{!-- <div class="js-gallery-button btn-list">
 		<button class="btn -toggle" {{action "switchView" 'featured' }} data-btn-type="featured">Browse</button>
 		<button class="btn -toggle" {{action "switchView" 'categories' }} data-btn-type="categories">Categories</button>
 		<button class="btn -toggle" {{action "switchView" 'search' }} data-btn-type="search">Search</button>
@@ -8,7 +29,7 @@
 			<span class="icon-conversation svg-conversation" data-grunticon-embed></span>
 			Create a Canvas
 		</button>
-	</div>
+	</div> --}}
 		
 	<div class="gallery__inner">
 		{{yield}}

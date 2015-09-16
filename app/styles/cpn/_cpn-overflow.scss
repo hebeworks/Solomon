@@ -1,0 +1,19 @@
+[cpn-overflow~="hidden"],
+%cpn-overflow-hidden {
+    overflow: hidden;
+}
+
+[cpn-overflow~="visible"],
+%cpn-overflow-visible {
+    overflow: visible;
+}
+
+[cpn-overflow~="scroll"],
+%cpn-overflow-scroll {
+    overflow: scroll;
+}
+
+[cpn-overflow~="auto"],
+%cpn-overflow-auto {
+    overflow: auto;
+}
