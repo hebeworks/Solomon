@@ -1,0 +1,33 @@
+.forecast-graphic {
+	$size: rem(71px);
+	
+	width: $size;
+	height: $size;
+	background-size: $size $size;
+	// margin-right: rem(17px);
+	border: 2px solid #000;
+	border-radius: 50%;
+	position: relative;
+	
+	svg {
+		fill: #000;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		max-width: rem(37px);
+		max-height: rem(37px);
+	}
+}
+
+.main-weather-item {
+	&, * {
+		font-size: rem(13px);
+	}
+}
+
+.temperature {
+	font-size: rem(20px);
+}

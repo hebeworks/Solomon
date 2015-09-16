@@ -523,6 +523,27 @@
 			border-color: #fff;
 		}
 	}
+	
+	&.-mint {
+		.story__card {
+			color: #000;
+			background-color: $mint;
+		}
+		
+		.story__inner .icon-cogs,
+		.icon-reverse svg {
+			fill: #000;
+		}
+		
+		.story__footer {
+			border-top-color: #000;
+		}
+		
+		.dotted-area,
+		.btn-list {
+			border-color: #000;
+		}
+	}
 
 	&.ui-draggable-dragging {
 		@include transform(rotate(-1.5deg));
