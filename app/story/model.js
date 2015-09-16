@@ -14,6 +14,7 @@ var story = DS.Model.extend({
     }),
     
     categories: DS.hasMany('category',{ async: true }),
+    canvasOrderIndex: DS.attr('number'),
 
     configJSON: DS.attr('string'),
     _config:null,
@@ -24,7 +25,8 @@ var story = DS.Model.extend({
             this.set('_config', config)
         }
         return this.get('_config');
-    }.property()
+    }.property(),
+    
 });
 
 export default story;

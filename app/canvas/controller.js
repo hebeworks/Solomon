@@ -158,8 +158,40 @@ export default Ember.Controller.extend({
 
     },
 
-    saveCurrentOrder: function() {
-        
+    saveCurrentOrder: function (orderArr) {
+        var obj = this;
+        this.checkCanvasAuth()
+            .then(
+                function () {
+                    var model = obj.get('model');
+                    var stories = model.get('stories');
+                    // debugger;
+                    for (var id in orderArr) {
+                        if (orderArr.hasOwnProperty(id)) {
+                            var order = orderArr[id];
+                    // debugger;
+
+                            var story = stories.find(function (item) {
+                                return item.get('id') == id;
+                            });
+                            story.set('canvasOrderIndex', order);
+                        }
+                    }
+                    model.set('stories', stories);
+                    model.save().then(function (response) {
+                        console.log('saved canvas order');
+                    })
+                },
+                function (err) {
+                    console.log('Not saving canvas order due to permissions');
+                    // if (err.notLoggedIn == true) {
+                    //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+                    //     obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                    // } else if (err.hasPermissions == false) {
+                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                    // }
+                }
+                );
     },
 
     actions: {
@@ -171,8 +203,8 @@ export default Ember.Controller.extend({
             // alert('addAStory');
             this.removeAStory(story);
         },
-        saveCurrentOrder: function(orderArr) {
-            
+        saveCurrentOrder: function (orderArr) {
+            this.saveCurrentOrder(orderArr);
         }
     }
 

@@ -38,7 +38,6 @@ export default DS.JSONAPISerializer.extend({
             arrayProps.forEach(function(prop){
                 delete item[prop];
             })
-
             data.push({
                 "type": primaryModelClass.modelName,
                 "id": item._id,

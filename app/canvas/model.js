@@ -18,22 +18,25 @@ var canvas = DS.Model.extend({
 		*/
 
 		var stories = this.get('stories');
-		
-		if(stories != null) {
+		var json = this.serializeStoriesToJSON(stories);
+		this.set('storiesJSON', json);
+
+	}.observes('stories.@each'),
+
+	serializeStoriesToJSON: function (stories) {
+		var json = '';
+		if (stories != null) {
 			var arr = [];
 			var store = this.store;
 			stories.forEach(function (story) {
 				var tmp = store.serialize(story, { includeId: true });
-				// debugger;
 				arr.push(tmp.data);
 				// arr.push(store.serialize(story, { includeId: false }));
 			});
 			var json = JSON.stringify({ data: arr });
-			this.set('storiesJSON', json);
-		} else {
-			this.set('storiesJSON', '');
 		}
-	}.observes('stories.@each'),
+		return json;
+	},
 
 	_stories: null,
     // todo: change canvas.stories to a computed property from JSON to allow for more than one of the same object
@@ -47,24 +50,33 @@ var canvas = DS.Model.extend({
 				storyJSON = JSON.parse(storyJSON);
 				var store = this.store;
 				var stories = Ember.A();
-				storyJSON.data.forEach(function(story){
-					// this.store.pushPayload('story', storyJSON);
-					var tmp = store.push('story', story);
+				storyJSON.data.forEach(function (story) {
+					// this.store.pushPayload('story', storyJSON); old method
+					// var tmp = store.push(story); // want to use this but can't due to pluralized model names in serialization
+					
+					// var tmp = store.push('story',story); // base working method - but doesn't seem to keep individual obj attributes 
+					// just points to the singular model in store 
+					// prevents adding multiple of same 
+					// story.type = story.type.singularize()
+					story.attributes.id = hebeutils.guid();
+					var tmp = store.createRecord('story',story.attributes);
+					
 					stories.pushObject(tmp);
 				});
 				this.set('_stories', stories);
 				if (Ember.isArray(stories)) {
-					return stories;
+					// sort stories by canvasOrderIndex
+					var sortedStories = stories.sortBy("canvasOrderIndex");
+					return sortedStories;
 				}
 				// return Ember.A();
 			}
 			return Ember.A();
 		},
 		set(key, value) {
-			// debugger;
-			// var _stories = this.get('_stories');
-			if (!Ember.isEmpty(this.get('_stories'))) {
-				var json = JSON.stringify(this.store.serialize(value));
+			this.set('_stories', value);
+			if (!Ember.isEmpty(value)) {
+				var json = this.serializeStoriesToJSON(value);
 				this.set('storiesJSON', json);
 			}
 			return value;
