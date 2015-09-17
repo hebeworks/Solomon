@@ -13,10 +13,10 @@
         <ul class="margin-left-no">
             {{#each items as |item|}}
                 <li cpn-snippet>
-                    <div cpn-snippet_inner>
-                        <img cpn-snippet_img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=36%C3%9736&w=36&h=36" alt="">
+                    <a href="{{item.link}}" cpn-snippet_inner>
+                        <img cpn-snippet_img src="{{item.image}}" alt="">
                         <p cpn-snippet_title>{{item.title}}</p>
-                    </div>
+                    </a>
                 </li>
             {{/each}}
         </ul>
