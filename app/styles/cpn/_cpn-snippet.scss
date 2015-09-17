@@ -1,0 +1,45 @@
+[cpn-snippet],
+%cpn-snippet {
+    &:not(:last-child) {
+        padding-bottom: rem($helper-spacing / 2);
+        border-bottom: 1px dotted #fff;
+        margin-bottom: rem($helper-spacing / 2);
+    }
+}
+
+    [cpn-snippet_inner],
+    %cpn-snippet-inner {
+        background-color: rgba(255,255,255,.2);
+        border-radius: rem(3px);
+        padding: rem($helper-spacing) rem($helper-spacing) 0;
+        font-size: rem(13px);
+        color: #fff;
+        overflow: hidden;
+        @include transition(.3s);
+        
+        [cpn-snippet]:first-child &,
+        %cpn-snippet:first-child & {
+            background-color: rgba(255,255,255,.4);
+            
+            .story:hover &, .story:focus & {
+                background-color: rgba(255,255,255,.2);
+            }
+        }
+    }
+
+        [cpn-snippet_img],
+        %cpn-snippet-img {
+            float: left;
+            vertical-align: top;
+            margin-top: rem(3px);
+            margin-right: rem($helper-spacing);
+            margin-bottom: rem($helper-spacing + 3px);
+            border-radius: rem(3px);
+        }
+        
+        [cpn-snippet_title],
+        %cpn-snippet-title {
+            overflow: hidden;
+            margin-bottom: rem($helper-spacing);
+            line-height: 1.1;
+        }
