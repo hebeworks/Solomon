@@ -43,12 +43,21 @@ export default DatamillStory.extend({
                     // data is the response Object/Array from the AJAX request
                     var items = [];
                     data.rss.channel[0].item.forEach((tmpItem) => {
+                        var image = '';
+                        
+                        try {
+                            image = tmpItem.enclosure[0].$.url;
+                        } catch (err) {
 
-
-                        var id = hebeutils.guid();
+                        }
+                        
                         var item = {
                             id: tmpItem.guid,
                             title: tmpItem.title,
+                            description: tmpItem.description,
+                            image: image,
+                            link: tmpItem.link,
+                            pubDate: tmpItem.pubDate
                         };
 
                         items.push(item);
