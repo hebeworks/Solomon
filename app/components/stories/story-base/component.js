@@ -10,6 +10,16 @@ export default Ember.Component.extend({
     
     storyModel: Ember.computed.alias('target.storyModel'),
     
+    configFields: Ember.computed({
+        get() {
+            return this.get('storyModel.config').copy();
+        }
+    }),
+    
+    onFieldsChanged: function() {
+        this.set('storyModel.config',this.get('configFields'));
+    }.observes('configFields', 'configFields.@each.value'),
+    
     didInsertElement: function () {
         // todo: ensure this is run minimal times throughout the entire app
         // possibly add to application route and ember.run once

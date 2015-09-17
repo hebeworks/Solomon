@@ -1,0 +1,19 @@
+
+
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-white" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+    }}
+    <main class="rss-leeds-gov">
+        <ul>
+            {{#each items as |item|}}
+                <li>{{item.title}}</li>
+            {{/each}}
+        </ul>
+    </main>
+{{/stories/story-base}}
+
