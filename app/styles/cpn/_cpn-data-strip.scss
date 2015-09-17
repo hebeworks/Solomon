@@ -1,0 +1,34 @@
+[cpn-data-strip],
+%cpn-data-strip {
+    font-size: 0; // remove whitespace
+    text-align: justify;
+    
+    &::after {
+        display: inline-block;
+        width: 100%;
+        content: '';
+    }
+}
+
+[cpn-data-strip~="triple"] {
+    
+}
+
+    [cpn-data-strip_item],
+    %cpn-data-strip-item {
+        display: inline-block;
+        font-size: rem(15px); // reset font size
+    }
+    
+        [cpn-data-strip_label],
+        %cpn-data-strip-label {
+            display: block;
+            font-size: rem(10px);
+        }
+        
+        [cpn-data-strip_value],
+        %cpn-data-strip-value {
+            display: block;
+            font-size: rem(13px);
+            font-weight: bold;
+        }
