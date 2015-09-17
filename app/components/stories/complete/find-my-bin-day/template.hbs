@@ -1,6 +1,11 @@
 
 {{#stories/story-base title=title subTitle=subTitle color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
     <main class="find-my-bin-day">
+        {{#unless currentAddress}}
+            <div class="find-my-bin-day__logo">
+                <h1>LOGO</h1>
+            </div>
+        
             {{
                 select-2
                 
@@ -15,20 +20,21 @@
                 minimumInputLength=3
                 query="findPlaces"
             }}
-            
-            <div>
+        {{else}}
+
+            <div class="find-my-bin-day__results">
+                <div class="find-my-bin-day__address">
+                    {{currentAddress.address}}
+                    <p {{action 'changeAddress'}}>Change Address</p>
+                </div>            
                 <ul>
-                    {{#each currentAddress.routes as |route|}}
-                        <li>{{route.type}}
-                            <ul>
-                                {{#each route.orderedDates as |date|}}
-                                    <li>{{format-date "DD/MM/YYYY" date}}</li>
-                                {{/each}}
-                            </ul>                            
+                    {{#each orderedDates as |date|}}
+                        <li>
+                            <p>{{date.type}} - {{format-date "DD/MM/YYYY" date.date}}</p>
                         </li>
                     {{/each}}
                 </ul>
             </div>
-            
+        {{/unless}}
     </main>
 {{/stories/story-base}}

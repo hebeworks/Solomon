@@ -12,11 +12,26 @@ export default DatamillStory.extend({
         var id = this.get('selectedAddress.id')
         this.getData('http://localhost:3000/bins/' + id)
             .then(function (address) {
-                alert(address.address);
-
+                var allDates = [];
+                
                 address.routes.forEach(function (route) {
-                    route.orderedDates = route.dates.sort().slice(0, 2);
-                })
+                    route.dates.forEach(function(date) {
+                        allDates.push({
+                            date: date,
+                            type: route.type
+                        });
+                    });
+                });
+                
+                var orderedDates = _.sortBy(allDates,function(el){
+                    return el.date;
+                });
+                
+                obj.set('orderedDates',orderedDates);
+                
+                // address.routes.forEach(function (route) {
+                //     route.orderedDates = route.dates.sort().slice(0, 2);
+                // })
 
                 obj.set('currentAddress', address);
             });
