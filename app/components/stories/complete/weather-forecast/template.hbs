@@ -1,72 +1,63 @@
 
-{{#stories/story-base title=title subTitle=subTitle color="-mint" width="-w2" height="-h2" data-ss-colspan="2"}}
+{{#stories/story-base title=title subTitle=subTitle color="-mint" width="-w2" height="-h2" data-ss-colspan="2" author="Nathan Smith"}}
     <main class="weather-forecast">
-        {{#stories/story-slider loaded=loaded}}
-            {{#stories/story-slide}}
-                <div class="dotted-area -top -bottom pad-top cf">
-                    <date class="float--right">Sat 15 Aug</date>
-                    <ul cpn-toggle="dark">
-                        <li cpn-toggle_option="chosen">Today</li>
-                        <li cpn-toggle_option>Tonight</li>
-                    </ul>
-                </div>
-                <div class="cf dotted-area -bottom pad-top margin-bottom">
-                    <div cpn-table class="margin-bottom">
-                        <div cpn-table_cell="middle">
-                            <div class="forecast-graphic svg-icon-weather-heavy-rain-grey" data-grunticon-embed></div>
-                        </div>
-                        <div cpn-table_cell="middle">
-                            <p class="margin-bottom-no aligned-grid -middle">
-                                <span class="main-weather-item aligned-grid -middle double-margin-right">
-                                    <span class="margin-right">High:</span> <span class="temperature">20˚</span>
-                                </span>
-                                <span class="main-weather-item aligned-grid -middle">
-                                    <span class="margin-right">Low: </span> <span class="temperature">15˚</span>
-                                </span>
-                            </p>
-                            <p class="margin-bottom-no main-weather-item">Light rain and thunderstorms</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cf">
-                    <p cpn-data-strip="triple">
-                        <span cpn-data-strip_item>
-                            <span cpn-data-strip_label>Chance of rain:</span>
-                            <span cpn-data-strip_value>82%</span>
-                        </span>
-                        <span cpn-data-strip_slice></span>
-                        <span cpn-data-strip_item>
-                            <span cpn-data-strip_label>UV Index:</span>
-                            <span cpn-data-strip_value>2-5 - Moderate</span>
-                        </span>
-                        <span cpn-data-strip_slice></span>
-                        <span cpn-data-strip_item>
-                            <span cpn-data-strip_label>Humidity:</span>
-                            <span cpn-data-strip_value>98%</span>
-                        </span>
-                    </p>
-                    <p cpn-data-strip>
-                        <span cpn-data-strip_item>
-                            <span cpn-data-strip_label="inline">Wind Direction:</span> <span cpn-data-strip_value="inline">NE</span>
-                        </span>
-                        <span cpn-data-strip_slice></span>
-                        <span cpn-data-strip_item>
-                            <span cpn-data-strip_label="inline">Wind Speed:</span> <span cpn-data-strip_value="inline">12 mph</span>
-                        </span>
-                    </p>
-                </div>
-            {{/stories/story-slide}}            
+        {{#stories/story-slider loaded=loaded}}           
             {{#each item in items}}
                 {{#stories/story-slide}}
-                    <div class="weather-forecast__item">
-                        <p>This page's context item was loaded from Leeds Data Mill</p>
-                        <p>Some sample object properties...</p>
-                        <ul>
-                            <li>street: {{item.street}}</li>
-                            <li>lat: {{item.lat}}</li>
-                            <li>lng: {{item.lng}}</li>
-                            <li>colour: {{item.colour}}</li>
+                    <div class="dotted-area -top -bottom pad-top cf">
+                        <date class="float--right">Sat 15 Aug</date>
+                        <ul cpn-toggle="dark">
+                            {{!-- On days other than today, the toggle should show only 'Tomorrow' or 'Later' and have cpn-toggle_option set to 'chosen' --}}
+                            <li cpn-toggle_option="chosen">Today</li>
+                            <li cpn-toggle_option>Tonight</li>
                         </ul>
+                    </div>
+                    <div class="cf dotted-area -bottom pad-top margin-bottom">
+                        <div cpn-table class="margin-bottom">
+                            <div cpn-table_cell="middle">
+                                {{!-- To update the weather icon, replace 'heavy-rain-grey' in the below class with the weather type --}}
+                                <div class="forecast-graphic svg-icon-weather-heavy-rain-grey" data-grunticon-embed></div>
+                            </div>
+                            <div cpn-table_cell="middle">
+                                <p class="margin-bottom-no aligned-grid -middle">
+                                    <span class="main-weather-item aligned-grid -middle double-margin-right">
+                                        <span class="margin-right">High:</span> <span class="temperature">20˚</span>
+                                    </span>
+                                    <span class="main-weather-item aligned-grid -middle">
+                                        <span class="margin-right">Low: </span> <span class="temperature">15˚</span>
+                                    </span>
+                                </p>
+                                <p class="margin-bottom-no main-weather-item">Light rain and thunderstorms</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cf">
+                        <p cpn-data-strip="triple">
+                            <span cpn-data-strip_item>
+                                <span cpn-data-strip_label>Chance of rain:</span>
+                                <span cpn-data-strip_value>82%</span>
+                            </span>
+                            <span cpn-data-strip_slice></span>
+                            <span cpn-data-strip_item>
+                                <span cpn-data-strip_label>UV Index:</span>
+                                <span cpn-data-strip_value>2-5 - Moderate</span>
+                            </span>
+                            <span cpn-data-strip_slice></span>
+                            <span cpn-data-strip_item>
+                                <span cpn-data-strip_label>Humidity:</span>
+                                <span cpn-data-strip_value>98%</span>
+                            </span>
+                        </p>
+                        <p cpn-data-strip>
+                            <span cpn-data-strip_item>
+                                {{!-- The wind direction needs updating inside both the span and the spc-compass-direction attribute --}}
+                                <span cpn-data-strip_label="inline">Wind Direction:</span> <span cpn-data-strip_value="inline"><span class="svg-compass-arrow" data-grunticon-embed spc-compass-direction="NE"></span> NE</span>
+                            </span>
+                            <span cpn-data-strip_slice></span>
+                            <span cpn-data-strip_item>
+                                <span cpn-data-strip_label="inline">Wind Speed:</span> <span cpn-data-strip_value="inline">12 mph</span>
+                            </span>
+                        </p>
                     </div>
                 {{/stories/story-slide}}
             {{/each}}

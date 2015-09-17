@@ -31,3 +31,48 @@
 .temperature {
 	font-size: rem(20px);
 }
+
+.svg-compass-arrow {
+	display: inline-block;
+	vertical-align: bottom;
+	width: rem(20px);
+	height: rem(20px);
+	
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+// Manage the rotation of the compass
+[spc-compass-direction="N"] {
+	@include transform(rotate(315deg));
+}
+
+[spc-compass-direction="NE"] {
+	@include transform(rotate(0deg));
+}
+
+[spc-compass-direction="E"] {
+	@include transform(rotate(45deg));
+}
+
+[spc-compass-direction="SE"] {
+	@include transform(rotate(90deg));
+}
+
+[spc-compass-direction="S"] {
+	@include transform(rotate(135deg));
+}
+
+[spc-compass-direction="SW"] {
+	@include transform(rotate(180deg));
+}
+
+[spc-compass-direction="W"] {
+	@include transform(rotate(225deg));
+}
+
+[spc-compass-direction="NW"] {
+	@include transform(rotate(270deg));
+}
