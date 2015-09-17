@@ -5,14 +5,24 @@ export default Ember.Component.extend({
     classNames: ['js-story story'],
     classNameBindings: ['color', 'width', 'height'],
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index'],
-
+    
     isDraggingStory: false,
     
     'data-id':Ember.computed.alias('target.storyModel.id'),
     'data-canvas-order-index':Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     
     storyModel: Ember.computed.alias('target.storyModel'),
-
+    
+    configFields: Ember.computed({
+        get() {
+            return this.get('storyModel.config').copy();
+        }
+    }),
+    
+    onFieldsChanged: function() {
+        this.set('storyModel.config',this.get('configFields'));
+    }.observes('configFields', 'configFields.@each.value'),
+    
     didInsertElement: function () {
         // todo: ensure this is run minimal times throughout the entire app
         // possibly add to application route and ember.run once
@@ -21,7 +31,7 @@ export default Ember.Component.extend({
         this.set('action', 'onStoryLoaded');
         this.sendAction();
     },
-
+    
     setupDragEvents: function () {
         var obj = this;
         var cog = this.$('.js-cogs');
