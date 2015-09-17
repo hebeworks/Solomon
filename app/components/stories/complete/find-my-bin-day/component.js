@@ -13,11 +13,11 @@ export default DatamillStory.extend({
         this.getData('http://localhost:3000/bins/' + id)
             .then(function (address) {
                 alert(address.address);
-                
-                address.routes.forEach(function(route){
-                    route.orderedDates = route.dates.sort().slice(0,2);
+
+                address.routes.forEach(function (route) {
+                    route.orderedDates = route.dates.sort().slice(0, 2);
                 })
-                
+
                 obj.set('currentAddress', address);
             });
     }.observes('selectedAddress'),
@@ -29,25 +29,36 @@ export default DatamillStory.extend({
 
     actions: {
         findPlaces: function (query, deferred) {
-            var obj = this;
-            if (query != null && query.term != null && query.term.length > 3) {
-                var url = 'http://localhost:3000/bins/?q="' + query.term + '"&fields=address postcode';
-                // console.log(url);
-                this.getData(url)
-                    .then(
-                        function (data) {
-                            // var items = [];
-                            data.forEach(function (item) {
-                                item.id = item._id;
-                                // 	var tmp = Ember.Object.create(item);
-                                // 	items.push(tmp);
-                            });
+            this.setProperties({
+                query: query,
+                deferred: deferred
+            });
+            Ember.run.debounce(this, this.debouncedQuery, 600);
+        }
+    },
+    
+    debouncedQuery: function() {
+        var obj = this;
+        var query = obj.get('query');
+        var deferred = obj.get('deferred');
+        
+        if(query != null && query.term != null && query.term.length > 3) {
+            var url = 'http://localhost:3000/bins/?q="' + query.term + '"&fields=address postcode';
+            console.log(url);
+            this.getData(url)
+                .then(
+                    function (data) {
+                        // var items = [];
+                        data.forEach(function (item) {
+                            item.id = item._id;
+                            // 	var tmp = Ember.Object.create(item);
+                            // 	items.push(tmp);
+                        });
 
-                            obj.set('addresses', data);
-                            deferred.resolve(obj.get('addresses'));//{data: data, more: false});
-                        }
-                        , deferred.reject);
-            }
-        },
+                        obj.set('addresses', data);
+                        deferred.resolve(obj.get('addresses'));//{data: data, more: false});
+                    }
+                    , deferred.reject);
+        }
     }
 });
