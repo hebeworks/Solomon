@@ -77,37 +77,69 @@
 
 // Manage the rotation of the compass
 [spc-compass-direction] {
-	@include animation(align-compass ease 2s);
+	@include animation(align-compass ease 1.5s);
 }
 
 [spc-compass-direction="N"] {
 	@include transform(rotate(315deg));
 }
 
+[spc-compass-direction="NNE"] {
+	@include transform(rotate(337.5deg));
+}
+
 [spc-compass-direction="NE"] {
 	@include transform(rotate(0deg));
+}
+
+[spc-compass-direction="NEE"] {
+	@include transform(rotate(22.5deg));
 }
 
 [spc-compass-direction="E"] {
 	@include transform(rotate(45deg));
 }
 
+[spc-compass-direction="SEE"] {
+	@include transform(rotate(67.5deg));
+}
+
 [spc-compass-direction="SE"] {
 	@include transform(rotate(90deg));
+}
+
+[spc-compass-direction="SSE"] {
+	@include transform(rotate(112.5deg));
 }
 
 [spc-compass-direction="S"] {
 	@include transform(rotate(135deg));
 }
 
+[spc-compass-direction="SSW"] {
+	@include transform(rotate(157.5deg));
+}
+
 [spc-compass-direction="SW"] {
 	@include transform(rotate(180deg));
+}
+
+[spc-compass-direction="SWW"] {
+	@include transform(rotate(202.5deg));
 }
 
 [spc-compass-direction="W"] {
 	@include transform(rotate(225deg));
 }
 
+[spc-compass-direction="NWW"] {
+	@include transform(rotate(247.5deg));
+}
+
 [spc-compass-direction="NW"] {
 	@include transform(rotate(270deg));
+}
+
+[spc-compass-direction="NNW"] {
+	@include transform(rotate(292.5deg));
 }
