@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     
     configFields: Ember.computed({
         get() {
-            return this.get('storyModel.config').copy();
+            return (!Ember.isEmpty(this.get('storyModel.config')) ? this.get('storyModel.config').copy() : []);
         }
     }),
     

@@ -13,11 +13,13 @@
             {{/if}}
         	{{yield}}
             
-            {{#unless viewOnly}}<footer class="story__footer gamma">
-                {{#if author}}
-                        {{#if author}}<div class="author">Author: {{author}}</div>{{/if}}
-                {{/if}}
-            </footer>{{/unless}}
+            {{#unless viewOnly}}
+                <footer class="story__footer gamma">
+                    {{#if author}}
+                            {{#if author}}<div class="author">Author: {{author}}</div>{{/if}}
+                    {{/if}}
+                </footer>
+            {{/unless}}
         </div>
     </div>
 
