@@ -169,7 +169,7 @@ export default Ember.Controller.extend({
                     for (var id in orderArr) {
                         if (orderArr.hasOwnProperty(id)) {
                             var order = orderArr[id];
-                    // debugger;
+                            // debugger;
 
                             var story = stories.find(function (item) {
                                 return item.get('id') == id;
@@ -194,6 +194,29 @@ export default Ember.Controller.extend({
                 );
     },
 
+    saveCanvasState: function () {
+        var obj = this;
+        this.checkCanvasAuth()
+            .then(
+                function () {
+                    var model = obj.get('model');
+                    debugger;
+                    model.save().then(function (response) {
+                        console.log('saved canvas state');
+                    })
+                },
+                function (err) {
+                    console.log('Not saving canvas state due to permissions');
+                    // if (err.notLoggedIn == true) {
+                    //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+                    //     obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                    // } else if (err.hasPermissions == false) {
+                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                    // }
+                }
+            );
+    },
+
     actions: {
         addAStory: function (story) {
             // alert('addAStory');
@@ -205,6 +228,9 @@ export default Ember.Controller.extend({
         },
         saveCurrentOrder: function (orderArr) {
             this.saveCurrentOrder(orderArr);
+        },
+        saveCanvasState: function () {
+            this.saveCanvasState();
         }
     }
 

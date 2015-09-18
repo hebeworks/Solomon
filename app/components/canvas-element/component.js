@@ -115,7 +115,7 @@ export default Ember.Component.extend({
 		function orderItems() {
 			var orderArr = {};
 			var itemElems = $container.packery('getItemElements');
-			debugger;
+			// debugger;
 			$(itemElems).each(function (i, itemElem) {
 				$(itemElem).attr('data-packery-index', i);
 				var id = $(itemElem).attr('data-id');

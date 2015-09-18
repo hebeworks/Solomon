@@ -23,6 +23,14 @@ var canvas = DS.Model.extend({
 
 	}.observes('stories.@each'),
 
+	save:function(options){
+		// make sure to JSON Serialize the current state of stories 
+		// in case anything has changed that wasn't picked up 
+		// by the onStoriesChanged observer
+		this.onStoriesChanged();
+		return this._super(options);
+	},
+
 	serializeStoriesToJSON: function (stories) {
 		var json = '';
 		if (stories != null) {
