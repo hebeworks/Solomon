@@ -1,0 +1,25 @@
+svg {
+    [cpn-button] & {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: rem($spacing-base / 2);
+    }
+}
+
+.svg-conversation {
+    svg {
+        [cpn-button] & {
+            width: rem(15px);
+            height: rem(15px);
+        }
+    }
+}
+
+.svg-stat-notices-icon-planning-black {
+    svg {
+        [cpn-button] & {
+            width: rem(16px);
+            height: rem(18px);
+        }
+    }
+}

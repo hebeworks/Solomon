@@ -46,7 +46,13 @@
 @import "patterns/bordered_area";
 @import "patterns/lists";
 @import "patterns/forms";
+@import 'patterns/svg-class';
 
+/* -- CPN (component attribute modules) --*/
+@import 'cpn/cpn-button';
+@import 'cpn/cpn-row-list';
+@import 'cpn/cpn-divide';
+@import 'cpn/cpn-overflow';
 @import 'cpn/cpn-toggle';
 @import 'cpn/cpn-table';
 @import 'cpn/cpn-data-strip';
@@ -61,6 +67,7 @@
 @import "components/stat-notices";
 @import "components/number_stat";
 @import "components/modal";
+@import 'components/canvas-gallery';
 
 // Stories 
 @import "components/stories/calendar";

@@ -1,0 +1,93 @@
+// Base button style
+[cpn-button],
+%cpn-button {
+    font-size: rem(14px);
+    line-height: 1.5;
+    text-align: center;
+    
+    background-color: $medium-grey;
+    color: #000;
+    
+    border: 0;
+    border-radius: rem(3px);
+    outline: none;
+    
+    cursor: pointer;
+    text-decoration:none;
+    
+    min-width: rem(115px);
+    width: 100%; // wrap buttons in a container to handle any specific widths
+    height: auto;
+    padding: rem(11px) rem(10px) rem(8px);
+    
+    @include transition(.3s);
+    
+    &:hover, &:focus {
+        background-color: lighten($medium-grey, 5%);
+    }
+    
+    &:active {
+        background-color: darken($medium-grey, 5%);
+    }
+}
+
+// Action button style, for buttons which trigger an action, such as submit buttons
+[cpn-button~="action"],
+%cpn-button-action {
+    background-color: $red;
+    color: #fff;
+    
+    &:hover, &:focus {
+        background-color: $light-red;
+    }
+    
+    &:active {
+        background-color: $dark-red;
+    }
+}
+
+// Move button styles, for buttons which take the user to a different location
+[cpn-button~="move"],
+%cpn-button-move {
+    background-color: $blue;
+    color: $white;
+    
+    &:hover, &:focus {
+        background-color: lighten($blue, 5%);
+    }
+    
+    &:active {
+        background-color: darken($blue, 5%);
+    }
+}
+
+// Ghost button styles. These look like buttons but are intended for static informational tags
+[cpn-button~="ghost"],
+%cpn-button-move {
+    background-color: transparent;
+    color: $dark-grey;
+    
+    border: 1px solid $dark-grey;
+    
+    padding-top: rem(10px);
+    padding-bottom: rem(7px);
+    
+    cursor: default;
+    
+    &:hover, &:focus, &:active {
+        background-color: transparent;
+    }
+}
+
+[cpn-button~="chosen"],
+%cpn-button-chosen {
+    &, &:hover, &:focus {
+        background-color: $lime;
+        color: #fff;
+    }
+}
+
+[cpn-button~="full"],
+%cpn-button-full {
+    width: 100%;
+}

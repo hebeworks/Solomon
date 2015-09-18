@@ -1,0 +1,28 @@
+[cpn-row-list],
+%cpn-row-list {
+    font-size: 0; // remove whitespace
+    // We're applying spacing around the children, so we need to negate this on the parent, apart from the bottom so as to maintain vertical spacing
+    margin: rem(-$spacing-base / 2) rem(-$spacing-base / 2) rem($spacing-base / 2);
+    
+    // Only the direct children are to be arranged
+    > * {
+        display: inline-block;
+        font-size: rem($font-base); // reset the font size
+        padding: rem($spacing-base / 2);
+        vertical-align: top;
+    }
+}
+
+[cpn-row-list~="middle"],
+%cpn-row-list-middle {
+    > * {
+        vertical-align: middle;
+    }
+}
+
+[cpn-row-list~="bottom"],
+%cpn-row-list-bottom {
+    > * {
+        vertical-align: bottom;
+    }
+}
