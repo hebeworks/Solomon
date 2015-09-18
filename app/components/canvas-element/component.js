@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	tagName: 'li',
 	storyIDs: [],
-	
+
 	didInsertElement: function () {
 		Ember.run.scheduleOnce('afterRender', this, this.didRenderElement);
 	},
@@ -19,10 +19,10 @@ export default Ember.Component.extend({
 		var previousIDs = this.get('storyIDs');
 		var currentIDs = this.getCurrentStoryIDs();
 		var newIDs = _.difference(currentIDs, previousIDs);
-		this.set('storyIDs',currentIDs);
+		this.set('storyIDs', currentIDs);
 		return newIDs;
 	},
-	
+
 	getCurrentStoryIDs: function () {
 		var $allStories = this.$('.js-story');
 		var ids = _.map($allStories, function (story) {
@@ -48,7 +48,7 @@ export default Ember.Component.extend({
 			var $newStories = $('#' + newIDs.join(',#'));
 			obj.$container.packery('appended', $newStories);
 			$container.packery();
-			
+
 			var $itemEls = $newStories.draggable({
 				cursor: 'move',
 				containment: 'body',
@@ -81,8 +81,14 @@ export default Ember.Component.extend({
 				.packery({
 					itemSelector: '.ember-view .story',
 					columnWidth: 170,
-					rowHeight: 170
+					rowHeight: 170,
+					// isInitLayout: false
 				});
+
+			// todo: SORTING & ORDERING 
+			// Disable initial layout with isInitLayout: false
+			// If the sortOrder is available via localStorage, then edit pckry.items to match that order
+			// trigger pckry.layout()
 
 			var $itemEls = $allStories.draggable({
 				cursor: 'move',
@@ -94,11 +100,37 @@ export default Ember.Component.extend({
 				zIndex: 4
 			});
 			$container.packery('bindUIDraggableEvents', $itemEls);
+
+			obj.getItemOrder($container);
 		}, 0);
-		
-		this.$(window).on('resize', function(){
+
+		this.$(window).on('resize', function () {
 			obj.stretchCanvas();
 		});
+	},
+
+	getItemOrder: function ($container) {
+		var obj = this;
+		// show item order after layout
+		function orderItems() {
+			var orderArr = {};
+			var itemElems = $container.packery('getItemElements');
+			// debugger;
+			$(itemElems).each(function (i, itemElem) {
+				$(itemElem).attr('data-packery-index', i);
+				var id = $(itemElem).attr('data-id');
+				if (!Ember.isEmpty(id)) {
+					orderArr[id] = i;
+				}
+			});
+
+			obj.set('action', 'saveCurrentOrder');
+			obj.sendAction('action', orderArr)
+		}
+
+		// $container.packery('on', 'layoutComplete', orderItems);
+		$container.packery('on', 'dragItemPositioned', orderItems);
+		// end item order	
 	},
 
 	stretchCanvas: function () {
@@ -145,7 +177,7 @@ export default Ember.Component.extend({
 				'width': canvas.dimensions.width + 'px',
 				// 'height': canvas.dimensions.height + 'px'
 			});
-			// .style('height', canvas.dimensions.height + 'px', 'important');
+		// .style('height', canvas.dimensions.height + 'px', 'important');
 	},
 
 	actions: {
@@ -153,8 +185,8 @@ export default Ember.Component.extend({
 			this.set('action', 'gotoRoute');
             this.sendAction('action', route);
         },
-		
-		onStoryLoaded: function() {
+
+		onStoryLoaded: function () {
 			// console.log('onStoryLoaded');
 			var obj = this;
 			Ember.run.scheduleOnce('afterRender', obj, obj.updatePackery);

@@ -1,0 +1,26 @@
+[cpn-table],
+%cpn-table {
+    width: 100%;
+    display: table;
+}
+
+[cpn-table~="fixed"],
+%cpn-table-fixed {
+    table-layout: fixed;
+}
+
+    [cpn-table_cell],
+    %cpn-table-cell {
+        display: table-cell;
+        vertical-align: top;
+    }
+    
+    [cpn-table_cell~="middle"],
+    %cpn-table-cell-middle {
+        vertical-align: middle;
+    }
+    
+    [cpn-table_cell~="bottom"],
+    %cpn-table-cell-bottom {
+        vertical-align: bottom;
+    }

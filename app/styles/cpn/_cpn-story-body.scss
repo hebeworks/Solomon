@@ -1,0 +1,15 @@
+[cpn-story-body],
+%cpn-story-body {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+[cpn-story-body~="scrollV"],
+%cpn-story-body-scrollv {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+[cpn-story-body~="height2"],
+%cpn-story-body-height2 {
+    height: rem(225px);
+}

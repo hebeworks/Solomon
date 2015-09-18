@@ -22,6 +22,8 @@
 
 .svg-cogs { background-image: url('png/cogs.png'); background-repeat: no-repeat; }
 
+.svg-compass-arrow { background-image: url('png/compass-arrow.png'); background-repeat: no-repeat; }
+
 .svg-conversation { background-image: url('png/conversation.png'); background-repeat: no-repeat; }
 
 .svg-duplicate { background-image: url('png/duplicate.png'); background-repeat: no-repeat; }
@@ -51,6 +53,54 @@
 .svg-icon-close-circular { background-image: url('png/icon-close-circular.png'); background-repeat: no-repeat; }
 
 .svg-icon-feedback { background-image: url('png/icon-feedback.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-cloudy-grey { background-image: url('png/icon-weather-cloudy-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-cloudy { background-image: url('png/icon-weather-cloudy.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-fog-grey { background-image: url('png/icon-weather-fog-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-fog { background-image: url('png/icon-weather-fog.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-hail-grey { background-image: url('png/icon-weather-hail-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-hail { background-image: url('png/icon-weather-hail.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-heavy-rain-grey { background-image: url('png/icon-weather-heavy-rain-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-heavy-rain { background-image: url('png/icon-weather-heavy-rain.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-heavy-snow-grey { background-image: url('png/icon-weather-heavy-snow-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-heavy-snow { background-image: url('png/icon-weather-heavy-snow.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-light-rain-grey { background-image: url('png/icon-weather-light-rain-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-light-rain { background-image: url('png/icon-weather-light-rain.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-light-snow-grey { background-image: url('png/icon-weather-light-snow-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-light-snow { background-image: url('png/icon-weather-light-snow.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-mist-grey { background-image: url('png/icon-weather-mist-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-mist { background-image: url('png/icon-weather-mist.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-overcast-grey { background-image: url('png/icon-weather-overcast-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-overcast { background-image: url('png/icon-weather-overcast.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-sleet-grey { background-image: url('png/icon-weather-sleet-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-sleet { background-image: url('png/icon-weather-sleet.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-sunny-grey { background-image: url('png/icon-weather-sunny-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-sunny { background-image: url('png/icon-weather-sunny.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-thunder-grey { background-image: url('png/icon-weather-thunder-grey.png'); background-repeat: no-repeat; }
+
+.svg-icon-weather-thunder { background-image: url('png/icon-weather-thunder.png'); background-repeat: no-repeat; }
 
 .svg-input-clear { background-image: url('png/input-clear.png'); background-repeat: no-repeat; }
 

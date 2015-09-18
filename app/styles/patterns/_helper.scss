@@ -121,6 +121,11 @@
 .margin-right {
     margin-right: $helper-spacing;
 }
+
+.double-margin-right {
+    margin-right: $helper-spacing * 2;
+}
+
 .half-margin-bottom {
     margin-bottom: $helper-spacing / 2;
 }
@@ -134,6 +139,10 @@
 
 .margin-left {
     margin-left: $helper-spacing;
+}
+
+.margin-left-no {
+    margin-left: 0;
 }
 
 /*** WIDTH BLOCKS ***/

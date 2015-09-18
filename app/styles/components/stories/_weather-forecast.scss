@@ -1,0 +1,145 @@
+[spc-forecast-graphic],
+%spc-forecast-graphic {
+	$size: 71px;
+	
+	width: rem($size);
+	height: rem($size);
+	border: 2px solid #000;
+	border-radius: 50%;
+	position: relative;
+}
+
+	[spc-forecast-graphic_inner],
+	%spc-forecast-graphic-inner {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		width: rem(37px);
+		height: rem(37px);
+		background-position: center center;
+		background-size: contain;
+		
+		svg {
+			fill: #000;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+
+[spc-main-weather-item],
+%spc-main-weather-item {
+	&, * {
+		font-size: rem(13px);
+	}
+}
+
+[spc-temperature],
+%spc-temperature {
+	font-size: rem(20px);
+}
+
+.svg-compass-arrow {
+	$size: 20px;
+	
+	display: inline-block;
+	vertical-align: bottom;
+	width: rem($size);
+	height: rem($size);
+	background-size: rem($size) rem($size);
+	background-position: center center;
+	
+	svg {
+		width: rem($size);
+		height: rem($size);
+	}
+}
+
+@include keyframes(align-compass) {
+	0% {
+		@include transform(rotate(0deg));
+	}
+	
+	25% {
+		@include transform(rotate(77deg));
+	}
+	
+	50% {
+		@include transform(rotate(194deg));
+	}
+	
+	75% {
+		@include transform(rotate(286deg));
+	}
+}
+
+// Manage the rotation of the compass
+[spc-compass-direction] {
+	@include animation(align-compass ease 1.5s);
+}
+
+[spc-compass-direction="N"] {
+	@include transform(rotate(315deg));
+}
+
+[spc-compass-direction="NNE"] {
+	@include transform(rotate(337.5deg));
+}
+
+[spc-compass-direction="NE"] {
+	@include transform(rotate(0deg));
+}
+
+[spc-compass-direction="NEE"] {
+	@include transform(rotate(22.5deg));
+}
+
+[spc-compass-direction="E"] {
+	@include transform(rotate(45deg));
+}
+
+[spc-compass-direction="SEE"] {
+	@include transform(rotate(67.5deg));
+}
+
+[spc-compass-direction="SE"] {
+	@include transform(rotate(90deg));
+}
+
+[spc-compass-direction="SSE"] {
+	@include transform(rotate(112.5deg));
+}
+
+[spc-compass-direction="S"] {
+	@include transform(rotate(135deg));
+}
+
+[spc-compass-direction="SSW"] {
+	@include transform(rotate(157.5deg));
+}
+
+[spc-compass-direction="SW"] {
+	@include transform(rotate(180deg));
+}
+
+[spc-compass-direction="SWW"] {
+	@include transform(rotate(202.5deg));
+}
+
+[spc-compass-direction="W"] {
+	@include transform(rotate(225deg));
+}
+
+[spc-compass-direction="NWW"] {
+	@include transform(rotate(247.5deg));
+}
+
+[spc-compass-direction="NW"] {
+	@include transform(rotate(270deg));
+}
+
+[spc-compass-direction="NNW"] {
+	@include transform(rotate(292.5deg));
+}

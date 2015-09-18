@@ -53,6 +53,11 @@
 @import 'cpn/cpn-row-list';
 @import 'cpn/cpn-divide';
 @import 'cpn/cpn-overflow';
+@import 'cpn/cpn-toggle';
+@import 'cpn/cpn-table';
+@import 'cpn/cpn-data-strip';
+@import 'cpn/cpn-snippet';
+@import 'cpn/cpn-story-body';
 
 /* -- Components -- */
 @import "components/drawer";
@@ -86,6 +91,7 @@
 @import "components/stories/sunrise-sunset";
 @import "components/stories/twitter-feed";
 @import "components/stories/weather-report";
+@import 'components/stories/weather-forecast';
 
 /* START auto-generated stories */
 @import "components/stories/stat-notices-recent";

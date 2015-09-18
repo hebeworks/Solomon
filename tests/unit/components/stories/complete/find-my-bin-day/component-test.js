@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('stories/complete/five-day-forecast', {
+moduleForComponent('stories/complete/find-my-bin-day', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });
