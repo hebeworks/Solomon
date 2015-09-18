@@ -42,7 +42,7 @@ export default DatamillStory.extend({
                                 windDirection: tmpItem.Rep[1].D,
                                 //windDirectionSVG: obj.getCompassSVG(tmpItem.Rep[1].D),
                                 windGust: tmpItem.Rep[1].Gm,
-                                wiSpeed: tmpItem.Rep[1].S,
+                                windSpeed: tmpItem.Rep[1].S,
                                 maxTemp: tmpItem.Rep[0].Dm,
                                 minTemp: tmpItem.Rep[1].Nm,
                                 feelsLike: tmpItem.Rep[1].Fnm,
