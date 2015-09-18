@@ -3,6 +3,7 @@
     font-size: 0; // remove whitespace
     text-align: justify;
     margin-bottom: rem($spacing-base);
+    text-justify: distribute;
     
     &::after {
         display: inline-block;
