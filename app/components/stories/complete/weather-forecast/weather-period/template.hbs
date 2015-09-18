@@ -2,15 +2,17 @@
 	<div cpn-table class="margin-bottom">
 		<div cpn-table_cell="middle">
 			{{!-- To update the weather icon, replace 'heavy-rain-grey' in the below class with the weather type --}}
-			<div class="forecast-graphic svg-icon-weather-{{period.weatherIcon}}" data-grunticon-embed></div>
+			<div spc-forecast-graphic>
+				<div spc-forecast-graphic_inner class="svg-icon-weather-{{period.weatherIcon}}" data-grunticon-embed></div>
+			</div>
 		</div>
 		<div cpn-table_cell="middle">
 			<p class="margin-bottom-no aligned-grid -middle">
-				<span class="main-weather-item aligned-grid -middle double-margin-right">
-					<span class="margin-right">High:</span> <span class="temperature">{{period.maxTemp}}˚</span>
+				<span spc-main-weather-item class="aligned-grid -middle double-margin-right">
+					<span class="margin-right">High:</span> <span spc-temperature>{{period.maxTemp}}˚</span>
 				</span>
-				<span class="main-weather-item aligned-grid -middle">
-					<span class="margin-right">Low: </span> <span class="temperature">{{period.minTemp}}˚</span>
+				<span spc-main-weather-item class="aligned-grid -middle">
+					<span class="margin-right">Low: </span> <span spc-temperature>{{period.minTemp}}˚</span>
 				</span>
 			</p>
 			<p class="margin-bottom-no main-weather-item">{{period.weather}}</p>
@@ -18,7 +20,7 @@
 	</div>
 </div>
 <div class="cf">
-	<p cpn-data-strip="triple">
+	<p cpn-data-strip>
 		<span cpn-data-strip_item>
 			<span cpn-data-strip_label>Chance of rain:</span>
 			<span cpn-data-strip_value>{{period.rainProb}}%</span>
