@@ -44,6 +44,12 @@
                     </button>
                 </div>
                 
+                {{#if configFields}}
+                    {{#each configFields as |field|}}
+                        {{input type=field.type value=field.value placeholder=field.placeholder}}
+                    {{/each}}
+                {{/if}}
+                
                 {{#if description}}
                     <div class="dotted-area -bottom -dark pad-bottom margin-bottom">
                         <h2 class="beta bold half-margin-bottom">Description</h2>

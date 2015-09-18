@@ -545,6 +545,33 @@
 		}
 	}
 
+	&.-medium-blue {
+		.story__card {
+			color: #fff;
+			background-color: $medium-blue;
+			
+			a {
+				color: #fff;				
+			}
+		}
+		
+		.story__inner .icon-cogs {
+			fill: #fff;
+		}
+		
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
+		}
+		
+		.icon-reverse {
+			svg {
+				fill: #fff;
+			}
+		}
+	}
+
+
 	&.ui-draggable-dragging {
 		@include transform(rotate(-1.5deg));
 		.story__inner {
