@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
+	modalComponent: 'ui/login-form',
 
 	appController: function () {
         return this;
@@ -14,12 +15,10 @@ export default Ember.Controller.extend({
 	}.property('history.length'),
 
 	watchHistory: function () {
-		console.log('adding current path: ' + this.get('currentPath') + ' to history.');
+		// console.log('adding current path: ' + this.get('currentPath') + ' to history.');
 		this.get('history').pushObject(this.get('currentPath'));
 	}.observes('currentPath'),
 
-	modalComponent: 'ui/login-form',
-	
 	// Methods
     authLogin: function (username) {
         var obj = this;

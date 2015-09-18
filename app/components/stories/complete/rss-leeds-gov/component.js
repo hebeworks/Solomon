@@ -9,6 +9,7 @@ export default DatamillStory.extend({
         var story = this.get('storyModel');
         if (!Ember.isEmpty(story)) {
             this.setupEditableFields();
+            this.loadFeedFromConfig();
         }
     },
 
@@ -18,17 +19,24 @@ export default DatamillStory.extend({
     },
 
     onConfigChange: function () {
+        this.loadFeedFromConfig();
+        this.set('action','saveCanvasState');
+        this.sendAction('action');
+    }.observes('storyModel.config.@each.value'),
+
+    loadFeedFromConfig: function() {
         var config = this.get('storyModel.config');
         var feedUrl = config.findBy('name', 'url').get('value');
         if (!Ember.isEmpty(feedUrl)) {
             this.loadFeed(feedUrl);
+        } else {
+            this.loadFeed('http://news.leeds.gov.uk/feed/en');            
         }
-    }.observes('storyModel.config.@each.value'),
+    },
 
     didInsertElement: function () {
         this.set('title', 'Leeds Gov News');
         this.set('subTitle', 'New from Leeds');
-        this.loadFeed('http://news.leeds.gov.uk/feed/en');
     },
 
     loadFeed: function (feedUrl) {

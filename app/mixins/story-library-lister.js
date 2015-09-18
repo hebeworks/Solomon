@@ -38,7 +38,7 @@ export default Ember.Mixin.create({
 	actions: {
 
 		filterByCat: function (params) {
-			console.log('Stories: setting category');
+			// console.log('Stories: setting category');
 			this.set('category', params);
 		}
 	}

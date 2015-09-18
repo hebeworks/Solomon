@@ -4,9 +4,12 @@ export default Ember.Component.extend({
     tagName: 'div',
     classNames: ['js-story story'],
     classNameBindings: ['color', 'width', 'height'],
-    attributeBindings: ['data-ss-colspan'],
+    attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index'],
     
     isDraggingStory: false,
+    
+    'data-id':Ember.computed.alias('target.storyModel.id'),
+    'data-canvas-order-index':Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     
     storyModel: Ember.computed.alias('target.storyModel'),
     
