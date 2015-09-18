@@ -1,3 +1,8 @@
+[cpn-story-body],
+%cpn-story-body {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
 [cpn-story-body~="scrollV"],
 %cpn-story-body-scrollv {
     overflow-x: hidden;
