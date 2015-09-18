@@ -1,0 +1,52 @@
+[cpn-data-strip],
+%cpn-data-strip {
+    font-size: 0; // remove whitespace
+    text-align: justify;
+    margin-bottom: rem($spacing-base);
+    text-justify: distribute;
+    
+    &::after {
+        display: inline-block;
+        width: 100%;
+        content: '';
+    }
+}
+
+    [cpn-data-strip_item],
+    %cpn-data-strip-item {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: rem(15px); // reset font size
+        line-height: 1.1;
+    }
+    
+        [cpn-data-strip_label],
+        %cpn-data-strip-label {
+            display: block;
+            font-size: rem(10px);
+        }
+        
+        [cpn-data-strip_value],
+        %cpn-data-strip-value {
+            display: block;
+            font-size: rem(13px);
+            font-weight: bold;
+        }
+        
+        [cpn-data-strip_label~="inline"],
+        %cpn-data-strip-label-inline,
+        [cpn-data-strip_value~="inline"],
+        %cpn-data-strip-value-inline {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.5;
+        }
+        
+    [cpn-data-strip_slice],
+    %cpn-data-strip_slice {
+        width: rem(1px);
+        height: rem(21px);
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #000;
+    }

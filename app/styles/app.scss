@@ -47,6 +47,9 @@
 @import "patterns/lists";
 @import "patterns/forms";
 
+@import 'cpn/cpn-toggle';
+@import 'cpn/cpn-table';
+@import 'cpn/cpn-data-strip';
 @import 'cpn/cpn-snippet';
 @import 'cpn/cpn-story-body';
 
@@ -81,6 +84,7 @@
 @import "components/stories/sunrise-sunset";
 @import "components/stories/twitter-feed";
 @import "components/stories/weather-report";
+@import 'components/stories/weather-forecast';
 
 /* START auto-generated stories */
 @import "components/stories/stat-notices-recent";

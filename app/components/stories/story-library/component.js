@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 	},
 	
 	isAdmin: function(){
-		return false;
+		return true;
 		// natehere
 		// if(this.get('session.secure.token') == '55f15e19fc4b2397742d1aa6') {
 		// 	return true;

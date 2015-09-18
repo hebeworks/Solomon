@@ -1,0 +1,33 @@
+[cpn-toggle],
+%cpn-toggle {
+    margin: rem(-$spacing-base / 2) rem(-$spacing-base / 2) rem($spacing-base / 2);
+    font-size: 0; // remove whitespace
+}
+
+    [cpn-toggle_option],
+    %cpn-toggle-option {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: rem(15px); // reset font size
+        padding: rem($spacing-base / 2);
+        opacity: .28;
+        cursor: pointer;
+        
+        &:hover, &:focus, &:active {
+            text-decoration: underline;
+        }
+    }
+    
+    [cpn-toggle_option~="chosen"],
+    %cpn-toggle-option-chosen {
+        opacity: 1;
+        text-decoration: underline;
+        
+        [cpn-toggle~="dark"] & {
+            color: #000;
+        }
+        
+        [cpn-toggle~="bright"] & {
+            color: #fff;
+        }
+    }
