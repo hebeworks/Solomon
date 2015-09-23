@@ -146,6 +146,24 @@ export default Ember.Controller.extend({
 			params.mainTitle = 'Duplicate a canvas'
 		}
 		this.openBottomDrawer(params);
-	}
+	},
+	
+	editACanvas: function (model) {
+		var params = { contentType: 'stories/create-a-canvas' };
+		if(!Ember.isEmpty(model)) {
+			params.model = model;
+			params.mainTitle = 'Edit a canvas'
+		}
+		this.openBottomDrawer(params);
+	},
+	
+	editAStory: function (model) {
+		var params = { contentType: 'stories/create-a-story' };
+		if(!Ember.isEmpty(model)) {
+			params.model = model;
+			params.mainTitle = 'Edit a story'
+		}
+		this.openBottomDrawer(params);
+	},
 
 });

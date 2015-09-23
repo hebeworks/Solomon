@@ -1,14 +1,10 @@
 <div class="drawer__header">
-	{{#ui/generic-element action="closeBottomDrawer" tagName="a" classes="js-close-bottom-drawer btn -close"}}
-		<span class="icon icon-close-drawer svg-close-drawer" data-grunticon-embed></span>
-	{{/ui/generic-element}}
+	<h2 class="drawer__heading -alpha float--left">{{mainTitle}}</h2>
+	{{ui/generic-element action="closeBottomDrawer" tagName="a" classes="js-close-bottom-drawer float--right drawer__close svg-close-drawer"}}
 </div>
 <div class="drawer__inner">
-	<h3>Create a story</h3>
 	<p>{{message}}</p>
 	{{yield}}
-	
-	{{!-- canvas-gallery/create-a-canvas --}}
 	
 	<div class="create-a-story -form -admin">
 		<p>{{input value=title placeholder="Story Title e.g. Analogue Clock"}}
@@ -16,9 +12,12 @@
 				<br />{{story.errors.title.message}}
 			{{/if}}
 		</p>
-		<p>{{input value=storyType placeholder="Story Type e.g. clock-face"}}</p>
-		<p>{{input value=configJSON placeholder="Config JSON e.g. { 'test' : 'testy' }"}}</p>
-
+		
+		{{!--
+			<p>{{input value=storyType placeholder="Story Type e.g. clock-face"}}</p>
+			<p>{{input value=configJSON placeholder="Config JSON e.g. { 'test' : 'testy' }"}}</p>
+		--}}
+		
 		{{ select-2
 			content=allCategories
 			value=categories
@@ -26,6 +25,12 @@
 			placeholder="Choose a category"
 			multiple=true
 		}}
+		
+		{{#if configFields}}
+			{{#each configFields as |field|}}
+				<label>{{field.placeholder}}</label>{{input type=field.type value=field.value placeholder=field.placeholder}}
+			{{/each}}
+		{{/if}}
 		
 		{{#each story.errors.messages as |message|}}
 			<div class="error">
@@ -36,5 +41,5 @@
 		<button class="btn" {{ action "save"}}>SAVE NEW STORY</button>
 	</div>
 	
-	{{admin/create-a-category}}
+	{{!-- admin/create-a-category --}}
 </div>

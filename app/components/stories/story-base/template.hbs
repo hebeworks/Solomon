@@ -40,8 +40,12 @@
                 <div class="btn-list">
                     {{ui/button-link href=dataSourceUrl title="View Data Source" class="btn -blue -half"}}
                     {{ui/button-link href=feedbackEmail type="mail" title="Contact Author" class="btn -blue -half"}}
-                    <div class="cf"></div>
-                    <button class="btn -red -full half-margin-top" {{action 'removeAStory' storyModel}}>
+                </div>
+                <div class="btn-list">
+                    <button class="btn -red -half" {{action 'editAStory' storyModel}}>
+                        Edit
+                    </button>
+                    <button class="btn -red -half" {{action 'removeAStory' storyModel}}>
                         Remove from canvas    
                     </button>
                 </div>

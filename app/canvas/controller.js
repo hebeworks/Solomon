@@ -122,6 +122,27 @@ export default Ember.Controller.extend({
                     );
         }
     },
+    
+    editAStory: function (story) {
+        if (story != null && this.get('model') != null) {
+            var obj = this;
+            this.checkCanvasAuth()
+                .then(
+                    function () {
+                       // open bottom drawer createAStory with story
+                       obj.get('appController').editAStory(story);
+                    },
+                    function (err) {
+                        if (err.notLoggedIn == true) {
+                            var intro = 'To edit this story, you need to be logged in. All you need is a nickname...';
+                            obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                        } else if (err.hasPermissions == false) {
+                            obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                        }
+                    }
+                    );
+        }
+    },
 
     duplicateCanvas: function () {
         var obj = this;
@@ -200,7 +221,6 @@ export default Ember.Controller.extend({
             .then(
                 function () {
                     var model = obj.get('model');
-                    debugger;
                     model.save().then(function (response) {
                         console.log('saved canvas state');
                     })
@@ -219,12 +239,13 @@ export default Ember.Controller.extend({
 
     actions: {
         addAStory: function (story) {
-            // alert('addAStory');
             this.addAStory(story);
         },
         removeAStory: function (story) {
-            // alert('addAStory');
             this.removeAStory(story);
+        },
+        editAStory: function (story) {
+            this.editAStory(story);
         },
         saveCurrentOrder: function (orderArr) {
             this.saveCurrentOrder(orderArr);
