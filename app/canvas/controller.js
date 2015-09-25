@@ -2,10 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-    appController: function () {
-        return this.controllerFor('Application');
-    }.property(),
-
     navItems: function () {
         var items = [
             { title: 'Toolbox', action: 'toggleToolbox' },

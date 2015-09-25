@@ -1,6 +1,6 @@
 <div class="js-dashboard-wrapper wrapper -dashboard -open">
 
-    {{#header-nav navItems=navItems subNavItems=subNavItems action="gotoRoute" appController=appController}}
+    {{#header-nav navItems=navItems subNavItems=subNavItems action="gotoRoute"}}
         <span class="site-logo -wide">
             <a href="javascript:void();" class="svg-logo" data-grunticon-embed>Powered by: Leeds Data Mill</a>
         </span>
@@ -10,10 +10,10 @@
     {{/header-nav}}
 
 	<main class="site-body">
-		{{canvas-switcher currentCanvas=model appController=appController}}
+		{{canvas-switcher currentCanvas=model}}
 	</main>
 	
-	{{bottom-drawer appController=appController}}
+	{{bottom-drawer}}
     {{outlet}}
 
 </div>

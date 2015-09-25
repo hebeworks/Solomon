@@ -8,10 +8,6 @@ export default Ember.Controller.extend({
         return 'Leeds Gallery Title';
     }.property(),
 
-    appController: function () {
-        return this.controllerFor('Application');
-    }.property(),
-
     galleryNavItems: function () {
         var items = [
             { title: 'Back', action: 'goBack' },

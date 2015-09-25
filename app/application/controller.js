@@ -110,6 +110,7 @@ export default Ember.Controller.extend({
 		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams)
 		this.closeToolbox();
 		this.set('bottomDrawerConfig', config);
+		console.log('appController.bottomDrawerConfig: ' + Ember.inspect(config));
 		this.set('canvasBlurred', true);
 		// Drawer.closeTop();
 		// Drawer.openBottomHalf();
@@ -136,7 +137,7 @@ export default Ember.Controller.extend({
         // var canvasID = canvas.get('id');
         // console.log(canvasID);
         this.get('target').transitionTo('canvas', canvasID);
-        this.get('appController').closeBottomDrawer();
+        this.closeBottomDrawer();
     },
 
 	createACanvas: function (model) {

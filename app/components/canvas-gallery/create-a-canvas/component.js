@@ -9,7 +9,6 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	model: null,
 	categories: [],
 	stories: [],
-	appController: null,
 	
 	didInsertElement: function () {
 		var config = this.get('appController.bottomDrawerConfig');
