@@ -11,6 +11,9 @@ var App = Ember.Application.extend({
   Resolver: Resolver
 });
 
+// todo: remove to test deprecations
+Ember.deprecate = function(){};
+
 loadInitializers(App, config.modulePrefix);
 
 export default App;

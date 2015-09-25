@@ -23,7 +23,7 @@ var canvas = DS.Model.extend({
 
 	}.observes('stories.@each'),
 
-	save:function(options){
+	save: function (options) {
 		// make sure to JSON Serialize the current state of stories 
 		// in case anything has changed that wasn't picked up 
 		// by the onStoriesChanged observer
@@ -67,9 +67,24 @@ var canvas = DS.Model.extend({
 					// prevents adding multiple of same 
 					// story.type = story.type.singularize()
 					story.attributes.id = hebeutils.guid();
-					var tmp = store.createRecord('story',story.attributes);
+					story.type = 'story';
+					var attributes = story.attributes;
+					$.extend(story, attributes);
+					delete story.attributes;
+					var tmp = store.createRecord('story', story);
 					
+					var catIDs = story.relationships.categories.data.map(function (item) {
+						return item.id;
+					});
+					
+					catIDs.forEach(function(id){
+						store
+							.find('category',id)
+								.then(function(item){
+									tmp.get('categories').pushObject(item); })
+					});
 					stories.pushObject(tmp);
+					
 				});
 				this.set('_stories', stories);
 				if (Ember.isArray(stories)) {
