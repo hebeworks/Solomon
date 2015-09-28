@@ -2,7 +2,7 @@
 	{{#if session.isAuthenticated}}
 		<p class="dotted-area -bottom -black cf double-margin-bottom pad-bottom pad-double">
 			You're currently logged in as: {{currentUser.content.username}}
-			<button cpn-button="action" class="margin-left" {{action "logout"}}>
+			<button cpn-button="action" class="margin-top" {{action "logout"}}>
 				Log out
 			</button>
 		</p>
