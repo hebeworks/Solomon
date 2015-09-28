@@ -10,7 +10,7 @@ export default DatamillStory.extend({
     onAddressChange: function () {
         var obj = this;
         var id = this.get('selectedAddress.id')
-        this.getData('http://localhost:3000/bins/' + id)
+        this.getData('http://hebenodeapi-preview.azurewebsites.net/bins/' + id)
             .then(function (address) {
                 var allDates = [];
                 
@@ -58,7 +58,7 @@ export default DatamillStory.extend({
         var deferred = obj.get('deferred');
         
         if(query != null && query.term != null && query.term.length > 3) {
-            var url = 'http://localhost:3000/bins/?q="' + query.term + '"&fields=address postcode';
+            var url = 'http://hebenodeapi-preview.azurewebsites.net/bins/?q="' + query.term + '"&fields=address postcode';
             console.log(url);
             this.getData(url)
                 .then(
