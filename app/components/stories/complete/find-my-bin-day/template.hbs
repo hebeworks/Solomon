@@ -44,7 +44,7 @@
                         
                         <div spc-fmbd-results_extra="{{date.type}}">
                             <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
-                            {{!-- icon --}}
+                            <div class="svg-{{date.description.icon}}"></div>
                             <span>{{date.description.long}}</span>
                         </div>
                     </li>

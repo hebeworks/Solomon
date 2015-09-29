@@ -138,19 +138,42 @@
 			> * {
 				display: block;
 			}
+			
+			[class*="svg"] {
+				margin: rem($helper-spacing) auto;
+				background-position: 0 0;
+				background-repeat: no-repeat;
+				background-size: contain;
+				fill: #fff;
+			}
 		}
 		
 		[spc-fmbd-results_extra="Black"] {
 			background-color: lighten($dark-grey, 10%);
-			border-color: lighten($dark-grey, 30%);
+			border-color: $dark-grey;
 		}
 		
 		[spc-fmbd-results_extra="Green"] {
 			background-color: lighten($lime, 10%);
-			border-color: lighten($lime, 30%);
+			border-color: $lime;
 		}
 		
 		[spc-fmbd-results_extra="Brown"] {
 			background-color: lighten($brown, 10%);
-			border-color: lighten($brown, 30%);
+			border-color: $brown;
 		}
+		
+			.svg-bin-icon {
+				width: rem(22.5px);
+				height: rem(29.5px);
+			}
+			
+			.svg-recycle-icon {
+				width: rem(25px);
+				height: rem(26.5px);
+			}
+			
+			.svg-brown-icon {
+				width: rem(29.5px);
+				height: rem(30.5px);
+			}

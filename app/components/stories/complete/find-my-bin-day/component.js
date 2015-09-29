@@ -28,11 +28,11 @@ export default DatamillStory.extend({
                             
                             switch(code) {
                                 default :
-                                    return {short: 'General' , long: 'General rubbish'};
+                                    return {short: 'General' , long: 'General rubbish', icon: 'bin-icon'};
                                 case 'green' :
-                                    return  {short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics'};
+                                    return  {short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics', icon: 'recycle-icon'};
                                 case 'brown' :
-                                    return {short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches'};
+                                    return {short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches', icon: 'brown-icon'};
                             }
                         };
                     });
