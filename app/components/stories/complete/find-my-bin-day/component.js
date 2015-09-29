@@ -16,8 +16,11 @@ export default DatamillStory.extend({
                 
                 address.routes.forEach(function (route) {
                     route.dates.forEach(function(date) {
+                        // debugger;
+                        // var moment = moment.duration(moment(new Date()).diff(moment(new Date(date)))).humanize();
                         allDates.push({
                             date: date,
+                            formattedDate: moment,
                             type: route.type
                         });
                     });

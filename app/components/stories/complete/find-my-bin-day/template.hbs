@@ -1,11 +1,11 @@
 
 {{#stories/story-base title="Find My Bin Day" subTitle="Find your next Leeds bin day" color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
-    <main class="find-my-bin-day">
+    <main spc-fmbd-body cpn-story-body="scrollV height2">
         {{#unless currentAddress}}
             <div spc-fmbd-logo>
                 <div spc-fmbd-logo_inner>
                     <h2 spc-fmbd-logo_title>Find my bin day</h2>
-                    {{!-- <h3 spc-fmbd-logo_desc>Looking for a grit bin?</h3> --}}
+                    {{!-- <p spc-fmbd-logo_desc>Looking for a grit bin?</p> --}}
                 </div>
             </div>
         
@@ -26,20 +26,22 @@
             
             <img cpn-margin="middle-h" src="assets/img/league-of-streets-logo.png" alt="League of Streets logo" width="95" height="40">
         {{else}}
-
-            <div class="find-my-bin-day__results">
-                <div class="find-my-bin-day__address">
-                    {{currentAddress.address}}
-                    <p {{action 'changeAddress'}}>Change Address</p>
-                </div>            
-                <ul>
-                    {{#each orderedDates as |date|}}
-                        <li>
-                            <p>{{date.type}} - {{format-date "DD/MM/YYYY" date.date}}</p>
-                        </li>
-                    {{/each}}
-                </ul>
+        
+            <div spc-fmbd-address>
+                <h3 spc-fmbd-address_location>{{currentAddress.address}}</h3>
+                <a spc-fmbd-address_change {{action 'changeAddress'}}>Change Address</a>
             </div>
+            
+            <ul spc-fmbd-results>
+                {{#each orderedDates as |date index|}}
+                    <li spc-fmbd-results_result="{{date.type}}" style="animation-delay: {{index}}s;">
+                        <span spc-fmbd-results_rel-date>
+                            {{format-date "DD/MM/YYYY" date.date}}
+                        </span>
+                        <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - {{date.type}}</span>
+                    </li>
+                {{/each}}
+            </ul>
         {{/unless}}
     </main>
 {{/stories/story-base}}
