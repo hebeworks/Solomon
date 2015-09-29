@@ -40,9 +40,11 @@
                                 {{format-date "DD/MM/YYYY" date.date}}
                             </span>
                             <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
+                            
+                            <a {{action 'toggleExtra'}} class="svg-closed-chevron" spc-fmbd-results_toggle="{{toggleState}}">Show Bin Info</a>
                         </div>
                         
-                        <div spc-fmbd-results_extra="{{date.type}}">
+                        <div spc-fmbd-results_extra="{{date.type}}" cpn-display="{{extraState}}">
                             <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
                             <div class="svg-{{date.description.icon}}"></div>
                             <span>{{date.description.long}}</span>

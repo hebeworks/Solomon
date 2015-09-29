@@ -56,6 +56,9 @@ export default DatamillStory.extend({
         this.set('title', 'find-my-bin-day TITLE');
         this.set('subTitle', 'find-my-bin-day SUB TITLE');
     },
+    
+    toggleState: 'down',
+    extraState: 'none',
 
     actions: {
         findPlaces: function (query, deferred) {
@@ -64,6 +67,18 @@ export default DatamillStory.extend({
                 deferred: deferred
             });
             Ember.run.debounce(this, this.debouncedQuery, 600);
+        },
+        
+        toggleExtra: function() {
+            var state = this.get('toggleState');
+            
+            if (state == 'up') {
+                this.set('toggleState', 'down');
+                this.set('extraState', 'block');
+            } else {
+                this.set('toggleState', 'up');
+                this.set('extraState', 'none');
+            }
         }
     },
     
