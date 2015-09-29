@@ -16,13 +16,25 @@ export default DatamillStory.extend({
                 
                 address.routes.forEach(function (route) {
                     route.dates.forEach(function(date) {
-                        // debugger;
-                        // var moment = moment.duration(moment(new Date()).diff(moment(new Date(date)))).humanize();
                         allDates.push({
                             date: date,
                             formattedDate: moment,
-                            type: route.type
+                            type: route.type,
+                            description: getDescription(route.type)
                         });
+                        
+                        function getDescription(code) {
+                            code = code.toLowerCase();
+                            
+                            switch(code) {
+                                default :
+                                    return {short: 'General' , long: 'General rubbish'};
+                                case 'green' :
+                                    return  {short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics'};
+                                case 'brown' :
+                                    return {short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches'};
+                            }
+                        };
                     });
                 });
                 

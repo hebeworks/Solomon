@@ -34,11 +34,19 @@
             
             <ul spc-fmbd-results>
                 {{#each orderedDates as |date index|}}
-                    <li spc-fmbd-results_result="{{date.type}}" style="animation-delay: {{index}}s;">
-                        <span spc-fmbd-results_rel-date>
-                            {{format-date "DD/MM/YYYY" date.date}}
-                        </span>
-                        <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - {{date.type}}</span>
+                    <li spc-fmbd-results_result style="animation-delay: {{index}}s;">
+                        <div spc-fmbd-results_inner="{{date.type}}">
+                            <span spc-fmbd-results_rel-date>
+                                {{format-date "DD/MM/YYYY" date.date}}
+                            </span>
+                            <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
+                        </div>
+                        
+                        <div spc-fmbd-results_extra="{{date.type}}">
+                            <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
+                            {{!-- icon --}}
+                            <span>{{date.description.long}}</span>
+                        </div>
                     </li>
                 {{/each}}
             </ul>
