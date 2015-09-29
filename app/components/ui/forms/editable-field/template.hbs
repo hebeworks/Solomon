@@ -1,0 +1,8 @@
+{{yield}}
+{{#if isTextArea}}
+	{{textarea value=field.value placeholder=field.placeholder}}
+{{else if isDatePicker}}
+	<p>Date Picker example</p>
+{{else}}
+	{{input type=field.type value=field.value placeholder=field.placeholder}}
+{{/if}}

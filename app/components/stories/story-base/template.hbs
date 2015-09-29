@@ -48,7 +48,7 @@
                 
                 {{#if configFields}}
                     {{#each configFields as |field|}}
-                        {{input type=field.type value=field.value placeholder=field.placeholder}}
+                        {{ui/forms/editable-field field=field}}
                     {{/each}}
                 {{/if}}
                 
