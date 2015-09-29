@@ -3,8 +3,10 @@
     <main class="find-my-bin-day">
         {{#unless currentAddress}}
             <div spc-fmbd-logo>
-                <h2 spc-fmbd-logo_title>Find my bin day</h2>
-                <h3 spc-fmbd-logo_desc>Looking for a grit bin?</h3>
+                <div spc-fmbd-logo_inner>
+                    <h2 spc-fmbd-logo_title>Find my bin day</h2>
+                    {{!-- <h3 spc-fmbd-logo_desc>Looking for a grit bin?</h3> --}}
+                </div>
             </div>
         
             {{
@@ -21,6 +23,8 @@
                 minimumInputLength=3
                 query="findPlaces"
             }}
+            
+            <img cpn-margin="middle-h" src="assets/img/league-of-streets-logo.png" alt="League of Streets logo" width="95" height="40">
         {{else}}
 
             <div class="find-my-bin-day__results">

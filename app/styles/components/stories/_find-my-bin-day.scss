@@ -1,3 +1,50 @@
-[spc-fmbd-title-block] {
+[spc-fmbd-logo] {
+	position: relative;
+	padding: rem(28px);
+	margin-bottom: rem($helper-spacing / 2);
 	
+	&::before,
+	&::after {
+		content: '';
+		height: 100%;
+		width: rem(32px);
+		position: absolute;
+		top: 0;
+		z-index: -1;
+	}
+	
+	&::before {
+		background-color: $tct-blue;
+		right: 50%;
+	}
+	
+	&::after {
+		background-color: $tct-yellow;
+		left: 50%;
+	}
 }
+
+	[spc-fmbd-logo_inner] {
+		border-top: 1px solid #000;
+		width: rem(164px);
+		margin: 0 auto;
+		padding-top: rem($spacing-base);
+		text-align: center;
+		text-transform: uppercase;
+	}
+	
+		[spc-fmbd-logo_title],
+		[spc-fmbd-logo_desc] {
+			border-bottom: 1px solid #000;
+			margin: 0;
+		}
+	
+		[spc-fmbd-logo_title] {
+			font-size: rem(19.5px);
+			line-height: rem(23px);
+			// margin-bottom: rem(8px); put this back in when the grit bin link is needed
+		}
+		
+		[spc-fmbd-logo_desc] {
+			font-size: rem(11.5px);
+		}

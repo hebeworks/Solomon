@@ -1,0 +1,17 @@
+[cpn-margin*="middle"] {
+    display: block;
+}
+
+[cpn-margin~="middle-h"] {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+[cpn-margin~="middle-v"] {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+[cpn-margin~="middle-vh"] {
+    margin: auto;
+}

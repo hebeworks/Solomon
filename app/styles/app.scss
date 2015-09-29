@@ -58,6 +58,7 @@
 @import 'cpn/cpn-data-strip';
 @import 'cpn/cpn-snippet';
 @import 'cpn/cpn-story-body';
+@import 'cpn/cpn-margin';
 
 /* -- Components -- */
 @import "components/drawer";
@@ -92,6 +93,7 @@
 @import "components/stories/twitter-feed";
 @import "components/stories/weather-report";
 @import 'components/stories/weather-forecast';
+@import 'components/stories/find-my-bin-day';
 
 /* START auto-generated stories */
 @import "components/stories/stat-notices-recent";
