@@ -8,11 +8,9 @@
 {{else if isDatePicker}}
 	<p>Date Picker example</p>
 {{else if isSelectField}}
-	<select>
-			{{#each field.options as |option|}}
-				<option value="{{option.value}}">{{option.label}}</option>
-			{{/each}}
-	</select>
+	{{select-2
+		content=field.options
+		value=field.value}}
 {{else}}
 	{{input type=field.type value=field.value placeholder=field.placeholder}}
 {{/if}}

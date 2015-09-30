@@ -2,8 +2,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+        title: 'Sample Chart Line',
+        subTitle: 'Testing chart data',
         storyModel: null,
         chartType: 'line',
+        componentName: 'chartist-chart',
+        
         chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         chartSeries: [
                 [1, 5, 2, 5, 4, 3],
@@ -36,6 +40,8 @@ export default Ember.Component.extend({
                 this.get('storyModel.config');
                 this.set('storyModel', this.store.createRecord('story'));
         }.on('init'),
+        
+
 
         onStoryModelChanged: function () {
                 if (!Ember.isEmpty(this.get('storyModel'))) {
@@ -72,17 +78,16 @@ export default Ember.Component.extend({
                 story.addConfigItem({ 
                         name: 'chartType', 
                         type: 'select', 
-                        value: 'line',
+                        value: '',
                         options: [
-                                {value:'line', label:'Line'},
-                                {value:'bar', label:'Bar'},
-                                {value:'pie', label:'Pie'}
+                                { id:'line', title:'Line'},
+                                { id:'bar', title:'Bar'},
+                                { id:'pie', title:'Pie'}
                         ]
                         });
         },
 
         onConfigChange: function () {
-                alert('config change');
                 Ember.run.debounce(this, this.refreshChartFromConfigData, 600);
         }.observes('storyModel.config.@each.value'),
 
@@ -104,10 +109,16 @@ export default Ember.Component.extend({
                         }
                 }
                 var typeConfig = config.findBy('name', 'chartType');
-                if(!Ember.isEmpty(typeConfig)) {
-                        this.set('chartType', typeConfig.get('value'));
-                        alert('update: '+ typeConfig.get('value'));
-                        this.get('chart').update();
+                var selectedChartType = typeConfig.get('value');
+                debugger;
+                if(!Ember.isEmpty(selectedChartType)) {
+                        this.set('chartType', selectedChartType.id);
+                        alert('update: '+ this.get('chartType'));
+                        var obj = this;
+                        obj.set('componentName',null);
+                        setTimeout(function() {
+                                obj.set('componentName','chartist-chart');
+                        }, 3000);
                 }
                 
         }
