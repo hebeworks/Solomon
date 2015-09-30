@@ -159,13 +159,6 @@
 			> * {
 				display: block;
 			}
-			
-			[class*="svg"] {
-				margin: rem($helper-spacing) auto;
-				background-position: 0 0;
-				background-repeat: no-repeat;
-				background-size: contain;
-			}
 		}
 		
 		[spc-fmbd-results_extra="Black"] {
@@ -183,6 +176,13 @@
 			border-color: $brown;
 		}
 		
+			[spc-fmbd-icon] {
+				margin: rem($helper-spacing) auto;
+				background-position: 0 0;
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
+		
 			.svg-bin-icon {
 				width: rem(22.5px);
 				height: rem(29.5px);
@@ -196,4 +196,25 @@
 			.svg-brown-icon {
 				width: rem(29.5px);
 				height: rem(30.5px);
+			}
+			
+			[spc-fmbd-calendar] {
+				background-repeat: no-repeat;
+				background-size: rem(25px) rem(25px);
+				background-position: center top;
+				margin: rem($helper-spacing) auto;
+				padding-top: rem(30px);
+				font-size: rem(10px);
+				display: block;
+				width: rem(200px);
+				text-align: center;
+				text-decoration: none;
+				
+				&:hover, &:focus {
+					text-decoration: underline;
+				}
+				
+				div {
+					display: none;
+				}
 			}
