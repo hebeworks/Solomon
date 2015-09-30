@@ -34,7 +34,7 @@
             
             <ul spc-fmbd-results>
                 {{#each orderedDates as |date index|}}
-                    {{stories/complete/find-my-bin-day/bin-date date=date}}
+                    {{stories/complete/find-my-bin-day/bin-date date=date route=route}}
                 {{/each}}
             </ul>
         {{/unless}}

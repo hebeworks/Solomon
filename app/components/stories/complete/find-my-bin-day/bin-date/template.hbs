@@ -14,5 +14,36 @@
         <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
         <div class="svg-{{date.description.icon}}"></div>
         <span>{{date.description.long}}</span>
+        
+        <!-- AddThisEvent -->
+        {{!--<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>--}}
+        <!-- AddThisEvent Settings -->
+        {{!--<script type="text/javascript">
+            addthisevent.settings({
+                mouse: false,
+                css: true,
+                outlook: { show: true, text: "Outlook Calendar" },
+                google: { show: true, text: "Google Calendar" },
+                yahoo: { show: true, text: "Yahoo Calendar" },
+                ical: { show: true, text: "iCal Calendar" },
+                hotmail: { show: true, text: "Hotmail Calendar" },
+                facebook: { show: true, text: "Facebook Calendar" }
+            });
+        </script>--}}
+
+        {{!-- <div class="calendar">
+            <a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent">
+                Add to Calendar
+                <span class="_start">' + moment(new Date(n.date)).format("D-M-YYYY")  08:00:00</span>
+                <span class="_end">' + moment(new Date(n.date)).format("D-M-YYYY")  17:00:00</span>
+                <span class="_zonecode">36</span>
+                <span class="_summary">It's {{date.type}} bin day</span>
+                <span class="_description">The ' + n.code  bin for ' + {{route.currentAddress.address}} </span>
+                <span class="_location">{{route.currentAddress.address}}</span>
+                <span class="_organizer">www.findmybinday.co.uk</span>
+                <span class="_all_day_event">true</span>
+                <span class="_date_format">DD/MM/YYYY</span>
+            </a>
+        </div> --}}
     </div>
 </li>

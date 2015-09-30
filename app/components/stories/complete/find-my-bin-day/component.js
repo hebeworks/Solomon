@@ -10,55 +10,54 @@ export default DatamillStory.extend({
     onAddressChange: function () {
         var obj = this;
         var id = this.get('selectedAddress.id')
-        this.getData('http://hebenodeapi-preview.azurewebsites.net/bins/' + id)
-            .then(function (address) {
-                var allDates = [];
-                
-                address.routes.forEach(function (route) {
-                    route.dates.forEach(function(date) {
-                        allDates.push({
-                            date: date,
-                            formattedDate: moment,
-                            type: route.type,
-                            description: getDescription(route.type)
-                        });
-                        
-                        function getDescription(code) {
-                            code = code.toLowerCase();
+        if (!Ember.isEmpty(this.get('selectedAddress'))) {
+            this.getData('http://hebenodeapi-preview.azurewebsites.net/bins/' + id)
+                .then(function (address) {
+                    var allDates = [];
+                    
+                    address.routes.forEach(function (route) {
+                        route.dates.forEach(function(date) {
+                            allDates.push({
+                                date: date,
+                                formattedDate: moment,
+                                type: route.type,
+                                description: getDescription(route.type)
+                            });
                             
-                            switch(code) {
-                                default :
-                                    return {short: 'General' , long: 'General rubbish', icon: 'bin-icon'};
-                                case 'green' :
-                                    return  {short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics', icon: 'recycle-icon'};
-                                case 'brown' :
-                                    return {short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches', icon: 'brown-icon'};
-                            }
-                        };
+                            function getDescription(code) {
+                                code = code.toLowerCase();
+                                
+                                switch(code) {
+                                    default :
+                                        return {short: 'General' , long: 'General rubbish', icon: 'bin-icon'};
+                                    case 'green' :
+                                        return  {short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics', icon: 'recycle-icon'};
+                                    case 'brown' :
+                                        return {short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches', icon: 'brown-icon'};
+                                }
+                            };
+                        });
                     });
-                });
-                
-                var orderedDates = _.sortBy(allDates,function(el){
-                    return el.date;
-                });
-                
-                obj.set('orderedDates',orderedDates);
-                
-                // address.routes.forEach(function (route) {
-                //     route.orderedDates = route.dates.sort().slice(0, 2);
-                // })
+                    
+                    var orderedDates = _.sortBy(allDates,function(el){
+                        return el.date;
+                    });
+                    
+                    obj.set('orderedDates',orderedDates);
+                    
+                    // address.routes.forEach(function (route) {
+                    //     route.orderedDates = route.dates.sort().slice(0, 2);
+                    // })
 
-                obj.set('currentAddress', address);
-            });
+                    obj.set('currentAddress', address);
+                });
+        }
     }.observes('selectedAddress'),
 
     didReceiveAttrs: function () {
         this.set('title', 'find-my-bin-day TITLE');
         this.set('subTitle', 'find-my-bin-day SUB TITLE');
     },
-    
-    toggleState: 'down',
-    extraState: 'none',
 
     actions: {
         findPlaces: function (query, deferred) {
@@ -69,16 +68,9 @@ export default DatamillStory.extend({
             Ember.run.debounce(this, this.debouncedQuery, 600);
         },
         
-        toggleExtra: function() {
-            var state = this.get('toggleState');
-            
-            if (state == 'up') {
-                this.set('toggleState', 'down');
-                this.set('extraState', 'block');
-            } else {
-                this.set('toggleState', 'up');
-                this.set('extraState', 'none');
-            }
+        changeAddress: function() {
+            this.set('currentAddress', null);
+            this.set('selectedAddress', null);
         }
     },
     
