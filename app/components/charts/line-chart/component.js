@@ -2,14 +2,25 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-        chartData: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                series: [
-                        [1, 5, 2, 5, 4, 3],
-                        [2, 3, 4, 8, 1, 2],
-                        [5, 4, 3, 2, 1, 0.5]
-                ]
-        },
+        storyModel: null,
+        chartType: 'line',
+        chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        chartSeries: [
+                [1, 5, 2, 5, 4, 3],
+                [2, 3, 4, 8, 1, 2],
+                [5, 4, 3, 2, 1, 0.5]
+        ],
+        chartData: Ember.computed('chartSeries', 'chartLabels', {
+                get() {
+                        return {
+                                labels: this.get('chartLabels'),
+                                series: this.get('chartSeries')
+                        }
+                }
+        }),
+
+
+
         chartOptions: {
                 low: 0,
                 showArea: true,
@@ -17,22 +28,20 @@ export default Ember.Component.extend({
                 fullWidth: true
         },
 
-        model: Ember.computed('storyModel', {
-                get() {
-                        return this.get('storyModel');
-                }
-        }),
+        model: Ember.computed.alias('storyModel'),
+        config: Ember.computed.alias('storyModel.config'),
 
         onInit: function () {
+                this.get('storyModel');
+                this.get('storyModel.config');
                 this.set('storyModel', this.store.createRecord('story'));
         }.on('init'),
 
         onStoryModelChanged: function () {
-                alert('onStoryModelChanged');
                 if (!Ember.isEmpty(this.get('storyModel'))) {
                         this.setupEditableFields();
                 }
-        }.observes('storyModel'),
+        }.observes('model'),
 
         onChartChanged: function () {
                 var chart = this.get('chart');
@@ -55,31 +64,51 @@ export default Ember.Component.extend({
 
         setupEditableFields: function () {
                 var story = this.get('storyModel');
-                if (!Ember.isEmpty(story)) {
-                        story.addConfigItem({
-                                name: 'chartSeriesData',
-                                type: 'textarea',
-                                value: '',
-                                placeholder: 'Enter chart data series data e.g. "[\n[1, 5, 2, 5, 4, 3],\n\r[2, 3, 4, 8, 1, 2],<br/ >[5, 4, 3, 2, 1, 0.5]<br/ >]'
+                story.addConfigItem({ 
+                        name: 'chartSeriesData', 
+                        type: 'textarea', 
+                        value: '', 
+                        placeholder: 'Enter a URL' });
+                story.addConfigItem({ 
+                        name: 'chartType', 
+                        type: 'select', 
+                        value: 'line',
+                        options: [
+                                {value:'line', label:'Line'},
+                                {value:'bar', label:'Bar'},
+                                {value:'pie', label:'Pie'}
+                        ]
                         });
-                }
         },
 
         onConfigChange: function () {
-                this.refreshChartFromConfigData();
-                // SAVE Canvas
-                // this.set('action', 'saveCanvasState');
-                // this.sendAction('action');
-        }.observes('storyModel.config.[]].value'),
+                alert('config change');
+                Ember.run.debounce(this, this.refreshChartFromConfigData, 600);
+        }.observes('storyModel.config.@each.value'),
 
         refreshChartFromConfigData: function () {
                 var config = this.get('storyModel.config');
                 var seriesConfig = config.findBy('name', 'chartSeriesData');
                 if (!Ember.isEmpty(seriesConfig)) {
                         var series = seriesConfig.get('value');
-                        if (!Ember.isEmpty(series)) {
-                                this.set('chartData.series', series);
+                        try {
+                                var data = JSON.parse(series);
+                                if (!Ember.isEmpty(data) &&     	
+                                        Ember.isArray(data) && 
+                                        data.length > 0
+                                        && data != this.get('chartSeries')) {
+                                        this.set('chartSeries', data);
+                                }
+                        } catch (ex) {
+
                         }
                 }
-        },
+                var typeConfig = config.findBy('name', 'chartType');
+                if(!Ember.isEmpty(typeConfig)) {
+                        this.set('chartType', typeConfig.get('value'));
+                        alert('update: '+ typeConfig.get('value'));
+                        this.get('chart').update();
+                }
+                
+        }
 });

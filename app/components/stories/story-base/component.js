@@ -15,12 +15,15 @@ export default Ember.Component.extend({
     
     configFields: Ember.computed({
         get() {
-            return (!Ember.isEmpty(this.get('storyModel.config')) ? this.get('storyModel.config').copy() : []);
+            return (!Ember.isEmpty(this.get('storyModel.config')) ? 
+                this.get('storyModel.config').copy() : 
+                []);
         }
     }),
     
     onFieldsChanged: function() {
-        this.set('storyModel.config',this.get('configFields'));
+        var model = this.get('storyModel');
+        model.set('config',this.get('configFields'));
     }.observes('configFields', 'configFields.@each.value'),
     
     didInsertElement: function () {

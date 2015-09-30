@@ -1,8 +1,18 @@
 {{yield}}
 {{#if isTextArea}}
-	{{textarea value=field.value placeholder=field.placeholder}}
+	{{textarea 
+		value=field.value 
+		placeholder=field.placeholder}}
+		{{!-- focus-in="focus-in" 
+		focus-out="focus-out" --}} 
 {{else if isDatePicker}}
 	<p>Date Picker example</p>
+{{else if isSelectField}}
+	<select>
+			{{#each field.options as |option|}}
+				<option value="{{option.value}}">{{option.label}}</option>
+			{{/each}}
+	</select>
 {{else}}
 	{{input type=field.type value=field.value placeholder=field.placeholder}}
 {{/if}}

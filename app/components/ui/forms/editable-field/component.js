@@ -11,5 +11,15 @@ export default Ember.Component.extend({
 			return this.get('field.type') == 'datepicker';
 		}
 	}),
-	
+	isSelectField: Ember.computed('field.type',{
+		get(){
+			return this.get('field.type') == 'select';
+		}
+	}),
+	// actions: {
+	// 	'focus-in': function() {
+	// 	},
+	// 	'focus-out': function() {
+	// 	}
+	// }
 });
