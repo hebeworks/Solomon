@@ -34,7 +34,7 @@
             
             <ul spc-fmbd-results>
                 {{#each orderedDates as |date index|}}
-                    {{stories/complete/find-my-bin-day/bin-date date=date currentAddress=currentAddress}}
+                    {{stories/complete/find-my-bin-day/bin-date date=date currentAddress=currentAddress showCalendarButton=showCalendarButton}}
                 {{/each}}
             </ul>
         {{/unless}}

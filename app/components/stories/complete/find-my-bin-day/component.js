@@ -7,6 +7,28 @@ export default DatamillStory.extend({
     addresses: [],
     selectedAddress: null,
     currentAddress: null,
+    showCalendarButton: false,
+    
+    saveThisEvent: function() {
+        var obj = this;
+        
+        $.getScript( "https://addthisevent.com/libs/1.5.8/ate.min.js", function() {
+            // debugger;
+            addthisevent.settings({
+                mouse: false,
+                css: false,
+                outlook: { show: true, text: "Outlook Calendar" },
+                google: { show: true, text: "Google Calendar" },
+                yahoo: { show: true, text: "Yahoo Calendar" },
+                ical: { show: true, text: "iCal Calendar" },
+                hotmail: { show: true, text: "Hotmail Calendar" },
+                facebook: { show: true, text: "Facebook Calendar" }
+            });
+            
+            obj.set('showCalendarButton', true);
+        });
+    },
+    
     onAddressChange: function () {
         var obj = this;
         var id = this.get('selectedAddress.id')
@@ -45,6 +67,8 @@ export default DatamillStory.extend({
                     });
                     
                     obj.set('orderedDates',orderedDates);
+                    
+                    obj.saveThisEvent();
                     
                     // address.routes.forEach(function (route) {
                     //     route.orderedDates = route.dates.sort().slice(0, 2);

@@ -19,22 +19,10 @@
         
         <!-- AddThisEvent -->
         {{!--<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>--}}
-        <!-- AddThisEvent Settings -->
-        {{!--<script type="text/javascript">
-            addthisevent.settings({
-                mouse: false,
-                css: true,
-                outlook: { show: true, text: "Outlook Calendar" },
-                google: { show: true, text: "Google Calendar" },
-                yahoo: { show: true, text: "Yahoo Calendar" },
-                ical: { show: true, text: "iCal Calendar" },
-                hotmail: { show: true, text: "Hotmail Calendar" },
-                facebook: { show: true, text: "Facebook Calendar" }
-            });
-        </script>--}}
 
         {{!-- <div class="calendar"> --}}
-            <a spc-fmbd-calendar href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent svg-calendar-icon">
+        {{!-- {{#if showCalendarButton}} --}}
+            <a spc-fmbd-calendar href="#" title="Add to Calendar" class="addthisevent svg-calendar-icon">
                 Add to Calendar
                 <div>
                     <span class="_start">00:00:00</span>
@@ -48,6 +36,7 @@
                     <span class="_date_format">DD/MM/YYYY</span>
                 </div>
             </a>
+        {{!-- {{/if}} --}}
         {{!-- </div> --}}
     </div>
 </li>
