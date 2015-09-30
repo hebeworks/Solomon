@@ -37,12 +37,12 @@
             <a spc-fmbd-calendar href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent svg-calendar-icon">
                 Add to Calendar
                 <div>
-                    <span class="_start">' + moment(new Date(n.date)).format("D-M-YYYY")  08:00:00</span>
-                    <span class="_end">' + moment(new Date(n.date)).format("D-M-YYYY")  17:00:00</span>
-                    <span class="_zonecode">36</span>
+                    <span class="_start">00:00:00</span>
+                    <span class="_end">23:59:00</span>
+                    <span class="_zonecode">{{date.code}}</span>
                     <span class="_summary">It's {{date.type}} bin day</span>
-                    <span class="_description">The ' + n.code  bin for ' + {{route.currentAddress.address}} </span>
-                    <span class="_location">{{route.currentAddress.address}}</span>
+                    <span class="_description">The {{date.type}} bin for {{currentAddress.address}}</span>
+                    <span class="_location">{{currentAddress.address}}</span>
                     <span class="_organizer">www.findmybinday.co.uk</span>
                     <span class="_all_day_event">true</span>
                     <span class="_date_format">DD/MM/YYYY</span>

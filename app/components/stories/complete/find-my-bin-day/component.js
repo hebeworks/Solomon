@@ -21,7 +21,8 @@ export default DatamillStory.extend({
                                 date: date,
                                 formattedDate: moment,
                                 type: route.type,
-                                description: getDescription(route.type)
+                                description: getDescription(route.type),
+                                code: route.code
                             });
                             
                             function getDescription(code) {
