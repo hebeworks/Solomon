@@ -41,7 +41,7 @@ export default Ember.Component.extend({
 
   type: 'line',
   chartType: function () {
-    alert(this.get('type'));
+    // alert(this.get('type'));
     return this.get('type').capitalize();
   }.property('type'),
 
@@ -98,7 +98,7 @@ export default Ember.Component.extend({
 
 
   onChartTypeChange: function () {
-    alert('onChartTypeChange: ' + this.get('chartType'));
+    // alert('onChartTypeChange: ' + this.get('chartType'));
     Ember.run.scheduleOnce('render', this, this.renderChart);
   }.observes('chartType')
 
