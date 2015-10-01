@@ -869,3 +869,23 @@
 		}
 	}
 }
+
+[spc-dot] {
+	display: block;
+	width: rem(10px);
+	height: rem(10px);
+	font-size: 0;
+	background-color: #f7f7f7;
+	cursor: pointer;
+	position: absolute;
+	top: rem(6px);
+	right: rem(6px);
+	border-radius: 100%;
+	@include transition(.2s);
+	z-index: 1;
+	
+	.-front:hover & {
+		width: rem(15px);
+		height: rem(15px);
+	}
+}
