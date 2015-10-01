@@ -37,14 +37,19 @@ export default DatamillStory.extend({
                 .then(function (address) {
                     var allDates = [];
                     
+                    address.streetAddress = (address.address.indexOf(',') > -1 ? 
+                        address.address.toString().substr(0,address.address.toString().indexOf(',')) 
+                        : address.address);
+                    
                     address.routes.forEach(function (route) {
                         route.dates.forEach(function(date) {
+                            var formattedDate = moment.duration(moment(new Date()).diff(moment(new Date(date)))).humanize();
                             allDates.push({
                                 date: date,
-                                formattedDate: moment,
+                                formattedDate: formattedDate,
                                 type: route.type,
                                 description: getDescription(route.type),
-                                code: route.code
+                                code: route.code,
                             });
                             
                             function getDescription(code) {
@@ -62,9 +67,15 @@ export default DatamillStory.extend({
                         });
                     });
                     
-                    var orderedDates = _.sortBy(allDates,function(el){
+                    var futureDates = _.filter(allDates,function(date){
+                       return (new Date(date.date) >= new Date()); 
+                    });
+                    
+                    var orderedDates = _.sortBy(futureDates,function(el){
                         return el.date;
                     });
+                    
+                    orderedDates = orderedDates.slice(0,8);
                     
                     obj.set('orderedDates',orderedDates);
                     
