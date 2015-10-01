@@ -2,10 +2,12 @@
 
 <li spc-fmbd-results_result style="animation-delay: {{index}}s;">
     <div spc-fmbd-results_inner="{{date.type}}">
-        <span spc-fmbd-results_rel-date>
-            {{format-date "DD/MM/YYYY" date.date}}
-        </span>
-        <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
+        <div spc-fmbd-results_preview>
+            <span spc-fmbd-results_rel-date>
+                {{format-date "DD/MM/YYYY" date.date}}
+            </span>
+            <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
+        </div>
         
         <a {{action 'toggleExtra'}} class="svg-closed-chevron" spc-fmbd-results_toggle="{{toggleState}}">Show Bin Info</a>
     </div>
@@ -17,26 +19,20 @@
             <span>{{date.description.long}}</span>
         </div>
         
-        <!-- AddThisEvent -->
-        {{!--<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>--}}
-
-        {{!-- <div class="calendar"> --}}
-        {{!-- {{#if showCalendarButton}} --}}
-            <a spc-fmbd-calendar href="#" title="Add to Calendar" class="addthisevent svg-calendar-icon">
-                Add to Calendar
-                <div>
-                    <span class="_start">00:00:00</span>
-                    <span class="_end">23:59:00</span>
-                    <span class="_zonecode">{{date.code}}</span>
-                    <span class="_summary">It's {{date.type}} bin day</span>
-                    <span class="_description">The {{date.type}} bin for {{currentAddress.address}}</span>
-                    <span class="_location">{{currentAddress.address}}</span>
-                    <span class="_organizer">www.findmybinday.co.uk</span>
-                    <span class="_all_day_event">true</span>
-                    <span class="_date_format">DD/MM/YYYY</span>
-                </div>
-            </a>
-        {{!-- {{/if}} --}}
-        {{!-- </div> --}}
+        <a spc-fmbd-calendar href="#" title="Add to Calendar" class="addthisevent svg-calendar-icon">
+            Add to Calendar
+            <div>
+                <span class="start">{{format-date "DD/MM/YYYY" date.date}} 08:00</span>
+                <span class="end">{{format-date "DD/MM/YYYY" date.date}} 23:59</span>
+                <span class="timezone">Europe/London</span>
+                {{!-- <span class="zonecode">{{date.code}}</span> --}}
+                <span class="title">It's {{date.type}} bin day</span>
+                <span class="description">The {{date.type}} bin for {{currentAddress.address}}</span>
+                <span class="location">{{currentAddress.address}}</span>
+                <span class="organizer">www.findmybinday.co.uk</span>
+                <span class="all_day_event">true</span>
+                <span class="date_format">DD/MM/YYYY</span>
+            </div>
+        </a>
     </div>
 </li>

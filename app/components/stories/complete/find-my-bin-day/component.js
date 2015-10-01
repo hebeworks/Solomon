@@ -12,7 +12,7 @@ export default DatamillStory.extend({
     saveThisEvent: function() {
         var obj = this;
         
-        $.getScript( "https://addthisevent.com/libs/1.5.8/ate.min.js", function() {
+        $.getScript( "https://addthisevent.com/libs/1.6.0/ate.min.js", function() {
             // debugger;
             addthisevent.settings({
                 mouse: false,
