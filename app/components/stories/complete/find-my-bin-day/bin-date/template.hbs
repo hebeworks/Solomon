@@ -4,7 +4,7 @@
     <div spc-fmbd-results_inner="{{date.type}}">
         <div spc-fmbd-results_preview>
             <span spc-fmbd-results_rel-date>
-                {{format-date "DD/MM/YYYY" date.date}}
+                {{date.formattedDate}}
             </span>
             <span>{{format-date "dddd" date.date}} - {{format-date "DD/M" date.date}} - <span cpn-font-weight="bold">{{date.type}}</span> - {{date.description.short}}</span>
         </div>
