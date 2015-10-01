@@ -16,7 +16,9 @@
             {{#unless viewOnly}}
                 <footer class="story__footer gamma">
                     {{#if author}}
-                            {{#if author}}<div class="author">Author: {{author}}</div>{{/if}}
+                            <div class="author">Author: {{author}}</div>
+                    {{else if authorImage}}
+                            <div class="author"><img src="{{authorImage}}"></div>
                     {{/if}}
                 </footer>
             {{/unless}}
