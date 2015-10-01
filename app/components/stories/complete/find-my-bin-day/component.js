@@ -1,3 +1,4 @@
+/* global address */
 /* global Ember, hebeutils, _ */
 import DatamillStory from './../../story-types/datamill-story/component';
 
@@ -8,11 +9,11 @@ export default DatamillStory.extend({
     selectedAddress: null,
     currentAddress: null,
     showCalendarButton: false,
-    
-    saveThisEvent: function() {
+
+    saveThisEvent: function () {
         var obj = this;
-        
-        $.getScript( "https://addthisevent.com/libs/1.6.0/ate.min.js", function() {
+
+        $.getScript("https://addthisevent.com/libs/1.6.0/ate.min.js", function () {
             // debugger;
             addthisevent.settings({
                 mouse: false,
@@ -24,11 +25,11 @@ export default DatamillStory.extend({
                 hotmail: { show: true, text: "Hotmail Calendar" },
                 facebook: { show: true, text: "Facebook Calendar" }
             });
-            
+
             obj.set('showCalendarButton', true);
         });
     },
-    
+
     onAddressChange: function () {
         var obj = this;
         var id = this.get('selectedAddress.id')
@@ -36,13 +37,15 @@ export default DatamillStory.extend({
             this.getData('http://hebenodeapi-preview.azurewebsites.net/bins/' + id)
                 .then(function (address) {
                     var allDates = [];
-                    
-                    address.streetAddress = (address.address.indexOf(',') > -1 ? 
-                        address.address.toString().substr(0,address.address.toString().indexOf(',')) 
+
+                    address.streetAddress = (address.address.indexOf(',') > -1 ?
+                        address.address.toString().substr(0, address.address.toString().indexOf(','))
                         : address.address);
-                    
+
+                    address.shortAddress = address.streetAddress + (!Ember.isEmpty(address.postcode) ? ', ' + address.postcode : '');
+
                     address.routes.forEach(function (route) {
-                        route.dates.forEach(function(date) {
+                        route.dates.forEach(function (date) {
                             var formattedDate = moment.duration(moment(new Date()).diff(moment(new Date(date)))).humanize();
                             allDates.push({
                                 date: date,
@@ -51,34 +54,34 @@ export default DatamillStory.extend({
                                 description: getDescription(route.type),
                                 code: route.code,
                             });
-                            
+
                             function getDescription(code) {
                                 code = code.toLowerCase();
-                                
-                                switch(code) {
-                                    default :
-                                        return {short: 'General' , long: 'General rubbish', icon: 'bin-icon'};
-                                    case 'green' :
-                                        return  {short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics', icon: 'recycle-icon'};
-                                    case 'brown' :
-                                        return {short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches', icon: 'brown-icon'};
+
+                                switch (code) {
+                                    default:
+                                        return { short: 'General', long: 'General rubbish', icon: 'bin-icon' };
+                                    case 'green':
+                                        return { short: 'Recycling', long: 'Paper, cardboard, cans, aluminium aerosols, foil, plastics', icon: 'recycle-icon' };
+                                    case 'brown':
+                                        return { short: 'Garden', long: 'Grass cuttings, hedge clippings, leaves, plants, twigs, small tree branches', icon: 'brown-icon' };
                                 }
                             };
                         });
                     });
-                    
-                    var futureDates = _.filter(allDates,function(date){
-                       return (new Date(date.date) >= new Date()); 
+
+                    var futureDates = _.filter(allDates, function (date) {
+                        return (new Date(date.date) >= new Date());
                     });
-                    
-                    var orderedDates = _.sortBy(futureDates,function(el){
+
+                    var orderedDates = _.sortBy(futureDates, function (el) {
                         return el.date;
                     });
-                    
-                    orderedDates = orderedDates.slice(0,8);
-                    
-                    obj.set('orderedDates',orderedDates);
-                    
+
+                    orderedDates = orderedDates.slice(0, 8);
+
+                    obj.set('orderedDates', orderedDates);
+
                     obj.saveThisEvent();
                     
                     // address.routes.forEach(function (route) {
@@ -103,19 +106,19 @@ export default DatamillStory.extend({
             });
             Ember.run.debounce(this, this.debouncedQuery, 600);
         },
-        
-        changeAddress: function() {
+
+        changeAddress: function () {
             this.set('currentAddress', null);
             this.set('selectedAddress', null);
         }
     },
-    
-    debouncedQuery: function() {
+
+    debouncedQuery: function () {
         var obj = this;
         var query = obj.get('query');
         var deferred = obj.get('deferred');
-        
-        if(query != null && query.term != null && query.term.length > 3) {
+
+        if (query != null && query.term != null && query.term.length >= 3) {
             var url = 'http://hebenodeapi-preview.azurewebsites.net/bins/?q="' + query.term + '"&fields=address postcode';
             console.log(url);
             this.getData(url)
@@ -124,6 +127,11 @@ export default DatamillStory.extend({
                         // var items = [];
                         data.forEach(function (item) {
                             item.id = item._id;
+                            item.streetAddress = (item.address.indexOf(',') > -1 ?
+                                item.address.toString().substr(0, item.address.toString().indexOf(','))
+                                : item.address);
+                            item.shortAddress = item.streetAddress + (!Ember.isEmpty(item.postcode) ? ', ' + item.postcode : '');
+                            
                             // 	var tmp = Ember.Object.create(item);
                             // 	items.push(tmp);
                         });
