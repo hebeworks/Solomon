@@ -76,6 +76,5 @@ To create a new story try `ember generate story my-story-name` (note all compone
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
-### License
-2015 © Hebe Works Limited
-Distributed under the Eclipse Public Licence version 1.0
+## License
+2015 © Hebe Works Limited. Distributed under the Eclipse Public Licence version 1.0.
