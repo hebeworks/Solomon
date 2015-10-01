@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-var data = [
+	data: [
 	{
 		"City Development": 9194109.47,
 		"Childrens Services": 9375227.61,
