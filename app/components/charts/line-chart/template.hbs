@@ -7,14 +7,12 @@
 	data-ss-colspan="2"}}
 		<main class="ct-wrapper">
 			{{yield}}
-			{{#if componentName}}
-				{{component componentName 
+				{{charts/chartist-chart 
 					data=chartData
 					type="bar"
 					options=chartOptions
 					ratio="ct-story_2-2"
 					chart=chart}}
-			{{/if}}
 		</main>
 		
 {{/stories/story-base}}

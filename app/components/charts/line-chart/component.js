@@ -6,7 +6,6 @@ export default Ember.Component.extend({
         subTitle: 'Testing chart data',
         storyModel: null,
         chartType: 'line',
-        componentName: 'chartist-chart',
         
         chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         chartSeries: [
@@ -110,15 +109,9 @@ export default Ember.Component.extend({
                 }
                 var typeConfig = config.findBy('name', 'chartType');
                 var selectedChartType = typeConfig.get('value');
-                debugger;
                 if(!Ember.isEmpty(selectedChartType)) {
+                        
                         this.set('chartType', selectedChartType.id);
-                        alert('update: '+ this.get('chartType'));
-                        var obj = this;
-                        obj.set('componentName',null);
-                        setTimeout(function() {
-                                obj.set('componentName','chartist-chart');
-                        }, 3000);
                 }
                 
         }
