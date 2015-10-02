@@ -26,7 +26,8 @@
     "modernizr": "^2.8.3",
     "jQuery.XDomainRequest": "~1.0.4",
     "hebe-utils": "~0.3.7",
-    "ember-simple-auth": "0.8.0"
+    "ember-simple-auth": "0.8.0",
+    "chartist": "~0.9.4"
   },
   "devDependencies": {
     "breakpoint-sass": "~2.6.1",
