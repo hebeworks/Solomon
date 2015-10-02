@@ -7,20 +7,17 @@
     height="-h2" 
     hideFooter=true
     data-ss-colspan="2"}}
-    <main class="compare-water-quality">
-        
-        <div class="-half text--center">
-            {{input value=postcode1 placeholder="City Centre"}}
-        </div>
-        <div class="-half text--center">
-            {{input value=postcode2 placeholder="Enter Postcode"}}
-        </div>
-        <div class="cf"></div>
-        <div class="-half text--center">
-            {{result1.props.hardnessDescription}}
-        </div>
-        <div class="-half text--center">
-            {{result2.props.hardnessDescription}}
+    <main class="compare-water-quality" cpn-story-body="scrollV height2">
+    
+        <div cpn-table cpn-text="center">
+            <div cpn-table_cell cpn-padding="right">
+                {{input value=postcode1 placeholder="City Centre"}}
+                <p>{{result1.props.hardnessDescription}}</p>
+            </div>
+            <div cpn-table_cell cpn-padding="left">
+                {{input value=postcode2 placeholder="Enter Postcode"}}
+                <p>{{result2.props.hardnessDescription}}</p>
+            </div>
         </div>
         
         <table>

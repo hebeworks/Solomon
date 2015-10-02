@@ -921,6 +921,10 @@
 	right: rem(6px);
 }
 
+// Ideally, we want the dot on the back to be on the left,
+// so it looks like the card is properly reversed.
+// This will mean altering the layout of the content
+// so, for now, we'll leave it on the right.
 [spc-dot="back"] {
 	right: rem(6px);
 }
