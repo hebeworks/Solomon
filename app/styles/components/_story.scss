@@ -904,16 +904,23 @@
 	cursor: pointer;
 	position: absolute;
 	top: rem(6px);
-	right: rem(6px);
 	border-radius: 100%;
 	@include transition(.2s);
 	z-index: 1;
 	
-	.-front:hover & {
+	.story__card:hover & {
 		@include transform(scale(1.4));
 	}
 	
 	&:hover {
 		@include animation(pulse infinite 1s)
 	}
+}
+
+[spc-dot="front"] {
+	right: rem(6px);
+}
+
+[spc-dot="back"] {
+	right: rem(6px);
 }
