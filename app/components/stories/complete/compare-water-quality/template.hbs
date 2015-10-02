@@ -1,0 +1,71 @@
+
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+	color="-dark-blue" 
+    width="-w2" 
+    height="-h2" 
+    hideFooter=true
+    data-ss-colspan="2"}}
+    <main class="compare-water-quality">
+        
+        <div class="-half text--center">
+            {{input value=postcode1 placeholder="City Centre"}}
+        </div>
+        <div class="-half text--center">
+            {{input value=postcode2 placeholder="Enter Postcode"}}
+        </div>
+        <div class="cf"></div>
+        <div class="-half text--center">
+            {{result1.props.hardnessDescription}}
+        </div>
+        <div class="-half text--center">
+            {{result2.props.hardnessDescription}}
+        </div>
+        
+        <table>
+            <tr>
+                <td>{{result1.props.TotalHardness}}</td>
+                <td>Hardness</td>
+                <td>{{result2.props.TotalHardness}}</td>
+            </tr>
+            <tr>
+                <td>{{result1.props.Fluoride}}</td>
+                <td>Fluoride</td>
+                <td>{{result2.props.Fluoride}}</td>
+            </tr>
+            <tr>
+                <td>{{result1.props.Calcium}}</td>
+                <td>Calcium</td>
+                <td>{{result2.props.Calcium}}</td>
+            </tr>
+            <tr>
+                <td>{{result1.props.Iron}}</td>
+                <td>Iron</td>
+                <td>{{result2.props.Iron}}</td>
+            </tr>
+        </table>
+            
+        
+{{!--        
+        <article class="compare-water-quality__result">
+            {{input value=postcode1}}
+            <h3 class="-delta">RESULT 1: {{result1.location.postcode}}</h3>
+            <ul>
+                {{#each prop in result1.props}}
+                    <li>{{prop.name}}: {{prop.value}}</li>
+                {{/each}}
+            </ul>
+        </article>
+        <article class="compare-water-quality__result">
+            {{input value=postcode2}}
+            <h3 class="-delta">RESULT 2: {{result2.location.postcode}}</h3>
+            <ul>
+                {{#each prop in result2.props}}
+                    <li>{{prop.name}}: {{prop.value}}</li>
+                {{/each}}
+            </ul>
+        </article>
+--}}
+    </main>
+{{/stories/story-base}}
