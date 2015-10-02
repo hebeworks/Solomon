@@ -6,7 +6,7 @@ export default DatamillStory.extend({
     loaded: false,
     didInsertElement: function() {
         this.set('title', 'Compare Water Quality');
-        this.set('subTitle', 'Choose two postcodes');
+        this.set('subTitle', 'Choose two locations');
         this.getDataByPostcode('result1','LS1 5NS');
     },
     

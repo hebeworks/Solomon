@@ -86,6 +86,25 @@
     	}
     }
     
+    [cpn-input~="ghost-light"],
+    %cpn-input-ghost-light {
+        border-color: #fff;
+        background-color: transparent;
+        color: #fff;
+        
+        &::-webkit-input-placeholder {
+           color: #fff;
+        }
+
+        &::-moz-placeholder {
+           color: #fff;  
+        }
+
+        &:-ms-input-placeholder {  
+           color: #fff;  
+        }
+    }
+    
     textarea {
     	min-height: 98px;
     	height: auto;
