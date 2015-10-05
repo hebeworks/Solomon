@@ -736,6 +736,8 @@
 				overflow-y: auto;
 				@include transform(perspective(1000px) rotateY(180deg));
 				background-color: blue;
+				padding-top: rem($spacing-base * 3);
+				
 				.story__content {
 					
 					h3 {
@@ -924,5 +926,5 @@
 // This will mean altering the layout of the content
 // so, for now, we'll leave it on the right.
 [spc-dot="back"] {
-	right: 0;
+	left: 0;
 }

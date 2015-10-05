@@ -28,3 +28,7 @@
     border-left-width: 1px;
     padding-left: rem($spacing-base);
 }
+
+[cpn-divide~="light"] {
+    border-color: #fff;
+}

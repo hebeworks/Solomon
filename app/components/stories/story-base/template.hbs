@@ -41,17 +41,21 @@
                     </button>
                 </div>
             {{else}}
-                <header class="story__header">
-                    <h2 class="heading beta">{{title}}</h2>
-                    <h3 class="heading gamma">{{subTitle}}</h3>
-                </header>
-                <div class="btn-list">
-                    {{ui/button-link href=dataSourceUrl title="View Data Source" class="btn -blue -half"}}
-                    {{ui/button-link href=feedbackEmail type="mail" title="Contact Author" class="btn -blue -half"}}
-                    <div class="cf"></div>
-                    <button class="btn -red -full half-margin-top" {{action 'removeAStory' storyModel}}>
-                        Remove from canvas    
-                    </button>
+            
+                <div cpn-divide="bottom light">
+                    <ul cpn-row-list>
+                        <li cpn-width="50%">
+                            {{!-- Button needs replacing with attribute-styled button (see remove from canvas button) --}}
+                            {{ui/button-link href=dataSourceUrl title="View Data Source" class="btn -blue -full" cpn-button="move"}}
+                        </li>
+                        <li cpn-width="50%">
+                            {{!-- Button needs replacing with attribute-styled button (see remove from canvas button) --}}
+                            {{ui/button-link href=feedbackEmail type="mail" title="Contact Author" class="btn -blue -full"}}
+                        </li>
+                        <li cpn-width="100%">
+                            <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                        </li>
+                    </ul>
                 </div>
                 
                 {{#if configFields}}
