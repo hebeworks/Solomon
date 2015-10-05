@@ -15,3 +15,7 @@
 [cpn-margin~="middle-vh"] {
     margin: auto;
 }
+
+[cpn-margin~="bottom"] {
+    margin-bottom: rem($spacing-base);
+}
