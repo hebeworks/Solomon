@@ -881,44 +881,42 @@
 	}
 }
 
-@include keyframes(pulse) {
-	0% {
-		@include transform(scale(1.4));
-	}
-	
-	50% {
-		@include transform(scale(1.2));
-	}
-	
-	100% {
-		@include transform(scale(1.4));
-	}
-}
-
 [spc-dot] {
 	display: block;
-	width: rem(10px);
-	height: rem(10px);
+	width: rem(22px);
+	height: rem(22px);
 	font-size: 0;
-	background-color: #f7f7f7;
-	cursor: pointer;
-	position: absolute;
-	top: rem(6px);
-	border-radius: 100%;
-	@include transition(.2s);
 	z-index: 1;
+	position: absolute;
+	top: 0;
 	
-	.story__card:hover & {
-		@include transform(scale(1.4));
-	}
+	// .story__card:hover & {
+	// 	@include transform(scale(1.4));
+	// }
 	
-	&:hover {
-		@include animation(pulse infinite 1s)
+	// &:hover {
+	// 	@include animation(pulse infinite 1s)
+	// }
+	
+	// We want the dot to look smaller but the hit area still needs to be sufficiently large
+	&::after {
+		content: '';
+		background-color: #f7f7f7;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		border-radius: 100%;
+		@include transition(.2s);
+		width: rem(10px);
+		height: rem(10px);
 	}
 }
 
 [spc-dot="front"] {
-	right: rem(6px);
+	right: 0;
 }
 
 // Ideally, we want the dot on the back to be on the left,
@@ -926,5 +924,5 @@
 // This will mean altering the layout of the content
 // so, for now, we'll leave it on the right.
 [spc-dot="back"] {
-	right: rem(6px);
+	right: 0;
 }
