@@ -726,6 +726,7 @@
 			@include transform-style(preserve-3d);
 			@include transition(all .6s);
 			@include transform(perspective(1000px) rotateY(0deg));
+			
 			&.-front {
 				z-index: 3;
 				@include transform(perspective(1000px) rotateY(0deg));
@@ -892,14 +893,6 @@
 	position: absolute;
 	top: 0;
 	
-	// .story__card:hover & {
-	// 	@include transform(scale(1.4));
-	// }
-	
-	// &:hover {
-	// 	@include animation(pulse infinite 1s)
-	// }
-	
 	// We want the dot to look smaller but the hit area still needs to be sufficiently large
 	&::after {
 		content: '';
@@ -921,10 +914,6 @@
 	right: 0;
 }
 
-// Ideally, we want the dot on the back to be on the left,
-// so it looks like the card is properly reversed.
-// This will mean altering the layout of the content
-// so, for now, we'll leave it on the right.
 [spc-dot="back"] {
 	left: 0;
 }
