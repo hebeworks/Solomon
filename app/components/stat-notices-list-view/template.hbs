@@ -1,37 +1,65 @@
 <div class="stat-notices__inner">
-
-    <div class="btn-list">
-        <button class="btn -toggle {{filterType}}" data-btn-type="featured" {{action "filterByType" "All"}}>All</button>
-        <button class="btn -toggle {{filterType}}" data-btn-type="planning" {{action "filterByType" "Planning"}}>Planning</button>
-        <button class="btn -toggle {{filterType}}" data-btn-type="licensing" {{action "filterByType" "Licensing"}}>Licensing</button>
-        
-        <div class="stat-notices__filter-place-search">
-            {{
-                select-2
-                
-                content=places
-                optionLabelPath="NAME1"
-                value=filterPlace
-                
-                placeholder="Search for a place"
-                typeaheadSearchingText="Searching places"
-                typeaheadNoMatchesText="No places found for '%@'"
-                typeaheadErrorText="Loading failed: %@"
-                minimumInputLength=3
-                query="findPlaces"
-            }}
-        </div>
-        
-        {{#if filterPlace}}
-            <button class="btn -selected -toggable -on" data-btn-type="location" {{action "clearPlace"}}>{{filterPlace.NAME1}}</button>
-        {{/if}}
-        
-        <button class="btn -action -right -notify" {{action "notifyMe"}}>Notify Me</button>
+    <div cpn-divide="bottom" class="cf" cpn-position="relative" spc-sn-options>
+        <ul cpn-row-list spc-sn-options_list>
+            <li spc-sn-options_toggle>
+                <button cpn-button="chosen" data-btn-type="All" {{action "filterByType" "All"}}>All</button>
+            </li>
+            <li spc-sn-options_toggle>
+                <button cpn-button data-btn-type="Planning" {{action "filterByType" "Planning"}}>Planning</button>
+            </li>
+            <li spc-sn-options_toggle>
+                <button cpn-button data-btn-type="Licensing" {{action "filterByType" "Licensing"}}>Licensing</button>
+            </li>
+            
+            {{#if filterPlace}}
+            <li spc-sn-place-search="with-location">
+                {{
+                    select-2
+                    
+                    content=places
+                    optionLabelPath="NAME1"
+                    value=filterPlace
+                    
+                    placeholder="Search for a place"
+                    typeaheadSearchingText="Searching places"
+                    typeaheadNoMatchesText="No places found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    minimumInputLength=3
+                    query="findPlaces"
+                }}
+            </li>
+            {{else}}
+            <li spc-sn-place-search="">
+                {{
+                    select-2
+                    
+                    content=places
+                    optionLabelPath="NAME1"
+                    value=filterPlace
+                    
+                    placeholder="Search for a place"
+                    typeaheadSearchingText="Searching places"
+                    typeaheadNoMatchesText="No places found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    minimumInputLength=3
+                    query="findPlaces"
+                }}
+            </li>
+            {{/if}}
+            {{#if filterPlace}}
+                <li spc-sn-location_wrapper>
+                    <button cpn-button="ghost" spc-sn-location data-btn-type="location" {{action "clearPlace"}}>
+                        <span class="svg-circled-cross"></span> {{filterPlace.NAME1}}
+                    </button>
+                </li>
+            {{/if}}
+            <li spc-sn-notify>
+                <button cpn-button="action" {{action "notifyMe"}}>Notify Me</button>
+            </li>
+        </ul>
     </div>
 
-
 	{{yield}}
-
 
     <section class="list__section -notices">
         <div class="cf"></div>

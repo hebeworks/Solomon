@@ -6,7 +6,6 @@
 		bottom:10px;
 		left:40px;
 	}
-	overflow-y: scroll;
 	
 	&.-intro {
 		@extend .-full;
@@ -120,48 +119,6 @@
 				.btn {
 					margin: {
 						top:10px;
-					}
-				}
-			}
-		}
-		
-		.stat-notices__filter-place-search {
-			display: inline-block;
-			min-width: 250px;
-			margin-right: 15px;
-			padding: {
-				top:10px;
-			}
-			@include breakpoint(max-width 705px) {
-				margin: {
-					left:0;
-				}
-			}
-			@include breakpoint(max-width 510px) {
-				width: 100%;
-			}
-			
-			.select2-container {
-				margin: {
-					bottom:0px;
-				}
-				
-				a.select2-default {
-				// a.select2-choice.select2-default {
-					height:40px;
-				}
-				
-				.select2-choice 
-				{
-					.select2-arrow {
-						background: {
-							color:transparent;
-						}
-					}
-					
-					.select2-chosen {
-						font-size: 1rem;
-						margin-top: 8px;
 					}
 				}
 			}
@@ -549,4 +506,101 @@
 				border: {
 					radius: $radius;
 				}
+		}
+		
+$options-bp: 600px;
+$options-bp2: 440px;
+		
+[spc-sn-options] {
+	position: relative;
+	padding-right: rem(115px + ($spacing-base * 4)); // button width + extra spacing
+	
+	@include breakpoint(max-width $options-bp) {
+		padding-right: 0;
+	}
+}
+		
+		[spc-sn-options_toggle] {
+			@include breakpoint(max-width $options-bp) {
+				width: 33.333%;
+			}
+			
+			@include breakpoint(max-width $options-bp2) {
+				width: 100%;
+			}
+		}
+			
+		[spc-sn-place-search] {
+			min-width: 250px;
+			
+			@include breakpoint(max-width $options-bp) {
+				width: 100%;
+			}
+			
+			.select2-container {
+				margin: {
+					bottom:0px;
+				}
+				
+				.select2-choice 
+				{
+					height: rem(40px);
+					
+					.select2-arrow {
+						background: {
+							color:transparent;
+						}
+					}
+					
+					.select2-chosen {
+						font-size: 1rem;
+						margin-top: 8px;
+					}
+				}
+			}
+		}
+		
+		[spc-sn-place-search="with-location"] {
+			@include breakpoint(max-width $options-bp) {
+				width: 50%;
+			}
+			
+			@include breakpoint(max-width $options-bp2) {
+				width: 100%;
+			}
+		}
+		
+		[spc-sn-location_wrapper] {
+			@include breakpoint(max-width $options-bp) {
+				width: 50%;
+			}
+			
+			@include breakpoint(max-width $options-bp2) {
+				width: 100%;
+			}
+		}
+		
+			[spc-sn-location] {
+				span {
+					width: rem(20px);
+					height: rem(20px);
+					background-size: 100% 100%;
+					background-position: center;
+					background-repeat: no-repeat;
+					display: inline-block;
+					vertical-align: middle;
+				}
+				
+				cursor: pointer;
+			}
+
+		[spc-sn-notify] {
+			position: absolute;
+			top: 0;
+			right: rem(-$spacing-base / 2);
+			
+			@include breakpoint(max-width $options-bp) {
+				position: static;
+				width: 100%;
+			}
 		}

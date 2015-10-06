@@ -72,6 +72,9 @@ export default DefaultStory.extend({
 			if (this.get('filterTypeValue') != value) {
 				this.set('filterTypeValue', value);
 			}
+			this.$('[data-btn-type]').attr('cpn-button', '');
+			this.$('[data-btn-type="' + value + '"]').attr('cpn-button', 'chosen');
+			console.log(value);
 			return value;
 		}
 	}),

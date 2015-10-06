@@ -16,6 +16,8 @@
 
 .svg-circle-indicator { background-image: url('png/circle-indicator.png'); background-repeat: no-repeat; }
 
+.svg-circled-cross { background-image: url('png/circled-cross.png'); background-repeat: no-repeat; }
+
 .svg-clock-face-hours { background-image: url('png/clock-face-hours.png'); background-repeat: no-repeat; }
 
 .svg-clock-face-minutes { background-image: url('png/clock-face-minutes.png'); background-repeat: no-repeat; }
