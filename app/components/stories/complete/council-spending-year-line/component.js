@@ -53,12 +53,7 @@ export default Ember.Component.extend({
 		fullWidth: true,
 		lineSmooth: Chartist.Interpolation.simple({
 	    	divisor: 20
-	  	}),
-	  	chartPadding: {
-	  		top: 3.5,
-	  	    bottom: 0,
-	  	    left: 0
-	  	}
+	  	})
 	},
 
 	// onChartChanged: function () {
