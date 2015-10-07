@@ -29,10 +29,7 @@
         }
         
         &.ct-horizontal {
-            @include transform(translateX(-100%) translateY(100%) rotate(-45deg));
-            @include transform-origin(top left);
             white-space: nowrap;
-            text-align: center;
         }
     }
 }

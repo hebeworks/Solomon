@@ -53,7 +53,12 @@ export default Ember.Component.extend({
 		fullWidth: true,
 		lineSmooth: Chartist.Interpolation.simple({
 	    	divisor: 20
-	  	})
+	  	}),
+	  	axisX: {
+	  	    labelInterpolationFnc: function(value, index) {
+	  	    	return index % 2 === 0 ? value : null;
+	  	    }
+	  	}
 	},
 
 	// onChartChanged: function () {
