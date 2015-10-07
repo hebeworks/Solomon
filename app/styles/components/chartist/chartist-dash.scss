@@ -1,12 +1,27 @@
 @import "chartist";
 
-.ct-wrapper {
-  padding: {
-    top:20px;
-  }  
+.ct-story_2-2 {
+  width:290px;
+  height:225px;
 }
 
-.ct-story_2-2 {
-  width:270px;
-  height:220px;
+.ct-chart {
+    .ct-grid {
+        stroke-dasharray: 0;
+        stroke: $medium-grey;
+    }
+    
+    .ct-line {
+        stroke-width: 2px;
+    }
+    
+    .ct-point {
+        stroke-width: 7px;
+    }
+    
+    .ct-label {
+        font-size: 10px;
+        color: rgba(0,0,0,.5);
+        font-family: $helvneuelight;
+    }
 }

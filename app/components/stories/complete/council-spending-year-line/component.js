@@ -38,7 +38,7 @@ export default Ember.Component.extend({
 					}
 				}
 			});
-debugger;
+// debugger;
 			return {
 				labels: labels,
 				series: series
@@ -48,29 +48,42 @@ debugger;
 
 	chartOptions: {
 		low: 0,
-		showArea: true,
-		showPoint: false,
-		fullWidth: true
+		showArea: false,
+		showPoint: true,
+		fullWidth: true,
+		lineSmooth: Chartist.Interpolation.simple({
+	    	divisor: 20
+	  	}),
+	  	chartPadding: {
+	  		top: 3.5,
+	  	    bottom: 0,
+	  	    left: 0
+	  	}
 	},
 
-	onChartChanged: function () {
-		var chart = this.get('chart');
-		if (this.get('chart') != null) {
-			chart.on('draw', function (data) {
-				if (data.type === 'line' || data.type === 'area') {
-					data.element.animate({
-						d: {
-							begin: 2000 * data.index,
-							dur: 2000,
-							from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-							to: data.path.clone().stringify(),
-							easing: Chartist.Svg.Easing.easeOutQuint
-						}
-					});
-				}
-			});
-		}
-	}.observes('chart'),
+	// onChartChanged: function () {
+	// 	var chart = this.get('chart');
+	// 	if (this.get('chart') != null) {
+	// 		chart.on('draw', function (data) {
+	// 			if (data.type === 'line' || data.type === 'area') {
+	// 				data.element.animate({
+	// 					d: {
+	// 						begin: 2000 * data.index,
+	// 						dur: 2000,
+	// 						from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+	// 						to: data.path.clone().stringify(),
+	// 						easing: Chartist.Svg.Easing.easeOutQuint
+	// 					}
+	// 				});
+	// 			}
+	// 		});
+
+	// 		this.$('foreignobject').each(function() {
+	// 			alert('test');
+	// 			this.addClass('ste');
+	// 		});
+	// 	}
+	// }.observes('chart'),
 
 	data: [
 		{
