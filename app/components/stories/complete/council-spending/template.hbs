@@ -36,23 +36,46 @@
         </div>
         <div class="story__half council-spending__circle-indicator">
             <h2 class="gamma bold center uppercase margin-bottom">Total spend for directorate</h2>
-            <div class="circle-indicator -medium">
-                <div class="svg-circle-indicator -orange" data-grunticon-embed></div>
-                <div class="circle-indicator-ring -medium">
-                    <div>
-                        <span class="gamma helvbold block">January</span><span class="number-stat bold -orange block">&pound;245,675</span>
-                        <span class="gamma helvbold block">Budget</span><span class="number-stat helvbold -orange block">&pound;473,704</span>
+            <div cpn-fill-circle>
+                <div cpn-fill-circle_ring>
+                    <div cpn-fill-circle_back>
+                        <div cpn-fill-circle_back-data>
+                            <span cpn-fill-circle_data-label>January</span>
+                            <span cpn-fill-circle_data-value="orange">&pound;245,675</span>
+                            <span cpn-fill-circle_data-label>Budget</span>
+                            <span cpn-fill-circle_data-value="orange">&pound;473,704</span>
+                        </div>
+                    </div>
+                    <div cpn-fill-circle_front="orange" style="margin-top: {{directoratePercentageRemaining}}%;">
+                        <div cpn-fill-circle_front-inner style="top: -{{directoratePercentageRemaining}}%;">
+                            <div cpn-fill-circle_front-data>
+                                <span cpn-fill-circle_data-label="light">January</span>
+                                <span cpn-fill-circle_data-value="light">&pound;245,675</span>
+                                <span cpn-fill-circle_data-label="light">Budget</span>
+                                <span cpn-fill-circle_data-value="light">&pound;473,704</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="story__half council-spending__circle-indicator">
             <h2 class="gamma bold center uppercase margin-bottom">Vs. Total spend<br />for month</h2>
-            <div class="circle-indicator -medium">
-                <div class="svg-circle-indicator -transparent" data-grunticon-embed></div>
-                <div class="circle-indicator-ring -medium">
-                    <div>
-                        <span class="gamma helvbold block">January</span><span class="number-stat helvbold -lime block">&pound;8,473,704</span>
+            <div cpn-fill-circle>
+                <div cpn-fill-circle_ring>
+                    <div cpn-fill-circle_back>
+                        <div cpn-fill-circle_back-data>
+                            <span cpn-fill-circle_data-label>January</span>
+                            <span cpn-fill-circle_data-value="green">&pound;8,473,704</span>
+                        </div>
+                    </div>
+                    <div cpn-fill-circle_front="green" style="margin-top: {{totalPercentageRemaining}}%;">
+                        <div cpn-fill-circle_front-inner style="top: -{{totalPercentageRemaining}}%;">
+                            <div cpn-fill-circle_front-data>
+                                <span cpn-fill-circle_data-label="light">January</span>
+                                <span cpn-fill-circle_data-value="light">&pound;8,473,704</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
