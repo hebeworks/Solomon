@@ -19,3 +19,7 @@
 [cpn-margin~="bottom"] {
     margin-bottom: rem($spacing-base);
 }
+
+[cpn-margin~="bottom-none"] {
+    margin-bottom: 0;
+}

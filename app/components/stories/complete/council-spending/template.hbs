@@ -15,70 +15,76 @@
     author="Simon Zimmerman"
 }}
 
-    <main class="council-spending">
-        <div class="select2-wrapper -select2-wide">
-            {{
-                select-2
-                content=items
-                value=selectedItem
-                optionLabelPath="directorate"
-                placeholder="Directorate values"
-            }}
-        </div><!--
-        --><div class="select2-wrapper -select2-small -select2-calendar">
-            {{
-                select-2
-                content=items
-                value=selectedItem
-                optionLabelPath="date"
-                placeholder="Date"
-            }}
+    <main>
+        <div cpn-clearfix>
+            <div cpn-float="left" cpn-margin="bottom-none" class="select2-wrapper -select2-wide">
+                {{
+                    select-2
+                    content=items
+                    value=selectedItem
+                    optionLabelPath="directorate"
+                    placeholder="Directorate values"
+                }}
+            </div>
+            
+            <div cpn-float="left" cpn-margin="bottom-none" class="select2-wrapper -select2-small -select2-calendar">
+                {{
+                    select-2
+                    content=items
+                    value=selectedItem
+                    optionLabelPath="date"
+                    placeholder="Date"
+                }}
+            </div>
         </div>
-        <div class="story__half council-spending__circle-indicator">
-            <h2 class="gamma bold center uppercase margin-bottom">Total spend for directorate</h2>
-            <div cpn-fill-circle="orange on-dark">
-                <div cpn-fill-circle_ring>
-                    <div cpn-fill-circle_back>
-                        <div cpn-fill-circle_back-data>
-                            <span cpn-fill-circle_data-label>January</span>
-                            <span cpn-fill-circle_data-value>&pound;245,675</span>
-                            <span cpn-fill-circle_data-label>Budget</span>
-                            <span cpn-fill-circle_data-value>&pound;473,704</span>
-                        </div>
-                    </div>
-                    <div cpn-fill-circle_front style="margin-top: {{directoratePercentageRemaining}}%;">
-                        <div cpn-fill-circle_front-inner style="top: -{{directoratePercentageRemaining}}%;">
-                            <div cpn-fill-circle_front-data>
+        
+        <ul cpn-row-list cpn-text="center">
+            <li cpn-width="50%">
+                <div cpn-fill-circle="orange on-dark">
+                    <div cpn-fill-circle_ring>
+                        <div cpn-fill-circle_back>
+                            <div cpn-fill-circle_back-data>
                                 <span cpn-fill-circle_data-label>January</span>
                                 <span cpn-fill-circle_data-value>&pound;245,675</span>
                                 <span cpn-fill-circle_data-label>Budget</span>
                                 <span cpn-fill-circle_data-value>&pound;473,704</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="story__half council-spending__circle-indicator">
-            <h2 class="gamma bold center uppercase margin-bottom">Vs. Total spend<br />for month</h2>
-            <div cpn-fill-circle="lime on-dark">
-                <div cpn-fill-circle_ring>
-                    <div cpn-fill-circle_back>
-                        <div cpn-fill-circle_back-data>
-                            <span cpn-fill-circle_data-label>January</span>
-                            <span cpn-fill-circle_data-value>&pound;8,473,704</span>
-                        </div>
-                    </div>
-                    <div cpn-fill-circle_front style="margin-top: {{totalPercentageRemaining}}%;">
-                        <div cpn-fill-circle_front-inner style="top: -{{totalPercentageRemaining}}%;">
-                            <div cpn-fill-circle_front-data>
-                                <span cpn-fill-circle_data-label>January</span>
-                                <span cpn-fill-circle_data-value>&pound;8,473,704</span>
+                        <div cpn-fill-circle_front style="margin-top: {{directoratePercentageRemaining}}%;">
+                            <div cpn-fill-circle_front-inner style="top: -{{directoratePercentageRemaining}}%;">
+                                <div cpn-fill-circle_front-data>
+                                    <span cpn-fill-circle_data-label>January</span>
+                                    <span cpn-fill-circle_data-value>&pound;245,675</span>
+                                    <span cpn-fill-circle_data-label>Budget</span>
+                                    <span cpn-fill-circle_data-value>&pound;473,704</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <h2 spc-cs-spend-title>Total spend for directorate</h2>
+            </li>
+            <li cpn-width="50%">
+                <div cpn-fill-circle="lime on-dark">
+                    <div cpn-fill-circle_ring>
+                        <div cpn-fill-circle_back>
+                            <div cpn-fill-circle_back-data>
+                                <span cpn-fill-circle_data-label>January</span>
+                                <span cpn-fill-circle_data-value>&pound;8,473,704</span>
+                            </div>
+                        </div>
+                        <div cpn-fill-circle_front style="margin-top: {{totalPercentageRemaining}}%;">
+                            <div cpn-fill-circle_front-inner style="top: -{{totalPercentageRemaining}}%;">
+                                <div cpn-fill-circle_front-data>
+                                    <span cpn-fill-circle_data-label>January</span>
+                                    <span cpn-fill-circle_data-value>&pound;8,473,704</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 spc-cs-spend-title>Vs. Total spend<br />for month</h2>
+            </li>
+        </ul>
     </main>
 {{/stories/story-base}}
