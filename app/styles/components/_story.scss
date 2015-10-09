@@ -892,6 +892,7 @@
 	z-index: 1;
 	position: absolute;
 	top: 0;
+	right: 0;
 	
 	// We want the dot to look smaller but the hit area still needs to be sufficiently large
 	&::after {
@@ -905,15 +906,7 @@
 		margin: auto;
 		border-radius: 100%;
 		@include transition(.2s);
-		width: rem(10px);
-		height: rem(10px);
+		width: rem(12px);
+		height: rem(12px);
 	}
-}
-
-[spc-dot="front"] {
-	right: 0;
-}
-
-[spc-dot="back"] {
-	left: 0;
 }
