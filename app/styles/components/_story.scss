@@ -598,9 +598,7 @@
 			}
 
 			&:hover, &:focus {
-				background: {
-					color: $blue;
-				}
+			    background-color: lighten($blue, 5%);
 			}
 			
 			&:active {
