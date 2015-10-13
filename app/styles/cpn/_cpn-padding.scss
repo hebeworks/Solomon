@@ -2,6 +2,10 @@
     padding-top: rem($spacing-base);
 }
 
+[cpn-padding~="top-double"] {
+    padding-top: rem($spacing-base * 2);
+}
+
 [cpn-padding~="right"] {
     padding-right: rem($spacing-base);
 }
@@ -12,4 +16,8 @@
 
 [cpn-padding~="bottom"] {
     padding-bottom: rem($spacing-base);
+}
+
+[cpn-padding="none"] {
+    padding: 0;
 }

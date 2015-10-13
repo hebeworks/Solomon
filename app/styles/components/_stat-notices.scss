@@ -604,3 +604,11 @@ $options-bp2: 440px;
 				width: 100%;
 			}
 		}
+		
+[spc-sn-notice-part] {
+	width: 50%;
+	
+	@include media("<tablet") {
+		width: 100%;
+	}
+}

@@ -1,3 +1,4 @@
+// Alignment
 [cpn-margin*="middle"] {
     display: block;
 }
@@ -16,10 +17,12 @@
     margin: auto;
 }
 
+// Top
 [cpn-margin~="top"] {
     margin-top: rem($spacing-base);
 }
 
+// Right
 [cpn-margin~="top-none"] {
     margin-top: 0;
 }
@@ -32,18 +35,32 @@
     margin-right: 0;
 }
 
-[cpn-margin~="bottom"] {
-    margin-bottom: rem($spacing-base);
-}
-
+// Bottom
 [cpn-margin~="bottom-none"] {
     margin-bottom: 0;
 }
 
+[cpn-margin~="bottom-half"] {
+    margin-bottom: rem($spacing-base / 2);
+}
+
+[cpn-margin~="bottom"] {
+    margin-bottom: rem($spacing-base);
+}
+
+[cpn-margin~="bottom-double"] {
+    margin-bottom: rem($spacing-base * 2);
+}
+
+// Left
 [cpn-margin~="left"] {
     margin-left: rem($spacing-base);
 }
 
 [cpn-margin~="left-none"] {
     margin-left: 0;
+}
+
+[cpn-margin="none"] {
+    margin: 0;
 }
