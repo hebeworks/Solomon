@@ -586,19 +586,25 @@
 				indent: -9999px;
 			}
 			background: {
-				color: #e3e3e3;
+				color: $medium-grey;
 				repeat: no-repeat;
 				position: center center;
 			}
 			@include transition(.15s);
+			cursor: pointer;
+			
+			.icon-plus {
+				fill: $light-grey;
+			}
 
-			&:hover {
+			&:hover, &:focus {
 				background: {
-					color: $lime;
+					color: $blue;
 				}
-				.icon-plus {
-					fill: #eeeef3;
-				}
+			}
+			
+			&:active {
+				background-color: darken($blue, 5%);
 			}
 		}
 		.icon-plus {
