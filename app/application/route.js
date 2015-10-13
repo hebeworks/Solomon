@@ -77,6 +77,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
         sessionAuthenticationSucceeded: function () {
             console.log('Session authenticated');
+        },
+        
+        goToHelp: function() {
+            var url = "https://github.com/hebeworks/Solomon/wiki";
+            window.open(url, '_blank');
         }
     }
 });

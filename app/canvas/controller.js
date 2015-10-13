@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
                 svgclass: 'svg-icon-add-canvas'
             },
             {
-                title: 'Add a story',
+                title: 'Add a Story',
                 action: 'showAddAStory',
                 iconclass: 'icon-add-story',
                 svgclass: 'svg-icon-add-story'
@@ -51,6 +51,13 @@ export default Ember.Controller.extend({
                 jshook: 'js-toolbox-login',
                 iconclass: 'icon-login',
                 svgclass: 'svg-login'
+            },
+            {
+                title: 'Help',
+                action: 'goToHelp',
+                jshook: 'js-toolbox-help',
+                iconclass: 'help-icon',
+                svgclass: 'svg-help-icon'
             }
         ];
         return items;
