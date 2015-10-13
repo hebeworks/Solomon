@@ -19,7 +19,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // Actions 
     actions: {
         showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', 'Register/Sign In', intro);
+            this.controller.showModal('ui/login-form', 'Log in / Sign up', intro);
         },
 
         mailToFeedback: function () {

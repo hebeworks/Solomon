@@ -28,6 +28,7 @@
 .thumb-list-heading {
     margin-bottom: 10px;
     font-size: rem(13px);
+    font-family: $helvneuebold;
 }
 
 .thumb-list__inner {
@@ -45,13 +46,18 @@
 }
 
     .thumb {
-        width: 75px;
+        width: rem(75px);
+        min-height: rem(114px);
         display: inline-block;
         vertical-align: top;
         white-space: normal;
         margin-right: 20px;
         cursor: pointer;
         font-size: rem(15px); // reset font size
+        
+        &.-wide {
+            width: rem(170px);
+        }
     }
 
         .thumb__icon {

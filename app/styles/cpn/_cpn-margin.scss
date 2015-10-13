@@ -16,10 +16,34 @@
     margin: auto;
 }
 
+[cpn-margin~="top"] {
+    margin-top: rem($spacing-base);
+}
+
+[cpn-margin~="top-none"] {
+    margin-top: 0;
+}
+
+[cpn-margin~="right"] {
+    margin-right: rem($spacing-base);
+}
+
+[cpn-margin~="right-none"] {
+    margin-right: 0;
+}
+
 [cpn-margin~="bottom"] {
     margin-bottom: rem($spacing-base);
 }
 
 [cpn-margin~="bottom-none"] {
     margin-bottom: 0;
+}
+
+[cpn-margin~="left"] {
+    margin-left: rem($spacing-base);
+}
+
+[cpn-margin~="left-none"] {
+    margin-left: 0;
 }

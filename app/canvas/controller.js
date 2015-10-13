@@ -27,13 +27,13 @@ export default Ember.Controller.extend({
     subNavItems: function () {
         var items = [
             {
-                title: 'Add a Canvas',
+                title: 'Add canvas',
                 action: 'createACanvas',
                 iconclass: 'icon-add-canvas',
                 svgclass: 'svg-icon-add-canvas'
             },
             {
-                title: 'Add a Story',
+                title: 'Add story',
                 action: 'showAddAStory',
                 iconclass: 'icon-add-story',
                 svgclass: 'svg-icon-add-story'
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
                 svgclass: 'svg-icon-feedback'
             },
             {
-                title: 'Login',
+                title: 'Log in',
                 action: 'showLoginPopup',
                 jshook: 'js-toolbox-login',
                 iconclass: 'icon-login',
@@ -98,9 +98,9 @@ export default Ember.Controller.extend({
                 function (err) {
                     if (err.notLoggedIn == true) {
                         var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                        obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                        obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
                     } else if (err.hasPermissions == false) {
-                        obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                        obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     }
                 }
                 );
@@ -121,9 +121,9 @@ export default Ember.Controller.extend({
                     function (err) {
                         if (err.notLoggedIn == true) {
                             var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                            obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                            obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
                         } else if (err.hasPermissions == false) {
-                            obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                            obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                         }
                     }
                     );
@@ -193,9 +193,9 @@ export default Ember.Controller.extend({
                     console.log('Not saving canvas order due to permissions');
                     // if (err.notLoggedIn == true) {
                     //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                    //     obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                    //     obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
                     // } else if (err.hasPermissions == false) {
-                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     // }
                 }
                 );
@@ -216,9 +216,9 @@ export default Ember.Controller.extend({
                     console.log('Not saving canvas state due to permissions');
                     // if (err.notLoggedIn == true) {
                     //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                    //     obj.get('appController').showModal('ui/login-form', 'Register/Sign In', intro);
+                    //     obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
                     // } else if (err.hasPermissions == false) {
-                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Register/Sign In', intro);
+                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     // }
                 }
             );

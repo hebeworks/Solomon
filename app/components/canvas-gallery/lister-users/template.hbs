@@ -4,16 +4,32 @@
 	<div class="cf"></div>
 	<div class="js-thumb-list thumb-list dotted-area -bottom -dark pad-bottom">
 		<ul class="thumb-list__inner">
-			{{#if items}}
-				{{#each items as |canvas|}}
-					{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}
-				{{/each}}
-			{{else}}
-				<li class="thumb">
-					<h5 class="thumb__title">Sorry there are no featured canvasses at the moment</h5>
-					<p class="thumb__category -zeta">&nbsp;</p>
+			{{#unless session.isAuthenticated}}
+				<li class="thumb -wide">
+					<h5 class="thumb__title">You'll need to be logged in to see your canvasses</h5>
+					<button cpn-button="move" cpn-margin="top" {{action "showLoginPopup"}}>Log in / Sign up</button>
 				</li>
-			{{/if}}
+			{{else}}
+				{{#if items}}
+					<li class="thumb -wide">
+						<h5 class="thumb__title">Here are the canvasses that you've made</h5>
+						<button cpn-button="move" cpn-margin="top" {{action 'createACanvas'}} data-btn-type="create">
+							Create another canvas
+						</button>
+					</li>
+					
+					{{#each items as |canvas|}}
+						{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}
+					{{/each}}
+				{{else}}
+					<li class="thumb -wide">
+						<h5 class="thumb__title">Looks like you haven't created any canvasses yet</h5>
+						<button cpn-button="move" cpn-margin="top" {{action 'createACanvas'}} data-btn-type="create">
+							Create a canvas
+						</button>
+					</li>
+				{{/if}}
+			{{/unless}}
 		</ul>
 	</div>
 	{{yield}}
