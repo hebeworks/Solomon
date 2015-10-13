@@ -23,3 +23,12 @@ svg {
         }
     }
 }
+
+.svg-stat-notices-icon-licensing-black {
+    svg {
+        [cpn-button] & {
+            width: rem(15px);
+            height: rem(18px);
+        }
+    }
+}
