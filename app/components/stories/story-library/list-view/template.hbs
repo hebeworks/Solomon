@@ -1,0 +1,10 @@
+{{yield}}
+
+<h3 class="thumb-list-heading">{{title}}</h3>
+<div class="js-thumb-list thumb-list dotted-area -bottom -dark pad-bottom">
+    <ul class="thumb-list__inner">
+        {{#each stories as |story|}}
+            {{stories/story-library/list-view-thumbnail model=story action="addAStory" thumbIcon="-add-story"}}
+        {{/each}}
+    </ul>
+</div>
