@@ -91,30 +91,107 @@ export default Ember.Component.extend({
         }
     ],
     
+    // Add tooltips which appear above the data points and show the full data value
     addToolTips: function() {
         var $chart = this.$('.ct-chart');
 
         var $toolTip = $chart
-          .append('<div class="ct-tooltip"></div>')
-          .find('.ct-tooltip')
-          .hide();
+            .append('<div class="ct-tooltip"></div>')
+            .find('.ct-tooltip')
+            .hide();
 
         $chart.on('mouseenter', '.ct-point', function() {
-          var $point = $(this),
-            value = $point.attr('ct:value'),
-            seriesName = $point.parent().attr('ct:series-name');
-          $toolTip.html(value).show();
+            var $point = $(this),
+                value = $point.attr('ct:value'),
+                index = $point.attr('spc-air-index'),
+                band = $point.attr('spc-air-band');
+                
+            $toolTip
+                .html(value + '<br />' + band)
+                .attr('spc-tooltip-air-index', index)
+                .show();
         });
 
         $chart.on('mouseleave', '.ct-point', function() {
-          $toolTip.hide();
+            $toolTip.hide();
         });
 
         $chart.on('mousemove', function(event) {
-          $toolTip.css({
-            left: (event.offsetX || event.originalEvent.layerX) - $toolTip.width() / 2 - 10,
-            top: (event.offsetY || event.originalEvent.layerY) - $toolTip.height() - 25
-          });
+            var tooltipWidth = $toolTip.width(),
+                tooltipHeight = $toolTip.height();
+                
+            $toolTip.css({
+                left: (event.originalEvent.layerX) - tooltipWidth / 2 - 10,
+                top: (event.originalEvent.layerY) - tooltipHeight - 25
+            });
         });
+    }.observes('chart'),
+    
+    // Colour the data points (and tooltip) with the relevant colour based on where the reading falls in the air quality index. See https://en.wikipedia.org/wiki/Air_quality_index#United_Kingdom and http://uk-air.defra.gov.uk/air-pollution/daqi
+    colourData: function() {
+        var chart = this.get('chart'),
+            obj = this;
+        
+        chart.on('draw', function (data) {
+            if (data.type === 'point') {
+                obj.$('.ct-point').each(function() {
+                    
+                    var reading = $(this).attr('ct:value');
+                    
+                    if (0 <= reading && reading <= 67) {
+                        // Index: 1
+                        $(this)
+                            .attr('spc-air-index', '1')
+                            .attr('spc-air-band', 'low');
+                    } else if (68 <= reading && reading <= 134) {
+                        // Index: 2
+                        $(this)
+                            .attr('spc-air-index', '2')
+                            .attr('spc-air-band', 'low');
+                    } else if (135 <= reading && reading <= 200) {
+                        // Index: 3
+                        $(this)
+                            .attr('spc-air-index', '3')
+                            .attr('spc-air-band', 'low');
+                    } else if (201 <= reading && reading <= 267) {
+                        // Index: 4
+                        $(this)
+                            .attr('spc-air-index', '4')
+                            .attr('spc-air-band', 'moderate');
+                    } else if (268 <= reading && reading <= 334) {
+                        // Index: 5
+                        $(this)
+                            .attr('spc-air-index', '5')
+                            .attr('spc-air-band', 'moderate');
+                    } else if (335 <= reading && reading <= 400) {
+                        // Index: 6
+                        $(this)
+                            .attr('spc-air-index', '6')
+                            .attr('spc-air-band', 'moderate');
+                    } else if (401 <= reading && reading <= 467) {
+                        // Index: 7
+                        $(this)
+                            .attr('spc-air-index', '7')
+                            .attr('spc-air-band', 'high');
+                    } else if (468 <= reading && reading <= 534) {
+                        // Index: 8
+                        $(this)
+                            .attr('spc-air-index', '8')
+                            .attr('spc-air-band', 'high');
+                    } else if (535 <= reading && reading <= 600) {
+                        // Index: 9
+                        $(this)
+                            .attr('spc-air-index', '9')
+                            .attr('spc-air-band', 'high');
+                    } else if (601 <= reading) {
+                        // Index: 10
+                        $(this)
+                            .attr('spc-air-index', '10')
+                            .attr('spc-air-band', 'very high');
+                    }
+                });
+            }
+        });
+        
     }.observes('chart')
 });
