@@ -52,8 +52,10 @@ export default Ember.Component.extend({
         lineSmooth: Chartist.Interpolation.simple({
             divisor: 20
         }),
-        chartPadding: {
-            left: 0
+        axisY: {
+            labelInterpolationFnc: function(value) {
+                return value + 'ppb'
+            }
         }
     },
     
