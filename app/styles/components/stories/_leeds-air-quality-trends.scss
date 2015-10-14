@@ -5,4 +5,13 @@
 	.ct-chart .ct-series.ct-series-a .ct-slice.ct-donut {
 		stroke: $blue;
 	}
+	
+	.ct-chart .ct-series.ct-series-a .ct-point {
+		@include transition(.2s);
+		
+		&:hover {
+			stroke: $light-blue;
+		    stroke-width: 14px;
+		}
+	}
 }

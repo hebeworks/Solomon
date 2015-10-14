@@ -113,7 +113,7 @@ export default Ember.Component.extend({
         $chart.on('mousemove', function(event) {
           $toolTip.css({
             left: (event.offsetX || event.originalEvent.layerX) - $toolTip.width() / 2 - 10,
-            top: (event.offsetY || event.originalEvent.layerY) - $toolTip.height() - 20
+            top: (event.offsetY || event.originalEvent.layerY) - $toolTip.height() - 25
           });
         });
     }.observes('chart')
