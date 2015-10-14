@@ -6,6 +6,8 @@
 }
 
 .ct-chart {
+    position: relative;
+    
     .ct-grid {
         stroke-dasharray: 0;
         stroke: $medium-grey;
@@ -33,3 +35,24 @@
         }
     }
 }
+
+    .ct-tooltip {
+        position: absolute;
+        text-align: center;
+        font-size: rem(12px);
+        font-family: $helvneuemed;
+        background-color: $blue;
+        color: #fff;
+        padding: rem($spacing-base / 2) rem($spacing-base) rem($spacing-base / 3);
+        border-radius: rem(3px);
+        
+        &::after {
+            content: '';
+            @include triangle(10px, $blue, down);
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+    }
