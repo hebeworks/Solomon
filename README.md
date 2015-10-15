@@ -1,4 +1,4 @@
-# Solomon 
+<img src="http://static1.squarespace.com/static/517e9814e4b0847823501eb8/t/55ef1019e4b0afabe4d24f83/1443518943242" width="250px" alt="Solomon Logo"></img>
 
 Solomon is a growing ecosystem of 'hyperlocal' technologies, built using [Ember.js](http://www.emberjs.com) and easily combined to create powerful tools and projects for use on the web.
 
