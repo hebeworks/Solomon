@@ -1,28 +1,6 @@
 .thumb-list {
     position: relative;
     margin-bottom: 1em;
-
-    // &:after {
-    //     content: '';
-    //     width: 18px;
-    //     position: absolute;
-    //     top: 14px;
-    //     bottom: 14px;
-    //     right: 0;
-    //     background-color: $off-white;
-    //     border-left: 1px solid $light-grey;
-    // }
-
-    // &.-dark {
-    //     .thumb-list__inner {
-    //         background-color: $light-grey;
-    //     }
-
-    //     &:after {
-    //         background-color: $light-grey;
-    //         border-color: $grey;
-    //     }
-    // }
 }
 
 .thumb-list-heading {
@@ -35,9 +13,9 @@
     @include clean-list;
     @include cf;
     border-radius: 5px;
-    // background-color: $off-white;
     overflow-x: auto;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
     font-size: 0; // remove whitespace
 
     + .thumb-list {
