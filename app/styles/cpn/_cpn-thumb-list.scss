@@ -1,0 +1,85 @@
+// Block heading
+[cpn-thumb-list_heading] {
+    font-size: rem(13px);
+    font-family: $helvneuebold;
+    margin-bottom: rem($spacing-base);
+}
+
+// List wrapper
+[cpn-thumb-list_wrapper] {
+    position: relative;
+}
+    
+    // List
+    [cpn-thumb-list_items] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        font-size: 0; // remove whitespace
+        margin: 0;
+    }
+    
+        // List item
+        [cpn-thumb-list_item] {
+            width: rem(75px);
+            min-height: rem(114px);
+            display: inline-block;
+            vertical-align: top;
+            white-space: normal;
+            font-size: rem(15px); // reset font size
+            cursor: pointer;
+            margin-bottom: rem($spacing-base);
+            
+            &:not(:last-child) {
+                margin-right: rem($spacing-base * 2);
+            }
+        }
+        
+        [cpn-thumb-list_item~="wide"] {
+            width: rem(170px);
+        }
+        
+            // List thumbnail
+            [cpn-thumb-list_icon] {
+                padding-top: 100%;
+                background-color: #fff;
+                border-radius: rem(5px);
+                margin-bottom: rem($spacing-base / 2);
+                background-size: contain;
+                @include svg--list-view-thumb-default;
+                
+                &:hover {
+                    @include svg--list-view-thumb-default-active;
+                }
+            }
+            
+            [cpn-thumb-list_icon~="add-story"] {
+                @include svg--list-view-thumb-add-story;
+                
+                &:hover {
+                    @include svg--list-view-thumb-add-story-active;
+                }
+            }
+            
+            [cpn-thumb-list_icon~="add-canvas"] {
+                @include svg--list-view-thumb-add-canvas;
+                
+                &:hover {
+                    @include svg--list-view-thumb-add-canvas-active;
+                }
+            }
+            
+            // Item title
+            [cpn-thumb-list_title] {
+                font-size: rem(13px);
+                margin: 0;
+            }
+            
+            // Item small text
+            [cpn-thumb-list_meta] {
+                color: $grey;
+                font-size: rem(10px);
+                margin: 0;
+            }
+            
+            
