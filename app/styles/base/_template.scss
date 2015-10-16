@@ -148,9 +148,10 @@ p {
 	top: 100px;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	background-color: #f7f7f7;
 	z-index: 1;
-	// -webkit-overflow-scrolling: touch; Disabled temporarily as it's causing scrolling issues on iOS
+	// -webkit-overflow-scrolling: touch;
 	
 	&.add-a {
 		top:0px;

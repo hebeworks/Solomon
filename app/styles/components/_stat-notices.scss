@@ -111,6 +111,8 @@
 		}
 	}
 		.stat-notices__inner {
+			-webkit-overflow-scrolling: auto;
+			
 			> .btn-list {
 				padding: {
 					top:0;

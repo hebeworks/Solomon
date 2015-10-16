@@ -1,6 +1,7 @@
 .story {
 	-webkit-touch-callout: none;
     //-webkit-user-select: none;
+    -webkit-overflow-scrolling: auto;
 	padding: {
 		top: 10px;
 		right: 10px;
@@ -75,9 +76,17 @@
 	}
 	&.-h2 {
 		height: 330px;
+		
 		.story__content {
 			height: 290px;
 		}
+		
+		.-back {
+			.story__content {
+				height: 270px;
+			}
+		}
+		
         .story__chart {
             height: 195px;
         }
@@ -737,13 +746,14 @@
 			}
 			&.-back {
 				z-index: 1;
-				overflow-x: hidden;
-				overflow-y: auto;
+				overflow: hidden;
 				@include transform(perspective(1000px) rotateY(180deg));
 				background-color: blue;
 				padding-top: rem($spacing-base * 3);
 				
 				.story__content {
+					overflow-x: hidden;
+					overflow-y: auto;
 					
 					h3 {
 						margin: {

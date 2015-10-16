@@ -178,7 +178,7 @@ module.exports = function (environment) {
     // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV
     // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW 
 
-    ENV.APP.dashAPIURL = 'http://hebedashapi-preview.azurewebsites.net';
+    ENV.APP.dashAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
 
   }
 
