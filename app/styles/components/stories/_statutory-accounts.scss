@@ -1,16 +1,17 @@
-.statutory-accounts {
-
-		p {
-			
-		}
-}
-	.statutory-accounts__welcome {
-
-		
+[spc-stat-accounts] {
+	ol, p {
+		font-size: rem(12px);
 	}
-	.statutory-accounts__item {
+	
+	ol {
+		margin-left: 2em;
+	}
 	
 		li {
-			
+			margin-bottom: rem($spacing-base / 2);
 		}
+		
+	a {
+		@include word-wrap;
 	}
+}
