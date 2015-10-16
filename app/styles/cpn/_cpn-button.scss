@@ -31,6 +31,12 @@
     }
 }
 
+// Small buttons
+[cpn-button~="small"] {
+    font-size: rem(12px);
+    padding: rem(6.5px) rem($spacing-base / 2) rem(4px);
+}
+
 // Action button style, for buttons which trigger an action, such as submit buttons
 [cpn-button~="action"],
 %cpn-button-action {
