@@ -4,6 +4,8 @@ Solomon is a growing ecosystem of 'hyperlocal' technologies, built using [Ember.
 
 Solomon was born out of partnerships with large organisations looking to make Open Data easy to understand. We released our interactive Dashboard product with the first full-scale Solomon implementation, [Leeds City Dashboard](http://dashboard.leedsdatamill.org), which is currently in Beta.
 
+The project has been possible thanks to support from [Innovate UK](http://www.gov.uk/government/organisations/innovate-uk), [Cabinet Office](http://www.gov.uk/government/organisations/cabinet-office), [Leeds City Council](http://www.leeds.gov.uk), [Local Government Association](http://www.local.gov.uk) and the [Department for Communities and Local Government](http://www.gov.uk/government/organisations/department-for-communities-and-local-government).
+
 [Visit our Wiki for more details, users guides and documentation](https://github.com/hebeworks/Solomon/wiki).
 
 ## License
