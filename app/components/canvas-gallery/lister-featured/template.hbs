@@ -1,21 +1,18 @@
+<h3 cpn-thumb-list_heading>Suggested Canvasses</h3>
 
-	<!--<h3 class="thumb-list-heading float--left">Canvasses Chosen for You...</h3>-->
-	<h3 class="thumb-list-heading float--left">Suggested Canvasses</h3>
-	{{!-- <a href="#" class="link -light float--right">See all ></a> --}}
-	<div class="cf"></div>	<div class="js-thumb-list thumb-list dotted-area -bottom -dark pad-bottom">
-		<ul class="thumb-list__inner">
-			{{#if items}}
-				{{#each items as |canvas|}}
-					{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumbIcon="-add-canvas"}}
-				{{/each}}
-			{{else}}
-				<li class="thumb">
-					<h5 class="thumb__title">Sorry there are no featured canvasses at the moment</h5>
-					<p class="thumb__category -zeta">&nbsp;</p>
-				</li>
-			{{/if}}
-		</ul>
-	</div>
+<div cpn-thumb-list_wrapper cpn-divide="bottom">
+    <ul cpn-thumb-list_items>        
+        {{#if items}}
+        	{{#each items as |canvas|}}
+        		{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumb-icon="add-canvas"}}
+        	{{/each}}
+        {{else}}
+        	<li cpn-thumb-list_item="wide">
+        		<h4 cpn-thumb-list_title>Sorry, we don't have any suggested canvasses right now.</h4>
+        	</li>
+        {{/if}}
+    </ul>
+</div>
 
 
 <div class="table -fixed">

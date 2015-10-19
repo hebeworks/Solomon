@@ -129,8 +129,8 @@ export default Ember.Component.extend({
     
     // Colour the data points (and tooltip) with the relevant colour based on where the reading falls in the air quality index. See https://en.wikipedia.org/wiki/Air_quality_index#United_Kingdom and http://uk-air.defra.gov.uk/air-pollution/daqi
     colourData: function() {
-        var chart = this.get('chart'),
-            obj = this;
+        var obj = this,
+            chart = obj.get('chart');
         
         chart.on('draw', function (data) {
             if (data.type === 'point') {
