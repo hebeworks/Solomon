@@ -9,8 +9,10 @@ export default Ember.Component.extend(CanvasGalleryLister, {
 		if(!Ember.isEmpty(userID)) {
 			this.set('userID', userID);
 		}
-	}
+	},
 	
-	
+	onUserLogIn: function() {
+		this.set('userID', this.get('session.secure.token'));
+	}.observes('session.secure.token')
 	
 });

@@ -46,7 +46,28 @@
 @import "patterns/bordered_area";
 @import "patterns/lists";
 @import "patterns/forms";
+@import 'patterns/svg-class';
 
+/* -- CPN (component attribute modules) --*/
+@import 'cpn/cpn-button';
+@import 'cpn/cpn-row-list';
+@import 'cpn/cpn-divide';
+@import 'cpn/cpn-overflow';
+@import 'cpn/cpn-toggle';
+@import 'cpn/cpn-table';
+@import 'cpn/cpn-data-strip';
+@import 'cpn/cpn-snippet';
+@import 'cpn/cpn-story-body';
+@import 'cpn/cpn-margin';
+@import 'cpn/cpn-font-weight';
+@import 'cpn/cpn-display';
+@import 'cpn/cpn-text';
+@import 'cpn/cpn-padding';
+@import 'cpn/cpn-width';
+@import 'cpn/cpn-fill-circle';
+@import 'cpn/cpn-float';
+@import 'cpn/cpn-clearfix';
+@import 'cpn/cpn-thumb-list';
 
 /* -- Components -- */
 @import "components/drawer";
@@ -56,6 +77,8 @@
 @import "components/stat-notices";
 @import "components/number_stat";
 @import "components/modal";
+@import 'components/canvas-gallery';
+@import 'components/chartist/chartist-dash';
 
 // Stories 
 @import "components/stories/calendar";
@@ -79,6 +102,11 @@
 @import "components/stories/sunrise-sunset";
 @import "components/stories/twitter-feed";
 @import "components/stories/weather-report";
+@import 'components/stories/weather-forecast';
+@import 'components/stories/find-my-bin-day';
+@import 'components/stories/compare-water-quality';
+@import 'components/stories/leeds-air-quality-trends';
+@import 'components/stories/statutory-accounts';
 
 /* START auto-generated stories */
 @import "components/stories/stat-notices-recent";

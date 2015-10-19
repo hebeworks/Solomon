@@ -1,0 +1,34 @@
+[cpn-divide],
+%cpn-divide {
+    border-color: #000;
+    border-style: dotted;
+    border-width: 0;
+}
+
+[cpn-divide~="top"],
+%cpn-dvide-top {
+    border-top-width: 1px;
+    padding-top: rem($spacing-base);
+}
+
+[cpn-divide~="right"],
+%cpn-dvide-right {
+    border-right-width: 1px;
+    padding-right: rem($spacing-base);
+}
+
+[cpn-divide~="bottom"],
+%cpn-dvide-bottom {
+    border-bottom-width: 1px;
+    margin-bottom: rem($spacing-base);
+}
+
+[cpn-divide~="left"],
+%cpn-dvide-left {
+    border-left-width: 1px;
+    padding-left: rem($spacing-base);
+}
+
+[cpn-divide~="light"] {
+    border-color: #fff;
+}

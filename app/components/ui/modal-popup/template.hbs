@@ -6,6 +6,8 @@
 						<h3 class="md-title float--left margin-bottom-no">{{modalTitle}}</h3>
 						<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
 					</div>
+				{{else}}
+					<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
 				{{/if}}
 				{{#if modalIntro}}
 					<p>{{modalIntro}}</p>

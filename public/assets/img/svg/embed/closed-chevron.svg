@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 3115 + Fill 3116</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Stories" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-3" sketch:type="MSArtboardGroup" transform="translate(-3101.000000, -1144.000000)" fill="#FFFFFF">
+            <g id="Group-Copy-13" sketch:type="MSLayerGroup" transform="translate(2556.000000, 937.000000)">
+                <g id="Group-Copy-20" sketch:type="MSShapeGroup">
+                    <g id="Group-Copy-10">
+                        <g id="Group">
+                            <g id="Fill-3115-+-Fill-3116" transform="translate(545.000000, 207.000000)">
+                                <path d="M15.5,19 C15.4116759,19 15.3243789,18.9809951 15.245298,18.9309821 L6.25883757,13.9296855 C6.01235179,13.7996518 5.9271088,13.4885711 6.06781109,13.2485089 C6.20851339,13.0084466 6.52278275,12.9294261 6.7682415,13.0684622 L15.5,17.9197199 L24.2317585,13.0684622 C24.4782443,12.9294261 24.7914866,13.0084466 24.9321889,13.2485089 C25.0728912,13.4885711 24.9876482,13.7996518 24.7411624,13.9296855 L15.754702,18.9309821 C15.6756211,18.9809951 15.587297,19 15.5,19" id="Fill-3115"></path>
+                                <path d="M15.5,0 C6.9409,0 0,6.944 0,15.5 C0,24.0663333 6.9409,31 15.5,31 C24.0601333,31 31,24.0663333 31,15.5 C31,6.944 24.0601333,0 15.5,0 L15.5,0 Z M15.5,1.03333333 C23.4773333,1.03333333 29.9666667,7.52266667 29.9666667,15.5 C29.9666667,23.4773333 23.4773333,29.9666667 15.5,29.9666667 C7.52266667,29.9666667 1.03333333,23.4773333 1.03333333,15.5 C1.03333333,7.52266667 7.52266667,1.03333333 15.5,1.03333333 L15.5,1.03333333 Z" id="Fill-3116"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

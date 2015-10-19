@@ -38,6 +38,8 @@
         border-radius: 3px;
         @include transition(.3s);
         vertical-align: top; // default alignment to remove unwanted whitespace
+        @include appearance(none);
+        box-shadow: none;
         
         &:focus {
             outline: none;
@@ -82,6 +84,25 @@
     		width: 100%;
             max-width: 100%;
     	}
+    }
+    
+    [cpn-input~="ghost-light"],
+    %cpn-input-ghost-light {
+        border-color: #fff;
+        background-color: transparent;
+        color: #fff;
+        
+        &::-webkit-input-placeholder {
+           color: #fff;
+        }
+
+        &::-moz-placeholder {
+           color: #fff;  
+        }
+
+        &:-ms-input-placeholder {  
+           color: #fff;  
+        }
     }
     
     textarea {

@@ -36,6 +36,7 @@
 		&.-overflow-y-scroll {
 			overflow-y: auto;
 			overflow-x: hidden;
+			-webkit-overflow-scrolling: touch;
 		}
 
 		&.-open {
@@ -119,3 +120,27 @@
 			margin-top: 3px;
 			cursor: pointer;
 		}
+		
+// Story drawer code going here untill/unless we think of a better place for it
+[spc-story-drawer-buttons] {
+    @include breakpoint(max-width 643px) {
+        > * {
+            width: 33.333%;
+        }
+    }
+    
+    @include breakpoint(max-width 450px) {
+        > * {
+            width: 100%;
+        }
+    }
+}
+
+[spc-story-drawer-create] {
+	float: right;
+	
+	@include breakpoint(max-width 643px) {
+		float: none;
+		width: 100%;
+	}
+}

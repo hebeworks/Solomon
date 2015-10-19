@@ -24,8 +24,11 @@
 			}
 			
 			@include media('<phoneLarge') {
-				margin-right: 10px;
-				margin-left: 10px;
+				// Spacing has been temporarily reduced while there are more
+				// items in the subnav. This will be increased again when there
+				// are less items.
+				margin-right: rem(4px);
+				margin-left: rem(4px);
 			}
 			
 			&.-separator {

@@ -54,6 +54,14 @@
     &.-blue {
         background-color: $blue;
         color: $white;
+        
+        &:hover, &:focus {
+            background-color: lighten($blue, 5%);
+        }
+        
+        &:active {
+            background-color: darken($blue, 5%);
+        }
     }
     
     &.-red {
@@ -139,6 +147,21 @@
             color: #fff;
         }
     }
+    
+    &.-ghost {
+        background-color: transparent;
+        border: 1px solid $dark-grey;
+        color: $dark-grey;
+        padding-top: 10px;
+        padding-bottom: 7px;
+        cursor: default;
+    }
+    
+    &.svg-stat-notices-icon-planning-black, &.svg-stat-notices-icon-licensing-black {
+        background-size: 16px 18px;
+        background-position: 10px center;
+        padding-left: 40px;
+    }
 }
 
 .btn-list {
@@ -180,15 +203,16 @@
             }
             .icon-conversation {
                 width: 15px;
+                height: 15px;
                 display: inline-block;
                 vertical-align: middle;
                 margin: {
-                    top: -1px;
+                    // top: -1px;
                     right: 3px;
                 }
                 svg {
-                    width: 100%;
-                    height: auto;
+                    width: 15px;
+                    height: 15px;
                     display: block;
                 }
             }
@@ -210,6 +234,9 @@
         &.-half {
             float:left;
             width:49%;
+            margin: {
+                right:0px;
+            }
             &:nth-child(even) {
                 margin: {
                     top:0;

@@ -21,8 +21,8 @@ export default Ember.Component.extend({
 	}),
 
 	setSelectedButton: function () {
-		this.$('.js-gallery-button.btn-list .btn').removeClass('-selected');
-		this.$('.btn[data-btn-type="' + this.get('_currentView') + '"]').addClass('-selected');
+		this.$('#gallery-buttons button').attr('cpn-button', '');
+		this.$('[data-btn-type="' + this.get('_currentView') + '"]').attr('cpn-button', 'chosen');
 	}.observes('currentView'),
 
 	// createACanvas: function() {

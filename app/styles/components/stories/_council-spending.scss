@@ -1,9 +1,8 @@
-.council-spending {
-    .select2-wrapper {
-        float: left;
-        margin-bottom: 0;
-    }
+[spc-cs-spend-title] {
+    font-family: $helvneuemed;
+    font-size: rem(10px);
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0;
 }
-    .council-spending__circle-indicator {
-        text-align: center;
-    }

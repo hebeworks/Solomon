@@ -1,0 +1,140 @@
+[spc-laqt] {
+	.ct-chart .ct-series.ct-series-a .ct-point,
+	.ct-chart .ct-series.ct-series-a .ct-line {
+		stroke: $dark-grey;
+	}
+	
+	.ct-chart .ct-series.ct-series-a .ct-point {
+		@include transition(.2s);
+		stroke-width: 10px;
+		
+		&:hover {
+		    stroke-width: 14px;
+		}
+	}
+}
+
+.ct-chart .ct-series.ct-series-a .ct-point {
+	&[spc-air-index~="1"] {
+		stroke: $color-air1;
+	}
+	
+	&[spc-air-index~="2"] {
+		stroke: $color-air2;
+	}
+	
+	&[spc-air-index~="3"] {
+		stroke: $color-air3;
+	}
+	
+	&[spc-air-index~="4"] {
+		stroke: $color-air4;
+	}
+	
+	&[spc-air-index~="5"] {
+		stroke: $color-air5;
+	}
+	
+	&[spc-air-index~="6"] {
+		stroke: $color-air6;
+	}
+	
+	&[spc-air-index~="7"] {
+		stroke: $color-air7;
+	}
+	
+	&[spc-air-index~="8"] {
+		stroke: $color-air8;
+	}
+	
+	&[spc-air-index~="9"] {
+		stroke: $color-air9;
+	}
+	
+	&[spc-air-index~="10"] {
+		stroke: $color-air10;
+	}
+}
+
+[spc-tooltip-air-index="1"] {
+	background-color: $color-air1;
+	color: $black;
+	
+	&::after {
+		border-top-color: $color-air1;
+	}
+}
+
+[spc-tooltip-air-index="2"] {
+	background-color: $color-air2;
+	color: $black;
+	
+	&::after {
+		border-top-color: $color-air2;
+	}
+}
+
+[spc-tooltip-air-index="3"] {
+	background-color: $color-air3;
+	
+	&::after {
+		border-top-color: $color-air3;
+	}
+}
+
+[spc-tooltip-air-index="4"] {
+	background-color: $color-air4;
+	color: $black;
+	
+	&::after {
+		border-top-color: $color-air4;
+	}
+}
+
+[spc-tooltip-air-index="5"] {
+	background-color: $color-air5;
+	
+	&::after {
+		border-top-color: $color-air5;
+	}
+}
+
+[spc-tooltip-air-index="6"] {
+	background-color: $color-air6;
+	
+	&::after {
+		border-top-color: $color-air6;
+	}
+}
+
+[spc-tooltip-air-index="7"] {
+	background-color: $color-air7;
+	
+	&::after {
+		border-top-color: $color-air7;
+	}
+}
+
+[spc-tooltip-air-index="8"] {
+	background-color: $color-air8;
+	
+	&::after {
+		border-top-color: $color-air8;
+	}
+}
+
+[spc-tooltip-air-index="9"] {
+	background-color: $color-air9;
+	
+	&::after {
+		border-top-color: $color-air9;
+	}
+}
+
+[spc-tooltip-air-index="10"] {
+	background-color: $color-air10;
+	
+	&::after {
+		border-top-color: $color-air10;
+	}
+}

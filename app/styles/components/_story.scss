@@ -1,6 +1,7 @@
 .story {
 	-webkit-touch-callout: none;
     //-webkit-user-select: none;
+    -webkit-overflow-scrolling: auto;
 	padding: {
 		top: 10px;
 		right: 10px;
@@ -44,6 +45,10 @@
 		.icon-cogs {
 			top:-2px;
 			right:3px;
+			
+			&.icon-reverse {
+				right: 10px;
+			}
 		}
 	}
 	&.-w2 {
@@ -71,9 +76,17 @@
 	}
 	&.-h2 {
 		height: 330px;
+		
 		.story__content {
 			height: 290px;
 		}
+		
+		.-back {
+			.story__content {
+				height: 270px;
+			}
+		}
+		
         .story__chart {
             height: 195px;
         }
@@ -296,9 +309,10 @@
 	        	opacity: 1;
 	        }
         }
-    	.dotted-area {
-			border-color: $white;
-		}
+    	.dotted-area,
+    	.btn-list {
+    		border-color: #fff;
+    	}
 		.select2-container {
 			.select2-choice, {
 				background-color: darken($lime,5);
@@ -342,6 +356,11 @@
 				border-color: $black;
 			}
 		}
+		.icon-reverse {
+			svg {
+				fill: #000;
+			}
+		}
 	}
 	&.-lighter-blue {
 		.story__card {
@@ -369,6 +388,10 @@
 					color: $white;
 				}
 			}
+		}
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
 		}
 		.btn {
 			color: $lighter-blue;
@@ -468,6 +491,10 @@
 				}
 			}
 		}
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
+		}
 	}
 	
 	&.-light-blue {
@@ -475,6 +502,9 @@
 			color: #fff;
 			background: {
 				color: #0072BC;
+			}
+			a {
+				color: #fff;				
 			}
 		}
 		.story__inner .icon-cogs {
@@ -497,7 +527,59 @@
 				}
 			}
 		}
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
+		}
 	}
+	
+	&.-mint {
+		.story__card {
+			color: #000;
+			background-color: $mint;
+		}
+		
+		.story__inner .icon-cogs,
+		.icon-reverse svg {
+			fill: #000;
+		}
+		
+		.story__footer {
+			border-top-color: #000;
+		}
+		
+		.dotted-area,
+		.btn-list {
+			border-color: #000;
+		}
+	}
+
+	&.-medium-blue {
+		.story__card {
+			color: #fff;
+			background-color: $medium-blue;
+			
+			a {
+				color: #fff;				
+			}
+		}
+		
+		.story__inner .icon-cogs {
+			fill: #fff;
+		}
+		
+		.dotted-area,
+		.btn-list {
+			border-color: #fff;
+		}
+		
+		.icon-reverse {
+			svg {
+				fill: #fff;
+			}
+		}
+	}
+
 
 	&.ui-draggable-dragging {
 		@include transform(rotate(-1.5deg));
@@ -513,19 +595,23 @@
 				indent: -9999px;
 			}
 			background: {
-				color: #e3e3e3;
+				color: $medium-grey;
 				repeat: no-repeat;
 				position: center center;
 			}
 			@include transition(.15s);
+			cursor: pointer;
+			
+			.icon-plus {
+				fill: #f7f7f7;
+			}
 
-			&:hover {
-				background: {
-					color: $lime;
-				}
-				.icon-plus {
-					fill: #eeeef3;
-				}
+			&:hover, &:focus {
+			    background-color: lighten($blue, 5%);
+			}
+			
+			&:active {
+				background-color: darken($blue, 5%);
 			}
 		}
 		.icon-plus {
@@ -653,15 +739,21 @@
 			@include transform-style(preserve-3d);
 			@include transition(all .6s);
 			@include transform(perspective(1000px) rotateY(0deg));
+			
 			&.-front {
 				z-index: 3;
 				@include transform(perspective(1000px) rotateY(0deg));
 			}
 			&.-back {
 				z-index: 1;
+				overflow: hidden;
 				@include transform(perspective(1000px) rotateY(180deg));
 				background-color: blue;
+				padding-top: rem($spacing-base * 3);
+				
 				.story__content {
+					overflow-x: hidden;
+					overflow-y: auto;
 					
 					h3 {
 						margin: {
@@ -730,6 +822,13 @@
 						margin-bottom: 5px;
 					}
 				}
+				
+				.header-img {
+					height:24px;
+					margin: {
+						bottom:12px;
+					}
+				}
 			}
 			.story__footer {
 				height: 20px;
@@ -763,6 +862,10 @@
 					opacity: .5;
 					margin-top: 2px;
 				}
+				.author-img {
+					opacity: 1;
+					margin-top: 0;
+				}
 				img {
 					float: right;
 				}
@@ -792,5 +895,32 @@
 		border: {
 			radius: 10px;
 		}
+	}
+}
+
+[spc-dot] {
+	display: block;
+	width: rem(22px);
+	height: rem(22px);
+	font-size: 0;
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	right: 0;
+	
+	// We want the dot to look smaller but the hit area still needs to be sufficiently large
+	&::after {
+		content: '';
+		background-color: #f7f7f7;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		border-radius: 100%;
+		@include transition(.2s);
+		width: rem(12px);
+		height: rem(12px);
 	}
 }

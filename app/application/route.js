@@ -19,19 +19,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // Actions 
     actions: {
         showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', 'Register/Sign In', intro);  
+            this.controller.showModal('ui/login-form', 'Log in / Sign up', intro);
         },
-        
+
         mailToFeedback: function () {
             window.location.href = "mailto:support@mysolomon.co.uk?subject=Leeds City Dashboard Help&body=Please provide your feedback here. If you are contacting us about a bug, it would help if you could provide a screenshot of the issue along with details about your operating system and browser. Thank you.";
         },
-        
-        showFeedbackmodal: function() {
-            this.controller.showModal('ui/feedback-form');  
+
+        showFeedbackmodal: function () {
+            this.controller.showModal('ui/feedback-form');
         },
-        
-        hideModal: function() {
-            this.controller.hideModal();  
+
+        hideModal: function () {
+            this.controller.hideModal();
         },
 
         gotoRoute: function (route, model) {
@@ -74,5 +74,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         loadACanvas: function (canvasID) {
             this.controller.loadACanvas(canvasID)
         },
+
+        sessionAuthenticationSucceeded: function () {
+            console.log('Session authenticated');
+        },
+        
+        goToHelp: function() {
+            var url = "https://github.com/hebeworks/Solomon/wiki";
+            window.open(url, '_blank');
+        }
     }
 });
