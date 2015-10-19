@@ -9,7 +9,7 @@ export default DatamillStory.extend({
     selectedAddress: null,
     currentAddress: null,
     showCalendarButton: false,
-
+    storyModel: null,
     saveThisEvent: function () {
         var obj = this;
 
