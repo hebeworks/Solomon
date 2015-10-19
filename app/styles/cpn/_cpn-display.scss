@@ -2,6 +2,22 @@
     display: block;
 }
 
+[cpn-display="inline"] {
+    display: inline;
+}
+
+[cpn-display="inline-block"] {
+    display: inline-block;
+}
+
 [cpn-display="none"] {
     display: none;
+}
+
+[cpn-display="table"] {
+    display: table;
+}
+
+[cpn-display="table-cell"] {
+    display: table-cell;
 }

@@ -1,3 +1,17 @@
+// All
+[cpn-padding="none"] {
+    padding: 0;
+}
+
+// Top
+[cpn-padding~="top-none"] {
+    padding-top: 0;
+}
+
+[cpn-padding~="top-half"] {
+    padding-top: rem($spacing-base / 2);
+}
+
 [cpn-padding~="top"] {
     padding-top: rem($spacing-base);
 }
@@ -6,18 +20,53 @@
     padding-top: rem($spacing-base * 2);
 }
 
+// Right
+[cpn-padding~="right-none"] {
+    padding-right: 0;
+}
+
+[cpn-padding~="right-half"] {
+    padding-right: rem($spacing-base / 2);
+}
+
 [cpn-padding~="right"] {
     padding-right: rem($spacing-base);
 }
 
-[cpn-padding~="left"] {
-    padding-left: rem($spacing-base);
+[cpn-padding~="right-double"] {
+    padding-right: rem($spacing-base * 2);
+}
+
+// Bottom
+[cpn-padding~="bottom-none"] {
+    padding-bottom: 0;
+}
+
+[cpn-padding~="bottom-half"] {
+    padding-bottom: rem($spacing-base / 2);
 }
 
 [cpn-padding~="bottom"] {
     padding-bottom: rem($spacing-base);
 }
 
-[cpn-padding="none"] {
-    padding: 0;
+[cpn-padding~="bottom-double"] {
+    padding-bottom: rem($spacing-base * 2);
+}
+
+// Left
+[cpn-padding~="left-none"] {
+    padding-left: 0;
+}
+
+[cpn-padding~="left-half"] {
+    padding-left: rem($spacing-base / 2);
+}
+
+[cpn-padding~="left"] {
+    padding-left: rem($spacing-base);
+}
+
+[cpn-padding~="left-double"] {
+    padding-left: rem($spacing-base * 2);
 }
