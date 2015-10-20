@@ -5,9 +5,9 @@ export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
     color: '-white',
-    tileValue: '4337',
-    tileDesc1: 'Parking fines',
-    tileDesc2: 'Issued this month',
+    tileValue: 'Value',
+    tileDesc1: 'Description 1',
+    tileDesc2: 'Description 2',
     tileShade: '',
     
     didInsertElement: function() {
