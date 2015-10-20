@@ -1,0 +1,23 @@
+[cpn-message]
+
+
+
+
+
+
+
+.message {
+    &.-error {
+        color: $red;
+        
+        &::before {
+           content: ''; 
+           @include svg--error-icon;
+           background-size: 9px 9px;
+           width: 9px;
+           height: 9px;
+           display: inline-block;
+           margin-right: 5px;
+        }
+    }
+}

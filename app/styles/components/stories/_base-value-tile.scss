@@ -1,0 +1,25 @@
+[spc-val] {
+	font-size: rem(15px);
+	line-height: 1.133; // 17/15
+	position: absolute;
+	bottom: 0;
+}
+
+	[spc-val_value] {
+		font-size: rem(30px);
+		line-height: 1.2; // 36/30
+	}
+
+	[spc-val_desc] {
+		font-size: rem(15px);
+		
+		span {
+			display: block;
+			
+			&:last-child {
+				font-family: $helvneuelight;
+				font-size: rem(13px);
+				line-height: 1.231; // 16/13
+			}
+		}
+	}

@@ -1,0 +1,25 @@
+{{#stories/story-base
+    title=''
+    subTitle=''
+    color=color
+    width="-w1"
+    height="-h1"
+    data-ss-colspan="1"
+    viewOnly=true
+}}
+
+    <main>
+        <div spc-val>
+            <div cpn-divide="bottom {{tileShade}}" cpn-margin="bottom-half">
+                <p cpn-margin="bottom-none" spc-val_value>{{tileValue}}</p>
+            </div>
+            <div cpn-divide="bottom {{tileShade}}" cpn-margin="bottom-half">
+                <p cpn-margin="bottom-half" spc-val_desc>
+                    <span>{{tileDesc1}}</span>
+                    <span>{{tileDesc2}}</span>
+                </p>
+            </div>
+            <p spc-val_instruction cpn-margin="bottom-none">Tap to view</p>
+        </div>
+    </main>
+{{/stories/story-base}}
