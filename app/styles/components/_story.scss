@@ -595,38 +595,22 @@
 				indent: -9999px;
 			}
 			background: {
-				color: $medium-grey;
+				color: #8d8d8d;
 				repeat: no-repeat;
 				position: center center;
 			}
 			@include transition(.15s);
 			cursor: pointer;
-			
-			.icon-plus {
-				fill: #f7f7f7;
-			}
 
 			&:hover, &:focus {
-			    background-color: lighten($blue, 5%);
+			    background-color: lighten(#8d8d8d, 5%);
 			}
 			
 			&:active {
-				background-color: darken($blue, 5%);
+				background-color: darken(#8d8d8d, 5%);
 			}
 		}
-		.icon-plus {
-			width: 38px;
-			height: 38px;
-			@include middle(xy);
-			position: absolute;
-			display: block;
-			svg {
-				width: 38px;
-				height: 38px;
-				display: block;
-				fill: #efeff4;
-			}
-		}
+		
 	}
 }
 	.select2-wrapper {
@@ -922,5 +906,20 @@
 		@include transition(.2s);
 		width: rem(12px);
 		height: rem(12px);
+	}
+}
+
+[spc-add-story] {
+	width: rem(45px);
+	height: rem(45px);
+	@include middle(xy);
+	position: absolute;
+	display: block;
+	
+	svg {
+		width: rem(45px);
+		height: rem(45px);
+		display: block;
+		fill: #f7f7f7;
 	}
 }
