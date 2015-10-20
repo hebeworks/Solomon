@@ -1,23 +1,18 @@
-[cpn-message]
+[cpn-message] {
+	&::before {
+		content: '';
+		display: inline-block;
+		margin-right: rem($spacing-base / 2);
+	}
+}
 
-
-
-
-
-
-
-.message {
-    &.-error {
-        color: $red;
-        
-        &::before {
-           content: ''; 
-           @include svg--error-icon;
-           background-size: 9px 9px;
-           width: 9px;
-           height: 9px;
-           display: inline-block;
-           margin-right: 5px;
-        }
-    }
+[cpn-message="error"] {
+	color: $red;
+	
+	&::before {
+	   @include svg--error-icon;
+	   background-size: 9px 9px;
+	   width: 9px;
+	   height: 9px;
+	}
 }

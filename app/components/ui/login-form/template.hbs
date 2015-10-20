@@ -39,16 +39,14 @@
 					</div>
 					<div>
 						<p cpn-margin="bottom">
-							{{input class="-full" value=username type="text" placeholder="e.g. Dashboard King"}}
+							{{input value=username type="text" placeholder="e.g. Dashboard King"}}
 						</p>
 					</div>
 				</div>
 			</div>
 			
 			{{#if message}}
-				<p class="message -error double-margin-bottom">
-					{{message}}
-				</p>
+				<p cpn-message="error" cpn-margin="bottom-double">{{message}}</p>
 			{{/if}}
 		
 			<button cpn-button="action" {{action "submit"}}>
