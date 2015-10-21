@@ -2,28 +2,69 @@
 
 /* global ) */
 import Ember from 'ember';
+import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
-export default Ember.Component.extend({
+export default DefaultStory.extend({
 	title: 'Sample Chart Line',
 	subTitle: 'Testing chart data',
 	storyModel: null,
 	chartType: 'line',
 
+// var obj = {comparison:"$gt",value:"2015-10-21"};
+// console.log(obj);
+// var objString = JSON.stringify(obj);
+// //console.log('1: ' + objString);
+// //objString = objString.replace(new RegExp('\\"', 'g'),'\\\\"');
+// // console.log('2: ' + objString);
+
+// objString = btoa(unescape(encodeURIComponent(objString)))
+// console.log(objString);
 
 
-	chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-	chartSeries: [
-		[1, 5, 2, 5, 4, 3],
-		[2, 3, 4, 8, 1, 2],
-		[5, 4, 3, 2, 1, 0.5]
-	],
+	loadData: function() {
+		var obj = this;
+		var url = 'http://localhost:8080/councilspending?date=eyJjb21wYXJpc29uIjoiJGx0IiwidmFsdWUiOiIyMDE1LTEwLTIxIn0='; //limit=13&sort=date';
+		this.getData(url)
+			.then(
+				function(data){
+					obj.set('data',data);
+					// var labels = [];
+					// var ignoreKeys = ['_id','date','total'];
+					// debugger;
+					// data.forEach(function(record){
+					// 	var date = record['date'];
+					// 	var total = record['total'];
+					// 	for(var prop in record) {
+					// 		if(ignoreKeys.indexOf(prop) == -1 && labels[prop] == null) { // Build up the chart labels array
+					// 			labels.push(prop);
+					// 		}
+					// 		for(var key in ignoreKeys) {
+								
+					// 		}
+					// 		console.log(prop);
+					// 	}
+					// });
+				},
+				function(err){
+					alert(err);
+				}
+			)
+	}.on('init'),
 
-	chartData: Ember.computed('chartSeries', 'chartLabels', {
+
+	// chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	// chartSeries: [
+	// 	[1, 5, 2, 5, 4, 3],
+	// 	[2, 3, 4, 8, 1, 2],
+	// 	[5, 4, 3, 2, 1, 0.5]
+	// ],
+
+	chartData: Ember.computed('data', {
 		get() {
-
 			var data = this.get('data');
-			var labels = _.map(data,function (item) {
-				return moment(new Date(item.date["$date"])).format("MM-YY");
+			var labels = _.map(data, function (item) {
+				// return moment(new Date(item.date["$date"])).format("MM-YY");
+				return moment(new Date(item.date)).format("MM-YY");
 			});
 			var series = [];
 			data.forEach(function (item) {
@@ -32,13 +73,13 @@ export default Ember.Component.extend({
 					if (series[i] == null) {
 						series[i] = [];
 					}
-					if(prop != "date") {
+					if (prop != "date") {
 						series[i].push(item[prop]);
 						i++;
 					}
 				}
 			});
-// debugger;
+			// debugger;
 			return {
 				labels: labels,
 				series: series
@@ -52,13 +93,13 @@ export default Ember.Component.extend({
 		showPoint: true,
 		fullWidth: true,
 		lineSmooth: Chartist.Interpolation.simple({
-	    	divisor: 20
-	  	}),
-	  	axisX: {
-	  	    labelInterpolationFnc: function(value, index) {
-	  	    	return index % 2 === 0 ? value : null;
-	  	    }
-	  	}
+			divisor: 20
+		}),
+		axisX: {
+			labelInterpolationFnc: function (value, index) {
+				return index % 2 === 0 ? value : null;
+			}
+		}
 	},
 
 	// onChartChanged: function () {
