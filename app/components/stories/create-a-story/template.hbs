@@ -10,7 +10,7 @@
 	
 	{{!-- canvas-gallery/create-a-canvas --}}
 	
-	<div class="create-a-story -form -admin">
+	<div cpn-margin="bottom-double" class="create-a-story -form -admin">
 		<p>{{input value=title placeholder="Story Title e.g. Analogue Clock"}}
 			{{#if story.errors.title}}
 				<br />{{story.errors.title.message}}
@@ -28,12 +28,14 @@
 		}}
 		
 		{{#each story.errors.messages as |message|}}
-			<div class="error">
+			<p cpn-message="error">
 				{{message}}
-			</div>
+			</p>
 		{{/each}}
 		
-		<button class="btn" {{ action "save"}}>SAVE NEW STORY</button>
+		<p cpn-display="inline-block" cpn-margin="bottom-double">
+			<button cpn-button="action" {{action "save"}}>Save new story</button>
+		</p>
 	</div>
 	
 	{{admin/create-a-category}}
