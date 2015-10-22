@@ -1,0 +1,15 @@
+/*-------------[FUNCTIONS]-------------*/
+/*
+ * returns pixel font size in em
+ */
+@function em($pixels) {
+    @return $pixels / $base-font-size + em;
+}
+@function rem($pixels) {
+    @return $pixels / $base-font-size + rem;
+}
+
+@mixin font-size($sizeValue: 16) {
+  font-size: $sizeValue + px;
+  font-size: ($sizeValue / ($base-font-size / ($base-font-size * 0 + 1)) ) + rem;
+}
