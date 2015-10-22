@@ -58,7 +58,6 @@ body {
 h1, h2, h3, h4, h5, h6,
 p, table, ul, ol {
     margin-top: 0;
-    margin-bottom: rem($spacing-base);
     padding: 0;
 }
 
@@ -66,6 +65,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
     font-weight: normal;
     font-family: $helvneuemed;
+    margin-bottom: rem($spacing-base / 2);
+}
+
+p, table, ul, ol {
+    margin-bottom: rem($spacing-base);
 }
 
 strong {

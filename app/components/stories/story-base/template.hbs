@@ -35,28 +35,8 @@
         <a href="javascript:;" class="js-cogs" spc-dot="back">Story</a>
         <div class="story__content">
             {{#if viewOnly}}
-                <div class="btn-list -borderless">
-                    <button class="btn -red -full margin-top" {{action 'removeAStory' storyModel}}>
-                        Remove Story    
-                    </button>
-                </div>
+                <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
-            
-                <div cpn-divide="bottom light">
-                    <ul cpn-row-list>
-                        <li cpn-width="50%">
-                            {{!-- Button needs replacing with attribute-styled button (see remove from canvas button) --}}
-                            {{ui/button-link href=dataSourceUrl title="View Data Source" class="btn -blue -full" cpn-button="move"}}
-                        </li>
-                        <li cpn-width="50%">
-                            {{!-- Button needs replacing with attribute-styled button (see remove from canvas button) --}}
-                            {{ui/button-link href=feedbackEmail type="mail" title="Contact Author" class="btn -blue -full"}}
-                        </li>
-                        <li cpn-width="100%">
-                            <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
-                        </li>
-                    </ul>
-                </div>
                 
                 {{#if configFields}}
                     {{#each configFields as |field|}}
@@ -65,17 +45,29 @@
                 {{/if}}
                 
                 {{#if description}}
-                    <div class="dotted-area -bottom -dark pad-bottom margin-bottom">
-                        <h2 class="beta bold half-margin-bottom">Description</h2>
+                    <div cpn-divide="bottom light">
+                        <h2 class="beta">Description</h2>
                         <p class="story__para">{{description}}</p>
                     </div>
                 {{/if}}
                 {{#if license}}
-                    <div class="margin-bottom">
-                        <h2 class="beta bold half-margin-bottom">Licence / Attribution</h2>
+                    <div cpn-divide="bottom light">
+                        <h2 class="beta">Licence / Attribution</h2>
                         <p class="story__para">{{{license}}}</p>
                     </div>
                 {{/if}}
+                
+                <ul cpn-row-list>
+                    <li cpn-width="50%">
+                        <a href="{{dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
+                    </li>
+                    <li cpn-width="50%">
+                        <a href="mailto:{{feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
+                    </li>
+                    <li cpn-width="100%">
+                        <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                    </li>
+                </ul>
             {{/if}}
         </div>
     </div>

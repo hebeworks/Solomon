@@ -20,6 +20,7 @@
     width: 100%; // wrap buttons in a container to handle any specific widths
     height: auto;
     padding: rem(11px) rem(10px) rem(8px);
+    display: block;
     
     @include transition(.3s);
     

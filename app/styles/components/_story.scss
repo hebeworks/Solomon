@@ -102,38 +102,25 @@
 	}
 	
 	&.-white {
-		.story__card {
+		.-front {
 			background: {
 				color: $white;
 			}
 		}
-		.story__inner .icon-cogs {
-			fill: $black;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
-		.story__inner .icon-reverse svg {
-			fill: $black;
-			opacity: 1;
-			&:hover {
-				opacity: .8;
-			}
-		}
-		.dotted-area {
-			border-color: $black;
-		}
+		
 		.select2-container {
 			.select2-choice {
 				background-color: $light-grey;
+				
 				.select2-chosen {
 					background-color: $light-grey;
 					color: $black;
 				}
+				
 				.select2-arrow {
 					background-color: $light-grey;
 					color: $black;
+					
 					b {
 						background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2212.23px%22%20height%3D%229.93px%22%20viewBox%3D%22558.85%20133.15%2012.23%209.93%22%20enable-background%3D%22new%20558.85%20133.15%2012.23%209.93%22%20%20xml%3Aspace%3D%22preserve%22%3E%3Ctitle%3EDropdown%20Triangle%3C%2Ftitle%3E%3Cpath%20d%3D%22M564.965%2C143.08l6.115-9.93h-12.23L564.965%2C143.08L564.965%2C143.08z%22%2F%3E%3C%2Fsvg%3E') !important;
 					}
@@ -141,51 +128,34 @@
 			}
 		}
 	}
+	
 	&.-red {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $red;
 			}		
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
-		.story__inner .icon-reverse svg {
-			fill: $white;
-			opacity: 1;
-			&:hover {
-				opacity: .8;
-			}
-		}
 	}
 	
 	&.-black {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $black;
 			}
-	    a {
-	      color:$white;
+			
+		    a {
+		      	color:$white;
 	    	}
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
+		
 		.story__footer {
 			.pg-of {
 				color: $white;
 				opacity:0.7;
 			}
+			
 			.carousel-pager {
 				&__numbers {
 					a {
@@ -194,6 +164,7 @@
 								background-color: $white;
 							}
 						}
+						
 						&:hover {
 							&:before {
 								background-color: $white;
@@ -201,21 +172,25 @@
 						}
 					}
 				}
+				
 				&__btn {
 					&.-prev {
 						&:before {
 							@include triangle(10px, #bfbdae, left);
 						}
+						
 						&:hover {
 							&:before {
 								@include triangle(10px, #fff, left);
 							}
 						}
 					}
+					
 					&.-next {
 						&:before {
 							@include triangle(10px, #bfbdae, right);
 						}
+						
 						&:hover {
 							&:before {
 								@include triangle(10px, #fff, right);
@@ -223,22 +198,27 @@
 						}
 					}
 				}
-		    .dotted-area {
+				
+			    .dotted-area {
 					border-color: $white;
 				}
+				
 				.circle-indicator {
 					background-color: $black;
 				}
 			}
 		}
+		
 		.select2-container {
 			.select2-choice {
 				background-color: $black;
 				border: solid 1px #8e8e8e;
+				
 				.select2-chosen {
 					background-color: $black;
 					color: $white;
 				}
+				
 				.select2-arrow {
 					background-color: $black;
 					color: $white;
@@ -246,36 +226,35 @@
 			}
 		}
 	}
+	
 	&.-dark-grey {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $dark-grey;
 			}
+			
             a {
                 color:$white;
             }
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
+
         .story__footer {
 		    .pg-of {
 			    color: $white;
                 opacity:0.7;
             }
         }
+        
         .select2-container {
         	.select2-choice {
         		background-color: lighten($dark-grey,5);
+        		
         		.select2-chosen {
         			background-color: lighten($dark-grey,5);
         			color: $white;
         		}
+        		
         		.select2-arrow {
         			background-color: lighten($dark-grey,5);
         			color: $white;
@@ -283,43 +262,44 @@
         	}
         }
 	}
+	
 	&.-lime {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $lime;
 			}
+			
             a {
                 color:$white;
             }
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
-    .story__footer {
-	    .pg-of {
-		    color: $white;
+
+    	.story__footer {
+	    	.pg-of {
+		    	color: $white;
 	            opacity:0.7;
 	        }
+	        
 	        .author {
 	        	opacity: 1;
 	        }
         }
+        
     	.dotted-area,
     	.btn-list {
     		border-color: #fff;
     	}
+    	
 		.select2-container {
 			.select2-choice, {
 				background-color: darken($lime,5);
+				
 				.select2-chosen {
 					background-color: darken($lime,5);
 					color: $white;
 				}
+				
 				.select2-arrow {
 					background-color: darken($lime,5);
 					color: $white;
@@ -327,92 +307,89 @@
 			}
 		}
 	}
+	
 	&.-ivory {
-		.story__card {
+		.-front {
 			background: {
 				color: $ivory;
 			}
 		}
+		
 		.event .image {
 			background: {
 				color: $ivory;
 			}
 		}
-		.icon-reverse {
-			svg {
-				fill: #000;
-			}
-		}
 	}
+	
 	&.-yellow {
-		.story__card {
+		.-front {
 			background: {
 				color: $yellow;
 			}
 		}
+		
 		.story__footer {
 			border-color: $black;
 			.dotted-area {
 				border-color: $black;
 			}
 		}
-		.icon-reverse {
-			svg {
-				fill: #000;
-			}
-		}
 	}
+	
 	&.-lighter-blue {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $lighter-blue;
 			}
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
+
 		.select2-container {
 			.select2-choice, {
 				background-color: darken($lighter-blue,5);
+				
 				.select2-chosen {
 					background-color: darken($lighter-blue,5);
 					color: $white;
 				}
+				
 				.select2-arrow {
 					background-color: darken($lighter-blue,5);
 					color: $white;
 				}
 			}
 		}
+		
 		.dotted-area,
 		.btn-list {
 			border-color: #fff;
 		}
+		
 		.btn {
 			color: $lighter-blue;
 			background-color: $white;
 		}
+		
 		.story__footer {
 			.pg-of {
 				color: $white;
 				opacity: .7;
 			}
+			
 			.carousel-pager {
 				&__numbers {
 					a {
 						&:before {
 							background-color: #3783ac;
 						}
+						
 						&.selected {
 							&:before {
 								background-color: $white;
 							}
 						}
+						
 						&:hover {
 							&:before {
 								background-color: $white;
@@ -420,12 +397,14 @@
 						}
 					}
 				}
+				
 				&__btn {
 					&.-prev {
 						&:before {
 							border-right-color: #3783ac;
 						}
 					}
+					
 					&.-next {
 						&:before {
 							border-left-color: #3783ac;
@@ -435,27 +414,24 @@
 			}
 		}
 	}
+	
 	&.-blue {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $blue;
 			}
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
+		
 		.select2-container {
 			.select2-choice, {
 				background-color: darken($blue,5);
+				
 				.select2-chosen {
 					background-color: darken($blue,5);
 					color: $white;
 				}
+				
 				.select2-arrow {
 					background-color: darken($blue,5);
 					color: $white;
@@ -463,34 +439,32 @@
 			}
 		}
 	}
+	
 	&.-dark-blue {
-		.story__card {
+		.-front {
 			color: $white;
 			background: {
 				color: $dark-blue;
 			}
 		}
-		.story__inner .icon-cogs {
-			fill: $white;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
+
 		.select2-container {
 			.select2-choice, {
 				background-color: $white;
 				color: $dark-blue;
+				
 				.select2-chosen {
 					background-color: $white;
 					color: $dark-blue;
 				}
+				
 				.select2-arrow {
 					background-color: $white;
 					color: $dark-blue;
 				}
 			}
 		}
+		
 		.dotted-area,
 		.btn-list {
 			border-color: #fff;
@@ -498,35 +472,33 @@
 	}
 	
 	&.-light-blue {
-		.story__card {
+		.-front {
 			color: #fff;
 			background: {
 				color: #0072BC;
 			}
+			
 			a {
 				color: #fff;				
 			}
 		}
-		.story__inner .icon-cogs {
-			fill: #fff;
-			// opacity: .3;
-			&:hover {
-				// opacity: 1;
-			}
-		}
+
 		.select2-container {
 			.select2-choice, {
 				background-color: darken($light-blue,5);
+				
 				.select2-chosen {
 					background-color: darken($light-blue,5);
 					color: #fff;
 				}
+				
 				.select2-arrow {
 					background-color: darken($light-blue,5);
 					color: #fff;
 				}
 			}
 		}
+		
 		.dotted-area,
 		.btn-list {
 			border-color: #fff;
@@ -534,14 +506,9 @@
 	}
 	
 	&.-mint {
-		.story__card {
+		.-front {
 			color: #000;
 			background-color: $mint;
-		}
-		
-		.story__inner .icon-cogs,
-		.icon-reverse svg {
-			fill: #000;
 		}
 		
 		.story__footer {
@@ -555,7 +522,7 @@
 	}
 
 	&.-medium-blue {
-		.story__card {
+		.-front {
 			color: #fff;
 			background-color: $medium-blue;
 			
@@ -564,22 +531,11 @@
 			}
 		}
 		
-		.story__inner .icon-cogs {
-			fill: #fff;
-		}
-		
 		.dotted-area,
 		.btn-list {
 			border-color: #fff;
 		}
-		
-		.icon-reverse {
-			svg {
-				fill: #fff;
-			}
-		}
 	}
-
 
 	&.ui-draggable-dragging {
 		@include transform(rotate(-1.5deg));
@@ -732,32 +688,17 @@
 				z-index: 1;
 				overflow: hidden;
 				@include transform(perspective(1000px) rotateY(180deg));
-				background-color: blue;
-				padding-top: rem($spacing-base * 3);
+				background-color: #222;
+				color: #fff;
+				padding-top: rem($spacing-base * 2);
 				
 				.story__content {
 					overflow-x: hidden;
 					overflow-y: auto;
-					
-					h3 {
-						margin: {
-							top:0;
-							right:0;
-							bottom:0;
-							left:0;
-						}
-						padding-bottom:5;
-					}
-					p {
-						padding:0;
-						margin:0;
-					}
 				}
-				.btn {
-					font: {
-						size: 12px;
-						family: $helvneuemed;
-					}
+				
+				a {
+					color: #fff;
 				}
 			}
 		}
