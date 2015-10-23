@@ -2,12 +2,9 @@
 		<div class="md-modal {{effect}}">
 			<div class="md-content">
 				{{#if modalTitle}}
-					{{!-- <div class="dotted-area -bottom pad-bottom pad-double double-margin-bottom -black cf">
-						<h3 class="md-title float--left margin-bottom-no">{{modalTitle}}</h3>
-						<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
-					</div> --}}
-					<div cpn-divide="bottom" cpn-margin="bottom-double">
-						<button cpn-margin="left" class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
+					<div cpn-divide="bottom" cpn-margin="bottom-double" cpn-clearfix>
+						{{!-- <button cpn-margin="left" class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button> --}}
+						<a {{action "close"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
 						<h2 cpn-frame_heading>{{modalTitle}}</h2>
 					</div>
 				{{else}}
