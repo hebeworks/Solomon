@@ -11,6 +11,84 @@
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!-- stories/complete/council-spending --}}
         {{!-- END DEVELOPMENT STORIES --}}
+        
+        <div cpn-story="width-2 height-2">
+            
+            <div cpn-story_inner>
+                
+                <div cpn-story_face="front" cpn-bg-color="blue">
+                    <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
+                    
+                    <section cpn-story_content="front height-2 has-footer">
+                        
+                        <header cpn-story_header cpn-divide="bottom">
+                            <h2 cpn-story_title>Story 2.0</h2>
+                            <h3 cpn-story_desc>This is the new Story format</h3>
+                        </header>
+                        
+                        <main cpn-story_body>
+                            <h2 class="beta">STATEMENT OF ACCOUNTS 2014/15</h2>
+                            
+                            <ol>
+                                <li>The audit of the Statement of Accounts of Leeds City Council for the year ended 31st March 2015 has been completed.</li>
+                                <li>Any local government elector for Leeds City Council has a legal right to look at and make copies of the Statement of Accounts and the associated auditor’s report. This can be done between 8.30 am and 4.00 pm on any working day at the Corporate Financial Management office of the Civic Hall, via the Information Desk at Portland Crescent, Leeds, LS1 1UR.</li>
+                                <li>Any local government elector for Leeds City Council also has the right to ask for copies of the Statement of Accounts and auditor’s report to be delivered to him or her. The council is entitled to make a reasonable charge to cover the cost of doing this.</li>
+                                <li>The Statement of Accounts and the associated auditor’s report can also be viewed online by any
+                                    member of the public. <div><a href="http://www.leeds.gov.uk/council/Pages/our-financial-performance.aspx" cpn-button="move small" cpn-display="block" target="_blank">View accounts</a></div></li>
+                                <li>This is a statutory notice, as required by regulation 11 of the Accounts and Audit Regulations 2011.</li>
+                            </ol>
+                            
+                            <p>
+                                T Riordan
+                                <br>Chief Executive
+                                <br>Leeds City Council
+                                <br>Civic Hall
+                                <br>Leeds
+                                <br>LS1 1UR
+                                <br>16th October 2015
+                            </p>
+                        </main>
+                        
+                        <footer cpn-story_footer cpn-clearfix>
+                            <p cpn-story_author>Author: Ste Allan</p>
+                        </footer>
+                        
+                    </section>
+                    
+                </div>
+                
+                <div cpn-story_face="back">
+                    <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
+                    
+                    <section cpn-story_content="back height-2">
+                        <div cpn-divide="bottom light">
+                            <h4>Description</h4>
+                            <p>This is the long description text for this story.</p>
+                        </div>
+                        
+                        <div cpn-divide="bottom light">
+                            <h4>Licence / Attribution</h4>
+                            <p>This is the license for this story.</p>
+                        </div>
+                        
+                        <ul cpn-row-list>
+                            <li cpn-width="50%">
+                                <a href="#" cpn-button="move small" target="_blank">View data source</a>
+                            </li>
+                            <li cpn-width="50%">
+                                <a href="mailto:#" cpn-button="move small" target="_blank">Contact author</a>
+                            </li>
+                            <li cpn-width="100%">
+                                <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
