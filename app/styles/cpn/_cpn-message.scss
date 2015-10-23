@@ -1,4 +1,5 @@
-[cpn-message] {
+[cpn-message],
+%cpn-message {
 	&::before {
 		content: '';
 		display: inline-block;
@@ -6,7 +7,8 @@
 	}
 }
 
-[cpn-message="error"] {
+[cpn-message="error"],
+%cpn-message-error {
 	color: $red;
 	
 	&::before {

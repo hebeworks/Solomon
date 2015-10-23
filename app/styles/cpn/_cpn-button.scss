@@ -34,7 +34,8 @@
 }
 
 // Small buttons
-[cpn-button~="small"] {
+[cpn-button~="small"],
+%cpn-button-small {
     font-size: rem(12px);
     padding: rem(6.5px) rem($spacing-base / 2) rem(4px);
 }

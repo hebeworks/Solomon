@@ -1,0 +1,64 @@
+// Using id selectors to override plugin styles
+
+#doorbell {
+    &.doorbell-inline {
+        #doorbell-container {
+            width: auto;
+            margin: 0;
+        }
+    }
+    
+    #intro-text,
+    .checkbox {
+        margin-bottom: rem($spacing-base);
+    }
+    
+    form {
+        fieldset {
+            margin-bottom: rem($spacing-base);
+        }
+        
+        legend {
+            display: none;
+        }
+        
+        textarea {
+            @extend %textarea;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
+        input {
+            &[type="checkbox"] {
+                margin-top: rem(3px);
+            }
+            
+            &[type="email"] {
+                @extend %input-text;
+                box-sizing: border-box;
+            }
+        }
+    }
+    
+    label {
+        cursor: pointer;
+    }
+        
+    .buttons {
+        button {
+            @extend %cpn-button;
+            @extend %cpn-button-action;
+        }
+    }
+    
+    #doorbell-success,
+    #doorbell-error {
+        @extend %cpn-message;
+        text-align: left;
+        margin-bottom: rem($spacing-base);
+    }
+    
+    #doorbell-error {
+        @extend %cpn-message-error;
+    }
+}
