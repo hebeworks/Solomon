@@ -31,7 +31,6 @@
 @import "patterns/table";
 @import "patterns/creator";
 @import "patterns/search";
-@import "patterns/helper";
 @import "patterns/select2";
 @import "patterns/circle_indicator";
 @import "patterns/google_maps";
@@ -39,6 +38,7 @@
 @import "patterns/lists";
 @import "patterns/forms";
 @import 'patterns/svg-class';
+@import "patterns/helper"; // import this after other patterns so the classes in here can override other styles
 
 // ===== CPN (component attribute modules) ===== //
 // Full components

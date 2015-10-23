@@ -112,6 +112,7 @@
     	height: auto;
     	padding: rem($spacing-base) rem($spacing-base - 1px) rem($spacing-base - 3px);
     	min-width: 255px;
+        width: 100%;
         @include appearance(none);
     }
     

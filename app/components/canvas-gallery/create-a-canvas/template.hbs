@@ -3,69 +3,54 @@
 	{{/ui/generic-element}}
 	<h2 cpn-frame_heading>{{mainTitle}}</h2>
 </div>
+
+<div cpn-divide="bottom">
+	<p>
+		{{input value=title placeholder="Title"}}
+		{{#if canvas.errors.title}}
+			<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.title.message}}</div>
+		{{/if}}
+	</p>
 	
-<div class="drawer__inner">
-	<div class="create-a-canvas -form -admin">
-		
-		<div class="dotted-area -bottom -dark margin-bottom">
-			<div>
-				{{input value=title placeholder="Title" class="-full margin-bottom"}}
-				{{#if canvas.errors.title}}
-					<p class="message -error margin-bottom">{{canvas.errors.title.message}}</p>
-				{{/if}}
-			</div>
-			
-			<div>
-				{{textarea placeholder="Description" value=description class="-full margin-bottom"}}
-				{{#if canvas.errors.description}}
-					<p class="message -error margin-bottom">{{canvas.errors.description.message}}</p>
-				{{/if}}
-			</div>
-			
-			<div class="aligned-grid -middle">
-				<div class="margin-right">
-					{{ select-2
-						content=allCategories
-						value=categories
-						optionLabelPath="title"
-						placeholder="Choose a category"
-						multiple=true
-					}}
-				</div>
-				<div class="margin-right">
-					{{input value=author placeholder="Author Name" class="-full margin-bottom"}}
-					{{#if canvas.errors.author}}
-						<p class="message -error margin-bottom">{{canvas.errors.author.message}}</p>
-					{{/if}}
-				</div>
-				<div class="margin-right">
-					{{input value=twitter placeholder="Twitter Name" class="-full margin-bottom"}}
-					{{#if canvas.errors.twitter}}
-						<p class="message -error margin-bottom">{{canvas.errors.twitter.message}}</p>
-					{{/if}}
-				</div>
-			</div>
-
-			{{!-- {{ select-2
-				content=allStories
-				value=stories
+	<p>
+		{{textarea placeholder="Description" value=description}}
+		{{#if canvas.errors.description}}
+			<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.description.message}}</div>
+		{{/if}}
+	</p>
+	
+	<div cpn-row-list>
+		<div>
+			{{ select-2
+				content=allCategories
+				value=categories
 				optionLabelPath="title"
-				placeholder="Choose stories"
+				placeholder="Choose a category"
 				multiple=true
-			}} --}}
-			
-			{{#each canvas.errors.messages as |message|}}
-				<p class="message -error">
-					{{message}}
-				</p>
-			{{/each}}
+				class="margin-bottom-no"
+			}}
 		</div>
-		
-		{{yield}}
-		
-		<div class="cf">
-			<button class="btn -action float--right" {{action "save"}}>Save</button>
+		<div>
+			{{input value=author placeholder="Author Name"}}
+			{{#if canvas.errors.author}}
+				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.author.message}}</div>
+			{{/if}}
 		</div>
-
+		<div>
+			{{input value=twitter placeholder="Twitter Name"}}
+			{{#if canvas.errors.twitter}}
+				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.twitter.message}}</div>
+			{{/if}}
+		</div>
 	</div>
+	
+	{{#each canvas.errors.messages as |message|}}
+		<p cpn-message="error">{{message}}</p>
+	{{/each}}
 </div>
+
+{{yield}}
+
+<p cpn-display="inline-block">
+	<button cpn-button="action" {{action "save"}}>Save</button>
+</p>
