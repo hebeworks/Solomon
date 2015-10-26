@@ -1,61 +1,61 @@
-<div class="story__inner">
-    <div class="story__card -front {{if viewOnly 'js-drag-handle'}}">
-        {{!-- #unless viewOnly}}<a href="javascript:;" class="js-cogs icon icon-cogs svg-cogs" data-grunticon-embed>Settings</a>{{/unless --}}
+<div cpn-story_inner>
+    
+    <div cpn-story_face="front {{support3d}} {{storyFlip}}" cpn-bg-color="{{color}}">
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
         
-        <a href="javascript:;" class="js-cogs" spc-dot="front">Settings</a>
-        
-        <div class="story__content">
-            {{#if headerImage}}
-                <header class="story__header">
-                    <div class="header-img"><img src="{{headerImage}}" height="24"></div>
-                </header>
-            {{else if title}}
-                <header class="story__header">
-                    <h2 class="heading beta">{{title}}</h2>
-                    <h3 class="heading gamma">{{subTitle}}</h3>
-                </header>
-            {{/if}}
+        <section cpn-story_content="front {{usableHeight}} {{hasFooter}}">
             
-        	{{yield}}
+            <header cpn-story_header cpn-divide="bottom">
+                {{#if headerImage}}
+                    <img src="{{headerImage}}" height="24">
+                {{else if title}}
+                    <h2 cpn-story_title>{{title}}</h2>
+                    <h3 cpn-story_desc>{{subTitle}}</h3>
+                {{/if}}
+            </header>
+            
+            <main cpn-story_body>
+                {{yield}}
+            </main>
             
             {{#unless viewOnly}}
-                <footer class="story__footer gamma">
+                <footer cpn-story_footer cpn-clearfix>
                     {{#if author}}
-                            <div class="author">Author: {{author}}</div>
+                    <p cpn-story_author>Author: {{author}}</p>
                     {{else if authorImage}}
-                            <div class="author author-img"><img src="{{authorImage}}" height="17"></div>
+                    <img src="{{authorImage}}" height="17">
                     {{/if}}
                 </footer>
             {{/unless}}
-        </div>
+            
+        </section>
+        
     </div>
-
-    <div class="story__card -back">
-        {{!-- <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a> --}}
-        <a href="javascript:;" class="js-cogs" spc-dot="back">Story</a>
-        <div class="story__content">
+    
+    <div cpn-story_face="back {{support3d}} {{storyFlip}}">
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
+        
+        <section cpn-story_content="back {{usableHeight}}">
             {{#if viewOnly}}
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
+                <div cpn-divide="bottom light">
+                    <h4 cpn-margin="bottom-none">Description</h4>
+                    {{#if description}}
+                        <p>{{description}}</p>
+                    {{else}}
+                        <p>This story has no description.</p>
+                    {{/if}}
+                </div>
                 
-                {{#if configFields}}
-                    {{#each configFields as |field|}}
-                        {{input type=field.type value=field.value placeholder=field.placeholder}}
-                    {{/each}}
-                {{/if}}
-                
-                {{#if description}}
-                    <div cpn-divide="bottom light">
-                        <h2 class="beta">Description</h2>
-                        <p class="story__para">{{description}}</p>
-                    </div>
-                {{/if}}
-                {{#if license}}
-                    <div cpn-divide="bottom light">
-                        <h2 class="beta">Licence / Attribution</h2>
-                        <p class="story__para">{{{license}}}</p>
-                    </div>
-                {{/if}}
+                <div cpn-divide="bottom light">
+                    <h4 cpn-margin="bottom-none">Licence / Attribution</h4>
+                    {{#if license}}
+                        <p>{{license}}</p>
+                    {{else}}
+                        <p>This story has no license.</p>
+                    {{/if}}
+                </div>
                 
                 <ul cpn-row-list>
                     <li cpn-width="50%">
@@ -69,6 +69,8 @@
                     </li>
                 </ul>
             {{/if}}
-        </div>
+        </section>
+        
     </div>
+    
 </div>
