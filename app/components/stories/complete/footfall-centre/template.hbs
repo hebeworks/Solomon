@@ -13,9 +13,10 @@
     author="Simon Zimmerman"
 }}
 <main class="footfall-centre">
-    <div class="dotted-area -top -bottom pad-top-half pad-bottom-half">
-        <p class="story__para">Figures for the week commencing {{item.weekStarts}} and ending {{item.weekEnds}}.</p>
+    <div cpn-divide="bottom light" cpn-padding="bottom-none">
+        <p cpn-margin="bottom-half" class="story__para">Figures for the week commencing {{item.weekStarts}} and ending {{item.weekEnds}}.</p>
     </div>
+
     <div class="circle-indicator -large">
         <div class="svg-circle-indicator -green" data-grunticon-embed></div>
         <div class="circle-indicator-ring -large">
@@ -28,17 +29,23 @@
         </div>
     </div>
     <aside class="circle-indicator-stats">
-        <div class="dotted-area -bottom pad-bottom circle-indicator-stat">
-            <p class="circle-indicator-stat__text">Previous week<br /><span class="circle-indicator-stat__stat {{item.previousWeekComparisonIndicator}}">{{item.previousWeekComparison}}%</span> <i class="svg-up-down-arrow {{item.previousWeekComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
+        <div cpn-clearfix cpn-divide="bottom light" cpn-padding="bottom-none" cpn-margin="bottom-half">
+            <div class="circle-indicator-stat">
+                <p cpn-margin="bottom-half" class="circle-indicator-stat__text">Previous week<br /><span class="circle-indicator-stat__stat {{item.previousWeekComparisonIndicator}}">{{item.previousWeekComparison}}%</span> <i class="svg-up-down-arrow {{item.previousWeekComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
+            </div>
         </div>
-        <div class="dotted-area -bottom pad-top pad-bottom circle-indicator-stat">
-            <p class="circle-indicator-stat__text">Same week in 2014<br /><span class="circle-indicator-stat__stat {{item.sameWeekPreviousYearComparisonIndicator}}">{{item.sameWeekPreviousYearComparison}}%</span> <i class="svg-up-down-arrow {{item.sameWeekPreviousYearComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
+        <div cpn-clearfix cpn-divide="bottom light" cpn-padding="bottom-none" cpn-margin="bottom-half">
+            <div class="circle-indicator-stat">
+                <p cpn-margin="bottom-half" class="circle-indicator-stat__text">Same week in 2014<br /><span class="circle-indicator-stat__stat {{item.sameWeekPreviousYearComparisonIndicator}}">{{item.sameWeekPreviousYearComparison}}%</span> <i class="svg-up-down-arrow {{item.sameWeekPreviousYearComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
+            </div>
         </div>
-            <div class="dotted-area -bottom pad-top pad-bottom circle-indicator-stat">
-            <p class="circle-indicator-stat__text">Same week in 2013<br /><span class="circle-indicator-stat__stat {{item.sameWeekPreviousYear2ComparisonIndicator}}">{{item.sameWeekPreviousYear2Comparison}}%</span> <i class="svg-up-down-arrow {{item.sameWeekPreviousYear2ComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
-        </div>
-            <div class="dotted-area pad-top circle-indicator-stat">
-            <p class="circle-indicator-stat__text">2015 Weekly Average<br /><span class="circle-indicator-stat__stat {{item.weeklyAverageComparisonIndicator}}">{{item.weeklyAverageComparison}}%</span> <i class="svg-up-down-arrow {{item.weeklyAverageComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
+        <div cpn-clearfix cpn-divide="bottom light" cpn-padding="bottom-none" cpn-margin="bottom-half">
+            <div class="circle-indicator-stat">
+                <p cpn-margin="bottom-half" class="circle-indicator-stat__text">Same week in 2013<br /><span class="circle-indicator-stat__stat {{item.sameWeekPreviousYear2ComparisonIndicator}}">{{item.sameWeekPreviousYear2Comparison}}%</span> <i class="svg-up-down-arrow {{item.sameWeekPreviousYear2ComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
+            </div>
+        </div>    
+        <div cpn-clearfix class="circle-indicator-stat">
+            <p cpn-margin="bottom-none" class="circle-indicator-stat__text">2015 Weekly Average<br /><span class="circle-indicator-stat__stat {{item.weeklyAverageComparisonIndicator}}">{{item.weeklyAverageComparison}}%</span> <i class="svg-up-down-arrow {{item.weeklyAverageComparisonArrow}}" data-grunticon-embed>Up or Down arrow icon</i></p>
         </div>
     </aside>
 
