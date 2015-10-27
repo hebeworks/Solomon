@@ -207,7 +207,7 @@ export default Ember.Controller.extend({
             .then(
                 function () {
                     var model = obj.get('model');
-                    debugger;
+                    // debugger;
                     model.save().then(function (response) {
                         console.log('saved canvas state');
                     })

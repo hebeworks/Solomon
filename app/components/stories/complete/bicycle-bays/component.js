@@ -18,8 +18,10 @@ export default DatamillStory.extend({
         this.set('title', 'Bicycle Bays');
         this.set('subTitle', 'In the city centre');
         var obj = this;
-
-        this.getData(this.get('datamillUrl') + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0')
+        var dataMillDataAPI = this.get('dataMillDataAPI');
+        var url = dataMillDataAPI + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0';
+        console.log('bicycle url: ' + url);
+        this.getData(url)
             .then(function (data) {
                 var items = [];
                 data.result.records.forEach((tmpItem) => {
@@ -33,7 +35,7 @@ export default DatamillStory.extend({
                         type: tmpItem.Type,
                         colour: tmpItem.Colour
                     };
-    
+
                     items.push(item);
                 });
                 obj.set('items', items);
@@ -41,10 +43,10 @@ export default DatamillStory.extend({
                     obj.set('loaded', true);
                 });
             },
-            function(error){
-                // debugger;
-                console.log('ajax error:' + error);
-            });
+                function (error) {
+                    // debugger;
+                    console.log('ajax error:' + error);
+                });
     },
 
     setupMarkers: function () {

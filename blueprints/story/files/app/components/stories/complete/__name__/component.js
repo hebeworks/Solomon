@@ -10,7 +10,7 @@ export default DatamillStory.extend({
         var obj = this;
         // datamillUrl is a property containing the url for Leeds Data Mill
             // inherited from story-types/datamill-story
-        var url = this.get('datamillUrl') + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0';
+        var url = this.get('dataMillDataAPI') + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0';
         // getData is a function inherited from 
             // story-types/default-story (which story-types/datamill-story extends)
             // it provides an easy way to make AJAX requests

@@ -9,7 +9,8 @@ export default DatamillStory.extend({
         this.set('title', 'LCC Contact Centre Enquiries');
         this.set('subTitle', 'Enquiries dealt with by Leeds City Council');
         var obj = this;
-        this.getData(this.get('datamillUrl') + '/api/3/action/package_show?id=customer-services-contact-enquiries')
+        var dataMillCatAPI = this.get('dataMillCatAPI');
+        this.getData(dataMillCatAPI + '/api/3/action/package_show?id=customer-services-contact-enquiries')
             .then(function (data) {
             var resources = [];
             data.result.resources.forEach(function (item) {
@@ -37,7 +38,8 @@ export default DatamillStory.extend({
 
     fetchMonth: function () {
         var obj = this;
-        this.getData('http://hebenodeapi.azurewebsites.net/lccenquiries?id=' + this.get('selectedMonth.id'))
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/lccenquiries?id=' + this.get('selectedMonth.id'))
             .then(function (month) {
                 
                 obj.set('totalEnquiries', month.allItemTotals);

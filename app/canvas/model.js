@@ -5,6 +5,7 @@ var canvas = DS.Model.extend({
 	title: DS.attr('string'),
 	description: DS.attr('string'),
 	shortcode: DS.attr('string'),
+	friendlyURL: DS.attr('string'),
 	categories: DS.hasMany('category', { async: true }),
 	userID: DS.attr('string'),
 	storiesJSON: DS.attr('string'),
