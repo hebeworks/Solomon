@@ -5,11 +5,15 @@ export default Ember.Component.extend({
     color: '',
     width: '',
     height: '',
+    headerImage: '',
     support3d: '',
     storyFlip: 'not-flipped',
+    title: '',
     
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
     
+    // Turn the provided height and width settings
+    // into the attribute values we need.
     usableHeight: Ember.computed(function() {
         return 'height-' + this.height;
     }),
@@ -18,15 +22,36 @@ export default Ember.Component.extend({
         return 'width-' + this.width;
     }),
     
+    // Pass the width and height settings
+    // into the story component.
     'cpn-story': Ember.computed(function() {
         return 'width-' + this.width + ' ' + 'height-' + this.height;
     }),
     
+    // Tell the story component if there is a header.
+    hasHeader: Ember.computed(function() {
+        if (this.headerImage != '' || this.title != '') {
+            return 'has-header';
+        } else {
+            return '';
+        }
+    }),
+    
+    // Tell the story component if there is a footer.
     hasFooter: Ember.computed(function() {
         if (this.viewOnly) {
             return '';
         } else {
             return 'has-footer';
+        }
+    }),
+    
+    // We only want a dividing line under the header on larger stories.
+    hasHeaderDivide: Ember.computed(function() {
+        if (this.height == 1) {
+            return '';
+        } else {
+            return 'cpn-divide="bottom"';
         }
     }),
     

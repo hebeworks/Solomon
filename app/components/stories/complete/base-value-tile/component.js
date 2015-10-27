@@ -4,7 +4,7 @@ import DatamillStory from './../../story-types/datamill-story/component';
 export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
-    color: '-white',
+    color: 'white',
     tileValue: 'Value',
     tileDesc1: 'Description 1',
     tileDesc2: 'Description 2',

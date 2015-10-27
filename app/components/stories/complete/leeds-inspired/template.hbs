@@ -1,9 +1,9 @@
 {{#stories/story-base 
     title="Leeds Inspired" 
     subTitle="Music & art events around Leeds." 
-    color="-white" 
-    width="-w2" 
-    height="-h2" 
+    color="white" 
+    width=width 
+    height="2" 
     data-ss-colspan="2"
     dataSourceUrl="http://api.leedsinspired.co.uk"
     feedbackEmail="nathan@hebeworks.com"
@@ -13,7 +13,7 @@
     }}
     {{#stories/story-slider loaded=loaded}}
         {{#each item in items}}
-            {{#stories/story-slide}}
+            {{#stories/story-slide width=width}}
             <main class="leeds-inspired-event">
                 <h2 class="leeds-inspired-event__heading"><a href="http://www.leedsinspired.co.uk" target="_blank">{{item.title}}</a></h2>
                                 

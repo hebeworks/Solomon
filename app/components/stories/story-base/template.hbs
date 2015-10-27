@@ -3,18 +3,21 @@
     <div cpn-story_face="front {{support3d}} {{storyFlip}}" cpn-bg-color="{{color}}">
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
         
-        <section cpn-story_content="front {{usableHeight}} {{hasFooter}}">
+        <section cpn-story_content="front {{usableHeight}} {{hasHeader}} {{hasFooter}}">
             
-            <header cpn-story_header cpn-divide="bottom">
-                {{#if headerImage}}
+            
+            {{#if headerImage}}
+                <header cpn-story_header {{hasHeaderDivide}}>
                     <img src="{{headerImage}}" height="24">
-                {{else if title}}
+                </header>
+            {{else if title}}
+                <header cpn-story_header {{hasHeaderDivide}}>
                     <h2 cpn-story_title>{{title}}</h2>
                     <h3 cpn-story_desc>{{subTitle}}</h3>
-                {{/if}}
-            </header>
+                </header>
+            {{/if}}
             
-            <main cpn-story_body>
+            <main cpn-story_body="{{hasHeader}} {{usableHeight}}">
                 {{yield}}
             </main>
             

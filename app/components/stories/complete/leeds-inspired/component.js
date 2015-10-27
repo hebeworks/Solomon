@@ -5,6 +5,8 @@ export default DefaultStory.extend({
 
     tagName: 'div',
     loaded: false,
+    width: 2,
+    
     didInsertElement: function () {
         this.set('title', 'Leeds Inspired');
         var obj = this;

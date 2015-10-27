@@ -31,9 +31,9 @@
   var stack1, helperMissing=helpers.helperMissing, buffer = "";
   stack1 = ((((stack1 = (depth0 && depth0.stories)) && stack1['story-base']) || helperMissing).call(depth0, {"name":"stories/story-base","hash":{
     'data-ss-colspan': ("2"),
-    'height': ("-h2"),
-    'width': ("-w2"),
-    'color': ("-white"),
+    'height': ("2"),
+    'width': ("2"),
+    'color': ("white"),
     'subTitle': ((depth0 != null ? depth0.subTitle : depth0)),
     'title': ((depth0 != null ? depth0.title : depth0))
   },"fn":this.program(1, data),"inverse":this.noop,"data":data}));

@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'div',
     className: 'story__carousel-wrapper',
+    attributeBindings: 'cpn-story_carousel',
+    'cpn-story_carousel': '',
     loaded: false,
     loadedChanged: function () {
         if (this.loaded) {
@@ -13,7 +15,7 @@ export default Ember.Component.extend({
 
         var $el = Ember.$(this.get('element')).find('.js-story-carousel'),
             $storyPaginationControls = Ember.$(this.get('element')).find('.js-story-pagination-controls'),
-            $storyFooter = $storyPaginationControls.appendTo($el.closest('.story__content').find('.story__footer')),
+            $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_footer]')),
             $pageCounter = $storyFooter.find('.pg-of'),
             $pager = $storyFooter.find('.carousel-pager');
 
