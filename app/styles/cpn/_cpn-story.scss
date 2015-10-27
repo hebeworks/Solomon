@@ -179,6 +179,10 @@
                     }
                 }
                 
+                    [cpn-story_carousel-item] {
+                        float: left;
+                    }
+                
                     [cpn-story_carousel-item~="width-2"] {
                         width: rem(290px);
                     }
@@ -193,7 +197,6 @@
                     text-align: left;
                     font-size: rem(11px);
                     line-height: 1.182;
-                    border-top: 1px dotted #000;
                 }
                 
                     [cpn-story_author] {

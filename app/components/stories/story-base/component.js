@@ -10,6 +10,17 @@ export default Ember.Component.extend({
     storyFlip: 'not-flipped',
     title: '',
     
+    darkColours: ['black', 'yellow', 'light-blue', 'lighter-blue', 'lime', 'red'],
+    
+    lineShade: Ember.computed(function() {
+        if($.inArray(this.color, this.darkColours) !== -1) {
+            return 'light';
+            
+        } else {
+            return 'dark';
+        }
+    }),
+    
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
     
     // Turn the provided height and width settings
@@ -48,10 +59,12 @@ export default Ember.Component.extend({
     
     // We only want a dividing line under the header on larger stories.
     hasHeaderDivide: Ember.computed(function() {
+        var obj = this;
+        
         if (this.height == 1) {
             return '';
         } else {
-            return 'cpn-divide="bottom"';
+            return 'cpn-divide="bottom ' + this.get('lineShade') + '"';
         }
     }),
     
