@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     storyFlip: 'not-flipped',
     title: '',
     
-    darkColours: ['black', 'yellow', 'light-blue', 'lighter-blue', 'lime', 'red'],
+    darkColours: ['black', 'yellow', 'dark-blue', 'light-blue', 'lighter-blue', 'lime', 'red'],
     
     lineShade: Ember.computed(function() {
         if($.inArray(this.color, this.darkColours) !== -1) {

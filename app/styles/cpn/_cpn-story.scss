@@ -171,6 +171,10 @@
                     height: 100%;
                     overflow-x: hidden;
                     overflow-y: auto;
+                    margin-right: rem(-$spacing-base);
+                    margin-left: rem(-$spacing-base);
+                    padding-right: rem($spacing-base);
+                    padding-left: rem($spacing-base);
                 }
                 
                 [cpn-story_body~="has-header"] {
