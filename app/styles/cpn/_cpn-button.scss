@@ -72,7 +72,7 @@
 
 // Ghost button styles. These look like buttons but are intended for static informational tags
 [cpn-button~="ghost"],
-%cpn-button-move {
+%cpn-button-ghost {
     background-color: transparent;
     color: $dark-grey;
     
@@ -93,6 +93,22 @@
     &, &:hover, &:focus {
         background-color: $lime;
         color: #fff;
+    }
+}
+
+[cpn-button~="bright"],
+%cpn-button-bright {
+    color: $blue;
+    background-color: #fff;
+    
+    &:hover, &:focus {
+        background-color: #fff;
+        color: lighten($blue, 5%);
+    }
+    
+    &:active {
+        background-color: #fff;
+        color: darken($blue, 5%);
     }
 }
 
