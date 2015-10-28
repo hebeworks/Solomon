@@ -6,8 +6,14 @@ import dashComponentBase from 'hebe-dash/mixins/dash-component-base';
 
 export default Ember.Component.extend(dashComponentBase, {
 	onInit: function () {
+		var dataMillCatAPI = this.get('Config').dataMillCatAPI.ensureNoEndingString('/');
+		var dataMillDataAPI = this.get('Config').dataMillDataAPI.ensureNoEndingString('/');
 		var hebeNodeAPI = this.get('Config').hebeNodeAPI.ensureNoEndingString('/');
-		this.set("hebeNodeAPI",hebeNodeAPI);
+		this.setProperties({
+			dataMillCatAPI: dataMillCatAPI,
+			dataMillDataAPI: dataMillDataAPI,
+			hebeNodeAPI: hebeNodeAPI
+		});
 	}.on('init')
 });
 

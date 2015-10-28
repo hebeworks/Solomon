@@ -184,6 +184,7 @@ module.exports = function (environment) {
     // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW 
 
     ENV.APP.dashAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
+    ENV.APP.hebeNodeAPI = 'http://localhost:3000';
   }
 
   if (environment === 'test') {

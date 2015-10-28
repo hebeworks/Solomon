@@ -10,7 +10,9 @@
     
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{stories/complete/lcc-enquiries}}
-        {{!-- END DEVELOPMENT STORIES --}}
+            {{stories/complete/council-spending}}
+            {{stories/complete/council-spending-year-line}}
+        {{!-- END DEVELOPMENT STORIES 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -20,6 +22,7 @@
         {{else}}
             <p>Sorry we couldn't load this canvas. Please try another from the Gallery.</p>
         {{/if}}
+        --}}
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">
