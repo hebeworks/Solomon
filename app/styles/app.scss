@@ -1,32 +1,24 @@
-/* -- Bourbon -- */
+// ===== Library Imports ===== //
+// Bourbon
 @import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
-
-/* -- Breakpoint SASS - https://github.com/at-import/breakpoint -- */
+// Breakpoint SASS - https://github.com/at-import/breakpoint
 @import '../../bower_components/breakpoint-sass/stylesheets/breakpoint';
-
 // CSS Normalize
 @import '../../bower_components/inuit-normalize.css/generic.normalize';
-
-/* -- media-include - http://include-media.com -- */
+// media-include - http://include-media.com
 @import '../../bower_components/include-media/dist/_include-media.scss';
 
-/* -- Hybrid -- */
-@import "hybrid/hybrid";
+// ===== Helpers ===== //
+@import "helpers/settings";
+@import "helpers/functions";
+@import "helpers/mixins";
 
+// ===== Base ===== //
+// @import "base/reset";
+@import "base/styleguide";
 
-/* -- Variables -- */
-@import "vars";
-
-/* -- data uri svg icons -- */
+// ===== Patterns (these are being replaced by CPN) ===== //
 @import "patterns/svg-datauri";
-
-/* -- Base -- */
-@import "base/template";
-
-/* -- Stories, whilst components, contains generic styles so included earlier -- */
-@import "components/story";
-
-/* -- Patterns -- */
 @import "patterns/custom_fonts";
 @import "patterns/headings";
 @import "patterns/typography";
@@ -39,7 +31,6 @@
 @import "patterns/table";
 @import "patterns/creator";
 @import "patterns/search";
-@import "patterns/helper";
 @import "patterns/select2";
 @import "patterns/circle_indicator";
 @import "patterns/google_maps";
@@ -47,8 +38,10 @@
 @import "patterns/lists";
 @import "patterns/forms";
 @import 'patterns/svg-class';
+@import "patterns/helper"; // import this after other patterns so the classes in here can override other styles
 
-/* -- CPN (component attribute modules) --*/
+// ===== CPN (component attribute modules) ===== //
+// Full components
 @import 'cpn/cpn-button';
 @import 'cpn/cpn-row-list';
 @import 'cpn/cpn-divide';
@@ -60,7 +53,7 @@
 @import 'cpn/cpn-thumb-list';
 @import 'cpn/cpn-frame';
 @import 'cpn/cpn-message';
-
+// Overriding components
 @import 'cpn/cpn-overflow';
 @import 'cpn/cpn-table';
 @import 'cpn/cpn-margin';
@@ -72,7 +65,8 @@
 @import 'cpn/cpn-float';
 @import 'cpn/cpn-clearfix';
 
-/* -- Components -- */
+// ===== Components ===== //
+@import "components/story";
 @import "components/drawer";
 @import "components/canvas";
 @import "components/story-meta";
@@ -80,10 +74,13 @@
 @import "components/stat-notices";
 @import "components/number_stat";
 @import "components/modal";
-@import 'components/canvas-gallery';
-@import 'components/chartist/chartist-dash';
+@import "components/canvas-gallery";
 
-// Stories 
+// ===== Vendor ===== //
+@import "vendor/chartist/chartist-dash";
+@import "vendor/doorbell/doorbell";
+
+// ===== Stories ===== //
 @import "components/stories/calendar";
 @import "components/stories/carousel";
 @import "components/stories/carpark-spaces";
@@ -105,20 +102,15 @@
 @import "components/stories/sunrise-sunset";
 @import "components/stories/twitter-feed";
 @import "components/stories/weather-report";
-@import 'components/stories/weather-forecast';
-@import 'components/stories/find-my-bin-day';
-@import 'components/stories/compare-water-quality';
-@import 'components/stories/leeds-air-quality-trends';
-@import 'components/stories/statutory-accounts';
-@import 'components/stories/base-value-tile';
-@import 'components/stories/base-rag-tile';
+@import "components/stories/weather-forecast";
+@import "components/stories/find-my-bin-day";
+@import "components/stories/compare-water-quality";
+@import "components/stories/leeds-air-quality-trends";
+@import "components/stories/statutory-accounts";
+@import "components/stories/base-value-tile";
+@import "components/stories/base-rag-tile";
 
 /* START auto-generated stories */
 @import "components/stories/stat-notices-recent";
 @import "components/stories/stat-notices-summary";
 /* END auto-generated stories */
-
-
-//
-///* -- C3 -- */
-//@import '../../bower_components/c3/c3.css';

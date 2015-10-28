@@ -3,3 +3,12 @@
     font-family: $helvneuemed;
     margin-bottom: rem($spacing-base);
 }
+
+[cpn-frame_close] {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
+    margin-top: rem(3px);
+    cursor: pointer;
+}

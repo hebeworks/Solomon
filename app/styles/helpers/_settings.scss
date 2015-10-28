@@ -63,3 +63,14 @@ $helper-spacing: 10px;
 
 // Spacing
 $spacing-base: 10px;
+
+// Copied in from hybrid/vars
+$base-font-size: 16px!default;
+$base-line-height: 24px!default;
+
+$line-height-ratio: $base-line-height / $base-font-size;
+
+$base-font-family:  sans-serif!default;
+
+$base-spacing-unit: $base-line-height!default;
+$half-spacing-unit: $base-spacing-unit / 2!default;

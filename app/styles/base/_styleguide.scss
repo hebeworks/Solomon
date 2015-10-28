@@ -1,0 +1,229 @@
+* {
+    &, &::before, &::after {
+        @include box-sizing(inherit);
+    }
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    @include box-sizing(border-box);
+    overflow-y: auto;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: $helvneue;
+    font-size: rem(15px);
+    line-height: 1.5;
+    
+    > .ember-view {
+        height:100%;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .liquid-container, .liquid-child {
+        height:100%;
+    }
+    
+    &.-story-meta {
+
+        .story-meta {
+            @include transform(translateX(0));
+        }
+
+        &.-bottom-drawer-half {
+            .drawer {
+                &.-bottom {
+                    @include transform(translate(-100%, 40%));
+                }
+            }
+        }
+
+        &.-bottom-drawer-full {
+            .drawer {
+                &.-bottom {
+                    @include transform(translate(-100%, 0));
+                }
+            }
+        }
+    }
+}
+
+h1, h2, h3, h4, h5, h6,
+p, table, ul, ol {
+    margin-top: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    font-weight: normal;
+    font-family: $helvneuemed;
+    margin-bottom: rem($spacing-base / 2);
+}
+
+p, table, ul, ol {
+    margin-bottom: rem($spacing-base);
+}
+
+strong {
+    font: {
+        style: normal;
+        family: $helvneuemed;
+    }
+}
+
+a {
+    color: #000;
+}
+
+/* -- Wrapper for Dashboard slide */
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    @include transition(transform .3s);
+    
+    &.-dashboard {
+        @include transform(translateX(-100%));
+        &.-open {
+            @include transform(translateX(0));
+        }
+    }
+    &.-gallery {
+        @include transform(translateX(100%));
+
+        &.-open {
+            @include transform(translateX(0));
+        }
+    }
+}
+
+/* -- Site content -- */
+.site-header {
+    width: 100%;
+    height: 100px;
+    position: absolute; // IE10
+//  position: fixed;
+    top: 0;
+    left: 0;
+    background: {
+        color: #fff;
+    }
+    z-index: 3;
+}
+    .site-header__inner {
+        width: 100%;
+        height: 100px;
+        background: {
+            color: #fff;
+        }
+        position: absolute;
+        z-index: 2; // Top drawer sits just underneath at z-index 1
+    }
+        .site-logo {
+            width: 260px;
+            height: 61px;
+            display: block;
+            margin: {
+                top: 19px;
+                left: 40px;
+            }
+            position: relative;
+            z-index: 2;
+            text-indent: -99999px;
+            svg {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            
+            &.-thin {
+                display:none;
+                width:60px;
+            }
+            
+            @include breakpoint(max-width 700px) {
+                &.-wide {
+                    display:none;
+                }
+                
+                &.-thin {
+                    display: block;
+                    svg {
+                        width:47px;
+                        height:60px;
+                    }
+                }
+            }
+        }
+        // .site-nav in ../patterns/navigation
+
+.site-body,
+%site-body {
+    position: relative;
+    width: 100%;
+    @include calc(height, "100% - 100px");
+    top: 100px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: #f7f7f7;
+    z-index: 1;
+    // -webkit-overflow-scrolling: touch;
+    
+    &.add-a {
+        top:0px;
+        height:100%;
+    }
+    
+    .content {
+        &.-centered {
+            margin: {
+                left:auto;
+                right:auto;
+            }
+            
+            width:40%;
+        }
+    }
+    
+    &.-background__city {
+        background: {
+            image: url(/assets/img/gallery-body-bg-holding.jpg);
+            repeat: no-repeat;
+            position: center bottom;
+            size: cover;
+        }
+    }
+}
+
+.caroufredsel_wrapper {
+    cursor: ew-resize !important;
+}
+.gallery-body {
+    @extend %site-body;
+    padding: 30px 40px;
+    overflow-y: scroll;
+    
+    .btn-list {
+        .btn {
+            &.-create {
+                @include breakpoint(max-width 665px) {
+                    float: none;
+                }
+            }
+        }
+    }
+}
