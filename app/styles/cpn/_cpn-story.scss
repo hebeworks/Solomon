@@ -165,6 +165,12 @@
                     [cpn-story_desc] {
                         font-size: rem(11px);
                         line-height: 1.1818181818; // 13//11
+                        
+                        a {
+                            [cpn-story_face~="back"] & {
+                                color: #fff;
+                            }
+                        }
                     }
                     
                 [cpn-story_body] {

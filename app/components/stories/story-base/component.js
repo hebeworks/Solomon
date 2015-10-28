@@ -9,17 +9,8 @@ export default Ember.Component.extend({
     support3d: '',
     storyFlip: 'not-flipped',
     title: '',
-    
-    darkColours: ['black', 'yellow', 'dark-blue', 'light-blue', 'lighter-blue', 'lime', 'red'],
-    
-    lineShade: Ember.computed(function() {
-        if($.inArray(this.color, this.darkColours) !== -1) {
-            return 'light';
-            
-        } else {
-            return 'dark';
-        }
-    }),
+    description: '',
+    license: '',
     
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
     
@@ -65,6 +56,26 @@ export default Ember.Component.extend({
             return '';
         } else {
             return 'cpn-divide="bottom ' + this.get('lineShade') + '"';
+        }
+    }),
+    
+    // Allow HTML, such as links, to be passed into the description and license.
+    usableDescription: Ember.computed(function() {
+        return new Ember.Handlebars.SafeString(this.get('description'));
+    }),
+    
+    usableLicense: Ember.computed(function() {
+        return new Ember.Handlebars.SafeString(this.get('license'));
+    }),
+    
+    // Change the shade of the dotted lines based on the story colour.
+    darkColours: ['black', 'yellow', 'dark-blue', 'light-blue', 'lighter-blue', 'lime', 'red'],
+    lineShade: Ember.computed(function() {
+        if($.inArray(this.color, this.darkColours) !== -1) {
+            return 'light';
+            
+        } else {
+            return 'dark';
         }
     }),
     

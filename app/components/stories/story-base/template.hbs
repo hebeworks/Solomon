@@ -43,20 +43,20 @@
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
                 <div cpn-divide="bottom light">
-                    <h4 cpn-margin="bottom-none">Description</h4>
+                    <h3 cpn-story_title cpn-margin="bottom-none">Description</h3>
                     {{#if description}}
-                        <p>{{description}}</p>
+                        <p cpn-story_desc>{{usableDescription}}</p>
                     {{else}}
-                        <p>This story has no description.</p>
+                        <p cpn-story_desc>This story has no description.</p>
                     {{/if}}
                 </div>
                 
                 <div cpn-divide="bottom light">
-                    <h4 cpn-margin="bottom-none">Licence / Attribution</h4>
+                    <h3 cpn-story_title cpn-margin="bottom-none">Licence / Attribution</h3>
                     {{#if license}}
-                        <p>{{license}}</p>
+                        <p cpn-story_desc>{{usableLicense}}</p>
                     {{else}}
-                        <p>This story has no license.</p>
+                        <p cpn-story_desc>This story has no license.</p>
                     {{/if}}
                 </div>
                 
