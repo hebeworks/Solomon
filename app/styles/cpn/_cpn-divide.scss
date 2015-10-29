@@ -33,3 +33,8 @@
 %cpn-divide-light {
     border-color: #fff;
 }
+
+[cpn-divide~="solid"],
+%cpn-divide-solid {
+    border-style: solid;
+}

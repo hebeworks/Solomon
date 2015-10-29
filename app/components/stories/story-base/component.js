@@ -56,7 +56,7 @@ export default Ember.Component.extend({
         if (this.height == 1) {
             return '';
         } else {
-            return 'cpn-divide="bottom ' + this.get('lineShade') + '"';
+            return 'cpn-divide="bottom solid ' + this.get('lineShade') + '"';
         }
     }),
     
