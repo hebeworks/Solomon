@@ -88,6 +88,7 @@ export default Ember.Controller.extend({
 		// Drawer.closeBottom();
 		this.set('canvasBlurred', true);
 		this.set('topOpen', true);
+		$('.js-open-toolbox').addClass('-selected');
 	},
 
 	closeToolbox: function () {
@@ -96,6 +97,7 @@ export default Ember.Controller.extend({
 		// Drawer.closeBottom();
 		this.set('canvasBlurred', false);
 		this.set('topOpen', false);
+		$('.js-open-toolbox').removeClass('-selected');
 	},
 
 	toggleToolbox: function () {
