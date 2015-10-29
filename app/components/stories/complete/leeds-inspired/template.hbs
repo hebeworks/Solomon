@@ -3,7 +3,8 @@
     subTitle="Music & art events around Leeds." 
     color="white" 
     width=width 
-    height="2" 
+    height="2"
+    slider=true
     data-ss-colspan="2"
     dataSourceUrl="http://api.leedsinspired.co.uk"
     feedbackEmail="nathan@hebeworks.com"
@@ -13,8 +14,22 @@
     }}
     {{#stories/story-slider loaded=loaded}}
         {{#each item in items}}
-            {{#stories/story-slide width=width}}
-            <main class="leeds-inspired-event">
+            {{#stories/story-slide}}
+                <div cpn-divide="bottom">
+                    <h2 spc-lds-inspd_title>
+                        <a href="http://www.leedsinspired.co.uk" target="_blank">{{item.title}}</a>
+                    </h2>
+                </div>
+                
+                <time spc-lds-inspd_datetime>{{item.date}}</time>
+                <em spc-lds-inspd_place>{{item.place}}</em>
+                
+                <div cpn-clearfix>
+                    <img spc-lds-inspd_image src="{{item.thumbnail}}" alt="{{item.title}}" />
+                    <p spc-lds-inspd_desc>{{item.description}}</p>
+                </div>
+            
+            {{!-- <main class="leeds-inspired-event">
                 <h2 class="leeds-inspired-event__heading"><a href="http://www.leedsinspired.co.uk" target="_blank">{{item.title}}</a></h2>
                                 
                 <div class="leeds-inspired-event__details">
@@ -31,7 +46,7 @@
                     </div>
                 </div>
 
-            </main>
+            </main> --}}
             {{/stories/story-slide}}
         {{/each}}
     {{/stories/story-slider}}

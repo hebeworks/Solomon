@@ -14,16 +14,20 @@ export default Ember.Component.extend({
     }.observes('loaded'),
     renderCarousel: function () {
 
-        var $el = Ember.$(this.get('element')).find('.js-story-carousel'),
+        var $el = Ember.$(this.get('element')).find('[cpn-story_carousel-list]'),
             $storyPaginationControls = Ember.$(this.get('element')).find('.js-story-pagination-controls'),
             $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_footer]')),
             $pageCounter = $storyFooter.find('.pg-of'),
-            $pager = $storyFooter.find('.carousel-pager');
+            $pager = $storyFooter.find('.carousel-pager'),
+            carouselHeight = '',
+            obj = this;
 
         $pageCounter.find('.pg-of__y').text($el.children('li').size());
 
         $el
             .caroufredsel({
+                width: 310,
+                height: 234,
                 prev: {
                     button: $pager.find('.carousel-pager__btn.-prev')
                 },

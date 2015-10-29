@@ -11,6 +11,7 @@ export default Ember.Component.extend({
     title: '',
     description: '',
     license: '',
+    slider: false,
     
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
     
@@ -69,13 +70,22 @@ export default Ember.Component.extend({
     }),
     
     // Change the shade of the dotted lines based on the story colour.
-    darkColours: ['black', 'yellow', 'dark-blue', 'light-blue', 'lighter-blue', 'lime', 'red'],
+    darkColours: ['black', 'yellow', 'dark-blue', 'blue', 'light-blue', 'lighter-blue', 'lime', 'red'],
     lineShade: Ember.computed(function() {
         if($.inArray(this.color, this.darkColours) !== -1) {
             return 'light';
             
         } else {
             return 'dark';
+        }
+    }),
+    
+    // Set if the story has a slider, which will then alter the structure accordingly.
+    hasSlider: Ember.computed(function() {
+        if (this.slider) {
+            return 'has-slider';
+        } else {
+            return 'no-slider';
         }
     }),
     

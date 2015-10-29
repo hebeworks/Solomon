@@ -175,27 +175,45 @@
                     
                 [cpn-story_body] {
                     height: 100%;
-                    overflow-x: hidden;
-                    overflow-y: auto;
                     margin-right: rem(-$spacing-base);
                     margin-left: rem(-$spacing-base);
+                }
+                
+                [cpn-story_body~="has-header"] {
+                    &[cpn-story_body~="no-slider"] {
+                        &:not([cpn-story_body~="height-1"]) {
+                            padding-top: rem($spacing-base);
+                        }
+                    }
+                }
+                
+                [cpn-story_body~="no-slider"] {
+                    overflow-x: hidden;
+                    overflow-y: auto;
                     padding-right: rem($spacing-base);
                     padding-left: rem($spacing-base);
                 }
                 
-                [cpn-story_body~="has-header"] {
-                    &:not([cpn-story_body~="height-1"]) {
-                        padding-top: rem($spacing-base);
-                    }
+                [cpn-story_body~="has-slider"] {
+                    overflow: hidden;
                 }
                 
-                    [cpn-story_carousel-item] {
-                        float: left;
+                    [cpn-story_carousel-list] {
+                        height: 100% !important; // overrides inline style
+                        // left: 0 !important; // overrides inline style
                     }
                 
-                    [cpn-story_carousel-item~="width-2"] {
-                        width: rem(290px);
-                    }
+                        [cpn-story_carousel-item] {
+                            float: left;
+                            height: 100%;
+                            overflow-x: hidden;
+                            overflow-y: auto;
+                            padding: rem($spacing-base) rem($spacing-base) 0;
+                        }
+                    
+                        [cpn-story_carousel-item~="width-2"] {
+                            width: rem(310px);
+                        }
             
                 [cpn-story_footer] {
                     height: rem($spacing-base * 2);
