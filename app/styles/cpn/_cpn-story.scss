@@ -179,12 +179,8 @@
                     margin-left: rem(-$spacing-base);
                 }
                 
-                [cpn-story_body~="has-header"] {
-                    &[cpn-story_body~="no-slider"] {
-                        &:not([cpn-story_body~="height-1"]) {
-                            padding-top: rem($spacing-base);
-                        }
-                    }
+                [cpn-story_body~="has-header"][cpn-story_body~="no-sidebar"]:not([cpn-story_body~="height-1"]) {
+                    padding-top: rem($spacing-base);
                 }
                 
                 [cpn-story_body~="no-slider"] {

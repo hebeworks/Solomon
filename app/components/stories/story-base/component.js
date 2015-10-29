@@ -36,7 +36,7 @@ export default Ember.Component.extend({
         if (this.headerImage != '' || this.title != '') {
             return 'has-header';
         } else {
-            return '';
+            return 'no-header';
         }
     }),
     
