@@ -6,29 +6,30 @@
 }
 
 [cpn-divide~="top"],
-%cpn-dvide-top {
+%cpn-divide-top {
     border-top-width: 1px;
     padding-top: rem($spacing-base);
 }
 
 [cpn-divide~="right"],
-%cpn-dvide-right {
+%cpn-divide-right {
     border-right-width: 1px;
     padding-right: rem($spacing-base);
 }
 
 [cpn-divide~="bottom"],
-%cpn-dvide-bottom {
+%cpn-divide-bottom {
     border-bottom-width: 1px;
     margin-bottom: rem($spacing-base);
 }
 
 [cpn-divide~="left"],
-%cpn-dvide-left {
+%cpn-divide-left {
     border-left-width: 1px;
     padding-left: rem($spacing-base);
 }
 
-[cpn-divide~="light"] {
+[cpn-divide~="light"],
+%cpn-divide-light {
     border-color: #fff;
 }

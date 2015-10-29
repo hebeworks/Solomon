@@ -16,15 +16,18 @@
     
     {{#stories/story-slider loaded=loaded}}
         {{#stories/story-slide}}
-            <div class="tweets">
-                {{#each tweet in tweets}}
-                    <div class="dotted-area pad-top pad-bottom -top tweet">
-                        <h2 class="beta"><a href="{{tweet.user_url}}" target="_blank">{{tweet.user_name}}</a> <a href="https://twitter.com/leedsdatamill" target="_blank"><span class="tweet__handle">@{{tweet.user_name}}</span></a></h2>
-                        <p class="story__para">{{tweet.text}} {{!--<a href="{{tweet.user_url}}" target="_blank">{{tweet.user_url}}</a>--}}</p>
-                        <time class="tweet__time">{{tweet.friendly_date}}</time>
-                    </div>
-                {{/each}}
-            </div>
+            {{#each tweet in tweets}}
+                <div spc-tweet>
+                    <h2 spc-tweet_user>
+                        <a href="{{tweet.user_url}}" target="_blank">
+                            <span spc-tweet_name>{{tweet.user_name}}</span>
+                            <span spc-tweet_handle>@{{tweet.user_name}}</span>
+                        </a>
+                    </h2>
+                    <p spc-tweet_body>{{tweet.text}}</p>
+                    <time spc-tweet_time>{{tweet.friendly_date}}</time>
+                </div>
+            {{/each}}
         {{/stories/story-slide}}
         {{#stories/story-slide width=width}}
             <div class="twitter-cover-photo">
