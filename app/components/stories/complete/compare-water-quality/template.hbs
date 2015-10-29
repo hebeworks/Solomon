@@ -9,41 +9,37 @@
     data-ss-colspan="2"
     author="Nathan Smith"
 }}
-    <main spc-cwq class="compare-water-quality" cpn-story-body="scrollV height2">
+    <div cpn-table cpn-text="center" spc-cwq-split>
+        <div cpn-table_cell cpn-padding="right">
+            {{input value=postcode1 placeholder="City Centre" cpn-input="ghost-light small"}}
+            <p spc-cwq-hardness>{{result1.props.hardnessDescription}}</p>
+        </div>
+        <div cpn-table_cell cpn-padding="left">
+            {{input value=postcode2 placeholder="Enter Postcode" cpn-input="ghost-light small"}}
+            <p spc-cwq-hardness>{{result2.props.hardnessDescription}}</p>
+        </div>
+    </div>
     
-        <div cpn-table cpn-text="center" spc-cwq-split>
-            <div cpn-table_cell cpn-padding="right">
-                {{input value=postcode1 placeholder="City Centre" cpn-input="ghost-light"}}
-                <p spc-cwq-hardness>{{result1.props.hardnessDescription}}</p>
-            </div>
-            <div cpn-table_cell cpn-padding="left">
-                {{input value=postcode2 placeholder="Enter Postcode" cpn-input="ghost-light"}}
-                <p spc-cwq-hardness>{{result2.props.hardnessDescription}}</p>
-            </div>
+    <div spc-cwq-data>
+        <div spc-cwq-data_row class="cf">
+            <div spc-cwq-data_cell>{{result1.props.TotalHardness}}</div>
+            <div spc-cwq-data_label>Hardness</div>
+            <div spc-cwq-data_cell>{{result2.props.TotalHardness}}</div>
         </div>
-        
-        <div spc-cwq-data>
-            <div spc-cwq-data_row class="cf">
-                <div spc-cwq-data_cell>{{result1.props.TotalHardness}}</div>
-                <div spc-cwq-data_label>Hardness</div>
-                <div spc-cwq-data_cell>{{result2.props.TotalHardness}}</div>
-            </div>
-            <div spc-cwq-data_row class="cf">
-                <div spc-cwq-data_cell>{{result1.props.Fluoride}}</div>
-                <div spc-cwq-data_label>Fluoride</div>
-                <div spc-cwq-data_cell>{{result2.props.Fluoride}}</div>
-            </div>
-            <div spc-cwq-data_row class="cf">
-                <div spc-cwq-data_cell>{{result1.props.Calcium}}</div>
-                <div spc-cwq-data_label>Calcium</div>
-                <div spc-cwq-data_cell>{{result2.props.Calcium}}</div>
-            </div>
-            <div spc-cwq-data_row class="cf">
-                <div spc-cwq-data_cell>{{result1.props.Iron}}</div>
-                <div spc-cwq-data_label>Iron</div>
-                <div spc-cwq-data_cell>{{result2.props.Iron}}</div>
-            </div>
+        <div spc-cwq-data_row class="cf">
+            <div spc-cwq-data_cell>{{result1.props.Fluoride}}</div>
+            <div spc-cwq-data_label>Fluoride</div>
+            <div spc-cwq-data_cell>{{result2.props.Fluoride}}</div>
         </div>
-        
-    </main>
+        <div spc-cwq-data_row class="cf">
+            <div spc-cwq-data_cell>{{result1.props.Calcium}}</div>
+            <div spc-cwq-data_label>Calcium</div>
+            <div spc-cwq-data_cell>{{result2.props.Calcium}}</div>
+        </div>
+        <div spc-cwq-data_row class="cf">
+            <div spc-cwq-data_cell>{{result1.props.Iron}}</div>
+            <div spc-cwq-data_label>Iron</div>
+            <div spc-cwq-data_cell>{{result2.props.Iron}}</div>
+        </div>
+    </div>
 {{/stories/story-base}}

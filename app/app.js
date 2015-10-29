@@ -13,4 +13,9 @@ var App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
+Ember.TextField.reopen({
+    attributeBindings: ['cpn-input'],
+    'cpn-input': ''
+});
+
 export default App;
