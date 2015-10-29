@@ -190,6 +190,7 @@
                 [cpn-story_body~="no-slider"] {
                     overflow-x: hidden;
                     overflow-y: auto;
+                    -webkit-overflow-scrolling: touch;
                     padding-right: rem($spacing-base);
                     padding-left: rem($spacing-base);
                 }
@@ -200,7 +201,6 @@
                 
                     [cpn-story_carousel-list] {
                         height: 100% !important; // overrides inline style
-                        // left: 0 !important; // overrides inline style
                     }
                 
                         [cpn-story_carousel-item] {
@@ -209,6 +209,7 @@
                             height: 100%;
                             overflow-x: hidden;
                             overflow-y: auto;
+                            -webkit-overflow-scrolling: touch;
                             padding: rem($spacing-base) rem($spacing-base) 0;
                         }
                     
