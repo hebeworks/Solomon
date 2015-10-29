@@ -18,13 +18,12 @@ export default DatamillStory.extend({
         this.set('title', 'Bicycle Bays');
         this.set('subTitle', 'In the city centre');
         var obj = this;
-        var dataMillDataAPI = this.get('dataMillDataAPI');
-        var url = dataMillDataAPI + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0';
-        console.log('bicycle url: ' + url);
-        this.getData(url)
+        
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/leeds-city-centre-bike-bays')
             .then(function (data) {
                 var items = [];
-                data.result.records.forEach((tmpItem) => {
+                data.forEach((tmpItem) => {
                     var id = hebeutils.guid();
                     var item = {
                         id: id,
