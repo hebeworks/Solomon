@@ -32,7 +32,7 @@ export default DefaultStory.extend({
 					obj.set('data',data);
 				},
 				function(err){
-					alert(err);
+					// alert(err);
 				}
 			)
 	}.on('init'),
