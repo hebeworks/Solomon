@@ -4,82 +4,57 @@ export default DefaultStory.extend({
     // New variables 
     directoratePercentageRemaining: 100,
     totalPercentageRemaining: 100,
-    
-    didInsertElement: function() {
-        var obj = this;
-        
+
+    didInsertElement: function () {
+        var _this = this;
+
         this.set('title', 'Council Spending');
         this.set('subTitle', 'Monthly spend data by directorate');
-        
-        setTimeout(function() {
-            obj.updateDirectorateSpend();
-        },1500);
-        
-        setTimeout(function() {
-            obj.updateTotalSpend();
-        },1750);
+
+        setTimeout(function () {
+            _this.updateDirectorateSpend();
+        }, 1500);
+
+        setTimeout(function () {
+            _this.updateTotalSpend();
+        }, 1750);
+
+        this.loadData('limit=1').then(function (data) {
+            // get the list of directorates from the first (only because we're passing "limit=1")
+            var directorates = [];
+            var ignore = ['total', 'date', '_id'];
+            for (var prop in data[0]) {
+                if (ignore.indexOf(prop) == -1) {
+                    directorates.push({ text: prop, id: prop });
+                    // directorates.push({ key: prop, val: data[0][prop] });
+                    // directorates.push(prop);
+                }
+            }
+            _this.set('categories', directorates);
+            _this.set('selectedCat', directorates[0]);
+        });
     },
-    
-    updateDirectorateSpend: function() {
+
+    loadData: function (query) {
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        return this.getData(hebeNodeAPI + '/council-spending?' + query);
+    },
+
+    onSelectedCatChange: function () {
+        var selectedCatID = this.get('selectedCat.id');
+        
+    }.observes('selectedCat'),
+
+    onSelectedDateChange: function () {
+        var selectedDate = this.get('selectedDate');
+        this.loadData('')
+    }.observes('selectedDate'),
+
+    updateDirectorateSpend: function () {
         this.set('directoratePercentageRemaining', 37);
     },
-    
-    updateTotalSpend: function() {
+
+    updateTotalSpend: function () {
         this.set('totalPercentageRemaining', 53);
     }
-    
-    // Old code
-    // tagName: 'div',
-    // loaded: false,
-    // selectedStation: null,
-    // didInsertElement: function () {
-    //     this.set('title', 'Council Spending');
-    //     this.set('subTitle', 'Monthly spend data by directorate');
-    //     var obj = this;
-    //     this.getData('http://environment.data.gov.uk/flood-monitoring/id/stations/L1707', true)
-    //         .then(function (station) {
-    //             var item = station.items;
-    //             var latestReading = item.measures.latestReading;
-    //             var maxOnRecord = item.stageScale.maxOnRecord;
-    //             var minOnRecord = item.stageScale.minOnRecord;
-    //             var highestRecent = item.stageScale.highestRecent;
-    //             var typicalRangeHigh = item.stageScale.typicalRangeHigh;
-    //             var typicalRangeLow = item.stageScale.typicalRangeLow;
-    //             obj.setProperties({
-    //                 latestReading: latestReading,
-    //                 maxOnRecord: maxOnRecord,
-    //                 minOnRecord: minOnRecord,
-    //                 highestRecent: highestRecent,
-    //                 typicalRangeHigh: typicalRangeHigh,
-    //                 typicalRangeLow: typicalRangeLow,
-    //             });
-    //             // check for changes to the api data every fifteen minutes
-    //             setTimeout(obj.fetchData, 900000);
-    //             setTimeout(function () {
-    //                 obj.set('loaded', true);
-    //             });
-    //         });
-    // }.observes('selectedStation'),
-
-    // setHeights: function () {
-    //     var obj = this;
-    //     var heightLowest = ((this.get("minOnRecord.value") / this.get("maxOnRecord.value")) * 100);
-    //     var heightTypicalHigh = (((this.get("typicalRangeHigh") / this.get("maxOnRecord.value")) * 100) - heightLowest);
-    //     var heightHighestRecent = (((this.get("highestRecent.value") / this.get("maxOnRecord.value")) * 100) - (heightLowest + heightTypicalHigh));
-    //     var heightMax = (100 - (heightLowest + heightTypicalHigh + heightHighestRecent));
-    //     obj.setProperties({
-    //         heightLowest: heightLowest,
-    //         heightTypicalHigh: heightTypicalHigh,
-    //         heightHighestRecent: heightHighestRecent,
-    //         heightMax: heightMax,
-    //     });
-    //     var heightLowestString = heightLowest.toString() + '%';
-    //     this.$(".river-levels-columnChart-container-inner--lowestLevel").height(heightLowestString);
-    //     var heightTypicalHighString = heightTypicalHigh.toString() + '%';
-    //     this.$(".river-levels-columnChart-container-inner--typicalHighLevel").height(heightTypicalHighString);
-    //     var heightHighestRecentString = heightHighestRecent.toString() + '%';
-    //     this.$(".river-levels-columnChart-container-inner--highestLevelRecent").height(heightHighestRecentString);
-    //     var heightMaxString = heightMax.toString() + '%';
-    //     this.$(".river-levels-columnChart-container-inner--maxLevel").height(heightMaxString);
-    // }.observes("minOnRecord.value", "typicalRangeHigh", "maxOnRecord.value", "highestRecent"),
 });

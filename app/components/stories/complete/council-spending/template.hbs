@@ -20,9 +20,8 @@
             <div cpn-float="left" cpn-margin="bottom-none" class="select2-wrapper -select2-wide">
                 {{
                     select-2
-                    content=items
-                    value=selectedItem
-                    optionLabelPath="directorate"
+                    content=categories
+                    value=selectedCat
                     placeholder="Directorate values"
                 }}
             </div>
@@ -46,8 +45,10 @@
                             <div cpn-fill-circle_back-data>
                                 <span cpn-fill-circle_data-label>January</span>
                                 <span cpn-fill-circle_data-value>&pound;245,675</span>
+                                {{!-- 
                                 <span cpn-fill-circle_data-label>Budget</span>
                                 <span cpn-fill-circle_data-value>&pound;473,704</span>
+                                --}}
                             </div>
                         </div>
                         <div cpn-fill-circle_front style="margin-top: {{directoratePercentageRemaining}}%;">
@@ -55,8 +56,10 @@
                                 <div cpn-fill-circle_front-data>
                                     <span cpn-fill-circle_data-label>January</span>
                                     <span cpn-fill-circle_data-value>&pound;245,675</span>
+                                    {{!--
                                     <span cpn-fill-circle_data-label>Budget</span>
                                     <span cpn-fill-circle_data-value>&pound;473,704</span>
+                                    --}}
                                 </div>
                             </div>
                         </div>
