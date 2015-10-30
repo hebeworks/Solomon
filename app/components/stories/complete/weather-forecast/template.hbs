@@ -2,10 +2,11 @@
 {{#stories/story-base 
     title=title 
     subTitle=subTitle 
-    color="-mint" 
-    width="2" 
+    color="mint" 
+    width=width 
     height="2" 
-    data-ss-colspan="2" 
+    data-ss-colspan="2"
+    slider=true
     
     dataSourceUrl="http://datapoint.metoffice.gov.uk"
     feedbackEmail="simon@hebeworks.com"
@@ -17,8 +18,8 @@
         {{#stories/story-slider loaded=loaded}}           
             {{#each days as |day|}}
                 {{#stories/story-slide}}
-                    <div class="dotted-area -top -bottom pad-top cf">
-                        <date class="float--right">{{format-date "ddd D MMM" day.date}}</date>
+                    <div cpn-divide="bottom" cpn-clearfix>
+                        <date cpn-float="right" cpn-margin="top-half">{{format-date "ddd D MMM" day.date}}</date>
                         <ul cpn-toggle="dark">
                             <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Day</li>
                             <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Night</li>
