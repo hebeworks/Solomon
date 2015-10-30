@@ -184,11 +184,15 @@
                 }
                 
                 [cpn-story_body~="no-slider"] {
+                    padding-right: rem($spacing-base);
+                    padding-left: rem($spacing-base);
+                }
+                
+                [cpn-story_body~="can-scroll"] {
                     overflow-x: hidden;
                     overflow-y: auto;
                     -webkit-overflow-scrolling: touch;
-                    padding-right: rem($spacing-base);
-                    padding-left: rem($spacing-base);
+                    -ms-overflow-style: -ms-autohiding-scrollbar;
                 }
                 
                 [cpn-story_body~="has-slider"] {
@@ -203,10 +207,14 @@
                             display: block;
                             float: left;
                             height: 100%;
-                            overflow-x: hidden;
-                            overflow-y: auto;
-                            -webkit-overflow-scrolling: touch;
                             padding: rem($spacing-base) rem($spacing-base) 0;
+                            
+                            [cpn-story_body~="can-scroll"] & {
+                                overflow-x: hidden;
+                                overflow-y: auto;
+                                -webkit-overflow-scrolling: touch;
+                                -ms-overflow-style: -ms-autohiding-scrollbar;
+                            }
                         }
                     
                         [cpn-story_carousel-item~="width-2"] {

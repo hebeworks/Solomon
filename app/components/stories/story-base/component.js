@@ -12,6 +12,7 @@ export default Ember.Component.extend({
     description: '',
     license: '',
     slider: false,
+    scroll: true,
     
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
     
@@ -85,6 +86,15 @@ export default Ember.Component.extend({
             return 'has-slider';
         } else {
             return 'no-slider';
+        }
+    }),
+    
+    // Set if the story can scroll its content.
+    canScroll: Ember.computed(function() {
+        if (this.scroll) {
+            return 'can-scroll';
+        } else {
+            return 'no-scroll';
         }
     }),
     
