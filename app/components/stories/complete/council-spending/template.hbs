@@ -29,9 +29,8 @@
             <div cpn-float="left" cpn-margin="bottom-none" class="select2-wrapper -select2-small -select2-calendar">
                 {{
                     select-2
-                    content=items
-                    value=selectedItem
-                    optionLabelPath="date"
+                    content=months
+                    value=selectedMonth
                     placeholder="Date"
                 }}
             </div>
@@ -43,19 +42,19 @@
                     <div cpn-fill-circle_ring>
                         <div cpn-fill-circle_back>
                             <div cpn-fill-circle_back-data>
-                                <span cpn-fill-circle_data-label>January</span>
-                                <span cpn-fill-circle_data-value>&pound;245,675</span>
+                                    <span cpn-fill-circle_data-label>{{selectedCat.text}}</span>
+                                    <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
                                 {{!-- 
                                 <span cpn-fill-circle_data-label>Budget</span>
                                 <span cpn-fill-circle_data-value>&pound;473,704</span>
                                 --}}
                             </div>
                         </div>
-                        <div cpn-fill-circle_front style="margin-top: {{directoratePercentageRemaining}}%;">
-                            <div cpn-fill-circle_front-inner style="top: -{{directoratePercentageRemaining}}%;">
+                        <div cpn-fill-circle_front style="margin-top: {{catPercentageRemaining}}%;">
+                            <div cpn-fill-circle_front-inner style="top: -{{catPercentageRemaining}}%;">
                                 <div cpn-fill-circle_front-data>
-                                    <span cpn-fill-circle_data-label>January</span>
-                                    <span cpn-fill-circle_data-value>&pound;245,675</span>
+                                    <span cpn-fill-circle_data-label>{{selectedCat.text}}</span>
+                                    <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
                                     {{!--
                                     <span cpn-fill-circle_data-label>Budget</span>
                                     <span cpn-fill-circle_data-value>&pound;473,704</span>
@@ -65,28 +64,28 @@
                         </div>
                     </div>
                 </div>
-                <h2 spc-cs-spend-title>Total spend for directorate</h2>
+                <h2 spc-cs-spend-title>Spend for {{selectedCat.text}} in {{selectedMonth.text}}</h2>
             </li>
             <li cpn-width="50%">
                 <div cpn-fill-circle="lime on-dark">
                     <div cpn-fill-circle_ring>
                         <div cpn-fill-circle_back>
                             <div cpn-fill-circle_back-data>
-                                <span cpn-fill-circle_data-label>January</span>
-                                <span cpn-fill-circle_data-value>&pound;8,473,704</span>
+                                <span cpn-fill-circle_data-label>{{format-date "MMMM" selectedMonth.date}}</span>
+                                <span cpn-fill-circle_data-value>&pound;{{number-thousand-format selectedMonth.total true}}</span>
                             </div>
                         </div>
                         <div cpn-fill-circle_front style="margin-top: {{totalPercentageRemaining}}%;">
                             <div cpn-fill-circle_front-inner style="top: -{{totalPercentageRemaining}}%;">
                                 <div cpn-fill-circle_front-data>
-                                    <span cpn-fill-circle_data-label>January</span>
-                                    <span cpn-fill-circle_data-value>&pound;8,473,704</span>
+                                <span cpn-fill-circle_data-label>{{format-date "MMMM" selectedMonth.date}}</span>
+                                <span cpn-fill-circle_data-value>&pound;{{number-thousand-format selectedMonth.total true}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <h2 spc-cs-spend-title>Vs. Total spend<br />for month</h2>
+                <h2 spc-cs-spend-title>Monthly spend <br />Vs. 12 Months</h2>
             </li>
         </ul>
     </main>
