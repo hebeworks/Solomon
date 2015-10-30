@@ -4,6 +4,7 @@ import DefaultStory from './../../story-types/default-story/component';
 export default DefaultStory.extend({
     tagName: 'div',
     loaded: false,
+    width: 2,
     didInsertElement: function() {
         this.set('title', 'International Space Station');
         this.set('subTitle', 'When to catch a glimpse over Leeds');
