@@ -3,7 +3,7 @@
 {{#stories/story-base 
     title=title 
     subTitle=subTitle 
-    color="-medium-blue" 
+    color="medium-blue" 
     width="2" 
     height="2" 
     data-ss-colspan="2"
@@ -13,17 +13,15 @@
 {{!--     
     authorImage="/assets/img/lcc-logo.png"
 --}}
-    <main cpn-story-body="scrollV height2">
-        <ul class="margin-left-no">
-            {{#each items as |item|}}
-                <li cpn-snippet>
-                    <a href="{{item.link}}" cpn-snippet_inner target="_blank">
-                        <img cpn-snippet_img src="{{item.image}}" alt="">
-                        <p cpn-snippet_title>{{item.title}}</p>
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
-    </main>
+    <ul class="margin-left-no">
+        {{#each items as |item|}}
+            <li cpn-snippet>
+                <a href="{{item.link}}" cpn-snippet_inner target="_blank">
+                    <img cpn-snippet_img src="{{item.image}}" alt="">
+                    <p cpn-snippet_title>{{item.title}}</p>
+                </a>
+            </li>
+        {{/each}}
+    </ul>
 {{/stories/story-base}}
 
