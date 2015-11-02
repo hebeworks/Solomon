@@ -5,14 +5,12 @@ export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
     storyModel: null,
-    didReceiveAttrs: function () {
-        this.loadFeed('http://news.leeds.gov.uk/feed/en');            
-    },
 
 
     didInsertElement: function () {
         this.set('title', 'Leeds Gov News');
         this.set('subTitle', 'New from Leeds');
+        this.loadFeed('http://news.leeds.gov.uk/feed/en');            
     },
 
     loadFeed: function (feedUrl) {

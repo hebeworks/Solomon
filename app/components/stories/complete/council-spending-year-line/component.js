@@ -24,8 +24,9 @@ export default DefaultStory.extend({
 				url += '&sortfield=date'
 				url += '&sortdirection=asc' OR '&sortdirection=desc' 
 		*/
+		var hebeNodeAPI = this.get('hebeNodeAPI');
 		var query = hebeutils.Base64.encode(JSON.stringify({ date: { $gt: new Date("2013-04-01") } }));
-		var url = 'http://localhost:8080/councilspending?query=' + query;
+		var url = hebeNodeAPI + '/council-spending?query=' + query;
 		this.getData(url)
 			.then(
 				function (data) {
@@ -39,7 +40,7 @@ export default DefaultStory.extend({
 					// alert(err);
 				}
 			)
-	}.on('init'),
+	}.on('didInsertElement'),
 
 	chartData: Ember.computed('data', {
 		get() {
