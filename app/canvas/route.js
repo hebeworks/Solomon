@@ -13,6 +13,7 @@ export default Ember.Route.extend({
             // debugger;
             return this.store.findRecord('canvas', params.canvas_id)
                 .then(function (canvas) {
+                    debugger;
                     return canvas;
                 });
         } else {

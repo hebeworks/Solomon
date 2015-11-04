@@ -134,7 +134,18 @@ export default Ember.Controller.extend({
 		}
 	},
 
-	loadACanvas: function (canvasID) {
+	loadACanvas: function (canvas) {
+		var canvasID = canvas;
+		// use a canvases friendlyURL if it exists
+		if(Ember.typeOf(canvas) == 'instance') {
+			if(!Ember.isEmpty(canvas.get('friendlyURL'))) {
+				canvasID = canvas.get('friendlyURL');
+			} else if(!Ember.isEmpty(canvas.get('urlShortcode'))) {
+				canvasID = canvas.get('urlShortcode');
+			} else {
+				canvasID = canvas.get('id');
+			}
+		}
         // var canvasID = canvas.get('id');
         // console.log(canvasID);
         this.get('target').transitionTo('canvas', canvasID);

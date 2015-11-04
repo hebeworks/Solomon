@@ -71,8 +71,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.goBack();
         },
 
-        loadACanvas: function (canvasID) {
-            this.controller.loadACanvas(canvasID)
+        loadACanvas: function (canvasModel) {
+            this.controller.loadACanvas(canvasModel)
         },
 
         sessionAuthenticationSucceeded: function () {
