@@ -13,7 +13,7 @@ export default Ember.Component.extend({
             dayOfWeek:  date.format('dddd'),
             day:        date.format('D'),
             ordinal:    ordinal,
-            month:      (date.format('MMMM').length <= 8 ? date.format('MMMM') : date.format('MMM')),
+            month:      (date.format('MMMM').length <= 7 ? date.format('MMMM') : date.format('MMM')),
             year:      date.format('YYYY')
         }
         this.set('date',obj);        
