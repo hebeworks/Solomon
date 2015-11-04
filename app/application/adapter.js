@@ -3,7 +3,7 @@ import config from 'hebe-dash/config/environment';
 
 // export default DS.RESTAdapter.extend({
 export default DS.JSONAPIAdapter.extend({
-    host: config.APP.dashAPIURL,
+    host: config.APP.solomonAPIURL,
     namespace: 'api',
     // updateRecord: function (store, type, snapshot) {
     //     var data = {};

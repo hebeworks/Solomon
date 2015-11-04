@@ -6,7 +6,7 @@ export default Ember.Object.extend({
     // debugger;
     return new Ember.RSVP.Promise(function (resolve, reject) {
       // alert('app/torii-providers/unique-token.js');
-      var url = this.get('config.APP.dashAPIURL') + '/users/';
+      var url = this.get('config.APP.solomonAPIURL') + '/users/';
       $.ajax({
         url: url,
         type: "POST",

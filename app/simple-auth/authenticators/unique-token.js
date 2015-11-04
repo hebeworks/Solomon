@@ -4,7 +4,7 @@ import config from 'hebe-dash/config/environment';
 
 export default Base.extend({
 
-    tokenEndpoint: config.APP.dashAPIURL + '/api/auth',
+    tokenEndpoint: config.APP.solomonAPIURL + '/api/auth',
 
     restore: function (data) {
         // debugger;
