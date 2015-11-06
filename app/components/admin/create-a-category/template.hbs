@@ -16,7 +16,7 @@
 	{{yield}}
 	
 	<p>
-		{{input value=category.title }}
+		{{input value=category.title autocapitalize="words"}}
 		{{#if category.errors.title}}
 			<br />{{category.errors.title.message}}
 		{{/if}}
