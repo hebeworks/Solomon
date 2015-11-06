@@ -118,6 +118,10 @@
 
 .svg-input-clear { background-image: url('png/input-clear.png'); background-repeat: no-repeat; }
 
+.svg-lcd-logo-compact { background-image: url('png/lcd-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-lcd-logo-expanded { background-image: url('png/lcd-logo-expanded.png'); background-repeat: no-repeat; }
+
 .svg-login { background-image: url('png/login.png'); background-repeat: no-repeat; }
 
 .svg-logo-thin { background-image: url('png/logo-thin.png'); background-repeat: no-repeat; }
@@ -149,6 +153,10 @@
 .svg-select2-icon { background-image: url('png/select2-icon.png'); background-repeat: no-repeat; }
 
 .svg-share { background-image: url('png/share.png'); background-repeat: no-repeat; }
+
+.svg-solomon-logo-compact { background-image: url('png/solomon-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-solomon-logo-expanded { background-image: url('png/solomon-logo-expanded.png'); background-repeat: no-repeat; }
 
 .svg-space-station { background-image: url('png/space-station.png'); background-repeat: no-repeat; }
 
