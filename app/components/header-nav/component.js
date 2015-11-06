@@ -14,15 +14,20 @@ export default Ember.Component.extend({
     topOpen: function () {
         return (this.get('appController.topOpen') ? '-open' : '');
     }.property('appController.topOpen'),
+    
 
-    logoClass: Ember.computed(function() {
+    logoClass: Ember.computed(appController.siteConfig, function() {
         // return 'solomon-logo';
-        return 'lcd-logo';
+        // return 'lcd-logo';
+        
+        return appController.siteConfig.name;
     }),
     
-    logoText: Ember.computed(function() {
+    logoText: Ember.computed(appController.siteConfig, function() {
         // return 'Solomon';
-        return 'Leeds City Dashboard';
+        // return 'Leeds City Dashboard';
+        
+        return appController.siteConfig.title;
     }),
 
     //actions: {
