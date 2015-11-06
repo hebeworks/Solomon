@@ -1,27 +1,27 @@
-// app/torii-providers/unique-token.js
+// // app/torii-providers/unique-token.js
 
-export default Ember.Object.extend({
-  // credentials as passed from torii.open
-  open: function (username) {
-    // debugger;
-    return new Ember.RSVP.Promise(function (resolve, reject) {
-      // alert('app/torii-providers/unique-token.js');
-      var url = this.get('config.APP.solomonAPIURL') + '/users/';
-      $.ajax({
-        url: url,
-        type: "POST",
-        data: JSON.stringify({ token: username })
-      })
-        .done(function (msg) {
-          // alert("success");
-          Ember.run.bind(null, resolve, user);
-        })
-        .fail(function (jqXHR, textStatus) {
-          // alert("error");
-          Ember.run.bind(null, reject, new Error(textStatus));
-          // Ember.run.bind(null, reject, error);
-        });
-    });
-  },
+// export default Ember.Object.extend({
+//   // credentials as passed from torii.open
+//   open: function (username) {
+//     // debugger;
+//     return new Ember.RSVP.Promise(function (resolve, reject) {
+//       // alert('app/torii-providers/unique-token.js');
+//       var url = this.get('config.APP.solomonAPIURL') + '/users/';
+//       $.ajax({
+//         url: url,
+//         type: "POST",
+//         data: JSON.stringify({ token: username })
+//       })
+//         .done(function (msg) {
+//           // alert("success");
+//           Ember.run.bind(null, resolve, user);
+//         })
+//         .fail(function (jqXHR, textStatus) {
+//           // alert("error");
+//           Ember.run.bind(null, reject, new Error(textStatus));
+//           // Ember.run.bind(null, reject, error);
+//         });
+//     });
+//   },
 
-});
+// });

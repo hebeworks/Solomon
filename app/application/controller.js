@@ -49,6 +49,7 @@ export default Ember.Controller.extend({
 						// console.log('authLogin.then username: ' + username + ', message: ' + message);
 						var foundUserCallback = function (user) {
 							// console.log('foundUserCallback: ' + user.username)
+							debugger;
 							obj.get('currentUser').set('content', user);
 							resolve(user);
 						};
@@ -64,7 +65,7 @@ export default Ember.Controller.extend({
 										reject(new Error('User not found'));
 									});
 						} else {
-							var token = obj.get('session.secure.token');
+							var token = obj.get('session.content.secure.token');
 							// console.log('username IS empty token is: ' + token);
 							return obj.store.find('user', token)
 								.then(
@@ -97,9 +98,38 @@ export default Ember.Controller.extend({
 		this.set('isModalVisible', false);
 	},
 
+	showTutorialTimer: null,
+	shouldShowTutorial: function (force) {
+		if (Cookies.get('viewedTutorial')) {
+			// unauthed session has seen tutorial
+			// stop the timer & observer
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+		} else if (!Ember.isEmpty(this.get('currentUser.content')) && this.get('currentUser.content.config.viewedTutorial') == true) {
+			// have a user and has seen tutorial
+			// stop the timer & observer
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+		} else {
+			// show the tutorial in 5 seconds
+			var timer = Ember.run.later(this, this.showTutorial, 5000);
+			this.set('showTutorialTimer', timer);
+			// if too early for authed user - observe for it being set
+			// if it is set in the meantime, the timer will be cancelled
+			Ember.addObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+		}
+	},
+
+	showTutorial: function () {
+		Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+		Ember.run.cancel(this.get('showTutorialTimer'));
+		this.showModal('ui/tutorial-intro');
+	},
+
 	closeTutorial: function () {
-		debugger;
+		Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
 		var authedUser = this.get('currentUser.content');
+
 		if (!Ember.isEmpty(authedUser)) {
 			// if we have authed session user
 			// set viewed flag
@@ -107,10 +137,9 @@ export default Ember.Controller.extend({
 			userConfig.viewedTutorial = true;
 			authedUser.set('config', userConfig);
 			authedUser.save();
-		} else {
-			// set session var
-			this.set('session.viewedTutorial', true);
 		}
+		Cookies.set('viewedTutorial', true);
+		this.hideModal();
 	},
 
 	openToolbox: function () {

@@ -27,7 +27,8 @@
     "jQuery.XDomainRequest": "~1.0.4",
     "hebe-utils": ">=0.4.0",
     "ember-simple-auth": "0.8.0",
-    "chartist": "~0.9.4"
+    "chartist": "~0.9.4",
+    "js-cookie": "~2.0.4"
   },
   "devDependencies": {
     "breakpoint-sass": "~2.6.1",

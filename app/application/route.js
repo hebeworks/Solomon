@@ -4,6 +4,7 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
     onActivate: function () {
         this.controllerFor('application').getSiteConfig();
+        this.controllerFor('application').shouldShowTutorial();
     }.on('activate'),
     
     // Methods
@@ -35,7 +36,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         },
 
         showTutorialModal: function () {
-            this.controller.showModal('ui/tutorial-intro');
+            this.controller.showTutorial();
         },
 
         closeTutorial: function () {

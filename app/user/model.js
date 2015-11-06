@@ -15,7 +15,8 @@ export default DS.Model.extend({
 	_config: {},
 	config: Ember.computed({
 		get() {
-			if (Ember.isEmpty(this.get('_config')) && !Ember.isEmpty(this.get('configJSON'))) {
+			if ((Ember.isEmpty(this.get('_config')) || Ember.keys(this.get('_config')).length === 0) 
+					&& !Ember.isEmpty(this.get('configJSON'))) {
 				var configJSON = this.get('configJSON');
 				var config = JSON.parse(configJSON);
 				if(Ember.isEmpty(config)){
@@ -26,13 +27,12 @@ export default DS.Model.extend({
 			return this.get('_config');
 		},
 		set(key, value) {
-			debugger;
 			if(!Ember.isEqual(this.get('_config'),value)) {
 				this.set('_config', value);
-				if (!Ember.isEmpty(value)) {
-					var json = this.serializeConfigToJSON(value);
-					this.set('configJSON', json);
-				}
+			}
+			if (!Ember.isEmpty(value)) {
+				var json = this.serializeConfigToJSON(value);
+				this.set('configJSON', json);
 			}
 			return value;
 		}

@@ -47,5 +47,6 @@ app.import('vendor/embedsvg/grunticon.loader.js');
 app.import('vendor/embedsvg/grunticon.inline.js');
 app.import('vendor/modernizr-custom.min.js');
 app.import(app.bowerDirectory + '/jQuery.XDomainRequest/jquery.xdomainrequest.min.js');
+app.import(app.bowerDirectory + '/js-cookie/src/js.cookie.js');
 
 module.exports = app.toTree();
