@@ -2,6 +2,10 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+    onActivate: function () {
+        this.controllerFor('application').getSiteConfig();
+    }.on('activate'),
+    
     // Methods
     setupController: function (controller, model) {
         var obj = this;
@@ -28,6 +32,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
         showFeedbackmodal: function () {
             this.controller.showModal('ui/feedback-form');
+        },
+
+        showTutorialModal: function () {
+            this.controller.showModal('ui/tutorial-intro');
+        },
+
+        closeTutorial: function () {
+            this.controller.closeTutorial();
         },
 
         hideModal: function () {
@@ -78,8 +90,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         sessionAuthenticationSucceeded: function () {
             console.log('Session authenticated');
         },
-        
-        goToHelp: function() {
+
+        goToHelp: function () {
             var url = "https://github.com/hebeworks/Solomon/wiki";
             window.open(url, '_blank');
         }

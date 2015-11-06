@@ -58,6 +58,13 @@ export default Ember.Controller.extend({
                 jshook: 'js-toolbox-help',
                 iconclass: 'help-icon',
                 svgclass: 'svg-help-icon'
+            },
+            {
+                title: 'Tutorial',
+                action: 'showTutorialModal',
+                jshook: 'js-toolbox-tutorial',
+                iconclass: 'help-icon',
+                svgclass: 'svg-help-icon'
             }
         ];
         return items;

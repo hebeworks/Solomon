@@ -185,6 +185,7 @@ module.exports = function (environment) {
     // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW 
 
     // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
+    ENV.APP.solomonAPIURL = 'http://localhost:3000';
     // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
   }
 

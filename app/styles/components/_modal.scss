@@ -708,3 +708,7 @@ perspective effects (not including the modals and the overlay).
 // @media screen and (max-width: 32em) {
 // 	body { font-size: 75%; }
 // }
+
+.cmp_tutorial_wrapper * {
+	box-sizing: content-box;
+}

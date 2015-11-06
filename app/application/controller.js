@@ -19,6 +19,22 @@ export default Ember.Controller.extend({
 		this.get('history').pushObject(this.get('currentPath'));
 	}.observes('currentPath'),
 
+	getSiteConfig: function () {
+        // Todo: get the site config from a request to Solomon API 
+		// (using the response header) e.g. Solomon-Client	solomon_local_dev
+        var hostname = window.location.hostname;
+        var siteConfig = {};
+        if (hostname.indexOf('leedsdatamill') > -1) {
+            siteConfig.name = 'lcd';
+            siteConfig.title = 'Leeds City Dashboard';
+        } else {
+            siteConfig.name = 'solomon';
+            siteConfig.title = 'Solomon';
+        }
+        console.log('Site Config: ' + Ember.inspect(siteConfig));
+        this.set('siteConfig', siteConfig);
+	},
+
 	// Methods
     authLogin: function (username) {
         var obj = this;
@@ -31,7 +47,6 @@ export default Ember.Controller.extend({
                     function (message) {
                         // _this.set('errorMessage', message);
 						// console.log('authLogin.then username: ' + username + ', message: ' + message);
-
 						var foundUserCallback = function (user) {
 							// console.log('foundUserCallback: ' + user.username)
 							obj.get('currentUser').set('content', user);
@@ -80,6 +95,22 @@ export default Ember.Controller.extend({
 
 	hideModal: function () {
 		this.set('isModalVisible', false);
+	},
+
+	closeTutorial: function () {
+		debugger;
+		var authedUser = this.get('currentUser.content');
+		if (!Ember.isEmpty(authedUser)) {
+			// if we have authed session user
+			// set viewed flag
+			var userConfig = authedUser.get('config');
+			userConfig.viewedTutorial = true;
+			authedUser.set('config', userConfig);
+			authedUser.save();
+		} else {
+			// set session var
+			this.set('session.viewedTutorial', true);
+		}
 	},
 
 	openToolbox: function () {
@@ -137,10 +168,10 @@ export default Ember.Controller.extend({
 	loadACanvas: function (canvas) {
 		var canvasID = canvas;
 		// use a canvases friendlyURL if it exists
-		if(Ember.typeOf(canvas) == 'instance') {
-			if(!Ember.isEmpty(canvas.get('friendlyURL'))) {
+		if (Ember.typeOf(canvas) == 'instance') {
+			if (!Ember.isEmpty(canvas.get('friendlyURL'))) {
 				canvasID = canvas.get('friendlyURL');
-			} else if(!Ember.isEmpty(canvas.get('urlShortcode'))) {
+			} else if (!Ember.isEmpty(canvas.get('urlShortcode'))) {
 				canvasID = canvas.get('urlShortcode');
 			} else {
 				canvasID = canvas.get('id');
@@ -154,7 +185,7 @@ export default Ember.Controller.extend({
 
 	createACanvas: function (model) {
 		var params = { contentType: 'canvas-gallery/create-a-canvas' };
-		if(!Ember.isEmpty(model)) {
+		if (!Ember.isEmpty(model)) {
 			params.model = model;
 			params.mainTitle = 'Duplicate a canvas'
 		}
