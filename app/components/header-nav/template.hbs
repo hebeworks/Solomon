@@ -1,10 +1,6 @@
 <header class="js-site-header site-header">
     <div class="site-header__inner">
-    
-        {{!-- {{#if showLogo}} --}}
-            {{dashboard-logo appController=appController action="gotoRoute" target="index"}}
-        {{!-- {{/if}} --}}
-    
+        {{dashboard-logo appController=appController action="gotoRoute" actionParam="index"}}
         {{yield}}
         <nav class="nav">
             <ul class="js-site-nav nav__list -main -header">
