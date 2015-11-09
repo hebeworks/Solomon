@@ -16,18 +16,18 @@ export default Ember.Component.extend({
     }.property('appController.topOpen'),
     
 
-    logoClass: Ember.computed(appController.siteConfig, function() {
+    logoClass: Ember.computed('appController.siteConfig', function() {
         // return 'solomon-logo';
         // return 'lcd-logo';
         
-        return appController.siteConfig.name;
+        return this.get('appController.siteConfig.name') + '-logo';
     }),
     
-    logoText: Ember.computed(appController.siteConfig, function() {
+    logoText: Ember.computed('appController.siteConfig', function() {
         // return 'Solomon';
         // return 'Leeds City Dashboard';
         
-        return appController.siteConfig.title;
+        return this.get('appController.siteConfig.title');
     }),
 
     //actions: {

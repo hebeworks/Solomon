@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
             siteConfig.name = 'solomon';
             siteConfig.title = 'Solomon';
         }
-        console.log('Site Config: ' + Ember.inspect(siteConfig));
+        // console.log('Site Config: ' + Ember.inspect(siteConfig));
         this.set('siteConfig', siteConfig);
 	},
 
@@ -95,6 +95,7 @@ export default Ember.Controller.extend({
 	},
 
 	hideModal: function () {
+		this.set('modalComponent', '');
 		this.set('isModalVisible', false);
 	},
 
