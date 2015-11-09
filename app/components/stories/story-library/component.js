@@ -7,7 +7,14 @@ export default Ember.Component.extend({
 	},
 	
 	isAdmin: function(){
-		return true;
+		var adminHosts = ['localhost','127.0.0.1','0.0.0.0','testing.mysolomon.co.uk'];
+		var hostname = window.location.hostname;
+		
+		if(adminHosts.indexOf(hostname) > -1) {
+			return true;
+		} else {
+			return false;
+		}
 		// natehere
 		// if(this.get('session.secure.token') == '55f15e19fc4b2397742d1aa6') {
 		// 	return true;

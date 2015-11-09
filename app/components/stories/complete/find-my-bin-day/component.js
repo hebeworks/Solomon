@@ -10,6 +10,15 @@ export default DatamillStory.extend({
     currentAddress: null,
     showCalendarButton: false,
     storyModel: null,
+    minCheckTimer: null, 
+    
+    didReceiveAttrs: function () {
+        this.set('title', 'find-my-bin-day TITLE');
+        this.set('subTitle', 'find-my-bin-day SUB TITLE');
+        var obj = this;
+        obj.minCheckTimer = setInterval(obj.minimumLengthCheck, 200);
+    },
+
     saveThisEvent: function () {
         var obj = this;
 
@@ -30,11 +39,22 @@ export default DatamillStory.extend({
         });
     },
 
+    minimumLengthCheck: function () {
+        var noResults = this.$('.select2-no-results');
+        if (noResults.length > 0) {
+            if (noResults.text().startsWith('Please enter')) {
+                //   var minNumber = noResults.text().search(new RegExp("^\D*(\d+(?:\.\d+)?)"));
+                noResults.text('Please enter the first part of your address');
+            }
+        }
+    },
+
     onAddressChange: function () {
         var obj = this;
         var id = this.get('selectedAddress.id')
         if (!Ember.isEmpty(this.get('selectedAddress'))) {
-            this.getData('http://hebenodeapi-preview.azurewebsites.net/bins/' + id)
+            var hebeNodeAPI = this.get('hebeNodeAPI');
+            this.getData(hebeNodeAPI + '/bins/' + id)
                 .then(function (address) {
                     var allDates = [];
 
@@ -93,10 +113,6 @@ export default DatamillStory.extend({
         }
     }.observes('selectedAddress'),
 
-    didReceiveAttrs: function () {
-        this.set('title', 'find-my-bin-day TITLE');
-        this.set('subTitle', 'find-my-bin-day SUB TITLE');
-    },
 
     actions: {
         findPlaces: function (query, deferred) {

@@ -54,8 +54,8 @@ export default DatamillStory.extend({
         //            sql: 'SELECT * from "' + resourceID + '"'
         //        }
         
-        var datamillUrl = this.get('datamillUrl');
-        Ember.$.getJSON(datamillUrl + '/api/action/datastore_search_sql?sql=SELECT * from "' + resourceID + '" LIMIT 10').then(function (data) {
+        var dataMillDataAPI = this.get('dataMillDataAPI');
+        Ember.$.getJSON(dataMillDataAPI + '/api/action/datastore_search_sql?sql=SELECT * from "' + resourceID + '" LIMIT 10').then(function (data) {
             var items = [];
             var fields = [];
             data.result.records.forEach(function (item) {

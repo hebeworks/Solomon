@@ -18,11 +18,12 @@ export default DatamillStory.extend({
         this.set('title', 'Bicycle Bays');
         this.set('subTitle', 'In the city centre');
         var obj = this;
-
-        this.getData(this.get('datamillUrl') + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0')
+        
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/leeds-city-centre-bike-bays')
             .then(function (data) {
                 var items = [];
-                data.result.records.forEach((tmpItem) => {
+                data.forEach((tmpItem) => {
                     var id = hebeutils.guid();
                     var item = {
                         id: id,
@@ -33,7 +34,7 @@ export default DatamillStory.extend({
                         type: tmpItem.Type,
                         colour: tmpItem.Colour
                     };
-    
+
                     items.push(item);
                 });
                 obj.set('items', items);
@@ -41,10 +42,10 @@ export default DatamillStory.extend({
                     obj.set('loaded', true);
                 });
             },
-            function(error){
-                // debugger;
-                console.log('ajax error:' + error);
-            });
+                function (error) {
+                    // debugger;
+                    console.log('ajax error:' + error);
+                });
     },
 
     setupMarkers: function () {

@@ -42,11 +42,25 @@
 		[spc-fmbd-logo_title] {
 			font-size: rem(19px);
 			line-height: rem(23px);
+			font-family: $letrapro;
 			// margin-bottom: rem(8px); put this back in when the grit bin link is needed
 		}
 		
 		[spc-fmbd-logo_desc] {
 			font-size: rem(11px);
+		}
+		
+		[spc-fmbd-tct-logo] {
+			font-family: $letrapro;
+			text-transform: uppercase;
+			
+			a {
+				text-decoration: none;
+				
+				&:hover, &:focus {
+					text-decoration: underline;
+				}
+			}
 		}
 		
 [spc-fmbd-address] {

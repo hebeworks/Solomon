@@ -9,11 +9,12 @@
     <div class="js-stories canvas__inner">
     
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
-            {{!-- stories/complete/council-spending --}}
+            {{!--
+            {{stories/complete/base-rag-title}}
+            {{stories/complete/leeds-air-quality-trends}}
+            {{stories/complete/footfall-centre}}
+            --}}
         {{!-- END DEVELOPMENT STORIES --}}
-        
-        {{stories/complete/council-spending}}
-        {{stories/complete/stat-notices-recent}}
 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
@@ -24,7 +25,7 @@
         {{else}}
             <p>Sorry we couldn't load this canvas. Please try another from the Gallery.</p>
         {{/if}}
-         
+        
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">

@@ -25,7 +25,8 @@ export default DefaultStory.extend({
 
     fetchData: function () {
         var obj = this;
-        this.getData('http://hebenodeapi.azurewebsites.net/carparks')
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/carparks')
             .then(function (data) {
             var carParks = [];
             data.results.forEach(function (item) {

@@ -15,8 +15,6 @@ export default Ember.Component.extend({
         return (this.get('appController.topOpen') ? '-open' : '');
     }.property('appController.topOpen'),
 
-
-
     //actions: {
     //    gotoRoute:function(route){
     //        this.get('target').transitionTo(route);

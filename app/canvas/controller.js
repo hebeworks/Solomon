@@ -58,6 +58,13 @@ export default Ember.Controller.extend({
                 jshook: 'js-toolbox-help',
                 iconclass: 'help-icon',
                 svgclass: 'svg-help-icon'
+            },
+            {
+                title: 'Tutorial',
+                action: 'showTutorialModal',
+                jshook: 'js-toolbox-tutorial',
+                iconclass: 'icon-tutorial',
+                svgclass: 'svg-icon-tutorial'
             }
         ];
         return items;
@@ -207,7 +214,7 @@ export default Ember.Controller.extend({
             .then(
                 function () {
                     var model = obj.get('model');
-                    debugger;
+                    // debugger;
                     model.save().then(function (response) {
                         console.log('saved canvas state');
                     })

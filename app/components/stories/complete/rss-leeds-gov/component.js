@@ -5,20 +5,19 @@ export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
     storyModel: null,
-    didReceiveAttrs: function () {
-        this.loadFeed('http://news.leeds.gov.uk/feed/en');            
-    },
 
 
     didInsertElement: function () {
         this.set('title', 'Leeds Gov News');
         this.set('subTitle', 'New from Leeds');
+        this.loadFeed('http://news.leeds.gov.uk/feed/en');            
     },
 
     loadFeed: function (feedUrl) {
         var obj = this;
         var base64FeedUrl = hebeutils.Base64.encode(feedUrl);
-        var url = 'http://hebenodeapi.azurewebsites.net/apiproxy?url=' + base64FeedUrl + '&toJSON=true';
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var url = hebeNodeAPI + '/apiproxy?url=' + base64FeedUrl + '&toJSON=true';
         this.getData(url)
             .then(
                 function (data) {

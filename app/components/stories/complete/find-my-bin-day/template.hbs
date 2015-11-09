@@ -9,22 +9,26 @@
                 </div>
             </div>
         
-            {{
-                select-2
-                
-                content=addresses
-                optionLabelPath="shortAddress"
-                value=selectedAddress
-                
-                placeholder="Search for a place"
-                typeaheadSearchingText="Searching places"
-                typeaheadNoMatchesText="No places found for '%@'"
-                typeaheadErrorText="Loading failed: %@"
-                minimumInputLength=3
-                query="findPlaces"
-            }}
+            <div cpn-margin="bottom-double">
+                {{
+                    select-2
+                    
+                    content=addresses
+                    optionLabelPath="shortAddress"
+                    value=selectedAddress
+                    
+                    placeholder="Search for a place"
+                    typeaheadSearchingText="Searching places"
+                    typeaheadNoMatchesText="No places found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    minimumInputLength=3
+                    query="findPlaces"
+                }}
+            </div>
             
-            <img cpn-margin="middle-h" src="assets/img/league-of-streets-logo.png" alt="League of Streets logo" width="95" height="40">
+            <h3 cpn-text="center" spc-fmbd-tct-logo>
+                <a href="http://www.thecitytalking.com/" target="_blank">The City Talking</a>
+            </h3>
         {{else}}
         
             <div spc-fmbd-address>

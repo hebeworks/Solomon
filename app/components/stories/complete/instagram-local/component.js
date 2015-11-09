@@ -20,7 +20,8 @@ export default Ember.Component.extend({
         //console.log(test);
 
         //var url = 'https://api.instagram.com/v1/media/search?lat='+latitude+'&lng='+longitude+'&client_id='+client_id;
-        var url = 'http://hebenodeapi.azurewebsites.net/instagram';
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var url = hebeNodeAPI + '/instagram';
             var obj = this;
             Ember.$.ajax({
                 url: url,

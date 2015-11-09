@@ -13,7 +13,8 @@ export default DefaultStory.extend({
         this.set('subTitle', 'What are we tweeting about?');
         var obj = this;
 
-        this.getData('http://hebenodeapi.azurewebsites.net/twitter')
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/twitter')
             .then(function (data) {
             var tweets = [];
             data.tweets.forEach(function (item) {
