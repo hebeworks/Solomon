@@ -48,7 +48,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         },
 
         gotoRoute: function (route, model) {
-            debugger;
             this.controller.closeToolbox();
             if (!Ember.isEmpty(model)) {
                 this.controller.transitionTo(route, (model || null));
