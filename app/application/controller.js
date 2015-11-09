@@ -214,7 +214,10 @@ export default Ember.Controller.extend({
     },
 
 	createACanvas: function (model) {
-		var params = { contentType: 'canvas-gallery/create-a-canvas' };
+		var params = {
+			contentType: 'canvas-gallery/create-a-canvas',
+			openAmount: '-full'
+		};
 		if (!Ember.isEmpty(model)) {
 			params.model = model;
 			params.mainTitle = 'Duplicate a canvas'
