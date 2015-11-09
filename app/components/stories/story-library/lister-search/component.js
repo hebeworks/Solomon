@@ -4,6 +4,10 @@ import StoryLibraryLister from 'hebe-dash/mixins/story-library-lister';
 export default Ember.Component.extend(StoryLibraryLister, {
 	debouncedSearchTerm: '',
     
+    didInsertElement: function() {
+        this.focusSearchBox();
+    },
+    
     showClear: function() {
         return (this.get('debouncedSearchTerm.length') > 0);
     }.property('debouncedSearchTerm'),
@@ -21,6 +25,10 @@ export default Ember.Component.extend(StoryLibraryLister, {
 	// 		this.getStories({ searchTerm: this.get('searchTerm') });
 	// 	}
 	// }.observes('searchTerm'),
+    
+    focusSearchBox: function() {
+        this.$('.search__input').focus();
+    },
     
     actions: {
         clearSearchTerm: function() {
