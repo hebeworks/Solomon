@@ -14,21 +14,6 @@ export default Ember.Component.extend({
     topOpen: function () {
         return (this.get('appController.topOpen') ? '-open' : '');
     }.property('appController.topOpen'),
-    
-
-    logoClass: Ember.computed('appController.siteConfig', function() {
-        // return 'solomon-logo';
-        // return 'lcd-logo';
-        
-        return this.get('appController.siteConfig.name') + '-logo';
-    }),
-    
-    logoText: Ember.computed('appController.siteConfig', function() {
-        // return 'Solomon';
-        // return 'Leeds City Dashboard';
-        
-        return this.get('appController.siteConfig.title');
-    }),
 
     //actions: {
     //    gotoRoute:function(route){
