@@ -5,6 +5,7 @@
     left: rem(40px);
     @include transform(translateY(-50%));
     z-index: 2;
+    cursor: pointer;
     
     [class*="svg-lcd-logo"] {
         svg {

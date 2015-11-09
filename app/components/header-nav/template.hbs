@@ -1,14 +1,9 @@
 <header class="js-site-header site-header">
     <div class="site-header__inner">
     
-        
-        <h1 spc-dashboard-logo="compact">
-            <a href="javascript:void();" data-grunticon-embed class="svg-{{logoClass}}-compact">{{logoText}}</a>
-        </h1>
-        
-        <h1 spc-dashboard-logo="expanded">
-            <a href="javascript:void();" data-grunticon-embed class="svg-{{logoClass}}-expanded">{{logoText}}</a>
-        </h1>
+        {{!-- {{#if showLogo}} --}}
+            {{dashboard-logo appController=appController action="gotoRoute" target="index"}}
+        {{!-- {{/if}} --}}
     
         {{yield}}
         <nav class="nav">
