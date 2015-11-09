@@ -49,7 +49,7 @@ export default Ember.Controller.extend({
 						// console.log('authLogin.then username: ' + username + ', message: ' + message);
 						var foundUserCallback = function (user) {
 							// console.log('foundUserCallback: ' + user.username)
-							debugger;
+							// debugger;
 							obj.get('currentUser').set('content', user);
 							resolve(user);
 						};
