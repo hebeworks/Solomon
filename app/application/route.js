@@ -3,7 +3,7 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
     onActivate: function () {
-        this.controllerFor('application').getSiteConfig();
+        this.controllerFor('application').loadSolomonConfig();
         this.controllerFor('application').shouldShowTutorial();
     }.on('activate'),
     
