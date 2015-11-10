@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 	isModalVisible: false,
 	modalComponent: 'ui/login-form',
 	solomoncConfig: null,
-	
+
 	appController: function () {
         return this;
 	}.property(),
@@ -25,18 +25,18 @@ export default Ember.Controller.extend({
         // Todo: get the site config from a request to Solomon API 
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
 		var config = SolomonConfig.config(window.location.hostname);
-		this.set('pageTitle',config.title);
+		this.set('pageTitle', config.title);
         this.set('solomonConfig', config);
 	},
-	
-	_pageTitle : '',
+
+	_pageTitle: '',
 	pageTitle: Ember.computed({
 		get() {
-			return this.get('_pageTite');	
+			return this.get('_pageTite');
 		},
-		set(key,value) {
-			if(this.get('_pageTitle') != value) {
-				this.set('_pageTitle',value);				
+		set(key, value) {
+			if (this.get('_pageTitle') != value) {
+				this.set('_pageTitle', value);
 				if (!Ember.isEmpty(value)) {
 					Ember.$(document).attr('title', value);
 				}
@@ -131,9 +131,11 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorial: function () {
-		Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-		Ember.run.cancel(this.get('showTutorialTimer'));
-		this.showModal('ui/tutorial-intro');
+		if (!this.get('isModalVisible')) {
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+			this.showModal('ui/tutorial-intro', 'Tutorial');
+		}
 	},
 
 	closeTutorial: function () {
