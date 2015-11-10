@@ -110,31 +110,35 @@ export default Ember.Controller.extend({
 
 	showTutorialTimer: null,
 	shouldShowTutorial: function (force) {
-		if (Cookies.get('viewedTutorial')) {
-			// unauthed session has seen tutorial
-			// stop the timer & observer
-			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-			Ember.run.cancel(this.get('showTutorialTimer'));
-		} else if (!Ember.isEmpty(this.get('currentUser.content')) && this.get('currentUser.content.config.viewedTutorial') == true) {
-			// have a user and has seen tutorial
-			// stop the timer & observer
-			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-			Ember.run.cancel(this.get('showTutorialTimer'));
-		} else {
-			// show the tutorial in 5 seconds
-			var timer = Ember.run.later(this, this.showTutorial, 5000);
-			this.set('showTutorialTimer', timer);
-			// if too early for authed user - observe for it being set
-			// if it is set in the meantime, the timer will be cancelled
-			Ember.addObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+		if(Modernizr.mq('screen and (min-width: 768px)')) {
+			if (Cookies.get('viewedTutorial')) {
+				// unauthed session has seen tutorial
+				// stop the timer & observer
+				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+				Ember.run.cancel(this.get('showTutorialTimer'));
+			} else if (!Ember.isEmpty(this.get('currentUser.content')) && this.get('currentUser.content.config.viewedTutorial') == true) {
+				// have a user and has seen tutorial
+				// stop the timer & observer
+				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+				Ember.run.cancel(this.get('showTutorialTimer'));
+			} else {
+				// show the tutorial in 5 seconds
+				var timer = Ember.run.later(this, this.showTutorial, 5000);
+				this.set('showTutorialTimer', timer);
+				// if too early for authed user - observe for it being set
+				// if it is set in the meantime, the timer will be cancelled
+				Ember.addObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			}
 		}
 	},
 
 	showTutorial: function () {
-		if (!this.get('isModalVisible')) {
-			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-			Ember.run.cancel(this.get('showTutorialTimer'));
-			this.showModal('ui/tutorial-intro', 'Tutorial');
+		if(Modernizr.mq('screen and (min-width: 768px)')) {
+			if (!this.get('isModalVisible')) {
+				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+				Ember.run.cancel(this.get('showTutorialTimer'));
+				this.showModal('ui/tutorial-intro', 'Tutorial');
+			}
 		}
 	},
 
