@@ -75,6 +75,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         createACanvas: function (model) {
             this.controller.createACanvas(model);
         },
+        
+        editAStory: function(model) {
+            this.controller.editAStory(model);
+        },
 
         showAddAStory: function () {
             this.controller.openBottomDrawer({ contentType: 'stories/add-a-story', openAmount: '-full' });

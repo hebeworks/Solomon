@@ -8,19 +8,20 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	modelTitle: null,
 	modelCategories: [],
 
+	configFields: null,
+
 	allCategories: Ember.computed({
 		get() {
 			return this.store.query('category', {});
 		}
 	}),
-	
-	didInsertElement: function() {
-		this.onModelChanged();	
+
+	didInsertElement: function () {
+		this.onModelChanged();
 	},
 
-	onModelChanged: function () {
+	onModelChanged: function () { 
 		var model = this.get('model');
-		alert(model);
 		if (!Ember.isEmpty(model)) {
 			var cats = model.get('categories').toArray();
 			var catIDs = cats.map(function (item) {
@@ -31,11 +32,24 @@ export default Ember.Component.extend(BottomDrawerContent, {
 				return catIDs.indexOf(item.get('id')) > -1;
 			})
 			this.setProperties({
-				modelTitle: model.get('title'),
-				modelCategories: selectedCats
-			})
+				title: model.get('title'),
+				storyType: model.get('storyType'),
+				categories: selectedCats
+			});
+			this.setupEditableFields();
 		}
 	}.observes('model'),
+
+	setupEditableFields: function () {
+		var fields = this.get('model.config');
+		if (!Ember.isEmpty(fields)) {
+			alert('have ' + fields.length + ' fields');
+			this.set('configFields', fields);
+			fields.forEach(function (field) {
+	
+			});
+		}
+	}.observes('model','model.config','model.config.@each'),
 
 	save: function () {
 		this.set('model.title', this.get('modelTitle'));

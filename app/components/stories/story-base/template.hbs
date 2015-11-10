@@ -34,6 +34,11 @@
         {{!-- <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a> --}}
         <a href="javascript:;" class="js-cogs" spc-dot="back">Story</a>
         <div class="story__content">
+
+            <button class="btn -red -half" {{action 'editAStory' storyModel}}>
+                Edit
+            </button>
+
             {{#if viewOnly}}
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
@@ -43,6 +48,7 @@
                         {{input type=field.type value=field.value placeholder=field.placeholder}}
                     {{/each}}
                 {{/if}}
+                
                 
                 {{#if description}}
                     <div cpn-divide="bottom light">

@@ -9,8 +9,26 @@ export default DatamillStory.extend({
     tileDesc1: 'Description 1',
     tileDesc2: 'Description 2',
     tileShade: '',
-    
-    didInsertElement: function() {
-        
+    storyModel: null,
+
+    onInserted: function () {
+        var _this = this;
+        var timer = setInterval(function () {
+            var story = _this.get('storyModel');
+            if (!Ember.isEmpty(story)) {
+                _this.setupEditableFields();
+                clearInterval(timer);
+                _this.set('timer', null);
+            }
+            // var config = _this.get('storyModel.config');
+        }, 1000);
+        this.set('timer', timer);
+    }.on('didInsertElement'),
+
+    setupEditableFields: function () {
+        var story = this.get('storyModel');
+        story.addConfigItem({ name: 'value', type: 'text', value: '', placeholder: 'Enter a value' });
+        story.addConfigItem({ name: 'description', type: 'text', value: '', placeholder: 'Enter a description' });
+        story.addConfigItem({ name: 'description2', type: 'text', value: '', placeholder: 'Enter a second description' });
     }
 });
