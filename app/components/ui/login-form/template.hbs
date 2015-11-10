@@ -1,63 +1,59 @@
 <div class="form -login">
 	{{#if session.isAuthenticated}}
-		<p class="dotted-area -bottom -black cf double-margin-bottom pad-bottom pad-double">
-			You're currently logged in as: {{currentUser.content.username}}
-			<button class="btn -red margin-left" {{action "logout"}}>
-				Log out
-			</button>
-		</p>
-		
+		<div cpn-divide="bottom" cpn-margin="bottom-double">
+			<p cpn-margin="bottom">You're currently logged in as: {{currentUser.content.username}}</p>
+			<p cpn-margin="bottom-double">
+				<button cpn-button="action" {{action "logout"}}>Log out</button>
+			</p>
+		</div>	
 	{{/if}}
 	
 	{{#unless hideLoginForm}}
-
-		<div class="dotted-area -bottom -black cf double-margin-bottom pad-bottom pad-double">
-			<div class="aligned-grid -middle">
-				<div class="-width-third">
-					<p class="margin-bottom-no">Have you registered before?</p>
+		<div cpn-divide="bottom" cpn-margin="bottom-double">
+			<div cpn-row-list="middle">
+				<div>
+					<p cpn-margin="bottom">Have you registered before?</p>
 				</div>
-			
-			<div class="-width-two-thirds pad-left">
-				<div class="aligned-grid -middle">
-					<button class="btn -toggle {{if existingUserSelected '-selected'}}" {{action "selectLoginType" "existingUser"}}>
-						Existing user
-					</button>
-					
-					<button class="btn -toggle {{if newUserSelected '-selected'}} margin-left" {{action "selectLoginType" "newUser"}}>
-						New user
-					</button>
+				<div>
+					<div cpn-row-list="middle">
+						<div>
+							<button cpn-button="{{if existingUserSelected 'chosen'}}" {{action "selectLoginType" "existingUser"}}>Existing user</button>
+						</div>
+						<div>
+							<button cpn-button="{{if newUserSelected 'chosen'}}" {{action "selectLoginType" "newUser"}}>New user</button>
+						</div>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 		
 		{{#if loginTypeSelected}}
-			<div class="dotted-area -bottom -black double-margin-bottom cf pad-bottom pad-double">
-				<div class="aligned-grid -middle">
-					<div class="-width-third">
-					{{#if existingUserSelected}}
-						<p class="margin-bottom-no">Enter your username:</p>
-					{{else}}
-						<p class="margin-bottom-no">Create your username:</p>
-					{{/if}}
-				</div>
-				<div class="-width-two-thirds pad-left">
-					{{input class="-full" value=username type="text" placeholder="e.g. Dashboard King"}}
-				</div>
+			<div cpn-divide="bottom" cpn-margin="bottom-double">
+				<div cpn-row-list="middle">
+					<div>
+						{{#if existingUserSelected}}
+							<p cpn-margin="bottom">Enter your username:</p>
+						{{else}}
+							<p cpn-margin="bottom">Create your username:</p>
+						{{/if}}
+					</div>
+					<div>
+						<p cpn-margin="bottom">
+							{{input value=username type="text" placeholder="e.g. Dashboard King"}}
+						</p>
+					</div>
 				</div>
 			</div>
 			
 			{{#if message}}
-				<p class="message -error double-margin-bottom">
-					{{message}}
-				</p>
+				<p cpn-message="error" cpn-margin="bottom-double">{{message}}</p>
 			{{/if}}
 		
-			<button class="btn -action -full" {{action "submit"}}>
+			<button cpn-button="action" {{action "submit"}}>
 				{{#if existingUserSelected}}
-					Log me in...
+					Log me in
 				{{else}}
-					Sign me up...
+					Sign me up
 				{{/if}}
 			</button>
 		{{/if}}

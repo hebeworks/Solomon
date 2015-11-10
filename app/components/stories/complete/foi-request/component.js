@@ -38,7 +38,8 @@ export default DefaultStory.extend({
         this.set('subTitle', 'Number of FOI & EIR Requests');
         var obj = this;
         // var resourceID = '1ffffdba-ef32-40de-b73a-7026969d35b2';
-        this.getData('http://hebenodeapi.azurewebsites.net/foi')
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/foi')
             .then(function (data) {
             var items = [];
             data.results.forEach((tmpItem) => {

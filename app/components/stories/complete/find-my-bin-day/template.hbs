@@ -1,40 +1,46 @@
 
-{{#stories/story-base title=title subTitle=subTitle color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
-    <main class="find-my-bin-day">
+{{#stories/story-base title="Find My Bin Day" subTitle="Find your next Leeds bin day" color="-white" width="-w2" height="-h2" data-ss-colspan="2"}}
+    <main spc-fmbd-body cpn-story-body="scrollV height2">
         {{#unless currentAddress}}
-            <div class="find-my-bin-day__logo">
-                <h1>LOGO</h1>
+            <div spc-fmbd-logo>
+                <div spc-fmbd-logo_inner>
+                    <h2 spc-fmbd-logo_title>Find my bin day</h2>
+                    {{!-- <p spc-fmbd-logo_desc>Looking for a grit bin?</p> --}}
+                </div>
             </div>
         
-            {{
-                select-2
-                
-                content=addresses
-                optionLabelPath="address"
-                value=selectedAddress
-                
-                placeholder="Search for a place"
-                typeaheadSearchingText="Searching places"
-                typeaheadNoMatchesText="No places found for '%@'"
-                typeaheadErrorText="Loading failed: %@"
-                minimumInputLength=3
-                query="findPlaces"
-            }}
-        {{else}}
-
-            <div class="find-my-bin-day__results">
-                <div class="find-my-bin-day__address">
-                    {{currentAddress.address}}
-                    <p {{action 'changeAddress'}}>Change Address</p>
-                </div>            
-                <ul>
-                    {{#each orderedDates as |date|}}
-                        <li>
-                            <p>{{date.type}} - {{format-date "DD/MM/YYYY" date.date}}</p>
-                        </li>
-                    {{/each}}
-                </ul>
+            <div cpn-margin="bottom-double">
+                {{
+                    select-2
+                    
+                    content=addresses
+                    optionLabelPath="shortAddress"
+                    value=selectedAddress
+                    
+                    placeholder="Search for a place"
+                    typeaheadSearchingText="Searching places"
+                    typeaheadNoMatchesText="No places found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    minimumInputLength=3
+                    query="findPlaces"
+                }}
             </div>
+            
+            <h3 cpn-text="center" spc-fmbd-tct-logo>
+                <a href="http://www.thecitytalking.com/" target="_blank">The City Talking</a>
+            </h3>
+        {{else}}
+        
+            <div spc-fmbd-address>
+                <h3 spc-fmbd-address_location>{{currentAddress.streetAddress}}</h3>
+                <a spc-fmbd-address_change {{action 'changeAddress'}}>Change Address</a>
+            </div>
+            
+            <ul spc-fmbd-results>
+                {{#each orderedDates as |date index|}}
+                    {{stories/complete/find-my-bin-day/bin-date date=date currentAddress=currentAddress showCalendarButton=showCalendarButton}}
+                {{/each}}
+            </ul>
         {{/unless}}
     </main>
 {{/stories/story-base}}

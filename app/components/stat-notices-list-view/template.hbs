@@ -1,68 +1,97 @@
 <div class="stat-notices__inner">
-
-    <div class="btn-list">
-        <button class="btn -toggle {{filterType}}" data-btn-type="featured" {{action "filterByType" "All"}}>All</button>
-        <button class="btn -toggle {{filterType}}" data-btn-type="planning" {{action "filterByType" "Planning"}}>Planning</button>
-        <button class="btn -toggle {{filterType}}" data-btn-type="licensing" {{action "filterByType" "Licensing"}}>Licensing</button>
-        
-        <div class="stat-notices__filter-place-search">
-            {{
-                select-2
-                
-                content=places
-                optionLabelPath="NAME1"
-                value=filterPlace
-                
-                placeholder="Search for a place"
-                typeaheadSearchingText="Searching places"
-                typeaheadNoMatchesText="No places found for '%@'"
-                typeaheadErrorText="Loading failed: %@"
-                minimumInputLength=3
-                query="findPlaces"
-            }}
-        </div>
-        
-        {{#if filterPlace}}
-            <button class="btn -selected -toggable -on" data-btn-type="location" {{action "clearPlace"}}>{{filterPlace.NAME1}}</button>
-        {{/if}}
-        
-        <button class="btn -action -right -notify" {{action "notifyMe"}}>Notify Me</button>
+    <div cpn-divide="bottom" cpn-clearfix cpn-position="relative" spc-sn-options cpn-margin="bottom-double">
+        <ul cpn-row-list spc-sn-options_list>
+            <li spc-sn-options_toggle>
+                <button cpn-button="chosen" data-btn-type="All" {{action "filterByType" "All"}}>All</button>
+            </li>
+            <li spc-sn-options_toggle>
+                <button cpn-button data-btn-type="Planning" {{action "filterByType" "Planning"}}>Planning</button>
+            </li>
+            <li spc-sn-options_toggle>
+                <button cpn-button data-btn-type="Licensing" {{action "filterByType" "Licensing"}}>Licensing</button>
+            </li>
+            
+            {{#if filterPlace}}
+            <li spc-sn-place-search="with-location">
+                {{
+                    select-2
+                    
+                    content=places
+                    optionLabelPath="NAME1"
+                    value=filterPlace
+                    
+                    placeholder="Search for a place"
+                    typeaheadSearchingText="Searching places"
+                    typeaheadNoMatchesText="No places found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    minimumInputLength=3
+                    query="findPlaces"
+                }}
+            </li>
+            {{else}}
+            <li spc-sn-place-search="">
+                {{
+                    select-2
+                    
+                    content=places
+                    optionLabelPath="NAME1"
+                    value=filterPlace
+                    
+                    placeholder="Search for a place"
+                    typeaheadSearchingText="Searching places"
+                    typeaheadNoMatchesText="No places found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    minimumInputLength=3
+                    query="findPlaces"
+                }}
+            </li>
+            {{/if}}
+            {{#if filterPlace}}
+                <li spc-sn-location_wrapper>
+                    <button cpn-button="ghost" spc-sn-location data-btn-type="location" {{action "clearPlace"}}>
+                        <span class="svg-circled-cross"></span> {{filterPlace.NAME1}}
+                    </button>
+                </li>
+            {{/if}}
+            <li spc-sn-notify>
+                <button cpn-button="action" {{action "notifyMe"}}>Notify Me</button>
+            </li>
+        </ul>
     </div>
-
 
 	{{yield}}
 
-
-    <section class="list__section -notices">
-        <div class="cf"></div>
-        <ul class="list">
+    <section>
+        <ul cpn-padding="none" cpn-margin="none">
             {{#unless items}}
-                <h2 class="pad-top">Sorry there aren't any notices to show you at the moment. Please try another filter above or come back soon.</h2>
+                <h2 cpn-padding="top">Sorry there aren't any notices to show you at the moment. Please try another filter above or come back soon.</h2>
             {{/unless}}
 			{{#each item in items}}
-            <li class="list__row dotted-area -dark -bottom -dark pad-top">
-                <div class="list-item">
-                    <p class="list-item__summary">
-                        <div class="" {{action "gotoRoute" 'statnotices.view' item}}>
+            
+            <li cpn-display="block" cpn-divide="bottom" cpn-margin="bottom-double">
+                <div cpn-row-list>
+                    <div spc-sn-notice-part>
+                        <p cpn-margin="bottom-half" {{action "gotoRoute" 'statnotices.view' item}}>
                             {{item.proposal}} at {{item.fullAddressSingleLine}}.
-                        </div>
-                    </p>
-                    <div class="btn-list -borderless">
-                        <div class="btn -ghost">
-                            {{!-- <span class="v-align--middle pad-left pad-right"> --}}
-                                <span>Publication date:</span>
-                                <time> {{format-date "DD/MM/YYYY" item.publicationDate}}</time>
-                            {{!-- </span> --}}
-                        </div>
-                        <div class="btn -ghost {{statnotice-type-icon item.type '-black'}}">
-                            {{!-- <span class="v-align--middle text--center"> --}}
-                                {{item.type}}
-                            {{!-- </span> --}}
-                        </div>
-                        <div {{action 'gotoRoute' 'statnotices.view' item}} class="btn -blue text--center">
-                            {{!-- <span class="v-align--middle"> --}}
-                                View Notice
-                            {{!-- </span> --}}
+                        </p>
+                    </div>
+                    <div spc-sn-notice-part>
+                        <div cpn-row-list cpn-overflow="hidden">
+                            <div>
+                                <div cpn-button="ghost">
+                                    <span>Publication date:</span>
+                                    <time> {{format-date "DD/MM/YYYY" item.publicationDate}}</time>
+                                </div>
+                            </div>
+                            <div>
+                                <div cpn-button="ghost">
+                                    <span data-grunticon-embed class="{{statnotice-type-icon item.type '-black'}}"></span>
+                                    {{item.type}}
+                                </div>
+                            </div>
+                            <div>
+                                <button {{action 'gotoRoute' 'statnotices.view' item}} cpn-button="move">View Notice</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,31 +101,37 @@
     </section>
     
     {{#ui/modal-popup visible=notifyMeVisible classes="stat-notices__notify-me-popup"}}
-        <h2 class="alpha">Notify me</h2>
-        <div class="dotted-area -dark -top -bottom pad-double pad-top pad-bottom">
-            <p>If you enter your email address and click submit you will be emailed each time new notices are added that match the search type{{#if filterPlace}} and place{{/if}} below.</p> 
-        	{{#if filterPlace}}<p>To prevent unwanted notifications, we will only send them to you if they're within 3 miles of your chosen place.</p>{{/if}}
-            <p>We appreciate your interest in this new service developed by Leeds City Council and Hebe Works, and developed with support from DCLG.</p>
+        <div cpn-divide="bottom">
+            <h2 cpn-margin="bottom" class="alpha">Notify me</h2>
         </div>
-        <div class="dotted-area -dark -bottom pad-double pad-top pad-bottom">
-            <span class="label">Notice Type:</span> 
-            <button class="btn -selected -inactive {{statnotice-type-icon filterType}}">{{filterType}}</button>
+        <div cpn-divide="bottom">
+            <p cpn-margin="bottom">If you enter your email address and click submit you will be emailed each time new notices are added that match the search type{{#if filterPlace}} and place{{/if}} below.</p> 
+        	{{#if filterPlace}}<p cpn-margin="bottom">To prevent unwanted notifications, we will only send them to you if they're within 3 miles of your chosen place.</p>{{/if}}
+            <p cpn-margin="bottom">We appreciate your interest in this new service developed by Leeds City Council and Hebe Works, and developed with support from DCLG.</p>
+        </div>
+        <div cpn-divide="bottom">
+            <p cpn-margin="bottom">
+                <span cpn-margin="right">Notice Type:</span> 
+                <button cpn-button="chosen" cpn-width="auto">{{filterType}}</button>
+            </p>
         </div>
         {{#if filterPlace}}
-            <div class="dotted-area -dark -bottom pad-double pad-top pad-bottom">
-               <span class="label">Location:</span>
-               <button class="btn -selected -inactive">{{filterPlace.NAME1}}</button>
+            <div cpn-divide="bottom">
+                <p cpn-margin="bottom">
+                    <span cpn-margin="right">Location:</span>
+                    <button cpn-button="chosen" cpn-width="auto">{{filterPlace.NAME1}}</button>
+                </p>
             </div>
         {{/if}}
-        <div class="dotted-area -dark -bottom pad-double pad-top pad-bottom">
-            <span class="label">Please enter your email address:</span>
-            {{input value=userEmail placeHolder="Your email" }}
+        <div cpn-divide="bottom">
+            <p cpn-margin="bottom">
+                <span>Please enter your email address:</span>
+                {{input value=userEmail placeHolder="Your email" }}
+            </p>
         </div>
         
-        <div class="btn-list -borderless pad-double pad-top pad-bottom">
-            {{#if userEmail}}
-                <button class="btn -full -red -full" {{action "notifyMeSubmit"}}>Register</button>
-            {{/if}}
-        </div>
+        {{#if userEmail}}
+            <button cpn-button="action" {{action "notifyMeSubmit"}}>Register</button>
+        {{/if}}
     {{/ui/modal-popup}}
 </div>

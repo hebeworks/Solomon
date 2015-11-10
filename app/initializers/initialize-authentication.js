@@ -8,6 +8,8 @@ export function initialize(container, application) {
   container.register('authorizer:unique', CustomAuthorizer);
   container.register('authenticator:unique', CustomAuthenticator);
   
+        application.inject('adapter', 'session', 'simple-auth-session:main') 
+
 }
 
 export default {

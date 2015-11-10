@@ -1,0 +1,156 @@
+[cpn-fill-circle] {
+    position: relative;
+    display: inline-block;
+    width: rem(130px);
+    height: rem(130px);
+    padding: rem($spacing-base);
+    text-align: center;
+}
+
+    [cpn-fill-circle_outer] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    [cpn-fill-circle_outer] {
+        svg {
+            [cpn-fill-circle~="orange"] & {
+                fill: $orange;
+            }
+            
+            [cpn-fill-circle~="lime"] & {
+                fill: $lime;
+            }
+        }
+    }
+
+    [cpn-fill-circle_ring] {
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        
+        [cpn-fill-circle~="on-dark"] & {
+            border-color: #fff;
+        }
+        
+        [cpn-fill-circle~="on-light"] & {
+            border-color: #000;
+        }
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 100%;
+            z-index: 1;
+            
+            [cpn-fill-circle~="on-dark"] & {
+                border-color: #000;
+            }
+            
+            [cpn-fill-circle~="on-light"] & {
+                border-color: #fff;
+            }
+        }
+    }
+    
+        [cpn-fill-circle_back] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: rem(104px);
+            height: rem(104px);
+        }
+        
+            [cpn-fill-circle_back-data] {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                @include transform(translateY(-50%));
+            }
+            
+        [cpn-fill-circle_front] {
+            width: rem(104px);
+            height: rem(104px);
+            position: relative;
+            overflow: hidden;
+            margin-top: 100%; // initial value to keep it out of sight
+            @include transition(margin-top 1s);
+            
+            [cpn-fill-circle~="orange"] & {
+                background-color: $orange;
+            }
+            
+            [cpn-fill-circle~="lime"] & {
+                background-color: $lime;
+            }
+        }
+                
+            [cpn-fill-circle_front-inner] {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: -100%; // initial value to keep it out of sight
+                left: 0;
+                @include transition(top 1s);
+            }
+            
+                [cpn-fill-circle_front-data] {
+                    width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    @include transform(translateY(-50%));
+                }
+                
+                    [cpn-fill-circle_data-label],
+                    [cpn-fill-circle_data-value] {
+                        display: block;
+                        
+                        [cpn-fill-circle_back] & {
+                            [cpn-fill-circle~="orange"] & {
+                                color: $orange;
+                            }
+                            
+                            [cpn-fill-circle~="lime"] & {
+                                color: $lime;
+                            }
+                        }
+                        
+                        [cpn-fill-circle_front] & {
+                            [cpn-fill-circle~="on-dark"] & {
+                                color: #fff;
+                            }
+                            
+                            [cpn-fill-circle~="on-light"] & {
+                                color: #000;
+                            }
+                        }
+                    }
+                    
+                    [cpn-fill-circle_data-label] {
+                        font-size: rem(11px);
+                        line-height: 1.182;
+                        font-family: $helvneuebold;
+                    }
+                    
+                    [cpn-fill-circle_data-value] {
+                        font-size: rem(16px);
+                        font-weight: bold;
+                    }

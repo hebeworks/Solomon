@@ -2,21 +2,28 @@
     <div class="story__card -front {{if viewOnly 'js-drag-handle'}}">
         {{!-- #unless viewOnly}}<a href="javascript:;" class="js-cogs icon icon-cogs svg-cogs" data-grunticon-embed>Settings</a>{{/unless --}}
         
-        <a href="javascript:;" class="js-cogs icon icon-cogs svg-cogs" data-grunticon-embed>Settings</a>
+        <a href="javascript:;" class="js-cogs" spc-dot="front">Settings</a>
         
         <div class="story__content">
-            {{#if title}}
+            {{#if headerImage}}
+                <header class="story__header">
+                    <div class="header-img"><img src="{{headerImage}}" height="24"></div>
+                </header>
+            {{else if title}}
                 <header class="story__header">
                     <h2 class="heading beta">{{title}}</h2>
                     <h3 class="heading gamma">{{subTitle}}</h3>
                 </header>
             {{/if}}
+            
         	{{yield}}
             
             {{#unless viewOnly}}
                 <footer class="story__footer gamma">
                     {{#if author}}
-                            {{#if author}}<div class="author">Author: {{author}}</div>{{/if}}
+                            <div class="author">Author: {{author}}</div>
+                    {{else if authorImage}}
+                            <div class="author author-img"><img src="{{authorImage}}" height="17"></div>
                     {{/if}}
                 </footer>
             {{/unless}}
@@ -24,31 +31,12 @@
     </div>
 
     <div class="story__card -back">
-        <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a>
+        {{!-- <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a> --}}
+        <a href="javascript:;" class="js-cogs" spc-dot="back">Story</a>
         <div class="story__content">
             {{#if viewOnly}}
-                <div class="btn-list -borderless">
-                    <button class="btn -red -full margin-top" {{action 'removeAStory' storyModel}}>
-                        Remove Story    
-                    </button>
-                </div>
+                <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
-                <header class="story__header">
-                    <h2 class="heading beta">{{title}}</h2>
-                    <h3 class="heading gamma">{{subTitle}}</h3>
-                </header>
-                <div class="btn-list">
-                    {{ui/button-link href=dataSourceUrl title="View Data Source" class="btn -blue -half"}}
-                    {{ui/button-link href=feedbackEmail type="mail" title="Contact Author" class="btn -blue -half"}}
-                </div>
-                <div class="btn-list">
-                    <button class="btn -red -half" {{action 'editAStory' storyModel}}>
-                        Edit
-                    </button>
-                    <button class="btn -red -half" {{action 'removeAStory' storyModel}}>
-                        Remove from canvas    
-                    </button>
-                </div>
                 
                 {{#if configFields}}
                     {{#each configFields as |field|}}
@@ -57,17 +45,29 @@
                 {{/if}}
                 
                 {{#if description}}
-                    <div class="dotted-area -bottom -dark pad-bottom margin-bottom">
-                        <h2 class="beta bold half-margin-bottom">Description</h2>
+                    <div cpn-divide="bottom light">
+                        <h2 class="beta">Description</h2>
                         <p class="story__para">{{description}}</p>
                     </div>
                 {{/if}}
                 {{#if license}}
-                    <div class="margin-bottom">
-                        <h2 class="beta bold half-margin-bottom">Licence / Attribution</h2>
+                    <div cpn-divide="bottom light">
+                        <h2 class="beta">Licence / Attribution</h2>
                         <p class="story__para">{{{license}}}</p>
                     </div>
                 {{/if}}
+                
+                <ul cpn-row-list>
+                    <li cpn-width="50%">
+                        <a href="{{dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
+                    </li>
+                    <li cpn-width="50%">
+                        <a href="mailto:{{feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
+                    </li>
+                    <li cpn-width="100%">
+                        <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                    </li>
+                </ul>
             {{/if}}
         </div>
     </div>

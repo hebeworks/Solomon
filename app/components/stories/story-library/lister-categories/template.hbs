@@ -1,13 +1,6 @@
 {{yield}}
-		<section class="drawer__section -categories">
-			{{#each categories as |cat|}}
-				<h3 class="thumb-list-heading">{{cat.category.title}}</h3>
-				<div class="js-thumb-list thumb-list dotted-area -bottom -dark pad-bottom">
-					<ul class="thumb-list__inner">
-						{{#each cat.stories as |story|}}
-							{{stories/story-library/list-view-thumbnail model=story action="addAStory" thumbIcon="-add-story"}}
-						{{/each}}
-					</ul>
-				</div>
-			{{/each}}
-		</section>
+<section class="drawer__section -categories">
+	{{#each categories as |cat|}}
+		{{stories/story-library/list-view stories=cat.stories title=cat.category.title}}
+	{{/each}}
+</section>

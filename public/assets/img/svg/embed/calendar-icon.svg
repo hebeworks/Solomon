@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Calendar-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Start-Here" sketch:type="MSArtboardGroup" transform="translate(-297.000000, -449.000000)" fill="#303030">
+            <g id="Calendar-icon" sketch:type="MSLayerGroup" transform="translate(297.000000, 449.000000)">
+                <path d="M24,0.0784264907 C10.8236154,0.0784264907 0.141659329,10.7387153 0.141659329,23.888373 C0.141659329,37.0389829 10.8236154,47.6983194 24,47.6983194 C37.1773389,47.6983194 47.8583407,37.0389829 47.8583407,23.888373 C47.8592949,10.7387153 37.1773389,0.0784264907 24,0.0784264907 L24,0.0784264907 Z M24,45.8203411 C11.8628016,45.8203411 2.02440895,36 2.02440895,23.888373 C2.02440895,11.7767459 11.8637558,1.95735715 24,1.95735715 C36.1381527,1.95735715 45.9765453,11.7767459 45.9765453,23.888373 C45.9765453,36 36.1381527,45.8203411 24,45.8203411 Z M23.9952287,26.745338 L11.589884,26.745338 L11.589884,24.8406946 L23.9952287,24.8406946 L23.9952287,6.74658285 L25.9037433,6.74658285 L25.9037433,24.8406946 L25.9037433,26.745338 L23.9952287,26.745338 Z" id="recents-2" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

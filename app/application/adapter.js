@@ -3,8 +3,22 @@ import config from 'hebe-dash/config/environment';
 
 // export default DS.RESTAdapter.extend({
 export default DS.JSONAPIAdapter.extend({
-    host: config.APP.dashAPIURL,
+    needs: ['session'],
+    host: config.APP.solomonAPIURL,
     namespace: 'api',
+    ajax: function (url, type, hash) {
+        if (Ember.isEmpty(hash)) hash = {};
+        if (Ember.isEmpty(hash.data)) hash.data = {};
+        var token = this.get('session.secure.token');
+        hash.data.token = token;
+        return this._super(url, type, hash);
+    },
+    // headers: Ember.computed('session.secure.token', function () {
+    //     var token = this.get('session.secure.token');
+    //     return { 'Authorization': 'Token: ' + token};
+});
+
+
     // updateRecord: function (store, type, snapshot) {
     //     var data = {};
     //     var serializer = store.serializerFor(type.modelName);
@@ -23,4 +37,3 @@ export default DS.JSONAPIAdapter.extend({
     //        }
     //        return Ember.String.underscore(path);
     //    }    
-});

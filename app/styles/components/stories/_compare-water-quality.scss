@@ -1,0 +1,67 @@
+[spc-cwq] {
+	input {
+		@extend %cpn-input-ghost-light;
+		height: rem(35px);
+		font-size: rem(12px);
+	}
+}
+
+[spc-cwq-split] {
+	position: relative;
+	margin-bottom: rem($spacing-base / 2);
+	
+	&::after {
+		content: '';
+		width: 0;
+		height: 100%;
+		border-left: 1px dotted #fff;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		margin: auto;
+	}
+}
+
+[spc-cwq-hardness] {
+	font-size: rem(12px);
+	margin: rem($spacing-base) 0 rem($spacing-base - 5);
+	font-weight: bold;
+}
+
+[spc-cwq-data] {
+	text-align: center;
+	font-size: rem(12px);
+}
+	
+	[spc-cwq-data_row] {
+		position: relative;
+		border-top: 1px dotted rgba(255,255,255,.18);
+	}
+	
+		[spc-cwq-data_cell] {
+			width: 50%;
+			float: left;
+			padding-top: rem($spacing-base);
+			padding-bottom: rem($spacing-base - 2);
+			
+			&:first-child {
+				padding-right: rem($spacing-base);
+			}
+			
+			&:last-child {
+				padding-left: rem($spacing-base);
+			}
+		}
+		
+		[spc-cwq-data_label] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			padding-top: rem($spacing-base);
+			padding-bottom: rem($spacing-base - 2);
+			font-weight: bold;
+		}

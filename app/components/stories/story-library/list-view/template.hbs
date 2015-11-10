@@ -1,0 +1,11 @@
+{{yield}}
+
+<h3 cpn-thumb-list_heading>{{title}}</h3>
+
+<div cpn-thumb-list_wrapper cpn-divide="bottom">
+    <ul cpn-thumb-list_items>
+        {{#each stories as |story|}}
+            {{stories/story-library/list-view-thumbnail model=story action="addAStory" thumb-icon="add-story"}}
+        {{/each}}
+    </ul>
+</div>

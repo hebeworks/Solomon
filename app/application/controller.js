@@ -1,9 +1,11 @@
 import Ember from 'ember';
+import SolomonConfig from 'hebe-dash/utils/solomon-utils';
 
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
 	modalComponent: 'ui/login-form',
+	solomoncConfig: null,
 
 	appController: function () {
         return this;
@@ -19,6 +21,29 @@ export default Ember.Controller.extend({
 		this.get('history').pushObject(this.get('currentPath'));
 	}.observes('currentPath'),
 
+	loadSolomonConfig: function () {
+        // Todo: get the site config from a request to Solomon API 
+		// (using the response header) e.g. Solomon-Client	solomon_local_dev
+		var config = SolomonConfig.config(window.location.hostname);
+		this.set('pageTitle', config.title);
+        this.set('solomonConfig', config);
+	},
+
+	_pageTitle: '',
+	pageTitle: Ember.computed({
+		get() {
+			return this.get('_pageTite');
+		},
+		set(key, value) {
+			if (this.get('_pageTitle') != value) {
+				this.set('_pageTitle', value);
+				if (!Ember.isEmpty(value)) {
+					Ember.$(document).attr('title', value);
+				}
+			}
+		}
+	}),
+
 	// Methods
     authLogin: function (username) {
         var obj = this;
@@ -31,9 +56,9 @@ export default Ember.Controller.extend({
                     function (message) {
                         // _this.set('errorMessage', message);
 						// console.log('authLogin.then username: ' + username + ', message: ' + message);
-
 						var foundUserCallback = function (user) {
 							// console.log('foundUserCallback: ' + user.username)
+							// debugger;
 							obj.get('currentUser').set('content', user);
 							resolve(user);
 						};
@@ -49,7 +74,7 @@ export default Ember.Controller.extend({
 										reject(new Error('User not found'));
 									});
 						} else {
-							var token = obj.get('session.secure.token');
+							var token = obj.get('session.content.secure.token');
 							// console.log('username IS empty token is: ' + token);
 							return obj.store.find('user', token)
 								.then(
@@ -79,7 +104,55 @@ export default Ember.Controller.extend({
 	},
 
 	hideModal: function () {
+		this.set('modalComponent', '');
 		this.set('isModalVisible', false);
+	},
+
+	showTutorialTimer: null,
+	shouldShowTutorial: function (force) {
+		if (Cookies.get('viewedTutorial')) {
+			// unauthed session has seen tutorial
+			// stop the timer & observer
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+		} else if (!Ember.isEmpty(this.get('currentUser.content')) && this.get('currentUser.content.config.viewedTutorial') == true) {
+			// have a user and has seen tutorial
+			// stop the timer & observer
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+		} else {
+			// show the tutorial in 5 seconds
+			var timer = Ember.run.later(this, this.showTutorial, 5000);
+			this.set('showTutorialTimer', timer);
+			// if too early for authed user - observe for it being set
+			// if it is set in the meantime, the timer will be cancelled
+			Ember.addObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+		}
+	},
+
+	showTutorial: function () {
+		if (!this.get('isModalVisible')) {
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+			this.showModal('ui/tutorial-intro', 'Tutorial');
+		}
+	},
+
+	closeTutorial: function () {
+		Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+		var authedUser = this.get('currentUser.content');
+
+		if (!Ember.isEmpty(authedUser)) {
+			// if we have authed session user
+			// set viewed flag
+			var userConfig = authedUser.get('config');
+			userConfig.viewedTutorial = true;
+			authedUser.set('config', userConfig);
+			authedUser.save();
+		}
+		Cookies.set('viewedTutorial', true);
+		this.hideModal();
+		// this.showModal('ui/login-form');
 	},
 
 	openToolbox: function () {
@@ -88,6 +161,7 @@ export default Ember.Controller.extend({
 		// Drawer.closeBottom();
 		this.set('canvasBlurred', true);
 		this.set('topOpen', true);
+		$('.js-open-toolbox').addClass('-selected');
 	},
 
 	closeToolbox: function () {
@@ -96,6 +170,7 @@ export default Ember.Controller.extend({
 		// Drawer.closeBottom();
 		this.set('canvasBlurred', false);
 		this.set('topOpen', false);
+		$('.js-open-toolbox').removeClass('-selected');
 	},
 
 	toggleToolbox: function () {
@@ -133,7 +208,18 @@ export default Ember.Controller.extend({
 		}
 	},
 
-	loadACanvas: function (canvasID) {
+	loadACanvas: function (canvas) {
+		var canvasID = canvas;
+		// use a canvases friendlyURL if it exists
+		if (Ember.typeOf(canvas) == 'instance') {
+			if (!Ember.isEmpty(canvas.get('friendlyURL'))) {
+				canvasID = canvas.get('friendlyURL');
+			} else if (!Ember.isEmpty(canvas.get('urlShortcode'))) {
+				canvasID = canvas.get('urlShortcode');
+			} else {
+				canvasID = canvas.get('id');
+			}
+		}
         // var canvasID = canvas.get('id');
         // console.log(canvasID);
         this.get('target').transitionTo('canvas', canvasID);
@@ -141,8 +227,11 @@ export default Ember.Controller.extend({
     },
 
 	createACanvas: function (model) {
-		var params = { contentType: 'canvas-gallery/create-a-canvas' };
-		if(!Ember.isEmpty(model)) {
+		var params = {
+			contentType: 'canvas-gallery/create-a-canvas',
+			openAmount: '-full'
+		};
+		if (!Ember.isEmpty(model)) {
 			params.model = model;
 			params.mainTitle = 'Duplicate a canvas'
 		}

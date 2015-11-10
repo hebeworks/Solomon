@@ -5,44 +5,19 @@ export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
     storyModel: null,
-    didReceiveAttrs: function () {
-        var story = this.get('storyModel');
-        if (!Ember.isEmpty(story)) {
-            this.setupEditableFields();
-            this.loadFeedFromConfig();
-        }
-    },
 
-    setupEditableFields: function () {
-        var story = this.get('storyModel');
-        story.addConfigItem({ name: 'url', type: 'text', value: '', placeholder: 'Enter a URL' });
-    },
-
-    onConfigChange: function () {
-        this.loadFeedFromConfig();
-        this.set('action','saveCanvasState');
-        this.sendAction('action');
-    }.observes('storyModel.config.@each.value'),
-
-    loadFeedFromConfig: function() {
-        var config = this.get('storyModel.config');
-        var feedUrl = config.findBy('name', 'url').get('value');
-        if (!Ember.isEmpty(feedUrl)) {
-            this.loadFeed(feedUrl);
-        } else {
-            this.loadFeed('http://news.leeds.gov.uk/feed/en');            
-        }
-    },
 
     didInsertElement: function () {
         this.set('title', 'Leeds Gov News');
         this.set('subTitle', 'New from Leeds');
+        this.loadFeed('http://news.leeds.gov.uk/feed/en');            
     },
 
     loadFeed: function (feedUrl) {
         var obj = this;
         var base64FeedUrl = hebeutils.Base64.encode(feedUrl);
-        var url = 'http://hebenodeapi.azurewebsites.net/apiproxy?url=' + base64FeedUrl + '&toJSON=true';
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var url = hebeNodeAPI + '/apiproxy?url=' + base64FeedUrl + '&toJSON=true';
         this.getData(url)
             .then(
                 function (data) {

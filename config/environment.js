@@ -17,12 +17,18 @@ module.exports = function (environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      dataMillUrl: 'http://api.leedsdatamill.org/',
-      statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW 
-      // dashAPIURL: 'http://localhost:8080',
-      // dashAPIURL: 'http://hebedashapi-preview.azurewebsites.net',
-      dashAPIURL: 'http://hebedashapi.azurewebsites.net',
+      // dataMillUrl: 'http://api.leedsdatamill.org/',
       // statnoticeURL: 'http://statnotices.azurewebsites.net', // LIVE 
+      // solomonAPIURL: 'http://localhost:8080',
+      // solomonAPIURL: 'http://hebedashapi-preview.azurewebsites.net',
+      // solomonAPIURL: 'http://hebedashapi.azurewebsites.net',
+      
+      dataMillCatAPI: 'http://leedsdatamill.org', // http://leedsdatamill.org/api (the catalogue API for package queries)
+      dataMillDataAPI: 'http://api.datapress.io/api/3/',     // (the datastore API where data ends up in the 'push to datastore' case).
+      statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW 
+      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
+
       googleMapStyles: {
         default: [
           {
@@ -178,8 +184,9 @@ module.exports = function (environment) {
     // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV
     // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW 
 
-    ENV.APP.dashAPIURL = 'http://hebedashapi-preview.azurewebsites.net';
-
+    // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
+    // ENV.APP.solomonAPIURL = 'http://localhost:3000';
+    // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
   }
 
   if (environment === 'test') {

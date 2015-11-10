@@ -1,0 +1,76 @@
+/* Colours */
+$ivory: #fcfae6;
+$lime: #7ed321;
+$yellow: #f8e71c;
+$tct-yellow: #EDED8E;
+$lighter-blue: #49b0e6;
+$light-blue: #90bef6;
+$medium-blue: #2BA2DE;
+$blue: #468ee5;
+$dark-blue: #21446e;
+$tct-blue: #7EC8EE;
+$light-red: #f30000;
+$red: #d0021b;
+$dark-red: darken( $red, 10% );
+$light-grey: #e7e7e7;
+$grey: #999999;
+$medium-grey: #dfdfdf;
+$dark-grey: #4a4a4a;
+$white: #fff;
+$near-black: #303030;
+$black: #000;
+$off-white: #f1f1f1;
+$orange: #f7a700;
+$dark-orange: #FF4500;
+$mint: #50E3C2;
+$brown: #8B572A;
+// air rating colours
+$color-air1: #9CFF9C;
+$color-air2: #31FF00;
+$color-air3: #31CF00;
+$color-air4: #FFFF00;
+$color-air5: #FFCF00;
+$color-air6: #FF9A00;
+$color-air7: #FF6464;
+$color-air8: #FF0000;
+$color-air9: #990000;
+$color-air10: #CE30FF;
+
+/* Fonts */
+$sansserif: 'Helvetica', 'Arial', 'sans-serif';
+$helvneue: 'HelveticaNeueLT-Roman', $sansserif;
+$helvneuelight: 'HelveticaNeueLT-Light', $helvneue;
+$helvneuemed: 'HelveticaNeueLT-Medium', $helvneue;
+$helvneuebold: 'HelveticaNeueLT-Bold', $helvneuemed;
+$georgia: 'Georgia', 'serif';
+$letrapro: 'LetraPro-Headline', $sansserif;
+
+// Font Sizes
+$font-browser-base: 16px;
+$font-base: 15px;
+
+/* Styles */
+$radius: 5px;
+
+$breakpoints: (phoneSmall: 365px, phoneLarge: 510px, tablet: 768px, desktop: 1024px);
+
+/* Sizes */
+$large-heading: 20px;
+$medium-heading: 15px;
+$small-heading: 11px;
+
+$helper-spacing: 10px;
+
+// Spacing
+$spacing-base: 10px;
+
+// Copied in from hybrid/vars
+$base-font-size: 16px!default;
+$base-line-height: 24px!default;
+
+$line-height-ratio: $base-line-height / $base-font-size;
+
+$base-font-family:  sans-serif!default;
+
+$base-spacing-unit: $base-line-height!default;
+$half-spacing-unit: $base-spacing-unit / 2!default;

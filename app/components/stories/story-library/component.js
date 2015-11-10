@@ -7,7 +7,14 @@ export default Ember.Component.extend({
 	},
 	
 	isAdmin: function(){
-		return true;
+		var adminHosts = ['localhost','127.0.0.1','0.0.0.0','testing.mysolomon.co.uk'];
+		var hostname = window.location.hostname;
+		
+		if(adminHosts.indexOf(hostname) > -1) {
+			return true;
+		} else {
+			return false;
+		}
 		// natehere
 		// if(this.get('session.secure.token') == '55f15e19fc4b2397742d1aa6') {
 		// 	return true;
@@ -30,8 +37,11 @@ export default Ember.Component.extend({
 			// console.log('setting _currentView: ' + value);
 			if (this.get('_currentView') != value && !Ember.isEmpty(value)) {
 				this.set('_currentView', value);
-				this.$('.js-bottom-drawer-button.btn-list .btn').removeClass('-selected');
-				this.$('.btn[data-btn-type="' + value + '"]').addClass('-selected');
+				this.$('[data-btn-type]').attr('cpn-button', '');
+				this.$('[data-btn-type="' + value + '"]').attr('cpn-button', 'chosen');
+				
+				// this.$('.js-bottom-drawer-button.btn-list .btn').removeClass('-selected');
+				// this.$('.btn[data-btn-type="' + value + '"]').addClass('-selected');
 			}
 			return 'stories/story-library/lister-' + value;
 		}

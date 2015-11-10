@@ -2,6 +2,11 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+    onActivate: function () {
+        this.controllerFor('application').loadSolomonConfig();
+        this.controllerFor('application').shouldShowTutorial();
+    }.on('activate'),
+    
     // Methods
     setupController: function (controller, model) {
         var obj = this;
@@ -19,7 +24,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // Actions 
     actions: {
         showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', 'Register/Sign In', intro);
+            this.controller.showModal('ui/login-form', 'Log in / Sign up', intro);
         },
 
         mailToFeedback: function () {
@@ -28,6 +33,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
         showFeedbackmodal: function () {
             this.controller.showModal('ui/feedback-form');
+        },
+
+        showTutorialModal: function () {
+            this.controller.showTutorial();
+        },
+
+        closeTutorial: function () {
+            this.controller.closeTutorial();
         },
 
         hideModal: function () {
@@ -71,12 +84,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.goBack();
         },
 
-        loadACanvas: function (canvasID) {
-            this.controller.loadACanvas(canvasID)
+        loadACanvas: function (canvasModel) {
+            this.controller.loadACanvas(canvasModel)
         },
 
         sessionAuthenticationSucceeded: function () {
             console.log('Session authenticated');
+        },
+
+        goToHelp: function () {
+            var url = "https://github.com/hebeworks/Solomon/wiki";
+            window.open(url, '_blank');
         }
     }
 });

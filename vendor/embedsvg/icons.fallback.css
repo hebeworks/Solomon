@@ -1,14 +1,24 @@
 .svg-add-a-story { background-image: url('png/add-a-story.png'); background-repeat: no-repeat; }
 
+.svg-add-story-graphic { background-image: url('png/add-story-graphic.png'); background-repeat: no-repeat; }
+
 .svg-back { background-image: url('png/back.png'); background-repeat: no-repeat; }
 
+.svg-bin-icon { background-image: url('png/bin-icon.png'); background-repeat: no-repeat; }
+
+.svg-brown-icon { background-image: url('png/brown-icon.png'); background-repeat: no-repeat; }
+
 .svg-browse { background-image: url('png/browse.png'); background-repeat: no-repeat; }
+
+.svg-calendar-icon { background-image: url('png/calendar-icon.png'); background-repeat: no-repeat; }
 
 .svg-calendar { background-image: url('png/calendar.png'); background-repeat: no-repeat; }
 
 .svg-change-canvas { background-image: url('png/change-canvas.png'); background-repeat: no-repeat; }
 
 .svg-circle-indicator { background-image: url('png/circle-indicator.png'); background-repeat: no-repeat; }
+
+.svg-circled-cross { background-image: url('png/circled-cross.png'); background-repeat: no-repeat; }
 
 .svg-clock-face-hours { background-image: url('png/clock-face-hours.png'); background-repeat: no-repeat; }
 
@@ -19,6 +29,8 @@
 .svg-clock-face { background-image: url('png/clock-face.png'); background-repeat: no-repeat; }
 
 .svg-close-drawer { background-image: url('png/close-drawer.png'); background-repeat: no-repeat; }
+
+.svg-closed-chevron { background-image: url('png/closed-chevron.png'); background-repeat: no-repeat; }
 
 .svg-cogs { background-image: url('png/cogs.png'); background-repeat: no-repeat; }
 
@@ -35,6 +47,8 @@
 .svg-gallery { background-image: url('png/gallery.png'); background-repeat: no-repeat; }
 
 .svg-hebe-logo { background-image: url('png/hebe-logo.png'); background-repeat: no-repeat; }
+
+.svg-help-icon { background-image: url('png/help-icon.png'); background-repeat: no-repeat; }
 
 .svg-help { background-image: url('png/help.png'); background-repeat: no-repeat; }
 
@@ -53,6 +67,8 @@
 .svg-icon-close-circular { background-image: url('png/icon-close-circular.png'); background-repeat: no-repeat; }
 
 .svg-icon-feedback { background-image: url('png/icon-feedback.png'); background-repeat: no-repeat; }
+
+.svg-icon-tutorial { background-image: url('png/icon-tutorial.png'); background-repeat: no-repeat; }
 
 .svg-icon-weather-cloudy-grey { background-image: url('png/icon-weather-cloudy-grey.png'); background-repeat: no-repeat; }
 
@@ -104,6 +120,10 @@
 
 .svg-input-clear { background-image: url('png/input-clear.png'); background-repeat: no-repeat; }
 
+.svg-lcd-logo-compact { background-image: url('png/lcd-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-lcd-logo-expanded { background-image: url('png/lcd-logo-expanded.png'); background-repeat: no-repeat; }
+
 .svg-login { background-image: url('png/login.png'); background-repeat: no-repeat; }
 
 .svg-logo-thin { background-image: url('png/logo-thin.png'); background-repeat: no-repeat; }
@@ -122,6 +142,8 @@
 
 .svg-presentation { background-image: url('png/presentation.png'); background-repeat: no-repeat; }
 
+.svg-recycle-icon { background-image: url('png/recycle-icon.png'); background-repeat: no-repeat; }
+
 .svg-reverse { background-image: url('png/reverse.png'); background-repeat: no-repeat; }
 
 .svg-search-grey { background-image: url('png/search-grey.png'); background-repeat: no-repeat; }
@@ -133,6 +155,10 @@
 .svg-select2-icon { background-image: url('png/select2-icon.png'); background-repeat: no-repeat; }
 
 .svg-share { background-image: url('png/share.png'); background-repeat: no-repeat; }
+
+.svg-solomon-logo-compact { background-image: url('png/solomon-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-solomon-logo-expanded { background-image: url('png/solomon-logo-expanded.png'); background-repeat: no-repeat; }
 
 .svg-space-station { background-image: url('png/space-station.png'); background-repeat: no-repeat; }
 
