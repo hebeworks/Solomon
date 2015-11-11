@@ -4,7 +4,7 @@ export default DefaultStory.extend({
     didInsertElement: function () {
         var _this = this;
 
-        this.set('title', 'Council Spending for Directorate');
+        this.set('title', 'LCC Directorate Spending');
         this.set('subTitle', 'Monthly spend for Leeds City Council directorates');
 
         var dateQuery = hebeutils.Base64.encode(JSON.stringify({ comparison: '$lte', value:new Date("2015-03-01") }));

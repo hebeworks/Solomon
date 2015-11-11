@@ -4,8 +4,8 @@ export default DefaultStory.extend({
     didInsertElement: function () {
         var _this = this;
 
-        this.set('title', 'Council Spending');
-        this.set('subTitle', 'Monthly spend data by directorate');
+        this.set('title', 'Leeds City Council Spending');
+        this.set('subTitle', 'Monthly spend for Leeds City Council');
 
         var dateQuery = hebeutils.Base64.encode(JSON.stringify({ comparison: '$lte', value:new Date("2015-03-01") }));
         this.loadData('date='+dateQuery).then(function (data) {
@@ -52,7 +52,7 @@ export default DefaultStory.extend({
     setMonths: function (records) {
         var yearTotal = 0; 
         records.forEach(function(month){
-            month.text = moment(new Date(month.date)).format("MMM YYYY");
+            month.text = moment(new Date(month.date)).format("MMMM YYYY");
             month.id = moment(new Date(month.date)).format("YYYY-MM-DD");
             yearTotal += month.total;
         });
