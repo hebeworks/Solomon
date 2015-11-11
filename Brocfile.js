@@ -9,6 +9,9 @@ var app = new EmberApp({
                 'app': '/assets/hebe-dash.css'
             }
         }
+    },
+    fingerprint: {
+        exclude: ['assets/img/tutorial-intro-assets']
     }
 });
 
