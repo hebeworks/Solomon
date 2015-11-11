@@ -1,16 +1,11 @@
-.council-spending-directorate {
-
-		p {
-			
-		}
+[spc-cs-spend-title] {
+    font-family: $helvneuemed;
+    font-size: rem(14px);
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: #fff;
 }
-	.council-spending-directorate__welcome {
 
-		
-	}
-	.council-spending-directorate__item {
-	
-		li {
-			
-		}
-	}
+[spc-cs-spend-desc] {
+    font-size: rem(12px);
+}
