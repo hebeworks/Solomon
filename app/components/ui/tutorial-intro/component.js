@@ -9,10 +9,12 @@ export default Ember.Component.extend({
 
 	checkForLinks: function () {
 		var _this = this;
-		// var btnGetStarted = this.$('#hype-obj-GhEFCIJCRpxdQkP9');
 		var btnGetStarted = this.$('.HYPE_element:contains("Get started")');
 		var btnWatchAgain = this.$('.HYPE_element:contains("Watch again")');
-		var btnSkip = this.$('.HYPE_element:contains("Skip this")');
+		var btnSkip = this.$('.HYPE_element')
+							.filter(function(){
+								return ("Skip this" == $(this).text());
+							});
 		if (!Ember.isEmpty(btnGetStarted)) {
 			btnGetStarted.on('click', function (e) {
 				e.preventDefault();

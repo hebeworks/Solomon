@@ -28,7 +28,7 @@ module.exports = function (environment) {
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW 
       hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
-      
+
       googleMapStyles: {
         default: [
           {

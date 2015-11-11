@@ -1,9 +1,11 @@
 import Ember from 'ember';
+import SolomonConfig from 'hebe-dash/utils/solomon-utils';
 
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
 	modalComponent: 'ui/login-form',
+	solomoncConfig: null,
 
 	appController: function () {
         return this;
@@ -19,21 +21,28 @@ export default Ember.Controller.extend({
 		this.get('history').pushObject(this.get('currentPath'));
 	}.observes('currentPath'),
 
-	getSiteConfig: function () {
+	loadSolomonConfig: function () {
         // Todo: get the site config from a request to Solomon API 
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
-        var hostname = window.location.hostname;
-        var siteConfig = {};
-        if (hostname.indexOf('leedsdatamill') > -1) {
-            siteConfig.name = 'lcd';
-            siteConfig.title = 'Leeds City Dashboard';
-        } else {
-            siteConfig.name = 'solomon';
-            siteConfig.title = 'Solomon';
-        }
-        // console.log('Site Config: ' + Ember.inspect(siteConfig));
-        this.set('siteConfig', siteConfig);
+		var config = SolomonConfig.config(window.location.hostname);
+		this.set('pageTitle', config.title);
+        this.set('solomonConfig', config);
 	},
+
+	_pageTitle: '',
+	pageTitle: Ember.computed({
+		get() {
+			return this.get('_pageTite');
+		},
+		set(key, value) {
+			if (this.get('_pageTitle') != value) {
+				this.set('_pageTitle', value);
+				if (!Ember.isEmpty(value)) {
+					Ember.$(document).attr('title', value);
+				}
+			}
+		}
+	}),
 
 	// Methods
     authLogin: function (username) {
@@ -122,9 +131,11 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorial: function () {
-		Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-		Ember.run.cancel(this.get('showTutorialTimer'));
-		this.showModal('ui/tutorial-intro');
+		if (!this.get('isModalVisible')) {
+			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+			Ember.run.cancel(this.get('showTutorialTimer'));
+			this.showModal('ui/tutorial-intro', 'Tutorial');
+		}
 	},
 
 	closeTutorial: function () {
@@ -141,6 +152,7 @@ export default Ember.Controller.extend({
 		}
 		Cookies.set('viewedTutorial', true);
 		this.hideModal();
+		// this.showModal('ui/login-form');
 	},
 
 	openToolbox: function () {
@@ -214,7 +226,10 @@ export default Ember.Controller.extend({
     },
 
 	createACanvas: function (model) {
-		var params = { contentType: 'canvas-gallery/create-a-canvas' };
+		var params = {
+			contentType: 'canvas-gallery/create-a-canvas',
+			openAmount: '-full'
+		};
 		if (!Ember.isEmpty(model)) {
 			params.model = model;
 			params.mainTitle = 'Duplicate a canvas'

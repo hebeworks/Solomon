@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    logoClass: Ember.computed('appController.siteConfig', function () {
-        return this.get('appController.siteConfig.name') + '-logo';
+    logoClass: Ember.computed('appController.solomonConfig', function () {
+        return this.get('appController.solomonConfig.name') + '-logo';
     }),
 
-    logoText: Ember.computed('appController.siteConfig', function () {
-        return this.get('appController.siteConfig.title');
+    logoText: Ember.computed('appController.solomonConfig', function () {
+        return this.get('appController.solomonConfig.title');
     }),
 
     click: function () {

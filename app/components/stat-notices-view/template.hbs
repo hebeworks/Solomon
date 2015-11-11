@@ -1,27 +1,31 @@
 <div class="stat-notice">
 	<div class="stat-notice__section -two-thirds">
-		<div class="btn-list -borderless pad-top-no">
-		    <div class="btn -white -inactive {{statnotice-type-icon model.type "-black"}} float--left">
-			    <span class="v-align--middle text--center">
+		<div cpn-divide="bottom" cpn-clearfix>			
+			<div cpn-float="left" cpn-margin="bottom">
+			    <div cpn-button="ghost">
+			        <span data-grunticon-embed class="{{statnotice-type-icon model.type '-black'}}"></span>
 			        {{model.type}}
-			    </span>
+			    </div>
 			</div>
-			<div class="btn -white -inactive float--right publication-date">
-				<span class="v-align--middle">
-					<span class="beta">Publication date: {{format-date "DD/MM/YYYY" model.publicationDate}}</span>
-				</span>
-			</div>
+		    <div cpn-float="right" cpn-margin="bottom">
+		        <div cpn-button="ghost">
+		            <span>Publication date:</span>
+		            <time> {{format-date "DD/MM/YYYY" model.publicationDate}}</time>
+		        </div>
+		    </div>
 		</div>
-		<div class="stat-notice__proposal dotted-area -top -bottom pad-top pad-bottom -dark">
+		<div cpn-divide="bottom">
 			<h2 class="alpha">{{model.proposal}}</h2>
 		</div>
-		<p class="stat-notice__description dotted-area -dark -bottom pad-top pad-bottom">
-			{{#if model.proposalDetails}}
-				{{model.proposalDetails}}
-			{{else}}
-				There are no further details for this notice.
-			{{/if}}
-		</p>
+		<div cpn-divide="bottom">
+			<p class="stat-notice__description">
+				{{#if model.proposalDetails}}
+					{{model.proposalDetails}}
+				{{else}}
+					There are no further details for this notice.
+				{{/if}}
+			</p>
+		</div>
 		<div class="stat-notice__map">
 		        {{google-map 
 		            lat=model.lat 
@@ -51,8 +55,10 @@
 				</div> --}}
 			</div>
 			<div class="stat-notice__section -half">
-				<div class="stat-notice__sign-off pad-top dotted-area -top -bottom -dark">
-					<h3 class="-beta dotted-area -bottom -dark pad-bottom">Sign-off</h3>
+				<div cpn-divide="top bottom">
+					<h3 class="-beta">Sign-off</h3>
+				</div>
+				<div cpn-divide="bottom">
 					<h4 class="beta">Contact name: {{model.signOffName}}</h4>
 					<p class="story__para">{{model.signOffDetails}}</p>
 				</div>
@@ -63,28 +69,24 @@
 	</div>
 	<div class="stat-notice__section -one-third">
 		<div class="stat-notice__represent pad-all">
-			<h2 class="alpha pad-top pad-bottom">Make your voice heard</h2>
-			<div class="dotted-area -top -bottom -light pad-top pad-bottom body-text">
+			<div cpn-divide="bottom light">
+				<h2 class="alpha">Make your voice heard</h2>
+			</div>
+			<div cpn-divide="bottom light">
 				<p>Use the link below to access Public Access, a Leeds City Council service that provides a simple way for you to make an official response to this application. The deadline for representations is {{{model.objectionDeadlineTime}}} on {{{format-date "DD/MM/YYYY" model.objectionDeadlineDate}}}.</p>
 			</div>
-			<div class="btn-list -borderless">
-				<div class="pad-top"><a href="{{model.publicAccessURL}}" class="btn" target="_blank">Visit Public Access</a></div>
-			</div>
+			<a cpn-button="move" href="{{model.publicAccessURL}}" target="_blank">Visit Public Access</a>
 		</div>
 	</div>
 	<div class="stat-notice__section -one-third">
 		<div class="stat-notice__legislation pad-all">
-			<h2 class="alpha pad-top pad-bottom">The legal bit</h2>
-			<div class="dotted-area -top -bottom -light pad-top pad-bottom body-text">
+			<div cpn-divide="bottom light">
+				<h2 class="alpha">The legal bit</h2>
+			</div>
+			<div cpn-divide="bottom light">
 				<p>The advertisement of Public Notices like this one is required by law. Use the link below to view the {{{model.legislationTitle}}}, which governs all {{{model.type}}} applications.</p>
 			</div>
-			<div class="btn-list -borderless">
-				<div class="pad-top"><a href="{{model.legislationURI}}" class="btn" target="_blank">View the legislation</a>
-					{{!-- <p>
-						{{citation}}
-					</p> --}}
-				</div>
-			</div>
+			<a cpn-button="move" href="{{model.legislationURI}}" target="_blank">View the legislation</a>
 		</div>
 	</div>
 	{{yield}}

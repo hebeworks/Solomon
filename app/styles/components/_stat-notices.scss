@@ -246,80 +246,16 @@
 					top:10px;
 				}	
 			}
-			
-			&__sign-off {
-				h3, h4 {
-					margin: {
-						bottom:10px;
-					}
-				}
-			}
 
-			&__legislation {
-				width: 100%;
-				height: 50%;
-				background-color: $blue;
-				border: {
-					radius: $radius;
-				}
-				color: $white;
-				h2 {
-					margin: {
-						bottom:0;
-					}
-				}
-				h3 {
-					margin: {
-						bottom: 0;
-					}
-				}
-				.btn-list	{
-					padding: {
-						top: 0px;
-						bottom: 0px;
-					}
-				}
-				.btn {
-					margin: auto;
-					background-color: $dark-blue;
-					color: $white;
-					&:hover {
-						background-color: lighten($dark-blue, 5%)
-					}
-				}
-			}
+			&__legislation,
 			&__represent {
 				width: 100%;
 				height: 50%;
-				background-color: $red;
+				background-color: $dark-grey;
 				border: {
 					radius: $radius;
 				}
 				color: $white;
-				h2 {
-					margin: {
-						bottom:0;
-					}
-				}
-				h3 {
-					margin: {
-						bottom: 0;
-					}
-				}
-				.btn-list	{
-					padding: {
-						top: 0px;
-						bottom: 0px;
-					}
-				}
-				.btn {
-					margin: auto;
-					background-color: $dark-red;
-					color: $white;
-					&:hover {
-						background-color: lighten($dark-red, 5%);;
-					}
-				}
 			}
 			
 			.btn-list {
