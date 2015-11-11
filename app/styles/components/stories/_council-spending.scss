@@ -1,8 +1,11 @@
 [spc-cs-spend-title] {
     font-family: $helvneuemed;
-    font-size: rem(10px);
+    font-size: rem(14px);
     line-height: 1.25;
     text-transform: uppercase;
     color: #fff;
-    margin-bottom: 0;
+}
+
+[spc-cs-spend-desc] {
+    font-size: rem(12px);
 }
