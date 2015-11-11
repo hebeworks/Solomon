@@ -21,7 +21,7 @@ export default DefaultStory.extend({
         },
         set(key,val) {
             var newVal = 100 - val; // because the css wants the inverse of the percentage
-            console.log('catPercentageRemaining: '+newVal);
+            // console.log('catPercentageRemaining: '+newVal);
             if(this.get('_catPercentageRemaining') != newVal) {
                 this.set('_catPercentageRemaining',newVal);
             }
@@ -71,7 +71,7 @@ export default DefaultStory.extend({
         var currentSelectedIndex = 0;
         var month = this.get('selectedMonth');
         var directorates = [];
-        var ignore = ['total', 'date', '_id', 'text', 'id'];
+        var ignore = ['total', 'date', '_id', 'text', 'id', 'longText'];
         var i = 0;
         for (var prop in month) {
             if (ignore.indexOf(prop) == -1) {
