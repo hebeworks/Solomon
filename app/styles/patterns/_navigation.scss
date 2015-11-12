@@ -66,6 +66,12 @@
 				height: 35px;
 			}
 		}
+		
+		.js-toolbox-tutorial {
+			@include breakpoint(max-width 768px) {
+				display: none;
+			}
+		}
 	}
 
 	/* Nav in the header */

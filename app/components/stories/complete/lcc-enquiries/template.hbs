@@ -27,12 +27,12 @@
         <div class="dotted-area -all -pad">
             <h2 class="heading beta">Face to Face</h2>
             <i class="svg-msn-messenger">Call receiver icon</i>
-            <span class="lcc-enquiries__total"><em class="number-stat -medium">{{number-thousand-format selectedMonth.face}}</em> Enquiries</span>
+            <span class="lcc-enquiries__total"><em class="number-stat -medium">{{large-number-formatter selectedMonth.face}}</em> Enquiries</span>
         </div><!--
         --><div class="dotted-area -all -pad">
             <h2 class="heading beta">Telephone</h2>
             <i class="svg-headset">Headset icon</i>
-            <span class="lcc-enquiries__total"><em class="number-stat -medium">{{number-thousand-format selectedMonth.phone}}</em> Enquiries</span>
+            <span class="lcc-enquiries__total"><em class="number-stat -medium">{{large-number-formatter selectedMonth.phone}}</em> Enquiries</span>
         </div>
     </div>
     <!--<h3 class="alpha">Total Enquiries: {{totalEnquiries}}</h3>-->
@@ -46,7 +46,7 @@
                     </thead>
                     <tbody>
                         {{#each item in selectedMonth.topPostcodes}}
-                            <tr><td>{{item.postcode}}</td><td>{{number-thousand-format item.total}}</td><td>{{item.percentage}}%</td></tr>
+                            <tr><td>{{item.postcode}}</td><td>{{large-number-formatter item.total}}</td><td>{{item.percentage}}%</td></tr>
                         {{/each}}
                     </tbody>
                 </table>
@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         {{#each item in selectedMonth.topEnquiries}}
-                            <tr><td>{{item.enquiry}}</td><td>{{number-thousand-format item.total}}</td><td>{{item.percentage}}%</td></tr>
+                            <tr><td>{{item.enquiry}}</td><td>{{large-number-formatter item.total}}</td><td>{{item.percentage}}%</td></tr>
                         {{/each}}
                     </tbody>
                 </table>

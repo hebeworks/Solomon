@@ -1,13 +1,51 @@
+/* global _,moment */
+import DefaultStory from './../../story-types/default-story/component';
 
-
-/* global ) */
-import Ember from 'ember';
-
-export default Ember.Component.extend({
+export default DefaultStory.extend({
     title: 'Leeds Air Quality Trends',
     subTitle: "See how Leeds' air quality has changed over time",
     storyModel: null,
     chartType: 'line',
+
+    locations: [],
+    selectedLocation: null,
+
+    loadLocations: function () {
+        var _this = this;
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?selectfields=location')
+            .then(function (data) {
+                _this.setProperties({
+                    'locations': data,
+                    selectedLocation: data[0]
+                });
+            });
+    }.on('didInsertElement'),
+
+    loadData: function () {
+        var _this = this;
+        var hebeNodeAPI = this.get('hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?location=' + encodeURIComponent(this.get('selectedLocation.location')) + '&limit=1')
+            .then(function (data) {
+                var dates = data[0].monthly_averages;
+                var sortedDates = _.sortBy(dates, function (date) {
+                    return new Date(date.date);
+                });
+                // sortedDates.reverse();
+                var chartLabels = _.map(sortedDates, function (date) { return moment(new Date(date.date)).format('MMM YY'); });
+                var chartSeries = _.map(sortedDates, function (date) { return date.average; });
+                var chartData = {
+                    labels: chartLabels,
+                    series: [chartSeries]
+                };
+                console.log('loaded');
+                console.log(chartData);
+                _this.setProperties({
+                    chartData: chartData
+                })
+            });
+    }.observes('selectedLocation'),
+    
 
     // chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     // chartSeries: [
@@ -16,11 +54,11 @@ export default Ember.Component.extend({
     //     [5, 4, 3, 2, 1, 0.5]
     // ],
 
-    chartData: Ember.computed('chartSeries', 'chartLabels', {
+    chartData2: Ember.computed('chartSeries', 'chartLabels', {
         get() {
 
             var data = this.get('data');
-            var labels = _.map(data,function (item) {
+            var labels = _.map(data, function (item) {
                 return moment(new Date(item.date["$date"])).format("MMM YY");
             });
             var series = [];
@@ -30,17 +68,19 @@ export default Ember.Component.extend({
                     if (series[i] == null) {
                         series[i] = [];
                     }
-                    if(prop != "date") {
+                    if (prop != "date") {
                         series[i].push(item[prop]);
                         i++;
                     }
                 }
             });
-
-            return {
+            var chartData = {
                 labels: labels,
                 series: series
-            }
+            };
+            console.log('hardcoded');
+            console.log(chartData);
+            return chartData
         }
     }),
 
@@ -53,7 +93,7 @@ export default Ember.Component.extend({
             divisor: 20
         }),
         axisY: {
-            labelInterpolationFnc: function(value) {
+            labelInterpolationFnc: function (value) {
                 return value + 'ppb'
             }
         }
@@ -92,7 +132,7 @@ export default Ember.Component.extend({
     ],
     
     // Add tooltips which appear above the data points and show the full data value
-    addToolTips: function() {
+    addToolTips: function () {
         var $chart = this.$('.ct-chart');
 
         var $toolTip = $chart
@@ -100,26 +140,26 @@ export default Ember.Component.extend({
             .find('.ct-tooltip')
             .hide();
 
-        $chart.on('mouseenter', '.ct-point', function() {
+        $chart.on('mouseenter', '.ct-point', function () {
             var $point = $(this),
                 value = $point.attr('ct:value'),
                 index = $point.attr('spc-air-index'),
                 band = $point.attr('spc-air-band');
-                
+
             $toolTip
                 .html(value + '<br />' + band)
                 .attr('spc-tooltip-air-index', index)
                 .show();
         });
 
-        $chart.on('mouseleave', '.ct-point', function() {
+        $chart.on('mouseleave', '.ct-point', function () {
             $toolTip.hide();
         });
 
-        $chart.on('mousemove', function(event) {
+        $chart.on('mousemove', function (event) {
             var tooltipWidth = $toolTip.width(),
                 tooltipHeight = $toolTip.height();
-                
+
             $toolTip.css({
                 left: (event.originalEvent.layerX) - tooltipWidth / 2 - 10,
                 top: (event.originalEvent.layerY) - tooltipHeight - 25
@@ -128,16 +168,16 @@ export default Ember.Component.extend({
     }.observes('chart'),
     
     // Colour the data points (and tooltip) with the relevant colour based on where the reading falls in the air quality index. See https://en.wikipedia.org/wiki/Air_quality_index#United_Kingdom and http://uk-air.defra.gov.uk/air-pollution/daqi
-    colourData: function() {
+    colourData: function () {
         var obj = this,
             chart = obj.get('chart');
-        
+
         chart.on('draw', function (data) {
             if (data.type === 'point') {
-                obj.$('.ct-point').each(function() {
-                    
+                obj.$('.ct-point').each(function () {
+
                     var reading = $(this).attr('ct:value');
-                    
+
                     if (0 <= reading && reading <= 67) {
                         // Index: 1
                         $(this)
@@ -192,6 +232,6 @@ export default Ember.Component.extend({
                 });
             }
         });
-        
+
     }.observes('chart')
 });

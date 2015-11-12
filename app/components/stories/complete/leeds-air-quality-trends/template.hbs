@@ -8,6 +8,13 @@
     data-ss-colspan="2"
 }}
     <main spc-laqt class="ct-wrapper">
+        {{ select-2
+				content=locations
+				value=selectedLocation
+				optionLabelPath="location"
+				placeholder="Choose a location"
+				class="margin-bottom-no"
+			}}
         {{yield}}
             {{charts/chartist-base 
                 data=chartData
