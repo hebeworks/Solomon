@@ -67,7 +67,7 @@ export default Ember.Component.extend({
 	initPackery: function () {
 		var obj = this;
 		var $container = $('.js-stories');
-		var $allStories = $('.js-story');
+		var $allStories = $('.js-story, [cpn-story]');
 
 		// keep track of the current story's el IDs
 		// so we can identify newly added stories later
@@ -79,7 +79,7 @@ export default Ember.Component.extend({
 		setTimeout(function () {
 			obj.$container = $container
 				.packery({
-					itemSelector: '.ember-view .story',
+					itemSelector: '.ember-view .story, [cpn-story]',
 					columnWidth: 170,
 					rowHeight: 170,
 					// isInitLayout: false

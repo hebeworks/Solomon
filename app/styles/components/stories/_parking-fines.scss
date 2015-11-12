@@ -7,6 +7,7 @@
 		margin: {
 			bottom: 0px;
 		}
+		
 		a {
 			text-decoration: none;
 			&:hover {
@@ -14,6 +15,7 @@
 			}
 		}
 	}
+	
 	p {
 		font: {
 			size: em(11px);
@@ -22,17 +24,11 @@
 			bottom: 0px;
 		}
 	}
+	
 	&__inner {
-		height: 50px;
-		background-size: contain;
-		background-position: 99%;
+		background-size: auto 50px;
+		background-position: right top;
+		padding-right: rem(47px);
 	}
-	&__total {
-		width: 50%;
-	}
-	&__footer {
-		position: absolute;
-		bottom: 0px;
-	}	
 } 
 

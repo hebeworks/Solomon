@@ -48,11 +48,11 @@
 @import 'cpn/cpn-toggle';
 @import 'cpn/cpn-data-strip';
 @import 'cpn/cpn-snippet';
-@import 'cpn/cpn-story-body';
 @import 'cpn/cpn-fill-circle';
 @import 'cpn/cpn-thumb-list';
 @import 'cpn/cpn-frame';
 @import 'cpn/cpn-message';
+@import 'cpn/cpn-story';
 // Overriding components
 @import 'cpn/cpn-overflow';
 @import 'cpn/cpn-table';
@@ -64,7 +64,9 @@
 @import 'cpn/cpn-width';
 @import 'cpn/cpn-float';
 @import 'cpn/cpn-clearfix';
+@import 'cpn/cpn-bg-color';
 @import 'cpn/cpn-v-align';
+@import 'cpn/cpn-color';
 
 // ===== Components ===== //
 @import "components/story";
@@ -89,7 +91,7 @@
 @import "components/stories/carpark-spaces";
 @import "components/stories/chart";
 @import "components/stories/clock-face";
-@import "components/stories/council-spending";
+@import "components/stories/council-spending-directorate";
 @import "components/stories/council-tax";
 @import "components/stories/development-story";
 @import "components/stories/empty-properties";

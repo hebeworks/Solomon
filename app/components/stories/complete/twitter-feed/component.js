@@ -3,6 +3,7 @@ import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
     tagName: 'div',
+    width: 2,
     loaded: false,
     selectedMonth: '',
     tweets: [],

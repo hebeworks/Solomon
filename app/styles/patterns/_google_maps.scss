@@ -10,3 +10,10 @@
 		}
 	}
 }
+
+.map-canvas {
+    [cpn-story~="width-2"] & {
+        width: 100%;
+        height: rem(172px);
+    }
+}

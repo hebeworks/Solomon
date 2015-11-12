@@ -1,0 +1,239 @@
+[cpn-story] {
+    -webkit-touch-callout: none;
+    -webkit-overflow-scrolling: auto;
+    padding: rem($spacing-base);
+    display: block;
+    border-radius: rem(5px);
+    z-index: 3;
+    @include perspective(1000);
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    @include transform-style(preserve-3d);
+}
+
+[cpn-story~="width-1"] {
+    width: 160px;
+}
+
+[cpn-story~="width-2"] {
+    width: 330px;
+}
+
+[cpn-story~="height-1"] {
+    height: 160px;
+}
+
+[cpn-story~="height-2"] {
+    height: 330px;
+}
+
+    [cpn-story_inner] {
+        height: 100%;
+        -webkit-touch-callout: none;
+        @include backface-visibility(hidden);
+        @include transform-style(preserve-3d);
+        position: relative;
+        border-radius: rem(5px);
+    }
+    
+        [cpn-story_face] {
+            width: 100%;
+            height: 100%;
+            padding: rem($spacing-base);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: rem(5px);
+            overflow: hidden;
+            @include backface-visibility(hidden);
+            @include transform-style(preserve-3d);
+            @include transition(all .6s);
+            @include transform(perspective(1000px) rotateY(0deg));
+        }
+        
+        [cpn-story_face~="front"] {
+            z-index: 3;
+            @include transform(perspective(1000px) rotateY(0deg));
+            background-color: #fff;
+            color: #000;
+            
+            &[cpn-story_face~="flipped"] {
+                &[cpn-story_face~="supports-3d"] {
+                    z-index: 1;
+                    @include transform(perspective(1000px) rotateY(-180deg));
+                }
+                
+                &[cpn-story_face~="fallback-3d"] {
+                    z-index: 1;
+                    opacity: 0;
+                }
+            }
+        }
+        
+        [cpn-story_face~="back"] {
+            z-index: 1;
+            overflow: hidden;
+            @include transform(perspective(1000px) rotateY(180deg));
+            background-color: #222;
+            color: #fff;
+            padding-top: rem($spacing-base * 2);
+            
+            &[cpn-story_face~="flipped"] {
+                &[cpn-story_face~="supports-3d"] {
+                    z-index: 2;
+                    @include transform(perspective(1000px) rotateY(0deg));
+                }
+                
+                &[cpn-story_face~="fallback-3d"] {
+                    z-index: 2;
+                    opacity: 1;
+                }
+            }
+        }
+        
+            [cpn-story_dot] {
+                display: block;
+                width: rem(22px);
+                height: rem(22px);
+                font-size: 0;
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                right: 0;
+                
+                // We want the dot to look smaller but the hit area still needs to be sufficiently large
+                &::after {
+                    content: '';
+                    background-color: #f7f7f7;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    margin: auto;
+                    border-radius: 100%;
+                    @include transition(.2s);
+                    width: rem(12px);
+                    height: rem(12px);
+                }
+            }
+        
+            [cpn-story_content] {
+                @include backface-visibility(hidden);
+                @include transform-style(preserve-3d);
+                @include transition(opacity .6);
+                position: relative;
+            }
+            
+            [cpn-story_content~="has-header"] {
+                padding-top: rem(36px);
+            }
+            
+            [cpn-story_content~="has-footer"] {
+                padding-bottom: rem($spacing-base * 2);
+            }
+            
+            [cpn-story_content~="front"] {
+                &[cpn-story_content~="height-2"] {
+                    height: rem(290px);
+                }
+            }
+            
+            [cpn-story_content~="back"] {
+                overflow-x: hidden;
+                overflow-y: auto;
+                
+                &[cpn-story_content~="height-2"] {
+                    height: rem(270px);
+                }
+            }
+            
+                [cpn-story_header] {
+                    height: rem(36px);
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            
+                    [cpn-story_title] {
+                        font-size: rem(15px);
+                        line-height: 1.1333333333; // 17/15
+                        margin-bottom: 0;
+                    }
+                    
+                    [cpn-story_desc] {
+                        font-size: rem(11px);
+                        line-height: 1.1818181818; // 13//11
+                        
+                        a {
+                            [cpn-story_face~="back"] & {
+                                color: #fff;
+                            }
+                        }
+                    }
+                    
+                [cpn-story_body] {
+                    height: 100%;
+                    margin-right: rem(-$spacing-base);
+                    margin-left: rem(-$spacing-base);
+                }
+                
+                [cpn-story_body~="has-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
+                    padding-top: rem($spacing-base);
+                }
+                
+                [cpn-story_body~="no-slider"] {
+                    padding-right: rem($spacing-base);
+                    padding-left: rem($spacing-base);
+                }
+                
+                [cpn-story_body~="can-scroll"] {
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    -webkit-overflow-scrolling: touch;
+                    -ms-overflow-style: -ms-autohiding-scrollbar;
+                }
+                
+                [cpn-story_body~="has-slider"] {
+                    overflow: hidden;
+                }
+                
+                    [cpn-story_carousel-list] {
+                        height: 100% !important; // overrides inline style
+                    }
+                
+                        [cpn-story_carousel-item] {
+                            display: block;
+                            float: left;
+                            height: 100%;
+                            padding: rem($spacing-base) rem($spacing-base) 0;
+                            
+                            [cpn-story_body~="can-scroll"] & {
+                                overflow-x: hidden;
+                                overflow-y: auto;
+                                -webkit-overflow-scrolling: touch;
+                                -ms-overflow-style: -ms-autohiding-scrollbar;
+                            }
+                        }
+                    
+                        [cpn-story_carousel-item~="width-2"] {
+                            width: rem(310px);
+                        }
+            
+                [cpn-story_footer] {
+                    height: rem($spacing-base * 2);
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    padding-top: rem($spacing-base / 2);
+                    text-align: left;
+                    font-size: rem(11px);
+                    line-height: 1.182;
+                }
+                
+                    [cpn-story_author] {
+                        margin-top: rem(2px);
+                        float: right;
+                    }

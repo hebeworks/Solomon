@@ -96,6 +96,18 @@
         margin-left: -10px;
     }
     
+    
+    
+    .house-prices__chart {
+        .story__chart {
+            margin-left: rem(-$spacing-base);
+            
+            [cpn-story~="height-2"] & {
+                height: rem(100px);
+            }
+        }
+    }
+    
     .house-prices_summary {
         font: {
             size: em(11px);

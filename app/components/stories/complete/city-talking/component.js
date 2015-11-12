@@ -5,6 +5,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'div',
     loaded: false,
+    width: 2,
     didInsertElement: function() {
         this.set('title', 'The City Talking');
         this.set('subTitle', 'Music & art events around Leeds.');
