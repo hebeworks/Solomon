@@ -10,6 +10,7 @@ export default DefaultStory.extend({
         this.set('subTitle', 'Monthly spend for Leeds City Council directorates');
 
         var dateQuery = hebeutils.Base64.encode(JSON.stringify({ comparison: '$lte', value:new Date("2015-03-01") }));
+        
         this.loadData('date='+dateQuery).then(function (data) {
             _this.setMonths(data);
             _this.set('selectedMonth', data[0]);
@@ -23,7 +24,6 @@ export default DefaultStory.extend({
         },
         set(key,val) {
             var newVal = 100 - val; // because the css wants the inverse of the percentage
-            // console.log('catPercentageRemaining: '+newVal);
             if(this.get('_catPercentageRemaining') != newVal) {
                 this.set('_catPercentageRemaining',newVal);
             }
@@ -38,10 +38,11 @@ export default DefaultStory.extend({
         },
         set(key,val) {
             var newVal = 100 - val; // because the css wants the inverse of the percentage
-            console.log('totalPercentageRemaining: '+newVal);
+
             if(this.get('_totalPercentageRemaining') != newVal) {
                 this.set('_totalPercentageRemaining',newVal);
             }
+            
             return newVal;
         }
     }),
@@ -54,16 +55,16 @@ export default DefaultStory.extend({
     setMonths: function (records) {
         var yearTotal = 0,
             mergeList = [
-            {incorrect: 'Adults Social Care ', correct: 'Adult Social Care'}, 
-            {incorrect: 'Environments and Housing', correct: 'Environment & Housing'}
+                {incorrect: 'Adults Social Care ', correct: 'Adult Social Care'}, 
+                {incorrect: 'Environments and Housing', correct: 'Environment & Housing'}
             ];
-        
         
         records.forEach(function(month){
             for (var prop in month) {
                 var merge = _.find(mergeList, function(objectItem) {
                     return prop == objectItem.incorrect
                 });
+                
                 if (merge != null) {
                     month[merge.correct] += month[prop];
                     delete month[prop];
@@ -76,8 +77,6 @@ export default DefaultStory.extend({
             yearTotal += month.total;
         });
         
-        
-        
         this.setProperties({
             yearTotal: yearTotal,
             months:records,
@@ -86,12 +85,13 @@ export default DefaultStory.extend({
     },
     
     setDirectorates: function() {
-        var months = this.get('months');
-        var directorates = [];
-        var _this = this;
-        // debugger;
+        var months = this.get('months'),
+            directorates = [],
+            _this = this;
+
         months.forEach(function(month) {
             var cats = _this.setCatListFromMonth(month);
+            
             cats.forEach(function(cat) {
                 if (_.findWhere(directorates, cat) == null) {
                     directorates.push(cat);
@@ -101,20 +101,19 @@ export default DefaultStory.extend({
         
         var sorted = _.sortBy(directorates, function (cat) {return cat.text;});
         
-        // debugger;
         this.set('categories', sorted);
         this.set('selectedCat', sorted[0]);
     }.observes('months'),
     
     setCatListFromMonth: function (month) {
         // get the list of directorates from the currentMonth in case some months are named differently
-        var currentSelectedCat = this.get('selectedCat');
-        var currentSelectedID = (currentSelectedCat ? currentSelectedCat.id : null);
-        var currentSelectedIndex = 0;
-        // var month = this.get('selectedMonth');
-        var directorates = [];
-        var ignore = ['total', 'date', '_id', 'text', 'id', 'longText'];
-        var i = 0;
+        var currentSelectedCat = this.get('selectedCat'),
+            currentSelectedID = (currentSelectedCat ? currentSelectedCat.id : null),
+            currentSelectedIndex = 0,
+            directorates = [],
+            ignore = ['total', 'date', '_id', 'text', 'id', 'longText'],
+            i = 0;
+            
         for (var prop in month) {
             if (ignore.indexOf(prop) == -1) {
                 directorates.push({ text: prop, id: prop });
@@ -127,24 +126,21 @@ export default DefaultStory.extend({
             }
             i ++;
         }
-        // this.set('categories', directorates);
-        // this.set('selectedCat', directorates[currentSelectedIndex]);
         
         return directorates;
     },
 
     onSelectedCatChange: function () {
-        var selectedCat = this.get('selectedCat');
-        var selectedMonth = this.get('selectedMonth');
-        // debugger;
+        var selectedCat = this.get('selectedCat'),
+            selectedMonth = this.get('selectedMonth');
+
         if(selectedMonth) {
             var catSpend = selectedMonth[this.get('selectedCat.id')];
-            // debugger;
+
             if (catSpend != null) {
-                var monthSpend = selectedMonth["total"];
-                
-                var percentage = this.getPercentage(monthSpend, catSpend);
-                // console.log('cat percentage: ' + percentage);
+                var monthSpend = selectedMonth["total"],
+                    percentage = this.getPercentage(monthSpend, catSpend);
+
                 this.set('catTotal', catSpend);
                 this.set('catPercentageRemaining', percentage);
                 this.set('noMonthData', false);
@@ -159,9 +155,9 @@ export default DefaultStory.extend({
     },
     
     updateTotalSpend: function () {
-        var month = this.get('selectedMonth');
-        var percentage = this.getPercentage(this.get('yearTotal'),month.total);
-        // console.log('month percentage: ' + percentage);
+        var month = this.get('selectedMonth'),
+            percentage = this.getPercentage(this.get('yearTotal'),month.total);
+
         this.set('totalPercentageRemaining', percentage);
     }.observes('selectedMonth')
 });
