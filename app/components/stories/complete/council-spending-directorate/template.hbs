@@ -43,7 +43,7 @@
                             {{#if noMonthData}}
                             <span cpn-fill-circle_data-value>No Data</span>
                             {{else}}
-                            <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
+                            <span cpn-fill-circle_data-value>&pound;{{large-number-formatter catTotal}}</span>
                             {{/if}}
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     <div cpn-fill-circle_front style="margin-top: {{catPercentageRemaining}}%;">
                         <div cpn-fill-circle_front-inner style="top: -{{catPercentageRemaining}}%;">
                             <div cpn-fill-circle_front-data>
-                                <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
+                                <span cpn-fill-circle_data-value>&pound;{{large-number-formatter catTotal}}</span>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
             {{#if noMonthData}}
             <p spc-cs-spend-desc>There is no data available for <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></p>
             {{else}}
-            <p spc-cs-spend-desc cpn-margin="bottom-none">Compared with overall council spend of <span cpn-font-weight="bold" cpn-color="lime">&pound;{{number-thousand-format selectedMonth.total true}}</span> <span cpn-display="inline-block">in <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></span></p>
+            <p spc-cs-spend-desc cpn-margin="bottom-none">Compared with overall council spend of <span cpn-font-weight="bold" cpn-color="lime">&pound;{{large-number-formatter selectedMonth.total}}</span> <span cpn-display="inline-block">in <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></span></p>
             {{/if}}
         </li>
     </ul>
