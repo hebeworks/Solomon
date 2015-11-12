@@ -40,9 +40,14 @@
                 <div cpn-fill-circle_ring>
                     <div cpn-fill-circle_back>
                         <div cpn-fill-circle_back-data>
+                            {{#if noMonthData}}
+                            <span cpn-fill-circle_data-value>No Data</span>
+                            {{else}}
                             <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
+                            {{/if}}
                         </div>
                     </div>
+                    {{#unless noMonthData}}
                     <div cpn-fill-circle_front style="margin-top: {{catPercentageRemaining}}%;">
                         <div cpn-fill-circle_front-inner style="top: -{{catPercentageRemaining}}%;">
                             <div cpn-fill-circle_front-data>
@@ -50,12 +55,17 @@
                             </div>
                         </div>
                     </div>
+                    {{/unless}}
                 </div>
             </div>
         </li>
         <li cpn-table_cell="middle" cpn-width="50%">
             <h2 spc-cs-spend-title>{{selectedCat.text}}</h2>
+            {{#if noMonthData}}
+            <p spc-cs-spend-desc>There is no data available for <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></p>
+            {{else}}
             <p spc-cs-spend-desc cpn-margin="bottom-none">Compared with overall council spend of <span cpn-font-weight="bold" cpn-color="lime">&pound;{{number-thousand-format selectedMonth.total true}}</span> <span cpn-display="inline-block">in <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></span></p>
+            {{/if}}
         </li>
     </ul>
 {{/stories/story-base}}
