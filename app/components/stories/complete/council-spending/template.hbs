@@ -43,7 +43,7 @@
                         <div cpn-fill-circle_back>
                             <div cpn-fill-circle_back-data>
                                     <span cpn-fill-circle_data-label>{{selectedCat.text}}</span>
-                                    <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
+                                    <span cpn-fill-circle_data-value>&pound;{{large-number-formatter catTotal}}</span>
                                 {{!-- 
                                 <span cpn-fill-circle_data-label>Budget</span>
                                 <span cpn-fill-circle_data-value>&pound;473,704</span>
@@ -54,7 +54,7 @@
                             <div cpn-fill-circle_front-inner style="top: -{{catPercentageRemaining}}%;">
                                 <div cpn-fill-circle_front-data>
                                     <span cpn-fill-circle_data-label>{{selectedCat.text}}</span>
-                                    <span cpn-fill-circle_data-value>&pound;{{number-thousand-format catTotal true}}</span>
+                                    <span cpn-fill-circle_data-value>&pound;{{large-number-formatter catTotal}}</span>
                                     {{!--
                                     <span cpn-fill-circle_data-label>Budget</span>
                                     <span cpn-fill-circle_data-value>&pound;473,704</span>
@@ -72,14 +72,14 @@
                         <div cpn-fill-circle_back>
                             <div cpn-fill-circle_back-data>
                                 <span cpn-fill-circle_data-label>{{format-date "MMMM" selectedMonth.date}}</span>
-                                <span cpn-fill-circle_data-value>&pound;{{number-thousand-format selectedMonth.total true}}</span>
+                                <span cpn-fill-circle_data-value>&pound;{{large-number-formatter selectedMonth.total}}</span>
                             </div>
                         </div>
                         <div cpn-fill-circle_front style="margin-top: {{totalPercentageRemaining}}%;">
                             <div cpn-fill-circle_front-inner style="top: -{{totalPercentageRemaining}}%;">
                                 <div cpn-fill-circle_front-data>
                                 <span cpn-fill-circle_data-label>{{format-date "MMMM" selectedMonth.date}}</span>
-                                <span cpn-fill-circle_data-value>&pound;{{number-thousand-format selectedMonth.total true}}</span>
+                                <span cpn-fill-circle_data-value>&pound;{{large-number-formatter selectedMonth.total}}</span>
                                 </div>
                             </div>
                         </div>
