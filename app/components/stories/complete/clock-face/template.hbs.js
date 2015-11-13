@@ -5,9 +5,9 @@
   stack1 = ((((stack1 = (depth0 && depth0.stories)) && stack1['story-base']) || helperMissing).call(depth0, {"name":"stories/story-base","hash":{
     'viewOnly': (true),
     'data-ss-colspan': ("1"),
-    'height': ("-h1"),
-    'width': ("-w1"),
-    'color': ("-black"),
+    'height': ("1"),
+    'width': ("1"),
+    'color': ("black"),
     'subTitle': ((depth0 != null ? depth0.subTitle : depth0)),
     'title': ((depth0 != null ? depth0.title : depth0))
   },"fn":this.program(1, data),"inverse":this.noop,"data":data}));

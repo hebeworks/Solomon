@@ -4,6 +4,7 @@ import DatamillStory from './../../story-types/datamill-story/component';
 export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
+    
     didInsertElement: function() {
         this.set('title', 'Compare Water Quality');
         this.set('subTitle', 'Choose two locations');

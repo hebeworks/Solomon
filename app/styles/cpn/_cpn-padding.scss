@@ -1,6 +1,10 @@
 // All
-[cpn-padding="none"] {
+[cpn-padding="all-none"] {
     padding: 0;
+}
+
+[cpn-padding="all-half"] {
+    padding: rem($spacing-base / 2);
 }
 
 // Top

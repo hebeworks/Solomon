@@ -4,6 +4,8 @@ import DefaultStory from './../../story-types/default-story/component';
 export default DefaultStory.extend({
     tagName: 'div',
     loaded: false,
+    title: '',
+    subTitle: '',
 
     didInsertElement: function () {
         this.set('title', '');

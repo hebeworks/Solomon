@@ -8,6 +8,8 @@
     <a href="javascript:;" class="js-canvas-overlay canvas__overlay"></a>
     <div class="js-stories canvas__inner">
     
+        {{stories/complete/council-spending-directorate}}
+    
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
             {{stories/complete/base-rag-title}}
@@ -15,6 +17,7 @@
             {{stories/complete/footfall-centre}}
             --}}
         {{!-- END DEVELOPMENT STORIES --}}
+
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}

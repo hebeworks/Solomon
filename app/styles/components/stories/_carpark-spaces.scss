@@ -99,3 +99,12 @@
 		}
 	}
 }
+
+.carpark-spaces {
+	.map-canvas {
+		[cpn-story~="width-2"] & {
+			height: rem(82px);
+			float: left;
+		}
+	}
+}

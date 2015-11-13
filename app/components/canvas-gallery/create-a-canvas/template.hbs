@@ -5,14 +5,14 @@
 
 <div cpn-divide="bottom">
 	<p>
-		{{input value=title placeholder="Title"}}
+		{{input value=title placeholder="Title" autocapitalize="words"}}
 		{{#if canvas.errors.title}}
 			<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.title.message}}</div>
 		{{/if}}
 	</p>
 	
 	<p>
-		{{textarea placeholder="Description" value=description}}
+		{{textarea placeholder="Description" value=description autocapitalize="sentences" autocorrect="on"}}
 		{{#if canvas.errors.description}}
 			<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.description.message}}</div>
 		{{/if}}
@@ -30,7 +30,7 @@
 			}}
 		</div>
 		<div>
-			{{input value=author placeholder="Author Name"}}
+			{{input value=author placeholder="Author Name" autocapitalize="words"}}
 			{{#if canvas.errors.author}}
 				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.author.message}}</div>
 			{{/if}}

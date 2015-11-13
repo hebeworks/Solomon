@@ -2,19 +2,60 @@
 	width: 100%;
 	margin: 0 0 10px 0;
 	background-image: none;
+	
 	.select2-choice {
 		height: 35px;
 		background-image: none;
 		border: 0;
+		filter: none;
+		
+		[cpn-bg-color="white"] & {
+			background-color: $light-grey;
+		}
+		
+		[cpn-bg-color="blue"] & {
+			background-color: $pale-blue;
+		}
+		
+		[cpn-bg-color="lime"] & {
+			background-color: $dark-lime;
+		}
+		
+		[cpn-bg-color="black"] & {
+			background-color: #000;
+			border: 1px solid #fff;
+		}
+		
 		&:active {
 			border: 0;
 		}
+		
 		.select2-chosen {
 			height: 100%;
 			font-family: $helvneuemed;
 			font-size: .75rem;
 			margin-top: 6px;
 			margin-left: 4px;
+			
+			[cpn-bg-color="white"] & {
+				background-color: $light-grey;
+				color: $black;
+			}
+			
+			[cpn-bg-color="blue"] & {
+				background-color: $pale-blue;
+				color: #fff;
+			}
+			
+			[cpn-bg-color="lime"] & {
+				background-color: $dark-lime;
+				color: #fff;
+			}
+			
+			[cpn-bg-color="black"] & {
+				background-color: #000;
+				color: #fff;
+			}
 		}
 		
 		.select2-arrow {
@@ -25,6 +66,27 @@
 				right: 8px;
 				top: 13px;
 			}
+			
+			[cpn-bg-color="white"] & {
+				background-color: $light-grey;
+				color: $black;
+			}
+			
+			[cpn-bg-color="blue"] & {
+				background-color: $pale-blue;
+				color: #fff;
+			}
+			
+			[cpn-bg-color="lime"] & {
+				background-color: $dark-lime;
+				color: #fff;
+			}
+			
+			[cpn-bg-color="black"] & {
+				background-color: #000;
+				color: #fff;
+			}
+			
 			b {
 				width: 10px;
 				height: 8px;
@@ -34,14 +96,19 @@
 					repeat: no-repeat !important;
 					size: cover !important;
 				}
-				//@include svg--dropdown-triangle;
+				
+				[cpn-bg-color="white"] & {
+					background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2212.23px%22%20height%3D%229.93px%22%20viewBox%3D%22558.85%20133.15%2012.23%209.93%22%20enable-background%3D%22new%20558.85%20133.15%2012.23%209.93%22%20%20xml%3Aspace%3D%22preserve%22%3E%3Ctitle%3EDropdown%20Triangle%3C%2Ftitle%3E%3Cpath%20d%3D%22M564.965%2C143.08l6.115-9.93h-12.23L564.965%2C143.08L564.965%2C143.08z%22%2F%3E%3C%2Fsvg%3E') !important;
+				}
 			}
 		}
 	}
 }
+
 a.select2-choice.select2-default {
 	box-shadow: none;
 }
+
 .select2-drop {
 	background-image: none;
 	background-color: $white;
@@ -49,15 +116,16 @@ a.select2-choice.select2-default {
 	font-family: $helvneuemed;
 	font-size: .75rem;
 	border: 0;
+	
 	.select2-search {
 		height: 40px;
 		padding: {
 			top: 4px;
 		}
+		
 		input {
 			height: 100%!important;
 			background-color: darken(white,4);
-
 			border: none;
 		}
 	}
@@ -66,37 +134,40 @@ a.select2-choice.select2-default {
 .select2-drop-above {
 	background-color: $white;
 	color: $black;
+	
 	&:active {
 		background-image: none;
 	}
 }
+
 .select2-results {
 	li {
 		height: 40px;
 		padding-top: 8px;
 		border-bottom: 1px dotted $black;
+		
 		&:first-child {
 			border-top: 1px dotted $black;
 		}
 	}
+	
 	.select2-no-results, .select2-searching {
-		//background-color: #71be1d;
 		padding-top: 10px;
 	}
+	
 	.select2-highlighted {
 		background-color: $light-grey;
 		color: $black;
 	}
 }
+
 .select2-dropdown-open .select2-choice {
 	box-shadow: none;
 	border: none;
+	
 	.select2-arrow b {
 		background-position: 0 1px;
 	}
-}
-.select2-drop-above {
-	//background-color: #71be1d;
 }
 
 .select2-drop.select2-drop-above.select2-drop-active {
@@ -106,14 +177,4 @@ a.select2-choice.select2-default {
 .select2-dropdown-open.select2-drop-above .select2-choice {
 	background-image: none;
 	border: 0;
-}
-
-
-.select2-container {
-	.select2-choice {
-		filter: none;
-		.select2-arrow {
-			filter: none;
-		}
-	}
 }

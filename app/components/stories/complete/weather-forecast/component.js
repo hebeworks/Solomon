@@ -6,6 +6,8 @@ export default DatamillStory.extend({
     loaded: false,
     author: 'Simon Zimmerman',
     showDay: true,
+    width: 2,
+    slider: true,
 
     didReceiveAttrs: function () {
         this.set('title', 'Weather');

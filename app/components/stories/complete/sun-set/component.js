@@ -5,8 +5,6 @@ export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
     didInsertElement: function () {
-        this.set('title', '');
-        this.set('subTitle', '');
         this.loadAPIData();
     },
 

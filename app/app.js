@@ -13,4 +13,11 @@ var App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
+Ember.TextField.reopen({
+    attributeBindings: ['cpn-input', 'autocapitalize', 'autocorrect'],
+    'cpn-input': '',
+    'autocapitalize': 'none',
+    'autocorrect': 'none'
+});
+
 export default App;
