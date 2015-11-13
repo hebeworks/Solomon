@@ -1,0 +1,33 @@
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-white" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+    
+    dataSourceUrl="http://leedsdatamill.org/dataset/foi-and-eir-statistics"
+    feedbackEmail="nathan@hebeworks.com"
+    description="The desciption for <%= camelizedModuleName %>"
+    license="Open Government License"
+    author="Nathan Smith"
+}}
+
+    {{!-- 
+        STE - add in here any styling information you want e.g. 
+            we've created a file for you here /path.....
+            if you want to add specifi styling ... use this technique
+            you can find more info here (git hub wiki?)
+            
+            feel free to remove this 
+    --}}
+
+    <main class="<%= dasherizedModuleName %>">
+        <div class="<%= dasherizedModuleName %>__welcome">
+            <p>This is a the <%= camelizedModuleName %> story.</p>
+        </div>                   
+        {{#each item in items}}
+            <p>{{item.title}}</p>
+        {{/each}}
+    </main>
+{{/stories/story-base}}

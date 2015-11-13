@@ -9,18 +9,17 @@
     <main spc-laqt class="ct-wrapper">
         {{ select-2
 				content=locations
-				value=selectedLocation
-				optionLabelPath="location"
+				value=location
 				placeholder="Choose a location"
 				class="margin-bottom-no"
 			}}
         {{yield}}
-            {{charts/chartist-base 
-                data=chartData
-                type="line"
-                options=chartOptions
-                ratio="ct-story_2-2"
-                chart=chart}}
+        {{charts/chartist-base 
+            data=chartData
+            type="line"
+            options=chartOptions
+            ratio="ct-story_2-2"
+            chart=chart}}
     </main>
     
 {{/stories/story-base}}

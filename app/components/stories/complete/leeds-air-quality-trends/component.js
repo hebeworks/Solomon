@@ -8,24 +8,30 @@ export default DefaultStory.extend({
     chartType: 'line',
 
     locations: [],
-    selectedLocation: null,
 
     loadLocations: function () {
         var _this = this;
         var hebeNodeAPI = this.get('hebeNodeAPI');
         this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?selectfields=location')
             .then(function (data) {
+                var locations = _.map(data,function(item){ return { text: item.location, id: item.location }; });
                 _this.setProperties({
-                    'locations': data,
-                    selectedLocation: data[0]
+                    locations: locations,
+                    location: locations[0]
                 });
             });
     }.on('didInsertElement'),
+    
+    location: null,
+    onLocationChange: function() {
+        var location = this.get('location');
+        this.loadData(location.id);
+    }.observes('location'),
 
-    loadData: function () {
+    loadData: function (location) {
         var _this = this;
         var hebeNodeAPI = this.get('hebeNodeAPI');
-        this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?location=' + encodeURIComponent(this.get('selectedLocation.location')) + '&limit=1')
+        this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?location=' + encodeURIComponent(location) + '&limit=1')
             .then(function (data) {
                 var dates = data[0].monthly_averages;
                 var sortedDates = _.sortBy(dates, function (date) {
@@ -44,7 +50,7 @@ export default DefaultStory.extend({
                     chartData: chartData
                 })
             });
-    }.observes('selectedLocation'),
+    },
     
 
     // chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -54,35 +60,35 @@ export default DefaultStory.extend({
     //     [5, 4, 3, 2, 1, 0.5]
     // ],
 
-    chartData2: Ember.computed('chartSeries', 'chartLabels', {
-        get() {
+    // chartData2: Ember.computed('chartSeries', 'chartLabels', {
+    //     get() {
 
-            var data = this.get('data');
-            var labels = _.map(data, function (item) {
-                return moment(new Date(item.date["$date"])).format("MMM YY");
-            });
-            var series = [];
-            data.forEach(function (item) {
-                var i = 0;
-                for (var prop in item) {
-                    if (series[i] == null) {
-                        series[i] = [];
-                    }
-                    if (prop != "date") {
-                        series[i].push(item[prop]);
-                        i++;
-                    }
-                }
-            });
-            var chartData = {
-                labels: labels,
-                series: series
-            };
-            console.log('hardcoded');
-            console.log(chartData);
-            return chartData
-        }
-    }),
+    //         var data = this.get('data');
+    //         var labels = _.map(data, function (item) {
+    //             return moment(new Date(item.date["$date"])).format("MMM YY");
+    //         });
+    //         var series = [];
+    //         data.forEach(function (item) {
+    //             var i = 0;
+    //             for (var prop in item) {
+    //                 if (series[i] == null) {
+    //                     series[i] = [];
+    //                 }
+    //                 if (prop != "date") {
+    //                     series[i].push(item[prop]);
+    //                     i++;
+    //                 }
+    //             }
+    //         });
+    //         var chartData = {
+    //             labels: labels,
+    //             series: series
+    //         };
+    //         console.log('hardcoded');
+    //         console.log(chartData);
+    //         return chartData
+    //     }
+    // }),
 
     chartOptions: {
         low: 0,
@@ -100,36 +106,36 @@ export default DefaultStory.extend({
     },
     
     // This is fake data, for now
-    data: [
-        {
-            // Sep 2014
-            "Monthly Average": 32.3265,
-            "date": {
-                "$date": 1412031600000
-            }
-        },
-        {
-            // Oct 2014
-            "Monthly Average": 25.108,
-            "date": {
-                "$date": 1414713600000
-            }
-        },
-        {
-            // Nov 2014
-            "Monthly Average": 16.771,
-            "date": {
-                "$date": 1417305600000
-            }
-        },
-        {
-            // Dec 2014
-            "Monthly Average": 23.9942,
-            "date": {
-                "$date": 1419984000000
-            }
-        }
-    ],
+    // data: [
+    //     {
+    //         // Sep 2014
+    //         "Monthly Average": 32.3265,
+    //         "date": {
+    //             "$date": 1412031600000
+    //         }
+    //     },
+    //     {
+    //         // Oct 2014
+    //         "Monthly Average": 25.108,
+    //         "date": {
+    //             "$date": 1414713600000
+    //         }
+    //     },
+    //     {
+    //         // Nov 2014
+    //         "Monthly Average": 16.771,
+    //         "date": {
+    //             "$date": 1417305600000
+    //         }
+    //     },
+    //     {
+    //         // Dec 2014
+    //         "Monthly Average": 23.9942,
+    //         "date": {
+    //             "$date": 1419984000000
+    //         }
+    //     }
+    // ],
     
     // Add tooltips which appear above the data points and show the full data value
     addToolTips: function () {
