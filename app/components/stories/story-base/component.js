@@ -9,6 +9,14 @@ export default Ember.Component.extend({
     
     support3d: '',
     storyFlip: 'not-flipped',
+    
+    loaded: Ember.computed('target.loaded', function() {
+        if (this.get('target.loaded')) {
+            return this.get('target.loaded');
+        } else {
+            return false;
+        }
+    }),
 
     defaultConfig: {
         color: 'white',
