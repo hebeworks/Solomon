@@ -36,17 +36,22 @@ export default Ember.Component.extend({
 		Ember.run.scheduleOnce('afterRender', obj, obj.updatePackery);
 	}.observes('currentCanvas.stories.@each'),
 
+
+	updatePackeryTimer: null,
 	updatePackery: function () {
-		var obj = this;
-		setTimeout(function () {
+		var _this = this;
+		
+		if(!Ember.isEmpty(this.$container)){
+			console.log('updatePackery: $container exists');
+			Ember.run.cancel(this.get('updatePackeryTimer'));
 			// var $allStories = this.$('.js-story');
 			var $container = this.$('.js-stories');
 			// $container.packery('appended', $allStories);
-			var newIDs = obj.getNewlyAddedStoryIDs();
+			var newIDs = _this.getNewlyAddedStoryIDs();
 			// var selector = '.js-story';
 			// var elems = this.$(selector);
 			var $newStories = $('#' + newIDs.join(',#'));
-			obj.$container.packery('appended', $newStories);
+			_this.$container.packery('appended', $newStories);
 			$container.packery();
 
 			var $itemEls = $newStories.draggable({
@@ -58,8 +63,12 @@ export default Ember.Component.extend({
 				scrollSpeed: 25,
 				zIndex: 4
 			});
-			$container.packery('bindUIDraggableEvents', $itemEls);
-		}, 100);
+			$container.packery('bindUIDraggableEvents', $itemEls);			
+		} else {
+			console.log('updatePackery: $container doesnt exist');
+			var timer = Ember.run.later(this, this.updatePackery, 200);
+			this.set('updatePackeryTimer', timer);
+		}
 	},
 
 	$container: null,

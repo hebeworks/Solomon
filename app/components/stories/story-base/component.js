@@ -116,9 +116,7 @@ export default Ember.Component.extend({
     }.observes('configFields', 'configFields.@each.value'),
     
     didInsertElement: function () {
-        // todo: ensure this is run minimal times throughout the entire app
-        // possibly add to application route and ember.run once
-        grunticon.embedSVG();
+        Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
         this.setupDragEvents();
         this.set('action', 'onStoryLoaded');
         this.sendAction();
