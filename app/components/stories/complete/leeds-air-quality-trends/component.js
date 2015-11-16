@@ -2,10 +2,18 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    title: 'Leeds Air Quality Trends',
-    subTitle: "See how Leeds' air quality has changed over time",
     storyModel: null,
     chartType: 'line',
+
+    storyConfig: {
+        title: 'Leeds Air Quality Trends',
+        subTitle: "See how Leeds' air quality has changed over time",
+        color: "white",
+        width: "2",
+        height: "2",
+        scroll: false,
+        viewOnly: true
+    },
 
     locations: [],
 
@@ -49,7 +57,8 @@ export default DefaultStory.extend({
                 console.log('loaded');
                 console.log(chartData);
                 _this.setProperties({
-                    chartData: chartData
+                    chartData: chartData,
+                    loaded:true
                 })
             });
     },
@@ -110,19 +119,19 @@ export default DefaultStory.extend({
                 // MMM YY for every 4th
                 // MMM for every other second
                 // nothing for others
-                var label = (index % 4 === 0 ? 
-                                moment(value).format('MMM YY') :
-                                (index % 2 === 0 ?
-                                    moment(value).format('MMM') :
-                                    null));
+                var label = (index % 4 === 0 ?
+                    moment(value).format('MMM YY') :
+                    (index % 2 === 0 ?
+                        moment(value).format('MMM') :
+                        null));
                 // MMM YY for first
                 // MM otherwise
-                var label = (index === 0 ? 
-                                moment(value).format('MMM YY') : 
-                                (index % 3 === 0 ? 
-                                    moment(value).format('MMM') :
-                                    '')
-                            );
+                var label = (index === 0 ?
+                    moment(value).format('MMM YY') :
+                    (index % 3 === 0 ?
+                        moment(value).format('MMM') :
+                        '')
+                    );
                 return label;
             }
         },
