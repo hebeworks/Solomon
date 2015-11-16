@@ -14,16 +14,16 @@ export default DefaultStory.extend({
         var hebeNodeAPI = this.get('hebeNodeAPI');
         this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?selectfields=location')
             .then(function (data) {
-                var locations = _.map(data,function(item){ return { text: item.location, id: item.location }; });
+                var locations = _.map(data, function (item) { return { text: item.location, id: item.location }; });
                 _this.setProperties({
                     locations: locations,
                     location: locations[0]
                 });
             });
     }.on('didInsertElement'),
-    
+
     location: null,
-    onLocationChange: function() {
+    onLocationChange: function () {
         var location = this.get('location');
         this.loadData(location.id);
     }.observes('location'),
@@ -37,9 +37,11 @@ export default DefaultStory.extend({
                 var sortedDates = _.sortBy(dates, function (date) {
                     return new Date(date.date);
                 });
+                var topDates = sortedDates.slice(0, 12);
                 // sortedDates.reverse();
-                var chartLabels = _.map(sortedDates, function (date) { return moment(new Date(date.date)).format('MMM YY'); });
-                var chartSeries = _.map(sortedDates, function (date) { return date.average; });
+                // var chartLabels = _.map(topDates, function (date) { return moment(new Date(date.date)).format('MMM YY'); });
+                var chartLabels = _.map(topDates, function (date) { return new Date(date.date); });
+                var chartSeries = _.map(topDates, function (date) { return date.average; });
                 var chartData = {
                     labels: chartLabels,
                     series: [chartSeries]
@@ -102,7 +104,28 @@ export default DefaultStory.extend({
             labelInterpolationFnc: function (value) {
                 return value + 'ppb'
             }
-        }
+        },
+        axisX: {
+            labelInterpolationFnc: function (value, index) {
+                // MMM YY for every 4th
+                // MMM for every other second
+                // nothing for others
+                var label = (index % 4 === 0 ? 
+                                moment(value).format('MMM YY') :
+                                (index % 2 === 0 ?
+                                    moment(value).format('MMM') :
+                                    null));
+                // MMM YY for first
+                // MM otherwise
+                var label = (index === 0 ? 
+                                moment(value).format('MMM YY') : 
+                                (index % 3 === 0 ? 
+                                    moment(value).format('MMM') :
+                                    '')
+                            );
+                return label;
+            }
+        },
     },
     
     // This is fake data, for now

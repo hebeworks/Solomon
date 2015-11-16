@@ -1,0 +1,50 @@
+{{#stories/story-base 
+    title=title 
+    subTitle=subTitle 
+    color="-white" 
+    width="-w2" 
+    height="-h2" 
+    data-ss-colspan="2"
+    
+    dataSourceUrl="http://leedsdatamill.org/dataset/foi-and-eir-statistics"
+    feedbackEmail="nathan@hebeworks.com"
+    description="The desciption for eagleWeatherBalloonFlightData"
+    license="Open Government License"
+    author="Nathan Smith"
+}}
+
+    {{!-- 
+        STE - add in here any styling information you want e.g. 
+            we've created a file for you here /path.....
+            if you want to add specifi styling ... use this technique
+            you can find more info here (git hub wiki?)
+            
+            feel free to remove this 
+    --}}
+
+    <main class="eagle-weather-balloon-flight-data">
+        <div class="eagle-weather-balloon-flight-data__welcome">
+            <p>This is a the eagleWeatherBalloonFlightData story.</p>
+        </div>                   
+
+        
+        
+                {{google-map 
+            lat=lat 
+            lng=lng 
+            zoom=zoom
+            markers=markers
+            gopt_styles=mapStyles
+            gopt_zoomControl=false
+            gopt_mapTypeControl=false
+            }}
+<!--          
+  gopt_zoomControl=false
+            markerInfoWindowTemplateName='app/components/stories/complete/bicycle-bays/google-map-info-window/'
+            markerInfoWindowTemplateName='google-maps/info-window'
+            }}-->
+        
+        
+        
+    </main>
+{{/stories/story-base}}
