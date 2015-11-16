@@ -5,6 +5,14 @@ export default DefaultStory.extend({
     tagName: 'div',
     loaded: false,
     data: null,
+    color: 'white',
+    width: 2,
+    height: 2,
+    description: '',
+    license: '',
+    slider: false,
+    scroll: true,
+    headerImage: '',
     
     onInsertElement: function () {
         this.set('title', '<%= dasherizedModuleName %> TITLE');
