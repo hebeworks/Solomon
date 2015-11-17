@@ -3,8 +3,11 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Find My Bin Day',
+        subTitle: 'Find your next Leeds bin day'
+    },
+    
     addresses: [],
     selectedAddress: null,
     currentAddress: null,

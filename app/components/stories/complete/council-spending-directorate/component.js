@@ -1,13 +1,19 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
+    storyConfig: {
+        title: 'LCC Directorate Spending',
+        subTitle: 'Monthly spend for Leeds City Council directorates',
+        color: 'black',
+        feedbackEmail: 'simon@hebeworks.com',
+        license: 'Open Government License',
+        author: 'Simon Zimmerman'
+    },
+    
     noMonthData: false,
     
     didInsertElement: function () {
         var _this = this;
-
-        this.set('title', 'LCC Directorate Spending');
-        this.set('subTitle', 'Monthly spend for Leeds City Council directorates');
 
         var dateQuery = hebeutils.Base64.encode(JSON.stringify({ comparison: '$lte', value:new Date("2015-03-01") }));
         

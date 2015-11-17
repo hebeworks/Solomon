@@ -2,8 +2,19 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
+    storyConfig: {
+        title: 'Leeds Car Parks',
+        subTitle: 'Registered spaces available in Leeds',
+        color: 'blue',
+        width: '2',
+        height: '2',
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/live-car-park-spaces-api',
+        feedbackEmail: 'info@leedsdatamill.org',
+        description: "This Story used data from Leeds City Council's Live Car Park Spaces API",
+        license: '<a href="http://leedsdatamill.org/dataset/live-car-park-spaces-api" target="_blank">Live car park spaces api</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
+        author: 'Nathan Smith'
+    },
 
-    tagName: 'div',
     loaded: false,
     selectedCarPark: null,
 
@@ -18,8 +29,6 @@ export default DefaultStory.extend({
     }.on('init'),
 
     didInsertElement: function () {
-        this.set('title', 'Leeds Car Parks');
-        this.set('subTitle', 'Registered spaces available in Leeds');
         this.fetchData();
     },
 

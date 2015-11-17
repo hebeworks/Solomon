@@ -1,7 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'div',
+    storyConfig: {
+        color: 'black',
+        width: '1',
+        height: '1',
+        viewOnly: true
+    },
+    
     loaded: false,
     date: {},
     didReceiveAttrs: function() {

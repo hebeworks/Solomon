@@ -39,7 +39,7 @@
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
         
         <section cpn-story_content="back {{usableHeight}}">
-            {{#if viewOnly}}
+            {{#if storyConfig.viewOnly}}
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
                 <div cpn-divide="bottom light">

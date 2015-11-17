@@ -2,12 +2,17 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
+    storyConfig: {
+        title: 'Compare Water Quality',
+        subTitle: 'Choose two locations',
+        color: 'dark-blue',
+        hideFooter: 'true',
+        author: 'Nathan Smith'
+    },
+    
     loaded: false,
     
     didInsertElement: function() {
-        this.set('title', 'Compare Water Quality');
-        this.set('subTitle', 'Choose two locations');
         this.getDataByPostcode('result1','LS1 5NS');
     },
     

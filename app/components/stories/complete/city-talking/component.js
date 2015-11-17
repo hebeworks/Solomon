@@ -3,12 +3,17 @@ import Ember from 'ember';
 
 
 export default Ember.Component.extend({
-    tagName: 'div',
-    loaded: false,
-    width: 2,
+    storyConfig: {
+        title: 'The City Talking',
+        subTitle: 'Music & art events around Leeds',
+        width: '2',
+        height: '2',
+        slider: true
+    },
+    
+    loaded: true,
+    
     didInsertElement: function() {
-        this.set('title', 'The City Talking');
-        this.set('subTitle', 'Music & art events around Leeds.');
         this.fetchData();
     },
     fetchData: function() {
