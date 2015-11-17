@@ -1,12 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Instagram',
+        subTitle: 'Pictures of Leeds on Instagram',
+        color: 'dark-grey',
+        viewOnly: true
+    },
+    
     numberOfPages: 1,
     didInsertElement: function() {
-        this.set('title', 'Instagram');
-        this.set('subTitle', 'Pictures of Leeds on Instagram');
         this.fetchData();
     },
     fetchData: function() {
