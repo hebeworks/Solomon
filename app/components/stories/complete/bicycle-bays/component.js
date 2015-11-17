@@ -2,7 +2,18 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
+    storyConfig: {
+        title: 'Bicycle Bays',
+        subTitle: 'In the city centre',
+        color: 'lime',
+        width: '2',
+        height: '2',
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-city-centre-bike-bays',
+        feedbackEmail: 'info@leedsdatamill.org',
+        description: 'This Story used data from the City Centre Bike Bays dataset from Leeds Data Mill',
+        license: '<a href="http://leedsdatamill.org/dataset/leeds-city-centre-bike-bays" target="_blank">Leeds City Centre bike bays</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
+        author: 'Nathan Smith'
+    },
 
     setup: function () {
         this.setProperties({
@@ -15,8 +26,6 @@ export default DatamillStory.extend({
     }.on('init'),
 
     didInsertElement: function () {
-        this.set('title', 'Bicycle Bays');
-        this.set('subTitle', 'In the city centre');
         var obj = this;
         
         var hebeNodeAPI = this.get('hebeNodeAPI');

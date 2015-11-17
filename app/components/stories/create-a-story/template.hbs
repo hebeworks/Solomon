@@ -10,7 +10,7 @@
 	{{!-- canvas-gallery/create-a-canvas --}}
 	
 	<div cpn-margin="bottom-double" class="create-a-story -form -admin">
-		<p>{{input value=title placeholder="Story Title e.g. Analogue Clock"}}
+		<p>{{input value=title placeholder="Story Title e.g. Analogue Clock" autocapitalize="words"}}
 			{{#if story.errors.title}}
 				<br />{{story.errors.title.message}}
 			{{/if}}

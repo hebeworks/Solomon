@@ -4,13 +4,13 @@ import DatamillStory from './../../story-types/datamill-story/component';
 export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
-    color: '-white',
+    color: 'white',
     tileValue: 'Value',
     tileDesc1: 'Description 1',
     tileDesc2: 'Description 2',
     tileShade: '',
     storyModel: null,
-
+    
     onInserted: function () {
         var _this = this;
         var timer = setInterval(function () {
@@ -24,7 +24,7 @@ export default DatamillStory.extend({
         }, 1000);
         this.set('timer', timer);
     }.on('didInsertElement'),
-
+        
     setupEditableFields: function () {
         var story = this.get('storyModel');
         story.addConfigItem({ name: 'value', type: 'text', value: '', placeholder: 'Enter a value' });

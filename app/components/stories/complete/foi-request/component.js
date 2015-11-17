@@ -2,7 +2,16 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
+    storyConfig: {
+        title: 'FOI & EIR',
+        subTitle: 'Number of FOI & EIR Requests',
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/foi-and-eir-statistics',
+        feedbackEmail: 'nathan@hebeworks.com',
+        description: 'This Story uses statistics of FOIs/EIRs data from Leeds Data Mill',
+        license: 'Open Government License',
+        author: 'Nathan Smith'
+    },
+    
     months: null,
 
     selectedMonthChanged: function () {
@@ -34,8 +43,6 @@ export default DefaultStory.extend({
     }.observes('selectedMonth'),
 
     didInsertElement: function () {
-        this.set('title', 'FOI & EIR');
-        this.set('subTitle', 'Number of FOI & EIR Requests');
         var obj = this;
         // var resourceID = '1ffffdba-ef32-40de-b73a-7026969d35b2';
         var hebeNodeAPI = this.get('hebeNodeAPI');

@@ -1,34 +1,40 @@
-<div class="story__inner">
-    <div class="story__card -front {{if viewOnly 'js-drag-handle'}}">
-        {{!-- #unless viewOnly}}<a href="javascript:;" class="js-cogs icon icon-cogs svg-cogs" data-grunticon-embed>Settings</a>{{/unless --}}
+<div cpn-story_inner>
+    
+    <div cpn-story_face="front {{support3d}} {{storyFlip}}" cpn-bg-color="{{storyConfig.color}}">
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
         
-        <a href="javascript:;" class="js-cogs" spc-dot="front">Settings</a>
-        
-        <div class="story__content">
-            {{#if headerImage}}
-                <header class="story__header">
-                    <div class="header-img"><img src="{{headerImage}}" height="24"></div>
+        <section cpn-story_content="front {{usableHeight}} {{hasHeader}} {{hasFooter}}">
+            
+            
+            {{#if storyConfig.headerImage}}
+                <header cpn-story_header {{hasHeaderDivide}}>
+                    <img src="{{storyConfig.headerImage}}" height="24">
                 </header>
-            {{else if title}}
-                <header class="story__header">
-                    <h2 class="heading beta">{{title}}</h2>
-                    <h3 class="heading gamma">{{subTitle}}</h3>
+            {{else if storyConfig.title}}
+                <header cpn-story_header {{hasHeaderDivide}}>
+                    <h2 cpn-story_title>{{storyConfig.title}}</h2>
+                    <h3 cpn-story_desc>{{storyConfig.subTitle}}</h3>
                 </header>
             {{/if}}
             
-        	{{yield}}
+            <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
+                {{yield}}
+            </main>
             
-            {{#unless viewOnly}}
-                <footer class="story__footer gamma">
-                    {{#if author}}
-                            <div class="author">Author: {{author}}</div>
-                    {{else if authorImage}}
-                            <div class="author author-img"><img src="{{authorImage}}" height="17"></div>
+            {{#unless storyConfig.viewOnly}}
+                <footer cpn-story_footer cpn-clearfix cpn-divide="top solid {{lineShade}}">
+                    {{#if storyConfig.author}}
+                    <p cpn-story_author>Author: {{storyConfig.author}}</p>
+                    {{else if storyConfig.authorImage}}
+                    <img src="{{storyConfig.authorImage}}" height="17">
                     {{/if}}
                 </footer>
             {{/unless}}
-        </div>
+            
+        </section>
+        
     </div>
+<<<<<<< HEAD
 
     <div class="story__card -back">
         {{!-- <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a> --}}
@@ -40,9 +46,26 @@
             </button>
 
             {{#if viewOnly}}
+=======
+    
+    <div cpn-story_face="back {{support3d}} {{storyFlip}}">
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
+        
+        <section cpn-story_content="back {{usableHeight}}">
+            {{#if storyConfig.viewOnly}}
+>>>>>>> develop
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
+                <div cpn-divide="bottom light">
+                    <h3 cpn-story_title cpn-margin="bottom-none">Description</h3>
+                    {{#if storyConfig.description}}
+                        <p cpn-story_desc>{{usableDescription}}</p>
+                    {{else}}
+                        <p cpn-story_desc>This story has no description.</p>
+                    {{/if}}
+                </div>
                 
+<<<<<<< HEAD
                 {{#if configFields}}
                     {{#each configFields as |field|}}
                         {{input type=field.type value=field.value placeholder=field.placeholder}}
@@ -62,19 +85,31 @@
                         <p class="story__para">{{{license}}}</p>
                     </div>
                 {{/if}}
+=======
+                <div cpn-divide="bottom light">
+                    <h3 cpn-story_title cpn-margin="bottom-none">Licence / Attribution</h3>
+                    {{#if storyConfig.license}}
+                        <p cpn-story_desc>{{usableLicense}}</p>
+                    {{else}}
+                        <p cpn-story_desc>This story has no license.</p>
+                    {{/if}}
+                </div>
+>>>>>>> develop
                 
                 <ul cpn-row-list>
                     <li cpn-width="50%">
-                        <a href="{{dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
+                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
                     </li>
                     <li cpn-width="50%">
-                        <a href="mailto:{{feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
+                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
                     </li>
                     <li cpn-width="100%">
                         <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
                     </li>
                 </ul>
             {{/if}}
-        </div>
+        </section>
+        
     </div>
+    
 </div>

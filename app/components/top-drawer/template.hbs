@@ -1,8 +1,8 @@
 <nav class="nav">
 	<ul class="nav__list -main -top-drawer">
 		{{#each item in navItems}}
-		<li {{bind-attr class="item.isSeparator:-separator"}}>
-		    {{top-drawer-icon jshook=item.jshook title=item.title iconclass=item.iconclass svgclass=item.svgclass action=item.action route=item.route}}
+		<li class="{{if item.isSeparator "-separator"}} {{item.jshook}}" >
+			{{top-drawer-icon title=item.title iconclass=item.iconclass svgclass=item.svgclass action=item.action route=item.route}}
 		</li>
 		{{/each}}
 	</ul>

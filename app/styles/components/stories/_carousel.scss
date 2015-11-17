@@ -31,8 +31,15 @@
 	}
 }
 
+.js-story-pagination-controls {
+	margin-top: rem(2px);
+	display: inline-block;
+}
+
 .carousel-pager {
 	display: inline-block;
+	vertical-align: middle;
+	
 	&__btn {
 		height: 11px;
 		float: left;

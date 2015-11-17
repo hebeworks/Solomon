@@ -85,6 +85,13 @@
             max-width: 100%;
             @include appearance(none);
     	}
+        
+        &[cpn-input~="small"],
+        %cpn-input-small {
+            font-size: rem(12px);
+            height: rem(30px);
+            padding: rem($spacing-base - 3) rem($spacing-base / 2 - 1) rem($spacing-base / 2 - 1);
+        }
     }
     
     [cpn-input~="ghost-light"],

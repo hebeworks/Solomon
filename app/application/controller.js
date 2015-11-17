@@ -110,7 +110,7 @@ export default Ember.Controller.extend({
 
 	showTutorialTimer: null,
 	shouldShowTutorial: function (force) {
-		if (Modernizr.mq('screen and (min-width: 768px)')) {
+		if(Modernizr.mq('screen and (min-width: 768px)')) {
 			if (Cookies.get('viewedTutorial')) {
 				// unauthed session has seen tutorial
 				// stop the timer & observer
@@ -133,10 +133,12 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorial: function () {
-		if (!this.get('isModalVisible')) {
-			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-			Ember.run.cancel(this.get('showTutorialTimer'));
-			this.showModal('ui/tutorial-intro', 'Tutorial');
+		if(Modernizr.mq('screen and (min-width: 768px)')) {
+			if (!this.get('isModalVisible')) {
+				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
+				Ember.run.cancel(this.get('showTutorialTimer'));
+				this.showModal('ui/tutorial-intro', 'Tutorial');
+			}
 		}
 	},
 
@@ -187,7 +189,6 @@ export default Ember.Controller.extend({
 		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams)
 		this.closeToolbox();
 		this.set('bottomDrawerConfig', config);
-		console.log('appController.bottomDrawerConfig: ' + Ember.inspect(config));
 		this.set('canvasBlurred', true);
 		// Drawer.closeTop();
 		// Drawer.openBottomHalf();
@@ -245,7 +246,7 @@ export default Ember.Controller.extend({
 		if (!Ember.isEmpty(model)) {
 			params.model = model;
 			params.mainTitle = 'Edit a canvas'
-		}
+	}
 		this.openBottomDrawer(params);
 	},
 

@@ -2,15 +2,26 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-	tagName: 'div',
-	loaded: false,
+	storyConfig: {
+		title: 'House prices in Leeds',
+		subTitle: 'Average house price in Leeds by month',
+		slider: true,
+		width: '2',
+		dataSourceUrl: 'http://data.gov.uk/dataset/land-registry-monthly-price-paid-data',
+		feedbackEmail: 'nathan@hebeworks.com',
+		description: 'Trends in average house prices in Leeds using Price Paid data from Land Registry.',
+		license: '<a href="http://data.gov.uk/dataset/land-registry-monthly-price-paid-data" target="_blank">Land Registry monthly price paid data</a>, © Land Registry, 2015. This information is licensed under the terms of the Open Government Licence',
+		author: 'Nathan Smith'
+	},
+	
+	loaded: true,
+	
 	allMonthsLoaded: false,
 	selectedMonth: '',
 	months: [],
 	loadedMonths: 0,
+	
 	didInsertElement: function () {
-		this.set('title', 'House prices in Leeds');
-		this.set('subTitle', 'Average house price in Leeds by month');
 		this.getPast12Months();
 	},
 

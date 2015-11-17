@@ -1,12 +1,14 @@
-
-
 /* global ) */
 import Ember from 'ember';
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
 export default DefaultStory.extend({
-	title: 'LCC Spending',
-	subTitle: '13 months',
+	storyConfig: {
+		title: 'LCC Spending',
+		subTitle: '13 months',
+		scroll: false
+	},
+	
 	storyModel: null,
 	chartType: 'line',
 	data: [],

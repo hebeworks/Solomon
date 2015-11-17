@@ -1,43 +1,46 @@
 // Slide 1
-.tweets {
-	height: 217px;
-	overflow: hidden;
-	overflow-y: scroll;
+[spc-tweet] {
+	position: relative;
+	
+	&:not(:last-child) {
+		@extend %cpn-divide;
+		@extend %cpn-divide-bottom;
+	}
 }
 
-.tweet {
-	position: relative;
-	h2 {
-		margin-bottom: 5px;
-		color: #58aff0;
-		> a {
-			color: #58aff0;		
-		}
+	[spc-tweet_user] {
+		font-size: rem(15px);
+		line-height: 1.133;
+		
 		a {
-			text-decoration:none;
+			text-decoration: none;
 		}
 	}
-	.story__para {
+		
+		[spc-tweet_name] {
+			color: $lighter-blue;
+		}
+		
+		[spc-tweet_handle] {
+			color: $dark-grey;
+			font-size: rem(12px);
+		}
+
+	[spc-tweet_body] {
 		font-size: rem(12px);
 		line-height: 1.5;
-		margin-bottom: 0;
-		~ .story__para {
-			margin-bottom: 10px;
-		}
+
 		a {
-			color: #58aff0;
+			color: $lighter-blue;
 		}
 	}
-}
-	.tweet__handle {
-		color: #c5c5c5;
-		font-size: rem(14px);
-	}
-	.tweet__time {
-		font-size: rem(12px);
+	
+	[spc-tweet_time] {
+		font-size: rem(10px);
+		color: $dark-grey;
 		position: absolute;
-		top: 5px;
-		right: 5px;
+		top: rem(1px);
+		right: 0;
 	}
 
 // Slide 2

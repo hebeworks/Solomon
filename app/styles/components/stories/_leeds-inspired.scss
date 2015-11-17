@@ -1,73 +1,40 @@
-.leeds-inspired-event {
-	height:215px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	display:block;
+[spc-lds-inspd_title] {
+	font-family: $georgia;
+	font-size: rem(18px);
+	margin-bottom: rem($spacing-base / 2);
 	
-	.image {
-		max-width: 50%;
-		float: right;
-		display: block;
-		padding: {
-			left: 10px;
-		}
-	}	
-	p {		
-		font: {
-			size: em(11px);
-		}
-		margin: {
-			bottom: 5px;
+	a {
+		text-decoration: none;
+		
+		&:hover {
+			text-decoration: underline;
 		}
 	}
-	&__heading {
-		font: {
-			family: $georgia;
-			size: em(18px);
-		}
-		margin: {
-			bottom: 5px;
-		}
-		a {
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-	&__datetime {
-		width: 100%;
-		font: {
-			family: $georgia;
-			size: em(15px);
-			style: italic;
-		}
-		line-height: 1.35;
-		display: block;
-		margin-bottom: 2px;
-	}
-	&__address {
-		padding: {
-			top: 2px;
-		}
-		font: {
-			size: em(13px);
-			family: $helvneuemed;
-			style: normal;
-		}
-	}
-	&__description {
-		font: {
-			size: em(11px);
-		}
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -ms-text-overflow: ellipsis;
-    display: block;
-    display: -webkit-box;
-    -webkit-line-clamp: 7;
-    -webkit-box-orient: vertical;
-    padding: 3px;
-    margin: 0 auto;	
-	}
+}
+
+[spc-lds-inspd_datetime] {
+	font-family: $georgia;
+	font-size: rem(15px);
+	font-style: italic;
+	line-height: 1.35;
+	display: block;
+	margin-bottom: rem(2px);
+}
+
+[spc-lds-inspd_place] {
+	padding-top: rem(2px);
+	font-size: em(13px);
+	font-family: $helvneuemed;
+	font-style: normal;
+}
+
+[spc-lds-inspd_image] {
+	max-width: 50%;
+	float: right;
+	display: block;
+	margin: 0 0 rem($spacing-base / 2) rem($spacing-base);
+}
+
+[spc-lds-inspd_desc] {
+	font-size: rem(11px);
 }
