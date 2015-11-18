@@ -15,18 +15,16 @@
                 </div>
             {{/each}}
         {{/stories/story-slide}}
-        {{#stories/story-slide width=width}}
-            <div class="twitter-cover-photo">
-                <div class="twitter-cover-photo__logo">
-                    <img src="http://avatars.io/twitter/leedsdatamill" width="50" height="50" />
-                </div>
-                <img src="https://pbs.twimg.com/profile_banners/2221607978/1421754274/1500x500" width="290" height="102" />
-                <a href="https://twitter.com/leedsdatamill" target="_blank" class="twitter-follow">Follow @LeedsDataMill</a>
+        {{#stories/story-slide}}
+            <div spc-tweeter_cover>
+                <div spc-tweeter_avatar class="svg-ldm-logo-white" data-grunticon-embed></div>
+                <img src="assets/img/twitter-backdrop.jpg" width="290" height="101" />
+                <a href="https://twitter.com/leedsdatamill" target="_blank" spc-tweeter_follow>Follow @LeedsDataMill</a>
             </div>
-            <div class="twitter-profile-details">
-                <h2 class="-beta">Leeds Data Mill</h2>
-                <h3 class="beta">@LeedsDataMill</h3>
-                <p class="story__para">We are the Open Data Platform for Leeds. Follow us for updates on events, research and stories about the city.</p>
+            <div spc-tweeter_details>
+                <h2 spc-tweeter_name>Leeds Data Mill</h2>
+                <h3 spc-tweeter_username>@LeedsDataMill</h3>
+                <p spc-tweeter_description>We are the Open Data Platform for Leeds. Follow us for updates on events, research and stories about the city.</p>
             </div>
         {{/stories/story-slide}}
       {{/stories/story-slider}}

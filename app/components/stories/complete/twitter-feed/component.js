@@ -9,7 +9,8 @@ export default DefaultStory.extend({
         dataSourceUrl: 'http://twitter.com/leedsdatamill',
         feedbackEmail: 'mark@hebeworks.com',
         description: 'This is the main Twitter feed from Leeds Data Mill.',
-        author: 'Mark Barrett'
+        author: 'Mark Barrett',
+        width: '2'
     },
     
     selectedMonth: '',

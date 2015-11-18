@@ -23,12 +23,13 @@
 		
 		[spc-tweet_handle] {
 			color: $dark-grey;
-			font-size: rem(12px);
+			font-size: rem(10px);
 		}
 
 	[spc-tweet_body] {
 		font-size: rem(12px);
 		line-height: 1.5;
+		margin-bottom: 0;
 
 		a {
 			color: $lighter-blue;
@@ -38,49 +39,59 @@
 	[spc-tweet_time] {
 		font-size: rem(10px);
 		color: $dark-grey;
-		position: absolute;
-		top: rem(1px);
-		right: 0;
+		margin-bottom: rem(10px);
+		display: block;
 	}
 
 // Slide 2
-.twitter-cover-photo {
+[spc-tweeter_cover] {
 	width: 290px;
 	height: 102px;
 	float: left;
 	position: relative;
 	margin-bottom: 8px;
 }
-	.twitter-cover-photo__logo {
-		width: 84px;
-		height: 84px;
-		padding: 17px;
-		background-color: #fff;
-		border-radius: 100%;
-		@include middle(xy);
+
+	[spc-tweeter_avatar] {
 		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		width: 63px;
+		height: 77px;
+		
+		svg {
+			width: 100%;
+			height: auto;
+		}
 	}
-.twitter-follow {
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	bottom: -19px;
-	left: 15px;
-	border-radius: 100%;
-	display: block;
-	text-indent: -99999px;
-	@include svg--twitter-follow;
-	background: {
-		color: #58aff0;
-		position: 50% 50%;
-		size: 20px;
-		height: 20px;
+	
+	[spc-tweeter_follow] {
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		bottom: -19px;
+		left: 15px;
+		border-radius: 100%;
+		display: block;
+		text-indent: -99999px;
+		@include svg--twitter-follow;
+		transition: .25s;
+		background: {
+			color: #58aff0;
+			position: 50% 50%;
+			size: 20px;
+			height: 20px;
+		}
+		
+		&:hover {
+			background-color: lighten(#58aff0, 5%);
+		}
 	}
-	&:hover {
-		background-color: lighten(#58aff0, 5%);
-	}
-}
-.twitter-profile-details {
+	
+[spc-tweeter_details] {
 	width: 290px;
 	height: 100px;
 	padding: {
@@ -89,21 +100,24 @@
 	}
 	float: left;
 	text-align: center;
-	h2 {
+}
+
+	[spc-tweeter_name] {
 		color: #505050;
 		font-family: $helvneuemed;
 		margin-bottom: 2px;
+		font-size: rem(22.5px);
 	}
-	h3 {
+	
+	[spc-tweeter_username] {
 		color: #9b9b9b;
 		margin-bottom: 2px;
+		font-size: rem(15px);
 	}
-	.story__para {
+	
+	[spc-tweeter_description] {
 		color: #9b9b9b;
 		line-height: 1.2;
 		margin-bottom: 0;
-		~ .story__para {
-			margin-top: 10px;
-		}
+		font-size: rem(12px);
 	}
-}
