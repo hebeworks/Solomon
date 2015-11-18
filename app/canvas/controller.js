@@ -217,6 +217,8 @@ export default Ember.Controller.extend({
                     // debugger;
                     model.save().then(function (response) {
                         console.log('saved canvas state');
+                        // todo callback function
+                        // e.g. close edit a story bottom drawer
                     })
                 },
                 function (err) {
@@ -229,23 +231,5 @@ export default Ember.Controller.extend({
                     // }
                 }
             );
-    },
-
-    actions: {
-        addAStory: function (story) {
-            // alert('addAStory');
-            this.addAStory(story);
-        },
-        removeAStory: function (story) {
-            // alert('addAStory');
-            this.removeAStory(story);
-        },
-        saveCurrentOrder: function (orderArr) {
-            this.saveCurrentOrder(orderArr);
-        },
-        saveCanvasState: function () {
-            this.saveCanvasState();
-        }
     }
-
 });

@@ -15,6 +15,20 @@ export default Ember.Route.extend({
         },
         duplicateCanvas: function () {
             this.controller.duplicateCanvas();
+        },
+        addAStory: function (story) {
+            // alert('addAStory');
+            this.controller.addAStory(story);
+        },
+        removeAStory: function (story) {
+            // alert('addAStory');
+            this.controller.removeAStory(story);
+        },
+        saveCurrentOrder: function (orderArr) {
+            this.controller.saveCurrentOrder(orderArr);
+        },
+        saveCanvasState: function () {
+            this.controller.saveCanvasState();
         }
     }
 });

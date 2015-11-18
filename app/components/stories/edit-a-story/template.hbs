@@ -13,7 +13,7 @@
 		<h2>{{title}}</h2>
 
 		{{#each editableFields as |field|}}
-			<label>test {{field.placeholder}}</label>{{input type=field.type value=field.value placeholder=field.placeholder}}
+			<label>test {{field.placeholder}} {{field.value}}</label>{{input type=field.type value=field.value placeholder=field.placeholder}}
 		{{/each}}
 		
 		{{#each errors.messages as |message|}}

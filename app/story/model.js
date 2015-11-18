@@ -27,9 +27,7 @@ var story = DS.Model.extend({
 	},
 
 	onConfigChanged: function () {
-		alert('story config changed');
 		var config = this.get('config');
-		console.log(Ember.inspect(config));
 		var json = this.serializeConfigToJSON(config);
 		this.set('configJSON', json);
 	}.observes('config.@each.value'),
