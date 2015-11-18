@@ -2,11 +2,17 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig:  {
+        title: 'Leeds City Council',
+        subTitle: 'Statement of Accounts 2014/15',
+        feedbackEmail: 'support@solomon.co.uk',
+        description: 'This Story has been manually coded to provide Statutory Notice of accounts.',
+        license: 'Open Government License',
+        author: 'Leeds Open Data',
+        headerImage: '/assets/img/lcc-logo.png'
+    },
+    
     didInsertElement: function() {
-        this.set('title', 'Leeds City Council');
-        this.set('subTitle', 'Statement of Accounts 2014/15');
         var obj = this;
     }
 });

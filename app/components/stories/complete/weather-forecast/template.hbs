@@ -1,19 +1,4 @@
-
-{{#stories/story-base 
-    title=title 
-    subTitle=subTitle 
-    color="mint" 
-    width=width 
-    height="2" 
-    data-ss-colspan="2"
-    slider=true
-    
-    dataSourceUrl="http://datapoint.metoffice.gov.uk"
-    feedbackEmail="simon@hebeworks.com"
-    description="This Story uses Met Office data via the Data Point service"
-    license="This information is licensed under the terms of the Open Government Licence"
-    author="Simon Zimmerman"
-    }}
+{{#stories/story-base}}
     <main class="weather-forecast">
         {{#stories/story-slider loaded=loaded}}           
             {{#each days as |day|}}
