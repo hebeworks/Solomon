@@ -1,11 +1,10 @@
 {{#stories/story-base}}
-    
     {{#stories/story-slider loaded=loaded}}
             {{#stories/story-slide}}
                 {{stories/complete/house-prices/house-price-item chartData=chartData.detached houseType="Detached" total=currentMonth.averageDetached change=changeDetached icon="detached"}}
             {{/stories/story-slide}}
 
-            {{#stories/story-slide}}
+{{!--             {{#stories/story-slide}}
                 {{stories/complete/house-prices/house-price-item chartData=chartData.flat houseType="Flat" total=currentMonth.averageFlat change=changeFlat icon="flat"}}
             {{/stories/story-slide}}
 
@@ -16,7 +15,7 @@
             {{#stories/story-slide}}
                 {{stories/complete/house-prices/house-price-item chartData=chartData.terraced houseType="Terraced" total=currentMonth.averageTerraced change=changeTerraced icon="terrace"}}
             {{/stories/story-slide}}
-
+--}}
     {{/stories/story-slider}}
 	
 	{{yield}}
