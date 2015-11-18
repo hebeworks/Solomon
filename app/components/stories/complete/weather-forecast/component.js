@@ -7,6 +7,7 @@ export default DatamillStory.extend({
         subTitle: '5-day weather forecast for Leeds',
         color: 'mint',
         slider: true,
+        width: '2',
         dataSourceUrl: 'http://datapoint.metoffice.gov.uk',
         feedbackEmail: 'support@hebeworks.com',
         description: 'This Story uses Met Office data via the Data Point service',

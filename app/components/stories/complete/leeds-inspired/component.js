@@ -10,7 +10,8 @@ export default DefaultStory.extend({
         feedbackEmail: 'nathan@hebeworks.com',
         description: 'This Story uses data from the Leeds Inspired API.',
         license: 'Open Government License',
-        author: 'Nathan Smith'
+        author: 'Nathan Smith',
+        width: '2'
     },
     
     didInsertElement: function () {

@@ -11,7 +11,8 @@ export default DefaultStory.extend({
         feedbackEmail: 'joel@hebeworks.com',
         description: "This Story uses data from Nasa via the ISS's Open Notify API",
         license: "<a href='http://spotthestation.nasa.gov/sightings/xml_files/United_Kingdom_England_Leeds.xml' target='_blank'>International Space Station data</a>, retrieved from NASA, 2015.",
-        author: 'Joel Mercer'
+        author: 'Joel Mercer',
+        width: '2'
     },
     
     didInsertElement: function() {
