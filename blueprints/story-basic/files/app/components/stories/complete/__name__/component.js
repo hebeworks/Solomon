@@ -15,7 +15,7 @@ export default DefaultStory.extend({
         // feedbackEmail: '', (Provide an email users can contact about this story)
         
         // color: 'white', (Set the story colour)
-        // width: '2', (Set the width of the story)
+        // width: '2', (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         // height: '2', (Set the height of the story)
         // headerImage: '', (Provide an image to show in the story header instead of the title and subtitle)
         
