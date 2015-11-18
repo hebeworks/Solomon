@@ -2,8 +2,13 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Leeds Gov News',
+        subTitle: 'New from Leeds',
+        color: 'medium-blue',
+        authorImage: '/assets/img/LeedsCouncilLogo.png'
+    },
+    
     storyModel: null,
     didReceiveAttrs: function () {
         var story = this.get('storyModel');
@@ -35,8 +40,7 @@ export default DatamillStory.extend({
     },
 
     didInsertElement: function () {
-        this.set('title', 'Leeds Gov News');
-        this.set('subTitle', 'New from Leeds');
+        
     },
 
     loadFeed: function (feedUrl) {

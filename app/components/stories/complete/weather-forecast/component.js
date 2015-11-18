@@ -2,17 +2,21 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
-    author: 'Simon Zimmerman',
+    storyConfig: {
+        title: 'Weather',
+        subTitle: '5-day weather forecast for Leeds',
+        color: 'mint',
+        slider: true,
+        dataSourceUrl: 'http://datapoint.metoffice.gov.uk',
+        feedbackEmail: 'support@hebeworks.com',
+        description: 'This Story uses Met Office data via the Data Point service',
+        license: 'This information is licensed under the terms of the Open Government Licence',
+        author: 'Ste Allan'
+    },
+    
     showDay: true,
-    width: 2,
-    slider: true,
 
     didReceiveAttrs: function () {
-        this.set('title', 'Weather');
-        this.set('subTitle', '5-day weather forecast for Leeds');
-
         var obj = this;
         var url = 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/352241?res=daily&key=f74b2d5f-4fd7-450a-b410-ed56d842a209';
 

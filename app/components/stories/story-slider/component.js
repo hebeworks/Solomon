@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     className: 'story__carousel-wrapper',
     attributeBindings: 'cpn-story_carousel',
     'cpn-story_carousel': '',
-    width: Ember.computed.alias('target.storyConfig.width'),
+    width: 2,
     loaded: false,
     loadedChanged: function () {
         if (this.loaded) {

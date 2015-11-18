@@ -1,17 +1,4 @@
-{{#stories/story-base 
-    title="Leeds Inspired" 
-    subTitle="Music & art events around Leeds." 
-    color="white" 
-    width=width 
-    height="2"
-    slider=true
-    data-ss-colspan="2"
-    dataSourceUrl="http://api.leedsinspired.co.uk"
-    feedbackEmail="nathan@hebeworks.com"
-    description="This Story uses data from the Leeds Inspired API"
-    license="Open Government License"
-    author="Nathan Smith"
-    }}
+{{#stories/story-base}}
     {{#stories/story-slider loaded=loaded}}
         {{#each item in items}}
             {{#stories/story-slide}}
