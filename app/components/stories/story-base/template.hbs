@@ -34,26 +34,12 @@
         </section>
         
     </div>
-<<<<<<< HEAD
-
-    <div class="story__card -back">
-        {{!-- <a href="javascript:;" class="js-cogs icon icon-cogs icon-reverse svg-reverse" data-grunticon-embed>Settings</a> --}}
-        <a href="javascript:;" class="js-cogs" spc-dot="back">Story</a>
-        <div class="story__content">
-
-            <button class="btn -red -half" {{action 'editAStory' storyModel}}>
-                Edit
-            </button>
-
-            {{#if viewOnly}}
-=======
     
     <div cpn-story_face="back {{support3d}} {{storyFlip}}">
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
         
         <section cpn-story_content="back {{usableHeight}}">
             {{#if storyConfig.viewOnly}}
->>>>>>> develop
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
                 <div cpn-divide="bottom light">
@@ -65,27 +51,6 @@
                     {{/if}}
                 </div>
                 
-<<<<<<< HEAD
-                {{#if configFields}}
-                    {{#each configFields as |field|}}
-                        {{input type=field.type value=field.value placeholder=field.placeholder}}
-                    {{/each}}
-                {{/if}}
-                
-                
-                {{#if description}}
-                    <div cpn-divide="bottom light">
-                        <h2 class="beta">Description</h2>
-                        <p class="story__para">{{description}}</p>
-                    </div>
-                {{/if}}
-                {{#if license}}
-                    <div cpn-divide="bottom light">
-                        <h2 class="beta">Licence / Attribution</h2>
-                        <p class="story__para">{{{license}}}</p>
-                    </div>
-                {{/if}}
-=======
                 <div cpn-divide="bottom light">
                     <h3 cpn-story_title cpn-margin="bottom-none">Licence / Attribution</h3>
                     {{#if storyConfig.license}}
@@ -94,7 +59,6 @@
                         <p cpn-story_desc>This story has no license.</p>
                     {{/if}}
                 </div>
->>>>>>> develop
                 
                 <ul cpn-row-list>
                     <li cpn-width="50%">
@@ -107,6 +71,15 @@
                         <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
                     </li>
                 </ul>
+                
+<button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>
+                {{#if configFields}}
+                    {{#each configFields as |field|}}
+                        {{input type=field.type value=field.value placeholder=field.placeholder}}
+                    {{/each}}
+                {{/if}}
+                
+                
             {{/if}}
         </section>
         

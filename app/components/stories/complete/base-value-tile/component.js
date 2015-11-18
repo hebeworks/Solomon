@@ -11,6 +11,12 @@ export default DatamillStory.extend({
     tileShade: '',
     storyModel: null,
     
+    storyConfig: {
+        width:'1',
+        height:'1',
+        scroll: true
+    },
+    
     onInserted: function () {
         var _this = this;
         var timer = setInterval(function () {
