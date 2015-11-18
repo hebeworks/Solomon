@@ -2,15 +2,18 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Leeds Gov News',
+        subTitle: 'New from Leeds',
+        color: 'medium-blue',
+        headerImage: '/assets/img/lcc-logo.png',
+        author: 'Leeds City Council'
+    },
+    
     storyModel: null,
 
-
     didInsertElement: function () {
-        this.set('title', 'Leeds Gov News');
-        this.set('subTitle', 'New from Leeds');
-        this.loadFeed('http://news.leeds.gov.uk/feed/en');            
+        this.loadFeed('http://news.leeds.gov.uk/feed/en');
     },
 
     loadFeed: function (feedUrl) {

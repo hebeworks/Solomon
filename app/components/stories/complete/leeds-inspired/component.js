@@ -2,12 +2,18 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
-    loaded: false,
-    width: 2,
+    storyConfig: {
+        title: 'Leeds Inspired',
+        subTitle: 'Music & art events around Leeds',
+        slider: true,
+        dataSourceUrl: 'http://api.leedsinspired.co.uk',
+        feedbackEmail: 'nathan@hebeworks.com',
+        description: 'This Story uses data from the Leeds Inspired API.',
+        license: 'Open Government License',
+        author: 'Nathan Smith'
+    },
     
     didInsertElement: function () {
-        this.set('title', 'Leeds Inspired');
         var obj = this;
         var fromDate = moment().add(-1, 'days').format('DD-MM-YYYY');
         var toDate = moment().add(5, 'days').format('DD-MM-YYYY');
