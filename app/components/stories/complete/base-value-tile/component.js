@@ -10,6 +10,11 @@ export default DatamillStory.extend({
     tileDesc2: 'Description 2',
     tileShade: '',
     
+    storyConfig: {
+      width:'1',
+      height:'1'  
+    },
+    
     didInsertElement: function() {
         
     }
