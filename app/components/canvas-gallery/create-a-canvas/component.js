@@ -61,7 +61,6 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	},
 
 	saveCanvas: function () {
-		debugger;
 		if (this.isValid()) {
 			var obj = this;
 			obj.set('message', 'Saving Canvas');

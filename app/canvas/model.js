@@ -17,8 +17,10 @@ var canvas = DS.Model.extend({
 		stories = [].pushObject(this.store.createRecord('story',{title:'test'}))
 		this.store.serialize(stories)
 		*/
-
 		var stories = this.get('stories');
+		stories.forEach(function(story) {
+			story.onConfigChanged();
+		});
 		var json = this.serializeStoriesToJSON(stories);
 		this.set('storiesJSON', json);
 

@@ -43,11 +43,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	setupEditableFields: function () {
 		var fields = this.get('model.config');
 		if (!Ember.isEmpty(fields)) {
-			alert('have ' + fields.length + ' fields');
 			this.set('configFields', fields);
-			fields.forEach(function (field) {
-	
-			});
 		}
 	}.observes('model','model.config','model.config.@each'),
 

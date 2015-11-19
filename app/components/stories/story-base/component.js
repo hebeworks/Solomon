@@ -1,3 +1,4 @@
+/* global _ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -6,11 +7,17 @@ export default Ember.Component.extend({
     'data-id': Ember.computed.alias('target.storyModel.id'),
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     storyModel: Ember.computed.alias('target.storyModel'),
-    
+
     support3d: '',
     storyFlip: 'not-flipped',
-    
-    loaded: Ember.computed('target.loaded', function() {
+
+    onInit: function(){
+        if(!Ember.isEmpty(this.get('storyModel'))) {
+            this.setupEditableFields();
+        }
+    }.on('init'),
+
+    loaded: Ember.computed('target.loaded', function () {
         if (this.get('target.loaded')) {
             return this.get('target.loaded');
         } else {
@@ -32,13 +39,35 @@ export default Ember.Component.extend({
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
-    
+
     storyConfig: Ember.computed('target.storyConfig', function () {
         var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
         var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
         Ember.merge(defaultConfig, targetConfig);
         return defaultConfig;
     }),
+    
+    _editableFieldsSetupComplete: false,
+    setupEditableFields: function () {
+        if (!this.get('_editableFieldsSetupComplete')) {
+            var story = this.get('storyModel');
+            var editableFields = this.get('storyConfig.editableFields');
+            if (!Ember.isEmpty(story)
+                && !Ember.isEmpty(editableFields)) {
+                    var config = story.get('config'); // load the existing configs from story model
+                    editableFields.forEach(function (editableField) {
+                        // For each editable field from the story component
+                            // if a config field with this name doesn't exist
+                                // add a config item
+                        if (!_.any(config, function (configField) { 
+                                return configField.get('name') == editableField.name; })) {
+                            console.log('adding editable field: ' + editableField.name);
+                            story.addConfigItem(editableField);
+                        }
+                    });
+            }
+        }
+    }.observes('storyModel'),
 
     // Turn the provided height and width settings
     // into the attribute values we need.
