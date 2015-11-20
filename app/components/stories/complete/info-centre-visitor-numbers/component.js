@@ -10,8 +10,8 @@ export default DefaultStory.extend({
         author: 'Ste Allan',
         
         description: 'A chart showing visitor numbers to Leeds Information Centre over a 13-month period.', // (Provide a longer description of the story)
-        license: 'Open Government License', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', (Where did the data come from?)
+        license: 'UK Open Government Licence (OGL v2)', // (Define which license applies to usage of the story)
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-visitor-centre-footfall', // (Where did the data come from?)
         feedbackEmail: 'support@hebeworks.com',
         
         scroll: false
