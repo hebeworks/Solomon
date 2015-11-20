@@ -5,13 +5,13 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Leeds Markets Occupancy', // (Provide a story title)
-        subTitle: 'Occupancy numbers for market stalls', // (Provide a story subtitle)
+        title: 'Leeds Outside Markets', // (Provide a story title)
+        subTitle: 'Statistics for Leeds city, Yeadon, Pudsey and Otley', // (Provide a story subtitle)
         author: 'Ste Allan',
         
         description: 'A chart showing how market stall occupancy has changed over a 13-month period.', // (Provide a longer description of the story)
-        license: 'Open Government License', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', (Where did the data come from?)
+        license: 'UK Open Government Licence (OGL v2)', // (Define which license applies to usage of the story)
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-markets', // (Where did the data come from?)
         feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
         
         // color: 'white', (Set the story colour)
@@ -26,32 +26,6 @@ export default DefaultStory.extend({
     // loaded: false, (Tell other elements that this story has loaded)
     
     onInsertElement: function () {
-        this.drawChart();
-    }.on('didInsertElement'),
-
-    drawChart: function() {
-        var trace1 = {
-            x: ['Jan 15', 'Feb 15', 'Mar 15', 'Apr 15', 'May 15', 'Jun 15', 'Jul 15', 'Aug 15', 'Sep 15', 'Oct 15', 'Nov 15', 'Dec 15'],
-            y: [95, 94, 90, 86, 80, 74, 78, 75, 70, 69, 67, 60],
-            type: 'scatter'
-        };
         
-        var layout = {
-            autosize: false,
-            width: 290,
-            height: 220,
-            margin: {
-                l: 30,
-                r: 0,
-                b: 30,
-                t: 10,
-                pad: 5
-            },
-            textposition: 'top left'
-        };
-
-        var data = [trace1];
-
-        Plotly.newPlot('mo-chart', data, layout);
-    }
+    }.on('didInsertElement'),
 });
