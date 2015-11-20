@@ -12,7 +12,7 @@ export default DefaultStory.extend({
         // description: '', (Provide a longer description of the story)
         // license: '', (Define which license applies to usage of the story)
         // dataSourceUrl: '', (Where did the data come from?)
-        // feedbackEmail: '', (Provide an email users can contact about this story)
+        feedbackEmail: 'support@hebeworks.com',
         
         scroll: false
     },
@@ -34,10 +34,11 @@ export default DefaultStory.extend({
                 var months = [];
                 
                 data.forEach(function (item) {
-                    var month = [];
+                    var month = [],
+                        date = moment(new Date(item.date)).format('YYYY-MM-DD');
 
                     months.push([
-                        new Date(item.date),
+                        new Date(date),
                         item.count,
                         moment(new Date(item.date)).format('MMMM YYYY') + ': ' + item.count]);
                 });
@@ -53,19 +54,8 @@ export default DefaultStory.extend({
     },
     
     loadGoogleAPIs: function() {
-        var _this = this,
-            // url = 'https://www.google.com/jsapi';
-            url = "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['line']}]}";
-        
-        // $.getScript(url, function () {
-            // alert('loaded');
-            
-            // Load the visialisation API
-            // google.load('visualization', '1.1', {packages: ['line']});
-            
-            // Draw the chart when the APIs have loaded
-            google.setOnLoadCallback(this.drawChart());
-        // });
+        // Draw the chart when the APIs have loaded
+        google.setOnLoadCallback(this.drawChart());
     }.observes('loaded'),
 
     drawChart: function() {
@@ -93,8 +83,7 @@ export default DefaultStory.extend({
                 format: 'MMM yy',
                 gridlines: {
                     count: 12,
-                },
-                viewWindowMode: 'maximized'
+                }
             },
             vAxis: {
                 format: 'short',
@@ -106,16 +95,14 @@ export default DefaultStory.extend({
                 top: '5%',
                 left: '10%'
             },
-            animation: {
-                startup: true,
-                duration: 1000
-            }
+            // animation: {
+            //     startup: true,
+            //     duration: 1000
+            // }
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        // var chart = new google.charts.Line(document.getElementById('chart_div'));
 
         chart.draw(data, options);
-        // chart.draw(data, google.charts.Line.convertOptions(options));
     }
 });
