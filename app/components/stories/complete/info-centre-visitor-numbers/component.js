@@ -83,22 +83,31 @@ export default DefaultStory.extend({
                 format: 'MMM yy',
                 gridlines: {
                     count: 12,
+                    color: '#FFF'
                 }
             },
             vAxis: {
                 format: 'short',
-                baselineColor: '#CCCCCC'
+                baselineColor: '#FFF',
+                gridlines: {
+                    color: '#FFF'
+                },
+                minorGridlines: {
+                    count: 2
+                }
             },
             chartArea: {
                 width: '85%',
                 height: '80%',
                 top: '5%',
-                left: '10%'
+                left: '10%',
+                backgroundColor: '#EEE'
             },
-            // animation: {
-            //     startup: true,
-            //     duration: 1000
-            // }
+            crosshair: {
+                trigger: 'both',
+                opacity: 0.5
+            },
+            selectionMode: 'multiple'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
