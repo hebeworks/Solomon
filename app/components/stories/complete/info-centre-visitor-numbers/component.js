@@ -9,8 +9,8 @@ export default DefaultStory.extend({
         subTitle: 'Visitor Numbers',
         author: 'Ste Allan',
         
-        // description: '', (Provide a longer description of the story)
-        // license: '', (Define which license applies to usage of the story)
+        description: 'A chart showing visitor numbers to Leeds Information Centre over a 13-month period.', // (Provide a longer description of the story)
+        license: 'Open Government License', // (Define which license applies to usage of the story)
         // dataSourceUrl: '', (Where did the data come from?)
         feedbackEmail: 'support@hebeworks.com',
         
