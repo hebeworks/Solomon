@@ -26,10 +26,25 @@ var story = DS.Model.extend({
 		}
 	},
 	
+	onReady: function(){
+		Ember.run.scheduleOnce('afterRender', this, this.onConfigChanged);
+	}.on('ready'),
+	
 	onConfigChanged: function () {
+		var _this = this;
 		var config = this.get('config');
 		var json = this.serializeConfigToJSON(config);
 		this.set('configJSON', json);
+		
+		
+		// SET Configs as properties
+		config.forEach(function(item){
+			if(_this.get(item.get('name')) != item.get('value')){
+				_this.set(item.get('name'),item.get('value'));
+			}
+		})
+		
+		
 	}.observes('config.@each.value','config.@each','config'),
 
 	serializeConfigToJSON: function (config) {
@@ -42,7 +57,7 @@ var story = DS.Model.extend({
 				arr.push(tmp.data);
 				// arr.push(store.serialize(config, { includeId: false }));
 			});
-			var json = JSON.stringify({ data: arr });
+			json = JSON.stringify({ data: arr });
 		}
 		return json;
 	},

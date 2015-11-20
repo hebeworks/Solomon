@@ -186,10 +186,12 @@ export default Ember.Controller.extend({
 	},
 
 	openBottomDrawer: function (configParams) {
-		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams)
+		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams);
 		this.closeToolbox();
 		this.set('bottomDrawerConfig', config);
-		this.set('canvasBlurred', true);
+		if(config.preventCanvasBlur != true) {
+			this.set('canvasBlurred', true);
+		}
 		// Drawer.closeTop();
 		// Drawer.openBottomHalf();
 	},
@@ -251,10 +253,13 @@ export default Ember.Controller.extend({
 	},
 
 	editAStory: function (model) {
-		var params = { contentType: 'stories/edit-a-story' };
+		var params = { 
+			contentType: 'stories/edit-a-story',
+			preventCanvasBlur: true
+		};
 		if (!Ember.isEmpty(model)) {
 			params.model = model;
-			params.mainTitle = 'Edit a story'
+			params.mainTitle = 'Edit a story';
 		}
 		this.openBottomDrawer(params);
 	},

@@ -9,12 +9,12 @@
 }}
     <div spc-val cpn-padding="top">
         <div cpn-divide="bottom {{tileShade}}" cpn-margin="bottom-half">
-            <p cpn-margin="bottom-none" spc-val_value>{{tileValue}}</p>
+            <p cpn-margin="bottom-none" spc-val_value>{{storyModel.value}}</p>
         </div>
         <div cpn-divide="bottom {{tileShade}}" cpn-margin="bottom-half">
             <p cpn-margin="bottom-half" spc-val_desc>
-                <span>{{tileDesc1}}</span>
-                <span>{{tileDesc2}}</span>
+                <span>{{storyModel.description}}</span>
+                <span>{{storyModel.description2}}</span>
             </p>
         </div>
         <p spc-val_instruction cpn-margin="bottom-none">Tap to view</p>
