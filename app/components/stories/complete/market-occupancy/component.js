@@ -194,26 +194,52 @@ export default DefaultStory.extend({
     drawAvgOccupiedStalls: function() {
         var data = google.visualization.arrayToDataTable([
             ['Location', 'Leeds City', 'Yeadon', 'Pudsey', 'Otley'],
-            ['2012', 34, 5, 12, 7],
-            ['2013', 41, 8, 13, 10],
-            ['2014', 43, 13, 17, 15]
+            ['Mon', 153, null, 12, 7],
+            ['Tue', 144, 8, 13, 10],
+            ['Wed', 43, 13, 17, null],
+            ['Thu', 43, 13, 17, 35],
+            ['Fri', 43, 13, 17, 22],
+            ['Sat', 43, 13, 17, null],
+            ['Sun', 43, 13, 17, 12],
+            ['Mon', 153, null, 12, 7],
+            ['Tue', 144, 8, 13, 10],
+            ['Wed', 43, 13, 17, null],
+            ['Thu', 43, 13, 17, 35],
+            ['Fri', 43, 13, 17, 22],
+            ['Sat', 43, 13, 17, null],
+            ['Sun', 43, 13, 17, 12],
+            ['Mon', 153, null, 12, 7],
+            ['Tue', 144, 8, 13, 10],
+            ['Wed', 43, 13, 17, null],
+            ['Thu', 43, 13, 17, 35],
+            ['Fri', 43, 13, 17, 22],
+            ['Sat', 43, 13, 17, null],
+            ['Sun', 43, 13, 17, 12],
+            ['Mon', 153, null, 12, 7],
+            ['Tue', 144, 8, 13, 10],
+            ['Wed', 43, 13, 17, null],
+            ['Thu', 43, 13, 17, 35],
+            ['Fri', 43, 13, 17, 22],
+            ['Sat', 43, 13, 17, null],
+            ['Sun', 43, 13, 17, 12]
         ]);
 
         var options = {
-          title: 'Stacked Column Chart',
+          title: 'Daily Avg. Number of Occupied Stalls',
           vAxis: {
               baseline: 0
           },
           chartArea: {
-              width: '60%',
-              height: '80%',
-              top: '10%',
+              width: '90%',
+              height: '60%',
+              top: '20%',
               left: '10%'
           },
           width: 290,
-          height: 220,
+          height: 390,
           legend: {
-              position: 'right'
+              position: 'top',
+              maxLines: '4'
           },
           isStacked: true
         };
