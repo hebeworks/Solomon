@@ -29,7 +29,11 @@ export default DefaultStory.extend({
     
     loadGoogleAPIs: function() {
         // Draw the chart when the APIs have loaded
-        google.setOnLoadCallback(this.drawLineChart(), this.drawColumnChart());
+        google.setOnLoadCallback(
+            this.drawLineChart(),
+            this.drawColumnChart(),
+            this.drawDonutChart()
+        );
     }.observes('loaded'),
 
     drawLineChart: function() {
@@ -84,11 +88,12 @@ export default DefaultStory.extend({
               var options = {
                 title: 'Bar Chart',
                 vAxis: {
-                    format: 'percent'
+                    format: 'percent',
+                    baseline: 0
                 },
                 chartArea: {
                     width: '85%',
-                    height: '55%',
+                    height: '65%',
                     top: '20%',
                     left: '15%'
                 },
@@ -103,5 +108,37 @@ export default DefaultStory.extend({
                 document.getElementById('google-column-chart'));
 
               chart.draw(data, options);
+    },
+    
+    drawDonutChart: function() {
+        var data = google.visualization.arrayToDataTable([
+            ['Index', 'Rating'],
+            ['Index 1', 10],
+            ['Index 2', 18],
+            ['Index 3', 15],
+            ['Index 4', 5],
+            ['Index 5', 9]
+        ]);
+
+        var options = {
+            title: 'Donut Chart',
+            pieHole: 0.3,
+            chartArea: {
+                width: '90%',
+                height: '90%',
+                top: '10%',
+                left: '10%'
+            },
+            width: 290,
+            height: 220,
+            slices: {
+                2: {
+                    offset: 0.1
+                }
+            }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('google-donut-chart'));
+        chart.draw(data, options);
     }
 });
