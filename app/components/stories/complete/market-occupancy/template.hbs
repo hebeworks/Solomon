@@ -1,5 +1,22 @@
 {{#stories/story-base}}
 
+    {{#stories/story-slider loaded=loaded}}
     
+        {{!-- Number of occupied stalls --}}
+        {{#stories/story-slide}}
+            <div id="chart-no-occupied-stalls"></div>
+        {{/stories/story-slide}}
+        
+        {{!-- % of empty stalls --}}
+        {{#stories/story-slide}}
+            <div id="chart-pc-empty-stalls"></div>
+        {{/stories/story-slide}}
+        
+        {{!-- Average number of occupied stalls --}}
+        {{#stories/story-slide}}
+            <div id="chart-avg-occupied-stalls"></div>
+        {{/stories/story-slide}}
+        
+    {{/stories/story-slider}}   
 
 {{/stories/story-base}}
