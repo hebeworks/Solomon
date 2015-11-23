@@ -32,7 +32,8 @@ export default DefaultStory.extend({
         google.setOnLoadCallback(
             this.drawLineChart(),
             this.drawColumnChart(),
-            this.drawDonutChart()
+            this.drawDonutChart(),
+            this.drawStackedColumnChart()
         );
     }.observes('loaded'),
 
@@ -139,6 +140,39 @@ export default DefaultStory.extend({
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('google-donut-chart'));
+        chart.draw(data, options);
+    },
+    
+    drawStackedColumnChart: function() {
+        var data = google.visualization.arrayToDataTable([
+            ['Location', 'Leeds City', 'Yeadon', 'Pudsey', 'Otley'],
+            ['2012', 34, 5, 12, 7],
+            ['2013', 41, 8, 13, 10],
+            ['2014', 43, 13, 17, 15]
+        ]);
+
+        var options = {
+          title: 'Stacked Column Chart',
+          vAxis: {
+              baseline: 0
+          },
+          chartArea: {
+              width: '60%',
+              height: '80%',
+              top: '10%',
+              left: '10%'
+          },
+          width: 290,
+          height: 220,
+          legend: {
+              position: 'right'
+          },
+          isStacked: true
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('google-stacked-column-chart'));
+
         chart.draw(data, options);
     }
 });
