@@ -5,8 +5,8 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Google Charts', // (Provide a story title)
-        subTitle: 'A story to test out Google Charts', // (Provide a story subtitle)
+        title: 'Google Charts - Multiple', // (Provide a story title)
+        subTitle: 'Story with different types of Google Charts', // (Provide a story subtitle)
         // author: '', (Provide the author of the story)
         
         // description: '', (Provide a longer description of the story)
@@ -87,7 +87,7 @@ export default DefaultStory.extend({
               ]);
 
               var options = {
-                title: 'Bar Chart',
+                title: 'Column Chart',
                 vAxis: {
                     format: 'percent',
                     baseline: 0
