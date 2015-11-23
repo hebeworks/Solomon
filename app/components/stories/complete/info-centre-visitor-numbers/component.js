@@ -82,26 +82,17 @@ export default DefaultStory.extend({
                 title: '',
                 format: 'MMM yy',
                 gridlines: {
-                    count: 12,
-                    color: '#FFF'
+                    count: 12
                 }
             },
             vAxis: {
-                format: 'short',
-                baselineColor: '#FFF',
-                gridlines: {
-                    color: '#FFF'
-                },
-                minorGridlines: {
-                    count: 2
-                }
+                format: 'short'
             },
             chartArea: {
                 width: '85%',
                 height: '80%',
                 top: '5%',
-                left: '10%',
-                backgroundColor: '#EEE'
+                left: '10%'
             },
             crosshair: {
                 trigger: 'both',
