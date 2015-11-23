@@ -118,34 +118,75 @@ export default DefaultStory.extend({
         var data = new google.visualization.DataTable();
         
         var data = google.visualization.arrayToDataTable([
-            ['Week', 'Tuesday', 'Sunday'],
-            ['1', .85, .78],
-            ['2', .76, .80],
-            ['3', .68, .89],
-            ['4', .50, .94]
+            ['Day', 'Leeds City', 'Yeadon', 'Otley', 'Pudsey'],
+            ['Mon', .24, null, null, null],
+            ['Tue', .27, null, .05, .97],
+            ['Wed', null, null, null, null],
+            ['Thu', .2, null, null, null],
+            ['Fri', .20, .50, .04, .40],
+            ['Sat', .01, null, .11, .95],
+            ['Sun', null, null, null, null],
+            ['Mon', .24, null, null, null],
+            ['Tue', .27, null, .05, .97],
+            ['Wed', null, null, null, null],
+            ['Thu', .2, null, null, null],
+            ['Fri', .20, .50, .04, .40],
+            ['Sat', .01, null, .11, .95],
+            ['Sun', null, null, null, null],
+            ['Mon', .24, null, null, null],
+            ['Tue', .27, null, .05, .97],
+            ['Wed', null, null, null, null],
+            ['Thu', .2, null, null, null],
+            ['Fri', .20, .50, .04, .40],
+            ['Sat', .01, null, .11, .95],
+            ['Sun', null, null, null, null],
+            ['Mon', .24, null, null, null],
+            ['Tue', .27, null, .05, .97],
+            ['Wed', null, null, null, null],
+            ['Thu', .2, null, null, null],
+            ['Fri', .20, .50, .04, .40],
+            ['Sat', .01, null, .11, .95],
+            ['Sun', null, null, null, null]
         ]);
 
         var options = {
-            title: 'Line Chart',
-            legend: { position: 'top' },
+            title: 'Percentage of Stalls Empty',
+            legend: {
+                position: 'top',
+                maxLines: '4'
+            },
             width: 290,
-            height: 220,
-            pointSize: 5,
+            height: 390,
+            pointSize: 3,
+            lineWidth: 1,
+            interpolateNulls: true,
             chartArea: {
                 width: '85%',
-                height: '55%',
+                height: '60%',
                 top: '20%',
                 left: '15%'
             },
             hAxis: {
-                title: 'Week'
+                title: 'Day'
             },
             vAxis: {
-                format: 'percent'
+                format: 'percent',
+                minorGridlines: {
+                    count: 4
+                }
+            },
+            series: {
+                0: { pointShape: 'circle' },
+                1: { pointShape: 'triangle' },
+                2: { pointShape: 'square' },
+                3: { pointShape: 'diamond' }
+            },
+            crosshair: {
+                trigger: 'both'
             }
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart-pc-empty-stalls'));
+        var chart = new google.visualization.AreaChart(document.getElementById('chart-pc-empty-stalls'));
 
         chart.draw(data, options);
     },
