@@ -213,5 +213,13 @@ export default Ember.Component.extend({
                     }
                 });
         }
+    },
+    
+    actions: {
+        editAStory: function(model) {
+            this.set('storyFlip','not-flipped');
+            this.set('action','editAStory');
+            this.sendAction('action',model);
+        }
     }
 });
