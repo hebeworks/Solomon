@@ -248,7 +248,10 @@ export default DefaultStory.extend({
         var options = {
           title: 'Daily Avg. Number of Occupied Stalls',
           vAxis: {
-              baseline: 0
+              baseline: 0,
+              minorGridlines: {
+                count: 4
+              }
           },
           chartArea: {
               width: '90%',
@@ -262,7 +265,10 @@ export default DefaultStory.extend({
               position: 'top',
               maxLines: '4'
           },
-          isStacked: true
+          isStacked: true,
+          hAxis: {
+              title: 'Day'
+          },
         };
 
         var chart = new google.visualization.ColumnChart(
