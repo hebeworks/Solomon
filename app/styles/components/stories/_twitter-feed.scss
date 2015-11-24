@@ -59,12 +59,11 @@
 		bottom: 0;
 		left: 0;
 		margin: auto;
-		width: 63px;
-		height: 77px;
 		
-		svg {
-			width: 100%;
-			height: auto;
+		
+		&, & svg {
+			width: 63px;
+			height: 77px;
 		}
 	}
 	
