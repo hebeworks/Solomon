@@ -229,23 +229,5 @@ export default Ember.Controller.extend({
                     // }
                 }
             );
-    },
-
-    actions: {
-        addAStory: function (story) {
-            // alert('addAStory');
-            this.addAStory(story);
-        },
-        removeAStory: function (story) {
-            // alert('addAStory');
-            this.removeAStory(story);
-        },
-        saveCurrentOrder: function (orderArr) {
-            this.saveCurrentOrder(orderArr);
-        },
-        saveCanvasState: function () {
-            this.saveCanvasState();
-        }
     }
-
 });

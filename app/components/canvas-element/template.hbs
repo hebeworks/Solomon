@@ -32,7 +32,7 @@
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
-                    {{ component story.componentPath storyModel=story}}
+                    {{component story.componentPath storyModel=story}}
                 {{/if}}
             {{/each}}
         {{else}}

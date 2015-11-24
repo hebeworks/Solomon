@@ -14,7 +14,6 @@ export default DatamillStory.extend({
         license: 'This information is licensed under the terms of the Open Government Licence',
         author: 'Ste Allan'
     },
-    
     showDay: true,
 
     didReceiveAttrs: function () {
