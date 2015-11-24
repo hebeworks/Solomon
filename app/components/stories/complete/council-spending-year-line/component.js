@@ -1,6 +1,6 @@
 /* global ) */
 import Ember from 'ember';
-import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
+import DefaultStory from './../story-types/default-story/component'
 
 export default DefaultStory.extend({
 	storyConfig: {
