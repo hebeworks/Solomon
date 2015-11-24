@@ -58,7 +58,6 @@ export default DefaultStory.extend({
             occupancyData[dayOfMonth][locationIndex] = obj.occupied;            
             percentageData[dayOfMonth][locationIndex] = obj.percent;            
         });
-        debugger;
         this.setProperties({
             occupancyData:occupancyData,
             percentageData:percentageData
@@ -97,7 +96,7 @@ export default DefaultStory.extend({
             lineWidth: 1,
             interpolateNulls: true,
             chartArea: {
-                width: '90%',
+                width: '85%',
                 height: '60%',
                 top: '20%',
                 left: '10%'
@@ -182,7 +181,7 @@ export default DefaultStory.extend({
             lineWidth: 1,
             interpolateNulls: true,
             chartArea: {
-                width: '85%',
+                width: '80%',
                 height: '60%',
                 top: '20%',
                 left: '15%'
