@@ -1,3 +1,4 @@
+/* global grunticon, Ember, $ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -8,11 +9,11 @@ export default Ember.Component.extend({
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     storyModel: Ember.computed.alias('target.storyModel'),
     classNames: 'js-story',
-    
+
     support3d: '',
     storyFlip: 'not-flipped',
-    
-    loaded: Ember.computed('target.loaded', function() {
+
+    loaded: Ember.computed('target.loaded', function () {
         if (this.get('target.loaded')) {
             return this.get('target.loaded');
         } else {
@@ -34,16 +35,28 @@ export default Ember.Component.extend({
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
-    
+
     storyConfig: Ember.computed('target.storyConfig', function () {
         var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
         var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
         Ember.merge(defaultConfig, targetConfig);
         return defaultConfig;
     }),
+    
+    ensureConfigFields: function() {
+        debugger;
+        var configFields = this.get('storyConfig.editableFields');
+        if(!Ember.isEmpty(configFields)) {
+            var model = this.get('storyModel');
+            configFields.forEach(function(field){
+                if(Ember.isEmpty(model.get(field.name))) {
+                    model.addConfigItem(field);
+                }
+            });
+        }  
+    }.observes('target.storyConfig'),
 
-    // Turn the provided height and width settings
-    // into the attribute values we need.
+    // Turn the provided height and width settings into the attribute values we need.
     usableHeight: Ember.computed('storyConfig.height', function () {
         return 'height-' + this.get('storyConfig.height');
     }),
@@ -52,8 +65,7 @@ export default Ember.Component.extend({
         return 'width-' + this.get('storyConfig.width');
     }),
     
-    // Pass the width and height settings
-    // into the story component.
+    // Pass the width and height settings into the story component
     'cpn-story': Ember.computed('storyConfig.width', function () {
         return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
     }),
@@ -127,9 +139,9 @@ export default Ember.Component.extend({
             return (!Ember.isEmpty(this.get('storyModel.config')) ? this.get('storyModel.config').copy() : []);
         }
     }),
-    
-    onInit: function() {
-        this.set('data-id',hebeutils.guid());
+
+    onInit: function () {
+        this.set('data-id', hebeutils.guid());
     }.on('init'),
 
     onDidInsertElement: function () {
@@ -168,7 +180,6 @@ export default Ember.Component.extend({
         if (isTouchDevice) {
             cog
                 .on('touchend', function (e) {
-
                     var $el = $(this);
                     if (_this.get('isDraggingStory') == false) {
                         $el.closest('.story__inner').toggleClass('-flip');
@@ -177,11 +188,9 @@ export default Ember.Component.extend({
         } else {
             cog
                 .on('mouseup', function (e) {
-
                     var $el = $(this);
                     if (_this.get('isDraggingStory') == false) {
                         $el.closest('.story__inner').toggleClass('-flip');
-
                         if (_this.get('storyFlip') == 'not-flipped') {
                             _this.set('storyFlip', 'flipped');
                         } else {
@@ -189,6 +198,14 @@ export default Ember.Component.extend({
                         }
                     }
                 });
+        }
+    },
+
+    actions: {
+        editAStory: function (model) {
+            this.set('storyFlip', 'not-flipped');
+            this.set('action', 'editAStory');
+            this.sendAction('action', model);
         }
     }
 });

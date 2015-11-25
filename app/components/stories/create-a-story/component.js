@@ -1,63 +1,61 @@
 import Ember from 'ember';
-import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
 
-export default Ember.Component.extend(BottomDrawerContent, {
-	mainTitle: 'Create a Story',
+export default Ember.Component.extend({
+	story: null,
+	title: null,
+	storyType: null,
+	configJSON: null,
+	categories: [],
 	message: '',
-
-	modelTitle: null,
-	modelCategories: [],
-
-	configFields: null,
 
 	allCategories: Ember.computed({
 		get() {
-			return this.store.query('category', {});
+			return this.store.query('category',{})
 		}
 	}),
 
-	didInsertElement: function () {
-		this.onModelChanged();
+	isStoryValid: function () {
+		var isValid = true;
+		// todo: client-side validation
+		// try https://github.com/dockyard/ember-validations
+		// if (this.get('story') != null) {
+		// 	if (Ember.isEmpty(this.get('story.title'))) {
+		// 		var errors = this.get('story.errors');
+		// 		errors.pushObject({ "title": "please provide a title" });
+		// 		isValid = false;
+		// 	}
+		// }
+		return isValid;
 	},
 
-	onModelChanged: function () { 
-		var model = this.get('model');
-		if (!Ember.isEmpty(model)) {
-			var cats = model.get('categories').toArray();
-			var catIDs = cats.map(function (item) {
-				return item.get('id');
-			})
-			var allCats = this.get('allCategories').toArray();
-			var selectedCats = allCats.filter(function (item, index, self) {
-				return catIDs.indexOf(item.get('id')) > -1;
-			})
-			this.setProperties({
-				title: model.get('title'),
-				storyType: model.get('storyType'),
-				categories: selectedCats
+	saveStory: function () {
+		if (this.isStoryValid()) {
+			var obj = this;
+			obj.set('message', 'Saving Story');
+			
+			var story = this.store.createRecord('story', {
+				title: this.get('title'),
+				storyType: this.get('storyType'),
+				configJSON: this.get('configJSON'),
+				categories: this.get('categories')
 			});
-			this.setupEditableFields();
+			
+			story.save()
+				.then(function(response){
+					obj.setProperties({
+						message: 'Story Saved',
+						title: null,
+						storyType: null,
+						configJSON: null,
+						categories: []
+					});
+				});
 		}
-	}.observes('model'),
-
-	setupEditableFields: function () {
-		var fields = this.get('model.config');
-		if (!Ember.isEmpty(fields)) {
-			this.set('configFields', fields);
-		}
-	}.observes('model','model.config','model.config.@each'),
-
-	save: function () {
-		this.set('model.title', this.get('modelTitle'));
-		this.set('model.categories', this.get('modelCategories'));
-
-		this.set('action', 'saveCanvasState');
-		this.sendAction('action');
 	},
 
 	actions: {
 		save: function () {
-			this.save();
+			this.saveStory();
 		}
 	}
 });

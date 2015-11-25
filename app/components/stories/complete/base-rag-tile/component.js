@@ -1,7 +1,7 @@
 /* global Ember, hebeutils, _ */
-import DatamillStory from './../../story-types/datamill-story/component';
+import DefaultStory from './../../story-types/default-story/component';
 
-export default DatamillStory.extend({
+export default DefaultStory.extend({
     tagName: 'div',
     loaded: false,
     ragRating: 'lime', // lime (green), yellow (amber), -red (red)
@@ -19,15 +19,14 @@ export default DatamillStory.extend({
         ]
     },
     
-    onRAG: function () {
-        var colour = this.get('storyModel.rag');
-        alert('colour:' + colour);
-        this.set('storyConfig.colour', colour);
-    }.observes('storyModel.rag'),
+    // onRAG: function () {
+    //     alert('colour:' + colour);
+    //     var colour = this.get('storyModel.rag');
+    //     this.set('storyConfig.colour', colour);
+    // }.observes('storyModel.rag'),
 
-    onDidReceiveAttrs: function () {
+    onInit: function () {
         this.get('storyModel');
         this.get('storyModel.config');
-        this.get('storyModel.rag');
     }.on('init'),
 });

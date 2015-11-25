@@ -36,15 +36,12 @@ var story = DS.Model.extend({
 		var json = this.serializeConfigToJSON(config);
 		this.set('configJSON', json);
 		
-		
 		// SET Configs as properties
 		config.forEach(function(item){
 			if(_this.get(item.get('name')) != item.get('value')){
 				_this.set(item.get('name'),item.get('value'));
 			}
-		})
-		
-		
+		});
 	}.observes('config.@each.value','config.@each','config'),
 
 	serializeConfigToJSON: function (config) {

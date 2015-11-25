@@ -1,13 +1,13 @@
 /* global Ember, hebeutils, _ */
-import DatamillStory from './../../story-types/datamill-story/component';
+import DefaultStory from './../../story-types/default-story/component';
 
-export default DatamillStory.extend({
+export default DefaultStory.extend({
     tagName: 'div',
     loaded: false,
     color: 'white',
-    tileShade: Ember.computed.alias('storyModel.rag'),
+    // tileShade: Ember.computed.alias('storyModel.rag'),
     // tileShade: '',
-    storyModel: null,
+
     storyConfig: {
         // title=''
         // subTitle=''
@@ -27,8 +27,8 @@ export default DatamillStory.extend({
         ]
     },
 
-    onDidReceiveAttrs: function () {
-        this.get('storyModel');
-        this.get('storyModel.config');
-    }.on('init'),
+    // onDidReceiveAttrs: function () {
+    //     this.get('storyModel');
+    //     this.get('storyModel.config');
+    // }.on('init'),
 });
