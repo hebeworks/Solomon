@@ -131,27 +131,31 @@ export default DefaultStory.extend({
         // New
         data.addColumn('number', 'Day of Month');
         data.addColumn('number', 'Leeds');
-        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } });
         data.addColumn('number', 'Yeadon');
-        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } });
         data.addColumn('number', 'Otley');
-        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } });
         data.addColumn('number', 'Pudsey');
-        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } });
         var selectedMonth = new Date();
-        var rows = _.map(chartData.splice(1), function (row) {
-            var date = moment(s.lpad(row[0], 2, "0") + moment(selectedMonth).format("/MM/YYYY"),"DD/MM/YYYY");
+        function htmlTooltip(day, val) {
+            var date = moment(s.lpad(day, 2, "0") + moment(selectedMonth).format("/MM/YYYY"), "DD/MM/YYYY");
             date = date.format('ddd') + '&nbsp;' + date.format('Do');
+            return '<div style="padding:4px;">'+date + '<br />' + val + '&nbsp;stalls</div>';
+        }
+
+        var rows = _.map(chartData.splice(1), function (row) {
             return [
                 row[0], // day
                 row[1], // leeds value
-                date + '<br />' + row[1] + '&nbsp;stalls', // leeds tooltip
+                htmlTooltip(row[0], row[1]), // leeds tooltip
                 row[2], // yeadon value
-                date + '<br />' + row[2] + '&nbsp;stalls', // yeadon tooltip
+                htmlTooltip(row[0], row[2]), // yeadon tooltip
                 row[3], // otley value
-                date + '<br />' + row[3] + '&nbsp;stalls', // otley tooltip
+                htmlTooltip(row[0], row[3]), // otley tooltip
                 row[4], // pudsey value
-                date + '<br />' + row[4] + '&nbsp;stalls' // pudsey tooltip
+                htmlTooltip(row[0], row[4]) // pudsey tooltip
             ];
         });
         // data.addRows([
