@@ -138,7 +138,7 @@ export default DefaultStory.extend({
                 maxLines: '4'
             },
             width: 290,
-            height: 390,
+            height: 345,
             pointSize: 3,
             lineWidth: 1,
             interpolateNulls: true,
@@ -223,7 +223,7 @@ export default DefaultStory.extend({
                 maxLines: '4'
             },
             width: 290,
-            height: 390,
+            height: 345,
             pointSize: 3,
             lineWidth: 1,
             interpolateNulls: true,
@@ -278,7 +278,7 @@ export default DefaultStory.extend({
                 left: '10%'
             },
             width: 290,
-            height: 390,
+            height: 345,
             legend: {
                 position: 'top',
                 maxLines: '4'
