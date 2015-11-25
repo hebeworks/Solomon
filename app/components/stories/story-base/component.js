@@ -128,9 +128,9 @@ export default Ember.Component.extend({
         }
     }),
     
-    onInit: function() {
-        this.set('data-id',hebeutils.guid());
-    }.on('init'),
+    // onInit: function() {
+    //     this.set('data-id',hebeutils.guid());
+    // }.on('init'),
 
     onDidInsertElement: function () {
         Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);

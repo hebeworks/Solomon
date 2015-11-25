@@ -13,9 +13,5 @@ export default DatamillStory.extend({
     storyConfig: {
       width:'1',
       height:'1'  
-    },
-    
-    didInsertElement: function() {
-        
     }
 });

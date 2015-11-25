@@ -60,16 +60,16 @@ export default DefaultStory.extend({
                 "Yeadon": []
             };
         }
-        var days = { 
-            'Mon': baseLocObj(), 
-            'Tue': baseLocObj(), 
-            'Wed': baseLocObj(), 
-            'Thu': baseLocObj(), 
-            'Fri': baseLocObj(), 
-            'Sat': baseLocObj(), 
-            'Sun': baseLocObj() 
+        var days = {
+            'Mon': baseLocObj(),
+            'Tue': baseLocObj(),
+            'Wed': baseLocObj(),
+            'Thu': baseLocObj(),
+            'Fri': baseLocObj(),
+            'Sat': baseLocObj(),
+            'Sun': baseLocObj()
         };
-        
+
         var dailyAverages = [chartData[0]];
         data.forEach(function (obj) {
             obj.occupied = obj.stalls_available - obj.stalls_void;
@@ -83,20 +83,20 @@ export default DefaultStory.extend({
             var day = moment(new Date(obj.date)).format("ddd");
             days[day][obj.location].push(obj.occupied);
         });
-        
-        function forEachProp(obj,callback) {
-            for(var prop in obj) {
+
+        function forEachProp(obj, callback) {
+            for (var prop in obj) {
                 callback(prop, obj[prop]);
-            }    
+            }
         }
         
         // foreach day
-        forEachProp(days, function(day, dayObj){
+        forEachProp(days, function (day, dayObj) {
             var arr = [day];
             // foreach location
-            forEachProp(dayObj,function(loc,locArr) {
+            forEachProp(dayObj, function (loc, locArr) {
                 // calculate the average            
-                var sum = _.reduce(locArr,function(mem,num){ return mem + num; });
+                var sum = _.reduce(locArr, function (mem, num) { return mem + num; });
                 var average = sum / locArr.length;
                 arr.push(average);
             });
@@ -107,7 +107,7 @@ export default DefaultStory.extend({
         this.setProperties({
             occupancyData: occupancyData,
             percentageData: percentageData,
-            dailyAverages:dailyAverages
+            dailyAverages: dailyAverages
         });
         _this.set('loaded', true);
     },
@@ -118,7 +118,7 @@ export default DefaultStory.extend({
             this.drawTotalOccupiedStalls(),
             this.drawPCEmptyStalls(),
             this.drawAvgOccupiedStalls()
-        );
+            );
     }.observes('loaded'),
 
     drawTotalOccupiedStalls: function () {
@@ -131,25 +131,45 @@ export default DefaultStory.extend({
         // New
         data.addColumn('number', 'Day of Month');
         data.addColumn('number', 'Leeds');
-        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
         data.addColumn('number', 'Yeadon');
-        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
         data.addColumn('number', 'Otley');
-        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
         data.addColumn('number', 'Pudsey');
-        data.addColumn({ type: 'string', role: 'tooltip' });
-
-        data.addRows([
-            [1, 132, 'Leeds tooltip', null, 'Yeadon tooltip', 50, 'Otley tooltip', 3, 'Pudsey tooltip'],
-            [2, 178, 'Leeds tooltip', 3, 'Yeadon tooltip', 13, 'Otley tooltip', 5, 'Pudsey tooltip'],
-            [3, 154, 'Leeds tooltip', null, 'Yeadon tooltip', 35, 'Otley tooltip', 10, 'Pudsey tooltip']
-        ]);
+        data.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true} });
+        var selectedMonth = new Date();
+        var rows = _.map(chartData.splice(1), function (row) {
+            var date = moment(s.lpad(row[0], 2, "0") + moment(selectedMonth).format("/MM/YYYY"),"DD/MM/YYYY");
+            date = date.format('ddd') + '&nbsp;' + date.format('Do');
+            return [
+                row[0], // day
+                row[1], // leeds value
+                date + '<br />' + row[1] + '&nbsp;stalls', // leeds tooltip
+                row[2], // yeadon value
+                date + '<br />' + row[2] + '&nbsp;stalls', // yeadon tooltip
+                row[3], // otley value
+                date + '<br />' + row[3] + '&nbsp;stalls', // otley tooltip
+                row[4], // pudsey value
+                date + '<br />' + row[4] + '&nbsp;stalls' // pudsey tooltip
+            ];
+        });
+        // data.addRows([
+        //     [1, 132, 'Leeds tooltip', null, 'Yeadon tooltip', 50, 'Otley tooltip', 3, 'Pudsey tooltip'],
+        //     [2, 178, 'Leeds tooltip', 3, 'Yeadon tooltip', 13, 'Otley tooltip', 5, 'Pudsey tooltip'],
+        //     [3, 154, 'Leeds tooltip', null, 'Yeadon tooltip', 35, 'Otley tooltip', 10, 'Pudsey tooltip']
+        // ]);
+        
+        data.addRows(rows);
 
         var options = {
             title: 'Daily Number of Occupied Stalls',
             legend: {
                 position: 'top',
                 maxLines: '4'
+            },
+            tooltip: {
+                isHtml: true
             },
             width: 290,
             height: 345,
@@ -178,9 +198,6 @@ export default DefaultStory.extend({
             },
             crosshair: {
                 trigger: 'both'
-            },
-            tooltip: {
-                isHtml: true
             }
         };
 
