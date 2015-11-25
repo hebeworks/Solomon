@@ -122,14 +122,28 @@ export default DefaultStory.extend({
     }.observes('loaded'),
 
     drawTotalOccupiedStalls: function () {
-        var chartData = this.get('occupancyData');
-        var data = new google.visualization.DataTable();
-        data = google.visualization.arrayToDataTable(chartData);
+        var chartData = this.get('occupancyData'),
+            data = new google.visualization.DataTable();
+        
+        // Original
+        // data = google.visualization.arrayToDataTable(chartData);
+        
+        // New
+        data.addColumn('number', 'Day of Month');
+        data.addColumn('number', 'Leeds');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn('number', 'Yeadon');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn('number', 'Otley');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn('number', 'Pudsey');
+        data.addColumn({ type: 'string', role: 'tooltip' });
 
-        // data.addColumn({
-        //     type: 'string', 
-        //     role: 'tooltip'
-        // });
+        data.addRows([
+            [1, 132, 'Leeds tooltip', null, 'Yeadon tooltip', 50, 'Otley tooltip', 3, 'Pudsey tooltip'],
+            [2, 178, 'Leeds tooltip', 3, 'Yeadon tooltip', 13, 'Otley tooltip', 5, 'Pudsey tooltip'],
+            [3, 154, 'Leeds tooltip', null, 'Yeadon tooltip', 35, 'Otley tooltip', 10, 'Pudsey tooltip']
+        ]);
 
         var options = {
             title: 'Daily Number of Occupied Stalls',
@@ -164,6 +178,9 @@ export default DefaultStory.extend({
             },
             crosshair: {
                 trigger: 'both'
+            },
+            tooltip: {
+                isHtml: true
             }
         };
 
@@ -179,42 +196,28 @@ export default DefaultStory.extend({
     },
 
     drawPCEmptyStalls: function () {
-        var chartData = this.get('percentageData');
-        var data = new google.visualization.DataTable();
-        data = google.visualization.arrayToDataTable(chartData);
+        var chartData = this.get('percentageData'),
+            data = new google.visualization.DataTable();
         
-        // var data = new google.visualization.DataTable();
-        // var data = google.visualization.arrayToDataTable([
-        //     ['Day', 'Leeds City', 'Yeadon', 'Otley', 'Pudsey'],
-        //     ['Mon', .24, null, null, null],
-        //     ['Tue', .27, null, .05, .97],
-        //     ['Wed', null, null, null, null],
-        //     ['Thu', .2, null, null, null],
-        //     ['Fri', .20, .50, .04, .40],
-        //     ['Sat', .01, null, .11, .95],
-        //     ['Sun', null, null, null, null],
-        //     ['Mon', .24, null, null, null],
-        //     ['Tue', .27, null, .05, .97],
-        //     ['Wed', null, null, null, null],
-        //     ['Thu', .2, null, null, null],
-        //     ['Fri', .20, .50, .04, .40],
-        //     ['Sat', .01, null, .11, .95],
-        //     ['Sun', null, null, null, null],
-        //     ['Mon', .24, null, null, null],
-        //     ['Tue', .27, null, .05, .97],
-        //     ['Wed', null, null, null, null],
-        //     ['Thu', .2, null, null, null],
-        //     ['Fri', .20, .50, .04, .40],
-        //     ['Sat', .01, null, .11, .95],
-        //     ['Sun', null, null, null, null],
-        //     ['Mon', .24, null, null, null],
-        //     ['Tue', .27, null, .05, .97],
-        //     ['Wed', null, null, null, null],
-        //     ['Thu', .2, null, null, null],
-        //     ['Fri', .20, .50, .04, .40],
-        //     ['Sat', .01, null, .11, .95],
-        //     ['Sun', null, null, null, null]
-        // ]);
+        // Original
+        // data = google.visualization.arrayToDataTable(chartData);
+        
+        // New
+        data.addColumn('number', 'Day of Month');
+        data.addColumn('number', 'Leeds');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn('number', 'Yeadon');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn('number', 'Otley');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+        data.addColumn('number', 'Pudsey');
+        data.addColumn({ type: 'string', role: 'tooltip' });
+
+        data.addRows([
+            [1, .24, 'Leeds tooltip', null, 'Yeadon tooltip', .05, 'Otley tooltip', .2, 'Pudsey tooltip'],
+            [2, .33, 'Leeds tooltip', .9, 'Yeadon tooltip', .2, 'Otley tooltip', .15, 'Pudsey tooltip'],
+            [3, .10, 'Leeds tooltip', null, 'Yeadon tooltip', .1, 'Otley tooltip', .4, 'Pudsey tooltip']
+        ]);
 
         var options = {
             title: 'Percentage of Stalls Empty',
@@ -250,6 +253,9 @@ export default DefaultStory.extend({
             },
             crosshair: {
                 trigger: 'both'
+            },
+            tooltip: {
+                isHtml: true
             }
         };
 
@@ -287,6 +293,9 @@ export default DefaultStory.extend({
             hAxis: {
                 title: 'Day of the week'
             },
+            tooltip: {
+                isHtml: true
+            }
         };
 
         var chart = new google.visualization.ColumnChart(
