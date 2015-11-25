@@ -41,6 +41,9 @@
         <section cpn-story_content="back {{usableHeight}}">
             {{#if storyConfig.viewOnly}}
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
+                {{#if configFields}}
+                    <button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>                
+                {{/if}}
             {{else}}
                 {{#if storyConfig.description}}
                     <div cpn-divide="bottom light">
@@ -73,14 +76,13 @@
                 </ul>
                 
 <button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>
-{{!-- 
+{{!--
 {{#if configFields}}
     {{#each configFields as |field|}}
         {{input type=field.type value=field.value placeholder=field.placeholder}}
     {{/each}}
-            {{/if}}
---}}
-                
+{{/if}}
+--}}           
             {{/if}}
         </section>
         
