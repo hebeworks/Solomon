@@ -58,14 +58,14 @@
                 
                 <ul cpn-row-list>
                     {{#if storyConfig.dataSourceUrl}}
-                        <li cpn-width="50%">
-                            <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
-                        </li>
+                    <li cpn-width="50%">
+                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
+                    </li>
                     {{/if}}
                     {{#if storyConfig.feedbackEmail}}
-                        <li cpn-width="50%">
-                            <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
-                        </li>
+                    <li cpn-width="50%">
+                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
+                    </li>
                     {{/if}}
                     <li cpn-width="100%">
                         <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
@@ -78,7 +78,7 @@
     {{#each configFields as |field|}}
         {{input type=field.type value=field.value placeholder=field.placeholder}}
     {{/each}}
-{{/if}}
+            {{/if}}
 --}}
                 
             {{/if}}

@@ -13,15 +13,14 @@ export default DefaultStory.extend({
 		license: '<a href="http://data.gov.uk/dataset/land-registry-monthly-price-paid-data" target="_blank">Land Registry monthly price paid data</a>, © Land Registry, 2015. This information is licensed under the terms of the Open Government Licence',
 		author: 'Nathan Smith'
 	},
-
+	
 	allMonthsLoaded: false,
 	selectedMonth: '',
 	months: [],
 	loadedMonths: 0,
-
+	
 	didInsertElement: function () {
 		this.getPast12Months();
-		this.set('loaded', true);
 	},
 
 	chartData: null,

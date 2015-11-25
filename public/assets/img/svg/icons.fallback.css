@@ -64,6 +64,8 @@
 
 @mixin svg--icon-weather-thunder { background-image: url('png/icon-weather-thunder.png'); background-repeat: no-repeat; }
 
+@mixin svg--ldm-logo-white { background-image: url('png/ldm-logo-white.png'); background-repeat: no-repeat; }
+
 @mixin svg--list-view-thumb-add-canvas-active { background-image: url('png/list-view-thumb-add-canvas-active.png'); background-repeat: no-repeat; }
 
 @mixin svg--list-view-thumb-add-canvas { background-image: url('png/list-view-thumb-add-canvas.png'); background-repeat: no-repeat; }

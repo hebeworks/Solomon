@@ -27,6 +27,10 @@
     height: 330px;
 }
 
+[cpn-story~="height-3"] {
+    height: 500px;
+}
+
     [cpn-story_inner] {
         height: 100%;
         -webkit-touch-callout: none;
@@ -137,6 +141,10 @@
                 &[cpn-story_content~="height-2"] {
                     height: rem(290px);
                 }
+                
+                &[cpn-story_content~="height-3"] {
+                    height: rem(460px);
+                }
             }
             
             [cpn-story_content~="back"] {
@@ -145,6 +153,10 @@
                 
                 &[cpn-story_content~="height-2"] {
                     height: rem(270px);
+                }
+                
+                &[cpn-story_content~="height-2"] {
+                    height: rem(440px);
                 }
             }
             
@@ -199,27 +211,35 @@
                     overflow: hidden;
                 }
                 
-                    [cpn-story_carousel-list] {
-                        height: 100% !important; // overrides inline style
+                    [cpn-story_carousel] {
+                        height: 100%;
+                        
+                        .caroufredsel_wrapper {
+                            height: 100% !important;
+                        }
                     }
                 
-                        [cpn-story_carousel-item] {
-                            display: block;
-                            float: left;
-                            height: 100%;
-                            padding: rem($spacing-base) rem($spacing-base) 0;
-                            
-                            [cpn-story_body~="can-scroll"] & {
-                                overflow-x: hidden;
-                                overflow-y: auto;
-                                -webkit-overflow-scrolling: touch;
-                                -ms-overflow-style: -ms-autohiding-scrollbar;
-                            }
+                        [cpn-story_carousel-list] {
+                            height: 100% !important; // overrides inline style
                         }
                     
-                        [cpn-story_carousel-item~="width-2"] {
-                            width: rem(310px);
-                        }
+                            [cpn-story_carousel-item] {
+                                display: block;
+                                float: left;
+                                height: 100%;
+                                padding: rem($spacing-base) rem($spacing-base) 0;
+                                
+                                [cpn-story_body~="can-scroll"] & {
+                                    overflow-x: hidden;
+                                    overflow-y: auto;
+                                    -webkit-overflow-scrolling: touch;
+                                    -ms-overflow-style: -ms-autohiding-scrollbar;
+                                }
+                            }
+                        
+                            [cpn-story_carousel-item~="width-2"] {
+                                width: rem(310px);
+                            }
             
                 [cpn-story_footer] {
                     height: rem($spacing-base * 2);

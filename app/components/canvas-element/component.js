@@ -1,3 +1,4 @@
+/* globals _, $ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -20,13 +21,17 @@ export default Ember.Component.extend({
 		var currentIDs = this.getCurrentStoryIDs();
 		var newIDs = _.difference(currentIDs, previousIDs);
 		this.set('storyIDs', currentIDs);
+		if(currentIDs.length < previousIDs.length) { 
+			return -1; // stories have been removed
+		}
 		return newIDs;
 	},
 
 	getCurrentStoryIDs: function () {
 		var $allStories = this.$('.js-story');
 		var ids = _.map($allStories, function (story) {
-			return $(story).attr('id');
+			// return $(story).attr('id');
+			return $(story).attr('data-id');
 		});
 		return ids;
 	},
@@ -40,7 +45,6 @@ export default Ember.Component.extend({
 	updatePackeryTimer: null,
 	updatePackery: function () {
 		var _this = this;
-		
 		if(!Ember.isEmpty(this.$container)){
 			console.log('updatePackery: $container exists');
 			Ember.run.cancel(this.get('updatePackeryTimer'));
@@ -48,22 +52,33 @@ export default Ember.Component.extend({
 			var $container = this.$('.js-stories');
 			// $container.packery('appended', $allStories);
 			var newIDs = _this.getNewlyAddedStoryIDs();
-			// var selector = '.js-story';
-			// var elems = this.$(selector);
-			var $newStories = $('#' + newIDs.join(',#'));
-			_this.$container.packery('appended', $newStories);
-			$container.packery();
-
-			var $itemEls = $newStories.draggable({
-				cursor: 'move',
-				containment: 'body',
-				handle: '.js-cogs, .js-drag-handle',
-				scroll: true,
-				scrollSensitivity: 100,
-				scrollSpeed: 25,
-				zIndex: 4
-			});
-			$container.packery('bindUIDraggableEvents', $itemEls);			
+			console.log('newIDs: ' + newIDs);
+			
+			if(!Ember.isEmpty(newIDs)) { // if stories have been removed newIDs == -1 - still continue to perform packery update
+			console.log('Packery Update');
+				// var selector = '.js-story';
+				// var elems = this.$(selector);
+				var newStorySelector = (newIDs.length > 1 ? 
+						'.js-story[data-id="'+newIDs.join('"],.js-story[data-id="')+'"]'
+						: '.js-story[data-id="' + newIDs[0] + '"]');
+				console.log('newStorySelector = ' + newStorySelector);
+				
+				// var $newStories = $('#' + newIDs.join(',#'));
+				var $newStories = $(newStorySelector);
+				_this.$container.packery('appended', $newStories);
+				$container.packery();
+	
+				var $itemEls = $newStories.draggable({
+					cursor: 'move',
+					containment: 'body',
+					handle: '.js-cogs, .js-drag-handle',
+					scroll: true,
+					scrollSensitivity: 100,
+					scrollSpeed: 25,
+					zIndex: 4
+				});
+				$container.packery('bindUIDraggableEvents', $itemEls);
+			}
 		} else {
 			console.log('updatePackery: $container doesnt exist');
 			var timer = Ember.run.later(this, this.updatePackery, 200);
@@ -134,7 +149,7 @@ export default Ember.Component.extend({
 			});
 
 			obj.set('action', 'saveCurrentOrder');
-			obj.sendAction('action', orderArr)
+			obj.sendAction('action', orderArr);
 		}
 
 		// $container.packery('on', 'layoutComplete', orderItems);

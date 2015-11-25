@@ -1,23 +1,21 @@
 {{#stories/story-base}}
-    <main class="weather-forecast">
-        {{#stories/story-slider loaded=loaded}}           
-            {{#each days as |day|}}
-                {{#stories/story-slide}}
-                    <div cpn-divide="bottom" cpn-clearfix>
-                        <date cpn-float="right" cpn-margin="top-half">{{format-date "ddd D MMM" day.date}}</date>
-                        <ul cpn-toggle="dark">
-                            <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Day</li>
-                            <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Night</li>
-                        </ul>
-                    </div>
-                    {{#if showDay}}
-                        {{stories/complete/weather-forecast/weather-period period=day.day}}
-                    {{else}}
-                        {{stories/complete/weather-forecast/weather-period period=day.night}}
-                    {{/if}}
-                    
-                {{/stories/story-slide}}
-            {{/each}}
-        {{/stories/story-slider}}
-    </main>
+    {{#stories/story-slider loaded=loaded}}           
+        {{#each days as |day|}}
+            {{#stories/story-slide}}
+                <div cpn-divide="bottom" cpn-clearfix>
+                    <date cpn-float="right" cpn-margin="top-half">{{format-date "ddd D MMM" day.date}}</date>
+                    <ul cpn-toggle="dark">
+                        <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Day</li>
+                        <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Night</li>
+                    </ul>
+                </div>
+                {{#if showDay}}
+                    {{stories/complete/weather-forecast/weather-period period=day.day}}
+                {{else}}
+                    {{stories/complete/weather-forecast/weather-period period=day.night}}
+                {{/if}}
+                
+            {{/stories/story-slide}}
+        {{/each}}
+    {{/stories/story-slider}}
 {{/stories/story-base}}

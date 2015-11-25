@@ -11,17 +11,28 @@
     
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
-            {{stories/complete/council-spending-directorate}}
             {{stories/complete/base-rag-title}}
             {{stories/complete/leeds-air-quality-trends}}
             {{stories/complete/footfall-centre}}
+            {{stories/complete/council-spending-year-line}}
+            {{stories/complete/council-spending-directorate}}
+            {{stories/complete/market-occupancy}}
+            {{stories/complete/google-charts}}
+            {{stories/complete/google-charts-column}}
+            {{stories/complete/google-charts-donut}}
+            {{stories/complete/google-charts-line}}
+            {{stories/complete/google-charts-stacked-column}}
+            {{stories/complete/info-centre-visitor-numbers}}
+            {{stories/complete/leeds-air-quality-trends}}
+            {{stories/complete/market-occupancy}}
             --}}
         {{!-- END DEVELOPMENT STORIES --}}
+        
 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
-                    {{ component story.componentPath storyModel=story}}
+                    {{component story.componentPath storyModel=story}}
                 {{/if}}
             {{/each}}
         {{else}}

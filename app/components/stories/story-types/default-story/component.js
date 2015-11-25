@@ -5,6 +5,7 @@ import Ember from 'ember';
 import dashComponentBase from 'hebe-dash/mixins/dash-component-base';
 
 export default Ember.Component.extend(dashComponentBase, {
+	storyModel: null,
 	onInit: function () {
 		var dataMillCatAPI = this.get('Config').dataMillCatAPI.ensureNoEndingString('/');
 		var dataMillDataAPI = this.get('Config').dataMillDataAPI.ensureNoEndingString('/');

@@ -1,0 +1,52 @@
+{{#stories/story-base}}
+
+    {{#stories/story-slider loaded=loaded}}
+    
+        {{!-- Number of occupied stalls --}}
+        {{#stories/story-slide}}
+            {{!-- Month Picker --}}
+            <div class="select2-wrapper -select2-calendar">
+                {{
+                    select-2
+                    content=months
+                    value=selectedMonth
+                    placeholder="Choose a month"
+                }}
+            </div>
+            
+            <div id="chart-no-occupied-stalls"></div>
+        {{/stories/story-slide}}
+        
+        {{!-- % of empty stalls --}}
+        {{#stories/story-slide}}
+            {{!-- Month Picker --}}
+            <div class="select2-wrapper -select2-calendar">
+                {{
+                    select-2
+                    content=months
+                    value=selectedMonth
+                    placeholder="Choose a month"
+                }}
+            </div>
+            
+            <div id="chart-pc-empty-stalls"></div>
+        {{/stories/story-slide}}
+        
+        {{!-- Average number of occupied stalls --}}
+        {{#stories/story-slide}}
+            {{!-- Month Picker --}}
+            <div class="select2-wrapper -select2-calendar">
+                {{
+                    select-2
+                    content=months
+                    value=selectedMonth
+                    placeholder="Choose a month"
+                }}
+            </div>
+        
+            <div id="chart-avg-occupied-stalls"></div>
+        {{/stories/story-slide}}
+        
+    {{/stories/story-slider}}   
+
+{{/stories/story-base}}

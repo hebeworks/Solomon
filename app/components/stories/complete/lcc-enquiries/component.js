@@ -10,7 +10,9 @@ export default DatamillStory.extend({
         description: 'This Story uses Customer Service Contact Enquiries data from Leeds Data Mill',
         license: '<a href="http://leedsdatamill.org/dataset/customer-services-contact-enquiries:" target="_blank">Customer Services Contact Enquiries</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
         author: 'Nathan Smith',
-        scroll: false
+        scroll: false,
+        slider: true,
+        width: '2'
     },
     
     selectedMonth: '',
