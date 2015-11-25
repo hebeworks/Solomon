@@ -1,4 +1,4 @@
-/* global Ember, hebeutils, _, google, moment */
+/* global Ember, hebeutils, _, google, moment, s */
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
