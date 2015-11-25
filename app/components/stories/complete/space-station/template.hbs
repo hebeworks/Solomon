@@ -1,16 +1,14 @@
 {{#stories/story-base}}
-    <main class="space-station">
-        {{#stories/story-slider loaded=loaded}}
-            {{#each item in items}}
-                {{#stories/story-slide}}
-                    <div class="space-station__bg svg-space-station"></div>
-                    <div class="space-station__inner">
-                        <time class="space-station__date">{{item.date}}</time><br>
-                        <time class="space-station__duration">Visible for {{item.duration}} mins</time>
-                    </div>
-                {{/stories/story-slide}}
-            {{/each}}
-        {{/stories/story-slider}}
-    </main>
+    {{#stories/story-slider loaded=loaded}}
+        {{#each item in items}}
+            {{#stories/story-slide}}
+                <div class="space-station__bg svg-space-station"></div>
+                <div class="space-station__inner">
+                    <time class="space-station__date">{{item.date}}</time><br>
+                    <time class="space-station__duration">Visible for {{item.duration}} mins</time>
+                </div>
+            {{/stories/story-slide}}
+        {{/each}}
+    {{/stories/story-slider}}
 <!--    http://spotthestation.nasa.gov/sightings/view.cfm?country=United_Kingdom&region=England&city=Leeds#.VSenec6aZrj-->
 {{/stories/story-base}}

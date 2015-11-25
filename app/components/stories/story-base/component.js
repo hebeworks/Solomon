@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'div',
     isDraggingStory: false,
-    'data-id': null, //Ember.computed.alias('target.storyModel.id'),
+    // 'data-id': null, //Ember.computed.alias('target.storyModel.id'),
+    'data-id': Ember.computed.alias('target.storyModel.id'),
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     storyModel: Ember.computed.alias('target.storyModel'),
     classNames: 'js-story',

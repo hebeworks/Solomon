@@ -21,6 +21,9 @@ export default Ember.Component.extend({
 		var currentIDs = this.getCurrentStoryIDs();
 		var newIDs = _.difference(currentIDs, previousIDs);
 		this.set('storyIDs', currentIDs);
+		if(currentIDs.length < previousIDs.length) { 
+			return -1; // stories have been removed
+		}
 		return newIDs;
 	},
 
@@ -42,7 +45,6 @@ export default Ember.Component.extend({
 	updatePackeryTimer: null,
 	updatePackery: function () {
 		var _this = this;
-		
 		if(!Ember.isEmpty(this.$container)){
 			console.log('updatePackery: $container exists');
 			Ember.run.cancel(this.get('updatePackeryTimer'));
@@ -50,12 +52,17 @@ export default Ember.Component.extend({
 			var $container = this.$('.js-stories');
 			// $container.packery('appended', $allStories);
 			var newIDs = _this.getNewlyAddedStoryIDs();
-			if(!Ember.isEmpty(newIDs)) {
+			console.log('newIDs: ' + newIDs);
+			
+			if(!Ember.isEmpty(newIDs)) { // if stories have been removed newIDs == -1 - still continue to perform packery update
+			console.log('Packery Update');
 				// var selector = '.js-story';
 				// var elems = this.$(selector);
 				var newStorySelector = (newIDs.length > 1 ? 
 						'.js-story[data-id="'+newIDs.join('"],.js-story[data-id="')+'"]'
 						: '.js-story[data-id="' + newIDs[0] + '"]');
+				console.log('newStorySelector = ' + newStorySelector);
+				
 				// var $newStories = $('#' + newIDs.join(',#'));
 				var $newStories = $(newStorySelector);
 				_this.$container.packery('appended', $newStories);
@@ -142,7 +149,7 @@ export default Ember.Component.extend({
 			});
 
 			obj.set('action', 'saveCurrentOrder');
-			obj.sendAction('action', orderArr)
+			obj.sendAction('action', orderArr);
 		}
 
 		// $container.packery('on', 'layoutComplete', orderItems);
