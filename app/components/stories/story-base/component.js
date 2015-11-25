@@ -3,9 +3,10 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'div',
     isDraggingStory: false,
-    'data-id': Ember.computed.alias('target.storyModel.id'),
+    'data-id': null, //Ember.computed.alias('target.storyModel.id'),
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     storyModel: Ember.computed.alias('target.storyModel'),
+    classNames: 'js-story',
     
     support3d: '',
     storyFlip: 'not-flipped',
@@ -125,6 +126,10 @@ export default Ember.Component.extend({
             return (!Ember.isEmpty(this.get('storyModel.config')) ? this.get('storyModel.config').copy() : []);
         }
     }),
+    
+    onInit: function() {
+        this.set('data-id',hebeutils.guid());
+    }.on('init'),
 
     onDidInsertElement: function () {
         Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
