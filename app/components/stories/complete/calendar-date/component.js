@@ -1,6 +1,7 @@
-import Ember from 'ember';
+/* global Ember, _ */
+import DefaultStory from './../../story-types/default-story/component';
 
-export default Ember.Component.extend({
+export default DefaultStory.extend({
     storyConfig: {
         color: 'black',
         width: '1',
@@ -21,7 +22,7 @@ export default Ember.Component.extend({
             ordinal:    ordinal,
             month:      (date.format('MMMM').length <= 7 ? date.format('MMMM') : date.format('MMM')),
             year:      date.format('YYYY')
-        }
+        };
         this.set('date',obj);        
     }
 });

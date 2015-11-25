@@ -85,7 +85,9 @@ export default Ember.Controller.extend({
             } else {
                 resolve();
             }
-            complete();
+            if(Ember.typeOf(complete) == 'function') {
+                complete();
+            }
         });
     },
 
@@ -97,6 +99,7 @@ export default Ember.Controller.extend({
                     if (story != null && obj.get('model') != null) {
                         var model = obj.get('model');
                         var stories = model.get('stories');
+                        story.set('id',hebeutils.guid());
                         stories.pushObject(story);
                         model.save();
                         obj.get('appController').closeBottomDrawer();
@@ -110,7 +113,7 @@ export default Ember.Controller.extend({
                         obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     }
                 }
-                );
+            );
     },
 
     removeAStory: function (story) {
@@ -133,7 +136,7 @@ export default Ember.Controller.extend({
                             obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                         }
                     }
-                    );
+                );
         }
     },
 
@@ -229,23 +232,5 @@ export default Ember.Controller.extend({
                     // }
                 }
             );
-    },
-
-    actions: {
-        addAStory: function (story) {
-            // alert('addAStory');
-            this.addAStory(story);
-        },
-        removeAStory: function (story) {
-            // alert('addAStory');
-            this.removeAStory(story);
-        },
-        saveCurrentOrder: function (orderArr) {
-            this.saveCurrentOrder(orderArr);
-        },
-        saveCanvasState: function () {
-            this.saveCanvasState();
-        }
     }
-
 });

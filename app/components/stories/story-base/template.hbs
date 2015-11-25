@@ -42,23 +42,19 @@
             {{#if storyConfig.viewOnly}}
                 <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
-                <div cpn-divide="bottom light">
-                    <h3 cpn-story_title cpn-margin="bottom-none">Description</h3>
-                    {{#if storyConfig.description}}
+                {{#if storyConfig.description}}
+                    <div cpn-divide="bottom light">
+                        <h3 cpn-story_title cpn-margin="bottom-none">Description</h3>
                         <p cpn-story_desc>{{usableDescription}}</p>
-                    {{else}}
-                        <p cpn-story_desc>This story has no description.</p>
-                    {{/if}}
-                </div>
+                    </div>
+                {{/if}}
                 
-                <div cpn-divide="bottom light">
-                    <h3 cpn-story_title cpn-margin="bottom-none">Licence / Attribution</h3>
-                    {{#if storyConfig.license}}
+                {{#if storyConfig.license}}
+                    <div cpn-divide="bottom light">
+                        <h3 cpn-story_title cpn-margin="bottom-none">Licence / Attribution</h3>
                         <p cpn-story_desc>{{usableLicense}}</p>
-                    {{else}}
-                        <p cpn-story_desc>This story has no license.</p>
-                    {{/if}}
-                </div>
+                    </div>
+                {{/if}}
                 
                 <ul cpn-row-list>
                     {{#if storyConfig.dataSourceUrl}}
