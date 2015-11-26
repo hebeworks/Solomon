@@ -4,6 +4,10 @@
 #map {
         height: 100%;
       }
+      
+      .ember-cli-g-map {
+          height: 100%;
+      }
 </style>
     
     {{!--
@@ -14,8 +18,18 @@
         For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
     --}}
     
-    <div id="map">
+    {{!-- <div id="map">
     
-    </div>
+    </div> --}}
+    
+    {{g-maps
+        heatmapMarkers=gmapsHeatmapMarkers
+        lat=gmapsLat
+        lng=gmapsLng
+        zoom=gmapsZoom
+        heatmapOpacity=gmapsOpacity
+        heatmapRadius=gmapsRadius
+        heatmapGradient=gmapsHeatmapGradient
+    }}
     
 {{/stories/story-base}}

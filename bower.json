@@ -30,7 +30,8 @@
     "js-cookie": "~2.0.4",
     "underscore.string": "~3.2.2",
     "pikaday": "~1.4.0",
-    "moment-timezone": ">= 0.1.0"
+    "moment-timezone": ">= 0.1.0",
+    "gmaps-for-apps": "~0.5.9"
   },
   "devDependencies": {
     "breakpoint-sass": "~2.6.1",

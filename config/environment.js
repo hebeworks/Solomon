@@ -204,6 +204,10 @@ module.exports = function (environment) {
   if (environment === 'production') {
 
   }
+  
+  ENV.googleMap = {
+    libraries: ['drawing', 'visualization']
+  }
 
   return ENV;
 };
