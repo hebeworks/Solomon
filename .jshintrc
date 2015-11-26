@@ -2,7 +2,13 @@
   "predef": [
     "document",
     "window",
-    "-Promise"
+    "-Promise",
+    "$",
+    "s",
+    "_",
+    "Ember",
+    "moment",
+    "hebeutils"
   ],
   "browser": true,
   "boss": true,

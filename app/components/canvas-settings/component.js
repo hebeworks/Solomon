@@ -1,13 +1,23 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	zones: [],
-	selectedZone: null,
-	searchTerm: '',
-	onInit: function(){
-		var zone = this.get('zones');
-		for(var i = 1; i <= 50; i ++) {
-			zone.push({text:'Zone ' + i, id: i});
+	appController:null,
+	canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
+
+	onDidReceiveAttrs: function () {
+		this.set('appController.canvasSettings',
+			{
+				zones: [],
+				selectedZone: null,
+				searchTerm: '',
+				startDate: moment(new Date()).subtract('month', 1).toDate(),
+				endDate: new Date(),
+			});
+		var zones = [];
+		for (var i = 1; i <= 50; i++) {
+			zones.push({ text: 'Zone ' + i, id: i });
 		}
-	}.on('init'),
+		this.set('canvasSettings.zones',zones);
+	}.on('didReceiveAttrs'),
+	
 });

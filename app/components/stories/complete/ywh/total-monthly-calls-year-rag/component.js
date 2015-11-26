@@ -9,5 +9,13 @@ export default BaseRAGTile.extend({
             tileDesc1: 'Total calls in Nov',
             tileDesc2: 'UP 4% on 2014',
         });
-    }.on('init')
+        this.get('appSettings.canvasSettings');
+        this.onCanvasSettings();
+    }.on('init'),
+    
+    onCanvasSettings: function(){
+        var canvasSettings = this.get('appSettings.canvasSettings');
+        var dateSting = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
+        this.set('tileDesc1',dateSting);
+    }.observes('appSettings.canvasSettings.startDate','appSettings.canvasSettings.endDate'),
 });
