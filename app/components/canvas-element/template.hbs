@@ -7,9 +7,8 @@
 <div class="js-canvas canvas">
     <a href="javascript:;" class="js-canvas-overlay canvas__overlay"></a>
     <div class="js-stories canvas__inner">
-
-        {{stories/complete/ywh/total-call-stats}}
-        
+    
+    
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
             {{stories/complete/base-rag-title}}
@@ -25,8 +24,17 @@
             {{stories/complete/google-charts-stacked-column}}
             {{stories/complete/info-centre-visitor-numbers}}
             {{stories/complete/leeds-air-quality-trends}}
+            {{stories/complete/market-occupancy}}
+            
+            
+            
             --}}
         {{!-- END DEVELOPMENT STORIES --}}
+            {{stories/complete/ywh/heat-map}}
+            {{stories/complete/ywh/topic-time-pie}}
+            {{stories/complete/ywh/total-monthly-calls-year-rag}}
+            {{stories/complete/ywh/current-zone-total-rag}}
+        
 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}

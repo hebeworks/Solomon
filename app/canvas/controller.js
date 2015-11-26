@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
         var items = [
             { title: 'Toolbox', action: 'toggleToolbox' },
             // { title: 'Toolbox' },//, action: 'toggleSubNav' },
+            { title: 'Settings', action: 'showCanvasSettings' },
             { title: 'Gallery', action: 'gotoRoute', route: 'gallery' }
         ];
 

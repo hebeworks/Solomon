@@ -42,6 +42,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         closeTutorial: function () {
             this.controller.closeTutorial();
         },
+        
+        showCanvasSettings: function() {
+            this.controller.showModal('canvas-settings');            
+        },
 
         hideModal: function () {
             this.controller.hideModal();

@@ -1,0 +1,23 @@
+<div spc-canvas-settings="">
+	<h2>Canvas Settings</h2>
+	{{yield}}
+	<div cpn-display="inline-block">
+		{{ select-2
+			content=canvasSettings.zones
+			value=canvasSettings.selectedZone
+			placeholder="Choose a zone"
+			class="margin-bottom-no"
+		}}
+	</div>
+	
+	<div cpn-display="inline-block">
+		{{input value=canvasSettings.searchTerm placeholder="Filter by searchterm"}}
+	</div>
+	<div cpn-display="inline-block">
+		{{pikaday-input value=canvasSettings.startDate format="MM/DD/YYYY"}}
+	</div>
+	<div cpn-display="inline-block">
+		{{pikaday-input value=canvasSettings.endDate format="MM/DD/YYYY"}}
+	</div>
+
+</div>
