@@ -1,0 +1,50 @@
+[spc-contacts-story_content] {
+    height: 100%;
+}
+
+    [spc-contacts-rating_text] {
+        position: absolute;
+        bottom: 0;
+        font-size: rem(10px) !important;
+        
+        span {
+            font-size: rem(14px) !important;
+            display: inline;
+            font-family: $helvneuemed !important;
+        }
+    }
+
+    [spc-contacts-reasons_title] {
+        font-size: rem(15px);
+    }
+    
+    [spc-contacts-reasons_list] {
+        font-size: rem(10px);
+        line-height: 1.4;
+        counter-reset: section;
+        
+        li {
+            list-style-type: none;
+            
+            &::before {
+                counter-increment: section;
+                content: counters(section, '') ") ";
+                font-weight: bold;
+            }
+        }
+    }
+
+[spc-contacts-chart] {
+    border: 1px solid #000;
+    border-radius: 6px;
+    padding: rem(9px);
+    position: relative;
+}
+
+    [spc-contacts-chart_title] {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: rem(15px);
+        z-index: 1;
+    }

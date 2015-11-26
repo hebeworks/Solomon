@@ -1,0 +1,12 @@
+[cpn-nested-story] {
+    @extend %cpn-story;
+    padding: 0;
+}
+
+[cpn-nested-story~="width-1"] {
+    width: 140px;
+}
+
+[cpn-nested-story~="height-1"] {
+    height: 140px;
+}

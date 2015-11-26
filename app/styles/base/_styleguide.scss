@@ -83,6 +83,18 @@ a {
     color: #000;
 }
 
+ul, ol {
+    li {
+        list-style-position: inside;
+    }
+}
+
+ol {
+    li {
+        list-style-type: decimal;
+    }
+}
+
 /* -- Wrapper for Dashboard slide */
 .wrapper {
     width: 100%;

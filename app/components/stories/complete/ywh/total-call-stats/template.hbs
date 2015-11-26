@@ -1,0 +1,53 @@
+{{#stories/story-base}}
+    <h2 cpn-story_title cpn-margin="bottom">Top Contact Statistics</h2>
+    
+    <div cpn-clearfix cpn-margin="bottom">
+        {{!-- RAG tile --}}
+        <div cpn-float="left" cpn-margin="right">
+            <div cpn-nested-story="width-1 height-1">
+                <div cpn-story_inner>
+                    
+                    <div cpn-story_face="front" cpn-bg-color="{{ragRatingColour}}">
+                        
+                        <section cpn-story_content="front height-1" spc-contacts-story_content>
+                            
+                            <main cpn-story_body="height-1 no-slider no-scroll">
+                                <div spc-val>
+                                    <div cpn-divide="bottom faded-light solid">
+                                        <p cpn-margin="bottom-none" spc-val_value>{{currentYearContacts}}</p>
+                                    </div>
+                                    <div>
+                                        <p cpn-margin="bottom-none" spc-val_desc>
+                                            <span cpn-display="block" cpn-margin="bottom-half">Contacts in {{currentYear}}</span>
+                                            <span spc-contacts-rating_text><span>{{ragRatingPercentage}}%</span> {{ragRatingText}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </main>
+                            
+                        </section>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        {{!-- Stat list --}}
+        <div cpn-overflow="hidden">
+            <h3 spc-contacts-reasons_title cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Top Reasons</h3>
+            <ol spc-contacts-reasons_list cpn-margin="bottom-none">
+                <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Discol Water-Grade 1</li>
+                <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Discol Water-Grade 2</li>
+                <li>Discol Water-Grade 3</li>
+            </ol>
+        </div>
+    </div>
+    
+    {{!-- Time series chart --}}
+    <div spc-contacts-chart>
+        <h4 spc-contacts-chart_title>Annual Trend</h4>
+        <div id="yw-contacts-chart"></div>
+    </div>
+    
+{{/stories/story-base}}
