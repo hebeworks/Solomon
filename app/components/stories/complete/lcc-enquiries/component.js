@@ -2,12 +2,21 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'LCC Contact Centre Enquiries',
+        subTitle: 'Enquiries dealt with by Leeds City Council',
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/customer-services-contact-enquiries',
+        feedbackEmail: 'nathan@hebeworks.com',
+        description: 'This Story uses Customer Service Contact Enquiries data from Leeds Data Mill',
+        license: '<a href="http://leedsdatamill.org/dataset/customer-services-contact-enquiries:" target="_blank">Customer Services Contact Enquiries</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
+        author: 'Nathan Smith',
+        scroll: false,
+        slider: true,
+        width: '2'
+    },
+    
     selectedMonth: '',
     didInsertElement: function () {
-        this.set('title', 'LCC Contact Centre Enquiries');
-        this.set('subTitle', 'Enquiries dealt with by Leeds City Council');
         var _this = this;
         var hebeNodeAPI = this.get('hebeNodeAPI');
         this.getData(hebeNodeAPI + '/customer-services-contact-enquiries?sort=month&sortdirection=DESC')

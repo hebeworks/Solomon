@@ -14,8 +14,6 @@ export default DefaultStory.extend({
 		author: 'Nathan Smith'
 	},
 	
-	loaded: true,
-	
 	allMonthsLoaded: false,
 	selectedMonth: '',
 	months: [],

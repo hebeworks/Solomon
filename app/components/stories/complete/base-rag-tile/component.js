@@ -5,9 +5,5 @@ export default DatamillStory.extend({
     tagName: 'div',
     loaded: false,
     ragRating: 'lime', // lime (green), yellow (amber), -red (red)
-    tileShade: 'light',
-    
-    didInsertElement: function() {
-        
-    }
+    tileShade: 'light'
 });

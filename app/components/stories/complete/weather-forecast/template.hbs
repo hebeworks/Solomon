@@ -1,38 +1,21 @@
-
-{{#stories/story-base 
-    title=title 
-    subTitle=subTitle 
-    color="mint" 
-    width=width 
-    height="2" 
-    data-ss-colspan="2"
-    slider=true
-    
-    dataSourceUrl="http://datapoint.metoffice.gov.uk"
-    feedbackEmail="simon@hebeworks.com"
-    description="This Story uses Met Office data via the Data Point service"
-    license="This information is licensed under the terms of the Open Government Licence"
-    author="Simon Zimmerman"
-    }}
-    <main class="weather-forecast">
-        {{#stories/story-slider loaded=loaded}}           
-            {{#each days as |day|}}
-                {{#stories/story-slide}}
-                    <div cpn-divide="bottom" cpn-clearfix>
-                        <date cpn-float="right" cpn-margin="top-half">{{format-date "ddd D MMM" day.date}}</date>
-                        <ul cpn-toggle="dark">
-                            <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Day</li>
-                            <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Night</li>
-                        </ul>
-                    </div>
-                    {{#if showDay}}
-                        {{stories/complete/weather-forecast/weather-period period=day.day}}
-                    {{else}}
-                        {{stories/complete/weather-forecast/weather-period period=day.night}}
-                    {{/if}}
-                    
-                {{/stories/story-slide}}
-            {{/each}}
-        {{/stories/story-slider}}
-    </main>
+{{#stories/story-base}}
+    {{#stories/story-slider loaded=loaded}}           
+        {{#each days as |day|}}
+            {{#stories/story-slide}}
+                <div cpn-divide="bottom" cpn-clearfix>
+                    <date cpn-float="right" cpn-margin="top-half">{{format-date "ddd D MMM" day.date}}</date>
+                    <ul cpn-toggle="dark">
+                        <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Day</li>
+                        <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Night</li>
+                    </ul>
+                </div>
+                {{#if showDay}}
+                    {{stories/complete/weather-forecast/weather-period period=day.day}}
+                {{else}}
+                    {{stories/complete/weather-forecast/weather-period period=day.night}}
+                {{/if}}
+                
+            {{/stories/story-slide}}
+        {{/each}}
+    {{/stories/story-slider}}
 {{/stories/story-base}}
