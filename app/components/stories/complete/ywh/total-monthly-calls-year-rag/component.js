@@ -1,19 +1,13 @@
 /* global Ember, hebeutils, _ */
-import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
+import BaseRAGTile from 'hebe-dash/components/stories/complete/base-rag-tile/component';
 
-export default DefaultStory.extend({
-    storyConfig: {
-        title: '',
-        subTitle: '',
-        width: '1',
-        height: '1',
-    },
-    
-    ragRating: 'lime', // lime (green), yellow (amber), -red (red)
-    tileShade: 'light',
-    
-    // loaded: false, (Tell other elements that this story has loaded)
-
-    
-
+export default BaseRAGTile.extend({
+    onYWHInit: function () {
+        this.setProperties({
+            ragRating: 'red',
+            tileValue: 148,
+            tileDesc1: 'Total calls in Nov',
+            tileDesc2: 'UP 4% on 2014',
+        });
+    }.on('init')
 });

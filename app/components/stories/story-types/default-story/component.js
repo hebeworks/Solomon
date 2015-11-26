@@ -15,7 +15,13 @@ export default Ember.Component.extend(dashComponentBase, {
 			dataMillDataAPI: dataMillDataAPI,
 			hebeNodeAPI: hebeNodeAPI
 		});
-	}.on('init')
+		this.appendComponentNameClass();
+	}.on('init'),
+	
+	appendComponentNameClass: function() {
+		this.get('classNames').push(s.strRightBack(this.__proto__._debugContainerKey,"/"));
+	}
+
 });
 
 
