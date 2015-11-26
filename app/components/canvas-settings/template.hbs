@@ -1,0 +1,17 @@
+<div spc-canvas-settings="">
+	<h2>Canvas Settings</h2>
+	{{yield}}
+	<div cpn-display="inline-block">
+		{{ select-2
+			content=zones
+			value=selectedZone
+			placeholder="Choose a zone"
+			class="margin-bottom-no"
+		}}
+	</div>
+	
+	<div cpn-display="inline-block">
+		{{input value=searchTerm placeholder="Filter by searchterm"}}
+	</div>
+
+</div>

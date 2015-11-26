@@ -1,0 +1,13 @@
+[spc-canvas-settings] {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right:0;
+    height:100px;
+    overflow: hidden;
+    @include transition(all 1s);
+    z-index: 2;
+    background: {
+        color:red;
+    }
+}
