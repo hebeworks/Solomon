@@ -22,33 +22,53 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     
-    // loaded: false, (Tell other elements that this story has loaded)
-    //
-    
-    onDidInsertElement: function(){
-        
-    }.on('didInsertElement'),
-    
-    gmapsLat: 37.774546,
-    gmapsLng: -122.433523,
+    // Map settings
+    gmapsLat: 0,
+    gmapsLng: 0,
     gmapsZoom: 13,
     gmapsRadius: 20,
     gmapsOpacity: 0.2,
     gmapsHeatmapDissipating: true,
-    gmapsHeatmapMarkers: [
-        [37.782, -122.447],
-        [37.782, -122.445],
-        [37.782, -122.443],
-        [37.782, -122.441],
-        [37.782, -122.439],
-        [37.782, -122.437],
-        [37.782, -122.435],
-        [37.785, -122.447],
-        [37.785, -122.445],
-        [37.785, -122.443],
-        [37.785, -122.441],
-        [37.785, -122.439],
-        [37.785, -122.437],
-        [37.785, -122.435]
-    ]
+    gmapsHeatmapMarkers: [],
+    
+    onDidInsertElement: function(){
+        this.fetchData();
+    }.on('didInsertElement'),
+    
+    fetchData: function () {
+        var _this = this,
+            hebeNodeAPI = this.get('hebeNodeAPI'),
+            storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
+            
+        this.getData(hebeNodeAPI + '/' + storyData)
+            .then(function (data) {
+                var contacts = [],
+                    mapLat = 0,
+                    mapLng = 0,
+                    itemCount = 0;
+                
+                data.forEach(function (item) {
+                    mapLat = mapLat + item.lat;
+                    mapLng = mapLng + item.lng;
+                    itemCount = itemCount + 1;
+
+                    contacts.push([
+                        item.lat,
+                        item.lng
+                    ]);
+                });
+                
+                var finalMapLat = mapLat / itemCount,
+                    finalMapLng = mapLng / itemCount;
+                    
+                _this.set('gmapsLat', finalMapLat);
+                _this.set('gmapsLng', finalMapLng);
+                _this.set('gmapsHeatmapMarkers', contacts);
+                console.log(contacts);
+                
+                setTimeout(function () {
+                    _this.set('loaded', true);
+                });
+            });
+    },
 });
