@@ -3,7 +3,7 @@
 	{{yield}}
 	
 	<div cpn-row-list="">
-		<div cpn-width="50%">
+		<div cpn-width="50%" cpn-bg-color="white">
 			{{ select-2
 				content=canvasSettings.zones
 				value=canvasSettings.selectedZone
@@ -13,7 +13,7 @@
 		</div>
 		
 		<div cpn-width="50%">
-			{{input value=canvasSettings.searchTerm placeholder="Filter by searchterm"}}
+			{{input value=canvasSettings.searchTerm placeholder="Filter by search term"}}
 		</div>
 		<div cpn-width="50%">
 			{{pikaday-input value=canvasSettings.startDate format="MM/DD/YYYY"}}
