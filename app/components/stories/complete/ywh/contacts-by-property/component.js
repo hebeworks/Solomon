@@ -32,10 +32,16 @@ export default DefaultStory.extend({
     topContacts: [],
     
     onInsertElement: function () {
-        this.fetchData();
+        this.queryData();
     }.on('didInsertElement'),
+    
+    // fetchData: function() {
+    //     this.get('canvasSettings.ywQuery')
+        
+    //     var query = this.get('solomonUtils').codeQuery()
+    // }.observes('canvasSettings.ywQuery'),
 
-    fetchData: function () {
+    queryData: function () {
         var _this = this,
             hebeNodeAPI = this.get('hebeNodeAPI'),
             storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
@@ -46,7 +52,7 @@ export default DefaultStory.extend({
                 
                 data.forEach(function (item) {
                     properties.push(
-                        item.Postcode
+                        item['Property Number']
                     );
                 });
                 
@@ -82,21 +88,21 @@ export default DefaultStory.extend({
                     return compressed;
                 };
 
-                var countedPostcodes = compressArray(properties);
+                var countedProperties = compressArray(properties);
                 
                 // Put the postcodes in descending numeric order
-                countedPostcodes.sort(function(a, b) {
+                countedProperties.sort(function(a, b) {
                     return parseFloat(a.count) - parseFloat(b.count);
                 }).reverse();
                 
                 // Show only the top 5 properties
-                var topPostcodes = countedPostcodes.slice(0,5);
+                var topProperties = countedProperties.slice(0,5);
                 
-                _this.set('topContacts', topPostcodes);
+                _this.set('topContacts', topProperties);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
                 });
             });
-    },
+    }
 });
