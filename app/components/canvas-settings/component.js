@@ -7,23 +7,24 @@ export default Ember.Component.extend(dashComponentBase, {
 
 	onDidReceiveAttrs: function () {
 		var _this = this;
-		this.set('appController.canvasSettings',
-			{
-				zones: [],
-				selectedZone: null,
-				searchTerm: '',
-				startDate: new Date("01/01/2015"),// moment(new Date()).subtract('month', 1).toDate(),
-				endDate: new Date("01/31/2015"),
-			});
+		// var startDate = new Date(2015,1,1);
+		// var endDate = new Date(2015,1,31);
+		// this.set('appController.canvasSettings',
+		// 	{
+		// 		zones: [],
+		// 		selectedZone: null,
+		// 		searchTerm: '',
+		// 		startDate: startDate, // moment(new Date()).subtract('month', 1).toDate(),
+		// 		endDate: endDate,
+		// 	});
 		var url = this.get('appSettings.hebeNodeAPI') + '/yw-zones?distinctfield=Water Supply System';
-		// var url = 'http://hebenodeapi-testing.azurewebsites.net/yw-zones?distinctfield=Water Supply Zone';
 		this.getData(url).then(function (data) {
 			var zones = [];
 			if (!Ember.isEmpty(data)) {
 				data.forEach(function (zone) {
 					zones.push({ text: zone, id: zone });
 				});
-			};
+			}
 			_this.set('canvasSettings.zones', zones);
 		});
 	}.on('didReceiveAttrs'),

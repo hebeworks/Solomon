@@ -22,60 +22,72 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     
+    onHeatMapAttrs: function(){
+        this.get('appSettings.canvasSettings.ywData');
+    }.on('didReceiveAttrs'),
+    
     // Map settings
     gmapsLat: 0,
     gmapsLng: 0,
-    gmapsZoom: 13,
+    gmapsZoom: 8,
     gmapsRadius: 20,
     gmapsOpacity: 0.4,
     gmapsHeatmapDissipating: true,
     gmapsHeatmapMarkers: [],
-    
-    onDidInsertElement: function(){
-        this.fetchData();
-    }.on('didInsertElement'),
-    
-    fetchData: function () {
-        var _this = this,
-            hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
-            storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
-            
-        this.getData(hebeNodeAPI + '/' + storyData)
-            .then(function (data) {
-                var contacts = [],
-                    mapLat = 0,
-                    mapLng = 0,
-                    itemCount = 0;
-                
-                data.forEach(function (item) {
-                    mapLat = mapLat + item.lat;
-                    mapLng = mapLng + item.lng;
-                    itemCount = itemCount + 1;
 
-                    contacts.push([
-                        item.lat,
-                        item.lng
-                    ]);
-                });
-                
-                var finalMapLat = mapLat / itemCount,
-                    finalMapLng = mapLng / itemCount;
-                    
-                _this.set('gmapsLat', finalMapLat);
-                _this.set('gmapsLng', finalMapLng);
-                _this.set('gmapsHeatmapMarkers', contacts);
-                console.log(contacts);
-                
-                setTimeout(function () {
-                    _this.set('loaded', true);
-                });
+    // onDidInsertElement: function () {
+    //     this.fetchData();
+    // }.on('didInsertElement'),
+
+    // fetchData: function () {
+    //     var _this = this,
+    //         hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
+    //         storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
+
+    //     this.getData(hebeNodeAPI + '/' + storyData)
+    //         .then(function (data) {
+    //             _this.loadDataOntoMap();
+    //         });
+    // },
+
+    loadDataOntoMap: function () {
+        var _this = this;
+        var ywData = this.get('appSettings.canvasSettings.ywData');
+        if (!Ember.isEmpty(ywData)) {
+            var contacts = [],
+                mapLat = 0,
+                mapLng = 0,
+                itemCount = 0;
+
+            ywData.forEach(function (item) {
+                mapLat = mapLat + item.lat;
+                mapLng = mapLng + item.lng;
+                itemCount = itemCount + 1;
+
+                contacts.push([
+                    item.lat,
+                    item.lng
+                ]);
             });
-    },
+
+            var finalMapLat = mapLat / itemCount,
+                finalMapLng = mapLng / itemCount;
+
+            _this.set('gmapsLat', finalMapLat);
+            _this.set('gmapsLng', finalMapLng);
+            _this.set('gmapsHeatmapMarkers', contacts);
+            console.log(contacts);
+
+            setTimeout(function () {
+                _this.set('loaded', true);
+            });
+        }
+    }.observes('appSettings.canvasSettings.ywData'),
     
-    onZoneChanged: function(){
-        // var canvasSettings = this.get('appSettings.canvasSettings');
-        var selectedZone = this.get('appSettings.canvasSettings.selectedZone');
+    // onZoneChanged: function(){
+    //     // var canvasSettings = this.get('appSettings.canvasSettings');
+    //     var selectedZone = this.get('appSettings.canvasSettings.selectedZone');
         
-    }.observes('appSettings.canvasSettings.selectedZone'),
+    // }.observes('appSettings.canvasSettings.selectedZone'),
     
 });
