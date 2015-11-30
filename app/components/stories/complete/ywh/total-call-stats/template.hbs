@@ -37,9 +37,9 @@
         <div cpn-overflow="hidden">
             <h3 spc-contacts-reasons_title cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Top Reasons</h3>
             <ol spc-contacts-reasons_list cpn-margin="bottom-none">
-                <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Discol Water-Grade 1</li>
-                <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Discol Water-Grade 2</li>
-                <li>Discol Water-Grade 3</li>
+                {{#each topContacts}}
+                    <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">{{this.value}}</li>
+                {{/each}}
             </ol>
         </div>
     </div>
