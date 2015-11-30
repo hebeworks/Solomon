@@ -26,11 +26,14 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     
+    periodContacts: 0,
+    period: '',
+    
     currentYear: '2015',
     previousYear: '2014',
     currentYearContacts: 12000,
     previousYearContacts: 15000,
-    ragRatingColour: '', // lime (green) for below, red for same or above
+    ragRatingColour: 'red', // lime (green) for below, red for same or above
     ragRatingText: '',
     ragRatingPercentage: '',
     topContacts: [],
@@ -39,13 +42,14 @@ export default DefaultStory.extend({
         // this.set('loaded', true);
         this.get('appSettings.canvasSettings.ywData');
         // this.queryData();
-        this.updateRagTile();
+        // this.updateRagTile();
     }.on('didInsertElement'),
     
     queryData: function () {
         var _this = this;
         
-        var ywData = this.get('appSettings.canvasSettings.ywData');
+        var ywData = this.get('appSettings.canvasSettings.ywData'),
+            appSettings = this.get('appSettings.canvasSettings');
             
         if (!Ember.isEmpty(ywData)) {
             var reasons = [];
@@ -99,6 +103,12 @@ export default DefaultStory.extend({
             var topReasons = countedReasons.slice(0,3);
             
             _this.set('topContacts', topReasons);
+            
+            var count = this.get('appSettings.canvasSettings.ywData.length');
+            this.set('periodContacts', count);
+            
+            var dateString = 'from ' + moment(appSettings.startDate).format('Do MMM YY') + ' to ' + moment(appSettings.endDate).format('Do MMM YY')
+            this.set('period', dateString);
             
             setTimeout(function () {
                 _this.set('loaded', true);
