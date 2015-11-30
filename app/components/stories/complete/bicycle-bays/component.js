@@ -28,7 +28,7 @@ export default DatamillStory.extend({
     didInsertElement: function () {
         var obj = this;
         
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/leeds-city-centre-bike-bays')
             .then(function (data) {
                 var items = [];

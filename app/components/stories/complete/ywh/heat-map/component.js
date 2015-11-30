@@ -37,7 +37,7 @@ export default DefaultStory.extend({
     
     fetchData: function () {
         var _this = this,
-            hebeNodeAPI = this.get('hebeNodeAPI'),
+            hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
             storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
             
         this.getData(hebeNodeAPI + '/' + storyData)

@@ -34,7 +34,7 @@ export default DefaultStory.extend({
 
     fetchData: function () {
         var obj = this;
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/carparks')
             .then(function (data) {
             var carParks = [];

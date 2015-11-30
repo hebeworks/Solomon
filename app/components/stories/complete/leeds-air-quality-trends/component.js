@@ -19,7 +19,7 @@ export default DefaultStory.extend({
 
     loadLocations: function () {
         var _this = this;
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?selectfields=location')
             .then(function (data) {
                 var locations = _.map(data, function (item) { return { text: item.location, id: item.location }; });
@@ -38,7 +38,7 @@ export default DefaultStory.extend({
 
     loadData: function (location) {
         var _this = this;
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?location=' + encodeURIComponent(location) + '&limit=1')
             .then(function (data) {
                 var dates = data[0].monthly_averages;

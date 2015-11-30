@@ -24,20 +24,16 @@ export default BaseRAGTile.extend({
     }.observes('canvasSettings.startDate', 'canvasSettings.endDate'),
 
     onFilter: function () {
-        var dmas = this.get('canvasSettings.dmas');
-        var q = [];
-        dmas.forEach(function (p) {
-            q.push({ "DMA": p });
-        });
-        var uri = 'http://hebenodeapi-testing.azurewebsites.net/yw-contact-data?query='
-            + this.get('solomonUtils').encodeQuery({ $or: q })
+        var _this = this;
+        var uri = this.get('appSettings.hebeNodeAPI') + '/yw-contact-data?query='
+            + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
             // + this.get('solomonUtils').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
-            // + '&count=true';
+            + '&count=true'
             + '&limit=-1'
             ;
         this.getData(uri)
             .then(function(data){
-               debugger; 
+               _this.set('tileValue',data.count)
             });
-    }.observes('canvasSettings.dmas')
+    }.observes('canvasSettings.ywQuery')
 });

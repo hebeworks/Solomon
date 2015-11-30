@@ -23,7 +23,7 @@ export default Ember.Component.extend({
         //console.log(test);
 
         //var url = 'https://api.instagram.com/v1/media/search?lat='+latitude+'&lng='+longitude+'&client_id='+client_id;
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         var url = hebeNodeAPI + '/instagram';
             var obj = this;
             Ember.$.ajax({

@@ -1,4 +1,4 @@
-/* global hebeutils */
+/* global Ember, hebeutils */
 export default Ember.Object.extend({
       config: function (hostname) {
             var solomonConfig = {};

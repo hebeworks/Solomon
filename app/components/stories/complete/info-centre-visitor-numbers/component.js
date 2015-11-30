@@ -26,7 +26,7 @@ export default DefaultStory.extend({
     
     fetchData: function () {
         var _this = this,
-            hebeNodeAPI = this.get('hebeNodeAPI'),
+            hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
             storyData = 'leeds-visitor-centre-footfall';
             
         this.getData(hebeNodeAPI + '/' + storyData)

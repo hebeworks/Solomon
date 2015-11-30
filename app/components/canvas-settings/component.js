@@ -1,4 +1,4 @@
-/* global Ember, moment, hebeutils */
+/* global Ember, moment, hebeutils, _ */
 import dashComponentBase from 'hebe-dash/mixins/dash-component-base';
 
 export default Ember.Component.extend(dashComponentBase, {
@@ -15,7 +15,7 @@ export default Ember.Component.extend(dashComponentBase, {
 				startDate: moment(new Date()).subtract('month', 1).toDate(),
 				endDate: new Date(),
 			});
-		var url = 'http://hebenodeapi-testing.azurewebsites.net/yw-zones?distinctfield=Water Supply System';
+		var url = this.get('appSettings.hebeNodeAPI') + '/yw-zones?distinctfield=Water Supply System';
 		// var url = 'http://hebenodeapi-testing.azurewebsites.net/yw-zones?distinctfield=Water Supply Zone';
 		this.getData(url).then(function (data) {
 			var zones = [];
@@ -32,7 +32,7 @@ export default Ember.Component.extend(dashComponentBase, {
 		var _this = this;
 		var selectedZone = this.get('canvasSettings.selectedZone');
 		if (!Ember.isEmpty(selectedZone)) {
-			var uri = 'http://hebenodeapi-testing.azurewebsites.net/yw-zones?'
+			var uri = this.get('appSettings.hebeNodeAPI') + '/yw-zones?'
 				+ '&selectfields=ZONEREF'
 				+ '&query=' + this.get('solomonUtils').encodeQuery({ "Water Supply System": selectedZone.id })
 				;
@@ -44,5 +44,25 @@ export default Ember.Component.extend(dashComponentBase, {
 				});
 		}
 	}.observes('canvasSettings.selectedZone'),
+	
+	onYWSettingsChange: function(){
+		// Build the mongo query for current YW filters
+		var ywQuery = {};
+		// Sub DMAS/Zones
+		var dmas = this.get('canvasSettings.dmas');
+		if(!Ember.isEmpty(dmas)) {
+			var dmaQuery = [];
+			dmas.forEach(function (p) {
+				dmaQuery.push({ "DMA": p });
+			});
+			ywQuery.$or = dmaQuery;
+		}
+		// Start date
+		var startDate = this.get('canvasSettings.startDate');
+		if(!Ember.isEmpty(startDate)) {
+			ywQuery.$and = [{ "Creation Date": { $gte: new Date(startDate) } }];
+		}
+		this.set('canvasSettings.ywQuery',ywQuery);
+	}.observes('canvasSettings.dmas','canvasSettings.startDate'),
 
 });
