@@ -12,8 +12,8 @@ export default Ember.Component.extend(dashComponentBase, {
 				zones: [],
 				selectedZone: null,
 				searchTerm: '',
-				startDate: moment(new Date()).subtract('month', 1).toDate(),
-				endDate: new Date(),
+				startDate: new Date("01/01/2015"),// moment(new Date()).subtract('month', 1).toDate(),
+				endDate: new Date("01/31/2015"),
 			});
 		var url = this.get('appSettings.hebeNodeAPI') + '/yw-zones?distinctfield=Water Supply System';
 		// var url = 'http://hebenodeapi-testing.azurewebsites.net/yw-zones?distinctfield=Water Supply Zone';
@@ -47,7 +47,7 @@ export default Ember.Component.extend(dashComponentBase, {
 	
 	onYWSettingsChange: function(){
 		// Build the mongo query for current YW filters
-		var ywQuery = {};
+		var ywQuery = { $and: [] };
 		// Sub DMAS/Zones
 		var dmas = this.get('canvasSettings.dmas');
 		if(!Ember.isEmpty(dmas)) {
@@ -60,9 +60,14 @@ export default Ember.Component.extend(dashComponentBase, {
 		// Start date
 		var startDate = this.get('canvasSettings.startDate');
 		if(!Ember.isEmpty(startDate)) {
-			ywQuery.$and = [{ "Creation Date": { $gte: new Date(startDate) } }];
+			ywQuery.$and.push({ "Creation Date": { $gte: new Date(startDate) } });
+		}
+		// End date
+		var endDate = this.get('canvasSettings.endDate');
+		if(!Ember.isEmpty(endDate)) {
+			ywQuery.$and.push({ "Creation Date": { $lte: new Date(endDate) } });
 		}
 		this.set('canvasSettings.ywQuery',ywQuery);
-	}.observes('canvasSettings.dmas','canvasSettings.startDate'),
+	}.observes('canvasSettings.dmas','canvasSettings.startDate','canvasSettings.endDate'),
 
 });

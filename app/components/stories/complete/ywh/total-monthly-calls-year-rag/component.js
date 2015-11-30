@@ -18,8 +18,8 @@ export default BaseRAGTile.extend({
     onCanvasSettings: function () {
         var canvasSettings = this.get('appSettings.canvasSettings');
         if (!Ember.isEmpty(canvasSettings)) {
-            var dateSting = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
-            this.set('tileDesc1', dateSting);
+            var dateString = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
+            this.set('tileDesc1', dateString);
         }
     }.observes('canvasSettings.startDate', 'canvasSettings.endDate'),
 
