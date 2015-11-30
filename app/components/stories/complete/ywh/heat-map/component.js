@@ -27,7 +27,7 @@ export default DefaultStory.extend({
     gmapsLng: 0,
     gmapsZoom: 13,
     gmapsRadius: 20,
-    gmapsOpacity: 0.2,
+    gmapsOpacity: 0.4,
     gmapsHeatmapDissipating: true,
     gmapsHeatmapMarkers: [],
     
