@@ -54,7 +54,7 @@ export default DefaultStory.extend({
     }),
 
     loadData: function (query) {
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         return this.getData(hebeNodeAPI + '/council-spending?' + query);
     },
 

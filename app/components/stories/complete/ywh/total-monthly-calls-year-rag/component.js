@@ -1,4 +1,4 @@
-/* global Ember, hebeutils, _ */
+/* global Ember, hebeutils, _, moment */
 import BaseRAGTile from 'hebe-dash/components/stories/complete/base-rag-tile/component';
 
 export default BaseRAGTile.extend({
@@ -10,12 +10,36 @@ export default BaseRAGTile.extend({
             tileDesc2: 'UP 4% on 2014',
         });
         this.get('appSettings.canvasSettings');
-        this.onCanvasSettings();
+        this.updateDescriptions();
     }.on('init'),
-    
-    onCanvasSettings: function(){
+
+    canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
+
+    updateDescriptions: function () {
         var canvasSettings = this.get('appSettings.canvasSettings');
-        var dateSting = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
-        this.set('tileDesc1',dateSting);
-    }.observes('appSettings.canvasSettings.startDate','appSettings.canvasSettings.endDate'),
+        if (!Ember.isEmpty(canvasSettings)) {
+            var dateString = 'from ' + moment(canvasSettings.startDate).format('Do MMM YY') + ' to ' + moment(canvasSettings.endDate).format('Do MMM YY')
+            this.set('tileDesc1', dateString);
+            var selectedZone = canvasSettings.selectedZone;
+            if(!Ember.isEmpty(selectedZone)) {
+                this.set('tileDesc2',selectedZone.text);
+            }
+        }
+    },
+    // .observes('canvasSettings.startDate', 'canvasSettings.endDate', 'canvasSettings.selectedZone'),
+
+    onFilter: function () {
+        var _this = this;
+        var uri = this.get('appSettings.hebeNodeAPI') + '/yw-contact-data?query='
+            + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
+            // + this.get('solomonUtils').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
+            + '&count=true'
+            + '&limit=-1'
+            ;
+        this.getData(uri)
+            .then(function(data){
+               _this.set('tileValue',data.count);
+               _this.updateDescriptions();
+            });
+    }.observes('canvasSettings.ywQuery')
 });

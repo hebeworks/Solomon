@@ -19,7 +19,7 @@ export default DefaultStory.extend({
     didInsertElement: function () {
         var obj = this;
 
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/twitter')
             .then(function (data) {
             var tweets = [];

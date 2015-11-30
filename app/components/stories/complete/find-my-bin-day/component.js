@@ -56,7 +56,7 @@ export default DatamillStory.extend({
         var obj = this;
         var id = this.get('selectedAddress.id')
         if (!Ember.isEmpty(this.get('selectedAddress'))) {
-            var hebeNodeAPI = this.get('hebeNodeAPI');
+            var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
             this.getData(hebeNodeAPI + '/bins/' + id)
                 .then(function (address) {
                     var allDates = [];
@@ -138,7 +138,8 @@ export default DatamillStory.extend({
         var deferred = obj.get('deferred');
 
         if (query != null && query.term != null && query.term.length >= 3) {
-            var url = 'http://hebenodeapi-preview.azurewebsites.net/bins/?q="' + query.term + '"&fields=address postcode';
+            var hebeNodeAPI = obj.get('appSettings.hebeNodeAPI');
+            var url = hebeNodeAPI + '/bins/?q="' + query.term + '"&fields=address postcode';
             console.log(url);
             this.getData(url)
                 .then(

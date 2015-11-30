@@ -46,7 +46,7 @@ export default DatamillStory.extend({
     loadFeed: function (feedUrl) {
         var obj = this;
         var base64FeedUrl = hebeutils.Base64.encode(feedUrl);
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         var url = hebeNodeAPI + '/apiproxy?url=' + base64FeedUrl + '&toJSON=true';
         this.getData(url)
             .then(

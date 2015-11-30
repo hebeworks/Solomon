@@ -3,6 +3,21 @@ import config from 'hebe-dash/config/environment';
 
 export default Ember.Mixin.create({
 	Config: config.APP,
+	// dataMillCatAPI: '',
+	// dataMillDataAPI: '',
+	// hebeNodeAPI: '',
+	
+	// onComponentBasenInit: function () {
+	// 	var dataMillCatAPI = this.get('Config').dataMillCatAPI.ensureNoEndingString('/');
+	// 	var dataMillDataAPI = this.get('Config').dataMillDataAPI.ensureNoEndingString('/');
+	// 	var hebeNodeAPI = this.get('Config').hebeNodeAPI.ensureNoEndingString('/');
+	// 	this.setProperties({
+	// 		dataMillCatAPI: dataMillCatAPI,
+	// 		dataMillDataAPI: dataMillDataAPI,
+	// 		hebeNodeAPI: hebeNodeAPI
+	// 	});
+	// }.on('init'),
+	
 	getData: function (url, cache) {
 		var obj = this;
 		return new Ember.RSVP.Promise(function (resolve, reject, complete) {

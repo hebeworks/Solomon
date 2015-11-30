@@ -45,7 +45,7 @@ export default DefaultStory.extend({
     didInsertElement: function () {
         var obj = this;
         // var resourceID = '1ffffdba-ef32-40de-b73a-7026969d35b2';
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/foi')
             .then(function (data) {
             var items = [];
