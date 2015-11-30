@@ -6,7 +6,6 @@ export default Ember.Component.extend(dashComponentBase, {
 	canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
 
 	onDidReceiveAttrs: function () {
-		var _this = this;
 		// var startDate = new Date(2015,1,1);
 		// var endDate = new Date(2015,1,31);
 		// this.set('appController.canvasSettings',
@@ -17,16 +16,7 @@ export default Ember.Component.extend(dashComponentBase, {
 		// 		startDate: startDate, // moment(new Date()).subtract('month', 1).toDate(),
 		// 		endDate: endDate,
 		// 	});
-		var url = this.get('appSettings.hebeNodeAPI') + '/yw-zones?distinctfield=Water Supply System';
-		this.getData(url).then(function (data) {
-			var zones = [];
-			if (!Ember.isEmpty(data)) {
-				data.forEach(function (zone) {
-					zones.push({ text: zone, id: zone });
-				});
-			}
-			_this.set('canvasSettings.zones', zones);
-		});
+		// this.loadZones();
 	}.on('didReceiveAttrs'),
 
 	onSelectedZone: function () {
@@ -38,7 +28,7 @@ export default Ember.Component.extend(dashComponentBase, {
 				+ '&query=' + this.get('solomonUtils').encodeQuery({ "Water Supply System": selectedZone.id })
 				;
 
-			this.getData(uri)
+			this.getData(uri, true)
 				.then(function (data) {
 					var dmas = _.map(data, function (p) { return p.ZONEREF });
 					_this.set('canvasSettings.dmas', dmas);
@@ -71,14 +61,14 @@ export default Ember.Component.extend(dashComponentBase, {
 		this.set('canvasSettings.ywQuery', ywQuery);
 	}.observes('canvasSettings.dmas', 'canvasSettings.startDate', 'canvasSettings.endDate'),
 
-	loadYWQueryData: function() {
+	loadYWQueryData: function () {
 		var _this = this;
 		var uri = this.get('appSettings.hebeNodeAPI')
 			+ '/yw-contact-data?query='
             + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
 			+ '&limit=-1';
-			
-        this.getData(uri)
+
+        this.getData(uri, true)
             .then(function (data) {
 				console.log('Refreshed ywData' + data.length);
 				_this.set('canvasSettings.ywData', data);
