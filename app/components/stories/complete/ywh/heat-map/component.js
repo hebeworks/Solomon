@@ -71,4 +71,11 @@ export default DefaultStory.extend({
                 });
             });
     },
+    
+    onZoneChanged: function(){
+        // var canvasSettings = this.get('appSettings.canvasSettings');
+        var selectedZone = this.get('appSettings.canvasSettings.selectedZone');
+        
+    }.observes('appSettings.canvasSettings.selectedZone'),
+    
 });

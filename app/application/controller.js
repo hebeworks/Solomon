@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import SolomonConfig from 'hebe-dash/utils/solomon-utils';
 
 export default Ember.Controller.extend({
 	// Properties
@@ -24,7 +23,7 @@ export default Ember.Controller.extend({
 	loadSolomonConfig: function () {
         // Todo: get the site config from a request to Solomon API 
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
-		var config = SolomonConfig.config(window.location.hostname);
+		var config = this.get('solomonUtils.config')(window.location.hostname);
 		this.set('pageTitle', config.title);
         this.set('solomonConfig', config);
 	},

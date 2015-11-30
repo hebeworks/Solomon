@@ -1,4 +1,4 @@
-/* global Ember, hebeutils, _ */
+/* global Ember, hebeutils, _, moment */
 import BaseRAGTile from 'hebe-dash/components/stories/complete/base-rag-tile/component';
 
 export default BaseRAGTile.extend({
@@ -12,10 +12,32 @@ export default BaseRAGTile.extend({
         this.get('appSettings.canvasSettings');
         this.onCanvasSettings();
     }.on('init'),
-    
-    onCanvasSettings: function(){
+
+    canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
+
+    onCanvasSettings: function () {
         var canvasSettings = this.get('appSettings.canvasSettings');
-        var dateSting = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
-        this.set('tileDesc1',dateSting);
-    }.observes('appSettings.canvasSettings.startDate','appSettings.canvasSettings.endDate'),
+        if (!Ember.isEmpty(canvasSettings)) {
+            var dateSting = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
+            this.set('tileDesc1', dateSting);
+        }
+    }.observes('canvasSettings.startDate', 'canvasSettings.endDate'),
+
+    onFilter: function () {
+        var dmas = this.get('canvasSettings.dmas');
+        var q = [];
+        dmas.forEach(function (p) {
+            q.push({ "DMA": p });
+        });
+        var uri = 'http://hebenodeapi-testing.azurewebsites.net/yw-contact-data?query='
+            + this.get('solomonUtils').encodeQuery({ $or: q })
+            // + this.get('solomonUtils').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
+            // + '&count=true';
+            + '&limit=-1'
+            ;
+        this.getData(uri)
+            .then(function(data){
+               debugger; 
+            });
+    }.observes('canvasSettings.dmas')
 });
