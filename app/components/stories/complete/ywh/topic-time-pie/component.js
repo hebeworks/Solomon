@@ -23,27 +23,63 @@ export default DefaultStory.extend({
         slider: true, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
-    
+
     onInsertElement: function () {
         this.set('loaded', true);
     }.on('didInsertElement'),
-    
-    loadGoogleAPIs: function() {
+
+    loadGoogleAPIs: function () {
         // Draw the chart when the APIs have loaded
         google.setOnLoadCallback(
             this.drawDonutChart()
-        );
+            );
     }.observes('loaded'),
-    
-    drawDonutChart: function() {
-        var data = google.visualization.arrayToDataTable([
-            ['Index', 'Rating'],
-            ['Index 1', 10],
-            ['Index 2', 18],
-            ['Index 3', 15],
-            ['Index 4', 5],
-            ['Index 5', 9]
-        ]);
+
+    onTopicAttrs: function(){
+        this.get('appSettings.canvasSettings.ywData');
+    }.on('didReceiveAttrs'),
+
+    chartData: Ember.computed('ywData', {
+        get() {
+            var ywData = this.get('ywData');
+            var chartData = [['Need', 'Count']];
+            if (!Ember.isEmpty(ywData)) {
+                var grouped = _.groupBy(ywData, function (obj) {
+                    return obj.Need; 
+                    // Need
+                    // Need Type
+                    // Need Group
+                });
+                var sorted = _.sortBy(grouped, function (obj) {
+                    return obj.length;
+                });
+                sorted.reverse();
+                var itemsToShow = 5;
+                var index = 0;
+                sorted.forEach(function (obj) {
+                    if(index < itemsToShow) {
+                        chartData.push([obj[0].Need, obj.length]);
+                    }
+                    index ++;
+                });
+            }
+            return chartData;
+        }
+    }),
+
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+
+    drawDonutChart: function () {
+        // var data = google.visualization.arrayToDataTable([
+        //     ['Index', 'Rating'],
+        //     ['Index 1', 10],
+        //     ['Index 2', 18],
+        //     ['Index 3', 15],
+        //     ['Index 4', 5],
+        //     ['Index 5', 9]
+        // ]);
+
+        var data = google.visualization.arrayToDataTable(this.get('chartData'));
 
         var options = {
             title: 'Donut Chart',
@@ -65,5 +101,5 @@ export default DefaultStory.extend({
 
         var chart = new google.visualization.PieChart(document.getElementById('google-donut-chart-single'));
         chart.draw(data, options);
-    }
+    }.observes('chartData')
 });
