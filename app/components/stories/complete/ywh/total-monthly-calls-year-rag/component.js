@@ -21,25 +21,30 @@ export default BaseRAGTile.extend({
             var dateString = 'from ' + moment(canvasSettings.startDate).format('Do MMM YY') + ' to ' + moment(canvasSettings.endDate).format('Do MMM YY')
             this.set('tileDesc1', dateString);
             var selectedZone = canvasSettings.selectedZone;
-            if(!Ember.isEmpty(selectedZone)) {
-                this.set('tileDesc2',selectedZone.text);
+            if (!Ember.isEmpty(selectedZone)) {
+                this.set('tileDesc2', selectedZone.text);
             }
         }
-    },
-    // .observes('canvasSettings.startDate', 'canvasSettings.endDate', 'canvasSettings.selectedZone'),
+        if (!Ember.isEmpty('canvasSettings.ywData')) {
+            var count = this.get('canvasSettings.ywData.length');
+            this.set('tileValue', count);
+        }
+    }.observes('canvasSettings.ywData'),
 
-    onFilter: function () {
-        var _this = this;
-        var uri = this.get('appSettings.hebeNodeAPI') + '/yw-contact-data?query='
-            + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
-            // + this.get('solomonUtils').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
-            + '&count=true'
-            + '&limit=-1'
-            ;
-        this.getData(uri)
-            .then(function(data){
-               _this.set('tileValue',data.count);
-               _this.updateDescriptions();
-            });
-    }.observes('canvasSettings.ywQuery')
+    // Example of watching for ywQuery and making a request for data ourselves
+    // onFilter: function () {
+    //     var _this = this;
+    //     var uri = this.get('appSettings.hebeNodeAPI') + '/yw-contact-data?query='
+    //         + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
+    //         // + this.get('solomonUtils').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
+    //         + '&count=true'
+    //         + '&limit=-1'
+    //         ;
+    //     this.getData(uri)
+    //         .then(function(data){
+    //            _this.set('tileValue',data.count);
+    //            _this.updateDescriptions();
+    //         });
+    // }.observes('canvasSettings.ywQuery')
+
 });

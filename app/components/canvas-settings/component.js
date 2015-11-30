@@ -40,17 +40,17 @@ export default Ember.Component.extend(dashComponentBase, {
 			this.getData(uri)
 				.then(function (data) {
 					var dmas = _.map(data, function (p) { return p.ZONEREF });
-					_this.set('canvasSettings.dmas',dmas);
+					_this.set('canvasSettings.dmas', dmas);
 				});
 		}
 	}.observes('canvasSettings.selectedZone'),
-	
-	onYWSettingsChange: function(){
+
+	onYWSettingsChange: function () {
 		// Build the mongo query for current YW filters
 		var ywQuery = { $and: [] };
 		// Sub DMAS/Zones
 		var dmas = this.get('canvasSettings.dmas');
-		if(!Ember.isEmpty(dmas)) {
+		if (!Ember.isEmpty(dmas)) {
 			var dmaQuery = [];
 			dmas.forEach(function (p) {
 				dmaQuery.push({ "DMA": p });
@@ -59,15 +59,28 @@ export default Ember.Component.extend(dashComponentBase, {
 		}
 		// Start date
 		var startDate = this.get('canvasSettings.startDate');
-		if(!Ember.isEmpty(startDate)) {
+		if (!Ember.isEmpty(startDate)) {
 			ywQuery.$and.push({ "Creation Date": { $gte: new Date(startDate) } });
 		}
 		// End date
 		var endDate = this.get('canvasSettings.endDate');
-		if(!Ember.isEmpty(endDate)) {
+		if (!Ember.isEmpty(endDate)) {
 			ywQuery.$and.push({ "Creation Date": { $lte: new Date(endDate) } });
 		}
-		this.set('canvasSettings.ywQuery',ywQuery);
-	}.observes('canvasSettings.dmas','canvasSettings.startDate','canvasSettings.endDate'),
+		this.set('canvasSettings.ywQuery', ywQuery);
+	}.observes('canvasSettings.dmas', 'canvasSettings.startDate', 'canvasSettings.endDate'),
 
+	loadYWQueryData: function() {
+		var _this = this;
+		var uri = this.get('appSettings.hebeNodeAPI')
+			+ '/yw-contact-data?query='
+            + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
+			+ '&limit=-1';
+			
+        this.getData(uri)
+            .then(function (data) {
+				console.log('Refreshed ywData' + data.length);
+				_this.set('canvasSettings.ywData', data);
+            });
+	}.observes('canvasSettings.ywQuery')
 });
