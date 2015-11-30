@@ -1,10 +1,20 @@
 {{#stories/story-base}}
-    <ol>
-        {{#each topContacts}}
-            <li>
-                <span spc-yw-tc_location>{{this.value}}</span>
-                <span spc-yw-tc_count>contacted us {{this.count}} time(s)</span>
-            </li>
-        {{/each}}
-    </ol>
+    <table spc-yw-tc_list>
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Property No.</th>
+                <th>No. contacts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each topContacts as |contact|}}
+                <tr>
+                    <td>{{contact.index}}</td>
+                    <td><span spc-yw-tc_property>{{contact.value}}</span></td>
+                    <td><span spc-yw-tc_count>{{contact.count}}</span></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 {{/stories/story-base}}
