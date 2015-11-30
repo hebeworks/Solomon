@@ -5,6 +5,8 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Top Topic Duration',
         subTitle: 'Closed duration by topic',
+        scroll: false,
+        viewOnly: true
     },
 
     loadGoogleAPIs: function () {
@@ -67,22 +69,28 @@ export default DefaultStory.extend({
             // ]);
     
             var options = {
-                title: 'Stacked Column Chart',
+                hAxis: {
+                    textPosition: 'none'
+                },
                 vAxis: {
                     baseline: 0
                 },
                 chartArea: {
-                    width: '60%',
-                    height: '80%',
+                    width: '80%',
+                    height: '85%',
                     top: '10%',
                     left: '10%'
                 },
                 width: 290,
-                height: 220,
+                height: 240,
                 legend: {
-                    position: 'right'
+                    position: 'top',
+                    maxLines: 4
                 },
-                isStacked: true
+                isStacked: true,
+                tooltip: {
+                    isHtml: true
+                }
             };
 
             var chart = new google.visualization.ColumnChart(
