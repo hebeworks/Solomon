@@ -6,14 +6,15 @@ export default Ember.Object.extend({
 	dataMillDataAPI: '',
 	hebeNodeAPI: '',
 	bottomDrawerConfig: { test: 'test' },
+	
 	canvasSettings: {
 		zones: [],
 		selectedZone: null,
 		searchTerm: '',
-		startDate: moment(new Date()).subtract('month', 1).toDate(),
-		endDate: new Date(),
+		startDate: new Date("01/01/2015"),
+		endDate: new Date("01/31/2015"),
 	},
-	
+
 	init: function () {
 
 		this.set('dataMillCatAPI', config.APP.dataMillCatAPI.ensureNoEndingString('/'));
