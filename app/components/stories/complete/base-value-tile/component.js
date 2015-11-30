@@ -9,6 +9,7 @@ export default DefaultStory.extend({
     tileDesc1: null,
     tileDesc2: null,
     tileShade: '',
+    tileUrl: '',
 
     storyConfig: {
         width: '1',

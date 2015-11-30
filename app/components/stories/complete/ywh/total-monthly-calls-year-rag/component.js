@@ -10,18 +10,23 @@ export default BaseRAGTile.extend({
             tileDesc2: 'UP 4% on 2014',
         });
         this.get('appSettings.canvasSettings');
-        this.onCanvasSettings();
+        this.updateDescriptions();
     }.on('init'),
 
     canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
 
-    onCanvasSettings: function () {
+    updateDescriptions: function () {
         var canvasSettings = this.get('appSettings.canvasSettings');
         if (!Ember.isEmpty(canvasSettings)) {
-            var dateString = 'from ' + moment(canvasSettings.startDate).format('MMM YY') + ' to ' + moment(canvasSettings.endDate).format('MMM YY')
+            var dateString = 'from ' + moment(canvasSettings.startDate).format('Do MMM YY') + ' to ' + moment(canvasSettings.endDate).format('Do MMM YY')
             this.set('tileDesc1', dateString);
+            var selectedZone = canvasSettings.selectedZone;
+            if(!Ember.isEmpty(selectedZone)) {
+                this.set('tileDesc2',selectedZone.text);
+            }
         }
-    }.observes('canvasSettings.startDate', 'canvasSettings.endDate'),
+    },
+    // .observes('canvasSettings.startDate', 'canvasSettings.endDate', 'canvasSettings.selectedZone'),
 
     onFilter: function () {
         var _this = this;
@@ -33,7 +38,8 @@ export default BaseRAGTile.extend({
             ;
         this.getData(uri)
             .then(function(data){
-               _this.set('tileValue',data.count)
+               _this.set('tileValue',data.count);
+               _this.updateDescriptions();
             });
     }.observes('canvasSettings.ywQuery')
 });
