@@ -32,24 +32,31 @@ export default DefaultStory.extend({
     topContacts: [],
     
     onInsertElement: function () {
-        this.fetchData();
+        this.queryData();
     }.on('didInsertElement'),
+    
+    // fetchData: function() {
+    //     this.get('canvasSettings.ywQuery')
+        
+    //     var query = this.get('solomonUtils').codeQuery()
+    // }.observes('canvasSettings.ywQuery'),
 
-    fetchData: function () {
+    queryData: function () {
         var _this = this,
             hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
             storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
             
         this.getData(hebeNodeAPI + '/' + storyData)
             .then(function (data) {
-                var contacts = [];
+                var properties = [];
                 
                 data.forEach(function (item) {
-                    contacts.push([
-                        item.Postcode
-                    ]);
+                    properties.push(
+                        item['Property Number']
+                    );
                 });
                 
+                // Group repeated contacts together into same postcode
                 function compressArray(original) {
                  
                     var compressed = [];
@@ -81,16 +88,21 @@ export default DefaultStory.extend({
                     return compressed;
                 };
 
-                // It should go something like this:
-
-                var testArray = new Array("dog", "dog", "cat", "buffalo", "wolf", "cat", "tiger", "cat");
-                var newArray = compressArray(testArray);
+                var countedProperties = compressArray(properties);
                 
-                _this.set('topContacts', result);
+                // Put the postcodes in descending numeric order
+                countedProperties.sort(function(a, b) {
+                    return parseFloat(a.count) - parseFloat(b.count);
+                }).reverse();
+                
+                // Show only the top 5 properties
+                var topProperties = countedProperties.slice(0,5);
+                
+                _this.set('topContacts', topProperties);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
                 });
             });
-    },
+    }
 });

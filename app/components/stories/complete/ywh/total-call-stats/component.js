@@ -33,11 +33,78 @@ export default DefaultStory.extend({
     ragRatingColour: '', // lime (green) for below, red for same or above
     ragRatingText: '',
     ragRatingPercentage: '',
+    topContacts: [],
     
     onInsertElement: function () {
-        this.set('loaded', true);
+        // this.set('loaded', true);
+        this.queryData();
         this.updateRagTile();
     }.on('didInsertElement'),
+    
+    queryData: function () {
+        var _this = this,
+            hebeNodeAPI = this.get('hebeNodeAPI'),
+            storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
+            
+        this.getData(hebeNodeAPI + '/' + storyData)
+            .then(function (data) {
+                var reasons = [];
+                
+                data.forEach(function (item) {
+                    reasons.push(
+                        item['Need']
+                    );
+                });
+                
+                // Group repeated contacts together into same postcode
+                function compressArray(original) {
+                 
+                    var compressed = [];
+                    // make a copy of the input array
+                    var copy = original.slice(0);
+                 
+                    // first loop goes over every element
+                    for (var i = 0; i < original.length; i++) {
+                 
+                        var myCount = 0;    
+                        // loop over every element in the copy and see if it's the same
+                        for (var w = 0; w < copy.length; w++) {
+                            if (original[i] == copy[w]) {
+                                // increase amount of times duplicate is found
+                                myCount++;
+                                // sets item to undefined
+                                delete copy[w];
+                            }
+                        }
+                 
+                        if (myCount > 0) {
+                            var a = new Object();
+                            a.value = original[i];
+                            a.count = myCount;
+                            compressed.push(a);
+                        }
+                    }
+                 
+                    return compressed;
+                };
+
+                var countedReasons = compressArray(reasons);
+                
+                // Put the postcodes in descending numeric order
+                countedReasons.sort(function(a, b) {
+                    return parseFloat(a.count) - parseFloat(b.count);
+                }).reverse();
+                
+                // Show only the top 3 reasons
+                var topReasons = countedReasons.slice(0,3);
+                
+                _this.set('topContacts', topReasons);
+                
+                setTimeout(function () {
+                    _this.set('loaded', true);
+                });
+            });
+    },
     
     updateRagTile: function() {
         if (this.get('currentYearContacts') < this.get('previousYearContacts')) {
@@ -86,10 +153,10 @@ export default DefaultStory.extend({
                 bold: true,
                 fontSize: 14
             },
-            width: 270,
+            width: 255,
             height: 93,
             chartArea: {
-                width: 260,
+                width: 245,
                 height: 83,
                 top: 5,
                 left: 5
