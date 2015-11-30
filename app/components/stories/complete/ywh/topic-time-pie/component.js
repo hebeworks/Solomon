@@ -92,11 +92,11 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 220,
-            slices: {
-                2: {
-                    offset: 0.1
-                }
-            }
+            // slices: {
+            //     2: {
+            //         offset: 0.1
+            //     }
+            // }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('google-donut-chart-single'));
