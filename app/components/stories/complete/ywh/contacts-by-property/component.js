@@ -32,20 +32,11 @@ export default DefaultStory.extend({
     topContacts: [],
     
     onInsertElement: function () {
-        // this.queryData();
         this.get('appSettings.canvasSettings.ywData');
     }.on('didInsertElement'),
-    
-    // fetchData: function() {
-    //     this.get('canvasSettings.ywQuery')
-        
-    //     var query = this.get('solomonUtils').codeQuery()
-    // }.observes('canvasSettings.ywQuery'),
 
     queryData: function () {
-        var _this = this,
-            hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
-            storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
+        var _this = this;
             
         var ywData = this.get('appSettings.canvasSettings.ywData');
         
