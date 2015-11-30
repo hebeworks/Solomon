@@ -32,7 +32,8 @@ export default DefaultStory.extend({
     topContacts: [],
     
     onInsertElement: function () {
-        this.queryData();
+        // this.queryData();
+        this.get('appSettings.canvasSettings.ywData');
     }.on('didInsertElement'),
     
     // fetchData: function() {
@@ -46,68 +47,69 @@ export default DefaultStory.extend({
             hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
             storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
             
-        this.getData(hebeNodeAPI + '/' + storyData)
-            .then(function (data) {
-                var properties = [];
-                
-                data.forEach(function (item) {
-                    properties.push(
-                        item['Property Number']
-                    );
-                });
-                
-                // Group repeated contacts together into same postcode
-                function compressArray(original) {
-                 
-                    var compressed = [];
-                    // make a copy of the input array
-                    var copy = original.slice(0);
-                 
-                    // first loop goes over every element
-                    for (var i = 0; i < original.length; i++) {
-                 
-                        var myCount = 0;    
-                        // loop over every element in the copy and see if it's the same
-                        for (var w = 0; w < copy.length; w++) {
-                            if (original[i] == copy[w]) {
-                                // increase amount of times duplicate is found
-                                myCount++;
-                                // sets item to undefined
-                                delete copy[w];
-                            }
-                        }
-                 
-                        if (myCount > 0) {
-                            var a = new Object();
-                            a.value = original[i];
-                            a.count = myCount;
-                            compressed.push(a);
+        var ywData = this.get('appSettings.canvasSettings.ywData');
+        
+        if (!Ember.isEmpty(ywData)) {
+            var properties = [];
+            
+            ywData.forEach(function (item) {
+                properties.push(
+                    item['Property Number']
+                );
+            });
+            
+            // Group repeated contacts together into same postcode
+            function compressArray(original) {
+             
+                var compressed = [];
+                // make a copy of the input array
+                var copy = original.slice(0);
+             
+                // first loop goes over every element
+                for (var i = 0; i < original.length; i++) {
+             
+                    var myCount = 0;    
+                    // loop over every element in the copy and see if it's the same
+                    for (var w = 0; w < copy.length; w++) {
+                        if (original[i] == copy[w]) {
+                            // increase amount of times duplicate is found
+                            myCount++;
+                            // sets item to undefined
+                            delete copy[w];
                         }
                     }
-                 
-                    return compressed;
-                };
+             
+                    if (myCount > 0) {
+                        var a = new Object();
+                        a.value = original[i];
+                        a.count = myCount;
+                        compressed.push(a);
+                    }
+                }
+             
+                return compressed;
+            };
 
-                var countedProperties = compressArray(properties);
-                
-                // Put the postcodes in descending numeric order
-                countedProperties.sort(function(a, b) {
-                    return parseFloat(a.count) - parseFloat(b.count);
-                }).reverse();
-                
-                // Show only the top 5 properties
-                var topProperties = countedProperties.slice(0,5);
-                var index = 1;
-                
-                topProperties.forEach(function(property) {
-                    property.index = index++
-                });
-                
-                _this.set('topContacts', topProperties);
-                
-                setTimeout(function () {
-                    _this.set('loaded', true);
-                });
+            var countedProperties = compressArray(properties);
+            
+            // Put the postcodes in descending numeric order
+            countedProperties.sort(function(a, b) {
+                return parseFloat(a.count) - parseFloat(b.count);
+            }).reverse();
+            
+            // Show only the top 5 properties
+            var topProperties = countedProperties.slice(0,5);
+            var index = 1;
+            
+            topProperties.forEach(function(property) {
+                property.index = index++
             });
-    }
+            
+            _this.set('topContacts', topProperties);
+            
+            setTimeout(function () {
+                _this.set('loaded', true);
+            });
+        }
+    }.observes('appSettings.canvasSettings.ywData')
 });
