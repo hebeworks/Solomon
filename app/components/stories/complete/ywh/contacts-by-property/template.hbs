@@ -1,5 +1,5 @@
 {{#stories/story-base}}
-    <table>
+    <table spc-yw-tc_list>
         <thead>
             <tr>
                 <th>&nbsp;</th>
@@ -8,23 +8,13 @@
             </tr>
         </thead>
         <tbody>
-            {{#each topContacts}}
+            {{#each topContacts as |contact|}}
                 <tr>
-                    <td>{{this.index}}</td>
-                    <td>{{this.value}}</td>
-                    <td>{{this.count}}</td>
+                    <td>{{contact.index}}</td>
+                    <td><span spc-yw-tc_property>{{contact.value}}</span></td>
+                    <td><span spc-yw-tc_count>{{contact.count}}</span></td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
-
-
-    {{!-- <ol>
-        {{#each topContacts}}
-            <li>
-                <span spc-yw-tc_location>{{this.value}}</span>
-                <span spc-yw-tc_count>contacted us {{this.count}} time(s)</span>
-            </li>
-        {{/each}}
-    </ol> --}}
 {{/stories/story-base}}

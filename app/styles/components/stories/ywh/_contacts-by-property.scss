@@ -1,8 +1,36 @@
-[spc-yw-tc_location] {
-    font-size: rem(20px);
-    font-family: $helvneuemed;
-}
-
-[spc-yw-tc_count] {
-    font-size: rem(12px);
+[spc-yw-tc_list] {
+    width: 100%;
+    
+    tr {
+        border-bottom: 1px solid rgba(255,255,255,.5);
+    }
+    
+        th {
+            padding: rem(4px);
+            
+            &:not(:first-child) {
+                border-left: 1px solid rgba(255,255,255,.5);
+            }
+        }
+        
+        td {
+            padding: rem(4px);
+        }
+            
+            [spc-yw-tc_property],
+            [spc-yw-tc_count] {
+                display: inline-block;
+                padding: rem(4px) rem(8px);
+                color: #fff;
+                border-radius: rem(3px);
+            }
+            
+            [spc-yw-tc_property] {
+                background-color: rgba(255,255,255,.2);
+                width: rem(150px);
+            }
+            
+            [spc-yw-tc_count] {
+                background-color: $blue;
+            }
 }

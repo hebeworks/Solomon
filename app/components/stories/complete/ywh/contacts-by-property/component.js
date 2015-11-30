@@ -14,7 +14,7 @@ export default DefaultStory.extend({
         // dataSourceUrl: '', // (Where did the data come from?)
         // feedbackEmail: '', // (Provide an email users can contact about this story)
         
-        // color: 'white', // (Set the story colour)
+        color: 'dark-blue', // (Set the story colour)
         // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         // height: '2', // (Set the height of the story)
         // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
@@ -97,6 +97,11 @@ export default DefaultStory.extend({
                 
                 // Show only the top 5 properties
                 var topProperties = countedProperties.slice(0,5);
+                var index = 1;
+                
+                topProperties.forEach(function(property) {
+                    property.index = index++
+                });
                 
                 _this.set('topContacts', topProperties);
                 
