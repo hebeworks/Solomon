@@ -44,8 +44,11 @@ export default DefaultStory.extend({
             var properties = [];
             
             ywData.forEach(function (item) {
+                var propertyNumber = item['Property Number'],
+                    justPropertyNumber = propertyNumber.replace('Property ','');
+                
                 properties.push(
-                    item['Property Number']
+                    justPropertyNumber
                 );
             });
             
