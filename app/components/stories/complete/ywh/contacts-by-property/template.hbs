@@ -1,7 +1,10 @@
 {{#stories/story-base}}
-
-    List of top contacts
-    
-    {{topContacts}}
-    
+    <ol>
+        {{#each topContacts}}
+            <li>
+                <span spc-yw-tc_location>{{this.value}}</span>
+                <span spc-yw-tc_count>contacted us {{this.count}} time(s)</span>
+            </li>
+        {{/each}}
+    </ol>
 {{/stories/story-base}}

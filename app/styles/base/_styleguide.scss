@@ -86,6 +86,7 @@ a {
 ul, ol {
     li {
         list-style-position: inside;
+        margin-bottom: rem($spacing-base / 2);
     }
 }
 

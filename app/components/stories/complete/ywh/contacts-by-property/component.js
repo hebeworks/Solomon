@@ -42,14 +42,15 @@ export default DefaultStory.extend({
             
         this.getData(hebeNodeAPI + '/' + storyData)
             .then(function (data) {
-                var contacts = [];
+                var properties = [];
                 
                 data.forEach(function (item) {
-                    contacts.push([
+                    properties.push(
                         item.Postcode
-                    ]);
+                    );
                 });
                 
+                // Group repeated contacts together into same postcode
                 function compressArray(original) {
                  
                     var compressed = [];
@@ -81,12 +82,17 @@ export default DefaultStory.extend({
                     return compressed;
                 };
 
-                // It should go something like this:
-
-                var testArray = new Array("dog", "dog", "cat", "buffalo", "wolf", "cat", "tiger", "cat");
-                var newArray = compressArray(testArray);
+                var countedPostcodes = compressArray(properties);
                 
-                _this.set('topContacts', result);
+                // Put the postcodes in descending numeric order
+                countedPostcodes.sort(function(a, b) {
+                    return parseFloat(a.count) - parseFloat(b.count);
+                }).reverse();
+                
+                // Show only the top 5 properties
+                var topPostcodes = countedPostcodes.slice(0,5);
+                
+                _this.set('topContacts', topPostcodes);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
