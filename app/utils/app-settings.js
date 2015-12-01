@@ -69,6 +69,9 @@ export default Ember.Object.extend({
 				});
 			}
 			_this.set('canvasSettings.zones', zones);
+			setTimeout(function() {
+				_this.set('canvasSettings.selectedZone', zones[0]);
+			}, 1000);
 		});
 	},
 
