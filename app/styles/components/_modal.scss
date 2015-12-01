@@ -57,11 +57,16 @@ perspective effects (not including the modals and the overlay).
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
+	
 }
 
 .md-show ~ .md-overlay {
 	opacity: 1;
 	visibility: visible;
+
+	&.-hidden {
+		opacity: 0;
+	}
 }
 
 /* Content styles */

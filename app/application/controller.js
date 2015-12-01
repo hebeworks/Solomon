@@ -93,10 +93,13 @@ export default Ember.Controller.extend({
         });
     },
 
-	showModal: function (component, title, intro) {
+	showModal: function (component, title, intro, preventCanvasBlur) {
 		this.set('modalComponent', component);
 		if (!Ember.isEmpty(title)) {
 			this.set('modalTitle', title);
+		}
+		if(preventCanvasBlur != true) {
+			this.set('canvasBlurred', true);
 		}
 		this.set('modalIntro', intro);
 		this.set('isModalVisible', true);
@@ -109,7 +112,7 @@ export default Ember.Controller.extend({
 
 	showTutorialTimer: null,
 	shouldShowTutorial: function (force) {
-		if(Modernizr.mq('screen and (min-width: 768px)')) {
+		if (Modernizr.mq('screen and (min-width: 768px)')) {
 			if (Cookies.get('viewedTutorial')) {
 				// unauthed session has seen tutorial
 				// stop the timer & observer
@@ -132,7 +135,7 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorial: function () {
-		if(Modernizr.mq('screen and (min-width: 768px)')) {
+		if (Modernizr.mq('screen and (min-width: 768px)')) {
 			if (!this.get('isModalVisible')) {
 				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
 				Ember.run.cancel(this.get('showTutorialTimer'));
@@ -185,7 +188,7 @@ export default Ember.Controller.extend({
 	},
 
 	openBottomDrawer: function (configParams) {
-		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams)
+		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams);
 		this.closeToolbox();
 		this.set('bottomDrawerConfig', config);
 		this.set('canvasBlurred', true);
@@ -238,6 +241,10 @@ export default Ember.Controller.extend({
 			params.mainTitle = 'Duplicate a canvas'
 		}
 		this.openBottomDrawer(params);
+	},
+
+	showCanvasSettings: function () {
+		this.showModal('canvas-settings', 'Canvas Settings', '', true);
 	}
 
 });

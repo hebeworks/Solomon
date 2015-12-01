@@ -17,4 +17,4 @@
 			</div>
 		</div>
 
-		<div class="md-overlay" {{action "close"}}></div>
+		<div class="md-overlay {{unless appController.canvasBlurred '-hidden'}}" {{action "close"}}></div>
