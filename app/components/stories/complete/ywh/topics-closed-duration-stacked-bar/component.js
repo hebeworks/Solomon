@@ -93,10 +93,11 @@ export default DefaultStory.extend({
                 }
             };
 
-            var chart = new google.visualization.ColumnChart(
-                document.getElementById('google-stacked-column-chart-single'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('google-stacked-column-chart-single'));
+            // var chart = new google.charts.Bar(document.getElementById('google-stacked-column-chart-single'));
 
             chart.draw(data, options);
+            // chart.draw(data, google.charts.Column.convertOptions(options));
 
             this.set('loaded', true);
         }

@@ -200,7 +200,9 @@ export default DefaultStory.extend({
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('yw-contacts-chart'));
+        // var chart = new google.charts.Line(document.getElementById('yw-contacts-chart'));
 
         chart.draw(data, options);
+        // chart.draw(data, google.charts.Line.convertOptions(options));
     }
 });

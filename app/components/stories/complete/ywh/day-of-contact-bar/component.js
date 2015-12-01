@@ -5,6 +5,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Contact Days', // (Provide a story title)
         subTitle: 'Days of the week by contact volume', // (Provide a story subtitle)
+        viewOnly: true
     },
 
     loadGoogleAPIs: function () {
@@ -58,16 +59,17 @@ export default DefaultStory.extend({
                     left: '0%'
                 },
                 width: 290,
-                height: 220,
-                // legend: {
-                    // position: 'top'
-                // }
+                height: 240,
+                tooltip: {
+                    isHtml: true
+                }
             };
 
-            var chart = new google.visualization.ColumnChart(
-                document.getElementById('google-column-chart-single'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('google-column-chart-single'));
+            // var chart = new google.charts.Bar(document.getElementById('google-column-chart-single'));
 
             chart.draw(data, options);
+            // chart.draw(data, google.charts.Bar.convertOptions(options));
         }
     }.observes('ywData')
 });

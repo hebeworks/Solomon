@@ -83,7 +83,7 @@ export default DefaultStory.extend({
         var data = google.visualization.arrayToDataTable(this.get('chartData'));
 
         var options = {
-            title: 'Donut Chart',
+            title: '',
             pieHole: 0.3,
             chartArea: {
                 width: '90%',
@@ -93,6 +93,10 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 220,
+            is3D: true,
+            tooltip: {
+                isHtml: true
+            },
             // slices: {
             //     2: {
             //         offset: 0.1
