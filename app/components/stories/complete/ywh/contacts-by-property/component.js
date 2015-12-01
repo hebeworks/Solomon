@@ -20,7 +20,8 @@ export default DefaultStory.extend({
         // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
         
         // slider: false, // (Add a horizontal slider to the story)
-        // scroll: true, // (Should the story vertically scroll its content?)
+        scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true,
     },
     
     // loaded: false, // (Tell other elements that this story has loaded)
