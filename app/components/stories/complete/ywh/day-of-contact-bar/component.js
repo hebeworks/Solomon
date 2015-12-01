@@ -5,7 +5,8 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Contact Days', // (Provide a story title)
         subTitle: 'Days of the week by contact volume', // (Provide a story subtitle)
-        viewOnly: true
+        viewOnly: true,
+        scroll: false
     },
 
     loadGoogleAPIs: function () {
