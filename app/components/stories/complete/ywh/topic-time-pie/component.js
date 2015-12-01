@@ -22,6 +22,7 @@ export default DefaultStory.extend({
         
         slider: true, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
 
     onInsertElement: function () {
