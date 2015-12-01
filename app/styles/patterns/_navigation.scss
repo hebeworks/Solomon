@@ -79,12 +79,12 @@
 		li {
 			&.-back {
 				position: absolute;
-//				top: 2px;
 				left: 20px;
 			}
-			&.-gallery {
+			
+			&.-gallery,
+			&.-filter {
 				position: absolute;
-//				top: 2px;
 				right: 45px;
 			}
 		}
