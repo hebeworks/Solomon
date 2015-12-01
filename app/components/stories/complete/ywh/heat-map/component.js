@@ -29,7 +29,7 @@ export default DefaultStory.extend({
     // Map settings
     gmapsLat: 0,
     gmapsLng: 0,
-    gmapsZoom: 8,
+    gmapsZoom: 9,
     gmapsRadius: 20,
     gmapsOpacity: 0.4,
     gmapsHeatmapDissipating: true,

@@ -12,7 +12,7 @@ export default Ember.Object.extend({
 		selectedZone: null,
 		searchTerm: '',
 		startDate: new Date("01/01/2015"),
-		endDate: new Date("01/31/2015"),
+		endDate: new Date("06/30/2015"),
 	},
 
 	init: function () {
@@ -70,7 +70,7 @@ export default Ember.Object.extend({
 			}
 			_this.set('canvasSettings.zones', zones);
 			setTimeout(function() {
-				_this.set('canvasSettings.selectedZone', zones[0]);
+				_this.set('canvasSettings.selectedZone', _this.get('zones.firstObject'));
 			}, 1000);
 		});
 	},
