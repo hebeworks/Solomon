@@ -8,15 +8,25 @@ export default DefaultStory.extend({
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)
         // color: 'lime', // (Set the story colour)
-        width: '4', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        height: '1', // (Set the height of the story)
+        width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
+        height: '2', // (Set the height of the story)
         // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true
     },
     
+    numberProperties: 0,
+    numberPeople: 0,
+    
     onInsertElement: function () {
+        var _this = this;
+        
         this.set('loaded', true);
+        
+        this.detectScreenSize();
+        this.$(window).on('resize', function () {
+            _this.detectScreenSize();
+        });
     }.on('didInsertElement'),
 
     loadGoogleAPIs: function () {
@@ -83,5 +93,18 @@ export default DefaultStory.extend({
 
         var chart = new google.visualization.PieChart(document.getElementById('multi-pie-2'));
         chart.draw(data, options);
+    },
+    
+    detectScreenSize: function() {
+        console.log('screen size changed');
+        console.log(this.get('storyConfig.width'));
+        
+        if (Modernizr.mq('only screen and (min-width: 680px')) {            
+            this.set('storyConfig.width', 4);
+            this.set('storyConfig.height', 1);
+        } else {
+            this.set('storyConfig.width', 2);
+            this.set('storyConfig.height', 2);
+        }
     }
 });

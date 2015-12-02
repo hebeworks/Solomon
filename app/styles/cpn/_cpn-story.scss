@@ -10,6 +10,7 @@
     -ms-transform: perspective(1000px);
     -moz-transform: perspective(1000px);
     @include transform-style(preserve-3d);
+    @include transition(width .5s, height .5s);
 }
 
 [cpn-story~="width-1"] {
