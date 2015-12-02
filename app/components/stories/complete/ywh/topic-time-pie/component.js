@@ -93,7 +93,6 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 220,
-            is3D: true,
             tooltip: {
                 isHtml: true
             },
