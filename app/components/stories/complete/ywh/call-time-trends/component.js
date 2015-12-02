@@ -88,14 +88,17 @@ export default DefaultStory.extend({
                     height: '80%',
                     top: '5%',
                     left: '10%'
+                },
+                tooltip: {
+                    isHtml: true
                 }
             };
 
-            // var chart = new google.visualization.LineChart(document.getElementById('call-time-trends-chart'));
-            var chart = new google.charts.Line(document.getElementById('call-time-trends-chart'));
+            var chart = new google.visualization.LineChart(document.getElementById('call-time-trends-chart'));
+            // var chart = new google.charts.Line(document.getElementById('call-time-trends-chart'));
 
-            // chart.draw(data, options);
-            chart.draw(data, google.charts.Line.convertOptions(options));
+            chart.draw(data, options);
+            // chart.draw(data, google.charts.Line.convertOptions(options));
         }
     }.observes('ywData')
 });
