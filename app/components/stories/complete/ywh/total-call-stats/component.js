@@ -174,7 +174,7 @@ export default DefaultStory.extend({
             legend: {
                 position: 'none'
             },
-            pointSize: 8,
+            pointSize: 0,
             hAxis: {
                 title: '',
                 // format: 'yyyy',
