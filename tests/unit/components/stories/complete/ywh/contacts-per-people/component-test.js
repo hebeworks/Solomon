@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('stories/complete/ywh/calls-per-people', {
+moduleForComponent('stories/complete/ywh/contacts-per-people', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });

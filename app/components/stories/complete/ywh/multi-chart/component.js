@@ -96,9 +96,6 @@ export default DefaultStory.extend({
     },
     
     detectScreenSize: function() {
-        console.log('screen size changed');
-        console.log(this.get('storyConfig.width'));
-        
         if (Modernizr.mq('only screen and (min-width: 680px')) {            
             this.set('storyConfig.width', 4);
             this.set('storyConfig.height', 1);
