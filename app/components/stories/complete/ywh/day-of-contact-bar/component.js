@@ -29,7 +29,7 @@ export default DefaultStory.extend({
             var rows = [];
             var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
             var contactDays = _.countBy(ywData, function (obj) {
-                return moment(new Date(obj["Creation Date"])).format('ddd');
+                return moment(new Date(obj["creationDate"])).format('ddd');
             });
             days.forEach(function(prop) {
                 rows.push([prop, contactDays[prop]]);

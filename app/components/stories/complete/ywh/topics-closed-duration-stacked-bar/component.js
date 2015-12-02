@@ -33,12 +33,12 @@ export default DefaultStory.extend({
 
         if (!Ember.isEmpty(data)) {
             data.forEach(function (item) {
-                item.durationMins = moment.duration(item.Duration).minutes();
+                item.durationMins = moment.duration(item.duration).minutes();
             });
             
             // group them by needs
             var grouped = _.groupBy(data, function (obj) {
-                return obj.Need;
+                return obj.need;
             });
 
 

@@ -56,7 +56,7 @@ export default DefaultStory.extend({
             
             ywData.forEach(function (item) {
                 reasons.push(
-                    item['Need']
+                    item['need']
                 );
             });
             

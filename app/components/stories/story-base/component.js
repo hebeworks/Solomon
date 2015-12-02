@@ -8,11 +8,11 @@ export default Ember.Component.extend({
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     storyModel: Ember.computed.alias('target.storyModel'),
     classNames: 'js-story',
-    
+
     support3d: '',
     storyFlip: 'not-flipped',
-    
-    loaded: Ember.computed('target.loaded', function() {
+
+    loaded: Ember.computed('target.loaded', function () {
         if (this.get('target.loaded')) {
             return this.get('target.loaded');
         } else {
@@ -34,13 +34,25 @@ export default Ember.Component.extend({
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
-    
-    storyConfig: Ember.computed('target.storyConfig', function () {
-        var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
-        var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
-        Ember.merge(defaultConfig, targetConfig);
-        return defaultConfig;
-    }),
+
+    storyConfig: Ember.computed(
+        'target.storyConfig',
+        'target.storyConfig.color',
+        'target.storyConfig.width',
+        'target.storyConfig.height',
+        'target.storyConfig.headerImage',
+        'target.storyConfig.title',
+        'target.storyConfig.subTitle',
+        'target.storyConfig.description',
+        'target.storyConfig.license',
+        'target.storyConfig.slider',
+        'target.storyConfig.scroll',
+        function () {
+            var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
+            var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
+            Ember.merge(defaultConfig, targetConfig);
+            return defaultConfig;
+        }),
 
     // Turn the provided height and width settings
     // into the attribute values we need.

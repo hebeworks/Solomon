@@ -46,7 +46,7 @@ export default DefaultStory.extend({
             var chartData = [['Need', 'Count']];
             if (!Ember.isEmpty(ywData)) {
                 var grouped = _.groupBy(ywData, function (obj) {
-                    return obj.Need; 
+                    return obj.need; 
                     // Need
                     // Need Type
                     // Need Group
@@ -59,7 +59,7 @@ export default DefaultStory.extend({
                 var index = 0;
                 sorted.forEach(function (obj) {
                     if(index < itemsToShow) {
-                        chartData.push([obj[0].Need, obj.length]);
+                        chartData.push([obj[0].need, obj.length]);
                     }
                     index ++;
                 });
