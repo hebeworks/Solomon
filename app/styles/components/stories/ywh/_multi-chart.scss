@@ -1,6 +1,6 @@
 [spc-multi-chart_inner] {
     font-size: 0; // remove whitespace
-    margin: 0 rem(-$spacing-base * 2.5);
+    margin: rem(-$spacing-base * 2.5) rem(-$spacing-base * 2.5) 0;
 }
 
     [spc-multi-chart_item] {
@@ -10,5 +10,5 @@
         overflow: hidden;
         display: inline-block;
         vertical-align: top;
-        margin: 0 rem($spacing-base * 2.5);
+        margin: rem($spacing-base * 2.5);
     }
