@@ -33,7 +33,7 @@ export default DefaultStory.extend({
             var calls = [],
                 times = ['Morning', 'Afternoon', 'Evening', 'Night'],
                 callHours = _.countBy(ywData, function(item) {
-                    var hour = moment(new Date(item['Start Call'])).format('HH');
+                    var hour = moment(new Date(item['startCall'])).format('HH');
                     
                     // morning
                     if (hour >= 6 && hour < 12) {

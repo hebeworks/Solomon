@@ -57,17 +57,12 @@ export default DefaultStory.extend({
             var contacts = [],
                 mapLat = 0,
                 mapLng = 0,
-                itemCount = 0;
+                itemCount = ywData.length;
 
-            ywData.forEach(function (item) {
-                mapLat = mapLat + item.lat;
-                mapLng = mapLng + item.lng;
-                itemCount = itemCount + 1;
-
-                contacts.push([
-                    item.lat,
-                    item.lng
-                ]);
+            contacts = _.map(ywData,function(item){
+                if(!isNaN(item.lat)) { mapLat += item.lat; }
+                if(!isNaN(item.lon)) { mapLng += item.lon; }
+                return [item.lat,item.lon];
             });
 
             var finalMapLat = mapLat / itemCount,
