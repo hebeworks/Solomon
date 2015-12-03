@@ -41,20 +41,27 @@ export default DefaultStory.extend({
                 return obj.need;
             });
 
+            grouped = _.sortBy(grouped, function (obj) {
+                return obj.length;
+            });
 
+            var count = 0;
             for (var prop in grouped) {
-                var items = grouped[prop];
-                var under30 = _.countBy(items, function (item) {
-                    return item.durationMins < 30;
-                });
-                var under60 = _.countBy(items, function (item) {
-                    return (item.durationMins >= 30 && item.durationMins < 60);
-                });
-                var over60 = _.countBy(items, function (item) {
-                    return (item.durationMins >= 60);
-                });
-                // var open = ;
-                chartData.push([prop, under30.true || 0, under60.true || 0, over60.true || 0]);
+                if (count < 5) {
+                    var items = grouped[prop];
+                    var under30 = _.countBy(items, function (item) {
+                        return item.durationMins < 30;
+                    });
+                    var under60 = _.countBy(items, function (item) {
+                        return (item.durationMins >= 30 && item.durationMins < 60);
+                    });
+                    var over60 = _.countBy(items, function (item) {
+                        return (item.durationMins >= 60);
+                    });
+                    // var open = ;
+                    chartData.push([prop, under30.true || 0, under60.true || 0, over60.true || 0]);
+                }
+                count++;
             }
 
 

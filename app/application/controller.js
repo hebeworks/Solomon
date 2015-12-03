@@ -3,8 +3,10 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
-	modalComponent: 'ui/login-form',
-	solomoncConfig: null,
+	modalOptions: {
+		component: 'ui/login-form'
+	},
+	solomonConfig: null,
 
 	appController: function () {
         return this;
@@ -93,21 +95,45 @@ export default Ember.Controller.extend({
         });
     },
 
-	showModal: function (component, title, intro, preventCanvasBlur) {
-		this.set('modalComponent', component);
-		if (!Ember.isEmpty(title)) {
-			this.set('modalTitle', title);
-		}
-		if(preventCanvasBlur != true) {
+	showModal: function (component, options) {
+		var modalOptions = _.extend(
+			{ // default modal options
+				preventCanvasBlur: true,
+				effect: 'md-effect-1',
+				title: '',
+				component: component,
+				intro: '',
+				canvasWasBlurred: this.get('canvasBlurred')
+			},
+			options
+			);
+		this.set('modalOptions', modalOptions);
+		this.set('modalOptions.isVisible', true);
+
+		if (this.get('modalOptions.preventCanvasBlur') == false) {
 			this.set('canvasBlurred', true);
 		}
-		this.set('modalIntro', intro);
-		this.set('isModalVisible', true);
+		
+		// this.set('modalEffect', modalOptions.modalEffect);
+		// this.set('modalComponent', component);
+		// if (!Ember.isEmpty(title)) {
+		// 	this.set('modalTitle', title);
+		// }
+		// if (modalOptions.preventCanvasBlur != false) {
+		// 	this.set('canvasBlurred', true);
+		// }
+		// this.set('modalIntro', intro);
+		// this.set('isModalVisible', true);
 	},
 
 	hideModal: function () {
-		this.set('modalComponent', '');
-		this.set('isModalVisible', false);
+		if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
+			this.set('canvasBlurred', false);
+		}
+		this.setProperties({
+			'modalOptions.component': null,
+			'modalOptions.isVisible': false
+		});
 	},
 
 	showTutorialTimer: null,

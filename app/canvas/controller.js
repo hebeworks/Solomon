@@ -86,7 +86,7 @@ export default Ember.Controller.extend({
             } else {
                 resolve();
             }
-            if(Ember.typeOf(complete) == 'function') {
+            if (Ember.typeOf(complete) == 'function') {
                 complete();
             }
         });
@@ -100,21 +100,22 @@ export default Ember.Controller.extend({
                     if (story != null && obj.get('model') != null) {
                         var model = obj.get('model');
                         var stories = model.get('stories');
-                        story.set('id',hebeutils.guid());
+                        story.set('id', hebeutils.guid());
                         stories.pushObject(story);
                         model.save();
                         obj.get('appController').closeBottomDrawer();
                     }
                 },
                 function (err) {
+                    var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
                     if (err.notLoggedIn == true) {
-                        var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                        obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
+                        obj.get('appController').showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
                     } else if (err.hasPermissions == false) {
-                        obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
+                        intro = 'Sorry, you can only edit canvasses that belong to you';
+                        obj.get('appController').showModal('ui/modals/duplicate-canvas', { title: 'Log in / Sign up', intro: intro });
                     }
                 }
-            );
+                );
     },
 
     removeAStory: function (story) {
@@ -130,14 +131,15 @@ export default Ember.Controller.extend({
                         obj.get('appController').closeBottomDrawer();
                     },
                     function (err) {
+                        var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
                         if (err.notLoggedIn == true) {
-                            var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                            obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
+                            obj.get('appController').showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
                         } else if (err.hasPermissions == false) {
-                            obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
+                            intro = 'Sorry, you can only edit canvasses that belong to you';
+                            obj.get('appController').showModal('ui/modals/duplicate-canvas', { title: 'Log in / Sign up', intro: intro });
                         }
                     }
-                );
+                    );
         }
     },
 
@@ -232,6 +234,6 @@ export default Ember.Controller.extend({
                     //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     // }
                 }
-            );
+                );
     }
 });

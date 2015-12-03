@@ -1,0 +1,20 @@
+{{#stories/story-base}}
+    <table spc-yw-tc_list>
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Media Types</th>
+                <th>No. contacts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each items as |item|}}
+                <tr>
+                    <td>{{item.index}}</td>
+                    <td><span spc-yw-tc_property>{{item.value}}</span></td>
+                    <td><span spc-yw-tc_count>{{item.count}}</span></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/stories/story-base}}

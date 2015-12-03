@@ -60,7 +60,7 @@ export default Ember.Object.extend({
 
 	loadYWZones: function () {
 		var _this = this;
-		var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=waterSupplySystem';
+		var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=waterSupplySystem&sortfield=waterSupplyZone';
 		this.getData(url, true).then(function (data) {
 			var zones = [];
 			if (!Ember.isEmpty(data)) {

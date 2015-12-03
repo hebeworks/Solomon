@@ -24,7 +24,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // Actions 
     actions: {
         showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', 'Log in / Sign up', intro);
+            this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
         },
 
         mailToFeedback: function () {
@@ -42,9 +42,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         closeTutorial: function () {
             this.controller.closeTutorial();
         },
-        
-        showCanvasSettings: function() {
-            this.controller.showCanvasSettings();            
+
+        showCanvasSettings: function () {
+            this.controller.showCanvasSettings();
         },
 
         hideModal: function () {
