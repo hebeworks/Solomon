@@ -5,6 +5,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Top DMAs in Zone', // (Provide a story title)
         subTitle: 'Most contacted DMAs in this System', // (Provide a story subtitle)
+        viewOnly: true
     },
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
     onDMASReceivedAttrs: function () {

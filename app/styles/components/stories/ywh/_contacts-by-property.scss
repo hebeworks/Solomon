@@ -2,12 +2,16 @@
     width: 100%;
     font-size: rem(12px);
     
+    tr {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+    
         th {
             padding: rem(4px);
         }
         
         td {
-            padding: rem(4px);
+            padding: rem(8px) rem(4px);
         }
             
             [spc-yw-tc_property],
