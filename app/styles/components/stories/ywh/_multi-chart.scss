@@ -16,9 +16,8 @@
         [class*="svg"] {
             height: 40px;
             margin-bottom: 10px;
-            // position: absolute;
-            left: 50%;
-            // @include transform(translateX(-50%));
+            display: block;
+            text-align: center;
             
             svg {
                 width: auto;
@@ -28,9 +27,6 @@
     }
     
         [spc-multi-chart_label] {
-            // position: absolute;
-            top: 50%;
-            // @include transform(translateY(-50%));
             width: 100%;
             text-align: center;
         }
