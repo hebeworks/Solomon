@@ -25,28 +25,27 @@
             {{stories/complete/info-centre-visitor-numbers}}
             {{stories/complete/leeds-air-quality-trends}}
             {{stories/complete/market-occupancy}}
-            
-            
-            
             --}}
         {{!-- END DEVELOPMENT STORIES --}}
+        
+        {{!-- YORKSHIRE WATER HACK STORIES 
+            {{stories/complete/ywh/heat-map}}
             {{stories/complete/ywh/area-info}}
             {{stories/complete/ywh/top-dmas-by-volume}}
+            {{stories/complete/ywh/total-call-stats}}
             {{stories/complete/ywh/contact-media-types}}
-            
-            
             {{stories/complete/ywh/day-of-contact-bar}}
             {{stories/complete/ywh/multi-chart}}
             {{stories/complete/ywh/call-time-trends}}
             {{stories/complete/ywh/topics-closed-duration-stacked-bar}}
-            {{stories/complete/ywh/contacts-by-property}}
-            {{stories/complete/ywh/heat-map}}
             {{stories/complete/ywh/topic-time-pie}}
-            {{!-- {{stories/complete/ywh/total-monthly-calls-year-rag}} --}}
-            {{!-- stories/complete/ywh/current-zone-total-rag --}}
-            {{stories/complete/ywh/total-call-stats}}
+            {{stories/complete/ywh/contacts-by-property}}
+        --}}
+        {{!-- UNUSED YORKSHIRE WATER HACK STORIES 
+            {{stories/complete/ywh/total-monthly-calls-year-rag}}
+            {{stories/complete/ywh/current-zone-total-rag}}
+        --}}
         
-
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -56,7 +55,7 @@
         {{else}}
             <p>Sorry we couldn't load this canvas. Please try another from the Gallery.</p>
         {{/if}}
-        
+{{!-- 
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">
@@ -65,6 +64,7 @@
                 </div>
             </div>
         {{/ui/generic-element}}
+--}}        
 
         </div>
     </div>

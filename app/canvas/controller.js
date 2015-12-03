@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
 
     navItems: function () {
         var items = [
-            // { title: 'Toolbox', action: 'toggleToolbox' },
+            { title: 'Toolbox', action: 'toggleToolbox' },
             // { title: 'Toolbox' },//, action: 'toggleSubNav' },
             { title: 'Filter', action: 'showCanvasSettings' },
             // { title: 'Gallery', action: 'gotoRoute', route: 'gallery' }

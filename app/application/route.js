@@ -56,6 +56,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             if (!Ember.isEmpty(model)) {
                 this.controller.transitionTo(route, (model || null));
             } else {
+                // todo: check if this is the same route to prevent it trying to transition and going blank
                 this.controller.transitionTo(route);
             }
         },

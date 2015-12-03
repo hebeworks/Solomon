@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 	},
 
 	isAdmin: function () {
-		var adminHosts = ['localhost', '127.0.0.1', '0.0.0.0', 'testing.mysolomon.co.uk', 'preview.mysolomon.co.uk', 'preview.leeds.mysolomon.co.uk'];
+		var adminHosts = ['localhost', '127.0.0.1', '0.0.0.0', 'testing.mysolomon.co.uk', 'preview.mysolomon.co.uk','yorkshirewater.mysolomon.co.uk', 'preview.leeds.mysolomon.co.uk'];
 		var allowedAdminUsers = ['Hebe', 'Nate'];
 		var hostname = window.location.hostname;
 
