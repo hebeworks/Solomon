@@ -15,6 +15,7 @@ export default DefaultStory.extend({
     
     canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
     zoneTitle: '',
+    datePeriod: '',
     
     onInsertElement: function () {
         this.get('appSettings.canvasSettings');
@@ -25,9 +26,12 @@ export default DefaultStory.extend({
         var canvasSettings = this.get('appSettings.canvasSettings');
         
         if (!Ember.isEmpty(canvasSettings)) {
+            var dateString = 'from ' + moment(canvasSettings.startDate).format('Do MMM YY') + ' to ' + moment(canvasSettings.endDate).format('Do MMM YY')
+            this.set('datePeriod', dateString);
+            
             var selectedZone = canvasSettings.selectedZone;
             if (!Ember.isEmpty(selectedZone)) {
-                this.set('zoneTitle', selectedZone.text);
+                this.set('zoneTitle', selectedZone.text.toLowerCase());
             }
         }
     }.observes('canvasSettings.ywData')

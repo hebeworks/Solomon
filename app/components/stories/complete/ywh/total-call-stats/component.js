@@ -33,7 +33,8 @@ export default DefaultStory.extend({
     previousYear: '2014',
     currentYearContacts: 12000,
     previousYearContacts: 15000,
-    ragRatingColour: 'red', // lime (green) for below, red for same or above
+    threshold: 2000,
+    ragRatingColour: 'lime', // lime (green) for below, amber for same or above
     ragRatingText: '',
     ragRatingPercentage: '',
     topContacts: [],
@@ -110,6 +111,14 @@ export default DefaultStory.extend({
 
             var dateString = 'from ' + moment(appSettings.startDate).format('Do MMM YY') + ' to ' + moment(appSettings.endDate).format('Do MMM YY')
             this.set('period', dateString);
+            
+            if (count < this.get('threshold')) {
+                // alert('Lower contacts');
+                this.set('ragRatingColour', 'lime');
+            } else {
+                // alert('Higher contacts');
+                this.set('ragRatingColour', 'amber');
+            }
 
             setTimeout(function () {
                 _this.set('loaded', true);
