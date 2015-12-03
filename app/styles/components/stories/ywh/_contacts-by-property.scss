@@ -13,19 +13,20 @@
             [spc-yw-tc_property],
             [spc-yw-tc_count] {
                 display: inline-block;
-                padding: rem(4px) rem(8px);
-                color: #fff;
                 border-radius: rem(3px);
                 width: 100%;
             }
             
             [spc-yw-tc_property] {
-                background-color: transparentize($blue, .3);
                 width: rem(150px);
+                border: 1px solid rgba(0,0,0,.3);
+                padding: rem(3px) rem(7px) rem(2px);
             }
             
             [spc-yw-tc_count] {
-                background-color: $blue;
+                color: #fff;
+                background-color: rgb(70,142,229);
                 text-align: right;
+                padding: rem(4px) rem(8px) rem(3px);
             }
 }
