@@ -11,6 +11,8 @@
         display: inline-block;
         vertical-align: top;
         margin: rem($spacing-base * 2.5);
+        margin-top: 30px;
+        margin-bottom: -30px;
         position: relative;
         
         [class*="svg"] {
