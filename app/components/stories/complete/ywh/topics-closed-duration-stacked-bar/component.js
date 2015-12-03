@@ -77,7 +77,8 @@ export default DefaultStory.extend({
     
             var options = {
                 hAxis: {
-                    textPosition: 'none'
+                    textPosition: 'none',
+                    direction: -1
                 },
                 vAxis: {
                     baseline: 0
@@ -97,6 +98,14 @@ export default DefaultStory.extend({
                 isStacked: true,
                 tooltip: {
                     isHtml: true
+                },
+                series: {
+                    0: {
+                        color: 'rgb(70,142,229)'
+                    },
+                    1: {
+                        color: 'rgb(89,172,0)'
+                    }
                 }
             };
 
