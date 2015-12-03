@@ -2,8 +2,14 @@
 
     <div spc-multi-chart_inner cpn-clearfix>
         <div spc-multi-chart_item>
-            <h2 cpn-story_title cpn-margin="bottom-half">Zone Name</h2>
+            <h2 cpn-story_title cpn-margin="bottom-half">Water System</h2>
             <p>
+                <span cpn-font="italic" cpn-display="block">{{appSettings.canvasSettings.selectedZone.text}}</span>
+                {{!-- 
+                <span cpn-display="block">[feed name]</span>
+                --}}
+            </p>
+{{!--             <p>
                 <span cpn-font="italic" cpn-display="block">Primary Feed</span>
                 <span cpn-display="block">[feed name]</span>
             </p>
@@ -11,15 +17,16 @@
                 <span cpn-font="italic" cpn-display="block">Secondary Feed</span>
                 <span cpn-display="block">[feed name]</span>
             </p>
+--}}
         </div>
         <div spc-multi-chart_item>
             <p>
                 <span cpn-font-weight="bold" cpn-display="block">No. Properties</span>
-                <span cpn-display="block">{{numberProperties}}</span>
+                <span cpn-display="block">{{summed.propertiesTotal}}</span>
             </p>
             <p>
                 <span cpn-font-weight="bold" cpn-display="block">No. People</span>
-                <span cpn-display="block">{{numberPeople}}</span>
+                <span cpn-display="block">{{summed.population}}</span>
             </p>
         </div>
         <div spc-multi-chart_item>
