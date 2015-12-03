@@ -11,4 +11,26 @@
         display: inline-block;
         vertical-align: top;
         margin: rem($spacing-base * 2.5);
+        position: relative;
+        
+        [class*="svg"] {
+            height: 40px;
+            margin-bottom: 10px;
+            // position: absolute;
+            left: 50%;
+            // @include transform(translateX(-50%));
+            
+            svg {
+                width: auto;
+                height: 100%;
+            }
+        }
     }
+    
+        [spc-multi-chart_label] {
+            // position: absolute;
+            top: 50%;
+            // @include transform(translateY(-50%));
+            width: 100%;
+            text-align: center;
+        }
