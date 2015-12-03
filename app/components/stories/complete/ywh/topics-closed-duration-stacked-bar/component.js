@@ -26,7 +26,7 @@ export default DefaultStory.extend({
         var data = this.get('ywData');
 
         var chartData = [
-            ['Topic', '< 30m', '< 1hr', '> 1hr'] //, 'open'],
+            ['Topic', '30m', '1hr', '+1hr'] //, 'open'],
             // ['Topic 1', 34, 5, 12, 7],
             // ['Topic 2', 34, 5, 12, 7],
         ];
