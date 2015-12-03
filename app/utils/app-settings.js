@@ -16,6 +16,12 @@ export default Ember.Object.extend({
 	},
 
 	config: function (hostname) {
+        // Temporary settings
+        return {
+            name:'yorkshire-water',
+            title: 'Yorkshire Water'
+        }
+        
 		var solomonConfig = {};
 		switch (hostname) {
 			default:
