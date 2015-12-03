@@ -14,107 +14,181 @@ export default DefaultStory.extend({
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true
     },
-    
+
     numberProperties: 0,
     numberPeople: 0,
-    
+
     onInsertElement: function () {
         var _this = this;
-        
+
         this.set('loaded', true);
-        
+
         this.detectScreenSize();
         this.$(window).on('resize', function () {
             _this.detectScreenSize();
         });
+        this.get('appSettings.canvasSettings.selectedZone');
+        
     }.on('didInsertElement'),
+
 
     loadGoogleAPIs: function () {
         // Draw the chart when the APIs have loaded
         google.setOnLoadCallback(
-            this.drawChart1(),
-            this.drawChart2()
-        );
+        // this.drawChart1(),
+        // this.drawChart2()
+            );
     }.observes('loaded'),
-    
-    drawChart1: function() {
-        var data = google.visualization.arrayToDataTable([
-            ['Account Type', 'Number of Properties'],
-            ['Metered', 12000],
-            ['Unmetered', 21500]
-        ]);
 
-        var options = {
-            chartArea: {
-                width: '86%',
-                height: '80%',
-                top: '13%',
-                left: '7%'
-            },
-            width: 120,
-            height: 120,
-            // title: 'Metered/Unmetered',
-            titleTextStyle: {
-                fontSize: 9
-            },
-            legend: {
-                position: 'top'
-            },
-            slices: {
-                0: {
-                    color: 'rgb(89,172,0)'
-                },
-                1: {
-                    color: 'rgb(70,142,229)'
+test: function() {
+    
+},
+
+    sumProperties: function (arr, propertiesToSum) {
+        var results = {};
+        for (var i = 0; i < arr.length; i++) {
+            var element = arr[i];
+            for (var p = 0; p < propertiesToSum.length; p++) {
+                var prop = propertiesToSum[p];
+                if (!Ember.isEmpty(element[prop])) {
+                    if (results[prop] == null) {
+                        results[prop] = parseInt(element[prop]);
+                    } else {
+                        results[prop] += parseInt(element[prop]);
+                    }
                 }
-            },
-            pieHole: 0.8
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('multi-pie-1'));
-        chart.draw(data, options);
+            }
+        }
+        return results;
     },
-    
-    drawChart2: function() {
-        var data = google.visualization.arrayToDataTable([
-            ['Property Type', 'Number of Properties'],
-            ['Commercial', 7000],
-            ['Domestic', 53290]
-        ]);
 
-        var options = {
-            chartArea: {
-                width: '86%',
-                height: '80%',
-                top: '13%',
-                left: '7%'
-            },
-            width: 120,
-            height: 120,
-            // title: 'Commercial/Domestic',
-            titleTextStyle: {
-                fontSize: 9
-            },
-            legend: {
-                position: 'top'
-            },
-            slices: {
-                0: {
-                    color: 'rgb(89,172,0)'
+    loadData: function () {
+        var _this = this;
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/yw-zones?query=' + this.get('appSettings').encodeQuery({ waterSupplySystem: this.get('appSettings.canvasSettings.selectedZone.id') }))
+            .then(function (data) {
+                var propertiesToSum = [
+                    "propertiesMeteredDomestic",
+                    "propertiesMeteredCommercial",
+                    "propertiesNonMeteredDomestic",
+                    "propertiesNonMeteredCommercial",
+                    "population",
+                    "propertiesTotal",
+                    "propertiesMeteredTotal",
+                    "propertiesNonMeteredTotal"
+                ];
+
+                var summed = _this.sumProperties(data, propertiesToSum);
+                summed.population = summed.population;
+                _this.set('summed', summed);
+            });
+    }.observes('appSettings.canvasSettings.selectedZone'),
+
+
+
+
+    drawChart1: function () {
+        var summed = this.get('summed');
+        if (!Ember.isEmpty(summed.propertiesMeteredTotal)) {
+
+            var metered = summed.propertiesMeteredTotal;
+            var nonMetered = summed.propertiesNonMeteredTotal;
+
+            var arr = [
+                ['Account Type', 'Number of Properties'],
+                ['Metered', metered],
+                ['Unmetered', nonMetered]
+            ];
+            
+            // console.log(arr);
+
+            var data = google.visualization.arrayToDataTable(arr);
+            
+            var options = {
+                chartArea: {
+                    width: '86%',
+                    height: '80%',
+                    top: '13%',
+                    left: '7%'
                 },
-                1: {
-                    color: 'rgb(70,142,229)'
-                }
-            },
-            pieHole: 0.8
-        };
+                width: 120,
+                height: 120,
+                // title: 'Metered/Unmetered',
+                titleTextStyle: {
+                    fontSize: 9
+                },
+                legend: {
+                    position: 'top'
+                },
+                slices: {
+                    0: {
+                        color: 'rgb(89,172,0)'
+                    },
+                    1: {
+                        color: 'rgb(70,142,229)'
+                    }
+                },
+                pieHole: 0.8
+            };
 
-        var chart = new google.visualization.PieChart(document.getElementById('multi-pie-2'));
-        chart.draw(data, options);
-    },
-    
-    detectScreenSize: function() {
-        if (Modernizr.mq('only screen and (min-width: 680px')) {            
+            var chart = new google.visualization.PieChart(document.getElementById('multi-pie-1'));
+            chart.draw(data, options);
+        }
+    }.observes('summed'),
+
+
+    drawChart2: function () {
+        var summed = this.get('summed');
+        if (!Ember.isEmpty(summed.propertiesMeteredCommercial)) {
+
+            var commercial = (summed.propertiesMeteredCommercial + summed.propertiesNonMeteredCommercial);
+            var domestic = (summed.propertiesMeteredDomestic + summed.propertiesNonMeteredDomestic);
+
+            var arr = [
+                ['Property Type', 'Number of Properties'],
+                ['Commercial', commercial],
+                ['Domestic', domestic]
+            ];
+            
+            // console.log(arr);
+            
+            var data = google.visualization.arrayToDataTable(arr);
+
+
+            var options = {
+                chartArea: {
+                    width: '86%',
+                    height: '80%',
+                    top: '13%',
+                    left: '7%'
+                },
+                width: 120,
+                height: 120,
+                // title: 'Commercial/Domestic',
+                titleTextStyle: {
+                    fontSize: 9
+                },
+                legend: {
+                    position: 'top'
+                },
+                slices: {
+                    0: {
+                        color: 'rgb(89,172,0)'
+                    },
+                    1: {
+                        color: 'rgb(70,142,229)'
+                    }
+                },
+                pieHole: 0.8
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('multi-pie-2'));
+            chart.draw(data, options);
+        }
+
+    }.observes('summed'),
+
+    detectScreenSize: function () {
+        if (Modernizr.mq('only screen and (min-width: 680px')) {
             this.set('storyConfig.width', 4);
             this.set('storyConfig.height', 1);
         } else {

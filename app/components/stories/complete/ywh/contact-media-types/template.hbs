@@ -3,15 +3,15 @@
         <thead>
             <tr>
                 <th>&nbsp;</th>
-                <th>Media Types</th>
+                <th>Media Types.</th>
                 <th>No. contacts</th>
             </tr>
         </thead>
         <tbody>
             {{#each items as |item|}}
                 <tr>
-                    <td>{{item.index}}</td>
-                    <td><span spc-yw-tc_property>{{item.value}}</span></td>
+                    <td>{{item.position}}</td>
+                    <td><span spc-yw-tc_property>{{item.groupKey}}</span></td>
                     <td><span spc-yw-tc_count>{{item.count}}</span></td>
                 </tr>
             {{/each}}
