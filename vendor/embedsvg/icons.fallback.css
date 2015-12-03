@@ -62,6 +62,8 @@
 
 .svg-house-price-icon-terrace { background-image: url('png/house-price-icon-terrace.png'); background-repeat: no-repeat; }
 
+.svg-house { background-image: url('png/house.png'); background-repeat: no-repeat; }
+
 .svg-icon-add-canvas { background-image: url('png/icon-add-canvas.png'); background-repeat: no-repeat; }
 
 .svg-icon-add-story { background-image: url('png/icon-add-story.png'); background-repeat: no-repeat; }
@@ -141,6 +143,8 @@
 .svg-parking-fines-icon { background-image: url('png/parking-fines-icon.png'); background-repeat: no-repeat; }
 
 .svg-parking-icon { background-image: url('png/parking-icon.png'); background-repeat: no-repeat; }
+
+.svg-person { background-image: url('png/person.png'); background-repeat: no-repeat; }
 
 .svg-plus { background-image: url('png/plus.png'); background-repeat: no-repeat; }
 

@@ -3,8 +3,8 @@ import DefaultStory from './../../../story-types/default-story/component';
 
 export default DefaultStory.extend({
     storyConfig: {
-        title: 'Concentration of Contacts', // (Provide a story title)
-        subTitle: 'Heatmap of customer contacts for chosen DMA', // (Provide a story subtitle)
+        title: 'WQ Contacts Mapped by Zone', // (Provide a story title)
+        subTitle: 'A heat map of customer contacts', // (Provide a story subtitle)
         // author: '', (Provide the author of the story)
         
         // description: '', (Provide a longer description of the story)

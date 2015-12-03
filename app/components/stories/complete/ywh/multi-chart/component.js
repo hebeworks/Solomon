@@ -5,8 +5,8 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: '', // (Provide a story title)
-        subTitle: '', // (Provide a story subtitle)
+        title: 'WQ Contacts Zone Information', // (Provide a story title)
+        subTitle: 'Properties, population, meters and more', // (Provide a story subtitle)
         // color: 'lime', // (Set the story colour)
         width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         height: '2', // (Set the height of the story)

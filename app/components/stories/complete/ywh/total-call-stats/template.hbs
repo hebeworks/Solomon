@@ -1,5 +1,5 @@
 {{#stories/story-base}}
-    <h2 cpn-story_title cpn-margin="bottom">Top Contact Statistics</h2>
+    <h2 cpn-story_title cpn-margin="bottom">WQ Contact Statistics</h2>
     
     <div cpn-clearfix cpn-margin="bottom">
         {{!-- RAG tile --}}
@@ -15,7 +15,7 @@
                                     </div>
                                     <div>
                                         <p cpn-margin="bottom-none" spc-val_desc>
-                                            <span cpn-display="block" cpn-margin="bottom-half">Contacts from {{period}}</span>
+                                            <span cpn-display="block" cpn-margin="bottom-half">Contacts {{period}}</span>
                                             {{!-- <span spc-contacts-rating_text><span>{{ragRatingPercentage}}%</span> {{ragRatingText}}</span> --}}
                                         </p>
                                     </div>
@@ -29,7 +29,7 @@
         
         {{!-- Stat list --}}
         <div cpn-overflow="hidden">
-            <h3 spc-contacts-reasons_title cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Top Reasons</h3>
+            <h3 spc-contacts-reasons_title cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Primary Needs</h3>
             <ol spc-contacts-reasons_list cpn-margin="bottom-none">
                 {{#each topContacts}}
                     <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">{{this.value}}</li>

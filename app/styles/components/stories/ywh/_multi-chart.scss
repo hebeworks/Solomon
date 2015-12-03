@@ -11,4 +11,22 @@
         display: inline-block;
         vertical-align: top;
         margin: rem($spacing-base * 2.5);
+        position: relative;
+        
+        [class*="svg"] {
+            height: 40px;
+            margin-bottom: 10px;
+            display: block;
+            text-align: center;
+            
+            svg {
+                width: auto;
+                height: 100%;
+            }
+        }
     }
+    
+        [spc-multi-chart_label] {
+            width: 100%;
+            text-align: center;
+        }

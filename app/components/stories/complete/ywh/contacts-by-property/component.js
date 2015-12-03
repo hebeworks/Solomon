@@ -5,8 +5,8 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Contact Volume by Property', // (Provide a story title)
-        subTitle: 'Properties with the most contacts', // (Provide a story subtitle)
+        title: 'WQ Contacts Most Active Properties', // (Provide a story title)
+        subTitle: 'Which properties contact us the most?', // (Provide a story subtitle)
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true,
     },
