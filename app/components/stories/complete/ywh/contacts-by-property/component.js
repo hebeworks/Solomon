@@ -7,28 +7,9 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Contact Volume by Property', // (Provide a story title)
         subTitle: 'Properties with the most contacts', // (Provide a story subtitle)
-        // author: '', (Provide the author of the story)
-        
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
-        
-        color: 'dark-blue', // (Set the story colour)
-        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true,
     },
-    
-    // loaded: false, // (Tell other elements that this story has loaded)
-    //
-    
-    // Add your story-specific code here
-    data: null,
     
     topContacts: [],
     
