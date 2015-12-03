@@ -5,6 +5,7 @@ export default BaseRAGTile.extend({
     onYWHInit: function () {
         this.setProperties({
             ragRating: 'red',
+            tileShade: 'light',
             tileValue: 148,
             tileDesc1: 'Total calls in Nov',
             tileDesc2: 'UP 4% on 2014',

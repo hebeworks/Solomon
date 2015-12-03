@@ -59,7 +59,16 @@ export default DefaultStory.extend({
             },
             legend: {
                 position: 'top'
-            }
+            },
+            slices: {
+                0: {
+                    color: 'rgb(89,172,0)'
+                },
+                1: {
+                    color: 'rgb(70,142,229)'
+                }
+            },
+            pieHole: 0.8
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('multi-pie-1'));
@@ -88,7 +97,16 @@ export default DefaultStory.extend({
             },
             legend: {
                 position: 'top'
-            }
+            },
+            slices: {
+                0: {
+                    color: 'rgb(89,172,0)'
+                },
+                1: {
+                    color: 'rgb(70,142,229)'
+                }
+            },
+            pieHole: 0.8
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('multi-pie-2'));
@@ -96,9 +114,6 @@ export default DefaultStory.extend({
     },
     
     detectScreenSize: function() {
-        console.log('screen size changed');
-        console.log(this.get('storyConfig.width'));
-        
         if (Modernizr.mq('only screen and (min-width: 680px')) {            
             this.set('storyConfig.width', 4);
             this.set('storyConfig.height', 1);

@@ -159,16 +159,18 @@ export default DefaultStory.extend({
         ]);
 
         var options = {
+            title: 'Annual Trend',
+            titlePosition: 'out',
             titleTextStyle: {
                 bold: true,
                 fontSize: 14
             },
-            width: 255,
+            width: 270,
             height: 93,
             chartArea: {
-                width: 245,
-                height: 83,
-                top: 5,
+                width: 260,
+                height: 53,
+                top: 25,
                 left: 5
             },
             legend: {
@@ -177,13 +179,9 @@ export default DefaultStory.extend({
             pointSize: 0,
             hAxis: {
                 title: '',
-                // format: 'yyyy',
+                format: 'yyyy',
                 gridlines: {
                     count: -1,
-                    color: 'transparent'
-                },
-                textPosition: 'none',
-                textStyle: {
                     color: 'transparent'
                 }
             },
@@ -195,7 +193,12 @@ export default DefaultStory.extend({
             },
             selectionMode: 'multiple',
             tooltip: {
-                isHtml: true
+                trigger: 'none'
+            },
+            series: {
+                0: {
+                    color: 'rgb(70,142,229)'
+                }
             }
         };
 
