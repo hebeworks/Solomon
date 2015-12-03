@@ -3,8 +3,8 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 
 export default DefaultStory.extend({
     storyConfig: {
-        title: 'Top DMAs in Zone', // (Provide a story title)
-        subTitle: 'Most contacted DMAs in this System', // (Provide a story subtitle)
+        title: 'WQ Contacts Most Active DMAs', // (Provide a story title)
+        subTitle: 'Which DMAs produce the most contacts?', // (Provide a story subtitle)
         viewOnly: true
     },
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),

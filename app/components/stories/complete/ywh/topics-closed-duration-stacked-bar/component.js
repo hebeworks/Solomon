@@ -3,8 +3,8 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 
 export default DefaultStory.extend({
     storyConfig: {
-        title: 'Top Topic Duration',
-        subTitle: 'Closed duration by topic',
+        title: 'WQ Contacts Closed on Contact',
+        subTitle: 'Which needs are met in under an hour?',
         scroll: false,
         viewOnly: true
     },

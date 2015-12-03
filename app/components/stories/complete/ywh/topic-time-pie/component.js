@@ -6,8 +6,8 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Top 5 Topics by Volume', // (Provide a story title)
-        subTitle: 'As a percentage of total contacts', // (Provide a story subtitle)
+        title: 'WQ Contacts by Need', // (Provide a story title)
+        subTitle: 'What are people contacting us about?', // (Provide a story subtitle)
         // author: '', (Provide the author of the story)
         
         // description: '', (Provide a longer description of the story)

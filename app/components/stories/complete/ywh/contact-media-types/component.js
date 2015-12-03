@@ -3,8 +3,8 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 
 export default DefaultStory.extend({
     storyConfig: {
-        title: 'Contact Volume by Type', // (Provide a story title)
-        subTitle: 'Most common contact media types', // (Provide a story subtitle)
+        title: 'WQ Contacts by Type', // (Provide a story title)
+        subTitle: 'How are people contacting us?', // (Provide a story subtitle)
         viewOnly: true
     },
     items: [],

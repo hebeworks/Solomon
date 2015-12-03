@@ -6,7 +6,7 @@ export default BaseRAGTile.extend({
             ragRating: 'red',
             tileShade: 'light',
             // tileValue: '134',
-            tileDesc1: 'contacts per 1000 people',
+            tileDesc1: 'contacts per 1,000 properties',
             // tileDesc2: '',
         });
     }.on('init'),
@@ -19,10 +19,10 @@ export default BaseRAGTile.extend({
             
         if (!Ember.isEmpty(ywData)) {
             var numberContacts = ywData.length,
-                numberPeople = 10000, // needs real zone number
-                contactsPerPeople = (numberContacts / 1000) / (numberPeople / 1000);
+                numberProperty = 10000, // needs real zone number
+                contactsPerProperty = (numberContacts / 1000) / (numberProperty / 1000);
             
-            this.set('tileValue', contactsPerPeople.toFixed(2));
+            this.set('tileValue', contactsPerProperty.toFixed(2));
         }
     }.observes('ywData')
 });

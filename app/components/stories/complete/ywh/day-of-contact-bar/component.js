@@ -3,8 +3,8 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 
 export default DefaultStory.extend({
     storyConfig: {
-        title: 'Contact Days', // (Provide a story title)
-        subTitle: 'Days of the week by contact volume', // (Provide a story subtitle)
+        title: 'WQ Contacts by Week Day', // (Provide a story title)
+        subTitle: 'Which week days are most active?', // (Provide a story subtitle)
         viewOnly: true,
         scroll: false
     },
