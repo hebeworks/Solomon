@@ -91,6 +91,11 @@ export default DefaultStory.extend({
                 },
                 tooltip: {
                     isHtml: true
+                },
+                series: {
+                    0: {
+                        color: 'rgb(70,142,229)'
+                    }
                 }
             };
 
