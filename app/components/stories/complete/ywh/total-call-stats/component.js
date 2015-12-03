@@ -194,6 +194,11 @@ export default DefaultStory.extend({
             selectionMode: 'multiple',
             tooltip: {
                 trigger: 'none'
+            },
+            series: {
+                0: {
+                    color: 'rgb(70,142,229)'
+                }
             }
         };
 
