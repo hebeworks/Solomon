@@ -183,10 +183,10 @@ export default DefaultStory.extend({
                 width: 270,
                 height: 93,
                 chartArea: {
-                    width: 260,
+                    width: 250,
                     height: 53,
                     top: 25,
-                    left: 5
+                    left: 10
                 },
                 legend: {
                     position: 'none'
@@ -196,7 +196,7 @@ export default DefaultStory.extend({
                     title: '',
                     format: 'yyyy',
                     gridlines: {
-                        count: -1,
+                        count: 6,
                         color: 'transparent'
                     }
                 },
@@ -208,7 +208,7 @@ export default DefaultStory.extend({
                 },
                 selectionMode: 'multiple',
                 tooltip: {
-                    trigger: 'none'
+                    trigger: 'both',
                 },
                 series: {
                     0: {
