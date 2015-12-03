@@ -54,57 +54,8 @@ export default DefaultStory.extend({
             appSettings = this.get('appSettings.canvasSettings');
 
         if (!Ember.isEmpty(ywData)) {
-            var reasons = [];
-
-            ywData.forEach(function (item) {
-                reasons.push(
-                    item['need']
-                    );
-            });
-            
-            // Group repeated contacts together into same postcode
-            function compressArray(original) {
-
-                var compressed = [];
-                // make a copy of the input array
-                var copy = original.slice(0);
-             
-                // first loop goes over every element
-                for (var i = 0; i < original.length; i++) {
-
-                    var myCount = 0;    
-                    // loop over every element in the copy and see if it's the same
-                    for (var w = 0; w < copy.length; w++) {
-                        if (original[i] == copy[w]) {
-                            // increase amount of times duplicate is found
-                            myCount++;
-                            // sets item to undefined
-                            delete copy[w];
-                        }
-                    }
-
-                    if (myCount > 0) {
-                        var a = new Object();
-                        a.value = original[i];
-                        a.count = myCount;
-                        compressed.push(a);
-                    }
-                }
-
-                return compressed;
-            };
-
-            var countedReasons = compressArray(reasons);
-            
-            // Put the postcodes in descending numeric order
-            countedReasons.sort(function (a, b) {
-                return parseFloat(a.count) - parseFloat(b.count);
-            }).reverse();
-            
-            // Show only the top 3 reasons
-            var topReasons = countedReasons.slice(0, 3);
-
-            _this.set('topContacts', topReasons);
+            var primaryNeeds = this.get('appSettings').groupSortCount(ywData,'need',4);
+            _this.set('primaryNeeds', primaryNeeds);
 
             var count = this.get('appSettings.canvasSettings.ywData.length');
             this.set('periodContacts', count);

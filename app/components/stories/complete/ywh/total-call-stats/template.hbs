@@ -31,8 +31,8 @@
         <div cpn-overflow="hidden">
             <h3 spc-contacts-reasons_title cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">Primary Needs</h3>
             <ol spc-contacts-reasons_list cpn-margin="bottom-none">
-                {{#each topContacts}}
-                    <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">{{this.value}}</li>
+                {{#each primaryNeeds as |need|}}
+                    <li cpn-divide="bottom solid faded-dark" cpn-padding="bottom-half" cpn-margin="bottom-half">{{need.groupKey}}</li>
                 {{/each}}
             </ol>
         </div>
