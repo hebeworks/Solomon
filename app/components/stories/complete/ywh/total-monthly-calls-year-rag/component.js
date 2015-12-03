@@ -35,8 +35,8 @@ export default BaseRAGTile.extend({
     // onFilter: function () {
     //     var _this = this;
     //     var uri = this.get('appSettings.hebeNodeAPI') + '/yw-contact-data?query='
-    //         + this.get('solomonUtils').encodeQuery(this.get('canvasSettings.ywQuery'))
-    //         // + this.get('solomonUtils').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
+    //         + this.get('appSettings').encodeQuery(this.get('canvasSettings.ywQuery'))
+    //         // + this.get('appSettings').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
     //         + '&count=true'
     //         + '&limit=-1'
     //         ;

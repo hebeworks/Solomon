@@ -8,11 +8,11 @@
             </tr>
         </thead>
         <tbody>
-            {{#each topContacts as |contact|}}
+            {{#each items as |item|}}
                 <tr>
-                    <td>{{contact.index}}</td>
-                    <td><span spc-yw-tc_property>{{contact.value}}</span></td>
-                    <td><span spc-yw-tc_count>{{contact.count}}</span></td>
+                    <td>{{item.position}}</td>
+                    <td><span spc-yw-tc_property>{{item.groupKey}}</span></td>
+                    <td><span spc-yw-tc_count>{{item.count}}</span></td>
                 </tr>
             {{/each}}
         </tbody>

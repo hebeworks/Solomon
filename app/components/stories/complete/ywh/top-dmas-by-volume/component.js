@@ -12,29 +12,9 @@ export default DefaultStory.extend({
     }.on('didReceiveAttrs'),
     onYWData: function () {
         var ywData = this.get('ywData');
-        debugger;
         if (!Ember.isEmpty(ywData)) {
-            var items = this.groupSortCount(ywData, 'zoneRef');
+            var items = this.get('appSettings').groupSortCount(ywData, 'dma', 5);
+            this.set('items', items);
         }
     }.observes('ywData'),
-
-    groupSortCount: function (arr, prop) {
-        var grouped = _.groupBy(arr, function (obj) {
-            return obj[prop];
-        });
-        var items = [];
-        for (var key in grouped) {
-            if (grouped.hasOwnProperty(key)) {
-                var element = grouped[key];
-                var count =
-                    items.push({
-                        groupKey: key,
-                        count: element.length,
-                        items: element
-                    });
-            }
-        }
-        items.sort(function (obj) { return obj.count; }).reverse();
-        return items;
-    }
 });

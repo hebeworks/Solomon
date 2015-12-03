@@ -1,16 +1,21 @@
-{{#stories/story-base}}
+{{#stories/story-base}}    
+    <table spc-yw-tc_list>
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>DMA</th>
+                <th>No. contacts</th>
+            </tr>
+        </thead>
+            <tbody>
+                {{#each item in items}}
+                    <tr>
+                        <td>{{item.position}}</td>
+                        <td><span spc-yw-tc_property>{{item.groupKey}}</span></td>
+                        <td><span spc-yw-tc_count>{{item.count}}</span></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+    </table>
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
-    
-    <p>This is the ywhTopDmasByVolume story.</p>
-    
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
