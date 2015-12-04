@@ -23,10 +23,10 @@ export default DefaultStory.extend({
 
         this.set('loaded', true);
 
-        this.detectScreenSize();
-        this.$(window).on('resize', function () {
-            _this.detectScreenSize();
-        });
+        // this.detectScreenSize();
+        // this.$(window).on('resize', function () {
+        //     _this.detectScreenSize();
+        // });
         this.get('appSettings.canvasSettings.selectedZone');
         
     }.on('didInsertElement'),
