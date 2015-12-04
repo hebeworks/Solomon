@@ -36,30 +36,41 @@ export default DefaultStory.extend({
                 item.durationMins = moment.duration(item.duration).minutes();
             });
             
-            // group them by needs
-            var grouped = _.groupBy(data, function (obj) {
-                return obj.need;
-            });
+            // // group them by needs
+            // var grouped = _.groupBy(data, function (obj) {
+            //     return obj.need;
+            // });
 
-            grouped = _.sortBy(grouped, function (obj) {
-                return obj.length;
-            });
+            // grouped = _.sortBy(grouped, function (obj) {
+            //     return obj.length;
+            // });
+
+
+            var grouped = this.get('appSettings').groupSortCount(data,'need',5, true)
 
             var count = 0;
-            for (var prop in grouped) {
+            for (var i = 0; i < grouped.length; i++) {
+                var prop = grouped[i].groupKey;
+                
                 if (count < 5) {
-                    var items = grouped[prop];
+                    var length = grouped[i].items.length;
+                    
+                    
+                    var items = grouped[i].items;
                     var under30 = _.countBy(items, function (item) {
                         return item.durationMins < 30;
                     });
+                    under30 = parseInt((under30.true/length * 100).toString());
                     var under60 = _.countBy(items, function (item) {
                         return (item.durationMins >= 30 && item.durationMins < 60);
                     });
+                    under60 = parseInt((under60.true/length * 100).toString());
                     var over60 = _.countBy(items, function (item) {
                         return (item.durationMins >= 60);
                     });
+                    over60 = parseInt((over60.true/length * 100).toString());
                     // var open = ;
-                    chartData.push([prop, under30.true || 0, under60.true || 0, over60.true || 0]);
+                    chartData.push([prop, under30 || 0, under60 || 0, over60 || 0]);
                 }
                 count++;
             }
