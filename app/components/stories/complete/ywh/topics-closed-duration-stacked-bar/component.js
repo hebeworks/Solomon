@@ -46,9 +46,10 @@ export default DefaultStory.extend({
             // });
 
 
-            var grouped = this.get('appSettings').groupSortCount(data,'need',5, true)
-
+            var grouped = this.get('appSettings').groupSortCount(data,'need',5, false);
+            grouped.reverse();
             var count = 0;
+            
             for (var i = 0; i < grouped.length; i++) {
                 var prop = grouped[i].groupKey;
                 
@@ -57,20 +58,27 @@ export default DefaultStory.extend({
                     
                     
                     var items = grouped[i].items;
+                    
                     var under30 = _.countBy(items, function (item) {
                         return item.durationMins < 30;
                     });
-                    under30 = parseInt((under30.true/length * 100).toString());
+                    under30 = under30.true;
+                    var under30P = parseInt((under30/length * 100).toString());
+                    
                     var under60 = _.countBy(items, function (item) {
                         return (item.durationMins >= 30 && item.durationMins < 60);
                     });
-                    under60 = parseInt((under60.true/length * 100).toString());
+                    under60 = under60.true;
+                    var under60P = parseInt((under60P/length * 100).toString());
+                    
                     var over60 = _.countBy(items, function (item) {
                         return (item.durationMins >= 60);
                     });
-                    over60 = parseInt((over60.true/length * 100).toString());
-                    // var open = ;
+                    over60 = over60.true;
+                    var over60P = parseInt((over60/length * 100).toString());
+                    
                     chartData.push([prop, under30 || 0, under60 || 0, over60 || 0]);
+                    // chartData.push([prop, under30P || 0, under60P || 0, over60P || 0]);
                 }
                 count++;
             }
