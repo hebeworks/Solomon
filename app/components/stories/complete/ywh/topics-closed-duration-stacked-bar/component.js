@@ -6,7 +6,8 @@ export default DefaultStory.extend({
         title: 'WQ Contacts Closed on Contact',
         subTitle: 'The needs with most calls closed on contact',
         scroll: false,
-        viewOnly: true
+        viewOnly: true,
+        width:3
     },
 
     loadGoogleAPIs: function () {
@@ -32,7 +33,7 @@ export default DefaultStory.extend({
 
     //     if (!Ember.isEmpty(data)) {
     //         data.forEach(function (item) {
-    //             item.durationMins = moment.duration(item.duration).minutes();
+    //             item.duration.minutes = moment.duration(item.duration).minutes();
     //         });
 
     //         var grouped = this.get('appSettings').groupSortCount(data,'need',5, false);
@@ -47,19 +48,19 @@ export default DefaultStory.extend({
     //                 var items = grouped[i].items;
                     
     //                 var under30 = _.countBy(items, function (item) {
-    //                     return item.durationMins < 30;
+    //                     return item.duration.minutes < 30;
     //                 });
     //                 under30 = under30.true;
     //                 var under30P = parseInt((under30/length * 100).toString());
                     
     //                 var under60 = _.countBy(items, function (item) {
-    //                     return (item.durationMins >= 30 && item.durationMins < 60);
+    //                     return (item.duration.minutes >= 30 && item.duration.minutes < 60);
     //                 });
     //                 under60 = under60.true;
     //                 var under60P = parseInt((under60P/length * 100).toString());
                     
     //                 var over60 = _.countBy(items, function (item) {
-    //                     return (item.durationMins >= 60);
+    //                     return (item.duration.minutes >= 60);
     //                 });
     //                 over60 = over60.true;
     //                 var over60P = parseInt((over60/length * 100).toString());
@@ -126,9 +127,9 @@ export default DefaultStory.extend({
         ];
 
         if (!Ember.isEmpty(data)) {
-            data.forEach(function (item) {
-                item.durationMins = moment.duration(item.duration).minutes();
-            });
+            // data.forEach(function (item) {
+            //     item.duration.minutes = moment.duration(item.duration).minutes();
+            // });
 
             var grouped = this.get('appSettings').groupSortCount(data,'need');
 
@@ -136,22 +137,21 @@ export default DefaultStory.extend({
             for (var i = 0; i < grouped.length; i++) {
                 var prop = grouped[i].groupKey;
                 
-
                     var length = grouped[i].items.length;
                     var items = grouped[i].items;
                     
-                    var under30 = _.countBy(items, function (item) { return item.durationMins < 30; });
-                    under30 = under30.true;
+                    var under30 = _.countBy(items, function (item) { return item.duration.minutes < 30; });
+                    under30 = under30.true || 0;
                     // var under30P = parseInt((under30/length * 100).toString());
                     grouped[i].under30 = under30;
                     
-                    var under60 = _.countBy(items, function (item) { return (item.durationMins >= 30 && item.durationMins < 60); });
-                    under60 = under60.true;
+                    var under60 = _.countBy(items, function (item) { return (item.duration.minutes >= 30 && item.duration.minutes < 60); });
+                    under60 = under60.true || 0;
                     grouped[i].under60 = under60;
                     // var under60P = parseInt((under60P/length * 100).toString());
                     
-                    var over60 = _.countBy(items, function (item) { return (item.durationMins >= 60); });
-                    over60 = over60.true;
+                    var over60 = _.countBy(items, function (item) { return (item.duration.hours >= 1); });
+                    over60 = over60.true || 0;
                     grouped[i].over60 = over60;
                     // var over60P = parseInt((over60/length * 100).toString());
                     
@@ -159,13 +159,12 @@ export default DefaultStory.extend({
                     // chartData.push([prop, under30P || 0, under60P || 0, over60P || 0]);
 
             }
-            
             var sorted = _.sortBy(grouped,function(obj){
                return obj.under30; 
             });
             sorted.reverse();
             sorted.splice(5);
-            sorted.reverse();
+            // sorted.reverse();
             for (var i = 0; i < sorted.length; i++) {
                 var item = sorted[i];                
                 chartData.push([item.groupKey, item.under30 || 0, item.under60 || 0, item.over60 || 0]);
@@ -175,20 +174,20 @@ export default DefaultStory.extend({
     
             var options = {
                 hAxis: {
-                    textPosition: 'none',
-                    direction: -1
+                    textPosition: 'bottom left',
+                    // direction: -1
                 },
                 vAxis: {
                     baseline: 0
                 },
                 chartArea: {
-                    width: '80%',
-                    height: '85%',
+                    width: '90%',
+                    height: '70%',
                     top: '10%',
                     left: '10%'
                 },
-                width: 290,
-                height: 240,
+                width: 435,
+                height: 250,
                 legend: {
                     position: 'top',
                     maxLines: 4
@@ -202,7 +201,10 @@ export default DefaultStory.extend({
                         color: 'rgb(70,142,229)'
                     },
                     1: {
-                        color: 'rgb(89,172,0)'
+                        color: 'rgb(255,255,0)'
+                    },
+                    2: {
+                        color   : 'rgb(89,172,0)'
                     }
                 }
             };

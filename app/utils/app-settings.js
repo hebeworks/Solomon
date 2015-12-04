@@ -57,7 +57,7 @@ export default Ember.Object.extend({
 		var obj = this;
 		return new Ember.RSVP.Promise(function (resolve, reject, complete) {
 			try {
-				var useCache = (cache != null && cache === true ? true : false);
+				var useCache = (Ember.isEmpty(cache) || cache == true ? true : false); //(cache != null && cache === true ? true : false);
 				$.support.cors = true;
 				$.ajax({
 					url: url,
@@ -115,18 +115,18 @@ export default Ember.Object.extend({
 			ywQuery.$and.push({ "waterSupplySystem": zoneID });
 			hasQuery = true;
 		}
-		// // Start date
-		// var startDate = this.get('canvasSettings.startDate');
-		// if (!Ember.isEmpty(startDate)) {
-		// 	ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
-			// hasQuery = true;
-		// }
-		// // End date
-		// var endDate = this.get('canvasSettings.endDate');
-		// if (!Ember.isEmpty(endDate)) {
-		// 	ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
-			// hasQuery = true;
-		// }
+		// Start date
+		var startDate = this.get('canvasSettings.startDate');
+		if (!Ember.isEmpty(startDate)) {
+			ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
+			hasQuery = true;
+		}
+		// End date
+		var endDate = this.get('canvasSettings.endDate');
+		if (!Ember.isEmpty(endDate)) {
+			ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
+			hasQuery = true;
+		}
 		if(hasQuery) {
 			this.set('canvasSettings.ywQuery', ywQuery);
 		}
@@ -139,7 +139,7 @@ export default Ember.Object.extend({
             + this.encodeQuery(this.get('canvasSettings.ywQuery'))
 			+ '&limit=-1';
 
-        this.getData(uri, true)
+        this.getData(uri)
             .then(function (data) {
 				console.log('Refreshed ywData' + data.length);
 				_this.set('canvasSettings.ywData', data);

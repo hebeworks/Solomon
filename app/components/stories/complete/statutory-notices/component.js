@@ -8,7 +8,7 @@ export default DefaultStory.extend({
         this.set('title', 'Empty Properties');
         this.set('subTitle', 'City wide vs. Wards long term empties');
         var obj = this;
-        this.getData('http://environment.data.gov.uk/flood-monitoring/id/stations/L1707', true)
+        this.getData('http://environment.data.gov.uk/flood-monitoring/id/stations/L1707',false)
             .then(function (station) {
                 var item = station.items;
                 var latestReading = item.measures.latestReading;
