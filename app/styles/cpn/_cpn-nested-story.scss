@@ -1,6 +1,10 @@
 [cpn-nested-story] {
     @extend %cpn-story;
     padding: 0;
+    
+    [cpn-story_face] {
+        @include transform(none); // Prevents Safari rending the nested story blurry
+    }
 }
 
 [cpn-nested-story~="width-1"] {
