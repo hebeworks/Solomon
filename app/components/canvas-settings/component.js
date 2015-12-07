@@ -9,7 +9,6 @@ export default Ember.Component.extend(dashComponentBase, {
 	selectedHistory: null,
 	onSelectedHistoryChange: function () {
 		var selectedHistory = this.get('selectedHistory');
-		alert(selectedHistory);
 	}.observes('selectedHistory'),
 
 	onCSInit: function () {
