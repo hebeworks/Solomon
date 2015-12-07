@@ -150,7 +150,6 @@ export default Ember.Object.extend({
             });
             if (!Ember.isEmpty(history)) {
                 var foundIndex = -1;
-                debugger;
                 for (var i = 0; i < history.length; i++) {
                     var item = history[i];
                     if (item.selectedZone.id == historyItem.selectedZone.id
@@ -162,10 +161,12 @@ export default Ember.Object.extend({
                 }
                 if (foundIndex > -1) {
                     // if it is - move to top
-                    this.moveArray(history, foundIndex, 0);
+                    history = this.moveArray(history, foundIndex, 0);
                 } else {
                     // if not - insert
-                    this.set('canvasSettings.ywFilter.history', history.concat([historyItem]));
+                    history.unshift(historyItem);
+                    // this.set('canvasSettings.ywFilter.history', history.concat([historyItem]));
+                    this.set('canvasSettings.ywFilter.history', history);
                 }
             } else {
                 this.set('canvasSettings.ywFilter.history', [historyItem]);
@@ -174,8 +175,8 @@ export default Ember.Object.extend({
     }.observes('canvasSettings.ywFilter.selectedZone', 'canvasSettings.ywFilter.startDate', 'canvasSettings.ywFilter.endDate'),
 
     moveArray: function (arr, from, to) {
-        arr.splice(to, 0, this.splice(from, 1)[0]);
-        return this;
+        arr.splice(to, 0, arr.splice(from, 1)[0]);
+        return arr;
     },
 
     loadYWQueryData: function () {
