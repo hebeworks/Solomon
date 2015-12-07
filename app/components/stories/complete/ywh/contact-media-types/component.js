@@ -8,7 +8,7 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     items: [],
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onContactTypeReceivedAttrs: function () {
         this.get('ywData');
     }.on('didReceiveAttrs'),

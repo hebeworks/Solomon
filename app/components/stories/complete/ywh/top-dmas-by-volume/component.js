@@ -7,7 +7,7 @@ export default DefaultStory.extend({
         subTitle: 'Which DMAs produce the most contacts?', // (Provide a story subtitle)
         viewOnly: true
     },
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onDMASReceivedAttrs: function () {
         this.get('ywData');
     }.on('didReceiveAttrs'),

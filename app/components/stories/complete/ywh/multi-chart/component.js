@@ -27,9 +27,11 @@ export default DefaultStory.extend({
         // this.$(window).on('resize', function () {
         //     _this.detectScreenSize();
         // });
-        this.get('appSettings.canvasSettings.selectedZone');
+        this.get('selectedZone');
         
     }.on('didInsertElement'),
+
+    selectedZone: Ember.computed.alias('appSettings.canvasSettings.ywFilter.selectedZone'),
 
 
     loadGoogleAPIs: function () {
@@ -64,7 +66,7 @@ test: function() {
 
     loadData: function () {
         var _this = this;
-        this.getData(this.get('appSettings.hebeNodeAPI') + '/yw-zones?query=' + this.get('appSettings').encodeQuery({ waterSupplySystem: this.get('appSettings.canvasSettings.selectedZone.id') }))
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/yw-zones?query=' + this.get('appSettings').encodeQuery({ waterSupplySystem: this.get('selectedZone.id') }))
             .then(function (data) {
                 var propertiesToSum = [
                     "propertiesMeteredDomestic",
@@ -81,7 +83,7 @@ test: function() {
                 summed.population = summed.population;
                 _this.set('summed', summed);
             });
-    }.observes('appSettings.canvasSettings.selectedZone'),
+    }.observes('selectedZone'),
 
 
 

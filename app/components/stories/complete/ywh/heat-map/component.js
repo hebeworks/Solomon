@@ -21,17 +21,17 @@ export default DefaultStory.extend({
         scroll: false,
         viewOnly: true
     },
-    
-    onGMap: function(){
+
+    onGMap: function () {
         var gMap = this.get('gMap');
-        if(!Ember.isEmpty(gMap)) {
+        if (!Ember.isEmpty(gMap)) {
             var mapStyles = this.get('appSettings').setGoogleMapStyles('yorkshire-water');
-            this.get('gMap').setOptions({styles: mapStyles });
+            this.get('gMap').setOptions({ styles: mapStyles });
         }
     }.observes('gMap'),
-    
-    onHeatMapAttrs: function(){
-        this.get('appSettings.canvasSettings.ywData');
+
+    onHeatMapAttrs: function () {
+        this.get('ywData');
     }.on('didReceiveAttrs'),
     
     // Map settings
@@ -43,34 +43,20 @@ export default DefaultStory.extend({
     gmapsHeatmapDissipating: true,
     gmapsHeatmapMarkers: [],
 
-    // onDidInsertElement: function () {
-    //     this.fetchData();
-    // }.on('didInsertElement'),
-
-    // fetchData: function () {
-    //     var _this = this,
-    //         hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
-    //         storyData = 'yw-contact-data?query=eyJETUEiOiJHMDg5In0=&limit=-1';
-
-    //     this.getData(hebeNodeAPI + '/' + storyData)
-    //         .then(function (data) {
-    //             _this.loadDataOntoMap();
-    //         });
-    // },
-
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     loadDataOntoMap: function () {
         var _this = this;
-        var ywData = this.get('appSettings.canvasSettings.ywData');
+        var ywData = this.get('ywData');
         if (!Ember.isEmpty(ywData)) {
             var contacts = [],
                 mapLat = 0,
                 mapLng = 0,
                 itemCount = ywData.length;
 
-            contacts = _.map(ywData,function(item){
-                if(!isNaN(item.lat)) { mapLat += item.lat; }
-                if(!isNaN(item.lon)) { mapLng += item.lon; }
-                return [item.lat,item.lon];
+            contacts = _.map(ywData, function (item) {
+                if (!isNaN(item.lat)) { mapLat += item.lat; }
+                if (!isNaN(item.lon)) { mapLng += item.lon; }
+                return [item.lat, item.lon];
             });
 
             var finalMapLat = mapLat / itemCount,
@@ -85,12 +71,6 @@ export default DefaultStory.extend({
                 _this.set('loaded', true);
             });
         }
-    }.observes('appSettings.canvasSettings.ywData'),
-    
-    // onZoneChanged: function(){
-    //     // var canvasSettings = this.get('appSettings.canvasSettings');
-    //     var selectedZone = this.get('appSettings.canvasSettings.selectedZone');
-        
-    // }.observes('appSettings.canvasSettings.selectedZone'),
+    }.observes('ywData'),
     
 });

@@ -8,11 +8,14 @@ export default Ember.Object.extend({
 	bottomDrawerConfig: { test: 'test' },
 
 	canvasSettings: {
+		ywFilter: {
 		zones: [],
 		selectedZone: null,
 		searchTerm: '',
 		startDate: new Date("01/01/2015"),
 		endDate: new Date("06/30/2015"),
+		history: []
+		}
 	},
 
 	config: function (hostname) {
@@ -20,7 +23,7 @@ export default Ember.Object.extend({
         return {
             name:'yorkshire-water',
             title: 'Yorkshire Water'
-        }
+        };
         
 		var solomonConfig = {};
 		switch (hostname) {
@@ -98,9 +101,9 @@ export default Ember.Object.extend({
 					zones.push({ text: zone, id: zone });
 				});
 			}
-			_this.set('canvasSettings.zones', zones);
+			_this.set('canvasSettings.ywFilter.zones', zones);
 			setTimeout(function () {
-				_this.set('canvasSettings.selectedZone', _this.get('canvasSettings.zones.firstObject'));
+				_this.set('canvasSettings.ywFilter.selectedZone', _this.get('canvasSettings.ywFilter.zones.firstObject'));
 			}, 1000);
 		});
 	},
@@ -109,42 +112,56 @@ export default Ember.Object.extend({
 		var hasQuery = false;
 		// Build the mongo query for current YW filters
 		var ywQuery = { $and: [] };
+		var queryTitle = '';
+		
+		var selectedZone = this.get('canvasSettings.ywFilter.selectedZone');
+		var startDate = this.get('canvasSettings.ywFilter.startDate');
+		var endDate = this.get('canvasSettings.ywFilter.endDate');
+		
 		// Sub DMAS/Zones
-		var zoneID = this.get('canvasSettings.selectedZone.id');
-		if (!Ember.isEmpty(zoneID)) {
-			ywQuery.$and.push({ "waterSupplySystem": zoneID });
+		if (!Ember.isEmpty(selectedZone)) {
+			queryTitle += selectedZone.text;
+			ywQuery.$and.push({ "waterSupplySystem": selectedZone.id });
 			hasQuery = true;
 		}
 		// Start date
-		var startDate = this.get('canvasSettings.startDate');
 		if (!Ember.isEmpty(startDate)) {
+			queryTitle += ' - from ' + moment(new Date(startDate)).format('DD/MM/YYYY');		
 			ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
 			hasQuery = true;
 		}
 		// End date
-		var endDate = this.get('canvasSettings.endDate');
 		if (!Ember.isEmpty(endDate)) {
+			queryTitle += ' to ' + moment(new Date(endDate)).format('DD/MM/YYYY');		
 			ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
 			hasQuery = true;
 		}
+		
 		if(hasQuery) {
-			this.set('canvasSettings.ywQuery', ywQuery);
+			this.set('canvasSettings.ywFilter.query', ywQuery);
+			this.set('canvasSettings.ywFilter.history',this.get('canvasSettings.ywFilter.history').concat([Ember.Object.create({
+				title: queryTitle,
+				id: hebeutils.guid(),
+				selectedZone: selectedZone,
+				startDate: startDate,
+				endDate: endDate
+			})]));
 		}
-	}.observes('canvasSettings.selectedZone', 'canvasSettings.startDate', 'canvasSettings.endDate'),
+	}.observes('canvasSettings.ywFilter.selectedZone', 'canvasSettings.ywFilter.startDate', 'canvasSettings.ywFilter.endDate'),
 
 	loadYWQueryData: function () {
 		var _this = this;
 		var uri = this.get('hebeNodeAPI')
 			+ '/yw-contact-data?query='
-            + this.encodeQuery(this.get('canvasSettings.ywQuery'))
+            + this.encodeQuery(this.get('canvasSettings.ywFilter.query'))
 			+ '&limit=-1';
 
         this.getData(uri)
             .then(function (data) {
 				console.log('Refreshed ywData' + data.length);
-				_this.set('canvasSettings.ywData', data);
+				_this.set('canvasSettings.ywFilter.data', data);
             });
-	}.observes('canvasSettings.ywQuery'),
+	}.observes('canvasSettings.ywFilter.query'),
 
     groupSortCount: function (arr, prop, count, desc) {
         var grouped = _.groupBy(arr, function (obj) {

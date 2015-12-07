@@ -38,7 +38,7 @@ export default DefaultStory.extend({
     }.observes('loaded'),
 
     onTopicAttrs: function(){
-        this.get('appSettings.canvasSettings.ywData');
+        this.get('ywData');
     }.on('didReceiveAttrs'),
 
     chartData: Ember.computed('ywData', {
@@ -69,7 +69,7 @@ export default DefaultStory.extend({
         }
     }),
 
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     
     drawChart: function() {
         var data = google.visualization.arrayToDataTable(this.get('chartData'));

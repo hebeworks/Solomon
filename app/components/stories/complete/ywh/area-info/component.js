@@ -13,26 +13,26 @@ export default DefaultStory.extend({
         height: 1
     },
     
-    canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
+    ywFilter: Ember.computed.alias('appSettings.canvasSettings.ywFilter'),
     zoneTitle: '',
     datePeriod: '',
     
     onInsertElement: function () {
-        this.get('appSettings.canvasSettings');
+        this.get('ywFilter');
         this.setValues();
     }.on('didInsertElement'),
     
     setValues: function() {
-        var canvasSettings = this.get('appSettings.canvasSettings');
+        var ywFilter = this.get('ywFilter');
         
-        if (!Ember.isEmpty(canvasSettings)) {
-            var dateString = 'from ' + moment(canvasSettings.startDate).format('Do MMM YY') + ' to ' + moment(canvasSettings.endDate).format('Do MMM YY')
+        if (!Ember.isEmpty(ywFilter)) {
+            var dateString = 'from ' + moment(ywFilter.startDate).format('Do MMM YY') + ' to ' + moment(ywFilter.endDate).format('Do MMM YY');
             this.set('datePeriod', dateString);
             
-            var selectedZone = canvasSettings.selectedZone;
+            var selectedZone = ywFilter.selectedZone;
             if (!Ember.isEmpty(selectedZone)) {
                 this.set('zoneTitle', selectedZone.text.toLowerCase());
             }
         }
-    }.observes('canvasSettings.ywData')
+    }.observes('ywFilter')
 });
