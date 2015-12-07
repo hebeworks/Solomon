@@ -300,42 +300,56 @@ export default Ember.Object.extend({
         
         var yorkshireWaterStyles = [
             {
-                'featureType': 'all',
-                'stylers': [{
-                    'saturation': 0
-                }],
-                'hue': '#c0d3d4'
+                featureType:"all",
+                stylers:[
+                    {
+                        saturation:0
+                    },
+                    {
+                        hue:"#c0d3d4"
+                    }
+                ]
             },
             {
-                'featureType': 'road',
-                'stylers': [{
-                    'saturation': -70
-                }]
+                featureType:"road",
+                stylers:[
+                    {
+                        saturation:-70
+                    }
+                ]
             },
             {
-                'featureType': 'transit',
-                'stylers': [{
-                    'visibility': 'off'
-                }]
+                featureType:"transit",
+                stylers:[
+                    {
+                        visibility:"off"
+                    }
+                ]
             },
             {
-                'featureType': 'poi',
-                'stylers': [{
-                    'visibility': 'off'
-                }]
+                featureType:"poi",
+                stylers:[
+                    {
+                        visibility:"off"
+                    }
+                ]
             },
             {
-                'featureType': 'water',
-                'stylers': [{
-                    'visibility': 'simplified',
-                    'saturation': -40
-                }]
+                featureType:"water",
+                stylers:[
+                    {
+                        visibility:"simplified"
+                    },
+                    {
+                        saturation:-40
+                    }
+                ]
             }
         ];
         
-        if (style = 'yorkshire-water') {
+        if (style && style == 'yorkshire-water') {
             return yorkshireWaterStyles;
-        } else if (style = 'default') {
+        } else if (style && style == 'default') {
             return defaultStyles;
         } else {
             return defaultStyles;

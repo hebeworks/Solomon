@@ -25,11 +25,10 @@ export default DefaultStory.extend({
     onGMap: function(){
         var gMap = this.get('gMap');
         if(!Ember.isEmpty(gMap)) {
-            var myStyles = this.get('config').mapStyles();
-            this.get('gMap').setOptions({styles: myStyles });
+            var mapStyles = this.get('appSettings').setGoogleMapStyles('yorkshire-water');
+            this.get('gMap').setOptions({styles: mapStyles });
         }
     }.observes('gMap'),
-    
     
     onHeatMapAttrs: function(){
         this.get('appSettings.canvasSettings.ywData');
