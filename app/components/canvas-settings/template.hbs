@@ -26,6 +26,26 @@
 			<label cpn-font-weight="600" for="" cpn-display="block">End Date</label>
 			{{pikaday-input value=canvasSettings.endDate format="DD/MM/YYYY"}}
 		</div>
+		
+		{{#each history as |historyItem|}}
+		<h1>{{historyItem.title}}</h1>
+		{{/each}}
+		
+		<div cpn-width="100%" cpn-bg-color="white">
+			<label for="" cpn-font-weight="600" cpn-display="block">Previous Searches</label>
+			{{ select-2
+				content=history
+				value=selectedHistory
+				optionLabelPath="title"
+				placeholder="Filter history"
+				class="margin-bottom-no"
+			}}
+				{{!-- 
+				optionValuePath="id"
+					optionLabelPath=title
+					option
+					--}}
+		</div>
 	</div>
 
 </div>

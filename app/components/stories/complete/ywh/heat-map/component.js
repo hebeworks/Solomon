@@ -23,11 +23,11 @@ export default DefaultStory.extend({
     },
     
     onGMap: function(){
-        var gMap = this.get('gMap');
-        if(!Ember.isEmpty(gMap)) {
-            var myStyles = this.get('config').mapStyles();
-            this.get('gMap').setOptions({styles: myStyles });
-        }
+        // var gMap = this.get('gMap');
+        // var myStyles = this.get('config').mapStyles();
+        // if(!Ember.isEmpty(gMap)) {
+        //     this.get('gMap').setOptions({styles: myStyles });
+        // }
     }.observes('gMap'),
     
     

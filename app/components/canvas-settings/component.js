@@ -4,20 +4,26 @@ import dashComponentBase from 'hebe-dash/mixins/dash-component-base';
 export default Ember.Component.extend(dashComponentBase, {
 	appController: null,
 	canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
+	
+	history: Ember.computed.alias('canvasSettings.ywQueryHistory'),
+	selectedHistory:null,
+	onSelectedHistoryChange: function(){
+		var selectedHistory = this.get('selectedHistory');
+		alert(selectedHistory);
+	}.observes('selectedHistory'),
+	
+	onCSInit: function(){
+		this.get('history');
+	}.on('init'),
+	
+	onSelectedHistory: function(){
+		var selectedHistory = this.get('selectedHistory');
+		if(!Ember.isEmpty(selectedHistory)) {
+			debugger;
+			this.set('canvasSettings.ywQuery',selectedHistory.query);
+		}
+	}.observes('selectedHistory'),
 
-	onDidReceiveAttrs: function () {
-		// var startDate = new Date(2015,1,1);
-		// var endDate = new Date(2015,1,31);
-		// this.set('appController.canvasSettings',
-		// 	{
-		// 		zones: [],
-		// 		selectedZone: null,
-		// 		searchTerm: '',
-		// 		startDate: startDate, // moment(new Date()).subtract('month', 1).toDate(),
-		// 		endDate: endDate,
-		// 	});
-		// this.loadZones();
-	}.on('didReceiveAttrs'),
 
 	// NOT REQUIRED WITH THE NEW CONTACT DATA FORMAT
 	// RATHER THAN GETTING A LIST OF INDIVIDUAL DMA CODES UNDER THE CHOSEN
@@ -28,7 +34,7 @@ export default Ember.Component.extend(dashComponentBase, {
 	// 	if (!Ember.isEmpty(selectedZone)) {
 	// 		var uri = this.get('appSettings.hebeNodeAPI') + '/yw-zones?'
 	// 			+ '&selectfields=ZONEREF'
-	// 			+ '&query=' + this.get('appSettings').encodeQuery({ "Water Supply System": selectedZone.id })
+	// 			+ '&queryc=' + this.get('appSettings').encodeQuery({ "Water Supply System": selectedZone.id })
 	// 			;
 
 	// 		this.getData(uri, true)

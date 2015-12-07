@@ -13,6 +13,7 @@ export default Ember.Object.extend({
 		searchTerm: '',
 		startDate: new Date("01/01/2015"),
 		endDate: new Date("06/30/2015"),
+		ywQueryHistory: []
 	},
 
 	config: function (hostname) {
@@ -20,7 +21,7 @@ export default Ember.Object.extend({
         return {
             name:'yorkshire-water',
             title: 'Yorkshire Water'
-        }
+        };
         
 		var solomonConfig = {};
 		switch (hostname) {
@@ -109,26 +110,36 @@ export default Ember.Object.extend({
 		var hasQuery = false;
 		// Build the mongo query for current YW filters
 		var ywQuery = { $and: [] };
+		var queryTitle = '';
 		// Sub DMAS/Zones
 		var zoneID = this.get('canvasSettings.selectedZone.id');
 		if (!Ember.isEmpty(zoneID)) {
+			queryTitle += this.get('canvasSettings.selectedZone.text');
 			ywQuery.$and.push({ "waterSupplySystem": zoneID });
 			hasQuery = true;
 		}
 		// Start date
 		var startDate = this.get('canvasSettings.startDate');
 		if (!Ember.isEmpty(startDate)) {
+			queryTitle += ' - from ' + moment(new Date(startDate)).format('DD/MM/YYYY');		
 			ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
 			hasQuery = true;
 		}
 		// End date
 		var endDate = this.get('canvasSettings.endDate');
 		if (!Ember.isEmpty(endDate)) {
+			queryTitle += ' to ' + moment(new Date(endDate)).format('DD/MM/YYYY');		
 			ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
 			hasQuery = true;
 		}
+		
 		if(hasQuery) {
 			this.set('canvasSettings.ywQuery', ywQuery);
+			this.set('canvasSettings.ywQueryHistory',this.get('canvasSettings.ywQueryHistory').concat([Ember.Object.create({
+				title: queryTitle,
+				query: ywQuery,
+				id: hebeutils.guid()
+			})]));
 		}
 	}.observes('canvasSettings.selectedZone', 'canvasSettings.startDate', 'canvasSettings.endDate'),
 
