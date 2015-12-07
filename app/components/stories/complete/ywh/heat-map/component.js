@@ -22,6 +22,15 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     
+    onGMap: function(){
+        var gMap = this.get('gMap');
+        if(!Ember.isEmpty(gMap)) {
+            var myStyles = this.get('config').mapStyles();
+            this.get('gMap').setOptions({styles: myStyles });
+        }
+    }.observes('gMap'),
+    
+    
     onHeatMapAttrs: function(){
         this.get('appSettings.canvasSettings.ywData');
     }.on('didReceiveAttrs'),
