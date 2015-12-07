@@ -5,6 +5,16 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     onActivate: function () {
         this.controllerFor('application').loadSolomonConfig();
         this.controllerFor('application').shouldShowTutorial();
+
+        // add a client-specific attr to body
+        var cssClass = this.get('appSettings.config')().name;
+        var bodyClientAttr = Ember.$('body').attr('solomon-app');
+        if (!Ember.isEmpty(cssClass) && (
+            Ember.isEmpty(bodyClientAttr)
+            || bodyClientAttr != cssClass
+            )) {
+            Ember.$('body').attr('solomon-app', cssClass);
+        }
     }.on('activate'),
     
     // Methods
@@ -20,6 +30,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             controller.authLogin(this.get('session.secure.token'));
         }
     },
+
 
     // Actions 
     actions: {
