@@ -151,6 +151,7 @@ export default DefaultStory.extend({
                 legend: {
                     position: 'none'
                 },
+                lineWidth: 3,
                 pointSize: 0,
                 hAxis: {
                     title: '',
@@ -172,7 +173,7 @@ export default DefaultStory.extend({
                 },
                 series: {
                     0: {
-                        color: 'rgb(70,142,229)'
+                        color: '#1EA0C8'
                     }
                 }
             };

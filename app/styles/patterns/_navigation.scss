@@ -82,10 +82,23 @@
 				left: 20px;
 			}
 			
-			&.-gallery,
-			&.-filter {
+			&.-gallery {
 				position: absolute;
 				right: 45px;
+			}
+			
+			&.-filter {
+				padding-top: rem(18px);
+				
+				span {
+					width: 25px;
+					height: 25px;
+					
+					svg {
+						width: 100%;
+						height: 100%;
+					}
+				}
 			}
 		}
 	}

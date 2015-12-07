@@ -198,13 +198,13 @@ export default DefaultStory.extend({
                 },
                 series: {
                     0: {
-                        color: 'rgb(70,142,229)'
+                        color: '#034763'
                     },
                     1: {
-                        color: 'rgb(255,255,0)'
+                        color: '#1EA0C8'
                     },
                     2: {
-                        color   : 'rgb(89,172,0)'
+                        color: '#B5DDF0'
                     }
                 }
             };
