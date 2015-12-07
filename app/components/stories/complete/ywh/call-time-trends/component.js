@@ -11,7 +11,7 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     calls: [],
     
     loadGoogleAPIs: function() {
@@ -21,13 +21,12 @@ export default DefaultStory.extend({
     }.on('didInsertElement'),
     
     onDayInit: function () {
-        this.get('appSettings.canvasSettings.ywData');
         this.get('ywData');
     }.on('init'),
     
     drawChart: function() {
         var _this = this,
-            ywData = this.get('appSettings.canvasSettings.ywData');
+            ywData = this.get('ywData');
             
         if (!Ember.isEmpty(ywData)) {
             var calls = [],

@@ -15,9 +15,8 @@ export default DefaultStory.extend({
         google.setOnLoadCallback(function () { _this.drawColumnChart() });
     }.on('didInsertElement'),
 
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onDayInit: function () {
-        this.get('appSettings.canvasSettings.ywData');
         this.get('ywData');
     }.on('init'),
 

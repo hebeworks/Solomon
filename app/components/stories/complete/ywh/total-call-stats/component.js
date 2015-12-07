@@ -41,7 +41,7 @@ export default DefaultStory.extend({
     years: [],
     onInsertElement: function () {
         // this.set('loaded', true);
-        this.get('appSettings.canvasSettings.ywData');
+        this.get('ywData');
         // this.queryData();
         // this.updateRagTile();
         this.get('years');
@@ -50,17 +50,19 @@ export default DefaultStory.extend({
     queryData: function () {
         var _this = this;
 
-        var ywData = this.get('appSettings.canvasSettings.ywData'),
-            appSettings = this.get('appSettings.canvasSettings');
+        var appSettings = this.get('appSettings');
+        var ywFilter = appSettings.canvasSettings.ywFilter;
+        var ywData = ywFilter.data;
+
 
         if (!Ember.isEmpty(ywData)) {
-            var primaryNeeds = this.get('appSettings').groupSortCount(ywData,'need',4);
+            var primaryNeeds = appSettings.groupSortCount(ywData,'need',4);
             _this.set('primaryNeeds', primaryNeeds);
 
-            var count = this.get('appSettings.canvasSettings.ywData.length');
+            var count = this.get('ywData.length');
             this.set('periodContacts', count);
 
-            var dateString = 'from ' + moment(appSettings.startDate).format('Do MMM YY') + ' to ' + moment(appSettings.endDate).format('Do MMM YY')
+            var dateString = 'from ' + moment(ywFilter.startDate).format('Do MMM YY') + ' to ' + moment(ywFilter.endDate).format('Do MMM YY')
             this.set('period', dateString);
             
             if (count < this.get('threshold')) {
@@ -75,7 +77,7 @@ export default DefaultStory.extend({
                 _this.set('loaded', true);
             });
         }
-    }.observes('appSettings.canvasSettings.ywData'),
+    }.observes('appSettings.canvasSettings.ywFilter.data'),
 
     updateRagTile: function () {
         if (this.get('currentYearContacts') < this.get('previousYearContacts')) {

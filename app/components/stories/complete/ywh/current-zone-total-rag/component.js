@@ -8,11 +8,9 @@ export default BaseRAGTile.extend({
             tileDesc1: '',
             tileDesc2: '',
         });
-        // this.get('appSettings.')
     }.on('init'),
     
     onCanvasSettings: function(){
-        var canvasSettings = this.get('appSettings.canvasSettings');
-        this.set('tileValue',canvasSettings.selectedZone.text);
-    }.observes('appSettings.canvasSettings.selectedZone'),
+        this.set('tileValue',this.get('appSettings.canvasSettings.ywFilter.selectedZone.text'));
+    }.observes('appSettings.canvasSettings.ywFilter.selectedZone'),
 });

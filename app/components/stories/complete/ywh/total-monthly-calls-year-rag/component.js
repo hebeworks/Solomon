@@ -10,42 +10,28 @@ export default BaseRAGTile.extend({
             tileDesc1: 'Total calls in Nov',
             tileDesc2: 'UP 4% on 2014',
         });
-        this.get('appSettings.canvasSettings');
+        this.get('ywfilter');
         this.updateDescriptions();
     }.on('init'),
 
-    canvasSettings: Ember.computed.alias('appSettings.canvasSettings'),
-
+    ywFilter: Ember.computed.alias('appSettings.canvasSettings.ywFilter'),
+    
     updateDescriptions: function () {
-        var canvasSettings = this.get('appSettings.canvasSettings');
-        if (!Ember.isEmpty(canvasSettings)) {
-            var dateString = 'from ' + moment(canvasSettings.startDate).format('Do MMM YY') + ' to ' + moment(canvasSettings.endDate).format('Do MMM YY')
+        var ywFilter = this.get('ywFilter');
+        var startDate = ywFilter.startDate;
+        var endDate = ywFilter.endDate;
+        var ywData = ywFilter.data;
+        var selectedZone = ywFilter.selectedZone;
+        if (!Ember.isEmpty(startDate) && !Ember.isEmpty(endDate)) {
+            var dateString = 'from ' + moment(startDate).format('Do MMM YY') + ' to ' + moment(endDate).format('Do MMM YY')
             this.set('tileDesc1', dateString);
-            var selectedZone = canvasSettings.selectedZone;
-            if (!Ember.isEmpty(selectedZone)) {
-                this.set('tileDesc2', selectedZone.text);
-            }
         }
-        if (!Ember.isEmpty('canvasSettings.ywData')) {
-            var count = this.get('canvasSettings.ywData.length');
+        if (!Ember.isEmpty(selectedZone)) {
+            this.set('tileDesc2', selectedZone.text);
+        }
+        if (!Ember.isEmpty(ywData)) {
+            var count = ywData.length;
             this.set('tileValue', count);
         }
-    }.observes('canvasSettings.ywData'),
-
-    // Example of watching for ywQuery and making a request for data ourselves
-    // onFilter: function () {
-    //     var _this = this;
-    //     var uri = this.get('appSettings.hebeNodeAPI') + '/yw-contact-data?query='
-    //         + this.get('appSettings').encodeQuery(this.get('canvasSettings.ywQuery'))
-    //         // + this.get('appSettings').encodeQuery({ $or: [{ "DMA": "D580" }, { "DMA": "C334" }] })
-    //         + '&count=true'
-    //         + '&limit=-1'
-    //         ;
-    //     this.getData(uri)
-    //         .then(function(data){
-    //            _this.set('tileValue',data.count);
-    //            _this.updateDescriptions();
-    //         });
-    // }.observes('canvasSettings.ywQuery')
-
+    }.observes('ywFilter')
 });

@@ -21,18 +21,19 @@ export default DefaultStory.extend({
         scroll: false,
         viewOnly: true
     },
-    
-    onGMap: function(){
+
+    onGMap: function () {
         // var gMap = this.get('gMap');
         // var myStyles = this.get('config').mapStyles();
         // if(!Ember.isEmpty(gMap)) {
         //     this.get('gMap').setOptions({styles: myStyles });
         // }
     }.observes('gMap'),
-    
-    
-    onHeatMapAttrs: function(){
-        this.get('appSettings.canvasSettings.ywData');
+
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywfilter.data'),
+
+    onHeatMapAttrs: function () {
+        this.get('ywData');
     }.on('didReceiveAttrs'),
     
     // Map settings
@@ -61,17 +62,17 @@ export default DefaultStory.extend({
 
     loadDataOntoMap: function () {
         var _this = this;
-        var ywData = this.get('appSettings.canvasSettings.ywData');
+        var ywData = this.get('ywData');
         if (!Ember.isEmpty(ywData)) {
             var contacts = [],
                 mapLat = 0,
                 mapLng = 0,
                 itemCount = ywData.length;
 
-            contacts = _.map(ywData,function(item){
-                if(!isNaN(item.lat)) { mapLat += item.lat; }
-                if(!isNaN(item.lon)) { mapLng += item.lon; }
-                return [item.lat,item.lon];
+            contacts = _.map(ywData, function (item) {
+                if (!isNaN(item.lat)) { mapLat += item.lat; }
+                if (!isNaN(item.lon)) { mapLng += item.lon; }
+                return [item.lat, item.lon];
             });
 
             var finalMapLat = mapLat / itemCount,
@@ -86,12 +87,5 @@ export default DefaultStory.extend({
                 _this.set('loaded', true);
             });
         }
-    }.observes('appSettings.canvasSettings.ywData'),
-    
-    // onZoneChanged: function(){
-    //     // var canvasSettings = this.get('appSettings.canvasSettings');
-    //     var selectedZone = this.get('appSettings.canvasSettings.selectedZone');
-        
-    // }.observes('appSettings.canvasSettings.selectedZone'),
-    
+    }.observes('ywData'),
 });

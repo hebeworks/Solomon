@@ -11,11 +11,11 @@ export default BaseRAGTile.extend({
         });
     }.on('init'),
     
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     
     updateTile: function() {
         var _this = this,
-            ywData = this.get('appSettings.canvasSettings.ywData');
+            ywData = this.get('ywData');
             
         if (!Ember.isEmpty(ywData)) {
             var numberContacts = ywData.length,

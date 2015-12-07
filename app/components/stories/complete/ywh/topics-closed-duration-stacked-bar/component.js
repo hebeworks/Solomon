@@ -18,9 +18,9 @@ export default DefaultStory.extend({
             );
     }.on('didInsertElement'),
 
-    ywData: Ember.computed.alias('appSettings.canvasSettings.ywData'),
+    ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onReceivedAttrs: function () {
-        this.get('appSettings.canvasSettings.ywData');
+        this.get('ywData');
     }.on('didReceiveAttrs'),
 
 
