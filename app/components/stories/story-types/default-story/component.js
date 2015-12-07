@@ -12,8 +12,8 @@ export default Ember.Component.extend(dashComponentBase, {
 	
 	appendComponentNameClass: function() {
 		var dasherizedStoryName = s.strRightBack(this.__proto__._debugContainerKey, "/");
-		this.set(dasherizedStoryName,'');
-		this.attributeBindings.push(dasherizedStoryName);
+		this.set('solomon-story', dasherizedStoryName);
+		this.attributeBindings.push('solomon-story');
 	}
 });
 
