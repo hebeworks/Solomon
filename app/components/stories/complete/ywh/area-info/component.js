@@ -34,5 +34,5 @@ export default DefaultStory.extend({
                 this.set('zoneTitle', selectedZone.text.toLowerCase());
             }
         }
-    }.observes('ywFilter')
+    }.observes('ywFilter.selectedZone','ywFilter.startDate','ywFilter.endDate')
 });
