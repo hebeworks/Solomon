@@ -21,6 +21,10 @@ body {
     font-size: rem(15px);
     line-height: 1.5;
     
+    [solomon-app~="yorkshire-water"] & {
+        color: $yw-dark-blue;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;

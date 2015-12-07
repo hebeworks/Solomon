@@ -96,7 +96,8 @@ export default DefaultStory.extend({
                     0: {
                         color: '#1EA0C8'
                     }
-                }
+                },
+                curveType: 'function'
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('call-time-trends-chart'));

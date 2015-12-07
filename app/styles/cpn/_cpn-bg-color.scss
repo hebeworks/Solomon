@@ -46,6 +46,10 @@
 [cpn-bg-color="white"] {
     background-color: #fff;
     color: #000;
+    
+    [solomon-app~="yorkshire-water"] & {
+        color: $yw-dark-blue;
+    }
 }
 
 [cpn-bg-color="lime"] {

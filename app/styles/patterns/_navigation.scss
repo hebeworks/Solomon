@@ -43,6 +43,17 @@
 				align: center;
 			}
 			text-decoration: none;
+			
+			[solomon-app~="yorkshire-water"] & {
+			    color: $yw-dark-blue;
+			    
+			    .icon {
+			    	svg {
+			    		fill: $yw-dark-blue;
+			    	}
+			    }
+			}
+			
 			&:hover, &.-selected {
 				color: $lime;
 				
