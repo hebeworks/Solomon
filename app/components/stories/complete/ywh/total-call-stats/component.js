@@ -140,7 +140,8 @@ export default DefaultStory.extend({
                 titlePosition: 'out',
                 titleTextStyle: {
                     bold: true,
-                    fontSize: 14
+                    fontSize: 14,
+                    color: '#034763'
                 },
                 width: 270,
                 height: 93,
