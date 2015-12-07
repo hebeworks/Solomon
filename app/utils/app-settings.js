@@ -192,7 +192,185 @@ export default Ember.Object.extend({
         }
         
         return items;
+    },
+
+    setGoogleMapStyles: function(style) {
+        var defaultStyles = [
+          {
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#0c0b0b"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "all",
+            "stylers": [
+              {
+                "color": "#f2f2f2"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "all",
+            "stylers": [
+              {
+                "saturation": -100
+              },
+              {
+                "lightness": 45
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#090909"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+              {
+                "color": "#d4e4eb"
+              },
+              {
+                "visibility": "on"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "visibility": "on"
+              },
+              {
+                "color": "#fef7f7"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#9b7f7f"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#fef7f7"
+              }
+            ]
+          }
+        ];
+        
+        var yorkshireWaterStyles = [
+            {
+                featureType:"all",
+                stylers:[
+                    {
+                        saturation:0
+                    },
+                    {
+                        hue:"#c0d3d4"
+                    }
+                ]
+            },
+            {
+                featureType:"road",
+                stylers:[
+                    {
+                        saturation:-70
+                    }
+                ]
+            },
+            {
+                featureType:"transit",
+                stylers:[
+                    {
+                        visibility:"off"
+                    }
+                ]
+            },
+            {
+                featureType:"poi",
+                stylers:[
+                    {
+                        visibility:"off"
+                    }
+                ]
+            },
+            {
+                featureType:"water",
+                stylers:[
+                    {
+                        visibility:"simplified"
+                    },
+                    {
+                        saturation:-40
+                    }
+                ]
+            }
+        ];
+        
+        if (style && style == 'yorkshire-water') {
+            return yorkshireWaterStyles;
+        } else if (style && style == 'default') {
+            return defaultStyles;
+        } else {
+            return defaultStyles;
+        }
     }
-
-
+    
 });
