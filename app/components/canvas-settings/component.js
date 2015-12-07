@@ -14,7 +14,6 @@ export default Ember.Component.extend(dashComponentBase, {
 	onCSInit: function () {
 		this.get('history');
 		this.get('selectedHistory');
-		
 	}.on('init'),
 
 	onSelectedHistory: function () {
@@ -27,5 +26,4 @@ export default Ember.Component.extend(dashComponentBase, {
 				});
 		}
 	}.observes('selectedHistory')
-
 });

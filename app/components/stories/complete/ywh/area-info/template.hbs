@@ -8,4 +8,24 @@
     
     <span spc-yw-ai_waves class="svg-yorkshire-water-waves" data-grunticon-embed></span>
     
+    <div cpn-row-list="">
+    		<div cpn-width="100%">
+			<label for="" cpn-font-weight="600" cpn-display="block">Zone</label>
+			{{ select-2
+				content=ywFilter.zones
+				value=ywFilter.selectedZone
+				placeholder="Choose a zone"
+				class="margin-bottom-no"
+			}}
+		</div>
+    		<div cpn-width="50%">
+			<label cpn-font-weight="600" for="" cpn-display="block">Start Date</label>
+			{{pikaday-input value=ywFilter.startDate format="DD/MM/YYYY"}}
+		</div>
+		<div cpn-width="50%">
+			<label cpn-font-weight="600" for="" cpn-display="block">End Date</label>
+			{{pikaday-input value=ywFilter.endDate format="DD/MM/YYYY"}}
+		</div>
+    </div>
+    
 {{/stories/story-base}}
