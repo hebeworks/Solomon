@@ -11,9 +11,10 @@ export default Ember.Component.extend(dashComponentBase, {
 	}.on('init'),
 	
 	appendComponentNameClass: function() {
-		this.get('classNames').push(s.strRightBack(this.__proto__._debugContainerKey,"/"));
+		var dasherizedStoryName = s.strRightBack(this.__proto__._debugContainerKey, "/");
+		this.set(dasherizedStoryName,'');
+		this.attributeBindings.push(dasherizedStoryName);
 	}
-
 });
 
 
