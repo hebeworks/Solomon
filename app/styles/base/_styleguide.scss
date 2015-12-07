@@ -196,6 +196,10 @@ ol {
     z-index: 1;
     // -webkit-overflow-scrolling: touch;
     
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-dark-blue;
+    }
+    
     &.add-a {
         top:0px;
         height:100%;

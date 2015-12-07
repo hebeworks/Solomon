@@ -45,14 +45,27 @@
 			text-decoration: none;
 			&:hover, &.-selected {
 				color: $lime;
+				
+				[solomon-app~="yorkshire-water"] & {
+					color: $yw-medium-blue;
+				}
+				
 				.icon {
 					svg {
 						fill: $lime;
+						
+						[solomon-app~="yorkshire-water"] & {
+							fill: $yw-medium-blue;
+						}
 					}
 				}
 				.main-nav__title {
 					color: $lime;
 					text-decoration: none;
+					
+					[solomon-app~="yorkshire-water"] & {
+						color: $yw-medium-blue;
+					}
 				}
 			}
 		}

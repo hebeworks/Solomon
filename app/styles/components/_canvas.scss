@@ -10,6 +10,10 @@
 	/*@include filter(blur(0) brightness(100%));
 	@include transition(filter .3s, opacity .3s);
 	transition: -webkit-filter .3s, opacity .3s; */
+	
+	[solomon-app~="yorkshire-water"] & {
+		background-color: $yw-dark-blue;
+	}
 
 	.heading.-switch-canvas {
 		width: 90%;
@@ -123,6 +127,10 @@
 			margin: {
 				left:auto;
 				right:auto;
+			}
+			
+			[solomon-app~="yorkshire-water"] & {
+				background-color: $yw-dark-blue;
 			}
 		}
 			.canvas__overlay {
