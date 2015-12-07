@@ -9,7 +9,7 @@ export default DefaultStory.extend({
         subTitle: '', // (Provide a story subtitle)
         scroll: false, // (Should the story vertically scroll its content?),
         viewOnly: true,
-        color: 'dark-blue',
+        color: 'yw-medium-blue',
         height: 1
     },
     

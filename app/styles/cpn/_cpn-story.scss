@@ -186,11 +186,19 @@
                         font-size: rem(15px);
                         line-height: 1.1333333333; // 17/15
                         margin-bottom: 0;
+                        
+                        [solomon-app~="yorkshire-water"] & {
+                            color: $yw-medium-blue;
+                        }
                     }
                     
                     [cpn-story_desc] {
                         font-size: rem(11px);
                         line-height: 1.1818181818; // 13//11
+                        
+                        [solomon-app~="yorkshire-water"] & {
+                            color: $yw-dark-blue;
+                        }
                         
                         a {
                             [cpn-story_face~="back"] & {

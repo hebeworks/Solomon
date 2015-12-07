@@ -123,10 +123,10 @@ test: function() {
                 },
                 slices: {
                     0: {
-                        color: 'rgb(89,172,0)'
+                        color: '#1EA0C8'
                     },
                     1: {
-                        color: 'rgb(70,142,229)'
+                        color: '#B5DDF0'
                     }
                 },
                 pieHole: 0.8
@@ -174,10 +174,10 @@ test: function() {
                 },
                 slices: {
                     0: {
-                        color: 'rgb(89,172,0)'
+                        color: '#1EA0C8'
                     },
                     1: {
-                        color: 'rgb(70,142,229)'
+                        color: '#B5DDF0'
                     }
                 },
                 pieHole: 0.8

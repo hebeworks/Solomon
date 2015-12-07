@@ -140,7 +140,8 @@ export default DefaultStory.extend({
                 titlePosition: 'out',
                 titleTextStyle: {
                     bold: true,
-                    fontSize: 14
+                    fontSize: 14,
+                    color: '#034763'
                 },
                 width: 270,
                 height: 93,
@@ -153,6 +154,7 @@ export default DefaultStory.extend({
                 legend: {
                     position: 'none'
                 },
+                lineWidth: 3,
                 pointSize: 0,
                 hAxis: {
                     title: '',
@@ -174,9 +176,10 @@ export default DefaultStory.extend({
                 },
                 series: {
                     0: {
-                        color: 'rgb(70,142,229)'
+                        color: '#1EA0C8'
                     }
-                }
+                },
+                curveType: 'function'
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('yw-contacts-chart'));

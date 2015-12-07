@@ -7,7 +7,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'WQ Contact Trends', // (Provide a story title)
         subTitle: 'What time of day are contacts received?', // (Provide a story subtitle)
-        scroll: true, // (Should the story vertically scroll its content?)
+        scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true
     },
     
@@ -79,6 +79,7 @@ export default DefaultStory.extend({
                     position: 'none'
                 },
                 pointSize: 0,
+                lineWidth: 3,
                 hAxis: {
                     title: 'Period'
                 },
@@ -93,9 +94,10 @@ export default DefaultStory.extend({
                 },
                 series: {
                     0: {
-                        color: 'rgb(70,142,229)'
+                        color: '#1EA0C8'
                     }
-                }
+                },
+                curveType: 'function'
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('call-time-trends-chart'));

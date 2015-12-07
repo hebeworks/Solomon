@@ -21,6 +21,10 @@ body {
     font-size: rem(15px);
     line-height: 1.5;
     
+    [solomon-app~="yorkshire-water"] & {
+        color: $yw-dark-blue;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;
@@ -195,6 +199,10 @@ ol {
     background-color: #f7f7f7;
     z-index: 1;
     // -webkit-overflow-scrolling: touch;
+    
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-dark-blue;
+    }
     
     &.add-a {
         top:0px;
