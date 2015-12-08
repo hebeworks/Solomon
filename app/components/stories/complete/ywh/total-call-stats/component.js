@@ -59,7 +59,7 @@ export default DefaultStory.extend({
             var primaryNeeds = appSettings.groupSortCount(ywData,'need',4);
             _this.set('primaryNeeds', primaryNeeds);
 
-            var count = this.get('ywData.length');
+            var count = ywData.length;
             this.set('periodContacts', count);
 
             var dateString = 'from ' + moment(ywFilter.startDate).format('Do MMM YY') + ' to ' + moment(ywFilter.endDate).format('Do MMM YY')
