@@ -5,7 +5,8 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'WQ Contacts by Type', // (Provide a story title)
         subTitle: 'How are people contacting us?', // (Provide a story subtitle)
-        viewOnly: true
+        viewOnly: true,
+        scroll: false
     },
     items: [],
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),

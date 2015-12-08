@@ -34,7 +34,7 @@ export default DefaultStory.extend({
     currentYearContacts: 12000,
     previousYearContacts: 15000,
     threshold: 2000,
-    ragRatingColour: 'lime', // lime (green) for below, amber for same or above
+    ragRatingColour: 'yw-green', // yw-green for below, yw-amber for same or above
     ragRatingText: '',
     ragRatingPercentage: '',
     topContacts: [],
@@ -67,10 +67,10 @@ export default DefaultStory.extend({
             
             if (count < this.get('threshold')) {
                 // alert('Lower contacts');
-                this.set('ragRatingColour', 'lime');
+                this.set('ragRatingColour', 'yw-green');
             } else {
                 // alert('Higher contacts');
-                this.set('ragRatingColour', 'amber');
+                this.set('ragRatingColour', 'yw-amber');
             }
 
             setTimeout(function () {
@@ -83,14 +83,14 @@ export default DefaultStory.extend({
         if (this.get('currentYearContacts') < this.get('previousYearContacts')) {
             var percentage = Math.round((100 - ((this.get('currentYearContacts') / this.get('previousYearContacts')) * 100)));
 
-            this.set('ragRatingColour', 'lime');
+            this.set('ragRatingColour', 'yw-green');
             this.set('ragRatingPercentage', percentage);
             this.set('ragRatingText', 'down on last year');
 
         } else {
             var percentage = Math.round((100 - ((this.get('previousYearContacts') / this.get('currentYearContacts')) * 100)));
 
-            this.set('ragRatingColour', 'red');
+            this.set('ragRatingColour', 'yw-red');
             this.set('ragRatingPercentage', percentage);
             this.set('ragRatingText', 'up on last year');
         }
@@ -141,7 +141,7 @@ export default DefaultStory.extend({
                 titleTextStyle: {
                     bold: true,
                     fontSize: 14,
-                    color: '#034763'
+                    color: '#004c6c'
                 },
                 width: 270,
                 height: 93,
@@ -176,7 +176,7 @@ export default DefaultStory.extend({
                 },
                 series: {
                     0: {
-                        color: '#1EA0C8'
+                        color: '#00b5ef'
                     }
                 },
                 curveType: 'function'
