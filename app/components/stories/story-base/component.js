@@ -149,6 +149,7 @@ export default Ember.Component.extend({
         this.setupDragEvents();
         this.set('action', 'onStoryLoaded');
         this.sendAction();
+        this.setStoryHandle();
     }.on('didInsertElement'),
 
     onFieldsChanged: function () {
@@ -158,6 +159,7 @@ export default Ember.Component.extend({
     setupDragEvents: function () {
         var _this = this;
         var cog = this.$('.js-cogs');
+        var bar = this.$('.js-bars');
 
         if (Modernizr.cssanimations) {
             _this.$('.story__inner').addClass('-support-3d').attr('cpn-story_inner', 'support-3d');
@@ -168,6 +170,14 @@ export default Ember.Component.extend({
         }
 
         cog
+            .on('touchstart mousedown', function (e) {
+                _this.set('isDraggingStory', false);
+            })
+            .on('touchmove mousemove', function (e) {
+                _this.set('isDraggingStory', true);
+            });
+            
+        bar
             .on('touchstart mousedown', function (e) {
                 _this.set('isDraggingStory', false);
             })
@@ -201,6 +211,20 @@ export default Ember.Component.extend({
                         }
                     }
                 });
+        }
+    },
+    
+    setStoryHandle: function() {
+        var storyHandle = this.get('appSettings.config')().storyConfig.storyHandle;
+        
+        if (storyHandle == 'dot') {
+            this.set('storyHandleIsDot', true);
+            
+        } else if (storyHandle == 'bar') {
+            this.set('storyHandleIsBar', true);
+            
+        } else if (storyHandle == 'none') {
+            this.set('storyHandleIsNone', true);
         }
     }
 });

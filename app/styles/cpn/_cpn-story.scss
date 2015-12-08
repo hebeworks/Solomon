@@ -135,6 +135,23 @@
                     height: rem(12px);
                 }
             }
+            
+            [cpn-story_bar] {
+                display: block;
+                width: 100%;
+                height: rem(5px);
+                font-size: 0;
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #222;
+                cursor: move;
+                
+                [solomon-app~="yorkshire-water"] & {
+                    background-color: $yw-medium-blue;
+                }
+            }
         
             [cpn-story_content] {
                 @include backface-visibility(hidden);

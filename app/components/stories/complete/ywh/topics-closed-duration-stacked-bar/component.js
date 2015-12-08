@@ -198,13 +198,13 @@ export default DefaultStory.extend({
                 },
                 series: {
                     0: {
-                        color: '#034763'
+                        color: '#004c6c'
                     },
                     1: {
-                        color: '#1EA0C8'
+                        color: '#00b5ef'
                     },
                     2: {
-                        color: '#B5DDF0'
+                        color: '#92cfda'
                     }
                 }
             };

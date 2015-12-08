@@ -93,7 +93,7 @@ export default DefaultStory.extend({
             },
             series: {
                 0: {
-                    color: '#1EA0C8'
+                    color: '#00b5ef'
                 }
             }
         };

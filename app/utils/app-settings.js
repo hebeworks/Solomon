@@ -22,7 +22,10 @@ export default Ember.Object.extend({
         // Temporary settings
         return {
             name: 'yorkshire-water',
-            title: 'Yorkshire Water'
+            title: 'Yorkshire Water',
+            storyConfig: {
+                storyHandle: 'bar'
+            }
         };
 
         var solomonConfig = {};
@@ -30,6 +33,7 @@ export default Ember.Object.extend({
             default:
                 solomonConfig.name = 'solomon';
                 solomonConfig.title = 'Solomon';
+                solomonConfig.storyConfig.storyHandle = 'dot'; // can be 'dot', 'bar', or 'none'
                 break;
             case 'leeds.testing.mysolomon.co.uk':
             case 'leeds.preview.mysolomon.co.uk':
