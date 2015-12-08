@@ -139,9 +139,10 @@ export default DefaultStory.extend({
                 title: 'Annual Trend',
                 titlePosition: 'out',
                 titleTextStyle: {
-                    bold: true,
+                    bold: false,
                     fontSize: 14,
-                    color: '#004c6c'
+                    color: '#004c6c',
+                    fontName: 'Swiss Bold Rounded'
                 },
                 width: 270,
                 height: 93,

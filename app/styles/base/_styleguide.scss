@@ -70,6 +70,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     font-family: $helvneuemed;
     margin-bottom: rem($spacing-base * .7);
+    
+    [solomon-app~="yorkshire-water"] & {
+        font-family: $swissboldrounded;
+    }
 }
 
 p, table, ul, ol {
