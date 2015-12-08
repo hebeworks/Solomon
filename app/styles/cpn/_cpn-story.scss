@@ -197,6 +197,11 @@
                     position: absolute;
                     top: 0;
                     left: 0;
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        border-bottom: 0;
+                        margin-bottom: 0;
+                    }
                 }
             
                     [cpn-story_title] {
@@ -232,6 +237,10 @@
                 
                 [cpn-story_body~="has-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
                     padding-top: rem($spacing-base);
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        padding-top: 0;
+                    }
                 }
                 
                 [cpn-story_body~="no-slider"] {
