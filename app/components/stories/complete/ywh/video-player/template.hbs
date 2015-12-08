@@ -1,0 +1,23 @@
+{{#stories/story-base}}
+
+    <div cpn-padding="top-half">
+        {{!-- Display the video --}}
+        {{#if uasableVideoSrc}}
+        <iframe
+            width="310"
+            height="174"
+            src="{{usableVideoSrc}}"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        
+        {{!-- Choose a video --}}
+        {{else}}
+        <p>Choose a video to display</p>
+        {{input value=videoSrc type="text" placeholder="YouTube share URL"}}
+        <button cpn-button="action" cpn-margin="top" {{action "addVideo"}}>Add Video</button>
+        {{/if}}
+        
+    </div>
+    
+{{/stories/story-base}}
