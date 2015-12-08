@@ -1,8 +1,18 @@
+[solomon-story~="calendar-date"] {
+    [cpn-story_bar] {
+        background-color: $gold;
+    }
+}
+
 .calendar {
     width: 120px;
     height: 120px;
     position: relative;
     font-family: $letrapro;
+    
+    [solomon-app~="yorkshire-water"] & {
+        font-family: $swissboldrounded;
+    }
 }
     .calendar__day-word {
         color: #f5a623;
@@ -11,6 +21,10 @@
         text-transform: uppercase;
         display: block;
         margin-bottom: 5px;
+        
+        [solomon-app~="yorkshire-water"] & {
+            font-weight: normal;
+        }
 
         ~ .dotted-area {
             @include cf;
@@ -37,6 +51,10 @@
         line-height: 45px;
         padding-top: 8px;
         float: left;
+        
+        [solomon-app~="yorkshire-water"] & {
+            font-weight: normal;
+        }
     }
     .calendar__day-suffix {
         color: #f5a623;
@@ -47,6 +65,10 @@
         text-transform: uppercase;
         float: right;
         margin-right: 3px;
+        
+        [solomon-app~="yorkshire-water"] & {
+            font-weight: normal;
+        }
     }
     .calendar__month,
     .calendar__year {
@@ -57,6 +79,10 @@
         line-height: 15px;
         position: absolute;
         bottom: 0;
+        
+        [solomon-app~="yorkshire-water"] & {
+            font-weight: normal;
+        }
     }
     .calendar__month {
         color: #fff;

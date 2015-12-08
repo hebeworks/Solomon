@@ -1,3 +1,9 @@
+[solomon-story~="clock-face"] {
+    [cpn-story_bar] {
+        background-color: $gold;
+    }
+}
+
 .clock-face {
     border-radius: 50%;
     background: radial-gradient(#000, #000 0.1em, #fff 0.1em, #fff), #fff;
