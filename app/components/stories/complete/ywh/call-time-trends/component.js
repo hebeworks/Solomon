@@ -84,7 +84,7 @@ export default DefaultStory.extend({
                     title: 'Period'
                 },
                 chartArea: {
-                    width: '85%',
+                    width: '90%',
                     height: '80%',
                     top: '5%',
                     left: '10%'

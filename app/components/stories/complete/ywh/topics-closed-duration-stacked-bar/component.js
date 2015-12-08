@@ -186,7 +186,7 @@ export default DefaultStory.extend({
                     top: '10%',
                     left: '10%'
                 },
-                width: 435,
+                width: 460,
                 height: 250,
                 legend: {
                     position: 'top',
