@@ -24,6 +24,10 @@
     
     @include transition(.3s);
     
+    [solomon-app~="yorkshire-water"] & {
+        font-family: $swissboldrounded;
+    }
+    
     &:hover, &:focus {
         background-color: lighten($medium-grey, 5%);
     }
@@ -53,6 +57,18 @@
     &:active {
         background-color: $dark-red;
     }
+    
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-red;
+        
+        &:hover, &:focus {
+            background-color: lighten($yw-red, 5%);
+        }
+        
+        &:active {
+            background-color: darken($yw-red, 5%);
+        }
+    }
 }
 
 // Move button styles, for buttons which take the user to a different location
@@ -70,14 +86,14 @@
     }
     
     [solomon-app~="yorkshire-water"] & {
-        background-color: $yw-dark-blue;
+        background-color: $yw-medium-blue;
         
         &:hover, &:focus {
-            background-color: lighten($yw-dark-blue, 5%);
+            background-color: lighten($yw-medium-blue, 5%);
         }
         
         &:active {
-            background-color: darken($yw-dark-blue, 5%);
+            background-color: darken($yw-medium-blue, 5%);
         }
     }
 }
@@ -105,6 +121,10 @@
     &, &:hover, &:focus {
         background-color: $lime;
         color: #fff;
+        
+        [solomon-app~="yorkshire-water"] & {
+            background-color: $yw-green;
+        }
     }
 }
 
