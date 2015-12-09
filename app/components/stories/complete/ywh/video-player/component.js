@@ -22,8 +22,8 @@ export default DefaultStory.extend({
         }
     }),
     
-    usableVideoSrc: 'https://www.youtube.com/embed/RuqGv-NRoRU',
-    // https://www.youtube.com/embed/RuqGv-NRoRU
+    usableVideoSrc: 'https://www.youtube.com/embed/Ile-FwNEafk',
+    // https://www.youtube.com/embed/Ile-FwNEafk
     
     // didInsertElement: function() {
     //     this.constructVideoUrl();
