@@ -242,6 +242,10 @@ ol {
     padding: 30px 40px;
     overflow-y: scroll;
     
+    [solomon-app~="yorkshire-water"] & {
+        background-color: #fff;
+    }
+    
     .btn-list {
         .btn {
             &.-create {
