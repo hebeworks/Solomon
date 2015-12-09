@@ -26,8 +26,10 @@ module.exports = function (environment) {
       dataMillCatAPI: 'http://leedsdatamill.org', // http://leedsdatamill.org/api (the catalogue API for package queries)
       dataMillDataAPI: 'http://api.datapress.io/api/3/',     // (the datastore API where data ends up in the 'push to datastore' case).
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW 
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
+      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      hebeNodeAPI: 'http://hebenodeapi-cached.azurewebsites.net/',
+      // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
+      solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net',
 
       googleMapStyles: {
         default: [
@@ -187,7 +189,7 @@ module.exports = function (environment) {
     // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
     // ENV.APP.solomonAPIURL = 'http://localhost:3000';
     // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
-    ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
+    // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
   }
 
   if (environment === 'test') {
