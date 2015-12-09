@@ -68,6 +68,18 @@
     &:active {
         background-color: darken($blue, 5%);
     }
+    
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-dark-blue;
+        
+        &:hover, &:focus {
+            background-color: lighten($yw-dark-blue, 5%);
+        }
+        
+        &:active {
+            background-color: darken($yw-dark-blue, 5%);
+        }
+    }
 }
 
 // Ghost button styles. These look like buttons but are intended for static informational tags
