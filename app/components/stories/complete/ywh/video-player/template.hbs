@@ -2,7 +2,7 @@
 
     <div cpn-padding="top-half">
         {{!-- Display the video --}}
-        {{#if uasableVideoSrc}}
+        {{#if usableVideoSrc}}
         <iframe
             width="310"
             height="174"
@@ -11,11 +11,19 @@
             allowfullscreen>
         </iframe>
         
+        <div cpn-padding="right left">
+            <h3 spc-yw-vp_title>Yorkshire Water - Save a Little, Save a Lot</h3>
+            <p spc-yw-vp_desc>Meet our little water savers who are going to show you how a few little tips can add up to big savings.</p>
+            <a href="https://www.youtube.com/channel/UCebau9F5cK-A0wmu-Z4JGvw" target="_blank" cpn-button="move">Find more videos</a>
+        </div>
+        
         {{!-- Choose a video --}}
         {{else}}
-        <p>Choose a video to display</p>
-        {{input value=videoSrc type="text" placeholder="YouTube share URL"}}
-        <button cpn-button="action" cpn-margin="top" {{action "addVideo"}}>Add Video</button>
+        <div cpn-padding="right left">
+            <p>Choose a video to display</p>
+            {{input value=videoSrcUser type="text" placeholder="YouTube share URL"}}
+            <button cpn-button="action" cpn-margin="top" {{action "addVideo"}}>Add Video</button>
+        </div>
         {{/if}}
         
     </div>

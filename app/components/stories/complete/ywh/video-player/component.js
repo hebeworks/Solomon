@@ -8,31 +8,42 @@ export default DefaultStory.extend({
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)
         scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
     
-    videoSrc: Ember.computed('videoSrc', function() {
-        return this.get('videoSrc');
+    _videoSrcUser: null,
+    videoSrcUser: Ember.computed('_videoSrcUser', {
+        get: function() {
+            return this.get("_videoSrcUser");
+        },
+        set: function(key, newVal) {
+            this.set('_videoSrcUser', newVal);
+            return newVal;
+        }
     }),
-    usableVideoSrc: '',
+    
+    usableVideoSrc: 'https://www.youtube.com/embed/RuqGv-NRoRU',
+    // https://www.youtube.com/embed/RuqGv-NRoRU
     
     // didInsertElement: function() {
     //     this.constructVideoUrl();
     // },
     
     constructVideoUrl: function(video) {
-        var _this = this,
-            ytUrl = 'https://www.youtube.com/embed/';
+        var ytUrl = 'https://www.youtube.com/embed/';
+        console.log('video: ' + video);
             
         var videoId = video.split('/').pop();
                 
         this.set('usableVideoSrc', ytUrl + videoId);
+        
+        console.log('Usable Video Src: ' + this.get('usableVideoSrc'));
     },
     
     actions: {
         addVideo: function () {
-            this.constructVideoUrl(videoSrc);
+            this.constructVideoUrl(this.get('videoSrcUser'));
+            // console.log(this.get('videoSrcUser'));
         }
     }
-    
-    // https://www.youtube.com/embed/RuqGv-NRoRU
 });

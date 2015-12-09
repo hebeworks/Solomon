@@ -1,0 +1,19 @@
+[solomon-story="video-player"] {
+    [cpn-story_face~="front"] {
+        padding-top: 0;
+    }
+    
+        [cpn-story_body] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+}
+
+    [spc-yw-vp_title] {
+        font-size: rem(14px);
+        color: $yw-medium-blue;
+    }
+    
+    [spc-yw-vp_desc] {
+        font-size: rem(12px);
+    }
