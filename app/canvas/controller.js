@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
         var items = [
             // { title: 'Toolbox' },//, action: 'toggleSubNav' },
             { title: 'Toolbox', action: 'toggleToolbox' },
-            { title: 'Filter', action: 'showCanvasSettings' },
             { title: 'Gallery', action: 'gotoRoute', route: 'gallery' }
         ];
 
@@ -27,6 +26,12 @@ export default Ember.Controller.extend({
 
     subNavItems: function () {
         var items = [
+            {
+                title: 'Filter canvas',
+                action: 'showCanvasSettings',
+                iconclass: 'filter',
+                svgclass: 'svg-filter'
+            },
             {
                 title: 'Add canvas',
                 action: 'createACanvas',
