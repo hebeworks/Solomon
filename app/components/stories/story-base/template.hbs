@@ -62,7 +62,7 @@
         
         <section cpn-story_content="back {{usableHeight}}">
             {{#if storyConfig.viewOnly}}
-                <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
+                <button cpn-margin="top" cpn-button="action" {{action 'removeAStory' storyModel}}>Remove Story</button>
             {{else}}
                 {{#if storyConfig.description}}
                     <div cpn-divide="bottom light">
@@ -81,16 +81,16 @@
                 <ul cpn-row-list>
                     {{#if storyConfig.dataSourceUrl}}
                     <li cpn-width="50%">
-                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
+                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move" target="_blank">View data source</a>
                     </li>
                     {{/if}}
                     {{#if storyConfig.feedbackEmail}}
                     <li cpn-width="50%">
-                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
+                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move" target="_blank">Contact author</a>
                     </li>
                     {{/if}}
                     <li cpn-width="100%">
-                        <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                        <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
                     </li>
                 </ul>
             {{/if}}

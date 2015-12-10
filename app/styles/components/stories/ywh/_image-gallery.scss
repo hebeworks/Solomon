@@ -12,4 +12,38 @@
                 padding: 0;
                 margin-bottom: 0;
             }
+            
+            .js-story-pagination-controls {
+                position: absolute;
+                bottom: rem(10px);
+                left: rem(-10px);
+                right: rem(-10px);
+                margin: auto;
+                text-align: center;
+            }
+            
+                .carousel-pager__btn {
+                    display: none !important; // overrides inline style
+                }
+                
+                .carousel-pager__numbers {
+                    a {
+                        width: 10px;
+                        height: 12px;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        
+                        &::before {
+                            background-color: #fff;
+                            width: 10px;
+                            height: 10px;
+                        }
+                        
+                        &:hover, &.selected {
+                            &::before {
+                                background-color: $yw-medium-blue;
+                            }
+                        }
+                    }
+                }
 }

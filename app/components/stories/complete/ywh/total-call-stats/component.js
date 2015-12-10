@@ -11,6 +11,8 @@ export default DefaultStory.extend({
 
     periodContacts: 0,
     period: '',
+    periodFrom: '',
+    periodTo: '',
 
     currentYear: '2015',
     previousYear: '2014',
@@ -42,8 +44,13 @@ export default DefaultStory.extend({
             var count = ywData.length;
             this.set('periodContacts', count);
 
-            var dateString = 'from ' + moment(ywFilter.startDate).format('Do MMM YY') + ' to ' + moment(ywFilter.endDate).format('Do MMM YY')
-            this.set('period', dateString);
+            // var dateString = 'from ' + moment(ywFilter.startDate).format('Do MMM YY') + ' to ' + moment(ywFilter.endDate).format('Do MMM YY');
+            
+            var dateStringFrom = 'from ' + moment(ywFilter.startDate).format('Do MMM YY');
+            var dateStringTo = ' to ' + moment(ywFilter.endDate).format('Do MMM YY');
+            
+            this.set('periodFrom', dateStringFrom);
+            this.set('periodTo', dateStringTo);
             
             if (count < this.get('threshold')) {
                 // alert('Lower contacts');

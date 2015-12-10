@@ -1,6 +1,6 @@
 {{#stories/story-base}}
 
-    {{#stories/story-slider loaded=loaded}}
+    {{#stories/story-slider loaded=loaded viewOnly=storyConfig.viewOnly}}
         {{#each image in images}}
             {{#stories/story-slide}}
                 <img src="{{image.url}}" alt="">
