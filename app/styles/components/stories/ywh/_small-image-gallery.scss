@@ -1,0 +1,18 @@
+[solomon-story="small-image-gallery"] {
+    [cpn-story_face~="front"] {
+        padding: 0;
+    }
+    
+        [cpn-story_content] {
+            height: 100%;
+        }
+        
+            [cpn-story_body] {
+                // margin: 0;
+            }
+    
+                [cpn-story_carousel-item] {
+                    padding: 0;
+                    margin-bottom: 0;
+                }
+}
