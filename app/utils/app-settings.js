@@ -13,7 +13,7 @@ export default Ember.Object.extend({
             selectedZone: null,
             searchTerm: '',
             startDate: new Date("01/01/2015"),
-            endDate: new Date("06/30/2015"),
+            endDate: new Date(),
             history: []
         }
     },
@@ -111,6 +111,17 @@ export default Ember.Object.extend({
             }, 1000);
         });
     },
+    
+    onYWSelectedHistoryChange: function () {
+		var selectedHistory = this.get('canvasSettings.ywFilter.selectedHistory');
+		if (!Ember.isEmpty(selectedHistory)) {
+			this.setProperties({
+					'canvasSettings.ywFilter.selectedZone': selectedHistory.selectedZone,
+					'canvasSettings.ywFilter.startDate': selectedHistory.startDate,
+					'canvasSettings.ywFilter.endDate': selectedHistory.endDate
+				});
+		}
+	}.observes('canvasSettings.ywFilter.selectedHistory'),
 
     onYWSettingsChange: function () {
         var hasQuery = false;
@@ -130,13 +141,13 @@ export default Ember.Object.extend({
         }
         // Start date
         if (!Ember.isEmpty(startDate)) {
-            queryTitle += ' - from ' + moment(new Date(startDate)).format('DD/MM/YYYY');
+            queryTitle += ': ' + moment(new Date(startDate)).format('DD/MM/YYYY');
             ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
             hasQuery = true;
         }
         // End date
         if (!Ember.isEmpty(endDate)) {
-            queryTitle += ' to ' + moment(new Date(endDate)).format('DD/MM/YYYY');
+            queryTitle += ' - ' + moment(new Date(endDate)).format('DD/MM/YYYY');
             ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
             hasQuery = true;
         }

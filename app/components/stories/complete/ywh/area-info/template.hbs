@@ -4,7 +4,7 @@
         <h2 spc-yw-ai_title>{{zoneTitle}}</h2>
     </div>
     
-    <p cpn-font="swiss-bold-rounded" spc-yw-ai_period>{{datePeriod}}</p>
+    {{!-- <p cpn-font="swiss-bold-rounded" spc-yw-ai_period>{{datePeriod}}</p>--}}
     
     <span spc-yw-ai_waves class="svg-yorkshire-water-waves" data-grunticon-embed></span>
     
@@ -25,6 +25,16 @@
 		<div cpn-width="50%">
 			<label cpn-font="swiss-bold-rounded" for="" cpn-display="block">End Date</label>
 			{{pikaday-input value=ywFilter.endDate format="DD/MM/YYYY"}}
+		</div>
+		<div cpn-width="100%">
+			<label for="" cpn-font-weight="600" cpn-display="block">Previous Searches</label>
+			{{ select-2
+				content=ywFilter.history
+				value=ywFilter.selectedHistory
+				optionLabelPath="title"
+				placeholder="Filter history"
+				class="margin-bottom-no"
+			}}
 		</div>
     </div>
     

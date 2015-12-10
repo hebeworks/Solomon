@@ -16,12 +16,16 @@ export default DefaultStory.extend({
     
     loadGoogleAPIs: function() {
         // Draw the chart when the APIs have loaded
-        var _this = this;
-        google.setOnLoadCallback(function () { _this.drawChart() });
     }.on('didInsertElement'),
     
     onDayInit: function () {
+        var _this = this;
+        google.setOnLoadCallback(function () { 
+            alert('setOnLoadCallback');
+            _this.drawChart();
+        });
         this.get('ywData');
+        // this.drawChart();
     }.on('init'),
     
     drawChart: function() {
