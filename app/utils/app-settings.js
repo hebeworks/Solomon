@@ -7,15 +7,20 @@ export default Ember.Object.extend({
     hebeNodeAPI: '',
     bottomDrawerConfig: { test: 'test' },
     errorMessage: '',
-    
+
     canvasSettings: {
         ywFilter: {
             zones: [],
+            subZones: [],
+            dmas: [],
             selectedZone: null,
+            selectedSubZone: null,
+            selectedDMA: null,
             searchTerm: '',
             startDate: new Date("01/01/2015"),
             endDate: new Date(),
-            history: []
+            history: [],
+            initialDataLoads: 0
         }
     },
 
@@ -59,6 +64,7 @@ export default Ember.Object.extend({
         this.set('hebeNodeAPI', config.APP.hebeNodeAPI.ensureNoEndingString('/'));
 
         this.loadYWZones();
+        this.loadDMAs();
     },
 
     getData: function (url, cache) {
@@ -100,127 +106,179 @@ export default Ember.Object.extend({
         var _this = this;
         var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=waterSupplySystem&sortfield=waterSupplyZone';
         this.getData(url, true).then(function (data) {
-            var zones = [];
+            var zones = [{ id: 'all', text: 'All - May be slow' }];
             if (!Ember.isEmpty(data)) {
                 data.forEach(function (zone) {
                     zones.push({ text: zone, id: zone });
                 });
             }
+            _this.incrementProperty('canvasSettings.ywFilter.initialDataLoads');
             _this.set('canvasSettings.ywFilter.zones', zones);
-            setTimeout(function () {
-                _this.set('canvasSettings.ywFilter.selectedZone', _this.get('canvasSettings.ywFilter.zones.firstObject'));
-            }, 1000);
+            _this.set('canvasSettings.ywFilter.selectedZone', zones[1]);
         });
     },
-    
+
     loadSubZones: function () {
         var _this = this;
         var selectedZone = this.get('canvasSettings.ywFilter.selectedZone');
-        if(!Ember.isEmpty(selectedZone)) {            
+        if (!Ember.isEmpty(selectedZone)) {
             var query = this.encodeQuery({ waterSupplySystem: selectedZone.id });
             var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=pressureManagementZone&sortfield=waterSupplyZone&query=' + query;
             this.getData(url, true).then(function (data) {
-                var zones = [{id:'all',text:'All'}];
+                var zones = [{ id: 'all', text: 'All' }];
                 if (!Ember.isEmpty(data)) {
                     data.forEach(function (zone) {
                         zones.push({ text: zone, id: zone });
                     });
                 }
+                _this.incrementProperty('canvasSettings.ywFilter.initialDataLoads');
                 _this.set('canvasSettings.ywFilter.subZones', zones);
-                setTimeout(function () {
-                    _this.set('canvasSettings.ywFilter.selectedSubZone', _this.get('canvasSettings.ywFilter.subZones.firstObject'));
-                }, 1000);
+                // _this.set('canvasSettings.ywFilter.selectedSubZone', zones[0]);
             });
         }
     }.observes('canvasSettings.ywFilter.selectedZone'),
-    
+
+    loadDMAs: function () {
+        var _this = this;
+        var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=zoneRef&sortfield=zoneRef';
+        this.getData(url, true).then(function (data) {
+            var zones = [{ id: 'all', text: 'All' }];
+            if (!Ember.isEmpty(data)) {
+                data.forEach(function (zone) {
+                    zones.push({ text: zone, id: zone });
+                });
+            }
+            _this.incrementProperty('canvasSettings.ywFilter.initialDataLoads');
+            _this.set('canvasSettings.ywFilter.dmas', zones);
+            // _this.set('canvasSettings.ywFilter.selectedDMA', zones[0]);
+        });
+    },
+
     onYWSelectedHistoryChange: function () {
-		var selectedHistory = this.get('canvasSettings.ywFilter.selectedHistory');
-		if (!Ember.isEmpty(selectedHistory)) {
-			this.setProperties({
-					'canvasSettings.ywFilter.selectedZone': selectedHistory.selectedZone,
-					'canvasSettings.ywFilter.startDate': selectedHistory.startDate,
-					'canvasSettings.ywFilter.endDate': selectedHistory.endDate
-				});
-		}
-	}.observes('canvasSettings.ywFilter.selectedHistory'),
+        var selectedHistory = this.get('canvasSettings.ywFilter.selectedHistory');
+        if (!Ember.isEmpty(selectedHistory)) {
+            this.setProperties({
+                'canvasSettings.ywFilter.selectedZone': selectedHistory.selectedZone,
+                'canvasSettings.ywFilter.selectedSubZone': selectedHistory.selectedSubZone,
+                'canvasSettings.ywFilter.selectedDMA': selectedHistory.selectedDMA,
+                'canvasSettings.ywFilter.startDate': selectedHistory.startDate,
+                'canvasSettings.ywFilter.endDate': selectedHistory.endDate
+            });
+        }
+    }.observes('canvasSettings.ywFilter.selectedHistory'),
 
     onYWSettingsChange: function () {
+        var _this = this;
         var hasQuery = false;
         // Build the mongo query for current YW filters
         var ywQuery = { $and: [] };
         var queryTitle = '';
 
-        var selectedZone = this.get('canvasSettings.ywFilter.selectedZone');
-        var selectedSubZone = this.get('canvasSettings.ywFilter.selectedSubZone');
-        var startDate = this.get('canvasSettings.ywFilter.startDate');
-        var endDate = this.get('canvasSettings.ywFilter.endDate');
-		
-        // Sub DMAS/Zones
-        if (!Ember.isEmpty(selectedSubZone) && selectedSubZone.id != 'all') {
-            queryTitle += selectedSubZone.text;
-            ywQuery.$and.push({ "pressureManagementZone": selectedSubZone.id });
-            hasQuery = true;
-        }
-        // Sub DMAS/Zones
-        else if (!Ember.isEmpty(selectedZone)) {
-            queryTitle += selectedZone.text;
-            ywQuery.$and.push({ "waterSupplySystem": selectedZone.id });
-            hasQuery = true;
-        }
-        // Start date
-        if (!Ember.isEmpty(startDate)) {
-            queryTitle += ': ' + moment(new Date(startDate)).format('DD/MM/YYYY');
-            ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
-            hasQuery = true;
-        }
-        // End date
-        if (!Ember.isEmpty(endDate)) {
-            queryTitle += ' - ' + moment(new Date(endDate)).format('DD/MM/YYYY');
-            ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
-            hasQuery = true;
-        }
+        // var initialDataLoads = this.get('canvasSettings.ywFilter.initialDataLoads');
 
-        if (hasQuery) {
-            this.set('canvasSettings.ywFilter.query', ywQuery);
-            // check if this query is already in history
-            var history = this.get('canvasSettings.ywFilter.history');
-            var historyItem = Ember.Object.create({
-                title: queryTitle,
-                id: hebeutils.guid(),
-                selectedZone: selectedZone,
-                startDate: startDate,
-                endDate: endDate
-            });
-            if (!Ember.isEmpty(history)) {
-                var foundIndex = -1;
-                for (var i = 0; i < history.length; i++) {
-                    var item = history[i];
-                    if (item.selectedZone.id == historyItem.selectedZone.id
-                        && item.startDate == historyItem.startDate
-                        && item.endDate == historyItem.endDate) {
-                        foundIndex = i;
-                        break;
-                    }
-                }
-                if (foundIndex > -1) {
-                    // if it is - move to top
-                    history = this.moveArray(history, foundIndex, 0);
-                } else {
-                    // if not - insert
-                    history.unshift(historyItem);
-                    // this.set('canvasSettings.ywFilter.history', history.concat([historyItem]));
-                    this.set('canvasSettings.ywFilter.history', history);
-                }
-            } else {
-                this.set('canvasSettings.ywFilter.history', [historyItem]);
+        // if (initialDataLoads >= 3) {
+
+            var selectedZone = this.get('canvasSettings.ywFilter.selectedZone');
+            var selectedSubZone = this.get('canvasSettings.ywFilter.selectedSubZone');
+            var selectedDMA = this.get('canvasSettings.ywFilter.selectedDMA');
+            var startDate = this.get('canvasSettings.ywFilter.startDate');
+            var endDate = this.get('canvasSettings.ywFilter.endDate');
+		
+            // Sub DMAS
+            if (!Ember.isEmpty(selectedDMA) && selectedDMA.id != 'all') {
+                queryTitle += selectedDMA.text;
+                ywQuery.$and.push({ "dma": selectedDMA.id });
+                hasQuery = true;
             }
-        }
+            // Sub Production Zones
+            else if (!Ember.isEmpty(selectedSubZone) && selectedSubZone.id != 'all') {
+                queryTitle += selectedSubZone.text;
+                ywQuery.$and.push({ "pressureManagementZone": selectedSubZone.id });
+                hasQuery = true;
+            }
+            // Sub DMAS/Zones
+            else if (!Ember.isEmpty(selectedZone) && selectedZone.id != 'all') {
+                queryTitle += selectedZone.text;
+                ywQuery.$and.push({ "waterSupplySystem": selectedZone.id });
+                hasQuery = true;
+            }
+            // Start date
+            if (!Ember.isEmpty(startDate)) {
+                queryTitle += ': ' + moment(new Date(startDate)).format('DD/MM/YYYY');
+                ywQuery.$and.push({ "creationDate": { $gte: new Date(startDate) } });
+                hasQuery = true;
+            }
+            // End date
+            if (!Ember.isEmpty(endDate)) {
+                queryTitle += ' - ' + moment(new Date(endDate)).format('DD/MM/YYYY');
+                ywQuery.$and.push({ "creationDate": { $lte: new Date(endDate) } });
+                hasQuery = true;
+            }
+
+            if (hasQuery) {
+                this.set('canvasSettings.ywFilter.query', ywQuery);
+                // check if this query is already in history
+                var history = this.get('canvasSettings.ywFilter.history');
+                var historyItem = Ember.Object.create({
+                    title: queryTitle,
+                    id: hebeutils.guid(),
+                    selectedZone: selectedZone,
+                    selectedSubZone: selectedSubZone,
+                    selectedDMA: selectedDMA,
+                    startDate: startDate,
+                    endDate: endDate,
+                    ywQuery: ywQuery
+                });
+
+                if (!Ember.isEmpty(history)) {
+                    var foundIndex = -1;
+                    for (var i = 0; i < history.length; i++) {
+                        var item = history[i];
+                        if (JSON.stringify(item.ywQuery) == JSON.stringify(historyItem.ywQuery)) {
+                            foundIndex = i;
+                            break;
+                        }
+                    }
+                    if (foundIndex > -1) {
+                        // if it is - move to top
+                        history = this.moveArray(history, foundIndex, 0);
+                    } else {
+                        // if not - insert
+                        history.unshift(historyItem);
+                        // this.set('canvasSettings.ywFilter.history', history.concat([historyItem]));
+                        this.set('canvasSettings.ywFilter.history', history);
+                    }
+                } else {
+                    this.set('canvasSettings.ywFilter.history', [historyItem]);
+                }
+            }
+        // }
     }.observes(
-            'canvasSettings.ywFilter.selectedZone',
-            'canvasSettings.ywFilter.selectedSubZone', 
-            'canvasSettings.ywFilter.startDate', 
-            'canvasSettings.ywFilter.endDate'),
+        'canvasSettings.ywFilter.selectedZone',
+        'canvasSettings.ywFilter.selectedSubZone',
+        'canvasSettings.ywFilter.selectedDMA',
+        'canvasSettings.ywFilter.startDate',
+        'canvasSettings.ywFilter.endDate'),
+
+    onSelectedZoneChanged: function () {
+        if(!Ember.isEmpty(this.get('canvasSettings.ywFilter.selectedZone'))) {
+            this.set('canvasSettings.ywFilter.selectedSubZone', null);
+            this.set('canvasSettings.ywFilter.selectedDMA', null);
+        }
+    }.observes('canvasSettings.ywFilter.selectedZone'),
+
+    onSelectedSubZoneChanged: function () {
+        if(!Ember.isEmpty(this.get('canvasSettings.ywFilter.selectedSubZone'))) {
+            this.set('canvasSettings.ywFilter.selectedDMA', null);
+        }
+    }.observes('canvasSettings.ywFilter.selectedSubZone'),
+
+    onSelectedDMAChanged: function () {
+        if(!Ember.isEmpty(this.get('canvasSettings.ywFilter.selectedDMA'))) {
+            this.set('canvasSettings.ywFilter.selectedSubZone', null);
+            this.set('canvasSettings.ywFilter.selectedZone', null);            
+        }
+    }.observes('canvasSettings.ywFilter.selectedDMA'),
 
     moveArray: function (arr, from, to) {
         arr.splice(to, 0, arr.splice(from, 1)[0]);
@@ -238,8 +296,8 @@ export default Ember.Object.extend({
             .then(function (data) {
                 console.log('Refreshed ywData' + data.length);
                 _this.set('canvasSettings.ywFilter.data', data);
-                if(Ember.isEmpty(data)) {
-                    _this.set('errorMessage','Sorry there is no data for this query');
+                if (Ember.isEmpty(data)) {
+                    _this.set('errorMessage', 'Sorry there is no data for this query');
                 }
             });
     }.observes('canvasSettings.ywFilter.query'),

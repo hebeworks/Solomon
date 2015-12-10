@@ -29,7 +29,16 @@
 				}}
 			</div>
 		{{/if}}
-    		<div cpn-width="50%">
+		<div cpn-width="100%">
+			<label for="" cpn-font="swiss-bold-rounded" cpn-display="block">DMA</label>
+			{{ select-2
+				content=ywFilter.dmas
+				value=ywFilter.selectedDMA
+				placeholder="Or choose a DMA"
+				class="margin-bottom-no"
+			}}
+		</div>
+		<div cpn-width="50%">
 			<label cpn-font="swiss-bold-rounded" for="" cpn-display="block">Start Date</label>
 			{{pikaday-input value=ywFilter.startDate format="DD/MM/YYYY"}}
 		</div>
