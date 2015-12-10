@@ -9,6 +9,11 @@
         <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="front">Move Story</a>
         {{/if}}
         
+        {{#if storyHandleIsBoth}}
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
+        <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="front">Move Story</a>
+        {{/if}}
+        
         <section cpn-story_content="front {{usableHeight}} {{hasHeader}} {{hasFooter}}">
             
             
@@ -47,6 +52,11 @@
         {{/if}}
         
         {{#if storyHandleIsBar}}
+        <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="back">Move Story</a>
+        {{/if}}
+        
+        {{#if storyHandleIsBoth}}
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
         <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="back">Move Story</a>
         {{/if}}
         

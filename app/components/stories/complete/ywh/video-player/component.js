@@ -22,7 +22,7 @@ export default DefaultStory.extend({
         }
     }),
     
-    usableVideoSrc: 'https://www.youtube.com/embed/Ile-FwNEafk',
+    usableVideoSrc: 'https://www.youtube.com/embed/Ile-FwNEafk?rel=0&amp;showinfo=0',
     // https://www.youtube.com/embed/Ile-FwNEafk
     
     // didInsertElement: function() {
@@ -30,20 +30,16 @@ export default DefaultStory.extend({
     // },
     
     constructVideoUrl: function(video) {
-        var ytUrl = 'https://www.youtube.com/embed/';
-        console.log('video: ' + video);
-            
-        var videoId = video.split('/').pop();
+        var ytUrl = 'https://www.youtube.com/embed/',
+            videoId = video.split('/').pop(),
+            queryString = '?rel=0&amp;showinfo=0';
                 
-        this.set('usableVideoSrc', ytUrl + videoId);
-        
-        console.log('Usable Video Src: ' + this.get('usableVideoSrc'));
+        this.set('usableVideoSrc', ytUrl + videoId + queryString);
     },
     
     actions: {
         addVideo: function () {
             this.constructVideoUrl(this.get('videoSrcUser'));
-            // console.log(this.get('videoSrcUser'));
         }
     }
 });

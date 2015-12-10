@@ -2,6 +2,10 @@
     [cpn-story_bar] {
         background-color: $gold;
     }
+    
+    [cpn-story_dot]::after {
+        background-color: $gold;
+    }
 }
 
 .calendar {
