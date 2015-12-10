@@ -59,6 +59,10 @@
                 
                 &:hover {
                     @include svg--list-view-thumb-add-story-active;
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        @include svg--list-view-thumb-add-story-active--yw;
+                    }
                 }
             }
             
@@ -67,6 +71,10 @@
                 
                 &:hover {
                     @include svg--list-view-thumb-add-canvas-active;
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        @include svg--list-view-thumb-add-canvas-active--yw;
+                    }
                 }
             }
             
