@@ -14,18 +14,17 @@ export default DefaultStory.extend({
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     calls: [],
     
-    loadGoogleAPIs: function() {
-        // Draw the chart when the APIs have loaded
-    }.on('didInsertElement'),
+    // loadGoogleAPIs: function() {
+    //     // Draw the chart when the APIs have loaded
+    // }.on('didInsertElement'),
     
     onDayInit: function () {
         var _this = this;
-        google.setOnLoadCallback(function () { 
-            _this.drawChart();
-        });
-        this.get('ywData');
+        google.setOnLoadCallback();
+        this.drawChart();
+        // this.get('ywData');
         // this.drawChart();
-    }.on('init'),
+    }.on('didInsertElement'),
     
     drawChart: function() {
         var _this = this,
