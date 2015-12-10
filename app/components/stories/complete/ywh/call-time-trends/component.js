@@ -80,7 +80,8 @@ export default DefaultStory.extend({
                 legend: {
                     position: 'none'
                 },
-                pointSize: 0,
+                pointSize: 10,
+                dataOpacity: 0.5,
                 lineWidth: 3,
                 hAxis: {
                     title: 'Period'
