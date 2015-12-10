@@ -119,6 +119,10 @@
                 top: 0;
                 right: 0;
                 
+                [solomon-app~="yorkshire-water"] & {
+                    top: rem(5px);
+                }
+                
                 // We want the dot to look smaller but the hit area still needs to be sufficiently large
                 &::after {
                     content: '';
@@ -133,6 +137,10 @@
                     @include transition(.2s);
                     width: rem(12px);
                     height: rem(12px);
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        background-color: $yw-medium-blue;
+                    }
                 }
             }
             

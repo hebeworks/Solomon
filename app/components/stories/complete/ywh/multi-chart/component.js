@@ -120,18 +120,19 @@ export default DefaultStory.extend({
             var options = {
                 chartArea: {
                     width: '86%',
-                    height: '80%',
-                    top: '13%',
+                    height: '73%',
+                    top: '20%',
                     left: '7%'
                 },
-                width: 120,
-                height: 120,
+                width: 145,
+                height: 127,
                 // title: 'Metered/Unmetered',
                 titleTextStyle: {
                     fontSize: 9
                 },
                 legend: {
-                    position: 'top'
+                    position: 'top',
+                    maxLines: 2
                 },
                 slices: {
                     0: {
@@ -171,18 +172,15 @@ export default DefaultStory.extend({
             var options = {
                 chartArea: {
                     width: '86%',
-                    height: '80%',
-                    top: '13%',
+                    height: '73%',
+                    top: '20%',
                     left: '7%'
                 },
-                width: 120,
-                height: 120,
-                // title: 'Commercial/Domestic',
-                titleTextStyle: {
-                    fontSize: 9
-                },
+                width: 145,
+                height: 127,
                 legend: {
-                    position: 'top'
+                    position: 'top',
+                    maxLines: 2
                 },
                 slices: {
                     0: {

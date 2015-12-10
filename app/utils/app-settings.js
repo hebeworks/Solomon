@@ -24,7 +24,7 @@ export default Ember.Object.extend({
             name: 'yorkshire-water',
             title: 'Yorkshire Water',
             storyConfig: {
-                storyHandle: 'bar'
+                storyHandle: 'both'
             }
         };
 
@@ -33,7 +33,7 @@ export default Ember.Object.extend({
             default:
                 solomonConfig.name = 'solomon';
                 solomonConfig.title = 'Solomon';
-                solomonConfig.storyConfig.storyHandle = 'dot'; // can be 'dot', 'bar', or 'none'
+                solomonConfig.storyConfig.storyHandle = 'dot'; // can be 'dot', 'bar', 'both' or 'none'
                 break;
             case 'leeds.testing.mysolomon.co.uk':
             case 'leeds.preview.mysolomon.co.uk':

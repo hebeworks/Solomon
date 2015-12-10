@@ -55,10 +55,10 @@ export default DefaultStory.extend({
                     baseline: 0
                 },
                 chartArea: {
-                    width: '100%',
+                    width: '90%',
                     height: '80%',
                     top: '5%',
-                    left: '0%'
+                    left: '10%'
                 },
                 width: 290,
                 height: 240,

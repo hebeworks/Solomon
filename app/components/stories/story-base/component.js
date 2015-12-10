@@ -140,16 +140,15 @@ export default Ember.Component.extend({
         }
     }),
     
-    // onInit: function() {
-    //     this.set('data-id',hebeutils.guid());
-    // }.on('init'),
+    onInit: function() {
+        this.setStoryHandle();
+    }.on('init'),
 
     onDidInsertElement: function () {
         Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
         this.setupDragEvents();
         this.set('action', 'onStoryLoaded');
         this.sendAction();
-        this.setStoryHandle();
     }.on('didInsertElement'),
 
     onFieldsChanged: function () {
@@ -222,6 +221,9 @@ export default Ember.Component.extend({
             
         } else if (storyHandle == 'bar') {
             this.set('storyHandleIsBar', true);
+            
+        } else if (storyHandle == 'both') {
+            this.set('storyHandleIsBoth', true);
             
         } else if (storyHandle == 'none') {
             this.set('storyHandleIsNone', true);

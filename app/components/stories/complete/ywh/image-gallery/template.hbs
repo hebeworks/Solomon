@@ -1,0 +1,13 @@
+{{#stories/story-base}}
+
+    {{#stories/story-slider loaded=loaded}}
+        {{#each image in images}}
+            {{#stories/story-slide}}
+                <img src="{{image.url}}" alt="">
+            {{/stories/story-slide}}
+        {{/each}}
+    {{/stories/story-slider}}
+    
+    {{yield}}
+    
+{{/stories/story-base}}
