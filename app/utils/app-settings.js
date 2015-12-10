@@ -112,6 +112,27 @@ export default Ember.Object.extend({
         });
     },
     
+    loadSubZones: function () {
+        var _this = this;
+        var selectedZone = this.get('canvasSettings.ywFilter.selectedZone');
+        if(!Ember.isEmpty(selectedZone)) {            
+            var query = this.encodeQuery({ waterSupplySystem: selectedZone.id });
+            var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=pressureManagementZone&sortfield=waterSupplyZone&query=' + query;
+            this.getData(url, true).then(function (data) {
+                var zones = [{id:'all',text:'All'}];
+                if (!Ember.isEmpty(data)) {
+                    data.forEach(function (zone) {
+                        zones.push({ text: zone, id: zone });
+                    });
+                }
+                _this.set('canvasSettings.ywFilter.subZones', zones);
+                // setTimeout(function () {
+                //     _this.set('canvasSettings.ywFilter.selectedSubZone', _this.get('canvasSettings.ywFilter.subZones.firstObject'));
+                // }, 1000);
+            });
+        }
+    }.observes('canvasSettings.ywFilter.selectedZone'),
+    
     onYWSelectedHistoryChange: function () {
 		var selectedHistory = this.get('canvasSettings.ywFilter.selectedHistory');
 		if (!Ember.isEmpty(selectedHistory)) {
@@ -130,11 +151,18 @@ export default Ember.Object.extend({
         var queryTitle = '';
 
         var selectedZone = this.get('canvasSettings.ywFilter.selectedZone');
+        var selectedSubZone = this.get('canvasSettings.ywFilter.selectedSubZone');
         var startDate = this.get('canvasSettings.ywFilter.startDate');
         var endDate = this.get('canvasSettings.ywFilter.endDate');
 		
         // Sub DMAS/Zones
-        if (!Ember.isEmpty(selectedZone)) {
+        if (!Ember.isEmpty(selectedSubZone) && selectedSubZone.id != 'all') {
+            queryTitle += selectedSubZone.text;
+            ywQuery.$and.push({ "pressureManagementZone": selectedSubZone.id });
+            hasQuery = true;
+        }
+        // Sub DMAS/Zones
+        else if (!Ember.isEmpty(selectedZone)) {
             queryTitle += selectedZone.text;
             ywQuery.$and.push({ "waterSupplySystem": selectedZone.id });
             hasQuery = true;
@@ -187,7 +215,11 @@ export default Ember.Object.extend({
                 this.set('canvasSettings.ywFilter.history', [historyItem]);
             }
         }
-    }.observes('canvasSettings.ywFilter.selectedZone', 'canvasSettings.ywFilter.startDate', 'canvasSettings.ywFilter.endDate'),
+    }.observes(
+            'canvasSettings.ywFilter.selectedZone',
+            'canvasSettings.ywFilter.selectedSubZone', 
+            'canvasSettings.ywFilter.startDate', 
+            'canvasSettings.ywFilter.endDate'),
 
     moveArray: function (arr, from, to) {
         arr.splice(to, 0, arr.splice(from, 1)[0]);
