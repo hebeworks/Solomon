@@ -27,24 +27,25 @@ export default DefaultStory.extend({
         // this.$(window).on('resize', function () {
         //     _this.detectScreenSize();
         // });
-        this.get('selectedZone');
-        
+        // this.get('selectedZone');
+        google.setOnLoadCallback();    
+        this.loadData();    
     }.on('didInsertElement'),
 
-    selectedZone: Ember.computed.alias('appSettings.canvasSettings.ywFilter.selectedZone'),
+    ywFilter: Ember.computed.alias('appSettings.canvasSettings.ywFilter'),
 
 
-    loadGoogleAPIs: function () {
-        // Draw the chart when the APIs have loaded
-        google.setOnLoadCallback(
-        // this.drawChart1(),
-        // this.drawChart2()
-            );
-    }.observes('loaded'),
+    // loadGoogleAPIs: function () {
+    //     // Draw the chart when the APIs have loaded
+    //     google.setOnLoadCallback(
+    //     // this.drawChart1(),
+    //     // this.drawChart2()
+    //         );
+    // }.observes('loaded'),
 
-test: function() {
+// test: function() {
     
-},
+// },
 
     sumProperties: function (arr, propertiesToSum) {
         var results = {};
@@ -66,7 +67,18 @@ test: function() {
 
     loadData: function () {
         var _this = this;
-        this.getData(this.get('appSettings.hebeNodeAPI') + '/yw-zones?query=' + this.get('appSettings').encodeQuery({ waterSupplySystem: this.get('selectedZone.id') }))
+        
+        var selectedSubZone =  this.get('ywFilter.selectedSubZone'); 
+        var selectedZone =  this.get('ywFilter.selectedZone');
+        
+        var query = {};
+        if(!Ember.isEmpty(selectedSubZone) && selectedSubZone.id != 'all') {
+            query = this.get('appSettings').encodeQuery({ pressureManagementZone: selectedSubZone.id });
+        } else if(!Ember.isEmpty(selectedZone)) {
+            query = this.get('appSettings').encodeQuery({ waterSupplySystem: selectedZone.id });
+        }
+        
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/yw-zones?query=' + query)
             .then(function (data) {
                 var propertiesToSum = [
                     "propertiesMeteredDomestic",
@@ -83,7 +95,7 @@ test: function() {
                 summed.population = summed.population;
                 _this.set('summed', summed);
             });
-    }.observes('selectedZone'),
+    }.observes('ywFilter.selectedZone', 'ywFilter.selectedSubZone'),
 
 
 

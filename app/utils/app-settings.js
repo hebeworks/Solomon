@@ -126,9 +126,9 @@ export default Ember.Object.extend({
                     });
                 }
                 _this.set('canvasSettings.ywFilter.subZones', zones);
-                // setTimeout(function () {
-                //     _this.set('canvasSettings.ywFilter.selectedSubZone', _this.get('canvasSettings.ywFilter.subZones.firstObject'));
-                // }, 1000);
+                setTimeout(function () {
+                    _this.set('canvasSettings.ywFilter.selectedSubZone', _this.get('canvasSettings.ywFilter.subZones.firstObject'));
+                }, 1000);
             });
         }
     }.observes('canvasSettings.ywFilter.selectedZone'),

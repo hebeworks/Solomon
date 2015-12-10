@@ -21,7 +21,6 @@ export default DefaultStory.extend({
     onDayInit: function () {
         var _this = this;
         google.setOnLoadCallback(function () { 
-            alert('setOnLoadCallback');
             _this.drawChart();
         });
         this.get('ywData');

@@ -31,8 +31,8 @@ export default DefaultStory.extend({
     }.observes('gMap'),
 
     onHeatMapAttrs: function () {
-        this.get('ywData');
-    }.on('didReceiveAttrs'),
+        this.loadDataOntoMap();
+    }.on('init'),
     
     // Map settings
     gmapsLat: 0,
@@ -44,6 +44,7 @@ export default DefaultStory.extend({
     gmapsHeatmapMarkers: [],
 
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
+
     loadDataOntoMap: function () {
         var _this = this;
         var ywData = this.get('ywData');
@@ -51,26 +52,35 @@ export default DefaultStory.extend({
             var contacts = [],
                 mapLat = 0,
                 mapLng = 0,
-                itemCount = ywData.length;
+                itemCount = 0;
 
-            contacts = _.map(ywData, function (item) {
-                if (!isNaN(item.lat)) { mapLat += item.lat; }
-                if (!isNaN(item.lon)) { mapLng += item.lon; }
-                return [item.lat, item.lon];
-            });
+            for (var i = 0; i < ywData.length; i++) {
+                var item = ywData[i];
+
+                if (!isNaN(item.lat) && !isNaN(item.lon)
+                    && !Ember.isEmpty(item.lat) && !Ember.isEmpty(item.lon)) {
+                    mapLng += item.lon;
+                    mapLat += item.lat;
+                    itemCount++;
+                    contacts.push([item.lat, item.lon]);
+                }
+            }
 
             var finalMapLat = mapLat / itemCount,
                 finalMapLng = mapLng / itemCount;
 
-            _this.set('gmapsLat', finalMapLat);
-            _this.set('gmapsLng', finalMapLng);
-            _this.set('gmapsHeatmapMarkers', contacts);
-            console.log(contacts);
+            _this.setProperties({
+                gmapsLat: finalMapLat,
+                gmapsLng: finalMapLng,
+                gmapsHeatmapMarkers: contacts
+            });
+
+            console.log('Heat Map contacts:' + this.get('gmapsHeatmapMarkers.length') + ', gmapsLat:' + this.get('gmapsLat') + ', gmapsLng: ' + this.get('gmapsLng'));
 
             setTimeout(function () {
                 _this.set('loaded', true);
             });
         }
     }.observes('ywData'),
-    
+
 });
