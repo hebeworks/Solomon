@@ -4,11 +4,11 @@
 		{{#if modalOptions.title}}
 			<div cpn-divide="bottom" cpn-margin="bottom-double" cpn-clearfix>
 				{{!-- <button cpn-margin="left" class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button> --}}
-				<a {{action "close"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
+				<a {{action "hideModal"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
 				<h2 cpn-frame_heading>{{modalOptions.title}}</h2>
 			</div>
 		{{else}}
-			<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
+			<button class="md-close svg-modal-close float--right" {{action "hideModal"}}>Close me!</button>
 		{{/if}}
 		{{#if modalOptions.intro}}
 			<p>{{modalOptions.intro}}</p>
@@ -20,4 +20,4 @@
 	</div>
 </div>
 
-<div class="md-overlay {{unless appController.canvasBlurred '-hidden'}}" {{action "close"}}></div>
+<div class="md-overlay {{unless appController.canvasBlurred '-hidden'}}" {{action "hideModal"}}></div>

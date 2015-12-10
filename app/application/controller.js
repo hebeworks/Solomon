@@ -22,6 +22,17 @@ export default Ember.Controller.extend({
 		this.get('history').pushObject(this.get('currentPath'));
 	}.observes('currentPath'),
 
+	onErrorMessage: function () {
+		var _this = this;
+		var errorMessage = this.get('appSettings.errorMessage');
+		function clearErrorMessage() {
+			_this.set('appSettings.errorMessage', null);
+		}
+		if (!Ember.isEmpty(errorMessage)) {
+			this.showModal(null, { title: 'Oops there was a problem', intro: errorMessage, onCloseCallback: clearErrorMessage });
+		}
+	}.observes('appSettings.errorMessage'),
+
 	loadSolomonConfig: function () {
         // Todo: get the site config from a request to Solomon API 
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
@@ -113,7 +124,13 @@ export default Ember.Controller.extend({
 		if (this.get('modalOptions.preventCanvasBlur') == false) {
 			this.set('canvasBlurred', true);
 		}
-		
+
+		if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback'))
+			&& Ember.isEmpty(options.onCloseCallback)) {
+			// there is a on close callback function - but it wasn't just passed
+			// so clear it
+			this.get('modalOptions.onCloseCallback', null);
+		}
 		// this.set('modalEffect', modalOptions.modalEffect);
 		// this.set('modalComponent', component);
 		// if (!Ember.isEmpty(title)) {
@@ -129,6 +146,10 @@ export default Ember.Controller.extend({
 	hideModal: function () {
 		if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
 			this.set('canvasBlurred', false);
+		}
+		if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback')) &&
+			_.isFunction(this.get('modalOptions.onCloseCallback'))) {
+				this.get('modalOptions.onCloseCallback')();
 		}
 		this.setProperties({
 			'modalOptions.component': null,

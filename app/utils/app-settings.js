@@ -6,7 +6,8 @@ export default Ember.Object.extend({
     dataMillDataAPI: '',
     hebeNodeAPI: '',
     bottomDrawerConfig: { test: 'test' },
-
+    errorMessage: '',
+    
     canvasSettings: {
         ywFilter: {
             zones: [],
@@ -237,6 +238,9 @@ export default Ember.Object.extend({
             .then(function (data) {
                 console.log('Refreshed ywData' + data.length);
                 _this.set('canvasSettings.ywFilter.data', data);
+                if(Ember.isEmpty(data)) {
+                    _this.set('errorMessage','Sorry there is no data for this query');
+                }
             });
     }.observes('canvasSettings.ywFilter.query'),
 

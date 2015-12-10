@@ -44,11 +44,12 @@ export default Ember.Component.extend({
 	},
 	
 	// Actions
-	actions: {
-		close: function () {
-			this.set('modalOptions.isVisible', false);
-		}
-	}
+	// actions: {
+	// 	close: function () {
+	// 		// this.set('modalOptions.isVisible', false);
+	// 		// this.set('appController.modalOptions.isVisible', false);
+	// 	}
+	// }
 	
 	
 	// isResponsive: false,

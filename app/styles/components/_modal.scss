@@ -82,6 +82,8 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-close {
+	position: relative;
+	z-index: 1;
 	width: 20px;
 	height: 20px;
 	padding: 0;
