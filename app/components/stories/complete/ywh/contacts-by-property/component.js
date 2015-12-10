@@ -2,18 +2,16 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
 export default DefaultStory.extend({
-    // Story settings (including default values)
-    // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'WQ Contacts Most Active Properties', // (Provide a story title)
-        subTitle: 'Which properties contact us the most?', // (Provide a story subtitle)
-        scroll: false, // (Should the story vertically scroll its content?)
+        title: 'WQ Contacts Most Active Properties',
+        subTitle: 'Which properties contact us the most?',
+        scroll: false,
         viewOnly: true,
     },
     items: [],
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onDMASReceivedAttrs: function () {
-        this.get('ywData');
+        this.onYWData();
     }.on('didReceiveAttrs'),
     onYWData: function () {
         var ywData = this.get('ywData');

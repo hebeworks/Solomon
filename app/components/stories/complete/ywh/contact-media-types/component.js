@@ -11,7 +11,7 @@ export default DefaultStory.extend({
     items: [],
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onContactTypeReceivedAttrs: function () {
-        this.get('ywData');
+        this.onYWData();
     }.on('didReceiveAttrs'),
     onYWData: function () {
         var ywData = this.get('ywData');

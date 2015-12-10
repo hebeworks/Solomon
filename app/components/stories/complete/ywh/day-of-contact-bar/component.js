@@ -9,16 +9,18 @@ export default DefaultStory.extend({
         scroll: false
     },
 
-    loadGoogleAPIs: function () {
-        // Draw the chart when the APIs have loaded
-        var _this = this;
-        google.setOnLoadCallback(function () { _this.drawColumnChart() });
-    }.on('didInsertElement'),
+    // loadGoogleAPIs: function () {
+    //     // Draw the chart when the APIs have loaded
+    //     var _this = this;
+    //     google.setOnLoadCallback(function () { _this.drawColumnChart() });
+    // }.on('didInsertElement'),
 
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     onDayInit: function () {
-        this.get('ywData');
-    }.on('init'),
+        // this.get('ywData');
+        google.setOnLoadCallback();
+        this.drawColumnChart();
+    }.on('didInsertElement'),
 
     drawColumnChart: function () {
 

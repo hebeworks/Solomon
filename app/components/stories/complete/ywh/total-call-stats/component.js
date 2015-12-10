@@ -1,28 +1,11 @@
 /* global Ember, hebeutils, _ */
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
-// hebe-dash/components/stories/complete/story-types/default-story/component
-
 export default DefaultStory.extend({
-    // Story settings (including default values)
-    // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: '', // (Provide a story title)
-        subTitle: '', // (Provide a story subtitle)
-        // author: '', (Provide the author of the story)
-        
-        // description: '', (Provide a longer description of the story)
-        // license: '', (Define which license applies to usage of the story)
-        // dataSourceUrl: '', (Where did the data come from?)
-        // feedbackEmail: '', (Provide an email users can contact about this story)
-        
-        // color: 'white', (Set the story colour)
-        // width: '2', (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', (Set the height of the story)
-        // headerImage: '', (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, (Add a horizontal slider to the story)
-        scroll: false, // (Should the story vertically scroll its content?)
+        title: '',
+        subTitle: '',
+        scroll: false,
         viewOnly: true
     },
 
@@ -40,11 +23,9 @@ export default DefaultStory.extend({
     topContacts: [],
     years: [],
     onInsertElement: function () {
-        // this.set('loaded', true);
-        this.get('ywData');
-        // this.queryData();
-        // this.updateRagTile();
-        this.get('years');
+        google.setOnLoadCallback();
+        this.loadData();
+        this.queryData();
     }.on('didInsertElement'),
 
     queryData: function () {
@@ -53,7 +34,6 @@ export default DefaultStory.extend({
         var appSettings = this.get('appSettings');
         var ywFilter = appSettings.canvasSettings.ywFilter;
         var ywData = ywFilter.data;
-
 
         if (!Ember.isEmpty(ywData)) {
             var primaryNeeds = appSettings.groupSortCount(ywData,'need',4);
@@ -96,10 +76,10 @@ export default DefaultStory.extend({
         }
     },
 
-    loadGoogleAPIs: function () {
-        // Draw the chart when the APIs have loaded
-        google.setOnLoadCallback(this.loadData());
-    }.observes('loaded'),
+    // loadGoogleAPIs: function () {
+    //     // Draw the chart when the APIs have loaded
+    //     google.setOnLoadCallback(this.loadData());
+    // }.observes('loaded'),
 
     loadData: function () {
         var _this = this;
@@ -125,15 +105,6 @@ export default DefaultStory.extend({
             });
 
             data.addRows(yearArr);
-            // .addRows([
-            //     [new Date(2010, 11, 31), 13000],
-            //     [new Date(2011, 11, 31), 13960],
-            //     [new Date(2012, 11, 31), 14560],
-            //     [new Date(2013, 11, 31), 14200],
-            //     [new Date(2014, 11, 31), 15200],
-            //     [new Date(2015, 11, 31), 16200]
-            // ]);
-
 
             var options = {
                 title: 'Annual Trend',

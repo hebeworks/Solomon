@@ -8,10 +8,13 @@ export default DefaultStory.extend({
         viewOnly: true,
         scroll: false
     },
+    
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
+    
     onDMASReceivedAttrs: function () {
-        this.get('ywData');
+        this.onYWData();
     }.on('didReceiveAttrs'),
+    
     onYWData: function () {
         var ywData = this.get('ywData');
         if (!Ember.isEmpty(ywData)) {
@@ -19,4 +22,5 @@ export default DefaultStory.extend({
             this.set('items', items);
         }
     }.observes('ywData'),
+    
 });

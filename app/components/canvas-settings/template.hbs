@@ -12,7 +12,17 @@
 				class="margin-bottom-no"
 			}}
 		</div>
-		
+		{{#if ywFilter.selectedZone}}
+			<div cpn-width="100%" cpn-bg-color="white">
+				<label for=""  cpn-font-weight="600" cpn-display="block">Production Management Zone</label>
+				{{ select-2
+					content=ywFilter.subZones
+					value=ywFilter.selectedSubZone
+					placeholder="Choose a production management zone"
+					class="margin-bottom-no"
+				}}
+			</div>
+		{{/if}}
 		{{!--
 		<div cpn-width="50%">
 			{{input value=ywFilter.searchTerm placeholder="Filter by search term"}}
@@ -30,8 +40,8 @@
 		<div cpn-width="100%" cpn-bg-color="white">
 			<label for="" cpn-font-weight="600" cpn-display="block">Previous Searches</label>
 			{{ select-2
-				content=history
-				value=selectedHistory
+				content=ywFilter.history
+				value=ywFilter.selectedHistory
 				optionLabelPath="title"
 				placeholder="Filter history"
 				class="margin-bottom-no"

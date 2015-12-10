@@ -10,7 +10,7 @@ export default DefaultStory.extend({
         scroll: false, // (Should the story vertically scroll its content?),
         viewOnly: true,
         color: 'yw-medium-blue',
-        height: 2
+        height: 3
     },
     
     ywFilter: Ember.computed.alias('appSettings.canvasSettings.ywFilter'),
