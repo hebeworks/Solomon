@@ -72,36 +72,45 @@ export default DefaultStory.extend({
     ywData: Ember.computed.alias('appSettings.canvasSettings.ywFilter.data'),
     
     drawChart: function() {
-        var data = google.visualization.arrayToDataTable(this.get('chartData'));
+        var chartData = this.get('chartData');
         
-        var options = {
-            // title: 'Column Chart',
-            vAxis: {
-                // format: 'percent',
-                baseline: 0
-            },
-            chartArea: {
-                width: '90%',
-                height: '80%',
-                top: '5%',
-                left: '10%'
-            },
-            width: 290,
-            height: 240,
-            tooltip: {
-                isHtml: true
-            },
-            series: {
-                0: {
-                    color: '#00b5ef'
+        if(chartData.length > 1) {
+            var data = google.visualization.arrayToDataTable(chartData);
+            var maxValue = (chartData[1][1] * 1.1);
+            var options = {
+                // title: 'Column Chart',
+                vAxis: {
+                    baseline: 0
+                },
+                hAxis: {
+                    viewWindow: {
+                        max: maxValue
+                    },
+                },
+                chartArea: {
+                    width: '90%',
+                    height: '80%',
+                    top: '5%',
+                    left: '100'
+                },
+                width: 290,
+                height: 240,
+                tooltip: {
+                    isHtml: true
+                },
+                series: {
+                    0: {
+                        color: '#00b5ef'
+                    }
                 }
-            }
-        };
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('topic-time-chart'));
-        // var chart = new google.charts.Bar(document.getElementById('google-column-chart-single'));
-
-        chart.draw(data, options);
-        // chart.draw(data, google.charts.Bar.convertOptions(options));
+            };
+    
+            // var chart = new google.visualization.ColumnChart(document.getElementById('topic-time-chart'));
+            var chart = new google.visualization.BarChart(document.getElementById('topic-time-chart'));
+            // var chart = new google.charts.Bar(document.getElementById('google-column-chart-single'));
+    
+            chart.draw(data, options);
+            // chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
     }.observes('chartData')
 });
