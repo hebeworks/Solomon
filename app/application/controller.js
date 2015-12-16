@@ -6,7 +6,6 @@ export default Ember.Controller.extend({
 	modalOptions: {
 		component: 'ui/login-form'
 	},
-	solomonConfig: null,
 
 	appController: function () {
         return this;
@@ -33,13 +32,11 @@ export default Ember.Controller.extend({
 		}
 	}.observes('appSettings.errorMessage'),
 
-	loadSolomonConfig: function () {
+	obSolomonConfigChange: function () {
         // Todo: get the site config from a request to Solomon API 
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
-		var config = this.get('appSettings.config')(window.location.hostname);
-		this.set('pageTitle', config.title);
-        this.set('solomonConfig', config);
-	},
+		this.set('pageTitle', this.get('appSettings.solomonConfig.title'));
+	}.observes('appSettings.solomonConfig'),
 
 	_pageTitle: '',
 	pageTitle: Ember.computed({

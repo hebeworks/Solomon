@@ -84,7 +84,7 @@ export default DefaultStory.extend({
                 dataOpacity: 0.5,
                 lineWidth: 3,
                 hAxis: {
-                    title: 'Period'
+                    // title: 'Period'
                 },
                 chartArea: {
                     width: '90%',

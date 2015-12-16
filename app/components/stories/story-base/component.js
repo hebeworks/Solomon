@@ -214,7 +214,7 @@ export default Ember.Component.extend({
     },
     
     setStoryHandle: function() {
-        var storyHandle = this.get('appSettings.config')().storyConfig.storyHandle;
+        var storyHandle = this.get('appSettings.solomonConfig.storyConfig.storyHandle');
         
         if (storyHandle == 'dot') {
             this.set('storyHandleIsDot', true);

@@ -24,17 +24,18 @@ export default Ember.Object.extend({
         }
     },
 
-    config: function (hostname) {
-        // Temporary settings
-        return {
-            name: 'yorkshire-water',
-            title: 'Yorkshire Water',
+    solomonConfig: Ember.computed({
+        get(){
+            var hostname = window.location.hostname;
+        var solomonConfig = {
+            name: '',
+            title: '',
+            defaultCanvas: 'leeds-city-council',
             storyConfig: {
-                storyHandle: 'both'
+                storyHandle: 'dot'
             }
         };
 
-        var solomonConfig = {};
         switch (hostname) {
             default:
                 solomonConfig.name = 'solomon';
@@ -48,9 +49,16 @@ export default Ember.Object.extend({
                 solomonConfig.name = 'lcd';
                 solomonConfig.title = 'Leeds City Dashboard';
                 break;
+            case 'yorkshirewater.mysolomon.co.uk' :
+            case 'mysolomon-yorkshirewater-preview.azurewebsites.net' :
+                solomonConfig.name = 'yorkshire-water';
+                solomonConfig.title = 'Yorkshire Water';
+                solomonConfig.storyConfig.storyHandle = 'both';
+                solomonConfig.defaultCanvas = 'contact-data';
+                break;
         }
         return solomonConfig;
-    },
+    }}),
 
     encodeQuery: function (query) {
         var json = JSON.stringify(query);

@@ -19,6 +19,10 @@
         overflow: hidden;
         @include transition(.3s);
         
+        [cpn-bg-color="white"] & {
+            color: #000;
+        }
+        
         [cpn-snippet]:first-child &,
         %cpn-snippet:first-child & {
             background-color: rgba(255,255,255,.4);
@@ -52,6 +56,10 @@
             border-radius: rem(1px);
             width: rem(36px);
             height: auto;
+            
+            [solomon-story="yw-rss-feed"] & {
+                display: none;
+            }
         }
         
         [cpn-snippet_title],
