@@ -27,37 +27,41 @@ export default Ember.Object.extend({
     solomonConfig: Ember.computed({
         get(){
             var hostname = window.location.hostname;
-        var solomonConfig = {
-            name: '',
-            title: '',
-            defaultCanvas: 'leeds-city-council',
-            storyConfig: {
-                storyHandle: 'dot'
-            }
-        };
+            var solomonConfig = {
+                name: '',
+                title: '',
+                defaultCanvas: 'leeds-city-council',
+                storyConfig: {
+                    storyHandle: 'dot'
+                }
+            };
 
-        switch (hostname) {
-            default:
-                solomonConfig.name = 'solomon';
-                solomonConfig.title = 'Solomon';
-                solomonConfig.storyConfig.storyHandle = 'dot'; // can be 'dot', 'bar', 'both' or 'none'
-                break;
-            case 'leeds.testing.mysolomon.co.uk':
-            case 'leeds.preview.mysolomon.co.uk':
-            case 'leeds.mysolomon.co.uk':
-            case 'dashboard.leedsdatamill.org':
-                solomonConfig.name = 'lcd';
-                solomonConfig.title = 'Leeds City Dashboard';
-                break;
-            case 'yorkshirewater.mysolomon.co.uk' :
-            case 'mysolomon-yorkshirewater-preview.azurewebsites.net' :
-                solomonConfig.name = 'yorkshire-water';
-                solomonConfig.title = 'Yorkshire Water';
-                solomonConfig.storyConfig.storyHandle = 'both';
-                solomonConfig.defaultCanvas = 'contact-data';
-                break;
-        }
-        return solomonConfig;
+            switch (hostname) {
+                default:
+                    solomonConfig.name = 'solomon';
+                    solomonConfig.title = 'Solomon';
+                    solomonConfig.storyConfig.storyHandle = 'dot'; // can be 'dot', 'bar', 'both' or 'none'
+                    break;
+                case 'leeds.testing.mysolomon.co.uk':
+                case 'leeds.preview.mysolomon.co.uk':
+                case 'leeds.mysolomon.co.uk':
+                case 'dashboard.leedsdatamill.org':
+                    solomonConfig.name = 'lcd';
+                    solomonConfig.title = 'Leeds City Dashboard';
+                    break;
+                case 'yorkshirewater.mysolomon.co.uk' :
+                case 'mysolomon-yorkshirewater-preview.azurewebsites.net' :
+                    solomonConfig.name = 'yorkshire-water';
+                    solomonConfig.title = 'Yorkshire Water';
+                    solomonConfig.storyConfig.storyHandle = 'both';
+                    solomonConfig.defaultCanvas = 'contact-data';
+                    solomonConfig.initMethod = function() {
+                        this.loadYWZones();
+                        this.loadDMAs();
+                    };
+                    break;
+            }
+            return solomonConfig;
     }}),
 
     encodeQuery: function (query) {
@@ -71,8 +75,13 @@ export default Ember.Object.extend({
         this.set('dataMillDataAPI', config.APP.dataMillDataAPI.ensureNoEndingString('/'));
         this.set('hebeNodeAPI', config.APP.hebeNodeAPI.ensureNoEndingString('/'));
 
-        this.loadYWZones();
-        this.loadDMAs();
+        if(!Ember.isEmpty(this.get('solomonConfig'))) {
+            var solomonInit = this.get('solomonConfig.initMethod');
+            var target = this;
+            if(_.isFunction(solomonInit)) {
+                solomonInit.call(this);
+            }
+        }
     },
 
     getData: function (url, cache) {
