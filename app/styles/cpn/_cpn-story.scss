@@ -1,4 +1,5 @@
-[cpn-story] {
+[cpn-story],
+%cpn-story {
     -webkit-touch-callout: none;
     -webkit-overflow-scrolling: auto;
     padding: rem($spacing-base);
@@ -9,6 +10,7 @@
     -ms-transform: perspective(1000px);
     -moz-transform: perspective(1000px);
     @include transform-style(preserve-3d);
+    @include transition(width .5s, height .5s);
 }
 
 [cpn-story~="width-1"] {
@@ -17,6 +19,14 @@
 
 [cpn-story~="width-2"] {
     width: 330px;
+}
+
+[cpn-story~="width-3"] {
+    width: 500px;
+}
+
+[cpn-story~="width-4"] {
+    width: 670px;
 }
 
 [cpn-story~="height-1"] {
@@ -29,6 +39,10 @@
 
 [cpn-story~="height-3"] {
     height: 500px;
+}
+
+[cpn-story~="height-4"] {
+    height: 670px;
 }
 
     [cpn-story_inner] {
@@ -105,6 +119,10 @@
                 top: 0;
                 right: 0;
                 
+                [solomon-app~="yorkshire-water"] & {
+                    top: rem(5px);
+                }
+                
                 // We want the dot to look smaller but the hit area still needs to be sufficiently large
                 &::after {
                     content: '';
@@ -119,6 +137,27 @@
                     @include transition(.2s);
                     width: rem(12px);
                     height: rem(12px);
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        background-color: $yw-medium-blue;
+                    }
+                }
+            }
+            
+            [cpn-story_bar] {
+                display: block;
+                width: 100%;
+                height: rem(5px);
+                font-size: 0;
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #222;
+                cursor: move;
+                
+                [solomon-app~="yorkshire-water"] & {
+                    background-color: $yw-medium-blue;
                 }
             }
         
@@ -138,6 +177,10 @@
             }
             
             [cpn-story_content~="front"] {
+                &[cpn-story_content~="height-1"] {
+                    height: rem(120px);
+                }
+                
                 &[cpn-story_content~="height-2"] {
                     height: rem(290px);
                 }
@@ -151,11 +194,15 @@
                 overflow-x: hidden;
                 overflow-y: auto;
                 
+                &[cpn-story_content~="height-1"] {
+                    height: rem(120px);
+                }
+                
                 &[cpn-story_content~="height-2"] {
                     height: rem(270px);
                 }
                 
-                &[cpn-story_content~="height-2"] {
+                &[cpn-story_content~="height-3"] {
                     height: rem(440px);
                 }
             }
@@ -166,17 +213,30 @@
                     position: absolute;
                     top: 0;
                     left: 0;
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        border-bottom: 0;
+                        margin-bottom: 0;
+                    }
                 }
             
                     [cpn-story_title] {
                         font-size: rem(15px);
                         line-height: 1.1333333333; // 17/15
                         margin-bottom: 0;
+                        
+                        [solomon-app~="yorkshire-water"] & {
+                            color: $yw-medium-blue;
+                        }
                     }
                     
                     [cpn-story_desc] {
                         font-size: rem(11px);
                         line-height: 1.1818181818; // 13//11
+                        
+                        [solomon-app~="yorkshire-water"] & {
+                            color: $yw-dark-blue;
+                        }
                         
                         a {
                             [cpn-story_face~="back"] & {
@@ -193,6 +253,10 @@
                 
                 [cpn-story_body~="has-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
                     padding-top: rem($spacing-base);
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        padding-top: 0;
+                    }
                 }
                 
                 [cpn-story_body~="no-slider"] {
@@ -235,6 +299,10 @@
                                     -webkit-overflow-scrolling: touch;
                                     -ms-overflow-style: -ms-autohiding-scrollbar;
                                 }
+                            }
+                            
+                            [cpn-story_carousel-item~="width-1"] {
+                                width: rem(140px);
                             }
                         
                             [cpn-story_carousel-item~="width-2"] {

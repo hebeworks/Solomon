@@ -6,6 +6,13 @@
     @include transform(translateY(-50%));
     z-index: 2;
     cursor: pointer;
+    
+    [class*="svg-yorkshire-water-logo"] {
+        svg {
+            width: 119px;
+            height: 46px;
+        }
+    }
 }
 
 [spc-dashboard-logo="compact"] {    

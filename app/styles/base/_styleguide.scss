@@ -21,6 +21,10 @@ body {
     font-size: rem(15px);
     line-height: 1.5;
     
+    [solomon-app~="yorkshire-water"] & {
+        color: $yw-dark-blue;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;
@@ -66,6 +70,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     font-family: $helvneuemed;
     margin-bottom: rem($spacing-base * .7);
+    
+    [solomon-app~="yorkshire-water"] & {
+        font-family: $swissboldrounded;
+    }
 }
 
 p, table, ul, ol {
@@ -81,6 +89,19 @@ strong {
 
 a {
     color: #000;
+}
+
+ul, ol {
+    li {
+        list-style-position: inside;
+        margin-bottom: rem($spacing-base / 2);
+    }
+}
+
+ol {
+    li {
+        list-style-type: decimal;
+    }
 }
 
 /* -- Wrapper for Dashboard slide */
@@ -183,6 +204,10 @@ a {
     z-index: 1;
     // -webkit-overflow-scrolling: touch;
     
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-dark-blue;
+    }
+    
     &.add-a {
         top:0px;
         height:100%;
@@ -217,6 +242,10 @@ a {
     padding: 30px 40px;
     overflow-y: scroll;
     
+    [solomon-app~="yorkshire-water"] & {
+        background-color: #fff;
+    }
+    
     .btn-list {
         .btn {
             &.-create {
@@ -226,4 +255,8 @@ a {
             }
         }
     }
+}
+
+.ember-cli-g-map {
+    height: 100%;
 }

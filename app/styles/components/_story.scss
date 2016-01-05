@@ -555,6 +555,7 @@
 				repeat: no-repeat;
 				position: center center;
 			}
+			
 			@include transition(.15s);
 			cursor: pointer;
 
@@ -564,6 +565,18 @@
 			
 			&:active {
 				background-color: darken(#8d8d8d, 5%);
+			}
+			
+			[solomon-app~="yorkshire-water"] & {
+				background-color: $yw-medium-blue;
+				
+				&:hover, &:focus {
+				    background-color: lighten($yw-medium-blue, 5%);
+				}
+				
+				&:active {
+					background-color: darken($yw-medium-blue, 5%);
+				}
 			}
 		}
 		

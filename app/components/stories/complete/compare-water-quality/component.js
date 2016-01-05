@@ -53,7 +53,7 @@ export default DatamillStory.extend({
         var obj = this;
         var url = 'http://www.ywonline.co.uk/web/postcodeanywhere.nsf/newxmllu?openagent&filt=wq&pc=' + postcode;
             url = hebeutils.Base64.encode(url);
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         var apiUrl = hebeNodeAPI + '/apiproxy?url=' + url + '&toJSON=true';
         this.getData(apiUrl)
             .then(

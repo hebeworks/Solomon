@@ -26,7 +26,7 @@ export default DefaultStory.extend({
     loadData: function () {
         var _this = this;
         var query = { $and: [{ "date": { $lte: new Date("2014-03-31T00:00:00Z") } }, { "date": { $gte: new Date("2014-03-01T00:00:00Z") } }] };
-        var url = this.get('hebeNodeAPI') + '/ldm-market-occupancy?query=' + this.convertQuery(query) + '&limit=-1';
+        var url = this.get('appSettings.hebeNodeAPI') + '/ldm-market-occupancy?query=' + this.get('appSettings').encodeQuery(query) + '&limit=-1';
         this.getData(url)
             .then(function (data) {
                 if (!Ember.isEmpty(data)) {
@@ -208,12 +208,6 @@ export default DefaultStory.extend({
         var chart = new google.visualization.AreaChart(document.getElementById('chart-no-occupied-stalls'));
 
         chart.draw(data, options);
-    },
-
-    convertQuery: function (query) {
-        var json = JSON.stringify(query);
-        var base64 = hebeutils.Base64.encode(json);
-        return base64;
     },
 
     drawPCEmptyStalls: function () {

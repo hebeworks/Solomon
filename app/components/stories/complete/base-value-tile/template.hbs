@@ -9,6 +9,8 @@
                 <span>{{tileDesc2}}</span>
             </p>
         </div>
-        <p spc-val_instruction cpn-margin="bottom-none">Tap to view</p>
+        {{#if tileUrl}}
+            <p spc-val_instruction cpn-margin="bottom-none">Tap to view</p>
+        {{/if}}
     </div>
 {{/stories/story-base}}

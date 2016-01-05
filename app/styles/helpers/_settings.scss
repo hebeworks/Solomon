@@ -27,6 +27,8 @@ $orange: #f7a700;
 $dark-orange: #FF4500;
 $mint: #50E3C2;
 $brown: #8B572A;
+$amber: #ffbf00;
+$gold: #f5a623;
 // air rating colours
 $color-air1: #9CFF9C;
 $color-air2: #31FF00;
@@ -38,6 +40,13 @@ $color-air7: #FF6464;
 $color-air8: #FF0000;
 $color-air9: #990000;
 $color-air10: #CE30FF;
+// Yorkshire Water colours
+$yw-dark-blue: #004c6c;
+$yw-medium-blue: #00b5ef;
+$yw-light-blue: #92cfda;
+$yw-green: #bcd631;
+$yw-amber: #fdb515;
+$yw-red: #e82c2e;
 
 /* Fonts */
 $sansserif: 'Helvetica', 'Arial', 'sans-serif';
@@ -47,6 +56,7 @@ $helvneuemed: 'HelveticaNeueLT-Medium', $helvneue;
 $helvneuebold: 'HelveticaNeueLT-Bold', $helvneuemed;
 $georgia: 'Georgia', 'serif';
 $letrapro: 'LetraPro-Headline', $sansserif;
+$swissboldrounded: 'Swiss Bold Rounded', $helvneuemed, sans-serif;
 
 // Font Sizes
 $font-browser-base: 16px;

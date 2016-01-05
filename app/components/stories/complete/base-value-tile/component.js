@@ -1,17 +1,20 @@
 /* global Ember, hebeutils, _ */
-import DatamillStory from './../../story-types/datamill-story/component';
+import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
-export default DatamillStory.extend({
+export default DefaultStory.extend({
     tagName: 'div',
     loaded: false,
-    color: 'white',
-    tileValue: 'Value',
-    tileDesc1: 'Description 1',
-    tileDesc2: 'Description 2',
+
+    tileValue: null,
+    tileDesc1: null,
+    tileDesc2: null,
     tileShade: '',
-    
+    tileUrl: '',
+
     storyConfig: {
-      width:'1',
-      height:'1'  
+        width: '1',
+        height: '1',
+        viewOnly: true,
+        color: 'white'
     }
 });

@@ -71,7 +71,7 @@ export default Ember.Component.extend({
 				var $itemEls = $newStories.draggable({
 					cursor: 'move',
 					containment: 'body',
-					handle: '.js-cogs, .js-drag-handle',
+					handle: '.js-cogs, .js-bars, .js-drag-handle',
 					scroll: true,
 					scrollSensitivity: 100,
 					scrollSpeed: 25,
@@ -117,7 +117,7 @@ export default Ember.Component.extend({
 			var $itemEls = $allStories.draggable({
 				cursor: 'move',
 				containment: 'body',
-				handle: '.js-cogs, .js-drag-handle',
+				handle: '.js-cogs, .js-bars, .js-drag-handle',
 				scroll: true,
 				scrollSensitivity: 100,
 				scrollSpeed: 25,

@@ -18,7 +18,7 @@ export default DatamillStory.extend({
     selectedMonth: '',
     didInsertElement: function () {
         var _this = this;
-        var hebeNodeAPI = this.get('hebeNodeAPI');
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         this.getData(hebeNodeAPI + '/customer-services-contact-enquiries?sort=month&sortdirection=DESC')
             .then(function (data) {
 

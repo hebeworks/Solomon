@@ -8,11 +8,11 @@ export default Ember.Component.extend({
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
     storyModel: Ember.computed.alias('target.storyModel'),
     classNames: 'js-story',
-    
+
     support3d: '',
     storyFlip: 'not-flipped',
-    
-    loaded: Ember.computed('target.loaded', function() {
+
+    loaded: Ember.computed('target.loaded', function () {
         if (this.get('target.loaded')) {
             return this.get('target.loaded');
         } else {
@@ -34,13 +34,25 @@ export default Ember.Component.extend({
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
-    
-    storyConfig: Ember.computed('target.storyConfig', function () {
-        var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
-        var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
-        Ember.merge(defaultConfig, targetConfig);
-        return defaultConfig;
-    }),
+
+    storyConfig: Ember.computed(
+        'target.storyConfig',
+        'target.storyConfig.color',
+        'target.storyConfig.width',
+        'target.storyConfig.height',
+        'target.storyConfig.headerImage',
+        'target.storyConfig.title',
+        'target.storyConfig.subTitle',
+        'target.storyConfig.description',
+        'target.storyConfig.license',
+        'target.storyConfig.slider',
+        'target.storyConfig.scroll',
+        function () {
+            var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
+            var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
+            Ember.merge(defaultConfig, targetConfig);
+            return defaultConfig;
+        }),
 
     // Turn the provided height and width settings
     // into the attribute values we need.
@@ -128,9 +140,9 @@ export default Ember.Component.extend({
         }
     }),
     
-    // onInit: function() {
-    //     this.set('data-id',hebeutils.guid());
-    // }.on('init'),
+    onInit: function() {
+        this.setStoryHandle();
+    }.on('init'),
 
     onDidInsertElement: function () {
         Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
@@ -146,6 +158,7 @@ export default Ember.Component.extend({
     setupDragEvents: function () {
         var _this = this;
         var cog = this.$('.js-cogs');
+        var bar = this.$('.js-bars');
 
         if (Modernizr.cssanimations) {
             _this.$('.story__inner').addClass('-support-3d').attr('cpn-story_inner', 'support-3d');
@@ -156,6 +169,14 @@ export default Ember.Component.extend({
         }
 
         cog
+            .on('touchstart mousedown', function (e) {
+                _this.set('isDraggingStory', false);
+            })
+            .on('touchmove mousemove', function (e) {
+                _this.set('isDraggingStory', true);
+            });
+            
+        bar
             .on('touchstart mousedown', function (e) {
                 _this.set('isDraggingStory', false);
             })
@@ -189,6 +210,23 @@ export default Ember.Component.extend({
                         }
                     }
                 });
+        }
+    },
+    
+    setStoryHandle: function() {
+        var storyHandle = this.get('appSettings.solomonConfig.storyConfig.storyHandle');
+        
+        if (storyHandle == 'dot') {
+            this.set('storyHandleIsDot', true);
+            
+        } else if (storyHandle == 'bar') {
+            this.set('storyHandleIsBar', true);
+            
+        } else if (storyHandle == 'both') {
+            this.set('storyHandleIsBoth', true);
+            
+        } else if (storyHandle == 'none') {
+            this.set('storyHandleIsNone', true);
         }
     }
 });

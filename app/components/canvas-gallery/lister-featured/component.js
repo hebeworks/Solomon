@@ -16,9 +16,12 @@ export default Ember.Component.extend(CanvasGalleryLister, {
 	// 		});
 	// }
 	didInsertElement: function () {
-		var userID = '55f15e19fc4b2397742d1aa6';
-		if (!Ember.isEmpty(userID)) {
-			this.set('userID', userID);
-		}
+		// var userID = '55f15e19fc4b2397742d1aa6';
+		// if (!Ember.isEmpty(userID)) {
+		// 	this.set('userID', userID);
+		// }
+		
+		var featuredCategoryID = '55f2b35018f0066c0d784e6c';
+		this.set('category', featuredCategoryID);
 	}
 });

@@ -12,12 +12,17 @@ export default Ember.Component.extend({
             this.renderCarousel();
         }
     }.observes('loaded'),
+    viewOnly: false,
     renderCarousel: function () {
-
-        var $el = Ember.$(this.get('element')).find('[cpn-story_carousel-list]'),
-            $storyPaginationControls = Ember.$(this.get('element')).find('.js-story-pagination-controls'),
-            $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_footer]')),
-            $pageCounter = $storyFooter.find('.pg-of'),
+        var _this = this;
+        var $el = Ember.$(this.get('element')).find('[cpn-story_carousel-list]');
+        var $storyPaginationControls = Ember.$(this.get('element')).find('.js-story-pagination-controls');
+        if (_this.get('viewOnly')) {
+            var $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_body]'));
+        } else {
+            var $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_footer]'));
+        }
+        var $pageCounter = $storyFooter.find('.pg-of'),
             $pager = $storyFooter.find('.carousel-pager'),
             carouselHeight = '',
             obj = this;

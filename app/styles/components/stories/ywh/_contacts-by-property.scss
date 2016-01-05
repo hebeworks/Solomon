@@ -1,0 +1,36 @@
+[spc-yw-tc_list] {
+    width: 100%;
+    font-size: rem(12px);
+    
+    tr {
+        border-bottom: 1px solid $yw-light-blue;
+    }
+    
+        th {
+            padding: rem(4px);
+        }
+        
+        td {
+            padding: rem(8px) rem(4px);
+        }
+            
+            [spc-yw-tc_property],
+            [spc-yw-tc_count] {
+                display: inline-block;
+                border-radius: rem(3px);
+                width: 100%;
+            }
+            
+            [spc-yw-tc_property] {
+                width: rem(150px);
+                border: 1px solid $yw-medium-blue;
+                padding: rem(3px) rem(7px) rem(2px);
+            }
+            
+            [spc-yw-tc_count] {
+                color: #fff;
+                background-color: $yw-medium-blue;
+                text-align: right;
+                padding: rem(4px) rem(8px) rem(3px);
+            }
+}

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    defaultCanvasID: 'leeds-city-council',
+    // defaultCanvasID: 'leeds-city-council',
     model: function (params) {
         return this.store.findRecord('canvas', params.canvas_id)
             .then(function (canvas) {

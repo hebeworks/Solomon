@@ -15,7 +15,7 @@ export default DefaultStory.extend({
     selectedStation: null,
     didInsertElement: function () {
         var obj = this;
-        this.getData('http://environment.data.gov.uk/flood-monitoring/id/stations/L1707', true)
+        this.getData('http://environment.data.gov.uk/flood-monitoring/id/stations/L1707', false)
             .then(function (station) {
                 var item = station.items;
                 var latestReading = item.measures.latestReading;

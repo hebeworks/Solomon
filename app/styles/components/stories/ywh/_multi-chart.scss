@@ -1,0 +1,34 @@
+[spc-multi-chart_inner] {
+    font-size: 0; // remove whitespace
+    // margin: rem(-$spacing-base * 2.5) rem(-$spacing-base * 2.5) 0;
+}
+
+    [spc-multi-chart_item] {
+        font-size: rem($font-base);
+        width: rem(145px);
+        height: rem(127px);
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: top;
+        // margin: rem($spacing-base * 2.5);
+        // margin-top: 30px;
+        // margin-bottom: -30px;
+        position: relative;
+        
+        [class*="svg"] {
+            height: 40px;
+            margin-bottom: 10px;
+            display: block;
+            text-align: center;
+            
+            svg {
+                width: auto;
+                height: 100%;
+            }
+        }
+    }
+    
+        [spc-multi-chart_label] {
+            width: 100%;
+            text-align: center;
+        }

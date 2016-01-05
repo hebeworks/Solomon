@@ -1,0 +1,14 @@
+{{#stories/story-base}}
+    
+    <ul class="margin-left-no">
+        {{#each items as |item|}}
+            <li cpn-snippet>
+                <a href="{{item.link}}" cpn-snippet_inner target="_blank">
+                    <img cpn-snippet_img src="{{item.image}}" alt="">
+                    <p cpn-snippet_title>{{item.title}}</p>
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+{{/stories/story-base}}
+

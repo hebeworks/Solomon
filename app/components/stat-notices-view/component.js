@@ -32,7 +32,7 @@ export default DefaultStory.extend({
             var url = this.get('legislationURI');
             url = hebeutils.Base64.encode(url);
             var obj = this;
-            var hebeNodeAPI = this.get('hebeNodeAPI');
+            var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
             this.getData(hebeNodeAPI + '/apiproxy?url=' + url + '&toJSON=true')
                 .then(function (data) {
                 // debugger;

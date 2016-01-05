@@ -3,8 +3,15 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
     onActivate: function () {
-        this.controllerFor('application').loadSolomonConfig();
         this.controllerFor('application').shouldShowTutorial();
+
+        // add a client-specific attr to body
+        var cssClass = this.get('appSettings.solomonConfig.name');
+        var bodyClientAttr = Ember.$('body').attr('solomon-app');
+        if (!Ember.isEmpty(cssClass) 
+                && (Ember.isEmpty(bodyClientAttr) || bodyClientAttr != cssClass)) {
+            Ember.$('body').attr('solomon-app', cssClass);
+        }
     }.on('activate'),
     
     // Methods
@@ -21,10 +28,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         }
     },
 
+
     // Actions 
     actions: {
         showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', 'Log in / Sign up', intro);
+            this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
         },
 
         mailToFeedback: function () {
@@ -43,6 +51,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.closeTutorial();
         },
 
+        showCanvasSettings: function () {
+            this.controller.showCanvasSettings();
+        },
+
         hideModal: function () {
             this.controller.hideModal();
         },
@@ -52,6 +64,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             if (!Ember.isEmpty(model)) {
                 this.controller.transitionTo(route, (model || null));
             } else {
+                // todo: check if this is the same route to prevent it trying to transition and going blank
                 this.controller.transitionTo(route);
             }
         },
