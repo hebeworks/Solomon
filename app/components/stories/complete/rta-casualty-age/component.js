@@ -93,7 +93,12 @@ export default DefaultStory.extend({
                 trigger: 'both',
                 opacity: 0.5
             },
-            selectionMode: 'multiple'
+            selectionMode: 'multiple',
+            series: {
+                0: {
+                    color: '#026DBE'
+                }
+            }
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('rta-casualty-age-chart'));
