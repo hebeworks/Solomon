@@ -1,5 +1,4 @@
-/* global address */
-/* global Ember, hebeutils, _ */
+/* global Ember, hebeutils, _, addthisevent, $ */
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
@@ -26,7 +25,6 @@ export default DatamillStory.extend({
         var obj = this;
 
         $.getScript("https://addthisevent.com/libs/1.6.0/ate.min.js", function () {
-            // debugger;
             addthisevent.settings({
                 mouse: false,
                 css: false,

@@ -4,7 +4,7 @@ import DefaultStory from './../stories/story-types/default-story/component';
 export default DefaultStory.extend({
 
     mapStyle: function () {
-        var styles = this.Config.APP.googleMapStyles.default;
+        var styles = this.get('appSettings').getGoogleMapStyles();
         return styles;
     }.property(),
 

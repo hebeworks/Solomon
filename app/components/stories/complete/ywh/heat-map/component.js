@@ -25,7 +25,7 @@ export default DefaultStory.extend({
     onGMap: function () {
         var gMap = this.get('gMap');
         if (!Ember.isEmpty(gMap)) {
-            var mapStyles = this.get('appSettings').setGoogleMapStyles('yorkshire-water');
+            var mapStyles = this.get('appSettings').getGoogleMapStyles('yorkshireWater');
             this.get('gMap').setOptions({ styles: mapStyles });
         }
     }.observes('gMap'),

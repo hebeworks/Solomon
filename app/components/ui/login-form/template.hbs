@@ -1,5 +1,5 @@
 <div class="form -login">
-	{{#if session.isAuthenticated}}
+    {{#if currentUser.content.username}}
 		<div cpn-divide="bottom" cpn-margin="bottom-double">
 			<p cpn-margin="bottom">You're currently logged in as: {{currentUser.content.username}}</p>
 			<p cpn-margin="bottom-double">
