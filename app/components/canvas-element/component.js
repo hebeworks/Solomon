@@ -13,7 +13,11 @@ export default Ember.Component.extend({
 		// console.log('didRenderElement');
         // Canvas.init();
         // HebeDash.init();
-		this.initPackery();
+        if(!Ember.isEmpty(this.get('currentCanvas'))) {
+            this.initPackery();
+        } else {
+            this.set('appSettings.errorMessage',"Sorry we can't find the canvas you were looking for. Try find one using the Gallery link");
+        }
 	},
 
 	getNewlyAddedStoryIDs: function () {
