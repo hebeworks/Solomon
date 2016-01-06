@@ -5,8 +5,8 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Vehicle Accident Numbers', // (Provide a story title)
-        subTitle: 'The number of accidents per type of vehicle.', // (Provide a story subtitle)
+        title: 'Pedestrian Accidents By Month', // (Provide a story title)
+        subTitle: 'Grouped monthly pedestrian casualty numbers.', // (Provide a story subtitle)
         author: 'Ste Allan', // (Provide the author of the story)
         
         // description: '', // (Provide a longer description of the story)
@@ -15,15 +15,15 @@ export default DefaultStory.extend({
         // feedbackEmail: '', // (Provide an email users can contact about this story)
         
         // color: 'white', // (Set the story colour)
-        width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        height: '3', // (Set the height of the story)
+        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
+        // height: '2', // (Set the height of the story)
         // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
         
         // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
     
-    years: [],
+    months: [],
     
     onInsertElement: function () {
         this.fetchData();
@@ -32,29 +32,29 @@ export default DefaultStory.extend({
     fetchData: function () {
         var _this = this,
             hebeNodeAPI = this.get('appSettings.hebeNodeAPI'),
-            storyData = 'ldm-accidents-cycling';
+            storyData = 'ldm-accidents-monthly';
             
         this.getData(hebeNodeAPI + '/' + storyData)
             .then(function (data) {
-                var years = [];
+                var months = [];
                 
                 data.forEach(function (item) {
-                    var year = moment(new Date(item.Year)).format('YYYY-MM-DD');
+                    var shortMonth = item.Month.substring(0,3),
+                        usableMonth = moment(new Date(shortMonth + '1, 2014')).format('YYYY-MM-DD');
                     
-                    years.push([
-                        new Date(year),
-                        parseFloat(item['Cycling']),
-                        parseFloat(item['Car']),
-                        parseFloat(item['Bus or Coach']),
-                        parseFloat(item['Taxi']),
-                        parseFloat(item['Goods Vehicle']),
-                        parseFloat(item['Motorcycle'])
+                    months.push([
+                        new Date(usableMonth),
+                        parseFloat(item['Number of Casualties'])
                     ]);
                 });
                 
-                _this.set('years', years);
+                months.sort(function(a,b){
+                  return new Date(a[0]) - new Date(b[0]);
+                });
                 
-                console.log(_this.years);
+                _this.set('months', months);
+                
+                // console.log(_this.months);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
@@ -70,54 +70,52 @@ export default DefaultStory.extend({
     drawChart: function() {
         var data = new google.visualization.DataTable();
         
-        data.addColumn('date', 'Year');
-        data.addColumn('number', 'Cycling');
-        data.addColumn('number', 'Car');
-        data.addColumn('number', 'Bus or Coach');
-        data.addColumn('number', 'Taxi');
-        data.addColumn('number', 'Goods Vehicle');
-        data.addColumn('number', 'Motorcycle');
+        data.addColumn('date', 'Month');
+        data.addColumn('number', 'Casualties');
+        
+        // data.addColumn({
+        //     type: 'string', 
+        //     role: 'tooltip'
+        // });
 
-        data.addRows(this.years);
+        data.addRows(this.months);
 
         var options = {
-            title: '',
+            width: 290,
+            height: 220,
             legend: {
                 position: 'none'
             },
-            width: 290,
-            height: 394,
-            pointSize: 0,
-            lineWidth: 2,
-            interpolateNulls: true,
-            chartArea: {
-                width: '80%',
-                height: '75%',
-                top: '15%',
-                left: '15%'
-            },
+            pointSize: 5,
             hAxis: {
-                title: 'Year',
-                format: 'yyyy',
+                title: '',
+                format: 'MMM',
                 gridlines: {
-                    count: 7
+                    count: 12
                 }
             },
             vAxis: {
-                // format: 'number'
+                format: 'short'
+            },
+            chartArea: {
+                width: '85%',
+                height: '80%',
+                top: '5%',
+                left: '10%'
             },
             crosshair: {
-                trigger: 'both'
+                trigger: 'both',
+                opacity: 0.5
             },
-            legend: {
-                position: 'top',
-                maxLines: '4'
-            },
-            fontSize: 10,
-            isStacked: true
+            selectionMode: 'multiple',
+            series: {
+                0: {
+                    color: '#026DBE'
+                }
+            }
         };
 
-        var chart = new google.visualization.AreaChart(document.getElementById('rta-vehicle-accidents'));
+        var chart = new google.visualization.LineChart(document.getElementById('rta-monthly-accidents'));
 
         chart.draw(data, options);
     }
