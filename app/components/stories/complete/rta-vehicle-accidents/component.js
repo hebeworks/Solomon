@@ -6,20 +6,14 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
         title: 'Vehicle Accident Numbers', // (Provide a story title)
-        subTitle: 'The number of accidents per type of vehicle.', // (Provide a story subtitle)
+        subTitle: 'The number of accidents per type of vehicle', // (Provide a story subtitle)
         author: 'Ste Allan', // (Provide the author of the story)
         
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
+        description: 'A chart showing the number of accidents per vehicle type for the period 2009-2014.', // (Provide a longer description of the story)
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/cycling-accidents-in-leeds/resource/cc4809d4-f418-492f-a239-edfe4475c7fe', // (Where did the data come from?)
         
-        // color: 'white', // (Set the story colour)
-        width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         height: '3', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
         
-        // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
     
