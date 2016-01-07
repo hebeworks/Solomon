@@ -1,0 +1,26 @@
+[solomon-story="rta-intro-story"] {
+    [cpn-story_content] {
+        z-index: 1;
+    }
+    
+        [cpn-story_body] {
+            padding-top: rem($spacing-base * 3);
+            text-align: center;
+        }
+    
+            h2, h3 {
+                font-family: $helvneuebold;
+            }
+            
+    [cpn-story_dot] {
+        z-index: 2;
+    }
+}
+
+[spc-rta-intro_bg] {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .5;
+}
