@@ -10,6 +10,7 @@ export default DefaultStory.extend({
         author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A chart showing the cummulative number of pedestrian casualties for days for the period 2009-2014.', // (Provide a longer description of the story)
+        feedbackEmail: 'liamthomasbolton@gmail.com',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/52c95333-51fb-48c0-b117-d7f8f7d7cbca', // (Where did the data come from?)
         
         scroll: false, // (Should the story vertically scroll its content?)

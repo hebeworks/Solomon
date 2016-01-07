@@ -10,6 +10,7 @@ export default DefaultStory.extend({
         author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A chart showing the number of pedestrian casualties and the vehicle types involved for the period 2009-2014.', // (Provide a longer description of the story)
+        feedbackEmail: 'liamthomasbolton@gmail.com',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/cce44d14-629f-47c2-9c6c-c59528f0353c', // (Where did the data come from?)
         
         scroll: false, // (Should the story vertically scroll its content?)

@@ -10,6 +10,7 @@ export default DefaultStory.extend({
         author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A heatmap showing the concentration of accidents involving pedestrians for the period 2009-2014.', // (Provide a longer description of the story)
+        feedbackEmail: 'liamthomasbolton@gmail.com',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/0dd23695-906e-4e13-9c05-e1b430910261', // (Where did the data come from?)
         
         width: '3', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
