@@ -5,7 +5,7 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Pedestrian Accidents By Day', // (Provide a story title)
+        title: 'Pedestrian Accidents by Day', // (Provide a story title)
         subTitle: 'Grouped daily pedestrian casualty numbers', // (Provide a story subtitle)
         author: 'Ste Allan', // (Provide the author of the story)
         
@@ -73,7 +73,7 @@ export default DefaultStory.extend({
             legend: {
                 position: 'none'
             },
-            pointSize: 10,
+            pointSize: 7,
             hAxis: {
                 title: ''
             },
@@ -85,7 +85,7 @@ export default DefaultStory.extend({
                 }
             },
             chartArea: {
-                width: '85%',
+                width: '90%',
                 height: '80%',
                 top: '5%',
                 left: '10%'

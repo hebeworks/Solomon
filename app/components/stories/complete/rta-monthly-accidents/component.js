@@ -5,21 +5,13 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: 'Pedestrian Accidents By Month', // (Provide a story title)
-        subTitle: 'Grouped monthly pedestrian casualty numbers.', // (Provide a story subtitle)
+        title: 'Pedestrian Accidents by Month', // (Provide a story title)
+        subTitle: 'Grouped monthly pedestrian casualty numbers', // (Provide a story subtitle)
         author: 'Ste Allan', // (Provide the author of the story)
         
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
+        description: 'A chart showing the cummulative number of pedestrian casualties for months for the period 2009-2014.', // (Provide a longer description of the story)
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/3e292a04-5cde-42c5-acf2-a2b4c7ad2234', // (Where did the data come from?)
         
-        // color: 'white', // (Set the story colour)
-        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
     
@@ -37,19 +29,19 @@ export default DefaultStory.extend({
         this.getData(hebeNodeAPI + '/' + storyData)
             .then(function (data) {
                 var months = [];
+                var monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 
-                data.forEach(function (item) {
-                    var shortMonth = item.Month.substring(0,3),
-                        usableMonth = moment(new Date(shortMonth + '1, 2014')).format('YYYY-MM-DD');
-                    
-                    months.push([
-                        new Date(usableMonth),
-                        parseFloat(item['Number of Casualties'])
-                    ]);
+                data = _.sortBy(data, function(item) {
+                    return monthsOfYear.indexOf(item.Month);
                 });
                 
-                months.sort(function(a,b){
-                  return new Date(a[0]) - new Date(b[0]);
+                data.forEach(function (item) {
+                    var shortMonth = item.Month.substring(0,3);
+                    
+                    months.push([
+                        shortMonth,
+                        parseFloat(item['Number of Casualties'])
+                    ]);
                 });
                 
                 _this.set('months', months);
@@ -70,13 +62,8 @@ export default DefaultStory.extend({
     drawChart: function() {
         var data = new google.visualization.DataTable();
         
-        data.addColumn('date', 'Month');
+        data.addColumn('string', 'Month');
         data.addColumn('number', 'Casualties');
-        
-        // data.addColumn({
-        //     type: 'string', 
-        //     role: 'tooltip'
-        // });
 
         data.addRows(this.months);
 
@@ -86,19 +73,19 @@ export default DefaultStory.extend({
             legend: {
                 position: 'none'
             },
-            pointSize: 5,
+            pointSize: 7,
             hAxis: {
-                title: '',
-                format: 'MMM',
-                gridlines: {
-                    count: 12
-                }
+                title: ''
             },
             vAxis: {
-                format: 'short'
+                format: 'short',
+                baseline: 0,
+                minorGridlines: {
+                    count: 4
+                }
             },
             chartArea: {
-                width: '85%',
+                width: '90%',
                 height: '80%',
                 top: '5%',
                 left: '10%'
