@@ -6,20 +6,15 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
         title: 'Pedestrian Accident Locations', // (Provide a story title)
-        subTitle: 'Concentrated locations of accidents involving pedestrians.', // (Provide a story subtitle)
+        subTitle: 'Concentrated locations of accidents involving pedestrians', // (Provide a story subtitle)
         author: 'Ste Allan', // (Provide the author of the story)
         
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
+        description: 'A heatmap showing the concentration of accidents involving pedestrians for the period 2009-2014.', // (Provide a longer description of the story)
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/0dd23695-906e-4e13-9c05-e1b430910261', // (Where did the data come from?)
         
-        // color: 'white', // (Set the story colour)
         width: '3', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         height: '3', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
         
-        // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
     
