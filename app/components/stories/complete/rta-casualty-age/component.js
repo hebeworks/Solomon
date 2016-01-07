@@ -7,7 +7,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Pedestrian Casualty Age', // (Provide a story title)
         subTitle: 'Number of predestrian casualties for 10-year age ranges', // (Provide a story subtitle)
-        author: 'Ste Allan', // (Provide the author of the story)
+        author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A chart showing the number of pedestrian casualties for 10-year age ranges for the period 2009-2014.', // (Provide a longer description of the story)
         dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/254678e1-8f79-4015-b886-d2138efc4aef', // (Where did the data come from?)

@@ -7,7 +7,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Vehicle Accident Numbers', // (Provide a story title)
         subTitle: 'The number of accidents per type of vehicle', // (Provide a story subtitle)
-        author: 'Ste Allan', // (Provide the author of the story)
+        author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A chart showing the number of accidents per vehicle type for the period 2009-2014.', // (Provide a longer description of the story)
         dataSourceUrl: 'http://leedsdatamill.org/dataset/cycling-accidents-in-leeds/resource/cc4809d4-f418-492f-a239-edfe4475c7fe', // (Where did the data come from?)

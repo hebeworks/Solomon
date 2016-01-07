@@ -7,7 +7,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Pedestrian Accident Locations', // (Provide a story title)
         subTitle: 'Concentrated locations of accidents involving pedestrians', // (Provide a story subtitle)
-        author: 'Ste Allan', // (Provide the author of the story)
+        author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A heatmap showing the concentration of accidents involving pedestrians for the period 2009-2014.', // (Provide a longer description of the story)
         dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/0dd23695-906e-4e13-9c05-e1b430910261', // (Where did the data come from?)

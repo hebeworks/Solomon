@@ -7,7 +7,7 @@ export default DefaultStory.extend({
     storyConfig: {
         title: 'Pedestrian Accidents by Month', // (Provide a story title)
         subTitle: 'Grouped monthly pedestrian casualty numbers', // (Provide a story subtitle)
-        author: 'Ste Allan', // (Provide the author of the story)
+        author: 'Liam Bolton', // (Provide the author of the story)
         
         description: 'A chart showing the cummulative number of pedestrian casualties for months for the period 2009-2014.', // (Provide a longer description of the story)
         dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/3e292a04-5cde-42c5-acf2-a2b4c7ad2234', // (Where did the data come from?)
