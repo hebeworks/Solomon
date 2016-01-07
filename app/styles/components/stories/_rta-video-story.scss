@@ -1,4 +1,18 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[solomon-story="rta-video-story"] {
+    [cpn-story_face~="front"] {
+        padding-top: 0;
+    }
+    
+        [cpn-story_body] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+}
+
+    [spc-rta-video-story_title] {
+        font-size: rem(14px);
+    }
+    
+    [spc-rta-video-story_desc] {
+        font-size: rem(12px);
+    }

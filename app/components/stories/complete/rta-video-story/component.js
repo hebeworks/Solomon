@@ -22,7 +22,7 @@ export default DefaultStory.extend({
         }
     }),
     
-    usableVideoSrc: 'https://www.youtube.com/embed/-VCAwsWli5g?rel=0&amp;showinfo=0',
+    usableVideoSrc: 'https://www.youtube.com/embed/-VCAwsWli5g?rel=0&amp;',
     // https://www.youtube.com/embed/Ile-FwNEafk
     
     // didInsertElement: function() {
