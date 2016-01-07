@@ -76,6 +76,11 @@ export default DefaultStory.extend({
             hAxis: {
                 title: '',
             },
+            vAxis: {
+                minorGridlines: {
+                    count: 3
+                }
+            },
             chartArea: {
                 width: '90%',
                 height: '80%',
