@@ -1,0 +1,31 @@
+{{#stories/story-base}}
+
+    <div cpn-padding="top-half">
+        {{!-- Display the video --}}
+        {{#if usableVideoSrc}}
+        <iframe
+            width="310"
+            height="174"
+            src="{{usableVideoSrc}}"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        
+        <div cpn-padding="right left">
+            <h3 spc-yw-vp_title>Latest Campaign</h3>
+            <p spc-yw-vp_desc>Find out about the dangers of swimming in reservoirs #coldwaterkills</p>
+            <a href="https://www.youtube.com/channel/UCebau9F5cK-A0wmu-Z4JGvw" target="_blank" cpn-button="move">Find more videos</a>
+        </div>
+        
+        {{!-- Choose a video --}}
+        {{else}}
+        <div cpn-padding="right left">
+            <p>Choose a video to display</p>
+            {{input value=videoSrcUser type="text" placeholder="YouTube share URL"}}
+            <button cpn-button="action" cpn-margin="top" {{action "addVideo"}}>Add Video</button>
+        </div>
+        {{/if}}
+        
+    </div>
+    
+{{/stories/story-base}}
