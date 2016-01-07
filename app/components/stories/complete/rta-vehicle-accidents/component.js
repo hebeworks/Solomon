@@ -36,7 +36,7 @@ export default DefaultStory.extend({
                     var year = moment(new Date(item.Year)).format('YYYY-MM-DD');
                     
                     years.push([
-                        new Date(year),
+                        item['Year'],
                         parseFloat(item['Cycling']),
                         parseFloat(item['Car']),
                         parseFloat(item['Bus or Coach']),
@@ -48,7 +48,7 @@ export default DefaultStory.extend({
                 
                 _this.set('years', years);
                 
-                console.log(_this.years);
+                // console.log(_this.years);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
@@ -64,7 +64,7 @@ export default DefaultStory.extend({
     drawChart: function() {
         var data = new google.visualization.DataTable();
         
-        data.addColumn('date', 'Year');
+        data.addColumn('string', 'Year');
         data.addColumn('number', 'Cycling');
         data.addColumn('number', 'Car');
         data.addColumn('number', 'Bus or Coach');
@@ -82,7 +82,7 @@ export default DefaultStory.extend({
             width: 290,
             height: 394,
             pointSize: 0,
-            lineWidth: 2,
+            lineWidth: 1,
             interpolateNulls: true,
             chartArea: {
                 width: '80%',
@@ -92,13 +92,12 @@ export default DefaultStory.extend({
             },
             hAxis: {
                 title: 'Year',
-                format: 'yyyy',
-                gridlines: {
-                    count: 7
-                }
+                format: 'yyyy'
             },
             vAxis: {
-                // format: 'number'
+                minorGridlines: {
+                    count: 4
+                }
             },
             crosshair: {
                 trigger: 'both'
@@ -108,7 +107,8 @@ export default DefaultStory.extend({
                 maxLines: '4'
             },
             fontSize: 10,
-            isStacked: true
+            isStacked: true,
+            areaOpacity: 0.5
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('rta-vehicle-accidents'));
