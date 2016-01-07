@@ -6,20 +6,12 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
         title: 'Pedestrian Accidents By Day', // (Provide a story title)
-        subTitle: 'Grouped daily pedestrian casualty numbers.', // (Provide a story subtitle)
+        subTitle: 'Grouped daily pedestrian casualty numbers', // (Provide a story subtitle)
         author: 'Ste Allan', // (Provide the author of the story)
         
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
+        description: 'A chart showing the cummulative number of pedestrian casualties for days for the period 2009-2014.', // (Provide a longer description of the story)
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/pedestrian-casualties-in-leeds/resource/52c95333-51fb-48c0-b117-d7f8f7d7cbca', // (Where did the data come from?)
         
-        // color: 'white', // (Set the story colour)
-        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
     
@@ -72,11 +64,6 @@ export default DefaultStory.extend({
         
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Casualties');
-        
-        // data.addColumn({
-        //     type: 'string', 
-        //     role: 'tooltip'
-        // });
 
         data.addRows(this.days);
 
@@ -86,16 +73,16 @@ export default DefaultStory.extend({
             legend: {
                 position: 'none'
             },
-            pointSize: 5,
+            pointSize: 10,
             hAxis: {
-                title: '',
-                // format: 'MMM',
-                gridlines: {
-                    count: 12
-                }
+                title: ''
             },
             vAxis: {
-                format: 'short'
+                format: 'short',
+                baseline: 0,
+                minorGridlines: {
+                    count: 4
+                }
             },
             chartArea: {
                 width: '85%',
