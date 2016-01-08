@@ -177,7 +177,7 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 345,
-            pointSize: 3,
+            pointSize: 5,
             lineWidth: 1,
             interpolateNulls: true,
             chartArea: {
@@ -193,12 +193,6 @@ export default DefaultStory.extend({
                 minorGridlines: {
                     count: 4
                 }
-            },
-            series: {
-                0: { pointShape: 'circle' },
-                1: { pointShape: 'triangle' },
-                2: { pointShape: 'square' },
-                3: { pointShape: 'diamond' }
             },
             crosshair: {
                 trigger: 'both'
@@ -242,7 +236,7 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 345,
-            pointSize: 3,
+            pointSize: 5,
             lineWidth: 1,
             interpolateNulls: true,
             chartArea: {
@@ -259,12 +253,6 @@ export default DefaultStory.extend({
                 minorGridlines: {
                     count: 4
                 }
-            },
-            series: {
-                0: { pointShape: 'circle' },
-                1: { pointShape: 'triangle' },
-                2: { pointShape: 'square' },
-                3: { pointShape: 'diamond' }
             },
             crosshair: {
                 trigger: 'both'
