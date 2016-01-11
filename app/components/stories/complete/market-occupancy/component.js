@@ -27,6 +27,9 @@ export default DefaultStory.extend({
         var _this = this;
         var query = { $and: [{ "date": { $lte: new Date("2014-03-31T00:00:00Z") } }, { "date": { $gte: new Date("2014-03-01T00:00:00Z") } }] };
         var url = this.get('appSettings.hebeNodeAPI') + '/ldm-market-occupancy?query=' + this.get('appSettings').encodeQuery(query) + '&limit=-1';
+        
+        console.log(url);
+        
         this.getData(url)
             .then(function (data) {
                 if (!Ember.isEmpty(data)) {
@@ -177,8 +180,8 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 345,
-            pointSize: 5,
-            lineWidth: 1,
+            pointSize: 0,
+            lineWidth: 2,
             interpolateNulls: true,
             chartArea: {
                 width: '85%',
@@ -196,7 +199,16 @@ export default DefaultStory.extend({
             },
             crosshair: {
                 trigger: 'both'
-            }
+            },
+            series: {
+                2: {
+                    color: '#f8e71c'
+                },
+                3: {
+                    color: 'green'
+                }
+            },
+            areaOpacity: 0.5
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart-no-occupied-stalls'));
@@ -205,28 +217,26 @@ export default DefaultStory.extend({
     },
 
     drawPCEmptyStalls: function () {
-        var chartData = this.get('percentageData'),
-            data = new google.visualization.DataTable();
+        console.log(this.percentageData);
+        
+        var chartData = this.get('percentageData');
+            // data = new google.visualization.DataTable();
         
         // Original
-        // data = google.visualization.arrayToDataTable(chartData);
+        var data = google.visualization.arrayToDataTable(chartData);
         
         // New
-        data.addColumn('number', 'Day of Month');
-        data.addColumn('number', 'Leeds');
-        data.addColumn({ type: 'string', role: 'tooltip' });
-        data.addColumn('number', 'Yeadon');
-        data.addColumn({ type: 'string', role: 'tooltip' });
-        data.addColumn('number', 'Otley');
-        data.addColumn({ type: 'string', role: 'tooltip' });
-        data.addColumn('number', 'Pudsey');
-        data.addColumn({ type: 'string', role: 'tooltip' });
+        // data.addColumn('number', 'Day of Month');
+        // data.addColumn('number', 'Leeds');
+        // data.addColumn({ type: 'string', role: 'tooltip' });
+        // data.addColumn('number', 'Yeadon');
+        // data.addColumn({ type: 'string', role: 'tooltip' });
+        // data.addColumn('number', 'Otley');
+        // data.addColumn({ type: 'string', role: 'tooltip' });
+        // data.addColumn('number', 'Pudsey');
+        // data.addColumn({ type: 'string', role: 'tooltip' });
 
-        data.addRows([
-            [1, .24, 'Leeds tooltip', null, 'Yeadon tooltip', .05, 'Otley tooltip', .2, 'Pudsey tooltip'],
-            [2, .33, 'Leeds tooltip', .9, 'Yeadon tooltip', .2, 'Otley tooltip', .15, 'Pudsey tooltip'],
-            [3, .10, 'Leeds tooltip', null, 'Yeadon tooltip', .1, 'Otley tooltip', .4, 'Pudsey tooltip']
-        ]);
+        // data.addRows(chartData);
 
         var options = {
             title: 'Percentage of Stalls Empty',
@@ -236,8 +246,8 @@ export default DefaultStory.extend({
             },
             width: 290,
             height: 345,
-            pointSize: 5,
-            lineWidth: 1,
+            pointSize: 0,
+            lineWidth: 2,
             interpolateNulls: true,
             chartArea: {
                 width: '80%',
@@ -246,7 +256,8 @@ export default DefaultStory.extend({
                 left: '15%'
             },
             hAxis: {
-                title: 'Day'
+                title: 'Day',
+                format: 'short'
             },
             vAxis: {
                 format: 'percent',
@@ -258,8 +269,17 @@ export default DefaultStory.extend({
                 trigger: 'both'
             },
             tooltip: {
-                isHtml: true
-            }
+                // isHtml: true
+            },
+            series: {
+                2: {
+                    color: '#f8e71c'
+                },
+                3: {
+                    color: 'green'
+                }
+            },
+            areaOpacity: 0.5
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart-pc-empty-stalls'));
@@ -298,7 +318,15 @@ export default DefaultStory.extend({
             },
             tooltip: {
                 isHtml: true
-            }
+            },
+            series: {
+                2: {
+                    color: '#f8e71c'
+                },
+                3: {
+                    color: 'green'
+                }
+            },
         };
 
         var chart = new google.visualization.ColumnChart(
