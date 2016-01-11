@@ -6,7 +6,7 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
         title: 'Leeds Information Centre',
-        subTitle: 'Visitor Numbers',
+        subTitle: 'Visitor numbers over a 13-month period',
         author: 'Ste Allan',
         
         description: 'A chart showing visitor numbers to Leeds Information Centre over a 13-month period.', // (Provide a longer description of the story)
@@ -77,19 +77,28 @@ export default DefaultStory.extend({
             legend: {
                 position: 'none'
             },
-            pointSize: 5,
+            pointSize: 0,
+            lineWidth: 2,
             hAxis: {
                 title: '',
                 format: 'MMM yy',
                 gridlines: {
-                    count: 12
+                    count: 13
+                },
+                showTextEvery: 1,
+                slantedText: true,
+                textStyle: {
+                    fontSize: 10
                 }
             },
             vAxis: {
-                format: 'short'
+                format: 'short',
+                minorGridlines: {
+                    count: 2
+                }
             },
             chartArea: {
-                width: '85%',
+                width: '90%',
                 height: '80%',
                 top: '5%',
                 left: '10%'
@@ -98,10 +107,12 @@ export default DefaultStory.extend({
                 trigger: 'both',
                 opacity: 0.5
             },
-            selectionMode: 'multiple'
+            selectionMode: 'multiple',
+            areaOpacity: 0.5
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        // var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
     }
