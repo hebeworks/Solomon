@@ -201,6 +201,9 @@ export default DefaultStory.extend({
                 trigger: 'both'
             },
             series: {
+                1: {
+                    color: '#f7a700'
+                },
                 2: {
                     color: '#f8e71c'
                 },
@@ -211,7 +214,8 @@ export default DefaultStory.extend({
             areaOpacity: 0.5
         };
 
-        var chart = new google.visualization.AreaChart(document.getElementById('chart-no-occupied-stalls'));
+        // var chart = new google.visualization.AreaChart(document.getElementById('chart-no-occupied-stalls'));
+        var chart = new google.visualization.LineChart(document.getElementById('chart-no-occupied-stalls'));
 
         chart.draw(data, options);
     },
@@ -272,6 +276,9 @@ export default DefaultStory.extend({
                 // isHtml: true
             },
             series: {
+                1: {
+                    color: '#f7a700'
+                },
                 2: {
                     color: '#f8e71c'
                 },
@@ -282,7 +289,8 @@ export default DefaultStory.extend({
             areaOpacity: 0.5
         };
 
-        var chart = new google.visualization.AreaChart(document.getElementById('chart-pc-empty-stalls'));
+        // var chart = new google.visualization.AreaChart(document.getElementById('chart-pc-empty-stalls'));
+        var chart = new google.visualization.LineChart(document.getElementById('chart-pc-empty-stalls'));
 
         chart.draw(data, options);
     },
@@ -320,6 +328,9 @@ export default DefaultStory.extend({
                 isHtml: true
             },
             series: {
+                1: {
+                    color: '#f7a700'
+                },
                 2: {
                     color: '#f8e71c'
                 },
