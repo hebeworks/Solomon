@@ -256,7 +256,7 @@ export default DefaultStory.extend({
                 left: '15%'
             },
             hAxis: {
-                title: 'Day',
+                title: 'Day of month',
                 format: 'short'
             },
             vAxis: {
