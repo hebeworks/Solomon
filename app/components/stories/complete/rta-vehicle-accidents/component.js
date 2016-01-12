@@ -77,9 +77,6 @@ export default DefaultStory.extend({
 
         var options = {
             title: '',
-            legend: {
-                position: 'none'
-            },
             width: 290,
             height: 394,
             pointSize: 0,
