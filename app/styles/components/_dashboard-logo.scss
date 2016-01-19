@@ -15,15 +15,23 @@
     }
 }
 
-[spc-dashboard-logo="compact"] {    
-    @include breakpoint(min-width 701px) {
-        display: none;
+[spc-dashboard-logo="compact"] {
+    [solomon-app]:not([solomon-app="lcd"]) & {
+        @include breakpoint(min-width 701px) {
+            display: none;
+        }
+    }
+    
+    [solomon-app="lcd"] & {
+        @include breakpoint(min-width 801px) {
+            display: none;
+        }
     }
     
     [class*="svg-lcd-logo"] {
         svg {
-            height: 30px;
-            width: 24.58px;
+            height: 40px;
+            width: 32px;
         }
     }
 }
@@ -31,13 +39,21 @@
 [spc-dashboard-logo="expanded"] {
     display: none;
     
-    @include breakpoint(min-width 701px) {
-        display: block;
+    [solomon-app]:not([solomon-app="lcd"]) & {
+        @include breakpoint(min-width 701px) {
+            display: block;
+        }
+    }
+    
+    [solomon-app="lcd"] & {
+        @include breakpoint(min-width 801px) {
+            display: block;
+        }
     }
     
     [class*="svg-lcd-logo"] {
         svg {
-            height: 30px;
+            height: 40px;
             width: auto;
         }
     }
