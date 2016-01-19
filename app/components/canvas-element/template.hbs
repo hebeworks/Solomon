@@ -11,12 +11,12 @@
     
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
+            {{stories/complete/market-occupancy}}
             {{stories/complete/base-rag-title}}
             {{stories/complete/leeds-air-quality-trends}}
             {{stories/complete/footfall-centre}}
             {{stories/complete/council-spending-year-line}}
             {{stories/complete/council-spending-directorate}}
-            {{stories/complete/market-occupancy}}
             {{stories/complete/google-charts}}
             {{stories/complete/google-charts-column}}
             {{stories/complete/google-charts-donut}}
@@ -60,7 +60,7 @@
         {{stories/complete/rta-daily-accidents}}
         {{stories/complete/rta-pedestrians-vehicles}}
         --}}
-        
+
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -68,6 +68,7 @@
                 {{/if}}
             {{/each}}
         {{/if}}
+
  
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
