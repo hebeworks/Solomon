@@ -1,0 +1,31 @@
+{{#stories/story-base}}
+    <div spc-val>
+        <p spc-val_previous cpn-margin="bottom-none">
+        {{#if previousValue}}
+        {{previousValue}} in {{previousPeriod}}
+        {{else}}
+        &nbsp;
+        {{/if}}
+        </p>
+        
+        {{#if currentValue}}
+        <div cpn-divide="bottom {{lineShade}} solid" cpn-margin="bottom-half">
+            <p cpn-margin="bottom-none" spc-val_value>{{currentValue}}</p>
+        </div>
+        {{/if}}
+        
+        {{#if longText}}
+        <p spc-val_long-text cpn-margin="bottom-none">{{longText}}</p>
+        {{/if}}
+        
+        {{#if shortText}}
+        <p spc-val_short-text cpn-margin="bottom-none">{{shortText}}</p>
+        {{/if}}
+        
+        {{#if linkURL}}
+        <div cpn-divide="top {{lineShade}} solid">
+            <a spc-val_link href="{{linkURL}}">{{linkText}}</a>
+        </div>
+        {{/if}}
+    </div>
+{{/stories/story-base}}

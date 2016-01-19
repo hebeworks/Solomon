@@ -1,0 +1,26 @@
+[spc-val] {
+    line-height: 1.3;
+    font-family: Roboto;
+}
+
+    [spc-val_previous] {
+        font-size: rem(10px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    [spc-val_value] {
+        font-size: rem(34px);
+    }
+    
+    [spc-val_long-text] {
+        font-size: rem(12px);
+    }
+    
+    [spc-val_short-text] {
+        font-size: rem(16px);
+    }
+    
+    [spc-val_link] {
+        font-size: rem(12px);
+    }
