@@ -20,23 +20,73 @@ export default DefaultStory.extend({
     loaded: false,
 
     onInsertElement: function () {
-        this.loadData();
+        this.getDateRange();
+        this.get('months');
+        this.get('startDate');
+        this.get('endDate');
     }.on('didInsertElement'),
 
-    loadData: function () {
+    startDate: null, // new Date("2014-03-01T00:00:00Z"),
+    endDate: null, // new Date("2014-03-31T00:00:00Z"),
+    
+    getDateRange: function () {
         var _this = this;
-        var query = { $and: [{ "date": { $lte: new Date("2014-03-31T00:00:00Z") } }, { "date": { $gte: new Date("2014-03-01T00:00:00Z") } }] };
-        var url = this.get('appSettings.hebeNodeAPI') + '/ldm-market-occupancy?query=' + this.get('appSettings').encodeQuery(query) + '&limit=-1';
-        
-        console.log(url);
-        
-        this.getData(url)
-            .then(function (data) {
-                if (!Ember.isEmpty(data)) {
-                    _this.parseData(data);
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/ldm-market-occupancy?sort=date&sortdirection=DESC&limit=1')
+            .then(function (mostRecent) {
+                if (!Ember.isEmpty(mostRecent)) {
+                    var start = new Date(mostRecent[0].date);
+                    _this.set('startDate', start);
+                }
+            });
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/ldm-market-occupancy?sort=date&sortdirection=ASC&limit=1')
+            .then(function (endDate) {
+                if (!Ember.isEmpty(endDate)) {
+                    var end = new Date(endDate[0].date);
+                    _this.set('endDate', end);
                 }
             });
     },
+
+    selectedMonth: null,
+    months: [],
+    setMonths: function () {
+        var _this = this;
+        if (!Ember.isEmpty(this.get('startDate')) && !Ember.isEmpty('endDate')) {
+            var months = [];
+            var endDate = moment(this.get('endDate'));
+            var current = moment(this.get('startDate'));
+            var i = 0;
+            while (new Date(current) > endDate) {
+                i++;
+                months.push({ id: current.toISOString(), text: current.format('MMM YYYY') });
+                current = current.subtract(1, 'months');
+            }
+            _this.set('months', months);
+            _this.set('selectedMonth', months[0]);
+        }
+    }.observes('startDate', 'endDate'),
+
+    loadData: function () {
+        if (!Ember.isEmpty(this.get('selectedMonth'))) {
+            var newDate = new Date(this.get('selectedMonth').id);
+
+            var _this = this;
+            var startDate = moment(newDate).toISOString();
+            var endDate = moment(moment(startDate).subtract(1, "months").toDate()).toISOString();
+
+            var query = { $and: [{ "date": { $lte: startDate } }, { "date": { $gte: endDate } }] };
+            var url = this.get('appSettings.hebeNodeAPI') + '/ldm-market-occupancy?query=' + this.get('appSettings').encodeQuery(query) + '&limit=-1';
+
+            console.log(url);
+
+            this.getData(url)
+                .then(function (data) {
+                    if (!Ember.isEmpty(data)) {
+                        _this.parseData(data);
+                    }
+                });
+        }
+    }.observes('selectedMonth'),
 
     parseData: function (data) {
         var _this = this;
@@ -118,9 +168,9 @@ export default DefaultStory.extend({
     loadGoogleAPIs: function () {
         // Draw the chart when the APIs have loaded
         google.setOnLoadCallback(
-            this.drawTotalOccupiedStalls(),
-            this.drawPCEmptyStalls(),
-            this.drawAvgOccupiedStalls()
+        // this.drawTotalOccupiedStalls(),
+        // this.drawPCEmptyStalls(),
+        // this.drawAvgOccupiedStalls()
             );
     }.observes('loaded'),
 
@@ -145,7 +195,7 @@ export default DefaultStory.extend({
         function htmlTooltip(day, val) {
             var date = moment(s.lpad(day, 2, "0") + moment(selectedMonth).format("/MM/YYYY"), "DD/MM/YYYY");
             date = date.format('ddd') + '&nbsp;' + date.format('Do');
-            return '<div style="padding:4px;">'+date + '<br />' + val + '&nbsp;stalls</div>';
+            return '<div style="padding:4px;">' + date + '<br />' + val + '&nbsp;stalls</div>';
         }
 
         var rows = _.map(chartData.splice(1), function (row) {
@@ -218,13 +268,11 @@ export default DefaultStory.extend({
         var chart = new google.visualization.LineChart(document.getElementById('chart-no-occupied-stalls'));
 
         chart.draw(data, options);
-    },
+    }.observes('occupancyData'),
 
     drawPCEmptyStalls: function () {
-        console.log(this.percentageData);
-        
         var chartData = this.get('percentageData');
-            // data = new google.visualization.DataTable();
+        // data = new google.visualization.DataTable();
         
         // Original
         var data = google.visualization.arrayToDataTable(chartData);
@@ -293,7 +341,7 @@ export default DefaultStory.extend({
         var chart = new google.visualization.LineChart(document.getElementById('chart-pc-empty-stalls'));
 
         chart.draw(data, options);
-    },
+    }.observes('percentageData'),
 
     drawAvgOccupiedStalls: function () {
         var chartData = this.get('dailyAverages');
@@ -344,5 +392,5 @@ export default DefaultStory.extend({
             document.getElementById('chart-avg-occupied-stalls'));
 
         chart.draw(data, options);
-    }
+    }.observes('dailyAverages')
 });

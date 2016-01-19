@@ -11,9 +11,14 @@ export default Ember.Component.extend(dashComponentBase, {
 	}.on('init'),
 	
 	appendComponentNameClass: function() {
-		var dasherizedStoryName = s.strRightBack(this.__proto__._debugContainerKey, "/");
-		this.set('solomon-story', dasherizedStoryName);
-		this.attributeBindings.push('solomon-story');
+        if(Ember.isEmpty(this.__proto__)) { // delayed check because this.__proto__ is initially undefined in IE
+            var _this = this;
+            setTimeout(_this.appendComponentNameClass, 200);
+        } else {
+            var dasherizedStoryName = s.strRightBack(this.__proto__._debugContainerKey, "/");
+            this.set('solomon-story', dasherizedStoryName);
+            this.attributeBindings.push('solomon-story');
+        }
 	}
 });
 
