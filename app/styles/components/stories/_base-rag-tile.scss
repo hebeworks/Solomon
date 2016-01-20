@@ -1,6 +1,5 @@
 [spc-val] {
-    line-height: 1.3;
-    font-family: Roboto;
+    line-height: 1.2;
 }
 
     [spc-val_previous] {
@@ -18,9 +17,11 @@
     }
     
     [spc-val_short-text] {
-        font-size: rem(16px);
+        font-size: rem(14px);
     }
     
     [spc-val_link] {
         font-size: rem(12px);
+        text-decoration: none;
+        color: #fff;
     }

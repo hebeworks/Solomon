@@ -9,8 +9,8 @@
         </p>
         
         {{#if currentValue}}
-        <div cpn-divide="bottom {{lineShade}} solid" cpn-margin="bottom-half">
-            <p cpn-margin="bottom-none" spc-val_value>{{currentValue}}</p>
+        <div cpn-divide="bottom {{lineShade}}" cpn-margin="bottom-half">
+            <p cpn-margin="bottom-half" spc-val_value>{{currentValue}}</p>
         </div>
         {{/if}}
         
@@ -19,11 +19,11 @@
         {{/if}}
         
         {{#if shortText}}
-        <p spc-val_short-text cpn-margin="bottom-none">{{shortText}}</p>
+        <p spc-val_short-text cpn-margin="bottom-half">{{shortText}}</p>
         {{/if}}
         
         {{#if linkURL}}
-        <div cpn-divide="top {{lineShade}} solid">
+        <div cpn-divide="top {{lineShade}}" cpn-padding="top-none">
             <a spc-val_link href="{{linkURL}}">{{linkText}}</a>
         </div>
         {{/if}}
