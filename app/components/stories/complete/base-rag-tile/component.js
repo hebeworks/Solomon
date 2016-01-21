@@ -4,18 +4,10 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     layoutName: 'components/stories/complete/base-rag-tile',
     loaded: false,
-
-    tileValue: null,
-    tileDesc1: null,
-    tileDesc2: null,
-    tileShade: '',
-    tileUrl: '',
-    
-    //
     currentValue: null,
     previousValue: null,
     previousPeriod: null,
-    trend: null, // up, down, none
+    trend: null, // up, down
     longText: null,
     shortText: null,
     linkText: 'Press to see more',
@@ -33,6 +25,7 @@ export default DefaultStory.extend({
     onInit: function() {
         this.get('rating');
         this.get('loaded');
+        this.get('trend');
     }.on('init'),
     
     onRating: function() {

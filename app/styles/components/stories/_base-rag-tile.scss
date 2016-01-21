@@ -12,6 +12,23 @@
         font-size: rem(34px);
     }
     
+        [spc-val_trend] {
+            display: inline-block;
+            height: rem(16px);
+            width: rem(16px);
+            margin-left: rem($spacing-base / 2);
+            
+            svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        [spc-val_trend="down"] {
+            @include transform(rotate(180deg));
+        }
+    
     [spc-val_long-text] {
         font-size: rem(12px);
     }

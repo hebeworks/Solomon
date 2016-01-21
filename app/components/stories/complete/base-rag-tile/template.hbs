@@ -10,7 +10,7 @@
         
         {{#if currentValue}}
         <div cpn-divide="bottom {{lineShade}}" cpn-margin="bottom-half">
-            <p cpn-margin="bottom-half" spc-val_value>{{currentValue}}</p>
+            <p cpn-margin="bottom-half" spc-val_value>{{currentValue}}{{#if trend}}<span spc-val_trend="{{trend}}" class="svg-arrow-circled" data-grunticon-embed></span>{{/if}}</p>
         </div>
         {{/if}}
         
