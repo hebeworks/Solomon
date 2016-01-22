@@ -4,7 +4,7 @@ export default BaseRAGTile.extend({
     kpiReference: [], // KPI ID and description
     kpiData: [], // actual
     usableKpis: null,
-    chosenKpi: 'BYS300', // set the ID of the selected KPI
+    chosenKpi: 'PHOF15', // set the ID of the selected KPI
     
     onInsertElement: function() {
         this.getData();
@@ -88,11 +88,17 @@ export default BaseRAGTile.extend({
                         finalKPIs[id].previousVal = items[1].value;
                         finalKPIs[id].previousPeriod = items[1].period;
                     }
+                    
+                    // This KPI has percentages listed as floats, so lets put '%' back on
+                    if (id == 'PHOF15') {
+                        finalKPIs[id].currentVal = parseInt(firstItem.value) + '%';
+                        finalKPIs[id].previousVal = parseInt(items[1].value) + '%';
+                    }
                 }
                 
                 _this.set('usableKpis', finalKPIs);
                 
-                console.log(finalKPIs);
+                // console.log(finalKPIs);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
@@ -116,12 +122,8 @@ export default BaseRAGTile.extend({
                     previousFloat = parseFloat(kpis[id]['previousVal']),
                     currentFloat = parseFloat(kpis[id]['currentVal']);
                     
-                console.log('PrevF: ' + previousFloat);
-                console.log('CurrF: ' + currentFloat);
-                console.log('Polarity: ' + polarity);
-                    
                 if (currentFloat > previousFloat) {
-                    console.log('Current is greater than previous');
+                    // console.log('Current is greater than previous');
                     _this.set('trend', 'up');
                     Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
                     
@@ -132,8 +134,12 @@ export default BaseRAGTile.extend({
                     if (polarity.indexOf('Down') > -1) {
                         _this.set('rating', 'bad');
                     }
+                    
+                    if (polarity.indexOf('Neutral') > -1) {
+                        _this.set('rating', 'neutral');
+                    }
                 } else if (currentFloat < previousFloat) {
-                    console.log('Current is less than previous');
+                    // console.log('Current is less than previous');
                     _this.set('trend', 'down');
                     Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
                     
@@ -144,8 +150,12 @@ export default BaseRAGTile.extend({
                     if (polarity.indexOf('Down') > -1) {
                         _this.set('rating', 'good');
                     }
+                    
+                    if (polarity.indexOf('Neutral') > -1) {
+                        _this.set('rating', 'neutral');
+                    }
                 } else {
-                    console.log('Current is the same as previous');
+                    // console.log('Current is the same as previous');
                     _this.set('rating', 'neutral');
                 }
             }
