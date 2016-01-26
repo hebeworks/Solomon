@@ -1,0 +1,56 @@
+{{#stories/story-base}}
+    <div cpn-clearfix cpn-margin="bottom-double">
+        <div cpn-float="left" cpn-width="60%" cpn-margin="bottom-none" class="select2-wrapper">
+            {{
+                select-2
+                content=categories
+                value=selectedCat
+                placeholder="Directorate values"
+            }}
+        </div>
+        
+        <div cpn-float="left" cpn-width="40%" cpn-padding="left" cpn-margin="bottom-none" class="select2-wrapper -select2-calendar">
+            {{
+                select-2
+                content=months
+                value=selectedMonth
+                placeholder="Date"
+            }}
+        </div>
+    </div>
+    
+    <ul cpn-table="fixed" cpn-text="center">
+        <li cpn-table_cell="middle" cpn-width="50%">
+            <div cpn-fill-circle="orange on-dark">
+                <div cpn-fill-circle_ring>
+                    <div cpn-fill-circle_back>
+                        <div cpn-fill-circle_back-data>
+                            {{#if noMonthData}}
+                            <span cpn-fill-circle_data-value>No Data</span>
+                            {{else}}
+                            <span cpn-fill-circle_data-value>&pound;{{large-number-formatter catTotal}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                    {{#unless noMonthData}}
+                    <div cpn-fill-circle_front style="margin-top: {{catPercentageRemaining}}%;">
+                        <div cpn-fill-circle_front-inner style="top: -{{catPercentageRemaining}}%;">
+                            <div cpn-fill-circle_front-data>
+                                <span cpn-fill-circle_data-value>&pound;{{large-number-formatter catTotal}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/unless}}
+                </div>
+            </div>
+        </li>
+        <li cpn-table_cell="middle" cpn-width="50%">
+            <h2 spc-cs-spend-title>{{selectedCat.text}}</h2>
+            {{#if noMonthData}}
+            <p spc-cs-spend-desc>There is no data available for <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></p>
+            {{else}}
+            <p spc-cs-spend-desc cpn-margin="bottom-none">Compared with overall council spend of <span cpn-font-weight="bold" cpn-color="lime">&pound;{{large-number-formatter selectedMonth.total}}</span> <span cpn-display="inline-block">in <span cpn-font-weight="bold">{{selectedMonth.longText}}</span></span></p>
+            {{/if}}
+        </li>
+    </ul>
+{{/stories/story-base}}

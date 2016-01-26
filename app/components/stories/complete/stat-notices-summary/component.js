@@ -2,11 +2,16 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Notices',
+        subTitle: 'Latest statutory',
+        color: 'red',
+        width: '1',
+        height: '1',
+        viewOnly: true
+    },
+    
     didInsertElement: function () {
-        this.set('title', 'Statutory notices');
-        this.set('subTitle', 'Current Notices');
         var obj = this;
 //                obj.set('newlyAddedCount', 4);
 

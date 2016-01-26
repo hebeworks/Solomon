@@ -2,11 +2,14 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        color: 'black',
+        width: '1',
+        height: '1',
+        viewOnly: true
+    },
+    
     didInsertElement: function () {
-        this.set('title', '');
-        this.set('subTitle', '');
         this.loadAPIData('today');
     },
 

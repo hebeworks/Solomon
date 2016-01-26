@@ -12,16 +12,20 @@ export default Ember.Component.extend(CanvasGalleryLister, {
 		items.forEach(function (item) {
 			item.get('categories').toArray().forEach(function(cat){
 				var catID = cat.get('id');
-				var foundCat = categories.find(function(cat){ return cat.category.get('id') == catID; });
-				if(!Ember.isEmpty(foundCat)) {
-					foundCat.items.push(item);
-				} else {
-					// first time with this cat
-					// add it to the array
-					categories.push({
-						category: cat,
-						items: [item]
-					})
+				var featuredCategoryID = '55f2b35018f0066c0d784e6c';
+
+				if(catID != featuredCategoryID) {
+					var foundCat = categories.find(function(cat){ return cat.category.get('id') == catID; });
+					if(!Ember.isEmpty(foundCat)) {
+						foundCat.items.push(item);
+					} else {
+						// first time with this cat
+						// add it to the array
+						categories.push({
+							category: cat,
+							items: [item]
+						});
+					}
 				}
 			});
 		});

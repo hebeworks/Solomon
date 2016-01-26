@@ -1,7 +1,14 @@
-import Ember from 'ember';
+/* global Ember, _ */
+import DefaultStory from './../../story-types/default-story/component';
 
-export default Ember.Component.extend({
-    tagName: 'div',
+export default DefaultStory.extend({
+    storyConfig: {
+        color: 'black',
+        width: '1',
+        height: '1',
+        viewOnly: true
+    },
+    
     loaded: false,
     date: {},
     didReceiveAttrs: function() {
@@ -13,9 +20,9 @@ export default Ember.Component.extend({
             dayOfWeek:  date.format('dddd'),
             day:        date.format('D'),
             ordinal:    ordinal,
-            month:      (date.format('MMMM').length <= 8 ? date.format('MMMM') : date.format('MMM')),
+            month:      (date.format('MMMM').length <= 7 ? date.format('MMMM') : date.format('MMM')),
             year:      date.format('YYYY')
-        }
+        };
         this.set('date',obj);        
     }
 });

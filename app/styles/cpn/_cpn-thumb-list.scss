@@ -14,6 +14,7 @@
     [cpn-thumb-list_items] {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
         white-space: nowrap;
         font-size: 0; // remove whitespace
         margin: 0;
@@ -58,6 +59,10 @@
                 
                 &:hover {
                     @include svg--list-view-thumb-add-story-active;
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        @include svg--list-view-thumb-add-story-active--yw;
+                    }
                 }
             }
             
@@ -66,6 +71,10 @@
                 
                 &:hover {
                     @include svg--list-view-thumb-add-canvas-active;
+                    
+                    [solomon-app~="yorkshire-water"] & {
+                        @include svg--list-view-thumb-add-canvas-active--yw;
+                    }
                 }
             }
             

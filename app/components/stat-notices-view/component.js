@@ -4,7 +4,7 @@ import DefaultStory from './../stories/story-types/default-story/component';
 export default DefaultStory.extend({
 
     mapStyle: function () {
-        var styles = this.Config.APP.googleMapStyles.default;
+        var styles = this.get('appSettings').getGoogleMapStyles();
         return styles;
     }.property(),
 
@@ -32,7 +32,8 @@ export default DefaultStory.extend({
             var url = this.get('legislationURI');
             url = hebeutils.Base64.encode(url);
             var obj = this;
-            this.getData('http://hebenodeapi.azurewebsites.net/apiproxy?url=' + url + '&toJSON=true')
+            var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+            this.getData(hebeNodeAPI + '/apiproxy?url=' + url + '&toJSON=true')
                 .then(function (data) {
                 // debugger;
                 var myVal = 'test';

@@ -1,3 +1,4 @@
+/* globals _, $ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -12,7 +13,11 @@ export default Ember.Component.extend({
 		// console.log('didRenderElement');
         // Canvas.init();
         // HebeDash.init();
-		this.initPackery();
+        if(!Ember.isEmpty(this.get('currentCanvas'))) {
+            this.initPackery();
+        } else {
+            this.set('appSettings.errorMessage',"Sorry we can't find the canvas you were looking for. Try find one using the Gallery link");
+        }
 	},
 
 	getNewlyAddedStoryIDs: function () {
@@ -20,13 +25,17 @@ export default Ember.Component.extend({
 		var currentIDs = this.getCurrentStoryIDs();
 		var newIDs = _.difference(currentIDs, previousIDs);
 		this.set('storyIDs', currentIDs);
+		if(currentIDs.length < previousIDs.length) { 
+			return -1; // stories have been removed
+		}
 		return newIDs;
 	},
 
 	getCurrentStoryIDs: function () {
 		var $allStories = this.$('.js-story');
 		var ids = _.map($allStories, function (story) {
-			return $(story).attr('id');
+			// return $(story).attr('id');
+			return $(story).attr('data-id');
 		});
 		return ids;
 	},
@@ -36,30 +45,49 @@ export default Ember.Component.extend({
 		Ember.run.scheduleOnce('afterRender', obj, obj.updatePackery);
 	}.observes('currentCanvas.stories.@each'),
 
+
+	updatePackeryTimer: null,
 	updatePackery: function () {
-		var obj = this;
-		setTimeout(function () {
+		var _this = this;
+		if(!Ember.isEmpty(this.$container)){
+			console.log('updatePackery: $container exists');
+			Ember.run.cancel(this.get('updatePackeryTimer'));
 			// var $allStories = this.$('.js-story');
 			var $container = this.$('.js-stories');
 			// $container.packery('appended', $allStories);
-			var newIDs = obj.getNewlyAddedStoryIDs();
-			// var selector = '.js-story';
-			// var elems = this.$(selector);
-			var $newStories = $('#' + newIDs.join(',#'));
-			obj.$container.packery('appended', $newStories);
-			$container.packery();
-
-			var $itemEls = $newStories.draggable({
-				cursor: 'move',
-				containment: 'body',
-				handle: '.js-cogs, .js-drag-handle',
-				scroll: true,
-				scrollSensitivity: 100,
-				scrollSpeed: 25,
-				zIndex: 4
-			});
-			$container.packery('bindUIDraggableEvents', $itemEls);
-		}, 100);
+			var newIDs = _this.getNewlyAddedStoryIDs();
+			console.log('newIDs: ' + newIDs);
+			
+			if(!Ember.isEmpty(newIDs)) { // if stories have been removed newIDs == -1 - still continue to perform packery update
+			console.log('Packery Update');
+				// var selector = '.js-story';
+				// var elems = this.$(selector);
+				var newStorySelector = (newIDs.length > 1 ? 
+						'.js-story[data-id="'+newIDs.join('"],.js-story[data-id="')+'"]'
+						: '.js-story[data-id="' + newIDs[0] + '"]');
+				console.log('newStorySelector = ' + newStorySelector);
+				
+				// var $newStories = $('#' + newIDs.join(',#'));
+				var $newStories = $(newStorySelector);
+				_this.$container.packery('appended', $newStories);
+				$container.packery();
+	
+				var $itemEls = $newStories.draggable({
+					cursor: 'move',
+					containment: 'body',
+					handle: '.js-cogs, .js-bars, .js-drag-handle',
+					scroll: true,
+					scrollSensitivity: 100,
+					scrollSpeed: 25,
+					zIndex: 4
+				});
+				$container.packery('bindUIDraggableEvents', $itemEls);
+			}
+		} else {
+			console.log('updatePackery: $container doesnt exist');
+			var timer = Ember.run.later(this, this.updatePackery, 200);
+			this.set('updatePackeryTimer', timer);
+		}
 	},
 
 	$container: null,
@@ -67,7 +95,7 @@ export default Ember.Component.extend({
 	initPackery: function () {
 		var obj = this;
 		var $container = $('.js-stories');
-		var $allStories = $('.js-story');
+		var $allStories = $('.js-story, [cpn-story]');
 
 		// keep track of the current story's el IDs
 		// so we can identify newly added stories later
@@ -79,7 +107,7 @@ export default Ember.Component.extend({
 		setTimeout(function () {
 			obj.$container = $container
 				.packery({
-					itemSelector: '.ember-view .story',
+					itemSelector: '.ember-view .story, [cpn-story]',
 					columnWidth: 170,
 					rowHeight: 170,
 					// isInitLayout: false
@@ -93,7 +121,7 @@ export default Ember.Component.extend({
 			var $itemEls = $allStories.draggable({
 				cursor: 'move',
 				containment: 'body',
-				handle: '.js-cogs, .js-drag-handle',
+				handle: '.js-cogs, .js-bars, .js-drag-handle',
 				scroll: true,
 				scrollSensitivity: 100,
 				scrollSpeed: 25,
@@ -125,7 +153,7 @@ export default Ember.Component.extend({
 			});
 
 			obj.set('action', 'saveCurrentOrder');
-			obj.sendAction('action', orderArr)
+			obj.sendAction('action', orderArr);
 		}
 
 		// $container.packery('on', 'layoutComplete', orderItems);

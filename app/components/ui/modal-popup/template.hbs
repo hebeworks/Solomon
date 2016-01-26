@@ -1,19 +1,23 @@
 
-		<div class="md-modal {{effect}}">
-			<div class="md-content">
-				{{#if modalTitle}}
-					<div class="dotted-area -bottom pad-bottom pad-double double-margin-bottom -black cf">
-						<h3 class="md-title float--left margin-bottom-no">{{modalTitle}}</h3>
-						<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
-					</div>
-				{{else}}
-					<button class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button>
-				{{/if}}
-				{{#if modalIntro}}
-					<p>{{modalIntro}}</p>
-				{{/if}}
-				{{yield}}
+<div class="md-modal {{modalOptions.effect}} {{if modalOptions.isVisible 'md-show'}}">
+	<div class="md-content">
+		{{#if modalOptions.title}}
+			<div cpn-divide="bottom" cpn-margin="bottom-double" cpn-clearfix>
+				{{!-- <button cpn-margin="left" class="md-close svg-modal-close float--right" {{action "close"}}>Close me!</button> --}}
+				<a {{action "hideModal"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
+				<h2 cpn-frame_heading>{{modalOptions.title}}</h2>
 			</div>
-		</div>
+		{{else}}
+			<button class="md-close svg-modal-close float--right" {{action "hideModal"}}>Close me!</button>
+		{{/if}}
+		{{#if modalOptions.intro}}
+			<p>{{modalOptions.intro}}</p>
+		{{/if}}
+			{{#if modalOptions.component}}
+				{{component modalOptions.component appController=appController modalOptions=modalOptions visible=showLoginPopup}}
+			{{/if}}
+		{{yield}}
+	</div>
+</div>
 
-		<div class="md-overlay" {{action "close"}}></div>
+<div class="md-overlay {{unless appController.canvasBlurred '-hidden'}}" {{action "hideModal"}}></div>

@@ -1,8 +1,7 @@
 	<div class="drawer__header">
-		<div cpn-padding="bottom" cpn-divide="bottom" class="cf">
-			{{#ui/generic-element action="closeBottomDrawer" tagName="a" classes="js-close-bottom-drawer float--right drawer__close svg-close-drawer"}}
-			{{/ui/generic-element}}
-			<h2 class="drawer__heading -alpha">Add a story</h2>
+		<div cpn-divide="bottom" cpn-clearfix>
+			<a {{action "closeBottomDrawer"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
+			<h2 cpn-frame_heading>Add a Story</h2>
 		</div>
 		
 		<div cpn-divide="bottom">

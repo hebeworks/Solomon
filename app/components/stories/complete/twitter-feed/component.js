@@ -2,17 +2,25 @@ import Ember from 'ember';
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Twitter Feed',
+        subTitle: 'What are we tweeting about?',
+        slider: true,
+        dataSourceUrl: 'http://twitter.com/leedsdatamill',
+        feedbackEmail: 'mark@hebeworks.com',
+        description: 'This is the main Twitter feed from Leeds Data Mill.',
+        author: 'Mark Barrett',
+        width: '2'
+    },
+    
     selectedMonth: '',
     tweets: [],
 
     didInsertElement: function () {
-        this.set('title', 'Twitter Feed');
-        this.set('subTitle', 'What are we tweeting about?');
         var obj = this;
 
-        this.getData('http://hebenodeapi.azurewebsites.net/twitter')
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/twitter')
             .then(function (data) {
             var tweets = [];
             data.tweets.forEach(function (item) {

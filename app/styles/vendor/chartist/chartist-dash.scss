@@ -1,0 +1,58 @@
+@import "chartist";
+
+.ct-story_2-2 {
+  width: 290px;
+  height: 224px;
+}
+
+.ct-chart {
+    position: relative;
+    
+    .ct-grid {
+        stroke-dasharray: 0;
+        stroke: $medium-grey;
+    }
+    
+    .ct-line {
+        stroke-width: 2px;
+    }
+    
+    .ct-point {
+        stroke-width: 7px;
+    }
+    
+    .ct-label {
+        font-size: 10px;
+        color: rgba(0,0,0,.5);
+        font-family: $helvneuelight;
+        
+        &.ct-vertical {
+            @include display(flex);
+        }
+        
+        &.ct-horizontal {
+            white-space: nowrap;
+        }
+    }
+}
+
+    .ct-tooltip {
+        position: absolute;
+        text-align: center;
+        font-size: rem(12px);
+        font-family: $helvneuemed;
+        background-color: $light-blue;
+        color: #fff;
+        padding: rem($spacing-base / 2) rem($spacing-base) rem($spacing-base / 3);
+        border-radius: rem(3px);
+        
+        &::after {
+            content: '';
+            @include triangle(10px, $light-blue, down);
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+    }

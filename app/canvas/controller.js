@@ -8,8 +8,8 @@ export default Ember.Controller.extend({
 
     navItems: function () {
         var items = [
-            { title: 'Toolbox', action: 'toggleToolbox' },
             // { title: 'Toolbox' },//, action: 'toggleSubNav' },
+            { title: 'Toolbox', action: 'toggleToolbox' },
             { title: 'Gallery', action: 'gotoRoute', route: 'gallery' }
         ];
 
@@ -26,6 +26,12 @@ export default Ember.Controller.extend({
 
     subNavItems: function () {
         var items = [
+            {
+                title: 'Filter canvas',
+                action: 'showCanvasSettings',
+                iconclass: 'filter',
+                svgclass: 'svg-filter'
+            },
             {
                 title: 'Add canvas',
                 action: 'createACanvas',
@@ -58,6 +64,13 @@ export default Ember.Controller.extend({
                 jshook: 'js-toolbox-help',
                 iconclass: 'help-icon',
                 svgclass: 'svg-help-icon'
+            },
+            {
+                title: 'Tutorial',
+                action: 'showTutorialModal',
+                jshook: 'js-toolbox-tutorial',
+                iconclass: 'icon-tutorial',
+                svgclass: 'svg-icon-tutorial'
             }
         ];
         return items;
@@ -78,7 +91,9 @@ export default Ember.Controller.extend({
             } else {
                 resolve();
             }
-            complete();
+            if (Ember.typeOf(complete) == 'function') {
+                complete();
+            }
         });
     },
 
@@ -90,17 +105,19 @@ export default Ember.Controller.extend({
                     if (story != null && obj.get('model') != null) {
                         var model = obj.get('model');
                         var stories = model.get('stories');
+                        story.set('id', hebeutils.guid());
                         stories.pushObject(story);
                         model.save();
                         obj.get('appController').closeBottomDrawer();
                     }
                 },
                 function (err) {
+                    var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
                     if (err.notLoggedIn == true) {
-                        var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                        obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
+                        obj.get('appController').showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
                     } else if (err.hasPermissions == false) {
-                        obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
+                        intro = 'Sorry, you can only edit canvasses that belong to you';
+                        obj.get('appController').showModal('ui/modals/duplicate-canvas', { title: 'Log in / Sign up', intro: intro });
                     }
                 }
                 );
@@ -119,11 +136,12 @@ export default Ember.Controller.extend({
                         obj.get('appController').closeBottomDrawer();
                     },
                     function (err) {
+                        var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
                         if (err.notLoggedIn == true) {
-                            var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                            obj.get('appController').showModal('ui/login-form', 'Log in / Sign up', intro);
+                            obj.get('appController').showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
                         } else if (err.hasPermissions == false) {
-                            obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
+                            intro = 'Sorry, you can only edit canvasses that belong to you';
+                            obj.get('appController').showModal('ui/modals/duplicate-canvas', { title: 'Log in / Sign up', intro: intro });
                         }
                     }
                     );
@@ -207,7 +225,7 @@ export default Ember.Controller.extend({
             .then(
                 function () {
                     var model = obj.get('model');
-                    debugger;
+                    // debugger;
                     model.save().then(function (response) {
                         console.log('saved canvas state');
                     })
@@ -221,24 +239,6 @@ export default Ember.Controller.extend({
                     //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     // }
                 }
-            );
-    },
-
-    actions: {
-        addAStory: function (story) {
-            // alert('addAStory');
-            this.addAStory(story);
-        },
-        removeAStory: function (story) {
-            // alert('addAStory');
-            this.removeAStory(story);
-        },
-        saveCurrentOrder: function (orderArr) {
-            this.saveCurrentOrder(orderArr);
-        },
-        saveCanvasState: function () {
-            this.saveCanvasState();
-        }
+                );
     }
-
 });

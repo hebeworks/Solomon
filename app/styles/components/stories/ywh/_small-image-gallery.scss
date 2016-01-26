@@ -1,0 +1,52 @@
+[solomon-story="small-image-gallery"] {
+    [cpn-story_face~="front"] {
+        padding: 0;
+    }
+    
+        [cpn-story_content] {
+            height: 100%;
+        }
+        
+            [cpn-story_body] {
+                margin: 0;
+            }
+    
+                [cpn-story_carousel-item] {
+                    padding: 0;
+                    margin-bottom: 0;
+                }
+                
+                .js-story-pagination-controls {
+                    position: absolute;
+                    bottom: rem(5px);
+                    left: rem(-10px);
+                    right: rem(-10px);
+                    margin: auto;
+                    text-align: center;
+                }
+                
+                    .carousel-pager__btn {
+                        display: none !important; // overrides inline style
+                    }
+                    
+                    .carousel-pager__numbers {
+                        a {
+                            width: 10px;
+                            height: 12px;
+                            margin-right: 5px;
+                            margin-left: 5px;
+                            
+                            &::before {
+                                background-color: #fff;
+                                width: 10px;
+                                height: 10px;
+                            }
+                            
+                            &:hover, &.selected {
+                                &::before {
+                                    background-color: $yw-medium-blue;
+                                }
+                            }
+                        }
+                    }
+}

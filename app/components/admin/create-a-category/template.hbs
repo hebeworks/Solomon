@@ -1,6 +1,9 @@
-<div class="create-a-category -form -admin">
-	<h3>Create a category</h3>
-	<h4>Current Categories</h4>
+<div>
+	<div cpn-divide="bottom">
+		<h2 cpn-frame_heading>Create a category</h2>
+	</div>
+
+	<h3>Current Categories</h3>
 	{{
 		select-2
 		content=allCategories
@@ -11,18 +14,22 @@
 	}}
 	
 	{{yield}}
-	<p>{{input value=category.title }}
+	
+	<p>
+		{{input value=category.title autocapitalize="words"}}
 		{{#if category.errors.title}}
 			<br />{{category.errors.title.message}}
 		{{/if}}
 	</p>
 	
 	{{#each category.errors.messages as |message|}}
-		<div class="error">
+		<p cpn-message="error">
 			{{message}}
-		</div>
+		</p>
 	{{/each}}
 	
-	<button class="btn" {{ action "save"}}>SAVE NEW CATEGORY</button>
+	<p cpn-display="inline-block">
+		<button cpn-button="action" {{action "save"}}>Save new category</button>
+	</p>
 
 </div>

@@ -1,0 +1,98 @@
+[cpn-bg-color="lighter-blue"] {
+    background-color: $lighter-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="light-blue"] {
+    background-color: $light-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="blue"] {
+    background-color: $blue;
+    color: #fff;
+}
+
+[cpn-bg-color="medium-blue"] {
+    background-color: $medium-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="dark-blue"] {
+    background-color: $dark-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="red"] {
+    background-color: $red;
+    color: #fff;
+}
+
+[cpn-bg-color="black"] {
+    background-color: #222;
+    color: #fff;
+}
+
+[cpn-bg-color="dark-grey"] {
+    background-color: $dark-grey;
+    color: #fff;
+}
+
+[cpn-bg-color="yellow"] {
+    background-color: $yellow;
+    color: #000;
+}
+
+[cpn-bg-color="white"] {
+    background-color: #fff;
+    color: #000;
+    
+    [solomon-app~="yorkshire-water"] & {
+        color: $yw-dark-blue;
+    }
+}
+
+[cpn-bg-color="lime"] {
+    background-color: $lime;
+    color: #fff;
+}
+
+[cpn-bg-color="mint"] {
+    background-color: $mint;
+    color: #000;
+}
+
+[cpn-bg-color="amber"] {
+    background-color: $amber;
+    color: #fff;
+}
+
+[cpn-bg-color="yw-dark-blue"] {
+    background-color: $yw-dark-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="yw-medium-blue"] {
+    background-color: $yw-medium-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="yw-light-blue"] {
+    background-color: $yw-light-blue;
+    color: #fff;
+}
+
+[cpn-bg-color="yw-green"] {
+    background-color: $yw-green;
+    color: #fff;
+}
+
+[cpn-bg-color="yw-amber"] {
+    background-color: $yw-amber;
+    color: #fff;
+}
+
+[cpn-bg-color="yw-red"] {
+    background-color: $yw-red;
+    color: #fff;
+}

@@ -2,18 +2,27 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Leeds Inspired',
+        subTitle: 'Music & art events around Leeds',
+        slider: true,
+        dataSourceUrl: 'http://api.leedsinspired.co.uk',
+        feedbackEmail: 'nathan@hebeworks.com',
+        description: 'This Story uses data from the Leeds Inspired API.',
+        license: 'Open Government License',
+        author: 'Nathan Smith',
+        width: '2'
+    },
+    
     didInsertElement: function () {
-        this.set('title', 'Leeds Inspired');
         var obj = this;
         var fromDate = moment().add(-1, 'days').format('DD-MM-YYYY');
         var toDate = moment().add(5, 'days').format('DD-MM-YYYY');
         // var url = "http://localhost:8080/leedsinspired";
         // var url = "http://api.leedsinspired.co.uk/1.0/events.json?key=ssHoTt9L696e8F84IOH2o4n52n89nxX78pq1dLs4uOkc7&start_date=" + fromDate + "&end_date=" + toDate;
         // url = hebeutils.Base64.encode(url);
-        var url = "http://hebenodeapi.azurewebsites.net/leedsinspired";
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+        var url = hebeNodeAPI + "/leedsinspired";
         this.getData(url)
         // this.getData('http://hebenodeapi.azurewebsites.net/apiproxy?url=' + url)
             .then(function (data) {

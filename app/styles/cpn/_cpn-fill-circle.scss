@@ -1,8 +1,8 @@
 [cpn-fill-circle] {
     position: relative;
     display: inline-block;
-    width: rem(130px);
-    height: rem(130px);
+    width: 130px;
+    height: 130px;
     padding: rem($spacing-base);
     text-align: center;
 }
@@ -74,8 +74,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: rem(104px);
-            height: rem(104px);
+            width: 104px;
+            height: 104px;
         }
         
             [cpn-fill-circle_back-data] {
@@ -87,8 +87,8 @@
             }
             
         [cpn-fill-circle_front] {
-            width: rem(104px);
-            height: rem(104px);
+            width: 104px;
+            height: 104px;
             position: relative;
             overflow: hidden;
             margin-top: 100%; // initial value to keep it out of sight

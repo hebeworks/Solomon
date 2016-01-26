@@ -1,13 +1,68 @@
+/* global _,moment */
+import DefaultStory from './../../story-types/default-story/component';
 
-
-/* global ) */
-import Ember from 'ember';
-
-export default Ember.Component.extend({
-    title: 'Leeds Air Quality Trends',
-    subTitle: "See how Leeds' air quality has changed over time",
+export default DefaultStory.extend({
     storyModel: null,
     chartType: 'line',
+
+    storyConfig: {
+        title: 'Leeds Air Quality Trends',
+        subTitle: "See how Leeds' air quality has changed over time",
+        color: "white",
+        width: "2",
+        height: "2",
+        scroll: false,
+        viewOnly: true
+    },
+
+    locations: [],
+
+    loadLocations: function () {
+        var _this = this;
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?selectfields=location')
+            .then(function (data) {
+                var locations = _.map(data, function (item) { return { text: item.location, id: item.location }; });
+                _this.setProperties({
+                    locations: locations,
+                    location: locations[0]
+                });
+            });
+    }.on('didInsertElement'),
+
+    location: null,
+    onLocationChange: function () {
+        var location = this.get('location');
+        this.loadData(location.id);
+    }.observes('location'),
+
+    loadData: function (location) {
+        var _this = this;
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/air-quality-nitrogen-dioxide?location=' + encodeURIComponent(location) + '&limit=1')
+            .then(function (data) {
+                var dates = data[0].monthly_averages;
+                var sortedDates = _.sortBy(dates, function (date) {
+                    return new Date(date.date);
+                });
+                var topDates = sortedDates.slice(0, 12);
+                // sortedDates.reverse();
+                // var chartLabels = _.map(topDates, function (date) { return moment(new Date(date.date)).format('MMM YY'); });
+                var chartLabels = _.map(topDates, function (date) { return new Date(date.date); });
+                var chartSeries = _.map(topDates, function (date) { return date.average; });
+                var chartData = {
+                    labels: chartLabels,
+                    series: [chartSeries]
+                };
+                console.log('loaded');
+                console.log(chartData);
+                _this.setProperties({
+                    chartData: chartData,
+                    loaded:true
+                })
+            });
+    },
+    
 
     // chartLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     // chartSeries: [
@@ -16,33 +71,35 @@ export default Ember.Component.extend({
     //     [5, 4, 3, 2, 1, 0.5]
     // ],
 
-    chartData: Ember.computed('chartSeries', 'chartLabels', {
-        get() {
+    // chartData2: Ember.computed('chartSeries', 'chartLabels', {
+    //     get() {
 
-            var data = this.get('data');
-            var labels = _.map(data,function (item) {
-                return moment(new Date(item.date["$date"])).format("MMM YY");
-            });
-            var series = [];
-            data.forEach(function (item) {
-                var i = 0;
-                for (var prop in item) {
-                    if (series[i] == null) {
-                        series[i] = [];
-                    }
-                    if(prop != "date") {
-                        series[i].push(item[prop]);
-                        i++;
-                    }
-                }
-            });
-
-            return {
-                labels: labels,
-                series: series
-            }
-        }
-    }),
+    //         var data = this.get('data');
+    //         var labels = _.map(data, function (item) {
+    //             return moment(new Date(item.date["$date"])).format("MMM YY");
+    //         });
+    //         var series = [];
+    //         data.forEach(function (item) {
+    //             var i = 0;
+    //             for (var prop in item) {
+    //                 if (series[i] == null) {
+    //                     series[i] = [];
+    //                 }
+    //                 if (prop != "date") {
+    //                     series[i].push(item[prop]);
+    //                     i++;
+    //                 }
+    //             }
+    //         });
+    //         var chartData = {
+    //             labels: labels,
+    //             series: series
+    //         };
+    //         console.log('hardcoded');
+    //         console.log(chartData);
+    //         return chartData
+    //     }
+    // }),
 
     chartOptions: {
         low: 0,
@@ -53,46 +110,67 @@ export default Ember.Component.extend({
             divisor: 20
         }),
         axisY: {
-            labelInterpolationFnc: function(value) {
+            labelInterpolationFnc: function (value) {
                 return value + 'ppb'
             }
-        }
+        },
+        axisX: {
+            labelInterpolationFnc: function (value, index) {
+                // MMM YY for every 4th
+                // MMM for every other second
+                // nothing for others
+                var label = (index % 4 === 0 ?
+                    moment(value).format('MMM YY') :
+                    (index % 2 === 0 ?
+                        moment(value).format('MMM') :
+                        null));
+                // MMM YY for first
+                // MM otherwise
+                var label = (index === 0 ?
+                    moment(value).format('MMM YY') :
+                    (index % 3 === 0 ?
+                        moment(value).format('MMM') :
+                        '')
+                    );
+                return label;
+            }
+        },
     },
     
     // This is fake data, for now
-    data: [
-        {
-            // Sep 2014
-            "Monthly Average": 32.3265,
-            "date": {
-                "$date": 1412031600000
-            }
-        },
-        {
-            // Oct 2014
-            "Monthly Average": 25.108,
-            "date": {
-                "$date": 1414713600000
-            }
-        },
-        {
-            // Nov 2014
-            "Monthly Average": 16.771,
-            "date": {
-                "$date": 1417305600000
-            }
-        },
-        {
-            // Dec 2014
-            "Monthly Average": 23.9942,
-            "date": {
-                "$date": 1419984000000
-            }
-        }
-    ],
+    // data: [
+    //     {
+    //         // Sep 2014
+    //         "Monthly Average": 32.3265,
+    //         "date": {
+    //             "$date": 1412031600000
+    //         }
+    //     },
+    //     {
+    //         // Oct 2014
+    //         "Monthly Average": 25.108,
+    //         "date": {
+    //             "$date": 1414713600000
+    //         }
+    //     },
+    //     {
+    //         // Nov 2014
+    //         "Monthly Average": 16.771,
+    //         "date": {
+    //             "$date": 1417305600000
+    //         }
+    //     },
+    //     {
+    //         // Dec 2014
+    //         "Monthly Average": 23.9942,
+    //         "date": {
+    //             "$date": 1419984000000
+    //         }
+    //     }
+    // ],
     
     // Add tooltips which appear above the data points and show the full data value
-    addToolTips: function() {
+    addToolTips: function () {
         var $chart = this.$('.ct-chart');
 
         var $toolTip = $chart
@@ -100,26 +178,26 @@ export default Ember.Component.extend({
             .find('.ct-tooltip')
             .hide();
 
-        $chart.on('mouseenter', '.ct-point', function() {
+        $chart.on('mouseenter', '.ct-point', function () {
             var $point = $(this),
                 value = $point.attr('ct:value'),
                 index = $point.attr('spc-air-index'),
                 band = $point.attr('spc-air-band');
-                
+
             $toolTip
                 .html(value + '<br />' + band)
                 .attr('spc-tooltip-air-index', index)
                 .show();
         });
 
-        $chart.on('mouseleave', '.ct-point', function() {
+        $chart.on('mouseleave', '.ct-point', function () {
             $toolTip.hide();
         });
 
-        $chart.on('mousemove', function(event) {
+        $chart.on('mousemove', function (event) {
             var tooltipWidth = $toolTip.width(),
                 tooltipHeight = $toolTip.height();
-                
+
             $toolTip.css({
                 left: (event.originalEvent.layerX) - tooltipWidth / 2 - 10,
                 top: (event.originalEvent.layerY) - tooltipHeight - 25
@@ -128,16 +206,16 @@ export default Ember.Component.extend({
     }.observes('chart'),
     
     // Colour the data points (and tooltip) with the relevant colour based on where the reading falls in the air quality index. See https://en.wikipedia.org/wiki/Air_quality_index#United_Kingdom and http://uk-air.defra.gov.uk/air-pollution/daqi
-    colourData: function() {
+    colourData: function () {
         var obj = this,
             chart = obj.get('chart');
-        
+
         chart.on('draw', function (data) {
             if (data.type === 'point') {
-                obj.$('.ct-point').each(function() {
-                    
+                obj.$('.ct-point').each(function () {
+
                     var reading = $(this).attr('ct:value');
-                    
+
                     if (0 <= reading && reading <= 67) {
                         // Index: 1
                         $(this)
@@ -192,6 +270,6 @@ export default Ember.Component.extend({
                 });
             }
         });
-        
+
     }.observes('chart')
 });

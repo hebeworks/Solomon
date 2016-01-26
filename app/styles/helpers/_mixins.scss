@@ -1,0 +1,77 @@
+/*-------------[MIXINS]-------------*/
+
+/*
+ * clean-list
+ * make lists look like they aren't lists
+ */
+@mixin clean-list {
+    margin: {
+        bottom: 0;
+        left: 0;
+    }
+
+    > li {
+        list-style: none;
+    }
+}
+
+/*
+ * cf
+ * clearfix, for elements with floated children
+ */
+@mixin cf {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+/*
+ * middle
+ * vertically or horizontally align content
+ */
+@mixin middle($axis:'') {
+
+    @if $axis == y {
+        top: 50%;
+        @include transform(translateY(-50%));
+    } @else if $axis == x {
+        left: 50%;
+        @include transform(translateX(-50%));
+    } @else {
+        top: 50%;
+        left: 50%;
+        @include transform(translateX(-50%) translateY(-50%));
+    }
+}
+
+/*
+ * center an element horizontally
+ */
+@mixin centered {
+    margin: {
+        right: auto;
+        left: auto;
+    }
+}
+
+/*
+ * it will be full width for non-admins
+ * normal width for admins, so the crop tool isn't broken
+ */
+@mixin imgfull {
+    > img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+/*
+ * converts the Photoshop kerning value to an em value
+ */
+
+@mixin kerning($va) {
+    letter-spacing: $va / 1000 + em;
+}

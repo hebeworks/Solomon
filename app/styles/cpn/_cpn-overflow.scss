@@ -1,19 +1,62 @@
-[cpn-overflow~="hidden"],
+// Both axes
+[cpn-overflow="auto"],
+%cpn-overflow-auto {
+    overflow: auto;
+}
+
+[cpn-overflow="hidden"],
 %cpn-overflow-hidden {
     overflow: hidden;
 }
 
-[cpn-overflow~="visible"],
-%cpn-overflow-visible {
-    overflow: visible;
-}
-
-[cpn-overflow~="scroll"],
+[cpn-overflow="scroll"],
 %cpn-overflow-scroll {
     overflow: scroll;
 }
 
-[cpn-overflow~="auto"],
-%cpn-overflow-auto {
-    overflow: auto;
+[cpn-overflow="visible"],
+%cpn-overflow-visible {
+    overflow: visible;
+}
+
+// X-axis
+[cpn-overflow~="x-auto"],
+%cpn-overflow-x-auto {
+    overflow-x: auto;
+}
+
+[cpn-overflow~="x-hidden"],
+%cpn-overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+[cpn-overflow~="x-scroll"],
+%cpn-overflow-x-scroll {
+    overflow-x: scroll;
+}
+
+[cpn-overflow~="x-visible"],
+%cpn-overflow-x-visible {
+    overflow-x: visible;
+}
+
+// Y-axis
+[cpn-overflow~="y-auto"],
+%cpn-overflow-y-auto {
+    overflow-y: auto;
+}
+
+[cpn-overflow~="y-hidden"],
+%cpn-overflow-y-hidden {
+    overflow-y: hidden;
+}
+
+[cpn-overflow~="y-scroll"],
+%cpn-overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+[cpn-overflow~="y-visible"],
+%cpn-overflow-y-visible {
+    overflow-y: visible;
 }

@@ -1,5 +1,9 @@
 .svg-add-a-story { background-image: url('png/add-a-story.png'); background-repeat: no-repeat; }
 
+.svg-add-story-graphic { background-image: url('png/add-story-graphic.png'); background-repeat: no-repeat; }
+
+.svg-arrow-circled { background-image: url('png/arrow-circled.png'); background-repeat: no-repeat; }
+
 .svg-back { background-image: url('png/back.png'); background-repeat: no-repeat; }
 
 .svg-bin-icon { background-image: url('png/bin-icon.png'); background-repeat: no-repeat; }
@@ -40,6 +44,8 @@
 
 .svg-edit-meta { background-image: url('png/edit-meta.png'); background-repeat: no-repeat; }
 
+.svg-filter { background-image: url('png/filter.png'); background-repeat: no-repeat; }
+
 .svg-foi-timer { background-image: url('png/foi-timer.png'); background-repeat: no-repeat; }
 
 .svg-gallery { background-image: url('png/gallery.png'); background-repeat: no-repeat; }
@@ -58,6 +64,8 @@
 
 .svg-house-price-icon-terrace { background-image: url('png/house-price-icon-terrace.png'); background-repeat: no-repeat; }
 
+.svg-house { background-image: url('png/house.png'); background-repeat: no-repeat; }
+
 .svg-icon-add-canvas { background-image: url('png/icon-add-canvas.png'); background-repeat: no-repeat; }
 
 .svg-icon-add-story { background-image: url('png/icon-add-story.png'); background-repeat: no-repeat; }
@@ -65,6 +73,8 @@
 .svg-icon-close-circular { background-image: url('png/icon-close-circular.png'); background-repeat: no-repeat; }
 
 .svg-icon-feedback { background-image: url('png/icon-feedback.png'); background-repeat: no-repeat; }
+
+.svg-icon-tutorial { background-image: url('png/icon-tutorial.png'); background-repeat: no-repeat; }
 
 .svg-icon-weather-cloudy-grey { background-image: url('png/icon-weather-cloudy-grey.png'); background-repeat: no-repeat; }
 
@@ -116,6 +126,12 @@
 
 .svg-input-clear { background-image: url('png/input-clear.png'); background-repeat: no-repeat; }
 
+.svg-lcd-logo-compact { background-image: url('png/lcd-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-lcd-logo-expanded { background-image: url('png/lcd-logo-expanded.png'); background-repeat: no-repeat; }
+
+.svg-ldm-logo-white { background-image: url('png/ldm-logo-white.png'); background-repeat: no-repeat; }
+
 .svg-login { background-image: url('png/login.png'); background-repeat: no-repeat; }
 
 .svg-logo-thin { background-image: url('png/logo-thin.png'); background-repeat: no-repeat; }
@@ -129,6 +145,8 @@
 .svg-parking-fines-icon { background-image: url('png/parking-fines-icon.png'); background-repeat: no-repeat; }
 
 .svg-parking-icon { background-image: url('png/parking-icon.png'); background-repeat: no-repeat; }
+
+.svg-person { background-image: url('png/person.png'); background-repeat: no-repeat; }
 
 .svg-plus { background-image: url('png/plus.png'); background-repeat: no-repeat; }
 
@@ -147,6 +165,10 @@
 .svg-select2-icon { background-image: url('png/select2-icon.png'); background-repeat: no-repeat; }
 
 .svg-share { background-image: url('png/share.png'); background-repeat: no-repeat; }
+
+.svg-solomon-logo-compact { background-image: url('png/solomon-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-solomon-logo-expanded { background-image: url('png/solomon-logo-expanded.png'); background-repeat: no-repeat; }
 
 .svg-space-station { background-image: url('png/space-station.png'); background-repeat: no-repeat; }
 
@@ -169,4 +191,10 @@
 .svg-toolbox { background-image: url('png/toolbox.png'); background-repeat: no-repeat; }
 
 .svg-up-down-arrow { background-image: url('png/up-down-arrow.png'); background-repeat: no-repeat; }
+
+.svg-yorkshire-water-logo-compact { background-image: url('png/yorkshire-water-logo-compact.png'); background-repeat: no-repeat; }
+
+.svg-yorkshire-water-logo-expanded { background-image: url('png/yorkshire-water-logo-expanded.png'); background-repeat: no-repeat; }
+
+.svg-yorkshire-water-waves { background-image: url('png/yorkshire-water-waves.png'); background-repeat: no-repeat; }
 

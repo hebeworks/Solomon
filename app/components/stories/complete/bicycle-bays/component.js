@@ -2,7 +2,18 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
+    storyConfig: {
+        title: 'Bicycle Bays',
+        subTitle: 'In the city centre',
+        color: 'lime',
+        width: '2',
+        height: '2',
+        dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-city-centre-bike-bays',
+        feedbackEmail: 'info@leedsdatamill.org',
+        description: 'This Story used data from the City Centre Bike Bays dataset from Leeds Data Mill',
+        license: '<a href="http://leedsdatamill.org/dataset/leeds-city-centre-bike-bays" target="_blank">Leeds City Centre bike bays</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
+        author: 'Nathan Smith'
+    },
 
     setup: function () {
         this.setProperties({
@@ -15,14 +26,13 @@ export default DatamillStory.extend({
     }.on('init'),
 
     didInsertElement: function () {
-        this.set('title', 'Bicycle Bays');
-        this.set('subTitle', 'In the city centre');
         var obj = this;
-
-        this.getData(this.get('datamillUrl') + '/api/action/datastore_search?resource_id=c2bb0c3e-52fd-4183-8727-6b9f40b829f0')
+        
+        var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+        this.getData(hebeNodeAPI + '/leeds-city-centre-bike-bays')
             .then(function (data) {
                 var items = [];
-                data.result.records.forEach((tmpItem) => {
+                data.forEach((tmpItem) => {
                     var id = hebeutils.guid();
                     var item = {
                         id: id,
@@ -33,7 +43,7 @@ export default DatamillStory.extend({
                         type: tmpItem.Type,
                         colour: tmpItem.Colour
                     };
-    
+
                     items.push(item);
                 });
                 obj.set('items', items);
@@ -41,10 +51,10 @@ export default DatamillStory.extend({
                     obj.set('loaded', true);
                 });
             },
-            function(error){
-                // debugger;
-                console.log('ajax error:' + error);
-            });
+                function (error) {
+                    // debugger;
+                    console.log('ajax error:' + error);
+                });
     },
 
     setupMarkers: function () {

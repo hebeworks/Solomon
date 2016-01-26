@@ -1,20 +1,30 @@
-/* global address */
-/* global Ember, hebeutils, _ */
+/* global Ember, hebeutils, _, addthisevent, $ */
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Find My Bin Day',
+        subTitle: 'Find your next Leeds bin day'
+    },
+    
     addresses: [],
     selectedAddress: null,
     currentAddress: null,
     showCalendarButton: false,
     storyModel: null,
+    minCheckTimer: null, 
+    
+    didReceiveAttrs: function () {
+        this.set('title', 'find-my-bin-day TITLE');
+        this.set('subTitle', 'find-my-bin-day SUB TITLE');
+        var obj = this;
+        obj.minCheckTimer = setInterval(obj.minimumLengthCheck, 200);
+    },
+
     saveThisEvent: function () {
         var obj = this;
 
         $.getScript("https://addthisevent.com/libs/1.6.0/ate.min.js", function () {
-            // debugger;
             addthisevent.settings({
                 mouse: false,
                 css: false,
@@ -30,11 +40,22 @@ export default DatamillStory.extend({
         });
     },
 
+    minimumLengthCheck: function () {
+        var noResults = this.$('.select2-no-results');
+        if (noResults.length > 0) {
+            if (noResults.text().startsWith('Please enter')) {
+                //   var minNumber = noResults.text().search(new RegExp("^\D*(\d+(?:\.\d+)?)"));
+                noResults.text('Please enter the first part of your address');
+            }
+        }
+    },
+
     onAddressChange: function () {
         var obj = this;
         var id = this.get('selectedAddress.id')
         if (!Ember.isEmpty(this.get('selectedAddress'))) {
-            this.getData('http://hebenodeapi-preview.azurewebsites.net/bins/' + id)
+            var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+            this.getData(hebeNodeAPI + '/bins/' + id)
                 .then(function (address) {
                     var allDates = [];
 
@@ -93,10 +114,6 @@ export default DatamillStory.extend({
         }
     }.observes('selectedAddress'),
 
-    didReceiveAttrs: function () {
-        this.set('title', 'find-my-bin-day TITLE');
-        this.set('subTitle', 'find-my-bin-day SUB TITLE');
-    },
 
     actions: {
         findPlaces: function (query, deferred) {
@@ -119,7 +136,8 @@ export default DatamillStory.extend({
         var deferred = obj.get('deferred');
 
         if (query != null && query.term != null && query.term.length >= 3) {
-            var url = 'http://hebenodeapi-preview.azurewebsites.net/bins/?q="' + query.term + '"&fields=address postcode';
+            var hebeNodeAPI = obj.get('appSettings.hebeNodeAPI');
+            var url = hebeNodeAPI + '/bins/?q="' + query.term + '"&fields=address postcode';
             console.log(url);
             this.getData(url)
                 .then(

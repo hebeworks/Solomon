@@ -2,12 +2,17 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
+    storyConfig: {
+        color: 'black',
+        width: '1',
+        height: '1',
+        viewOnly: true,
+        scroll: false
+    },
+    
     loaded: false,
 
     didInsertElement: function () {
-        this.set('title', '');
-        this.set('subTitle', '');
         this.clockInit();
     },
 

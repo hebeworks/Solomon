@@ -2,6 +2,18 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+    onActivate: function () {
+        this.controllerFor('application').shouldShowTutorial();
+
+        // add a client-specific attr to body
+        var cssClass = this.get('appSettings.solomonConfig.name');
+        var bodyClientAttr = Ember.$('body').attr('solomon-app');
+        if (!Ember.isEmpty(cssClass) 
+                && (Ember.isEmpty(bodyClientAttr) || bodyClientAttr != cssClass)) {
+            Ember.$('body').attr('solomon-app', cssClass);
+        }
+    }.on('activate'),
+    
     // Methods
     setupController: function (controller, model) {
         var obj = this;
@@ -16,10 +28,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         }
     },
 
+
     // Actions 
     actions: {
         showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', 'Log in / Sign up', intro);
+            this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
         },
 
         mailToFeedback: function () {
@@ -28,6 +41,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
         showFeedbackmodal: function () {
             this.controller.showModal('ui/feedback-form');
+        },
+
+        showTutorialModal: function () {
+            this.controller.showTutorial();
+        },
+
+        closeTutorial: function () {
+            this.controller.closeTutorial();
+        },
+
+        showCanvasSettings: function () {
+            this.controller.showCanvasSettings();
         },
 
         hideModal: function () {
@@ -39,6 +64,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             if (!Ember.isEmpty(model)) {
                 this.controller.transitionTo(route, (model || null));
             } else {
+                // todo: check if this is the same route to prevent it trying to transition and going blank
                 this.controller.transitionTo(route);
             }
         },
@@ -71,15 +97,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.goBack();
         },
 
-        loadACanvas: function (canvasID) {
-            this.controller.loadACanvas(canvasID)
+        loadACanvas: function (canvasModel) {
+            this.controller.loadACanvas(canvasModel)
         },
 
         sessionAuthenticationSucceeded: function () {
             console.log('Session authenticated');
         },
-        
-        goToHelp: function() {
+
+        goToHelp: function () {
             var url = "https://github.com/hebeworks/Solomon/wiki";
             window.open(url, '_blank');
         }

@@ -3,6 +3,10 @@ import CanvasGalleryLister from 'hebe-dash/mixins/canvas-gallery-lister';
 
 export default Ember.Component.extend(CanvasGalleryLister, {
 	debouncedSearchTerm: '',
+    
+    didInsertElement: function() {
+        this.focusSearchBox();
+    },
 	
 	showClear: function() {
 		return (this.get('debouncedSearchTerm.length') > 0);
@@ -15,6 +19,10 @@ export default Ember.Component.extend(CanvasGalleryLister, {
     updateDebouncedSearchTerm: function() {
         Ember.run.debounce(this, this.updateSearchTerm, 600);
     }.observes("debouncedSearchTerm"),
+    
+    focusSearchBox: function() {
+        this.$('.search__input').focus();
+    },
 	
 	// onSearchTermChanged: function () {
 	// 	if (this.get('searchTerm') != null && this.get('searchTerm.length') > 0) {

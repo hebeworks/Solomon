@@ -1,6 +1,7 @@
 // Base button style
 [cpn-button],
 %cpn-button {
+    font-family: $helvneuemed;
     font-size: rem(14px);
     line-height: 1.5;
     text-align: center;
@@ -19,8 +20,13 @@
     width: 100%; // wrap buttons in a container to handle any specific widths
     height: auto;
     padding: rem(11px) rem(10px) rem(8px);
+    display: block;
     
     @include transition(.3s);
+    
+    [solomon-app~="yorkshire-water"] & {
+        font-family: $swissboldrounded;
+    }
     
     &:hover, &:focus {
         background-color: lighten($medium-grey, 5%);
@@ -32,7 +38,8 @@
 }
 
 // Small buttons
-[cpn-button~="small"] {
+[cpn-button~="small"],
+%cpn-button-small {
     font-size: rem(12px);
     padding: rem(6.5px) rem($spacing-base / 2) rem(4px);
 }
@@ -50,6 +57,18 @@
     &:active {
         background-color: $dark-red;
     }
+    
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-red;
+        
+        &:hover, &:focus {
+            background-color: lighten($yw-red, 5%);
+        }
+        
+        &:active {
+            background-color: darken($yw-red, 5%);
+        }
+    }
 }
 
 // Move button styles, for buttons which take the user to a different location
@@ -65,11 +84,23 @@
     &:active {
         background-color: darken($blue, 5%);
     }
+    
+    [solomon-app~="yorkshire-water"] & {
+        background-color: $yw-medium-blue;
+        
+        &:hover, &:focus {
+            background-color: lighten($yw-medium-blue, 5%);
+        }
+        
+        &:active {
+            background-color: darken($yw-medium-blue, 5%);
+        }
+    }
 }
 
 // Ghost button styles. These look like buttons but are intended for static informational tags
 [cpn-button~="ghost"],
-%cpn-button-move {
+%cpn-button-ghost {
     background-color: transparent;
     color: $dark-grey;
     
@@ -90,6 +121,26 @@
     &, &:hover, &:focus {
         background-color: $lime;
         color: #fff;
+        
+        [solomon-app~="yorkshire-water"] & {
+            background-color: $yw-green;
+        }
+    }
+}
+
+[cpn-button~="bright"],
+%cpn-button-bright {
+    color: $blue;
+    background-color: #fff;
+    
+    &:hover, &:focus {
+        background-color: #fff;
+        color: lighten($blue, 5%);
+    }
+    
+    &:active {
+        background-color: #fff;
+        color: darken($blue, 5%);
     }
 }
 

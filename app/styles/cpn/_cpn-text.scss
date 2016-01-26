@@ -1,3 +1,54 @@
+// Alignment
 [cpn-text~="center"] {
     text-align: center;
+}
+
+[cpn-text~="justify"] {
+    text-align: justify;
+}
+
+[cpn-text~="left"] {
+    text-align: center;
+}
+
+[cpn-text~="right"] {
+    text-align: center;
+}
+
+// Decoration
+[cpn-text~="none"] {
+    text-decoration: none;
+}
+
+[cpn-text~="line-through"] {
+    text-decoration: line-through;
+}
+
+[cpn-text~="overline"] {
+    text-decoration: overline;
+}
+
+[cpn-text~="underline"] {
+    text-decoration: underline;
+}
+
+[cpn-text~="over-under-line"] {
+    text-decoration: overline underline;
+}
+
+// Transform
+[cpn-text~="capitalize"] {
+    text-transform: capitalize;
+}
+
+[cpn-text~="lowercase"] {
+    text-transform: lowercase;
+}
+
+[cpn-text~="none"] {
+    text-transform: none;
+}
+
+[cpn-text~="uppercase"] {
+    text-transform: uppercase;
 }

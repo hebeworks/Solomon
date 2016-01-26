@@ -1,12 +1,17 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'Empty Properties',
+        subTitle: 'City wide vs. Wards long term empties',
+        color: 'black',
+        feedbackEmail: 'simon@hebeworks.com',
+        license: 'Open Government License',
+        author: 'Simon Zimmerman'
+    },
+    
     selectedStation: null,
     didInsertElement: function () {
-        this.set('title', 'Empty Properties');
-        this.set('subTitle', 'City wide vs. Wards long term empties');
         var obj = this;
         this.getData('http://environment.data.gov.uk/flood-monitoring/id/stations/L1707', true)
             .then(function (station) {

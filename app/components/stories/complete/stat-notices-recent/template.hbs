@@ -1,23 +1,11 @@
-
-{{#stories/story-base
-    title=title
-    subTitle=subTitle
-    color="-lighter-blue"
-    width="-w2"
-    height="-h2"
-    data-ss-colspan="2"
-
-    dataSourceUrl="http://leedsdatamill.org"
-    feedbackEmail="simon@hebeworks.com"
-    description="This Story uses Statutory Notices data supplied by Licencing and Planning teams from Leeds City Council."
-    license="Open Government License"
-    author="Nathan Smith"
-}}
-    <main class="stat-notices-recent">
-        <div class="dotted-area -top -bottom pad-top pad-bottom">
-            <p class="story__para">Statutory notices are legally required public notices which inform residents of proposed changes about specific things.</p>
-        </div>
-        <ul class="dotted-area -bottom pad-top-half pad-bottom-half stat-notices-recent__notice-list">
+{{#stories/story-base}}
+    
+    <div cpn-divide="bottom light">
+        <p class="story__para">Statutory notices are legally required public notices which inform residents of proposed changes about specific things.</p>
+    </div>
+    
+    <div cpn-divide="bottom light">
+        <ul class="stat-notices-recent__notice-list">
             <li class="stat-notices-recent__notice-item">
                 <div class="stat-notices-recent__figure">{{licensingTotal}}</div>
                 <span class="gamma helvbold block">Licensing</span>
@@ -26,8 +14,8 @@
                 <div class="stat-notices-recent__figure">{{planningTotal}}</div>
                 <span class="gamma helvbold block">Planning</span>
             </li>
-        </ul><!--
-        {{#link-to 'statnotices'}}<div>Open Stat Notices Route</div>{{/link-to}}-->
-        <button class="btn js-open-statnotices" {{action "gotoRoute" 'statnotices.index'}}>View Stat Notices</button>
-    </main>
+        </ul>
+    </div>
+    
+    <button cpn-button="move small bright" {{action "gotoRoute" 'statnotices.index'}}>View Stat Notices</button>
 {{/stories/story-base}}

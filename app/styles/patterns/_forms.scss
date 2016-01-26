@@ -38,7 +38,6 @@
         border-radius: 3px;
         @include transition(.3s);
         vertical-align: top; // default alignment to remove unwanted whitespace
-        @include appearance(none);
         box-shadow: none;
         
         &:focus {
@@ -73,17 +72,26 @@
         }
     }
     
-    input {
+    input,
+    %input-text {
     	&[type="text"],
     	&[type="email"],
     	&[type="password"],
     	&[type="number"] {
-    		height: 40px;
+    		height: rem(40px);
     		line-height: 1.5;
-    		padding: 10px 9px 7px;
+    		padding: rem($spacing-base) rem($spacing-base - 1px) rem($spacing-base - 3px);
     		width: 100%;
             max-width: 100%;
+            @include appearance(none);
     	}
+        
+        &[cpn-input~="small"],
+        %cpn-input-small {
+            font-size: rem(12px);
+            height: rem(30px);
+            padding: rem($spacing-base - 3) rem($spacing-base / 2 - 1) rem($spacing-base / 2 - 1);
+        }
     }
     
     [cpn-input~="ghost-light"],
@@ -105,11 +113,14 @@
         }
     }
     
-    textarea {
-    	min-height: 98px;
+    textarea,
+    %textarea {
+    	min-height: rem(98px);
     	height: auto;
-    	padding: 4px 9px;
+    	padding: rem($spacing-base) rem($spacing-base - 1px) rem($spacing-base - 3px);
     	min-width: 255px;
+        width: 100%;
+        @include appearance(none);
     }
     
     // Overriding the vendor styles

@@ -28,9 +28,17 @@
 
 /* @import must be at top of file, otherwise CSS will not work */
 @import url("//hello.myfonts.net/count/2eeeb6");
+@import url("//hello.myfonts.net/count/2fe0ea"); // Yorkshire Water
 
 @font-face {font-family: 'LetraPro-Headline';src: url('fonts/2EEEB6_0_0.eot');src: url('fonts/2EEEB6_0_0.eot?#iefix') format('embedded-opentype'),url('fonts/2EEEB6_0_0.woff2') format('woff2'),url('fonts/2EEEB6_0_0.woff') format('woff'),url('fonts/2EEEB6_0_0.ttf') format('truetype');}
 @font-face {font-family: 'HelveticaNeueLT-Bold';src: url('fonts/2EEEB6_1_0.eot');src: url('fonts/2EEEB6_1_0.eot?#iefix') format('embedded-opentype'),url('fonts/2EEEB6_1_0.woff2') format('woff2'),url('fonts/2EEEB6_1_0.woff') format('woff'),url('fonts/2EEEB6_1_0.ttf') format('truetype');}
 @font-face {font-family: 'HelveticaNeueLT-Medium';src: url('fonts/2EEEB6_2_0.eot');src: url('fonts/2EEEB6_2_0.eot?#iefix') format('embedded-opentype'),url('fonts/2EEEB6_2_0.woff2') format('woff2'),url('fonts/2EEEB6_2_0.woff') format('woff'),url('fonts/2EEEB6_2_0.ttf') format('truetype');}
 @font-face {font-family: 'HelveticaNeueLT-Light';src: url('fonts/2EEEB6_3_0.eot');src: url('fonts/2EEEB6_3_0.eot?#iefix') format('embedded-opentype'),url('fonts/2EEEB6_3_0.woff2') format('woff2'),url('fonts/2EEEB6_3_0.woff') format('woff'),url('fonts/2EEEB6_3_0.ttf') format('truetype');}  
 @font-face {font-family: 'HelveticaNeueLT-Roman';src: url('fonts/2EEEB6_4_0.eot');src: url('fonts/2EEEB6_4_0.eot?#iefix') format('embedded-opentype'),url('fonts/2EEEB6_4_0.woff2') format('woff2'),url('fonts/2EEEB6_4_0.woff') format('woff'),url('fonts/2EEEB6_4_0.ttf') format('truetype');}
+
+// Swiss Bold Rounded
+@font-face {
+    font-family: 'Swiss Bold Rounded';
+    src: url('fonts/swiss-rounded/2FE0EA_0_0.eot');
+    src: url('fonts/swiss-rounded/2FE0EA_0_0.eot?#iefix') format('embedded-opentype'), url('fonts/swiss-rounded/2FE0EA_0_0.woff2') format('woff2'), url('fonts/swiss-rounded/2FE0EA_0_0.woff') format('woff'), url('fonts/swiss-rounded/2FE0EA_0_0.ttf') format('truetype');
+}

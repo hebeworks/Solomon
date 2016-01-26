@@ -2,13 +2,23 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
-    loaded: false,
+    storyConfig: {
+        title: 'International Space Station',
+        subTitle: 'When to catch a glimpse over Leeds',
+        color: 'black',
+        slider: true,
+        dataSourceUrl: 'http://api.open-notify.org',
+        feedbackEmail: 'joel@hebeworks.com',
+        description: "This Story uses data from Nasa via the ISS's Open Notify API",
+        license: "<a href='http://spotthestation.nasa.gov/sightings/xml_files/United_Kingdom_England_Leeds.xml' target='_blank'>International Space Station data</a>, retrieved from NASA, 2015.",
+        author: 'Joel Mercer',
+        width: '2'
+    },
+    
     didInsertElement: function() {
-        this.set('title', 'International Space Station');
-        this.set('subTitle', 'When to catch a glimpse over Leeds');
         this.fetchData();
     },
+    
     fetchData: function() {
         var obj = this;
         Ember.$.ajax({

@@ -1,0 +1,60 @@
+[spc-dashboard-logo] {
+    font-size: 0; // hide text
+    position: absolute;
+    top: 50%;
+    left: rem(40px);
+    @include transform(translateY(-50%));
+    z-index: 2;
+    cursor: pointer;
+    
+    [class*="svg-yorkshire-water-logo"] {
+        svg {
+            width: 119px;
+            height: 46px;
+        }
+    }
+}
+
+[spc-dashboard-logo="compact"] {
+    [solomon-app]:not([solomon-app="lcd"]) & {
+        @include breakpoint(min-width 701px) {
+            display: none;
+        }
+    }
+    
+    [solomon-app="lcd"] & {
+        @include breakpoint(min-width 801px) {
+            display: none;
+        }
+    }
+    
+    [class*="svg-lcd-logo"] {
+        svg {
+            height: 40px;
+            width: 32px;
+        }
+    }
+}
+
+[spc-dashboard-logo="expanded"] {
+    display: none;
+    
+    [solomon-app]:not([solomon-app="lcd"]) & {
+        @include breakpoint(min-width 701px) {
+            display: block;
+        }
+    }
+    
+    [solomon-app="lcd"] & {
+        @include breakpoint(min-width 801px) {
+            display: block;
+        }
+    }
+    
+    [class*="svg-lcd-logo"] {
+        svg {
+            height: 40px;
+            width: auto;
+        }
+    }
+}

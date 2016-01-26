@@ -2,11 +2,18 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-  tagName: 'div',
-  loaded: false,
+  storyConfig: {
+    title: 'Leeds Footfall Trends',
+    subTitle: 'Weekly footfall stats for Leeds City Centre',
+    color: 'black',
+    dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-city-centre-footfall-data',
+    feedbackEmail: 'simon@hebeworks.com',
+    description: 'This Story uses City Centre Footfall data from Leeds Data Mill',
+    license: '<a href="http://leedsdatamill.org/dataset/leeds-city-centre-footfall-data" target="_blank">Leeds City Centre Footfall Data</a>, © Leeds City Council, 2015.  This information is licensed under the terms of the Open Government Licence',
+    author: 'Simon Zimmerman'
+  },
+  
   didInsertElement: function () {
-    this.set('title', 'Leeds Footfall Trends');
-    this.set('subTitle', 'Weekly footfall stats for Leeds City Centre');
     this.loadAPIData();
   },
 
