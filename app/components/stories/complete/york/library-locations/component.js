@@ -26,6 +26,7 @@ export default DefaultStory.extend({
     
     loaded: false, // (Tell other elements that this story has loaded)
     libraries: null,
+    mapData: null,
     
     // Map properties
     lat: 53.9801797,
@@ -55,7 +56,8 @@ export default DefaultStory.extend({
                 
                 var fullLibraries = data.result.records,
                     libraryCount = data.result.records.length,
-                    strippedLibraries = [];
+                    strippedLibraries = [],
+                    mappedLibraries = [];
 
                 // "﻿X" - The 'X' property has an erroneous character in it's name. The double-quoted X has this character included.
                 
@@ -67,10 +69,14 @@ export default DefaultStory.extend({
                         address: library.ADDRESS,
                         website: library.WEBSITE,
                         email: library.EMAIL,
-                        phone: library.PHONE,
+                        phone: library.PHONE
+                    });
+                    
+                    mappedLibraries.push({
+                        id: library._id,
+                        title: library.NAME,
                         lat: library.Y,
-                        lng: library["﻿X"],
-                        title: library.NAME
+                        lng: library["﻿X"]
                     });
                 });
                 
@@ -80,6 +86,8 @@ export default DefaultStory.extend({
                 // console.log('==============');
                 
                 _this.set('libraries', strippedLibraries);
+                _this.markers.pushObjects(mappedLibraries);
+                _this.set('mapData', mappedLibraries);
                 
                 setTimeout(function () {
                     _this.set('loaded', true);
@@ -91,6 +99,6 @@ export default DefaultStory.extend({
     setMarkers: function() {
         var _this = this;
         
-        _this.markers.pushObjects(_this.libraries);
+        // _this.markers.pushObjects(_this.libraries);
     }.observes('loaded')
 });
