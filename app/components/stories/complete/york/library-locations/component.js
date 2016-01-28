@@ -96,9 +96,18 @@ export default DefaultStory.extend({
         })
     },
     
-    setMarkers: function() {
-        var _this = this;
+    onGMap: function () {
+        console.log('onGMap');
+        var gMap = this.get('gMap');
         
-        // _this.markers.pushObjects(_this.libraries);
-    }.observes('loaded')
+        if (!Ember.isEmpty(gMap)) {
+            this.get('gMap').setOptions(
+                {
+                    infoWindow: {
+                        content: '<p>Library information</p>'
+                    }
+                }
+            );
+        }
+    }.observes('loaded'),
 });
