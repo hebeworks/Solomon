@@ -76,7 +76,8 @@ export default DefaultStory.extend({
                         id: library._id,
                         title: library.NAME,
                         lat: library.Y,
-                        lng: library["﻿X"]
+                        lng: library["﻿X"],
+                        infoWindow: 'This is some content'
                     });
                 });
                 
@@ -96,18 +97,18 @@ export default DefaultStory.extend({
         })
     },
     
-    onGMap: function () {
-        console.log('onGMap');
-        var gMap = this.get('gMap');
+    // onGMap: function () {
+    //     console.log('onGMap');
+    //     var gMap = this.get('gMap');
         
-        if (!Ember.isEmpty(gMap)) {
-            this.get('gMap').setOptions(
-                {
-                    infoWindow: {
-                        content: '<p>Library information</p>'
-                    }
-                }
-            );
-        }
-    }.observes('loaded'),
+    //     if (!Ember.isEmpty(gMap)) {
+    //         this.get('gMap').setOptions(
+    //             {
+    //                 infoWindow: {
+    //                     content: '<p>Library information</p>'
+    //                 }
+    //             }
+    //         );
+    //     }
+    // }.observes('loaded'),
 });
