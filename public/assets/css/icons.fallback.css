@@ -66,6 +66,24 @@
 
 .svg-house { background-image: url('png/house.png'); background-repeat: no-repeat; }
 
+.svg-icon--add-canvas { background-image: url('png/icon--add-canvas.png'); background-repeat: no-repeat; }
+
+.svg-icon--add-story { background-image: url('png/icon--add-story.png'); background-repeat: no-repeat; }
+
+.svg-icon--back { background-image: url('png/icon--back.png'); background-repeat: no-repeat; }
+
+.svg-icon--feedback { background-image: url('png/icon--feedback.png'); background-repeat: no-repeat; }
+
+.svg-icon--gallery { background-image: url('png/icon--gallery.png'); background-repeat: no-repeat; }
+
+.svg-icon--help { background-image: url('png/icon--help.png'); background-repeat: no-repeat; }
+
+.svg-icon--tools { background-image: url('png/icon--tools.png'); background-repeat: no-repeat; }
+
+.svg-icon--tutorial { background-image: url('png/icon--tutorial.png'); background-repeat: no-repeat; }
+
+.svg-icon--you-me { background-image: url('png/icon--you-me.png'); background-repeat: no-repeat; }
+
 .svg-icon-add-canvas { background-image: url('png/icon-add-canvas.png'); background-repeat: no-repeat; }
 
 .svg-icon-add-story { background-image: url('png/icon-add-story.png'); background-repeat: no-repeat; }
