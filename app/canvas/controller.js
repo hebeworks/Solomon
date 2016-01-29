@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
     appController: function () {
         return this.controllerFor('Application');
     }.property(),
@@ -25,6 +24,20 @@ export default Ember.Controller.extend({
     }.property(),
 
     subNavItems: function () {
+        var currentUser = this.get('currentUser.content.username'),
+            loginText = null,
+            iconClassModifier = null;
+            
+        console.log('Current User: ' + this.get('currentUser.content.username'));
+        
+        if (currentUser) {
+            loginText = 'Me';
+            iconClassModifier = 'icon--you-me--me';
+        } else {
+            loginText = 'You';
+            iconClassModifier = 'icon--you-me--you';
+        }
+        
         var items = [
             {
                 title: 'Filter canvas',
@@ -52,7 +65,7 @@ export default Ember.Controller.extend({
                 svgclass: 'svg-icon--feedback'
             },
             {
-                title: 'Log in',
+                title: loginText,
                 action: 'showLoginPopup',
                 jshook: 'js-toolbox-login',
                 iconclass: 'icon--you-me',
@@ -73,8 +86,9 @@ export default Ember.Controller.extend({
                 svgclass: 'svg-icon--tutorial'
             }
         ];
+        Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
         return items;
-    }.property(),
+    }.property('currentUser.content.username'),
 	
     // onModelChanged: function() {
     // 	console.log(this.get('model.content'));
