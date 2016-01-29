@@ -35,6 +35,7 @@ export default Ember.Object.extend({
                 name: 'solomon',
                 title: 'Solomon',
                 defaultCanvas: 'leeds-city-council',
+                tutorialBase: 'solomon_core',
                 storyConfig: {
                     storyHandle: 'dot' // can be 'dot', 'bar', 'both' or 'none,
                 }
@@ -48,6 +49,7 @@ export default Ember.Object.extend({
                 case 'dashboard.leedsdatamill.org':
                     solomonConfig.name = 'lcd';
                     solomonConfig.title = 'Leeds City Dashboard';
+                    solomonConfig.tutorialBase = 'solomon_leeds';
                     break;
                 case 'yorkshirewater.mysolomon.co.uk' :
                 case 'mysolomon-yorkshirewater-preview.azurewebsites.net' :
