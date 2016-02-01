@@ -27,9 +27,9 @@ export default Ember.Controller.extend({
         var currentUser = this.get('currentUser.content.username'),
             loginText = null,
             iconClassModifier = null;
-            
+
         console.log('Current User: ' + this.get('currentUser.content.username'));
-        
+
         if (currentUser) {
             loginText = 'Me';
             iconClassModifier = 'icon--you-me--me';
@@ -37,14 +37,8 @@ export default Ember.Controller.extend({
             loginText = 'You';
             iconClassModifier = 'icon--you-me--you';
         }
-        
+
         var items = [
-            {
-                title: 'Filter canvas',
-                action: 'showCanvasSettings',
-                iconclass: 'icon--filter',
-                svgclass: 'svg-icon--filter'
-            },
             {
                 title: 'Add canvas',
                 action: 'createACanvas',
@@ -86,6 +80,14 @@ export default Ember.Controller.extend({
                 svgclass: 'svg-icon--tutorial'
             }
         ];
+        if (this.get('appSettings.solomonConfig.name') == "yorkshire-water") {
+            items.push({
+                title: 'Filter canvas',
+                action: 'showCanvasSettings',
+                iconclass: 'icon--filter',
+                svgclass: 'svg-icon--filter'
+            });
+        }
         Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
         return items;
     }.property('currentUser.content.username'),
