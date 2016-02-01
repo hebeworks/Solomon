@@ -1,0 +1,44 @@
+[spc-val] {
+    line-height: 1.2;
+}
+
+    [spc-val_previous] {
+        font-size: rem(10px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    [spc-val_value] {
+        font-size: rem(34px);
+    }
+    
+        [spc-val_trend] {
+            display: inline-block;
+            height: rem(16px);
+            width: rem(16px);
+            margin-left: rem($spacing-base / 2);
+            
+            svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        [spc-val_trend="down"] {
+            @include transform(rotate(180deg));
+        }
+    
+    [spc-val_long-text] {
+        font-size: rem(12px);
+    }
+    
+    [spc-val_short-text] {
+        font-size: rem(14px);
+    }
+    
+    [spc-val_link] {
+        font-size: rem(12px);
+        text-decoration: none;
+        color: #fff;
+    }
