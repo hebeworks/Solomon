@@ -68,7 +68,7 @@ export default Ember.Controller.extend({
                 title: loginText,
                 action: 'showLoginPopup',
                 jshook: 'js-toolbox-login',
-                iconclass: 'icon--you-me',
+                iconclass: 'icon--you-me' + ' ' + iconClassModifier,
                 svgclass: 'svg-icon--you-me'
             },
             {

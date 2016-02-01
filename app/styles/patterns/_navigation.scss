@@ -92,6 +92,18 @@
 			}
 		}
 		
+		.icon--you-me--you {
+			rect {
+				fill: $red;
+			}
+		}
+		
+		.icon--you-me--me {
+			rect {
+				fill: $lime;
+			}
+		}
+		
 		.js-toolbox-tutorial {
 			@include breakpoint(max-width 768px) {
 				display: none;
