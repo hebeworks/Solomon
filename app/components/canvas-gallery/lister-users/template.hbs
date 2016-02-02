@@ -1,6 +1,28 @@
 <section class="gallery__section -categories">
 
-	<h3 cpn-thumb-list_heading>Your Canvasses</h3>
+  <h3 cpn-thumb-list_heading>Your Session</h3>
+
+  {{#if session.isAuthenticated}}
+
+    <div class="session__avatar">
+
+      <img src="{{session.secure.profile.picture}}">
+
+    </div>
+
+    <p class="session__status">You are signed in as {{session.secure.profile.name}} ({{session.secure.profile.email}})</p>
+
+    <button cpn-button="move" cpn-margin="top bottom" {{action 'invalidateSession'}}>Logout</button>
+
+  {{else}}
+
+    <p class="session__status">You are not currently signed in. You can sign in or register below.</p>
+
+    <button cpn-button="move" cpn-margin="top bottom" {{action 'sessionRequiresAuthentication'}}>Login</button>
+
+  {{/if}}
+
+  <h3 cpn-thumb-list_heading>Your Canvasses</h3>
 
 	<div cpn-thumb-list_wrapper cpn-divide="bottom">
 	    <ul cpn-thumb-list_items>
@@ -15,7 +37,7 @@
 	        			<h4 cpn-thumb-list_title>Here are the canvasses that you've made</h4>
 	        			<button cpn-button="move" cpn-margin="top" {{action 'createACanvas'}} data-btn-type="create">Create another canvas</button>
 	        		</li>
-	        		
+
 	        		{{#each items as |canvas|}}
 	        			{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumb-icon="add-canvas"}}
 	        		{{/each}}
