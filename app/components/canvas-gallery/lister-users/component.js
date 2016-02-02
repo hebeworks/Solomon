@@ -3,15 +3,10 @@ import CanvasGalleryLister from 'hebe-dash/mixins/canvas-gallery-lister';
 
 export default Ember.Component.extend(CanvasGalleryLister, {
 
-	didInsertElement: function () {
-		var userID = this.get('session.secure.token');
-		if(!Ember.isEmpty(userID)) {
-			this.set('userID', userID);
-		}
-	},
+  profile: Ember.computed.alias('session.secure.profile'),
 
-	onUserLogIn: function() {
-		this.set('userID', this.get('session.secure.token'));
-	}.observes('session.secure.token')
+  profileMeta: Ember.computed.alias('profile.user_metadata'),
+
+  profileAppMeta: Ember.computed.alias('profile.app_metadata')
 
 });
