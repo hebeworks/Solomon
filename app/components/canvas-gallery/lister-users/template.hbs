@@ -10,7 +10,7 @@
 
     </div>
 
-    <p class="session__status">You are signed in as {{session.secure.profile.name}} ({{session.secure.profile.email}})</p>
+    <p class="session__status">You are signed in as <i>{{session.secure.profile.email}}</i>.</p>
 
     <button cpn-button="move" cpn-margin="top bottom" {{action 'invalidateSession'}}>Logout</button>
 
