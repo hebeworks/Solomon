@@ -4,19 +4,19 @@ export default BaseRAGTile.extend({
     chosenKpi: 'BSC04', // will be altered by a select box when editing the story
     usableKpis: null,
     shortenedKpis: [
-        {id: 'BSC03', description: '', short: false},
-        {id: 'BSC04', description: '', short: false},
-        {id: 'BYS001', description: '', short: false},
-        {id: 'BYS053', description: '', short: false},
-        {id: 'BYS079', description: '', short: false},
-        {id: 'BYS105', description: '', short: false},
-        {id: 'BYS131', description: '', short: false},
-        {id: 'BYS254', description: '', short: false},
-        {id: 'BYS300', description: '', short: false},
-        {id: 'BYS301', description: '', short: false},
-        {id: 'BYS302', description: '', short: false},
-        {id: 'PHOF15', description: '', short: false},
-        {id: 'PHOF26', description: '', short: false}
+        {id: 'BSC03', description: "of residents feel it's important for them to feel part of their local community", short: false},
+        {id: 'BSC04', description: "of residents feel it's important they can influence decisions in their local area", short: false},
+        {id: 'BYS001', description: "of residents agree they can influence decisions in their local area", short: false},
+        {id: 'BYS053', description: "of residents are satisfied with their local area as a place to live", short: false},
+        {id: 'BYS079', description: "of residents agree that they belong to their local area", short: false},
+        {id: 'BYS105', description: "of residents feel people of different backgrounds get on well in their local area", short: false},
+        {id: 'BYS131', description: "of residents agree that York is a safe city to live in", short: false},
+        {id: 'BYS254', description: "of residents volunteer at least once a month", short: false},
+        {id: 'BYS300', description: "of residents agree that their local area is a safe place to live", short: false},
+        {id: 'BYS301', description: "of residents feel CYC & partners do well at reducing crime & anti-social behaviour", short: false},
+        {id: 'BYS302', description: "of residents feel CYC & partners are working well to make communities safer", short: false},
+        {id: 'PHOF15', description: "of adult social care users have as much social contact as they would like", short: false},
+        {id: 'PHOF26', description: "per 1,000 - households in temporary accommodation", short: false}
     ], // manually curated KPI descriptions. Set short to 'true' if the description is short enough to display as larger text
     
     onInsertElement: function() {
