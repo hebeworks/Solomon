@@ -8,18 +8,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         // add a client-specific attr to body
         var cssClass = this.get('appSettings.solomonConfig.name');
         var bodyClientAttr = Ember.$('body').attr('solomon-app');
-        if (!Ember.isEmpty(cssClass) 
+        if (!Ember.isEmpty(cssClass)
                 && (Ember.isEmpty(bodyClientAttr) || bodyClientAttr != cssClass)) {
             Ember.$('body').attr('solomon-app', cssClass);
         }
     }.on('activate'),
-    
+
     // Methods
     setupController: function (controller, model) {
         var obj = this;
         this.set('controller', controller);
         controller.set('model', model);
-        
+
         // console.log('Application Setup Controller');
         // todo: look in cookie/session for username
         if (!Ember.isEmpty(this.get('session.secure.token'))) {
@@ -29,10 +29,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
 
 
-    // Actions 
+    // Actions
     actions: {
-        showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
+
+        // showLoginPopup: function (intro) {
+        //     this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
+        // },
+
+        sessionRequiresAuthentication: function(){
+          // Check out the docs for all the options:
+          // https://auth0.com/docs/libraries/lock/customization
+
+          // This will launch lock.js in popup mode
+          var lockOptions = {authParams:{scope: 'openid'}};
+
+          console.log('perform auth')
+          this.get('session').authenticate('simple-auth-authenticator:lock', lockOptions);
         },
 
         mailToFeedback: function () {
@@ -101,9 +113,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.loadACanvas(canvasModel)
         },
 
-        sessionAuthenticationSucceeded: function () {
-            console.log('Session authenticated');
-        },
+        // sessionAuthenticationSucceeded: function () {
+        //     console.log('Session authenticated');
+        // },
 
         goToHelp: function () {
             var url = "https://github.com/hebeworks/Solomon/wiki";

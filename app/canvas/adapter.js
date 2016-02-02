@@ -1,4 +1,3 @@
 import ApplicationAdapter from 'hebe-dash/application/adapter';
 
-export default ApplicationAdapter.extend({
-});
+export default ApplicationAdapter.extend({});
