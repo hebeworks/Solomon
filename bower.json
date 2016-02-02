@@ -41,11 +41,7 @@
     "inuit-normalize.css": "~3.0.3"
   },
   "resolutions": {
-    "bourbon": "4.2.3",
     "d3": "~3.5.5",
-    "ember-resolver": "~0.1.15",
-    "loader.js": "ember-cli/loader.js#3.2.0",
-    "qunit": "~1.17.1",
     "jquery": "2.1.4"
   }
 }
