@@ -19,6 +19,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "auth0-ember-simple-auth": "1.0.4",
     "broccoli-asset-rev": "^2.1.1",
     "broccoli-sass": "0.6.6",
     "connect-restreamer": "^1.0.2",
