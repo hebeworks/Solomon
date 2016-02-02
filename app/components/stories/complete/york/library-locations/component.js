@@ -61,10 +61,6 @@ export default DefaultStory.extend({
 
                 // "﻿X" - The 'X' property has an erroneous character in it's name. The double-quoted X has this character included.
                 
-                // var infoWindow = new google.maps.InfoWindow({
-                //             content: 'contentString'
-                //         });
-                
                 fullLibraries.forEach(function(library) {
                     strippedLibraries.push({
                         id: library._id,
@@ -76,7 +72,25 @@ export default DefaultStory.extend({
                         phone: library.PHONE
                     });
                     
-                    var infoWindowContent = '<div><p><strong>' + library.NAME + '</strong></p><p><em>' + library.TYPE + '</em></p><p>' + library.ADDRESS + '</p><ul><li>' + library.PHONE + '</li><li><a href="mailto:' + library.EMAIL + '">Email</a> / <a target="_blank" href="' + library.WEBSITE + '">Website</a></li></ul></div>';
+                    var infoWindowContent = '<div><p><strong>' + library.NAME + '</strong></p><p><em>' + library.TYPE + '</em></p><p>' + library.ADDRESS + '</p>';
+                    
+                    if ((library.PHONE != 'n/a' && library.PHONE != ' ') || (library.EMAIL != 'n/a' && library.EMAIL != ' ')) {
+                        infoWindowContent += '<ul>';
+                        
+                        if (library.PHONE != 'n/a' && library.PHONE != ' ') {
+                            infoWindowContent += '<li>' + library.PHONE + '</li>';
+                        }
+                        
+                        if (library.EMAIL != 'n/a' && library.EMAIL != ' ') {
+                            infoWindowContent += '<li><a href="mailto:' + library.EMAIL + '">Email</a></li>';
+                        }
+                        
+                        infoWindowContent += '<li><a target="_blank" href="' + library.WEBSITE + '">Website</a></li></ul>';
+                    } else {
+                        infoWindowContent += '<ul><li><a target="_blank" href="' + library.WEBSITE + '">Website</a></li></ul>';
+                    }
+                    
+                    infoWindowContent += '</div>';
                     
                     mappedLibraries.push({
                         id: library._id,
@@ -101,22 +115,5 @@ export default DefaultStory.extend({
                 });
             }
         })
-    },
-    
-    // onGMap: function () {
-    //     console.log('onGMap');
-    //     var gMap = this.get('gMap');
-        
-    //     if (!Ember.isEmpty(gMap)) {
-    //         // this.get('gMap').setOptions(
-    //         //     {
-    //         //         infoWindow: {
-    //         //             content: '<p>Library information</p>'
-    //         //         }
-    //         //     }
-    //         // );
-
-    //         infoWindow.open(gMap, marker);
-    //     }
-    // }.observes('loaded'),
+    }
 });
