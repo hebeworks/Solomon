@@ -23,15 +23,15 @@
     }
     
     [solomon-app="lcd"] & {
-        @include breakpoint(min-width 801px) {
+        @include breakpoint(min-width 940px) {
             display: none;
         }
     }
     
     [class*="svg-lcd-logo"] {
         svg {
-            height: 40px;
-            width: 32px;
+            height: 50px;
+            width: 41px;
         }
     }
 }
@@ -46,15 +46,15 @@
     }
     
     [solomon-app="lcd"] & {
-        @include breakpoint(min-width 801px) {
+        @include breakpoint(min-width 940px) {
             display: block;
         }
     }
     
     [class*="svg-lcd-logo"] {
         svg {
-            height: 40px;
-            width: auto;
+            height: 50px;
+            width: 383px;
         }
     }
 }

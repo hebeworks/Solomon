@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
     appController: function () {
         return this.controllerFor('Application');
     }.property(),
@@ -9,72 +8,89 @@ export default Ember.Controller.extend({
     navItems: function () {
         var items = [
             // { title: 'Toolbox' },//, action: 'toggleSubNav' },
-            { title: 'Toolbox', action: 'toggleToolbox' },
-            { title: 'Gallery', action: 'gotoRoute', route: 'gallery' }
+            { title: 'Toolbox', action: 'toggleToolbox', iconName: 'tools' },
+            { title: 'Gallery', action: 'gotoRoute', route: 'gallery', iconName: 'gallery' }
         ];
 
         for (var i = 0; i < items.length; i++) {
             var dashed = items[i].title.dasherize();
             items[i].dashed = '-' + dashed;
             items[i].jshook = 'js-open-' + dashed;
-            items[i].iconclass = 'icon-' + dashed;
-            items[i].svgclass = 'svg-' + dashed;
+            items[i].iconclass = 'icon--' + items[i].iconName;
+            items[i].svgclass = 'svg-icon--' + items[i].iconName;
         }
 
         return items;
     }.property(),
 
     subNavItems: function () {
+        var currentUser = this.get('currentUser.content.username'),
+            loginText = null,
+            iconClassModifier = null;
+
+        console.log('Current User: ' + this.get('currentUser.content.username'));
+
+        if (currentUser) {
+            loginText = 'Me';
+            iconClassModifier = 'icon--you-me--me';
+        } else {
+            loginText = 'You';
+            iconClassModifier = 'icon--you-me--you';
+        }
+
         var items = [
-            {
-                title: 'Filter canvas',
-                action: 'showCanvasSettings',
-                iconclass: 'filter',
-                svgclass: 'svg-filter'
-            },
             {
                 title: 'Add canvas',
                 action: 'createACanvas',
-                iconclass: 'icon-add-canvas',
-                svgclass: 'svg-icon-add-canvas'
+                iconclass: 'icon--add-canvas',
+                svgclass: 'svg-icon--add-canvas'
             },
             {
                 title: 'Add story',
                 action: 'showAddAStory',
-                iconclass: 'icon-add-story',
-                svgclass: 'svg-icon-add-story'
+                iconclass: 'icon--add-story',
+                svgclass: 'svg-icon--add-story'
             },
             {
                 title: 'Feedback',
                 action: 'showFeedbackmodal',
                 jshook: 'js-toolbox-feedback',
-                iconclass: 'icon-feedback',
-                svgclass: 'svg-icon-feedback'
+                iconclass: 'icon--feedback',
+                svgclass: 'svg-icon--feedback'
             },
             {
-                title: 'Log in',
+                title: loginText,
                 action: 'showLoginPopup',
                 jshook: 'js-toolbox-login',
-                iconclass: 'icon-login',
-                svgclass: 'svg-login'
+                iconclass: 'icon--you-me' + ' ' + iconClassModifier,
+                svgclass: 'svg-icon--you-me'
             },
             {
                 title: 'Help',
                 action: 'goToHelp',
                 jshook: 'js-toolbox-help',
-                iconclass: 'help-icon',
-                svgclass: 'svg-help-icon'
+                iconclass: 'icon--help',
+                svgclass: 'svg-icon--help'
             },
             {
                 title: 'Tutorial',
                 action: 'showTutorialModal',
                 jshook: 'js-toolbox-tutorial',
-                iconclass: 'icon-tutorial',
-                svgclass: 'svg-icon-tutorial'
+                iconclass: 'icon--tutorial',
+                svgclass: 'svg-icon--tutorial'
             }
         ];
+        if (this.get('appSettings.solomonConfig.name') == "yorkshire-water") {
+            items.push({
+                title: 'Filter canvas',
+                action: 'showCanvasSettings',
+                iconclass: 'icon--filter',
+                svgclass: 'svg-icon--filter'
+            });
+        }
+        Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
         return items;
-    }.property(),
+    }.property('currentUser.content.username'),
 	
     // onModelChanged: function() {
     // 	console.log(this.get('model.content'));

@@ -43,6 +43,7 @@
 				align: center;
 			}
 			text-decoration: none;
+			@include transition(.25s);
 			
 			[solomon-app~="yorkshire-water"] & {
 			    color: $yw-dark-blue;
@@ -88,6 +89,18 @@
 			svg {
 				width: 35px;
 				height: 35px;
+			}
+		}
+		
+		.icon--you-me--you {
+			rect {
+				fill: $red;
+			}
+		}
+		
+		.icon--you-me--me {
+			rect {
+				fill: $lime;
 			}
 		}
 		
