@@ -16,16 +16,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     // Methods
     setupController: function (controller, model) {
-        var obj = this;
         this.set('controller', controller);
         controller.set('model', model);
-
-        // console.log('Application Setup Controller');
-        // todo: look in cookie/session for username
-        if (!Ember.isEmpty(this.get('session.secure.token'))) {
-            // console.log('Auth - we have a session token: ' + this.get('session.secure.token'));
-            controller.authLogin(this.get('session.secure.token'));
-        }
     },
 
 
@@ -37,14 +29,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         // },
 
         sessionRequiresAuthentication: function(){
-          // Check out the docs for all the options:
-          // https://auth0.com/docs/libraries/lock/customization
-
-          // This will launch lock.js in popup mode
-          var lockOptions = {authParams:{scope: 'openid'}};
-
-          console.log('perform auth')
-          this.get('session').authenticate('simple-auth-authenticator:lock', lockOptions);
+          this.get('session').authenticate('simple-auth-authenticator:lock', {
+            authParams: {
+                scope: 'openid'
+            }
+          });
         },
 
         mailToFeedback: function () {
@@ -112,10 +101,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         loadACanvas: function (canvasModel) {
             this.controller.loadACanvas(canvasModel)
         },
-
-        // sessionAuthenticationSucceeded: function () {
-        //     console.log('Session authenticated');
-        // },
 
         goToHelp: function () {
             var url = "https://github.com/hebeworks/Solomon/wiki";
