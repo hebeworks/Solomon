@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Object.extend({
 
-  id: Ember.computed.oneWay('user_id'),
+  id: Ember.computed.oneWay('global_client_id'),
 
   email: null,
 
