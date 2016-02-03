@@ -52,54 +52,6 @@ export default Ember.Controller.extend({
 	}),
 
 	// Methods
-  //   authLogin: function (username) {
-  //       var obj = this;
-		// // debugger;
-		// // console.log('authLogin: ' + username);
-  //       return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-		// 	// obj.get('session').authenticate('authenticator:unique', 'nate')
-		// 	obj.get('session').authenticate('authenticator:unique', username)
-  //               .then(
-  //                   function (message) {
-  //                       // _this.set('errorMessage', message);
-		// 				// console.log('authLogin.then username: ' + username + ', message: ' + message);
-		// 				var foundUserCallback = function (user) {
-		// 					// console.log('foundUserCallback: ' + user.username)
-		// 					// debugger;
-		// 					obj.get('currentUser').set('content', user);
-		// 					resolve(user);
-		// 				};
-
-		// 				if (!Ember.isEmpty(username)) {
-		// 					// console.log('username is not empty');
-		// 					// return obj.store.find('user', { username: username })
-		// 					return obj.store.find('user', username)
-		// 						.then(
-		// 							foundUserCallback,
-		// 							function () {
-		// 								// console.log('User not found');
-		// 								reject(new Error('User not found'));
-		// 							});
-		// 				} else {
-		// 					var token = obj.get('session.content.secure.token');
-		// 					// console.log('username IS empty token is: ' + token);
-		// 					return obj.store.find('user', token)
-		// 						.then(
-		// 							foundUserCallback,
-		// 							function () {
-		// 								reject(new Error('User not found'));
-		// 							});
-		// 				}
-  //                   },
-  //                   function (message) {
-		// 				// debugger;
-  //                       // _this.set('errorMessage', message);
-  //                       // console.log('Error authenticating: ' + message);
-  //                       reject(message);
-  //                   }
-		// 			);
-  //       });
-  //   },
 
 	showModal: function (component, options) {
 		var modalOptions = _.extend(
