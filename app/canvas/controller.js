@@ -24,13 +24,11 @@ export default Ember.Controller.extend({
     }.property(),
 
     subNavItems: function () {
-        var currentUser = this.get('currentUser.content.username'),
+        var currentUserEmail = this.get('currentUser.email'),
             loginText = null,
             iconClassModifier = null;
 
-        console.log('Current User: ' + this.get('currentUser.content.username'));
-
-        if (currentUser) {
+        if (currentUserEmail) {
             loginText = 'Me';
             iconClassModifier = 'icon--you-me--me';
         } else {
@@ -90,12 +88,7 @@ export default Ember.Controller.extend({
         }
         Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
         return items;
-    }.property('currentUser.content.username'),
-
-    // onModelChanged: function() {
-    // 	console.log(this.get('model.content'));
-    // 	this.set('canvas',this.get('model.content'));
-    // }.observes('model')
+    }.property('currentUser.email'),
 
     checkCanvasAuth: function () {
         var obj = this;

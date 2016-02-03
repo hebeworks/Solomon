@@ -7,36 +7,37 @@ export default Ember.Component.extend({
 	},
 
 	isAdmin: function () {
-		var adminHosts = ['localhost', 
-            '127.0.0.1', 
-            '0.0.0.0', 
-            'testing.mysolomon.co.uk', 
-            'preview.mysolomon.co.uk',
-            'leeds.preview.mysolomon.co.uk', 
-            'yorkshirewater.mysolomon.co.uk', 
-            'mysolomon-yorkshirewater-preview.azurewebsites.net'];
-		var allowedAdminUsers = ['Hebe', 'Nate'];
-		var hostname = window.location.hostname;
+		// TODO: Fix this check.
+		// var adminHosts = ['localhost',
+  //           '127.0.0.1',
+  //           '0.0.0.0',
+  //           'testing.mysolomon.co.uk',
+  //           'preview.mysolomon.co.uk',
+  //           'leeds.preview.mysolomon.co.uk',
+  //           'yorkshirewater.mysolomon.co.uk',
+  //           'mysolomon-yorkshirewater-preview.azurewebsites.net'];
+		// var allowedAdminUsers = ['Hebe', 'Nate'];
+		// var hostname = window.location.hostname;
 
-		if (adminHosts.indexOf(hostname) > -1) {
-			if (hostname.indexOf('preview') > -1) {
-				if (!Ember.isEmpty(this.get('currentUser.content.username')) &&
-						allowedAdminUsers.indexOf(this.get('currentUser.content.username')) > -1) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
-		// natehere
-		// if(this.get('session.secure.token') == '55f15e19fc4b2397742d1aa6') {
+		// if (adminHosts.indexOf(hostname) > -1) {
+		// 	if (hostname.indexOf('preview') > -1) {
+		// 		if (!Ember.isEmpty(this.get('currentUser.content.username')) &&
+		// 				allowedAdminUsers.indexOf(this.get('currentUser.content.username')) > -1) {
+		// 			return true;
+		// 		} else {
+		// 			return false;
+		// 		}
+		// 	}
 		// 	return true;
 		// } else {
 		// 	return false;
 		// }
+		// // natehere
+		// // if(this.get('session.secure.token') == '55f15e19fc4b2397742d1aa6') {
+		// // 	return true;
+		// // } else {
+		// // 	return false;
+		// // }
 	}.property('session'),
 
 	_currentView: null, //"categories",
@@ -55,7 +56,7 @@ export default Ember.Component.extend({
 				this.set('_currentView', value);
 				this.$('[data-btn-type]').attr('cpn-button', '');
 				this.$('[data-btn-type="' + value + '"]').attr('cpn-button', 'chosen');
-				
+
 				// this.$('.js-bottom-drawer-button.btn-list .btn').removeClass('-selected');
 				// this.$('.btn[data-btn-type="' + value + '"]').addClass('-selected');
 			}
