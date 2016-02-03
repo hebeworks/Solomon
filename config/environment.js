@@ -53,18 +53,6 @@ module.exports = function (environment) {
     'connect-src': "'self' http://localhost:* " + ENV['auth0-ember-simple-auth']['domain']
   };
 
-  // ENV['torii'] = {
-  //   providers: {
-  //     'facebook-oauth2': {
-  //       apiKey: '631252926924840'
-  //     },
-  //     'unique': {
-
-  //     }
-  //   }
-  // };
-
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
