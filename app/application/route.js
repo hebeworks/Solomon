@@ -24,9 +24,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // Actions
     actions: {
 
-        // showLoginPopup: function (intro) {
-        //     this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
-        // },
+        showLoginPopup: function () {
+            this.controller.showModal('session-manager', {
+                title: 'My Account'
+            });
+        },
 
         sessionRequiresAuthentication: function(){
           this.get('session').authenticate('simple-auth-authenticator:lock', {

@@ -10,7 +10,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	categories: [],
 	stories: [],
 	appController: null,
-	
+
 	didInsertElement: function () {
 		var config = this.get('appController.bottomDrawerConfig');
 		if (!Ember.isEmpty(config)) {
@@ -91,7 +91,6 @@ export default Ember.Component.extend(BottomDrawerContent, {
 						});
 				}
 			} else {
-				// alert('You need to login');
 				this.set('action', 'showLoginPopup');
 				this.sendAction();
 				return false;

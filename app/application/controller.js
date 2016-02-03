@@ -3,9 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
-	modalOptions: {
-		component: 'ui/login-form'
-	},
+	modalOptions: {},
 
 	appController: function () {
         return this;
@@ -33,7 +31,7 @@ export default Ember.Controller.extend({
 	}.observes('appSettings.errorMessage'),
 
 	obSolomonConfigChange: function () {
-        // Todo: get the site config from a request to Solomon API 
+        // Todo: get the site config from a request to Solomon API
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
 		this.set('pageTitle', this.get('appSettings.solomonConfig.title'));
 	}.observes('appSettings.solomonConfig'),
@@ -54,54 +52,54 @@ export default Ember.Controller.extend({
 	}),
 
 	// Methods
-    authLogin: function (username) {
-        var obj = this;
-		// debugger;
-		// console.log('authLogin: ' + username);
-        return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-			// obj.get('session').authenticate('authenticator:unique', 'nate')
-			obj.get('session').authenticate('authenticator:unique', username)
-                .then(
-                    function (message) {
-                        // _this.set('errorMessage', message);
-						// console.log('authLogin.then username: ' + username + ', message: ' + message);
-						var foundUserCallback = function (user) {
-							// console.log('foundUserCallback: ' + user.username)
-							// debugger;
-							obj.get('currentUser').set('content', user);
-							resolve(user);
-						};
+  //   authLogin: function (username) {
+  //       var obj = this;
+		// // debugger;
+		// // console.log('authLogin: ' + username);
+  //       return new Ember.RSVP.Promise(function (resolve, reject, complete) {
+		// 	// obj.get('session').authenticate('authenticator:unique', 'nate')
+		// 	obj.get('session').authenticate('authenticator:unique', username)
+  //               .then(
+  //                   function (message) {
+  //                       // _this.set('errorMessage', message);
+		// 				// console.log('authLogin.then username: ' + username + ', message: ' + message);
+		// 				var foundUserCallback = function (user) {
+		// 					// console.log('foundUserCallback: ' + user.username)
+		// 					// debugger;
+		// 					obj.get('currentUser').set('content', user);
+		// 					resolve(user);
+		// 				};
 
-						if (!Ember.isEmpty(username)) {
-							// console.log('username is not empty');
-							// return obj.store.find('user', { username: username })
-							return obj.store.find('user', username)
-								.then(
-									foundUserCallback,
-									function () {
-										// console.log('User not found');
-										reject(new Error('User not found'));
-									});
-						} else {
-							var token = obj.get('session.content.secure.token');
-							// console.log('username IS empty token is: ' + token);
-							return obj.store.find('user', token)
-								.then(
-									foundUserCallback,
-									function () {
-										reject(new Error('User not found'));
-									});
-						}
-                    },
-                    function (message) {
-						// debugger;
-                        // _this.set('errorMessage', message);
-                        // console.log('Error authenticating: ' + message);
-                        reject(message);
-                    }
-					);
-        });
-    },
+		// 				if (!Ember.isEmpty(username)) {
+		// 					// console.log('username is not empty');
+		// 					// return obj.store.find('user', { username: username })
+		// 					return obj.store.find('user', username)
+		// 						.then(
+		// 							foundUserCallback,
+		// 							function () {
+		// 								// console.log('User not found');
+		// 								reject(new Error('User not found'));
+		// 							});
+		// 				} else {
+		// 					var token = obj.get('session.content.secure.token');
+		// 					// console.log('username IS empty token is: ' + token);
+		// 					return obj.store.find('user', token)
+		// 						.then(
+		// 							foundUserCallback,
+		// 							function () {
+		// 								reject(new Error('User not found'));
+		// 							});
+		// 				}
+  //                   },
+  //                   function (message) {
+		// 				// debugger;
+  //                       // _this.set('errorMessage', message);
+  //                       // console.log('Error authenticating: ' + message);
+  //                       reject(message);
+  //                   }
+		// 			);
+  //       });
+  //   },
 
 	showModal: function (component, options) {
 		var modalOptions = _.extend(
@@ -202,7 +200,6 @@ export default Ember.Controller.extend({
 		}
 		Cookies.set('viewedTutorial', true);
 		this.hideModal();
-		// this.showModal('ui/login-form');
 	},
 
 	openToolbox: function () {

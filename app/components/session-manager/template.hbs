@@ -1,0 +1,19 @@
+{{#if session.isAuthenticated}}
+
+  <div class="session__avatar">
+
+    <img src="{{session.secure.profile.picture}}">
+
+  </div>
+
+  <p class="session__status">You are signed in as <i>{{session.secure.profile.email}}</i>.</p>
+
+  <button cpn-button="move" cpn-margin="top bottom" {{action 'invalidateSession'}}>Logout</button>
+
+{{else}}
+
+  <p class="session__status">You are not currently signed in. You can sign in or register below.</p>
+
+  <button cpn-button="move" cpn-margin="top bottom" {{action 'sessionRequiresAuthentication'}}>Login</button>
+
+{{/if}}
