@@ -34,7 +34,7 @@ export default Ember.Object.extend({
   }.property('email'),
 
   isAdmin: function(){
-    return false;
-  }.property()
+    return this.get('app_metadata.is_admin') === true;
+  }.property('app_metadata.is_admin')
 
 });
