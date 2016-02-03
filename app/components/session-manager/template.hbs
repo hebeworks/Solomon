@@ -2,11 +2,17 @@
 
   <div class="session__avatar">
 
-    <img src="{{session.secure.profile.picture}}">
+    <img src="{{currentUser.picture}}">
 
   </div>
 
-  <p class="session__status">You are signed in as <i>{{session.secure.profile.email}}</i>.</p>
+  <p class="session__status">You are signed in as <i>{{currentUser.email}}</i>.</p>
+
+  {{#if currentUser.isAdmin}}
+
+    <p class="session__status--admin">You are using an <i>administrator</i> account. This means you may have access to additional functionality within this application.</p>
+
+  {{/if}}
 
   <button cpn-button="move" cpn-margin="top bottom" {{action 'invalidateSession'}}>Logout</button>
 
