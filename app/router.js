@@ -22,7 +22,7 @@ Router.map(function () {
   this.route('canvas-picker');
   this.route('gallery');
   this.route('styleguide');
-  this.route('sign_in');
+  this.route('sign-in');
 });
 
 export default Router;

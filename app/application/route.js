@@ -20,6 +20,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         controller.set('model', model);
     },
 
+    beforeModel: function(transition){
+        // We set the attempted transition on the session
+        // so that we can ensure the current page is persisted
+        // following the sign in process.
+        if(!this.get('session.isAuthenticated')) {
+            this.set('session.attemptedTransition', transition);
+        }
+    },
 
     // Actions
     actions: {
@@ -37,6 +45,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             }
           });
         },
+
+        // This ensures that the user stays on then same
+        // page following signing out, as most pages in
+        // the app can be accessed regardless of session state.
+        sessionInvalidationSucceeded: Ember.K,
 
         mailToFeedback: function () {
             window.location.href = "mailto:support@mysolomon.co.uk?subject=Leeds City Dashboard Help&body=Please provide your feedback here. If you are contacting us about a bug, it would help if you could provide a screenshot of the issue along with details about your operating system and browser. Thank you.";
