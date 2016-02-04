@@ -149,8 +149,6 @@
 .nav-main__title {
 	width: 100%;
 	display: block;
-	font: {
-		size: em(12px);
-		family: $helvneuemed;
-	}
+	font-size: rem(12px);
+	font-weight: 500;
 }
