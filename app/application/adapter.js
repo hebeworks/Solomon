@@ -9,7 +9,7 @@ export default DS.JSONAPIAdapter.extend({
 
     namespace: 'api',
 
-    headers: Ember.computed('session.secure.jwt', function(){
+    headers: Ember.computed(function(){
         var headers = {};
         var token = this.get('session.secure.jwt');
 
@@ -17,7 +17,8 @@ export default DS.JSONAPIAdapter.extend({
           headers['Authorization'] = 'Bearer ' + token;
         }
 
+        console.log('Compute headers', headers);
         return headers;
-    })
+    }).property('session.secure.jwt')
 
 });
