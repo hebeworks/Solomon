@@ -1,4 +1,33 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[spc-opc_chosen-value] {
+    font-size: rem(30px);
+    line-height: rem(38px);
+    font-weight: 500;
+    color: $nhs-blue;
+    padding-right: rem($spacing-base);
+}
+
+[spc-opc_chosen-location] {
+    font-size: rem(15px);
+}
+
+[spc-opc_chart] {
+    height: rem(190px);
+    padding-bottom: rem(6px);
+}
+
+    [spc-opc_bars] {
+        height: 100%;
+    }
+
+        [spc-opc_bar] {
+            width: 0;
+            height: 10px;
+            background-color: #cfcfcf;
+            border-radius: rem(5px);
+            font-size: 0; // hide the text
+            @include transition(1s);
+        }
+        
+        [spc-opc_bar="selected"] {
+            background-color: $nhs-blue;
+        }

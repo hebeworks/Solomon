@@ -1,16 +1,27 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <h2 cpn-story_title cpn-margin="bottom-half" cpn-font-weight="500">Regional CCG Overall RTT Performance</h2>
     
-    <p>This is the nhsRttOverallPerfChart story.</p>
+    <div cpn-clearfix>
+        <p cpn-float="left" spc-opc_chosen-value>75.4%</p>
+        <h3 cpn-overflow="hidden" spc-opc_chosen-location>West London (Kensington and Chelsea)</h3>
+    </div>
+
+    <div spc-opc_chart>
+        <div spc-opc_bars data-national-avg="75%" data-location-avg="65%">
+            {{#each bar in bars}}
+            <div spc-opc_bar data-location-name="{{bar.location}}" style="width: 0; width: {{bar.percentage}};">{{bar.location}}</div>
+            {{/each}}
+        </div>
+        <ul spc-opc_axis>
+            <li spc-opc_label>0%</li>
+            <li spc-opc_label>50%</li>
+            <li spc-opc_label>100%</li>
+        </ul>
+    </div>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
+    <ul spc-opc_legend>
+        <li spc-opc_legend-label="national">National Average</li>
+        <li spc-opc_legend-label="location">Regional Average</li>
+    </ul>
 {{/stories/story-base}}
