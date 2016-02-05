@@ -1,5 +1,4 @@
 [spc-lds-inspd_title] {
-	font-family: $georgia;
 	font-size: rem(18px);
 	margin-bottom: rem($spacing-base / 2);
 	
@@ -13,7 +12,6 @@
 }
 
 [spc-lds-inspd_datetime] {
-	font-family: $georgia;
 	font-size: rem(15px);
 	font-style: italic;
 	line-height: 1.35;
@@ -24,8 +22,8 @@
 [spc-lds-inspd_place] {
 	padding-top: rem(2px);
 	font-size: em(13px);
-	font-family: $helvneuemed;
 	font-style: normal;
+	font-weight: 700;
 }
 
 [spc-lds-inspd_image] {
