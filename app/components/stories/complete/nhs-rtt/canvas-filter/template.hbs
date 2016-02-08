@@ -1,16 +1,33 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <ul cpn-row-list cpn-margin="bottom-none">
+        <li cpn-width="50%">
+            <button cpn-button>National</button>
+        </li>
+        <li cpn-width="50%">
+            <button cpn-button>Regional</button>
+        </li>
+    </ul>
     
-    <p>This is the nhsRttCanvasFilter story.</p>
+    <p cpn-divide="bottom solid faded-dark">
+        {{
+            select-2
+        }}
+    </p>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
+    <ul cpn-row-list cpn-margin="bottom-none">
+        <li cpn-width="50%">
+            <button cpn-button>CCG</button>
+        </li>
+        <li cpn-width="50%">
+            <button cpn-button>Practice</button>
+        </li>
+    </ul>
+    
+    <p>
+        {{
+            select-2
+        }}
+    </p>
+    
 {{/stories/story-base}}
