@@ -93,9 +93,10 @@ export default Ember.Controller.extend({
     checkCanvasAuth: function () {
         var obj = this;
         return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-            if (!obj.get('session.isAuthenticated') || Ember.isEmpty(obj.get('session.secure.token'))) {
+            if (!obj.get('session.isAuthenticated')) {
                 reject({ notLoggedIn: true })
-            } else if (obj.get('session.secure.token') != obj.get('model.userID')) {
+            }
+            else if (obj.get('currentUser.id') != obj.get('model.userID')) {
                 reject({ hasPermissions: false });
             } else {
                 resolve();
@@ -173,7 +174,7 @@ export default Ember.Controller.extend({
         var obj = this;
         var currentCanvas = this.get('model');
         if (this.get('session.isAuthenticated')) {
-            var userID = this.get('session.content.secure.token');
+            var userID = this.get('currentUser.id');
             if (!Ember.isEmpty(userID)) {
                 var canvas = obj.store.createRecord('canvas', {
                     title: currentCanvas.get('title'),
@@ -195,10 +196,11 @@ export default Ember.Controller.extend({
                 //         }
                 //     });
             }
-        } else {
-            // alert('You need to login');
+        }
+        else {
             this.set('action', 'showLoginPopup');
             this.sendAction();
+
             return false;
         }
 
