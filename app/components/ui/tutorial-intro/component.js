@@ -1,13 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
 	btnCheckInterval: 500,
-	
-    onAttrs: function() {
-        var filePath = '/assets/img/tutorial-intro-assets/' + this.get('appSettings.solomonConfig.tutorialBase') + '/tutorialnew2_hype_generated_script.js?195183';
-        this.set('filePath',filePath);
-    }.on('didReceiveAttrs'),
-    
+
+  onAttrs: function() {
+    var filePath = '/assets/img/tutorial-intro-assets/' + this.get('appSettings.solomonConfig.tutorialBase') + '/tutorialnew2_hype_generated_script.js?195183';
+    this.set('filePath',filePath);
+  }.on('didReceiveAttrs'),
+
 	onInserted: function () {
 		Ember.run.later(this, this.checkForLinks, this.get('btnCheckInterval'));
 	}.on('didInsertElement'),
@@ -39,4 +40,5 @@ export default Ember.Component.extend({
 		this.set('action', "closeTutorial");
 		this.sendAction('action');
 	}
+
 });

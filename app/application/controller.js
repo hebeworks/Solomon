@@ -106,69 +106,33 @@ export default Ember.Controller.extend({
 
 	showTutorialTimer: null,
 
-	// TODO: Reenable
-	shouldShowTutorial: function (force) {
-	// 	if (Modernizr.mq('screen and (min-width: 768px)')) {
-	// 		if (Cookies.get('viewedTutorial')) {
-	// 			// unauthed session has seen tutorial
-	// 			// stop the timer & observer
-	// 			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-	// 			Ember.run.cancel(this.get('showTutorialTimer'));
-	// 		} else if (!Ember.isEmpty(this.get('currentUser.content')) && this.get('currentUser.content.config.viewedTutorial') == true) {
-	// 			// have a user and has seen tutorial
-	// 			// stop the timer & observer
-	// 			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-	// 			Ember.run.cancel(this.get('showTutorialTimer'));
-	// 		} else {
-	// 			// show the tutorial in 5 seconds
-	// 			var timer = Ember.run.later(this, this.showTutorial, 5000);
-	// 			this.set('showTutorialTimer', timer);
-	// 			// if too early for authed user - observe for it being set
-	// 			// if it is set in the meantime, the timer will be cancelled
-	// 			Ember.addObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-	// 		}
-	// 	}
+	shouldShowTutorial: function (force){
+		if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')){
+			this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
+		}
 	},
 
 	showTutorial: function () {
-	// 	if (Modernizr.mq('screen and (min-width: 768px)')) {
-	// 		if (!this.get('isModalVisible')) {
-	// 			Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-	// 			Ember.run.cancel(this.get('showTutorialTimer'));
-	// 			this.showModal('ui/tutorial-intro', 'Tutorial');
-	// 		}
-	// 	}
+		if (!this.get('isModalVisible')){
+			Ember.run.cancel(this.get('showTutorialTimer'));
+			this.showModal('ui/tutorial-intro', 'Tutorial');
+		}
 	},
 
 	closeTutorial: function () {
-	// 	Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-	// 	var authedUser = this.get('currentUser.content');
+		this.hideModal();
 
-	// 	if (!Ember.isEmpty(authedUser)) {
-	// 		// if we have authed session user
-	// 		// set viewed flag
-	// 		var userConfig = authedUser.get('config');
-	// 		userConfig.viewedTutorial = true;
-	// 		authedUser.set('config', userConfig);
-	// 		authedUser.save();
-	// 	}
-	// 	Cookies.set('viewedTutorial', true);
-	// 	this.hideModal();
+		Cookies.set('viewedTutorial', true);
 	},
 
 	openToolbox: function () {
-		// canvas.carousel.$switcher.removeClass('-blurred');
-		// Drawer.toggleTop();
-		// Drawer.closeBottom();
 		this.set('canvasBlurred', true);
 		this.set('topOpen', true);
+
 		$('.js-open-toolbox').addClass('-selected');
 	},
 
-	closeToolbox: function () {
-		// canvas.carousel.$switcher.removeClass('-blurred');
-		// Drawer.toggleTop();
-		// Drawer.closeBottom();
+	closeToolbox: function (){
 		this.set('canvasBlurred', false);
 		this.set('topOpen', false);
 		$('.js-open-toolbox').removeClass('-selected');
