@@ -1,6 +1,6 @@
 <div cpn-divide="bottom" cpn-cleafix>
 	<a {{action "closeBottomDrawer"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
-	<h2 cpn-frame_heading>Create a story</h2>
+	<h2 cpn-frame_heading>Edit a story</h2>
 </div>
 
 <div class="drawer__inner">
@@ -10,21 +10,11 @@
 	{{!-- canvas-gallery/create-a-canvas --}}
 	
 	<div cpn-margin="bottom-double" class="create-a-story -form -admin">
-		<p>{{input value=title placeholder="Story Title e.g. Analogue Clock" autocapitalize="words"}}
-			{{#if story.errors.title}}
-				<br />{{story.errors.title.message}}
-			{{/if}}
-		</p>
-		<p>{{input value=storyType placeholder="Story Type e.g. clock-face"}}</p>
-		<p>{{input value=configJSON placeholder="Config JSON e.g. { 'test' : 'testy' }"}}</p>
+		<h2>{{title}}</h2>
 
-		{{ select-2
-			content=allCategories
-			value=categories
-			optionLabelPath="title"
-			placeholder="Choose a category"
-			multiple=true
-		}}
+		{{#each editableFields as |field|}}
+			<label>{{field.placeholder}}</label>{{input type=field.type value=field.value placeholder=field.placeholder}}
+		{{/each}}
 		
 		{{#each errors.messages as |message|}}
 			<p class="error">
@@ -37,5 +27,5 @@
 		</p>
 	</div>
 	
-	{{admin/create-a-category}}
+	{{!-- admin/create-a-category --}}
 </div>
