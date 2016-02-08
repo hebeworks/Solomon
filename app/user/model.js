@@ -15,7 +15,7 @@ export default DS.Model.extend({
 	_config: {},
 	config: Ember.computed({
 		get() {
-			if ((Ember.isEmpty(this.get('_config')) || Ember.keys(this.get('_config')).length === 0) 
+			if ((Ember.isEmpty(this.get('_config')) || Ember.keys(this.get('_config')).length === 0)
 					&& !Ember.isEmpty(this.get('configJSON'))) {
 				var configJSON = this.get('configJSON');
 				var config = JSON.parse(configJSON);
@@ -36,16 +36,6 @@ export default DS.Model.extend({
 			}
 			return value;
 		}
-	}),
+	})
 
-
-
-
-
-
-
-
-
-
-	  
 });

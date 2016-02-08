@@ -1,32 +1,45 @@
 <section class="gallery__section -categories">
 
-	<h3 cpn-thumb-list_heading>Your Canvasses</h3>
+  <h3 cpn-thumb-list_heading>Your Canvasses</h3>
 
 	<div cpn-thumb-list_wrapper cpn-divide="bottom">
+
 	    <ul cpn-thumb-list_items>
+
 	        {{#unless session.isAuthenticated}}
+
 	        	<li cpn-thumb-list_item="wide">
 	        		<h4 cpn-thumb-list_title>You'll need to be logged in to see your canvasses</h4>
 	        		<button cpn-button="move" cpn-margin="top" {{action "showLoginPopup"}}>Log in / Sign up</button>
 	        	</li>
+
 	        {{else}}
+
 	        	{{#if items}}
 	        		<li cpn-thumb-list_item="wide">
 	        			<h4 cpn-thumb-list_title>Here are the canvasses that you've made</h4>
 	        			<button cpn-button="move" cpn-margin="top" {{action 'createACanvas'}} data-btn-type="create">Create another canvas</button>
 	        		</li>
-	        		
+
 	        		{{#each items as |canvas|}}
 	        			{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumb-icon="add-canvas"}}
 	        		{{/each}}
+
 	        	{{else}}
+
 	        		<li cpn-thumb-list_item="wide">
 	        			<h4 cpn-thumb-list_title>Looks like you haven't created any canvasses yet</h4>
 	        			<button cpn-button="move" cpn-margin="top" {{action 'createACanvas'}} data-btn-type="create">Create a canvas</button>
 	        		</li>
+
 	        	{{/if}}
+
 	        {{/unless}}
+
 	    </ul>
+
 	</div>
+
 	{{yield}}
+
 </section>
