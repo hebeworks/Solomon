@@ -7,24 +7,7 @@ export default Ember.Component.extend({
 	configJSON: null,
 	categories: [],
 	message: '',
-	
-	didReceiveAttrs: function () {
-		// if (this.get('story') == null) {
-		// 	var story = this.store.createRecord('story', {});
-		// 	// 	title: 'New Story',
-		// 	// 	storyType: 'clock-face',
-		// 	// 	categories: [],
-		// 	// 	configJSON: '{"test":"testy"}',
-		// 	// });
-			
-		// 	// // Set relationships
-		// 	// this.store.find('user', 1).then(function (user) {
-		// 	// 	post.set('author', user);
-		// 	// });
-		// 	this.set('story', story);
-		// }
-	},
-	
+
 	allCategories: Ember.computed({
 		get() {
 			return this.store.query('category',{})
@@ -56,6 +39,7 @@ export default Ember.Component.extend({
 				configJSON: this.get('configJSON'),
 				categories: this.get('categories')
 			});
+			
 			story.save()
 				.then(function(response){
 					obj.setProperties({
@@ -64,7 +48,7 @@ export default Ember.Component.extend({
 						storyType: null,
 						configJSON: null,
 						categories: []
-					})
+					});
 				});
 		}
 	},

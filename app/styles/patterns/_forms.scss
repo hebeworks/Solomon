@@ -80,7 +80,7 @@
     	&[type="number"] {
     		height: rem(40px);
     		line-height: 1.5;
-    		padding: rem($spacing-base) rem($spacing-base - 1px) rem($spacing-base - 3px);
+    		padding: rem($spacing-base - 1px);
     		width: 100%;
             max-width: 100%;
             @include appearance(none);
@@ -90,7 +90,7 @@
         %cpn-input-small {
             font-size: rem(12px);
             height: rem(30px);
-            padding: rem($spacing-base - 3) rem($spacing-base / 2 - 1) rem($spacing-base / 2 - 1);
+            padding: rem($spacing-base / 2 - 1);
         }
     }
     
@@ -117,7 +117,7 @@
     %textarea {
     	min-height: rem(98px);
     	height: auto;
-    	padding: rem($spacing-base) rem($spacing-base - 1px) rem($spacing-base - 3px);
+    	padding: rem($spacing-base - 1px);
     	min-width: 255px;
         width: 100%;
         @include appearance(none);

@@ -17,7 +17,8 @@ html {
 }
 
 body {
-    font-family: $helvneue;
+    font-family: $base-font-family;
+    font-weight: 400;
     font-size: rem(15px);
     line-height: 1.5;
     
@@ -67,8 +68,8 @@ p, table, ul, ol {
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
-    font-weight: normal;
-    font-family: $helvneuemed;
+    font-weight: 400;
+    font-family: $base-font-family;
     margin-bottom: rem($spacing-base * .7);
     
     [solomon-app~="yorkshire-water"] & {
@@ -81,10 +82,7 @@ p, table, ul, ol {
 }
 
 strong {
-    font: {
-        style: normal;
-        family: $helvneuemed;
-    }
+    font-weight: 700;
 }
 
 a {

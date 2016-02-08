@@ -1,6 +1,11 @@
 .story__chart {
     margin-top: 5px;
     height: 100%;
+    
+    svg {
+        font-family: $base-font-family;
+    }
+    
     rect {
         fill: steelblue;
     }
