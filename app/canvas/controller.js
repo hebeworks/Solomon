@@ -237,7 +237,6 @@ export default Ember.Controller.extend({
 
     saveCanvasState: function () {
         var obj = this;
-        debugger;
         this.checkCanvasAuth()
             .then(
                 function () {
