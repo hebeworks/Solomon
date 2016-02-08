@@ -38,18 +38,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             });
         },
 
-        sessionRequiresAuthentication: function(){
-          this.get('session').authenticate('simple-auth-authenticator:lock', {
-            authParams: {
-                scope: 'openid'
-            }
-          });
-        },
-
-        invalidateSession: function(){
-            this.get('session').invalidate();
-        },
-
         // This ensures that the user stays on then same
         // page following signing out, as most pages in
         // the app can be accessed regardless of session state.
