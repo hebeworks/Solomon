@@ -237,6 +237,7 @@ export default Ember.Controller.extend({
 
     saveCanvasState: function () {
         var obj = this;
+        debugger;
         this.checkCanvasAuth()
             .then(
                 function () {
@@ -257,6 +258,6 @@ export default Ember.Controller.extend({
                     //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     // }
                 }
-                );
+            );
     }
 });

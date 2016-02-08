@@ -289,6 +289,19 @@ export default Ember.Controller.extend({
 
 	showCanvasSettings: function () {
 		this.showModal('canvas-settings', 'Canvas Settings', '', true);
-	}
+	},
+    
+    editAStory: function (model) {
+		var params = { 
+			contentType: 'stories/edit-a-story',
+			preventCanvasBlur: true
+		};
+		if (!Ember.isEmpty(model)) {
+			params.model = model;
+			params.mainTitle = 'Edit a story';
+		}
+		this.openBottomDrawer(params);
+	},
+
 
 });
