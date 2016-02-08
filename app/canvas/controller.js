@@ -244,6 +244,8 @@ export default Ember.Controller.extend({
                     // debugger;
                     model.save().then(function (response) {
                         console.log('saved canvas state');
+                        // todo callback function
+                        // e.g. close edit a story bottom drawer
                     })
                 },
                 function (err) {
@@ -255,6 +257,6 @@ export default Ember.Controller.extend({
                     //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
                     // }
                 }
-                );
+            );
     }
 });

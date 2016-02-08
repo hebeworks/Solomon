@@ -29,10 +29,6 @@ export default Ember.Component.extend({
 	// 	this.get('appController').openBottomDrawer({ contentType: 'canvas-gallery/create-a-canvas' });
 	// },
 	
-	appController: function () {
-		return this.controllerFor('Application');
-	}.property(),
-	
 	actions: {
 		switchView: function (view) {
 			if (view != null && view != this.get('currentView')) {

@@ -5,9 +5,9 @@ export function initialize(/* container, application */) {
 export default {
   name: 'inject-store-to-components',
   after: 'ember-data',
-  initialize: function(container, application){
-      // application.register('store:main', 'app.store');
-      // container.injection('component', 'store', 'store:main');
-      application.inject('component', 'store', 'service:store') 
+  initialize: function (container, application) {
+    // application.register('store:main', 'app.store');
+    // container.injection('component', 'store', 'store:main');
+    application.inject('component', 'store', 'service:store') 
   }
 };
