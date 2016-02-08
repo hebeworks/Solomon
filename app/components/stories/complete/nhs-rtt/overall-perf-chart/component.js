@@ -9,9 +9,10 @@ export default DefaultStory.extend({
         subTitle: '', // (Provide a story subtitle)
         viewOnly: true,
         scroll: true, // (Should the story vertically scroll its content?)
+        height: 3
     },
     
-    bars: Ember.A(),
+    bars: [],
     
     onInsertElement: function () {
         this.addBarsToChart();
@@ -20,7 +21,7 @@ export default DefaultStory.extend({
     addBarsToChart: function() {
         var _this = this;
         
-        console.log('addBarsToChart');
+        // console.log('addBarsToChart');
         var locations = [
             {
                 location: 'Location 1',
@@ -68,7 +69,28 @@ export default DefaultStory.extend({
             }
         ];
         
-        // _this.set('bars', locations);
-        _this.bars.pushObjects(locations);
-    }
+        _this.set('bars', locations);
+        
+        setTimeout(function () {
+            _this.set('loaded', true);
+        });
+    },
+    
+    arrangeBars: function() {
+        var _this = this;
+        
+        var numBars = _this.$('[spc-opc_bars]').children('[spc-opc_bar]').length,
+            chartHeight = _this.$('[spc-opc_bars]').outerHeight(),
+            spacing = (chartHeight / numBars) / 2;
+            
+        // console.log('Number of bars: ' + numBars);
+        // console.log('Chart height: ' + chartHeight);
+        // console.log('Spacing: ' + spacing);
+            
+        _this.$('[spc-opc_bar]').each(function() {
+            $(this)
+                .css('height', spacing)
+                .css('margin-bottom', spacing);
+        });
+    }.observes('loaded')
 });

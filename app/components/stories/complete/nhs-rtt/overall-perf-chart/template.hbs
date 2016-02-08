@@ -8,15 +8,17 @@
     </div>
 
     <div spc-opc_chart>
-        <div spc-opc_bars data-national-avg="75%" data-location-avg="65%">
+        <div spc-opc_bars cpn-margin="bottom-half">
             {{#each bar in bars}}
-            <div spc-opc_bar data-location-name="{{bar.location}}" style="width: 0; width: {{bar.percentage}};">{{bar.location}}</div>
+            <div spc-opc_bar data-location-name="{{bar.location}}" style="width: {{bar.percentage}};">{{bar.location}}</div>
             {{/each}}
+            <div spc-opc_avg-line="national" style="left: calc(75% - 1.5px);"></div>
+            <div spc-opc_avg-line="location" style="left: calc(65% - 1.5px);"></div>
         </div>
-        <ul spc-opc_axis>
-            <li spc-opc_label>0%</li>
+        <ul spc-opc_axis cpn-text="center" cpn-clearfix>
+            <li spc-opc_label cpn-float="left">0%</li>
             <li spc-opc_label>50%</li>
-            <li spc-opc_label>100%</li>
+            <li spc-opc_label cpn-float="right">100%</li>
         </ul>
     </div>
     
