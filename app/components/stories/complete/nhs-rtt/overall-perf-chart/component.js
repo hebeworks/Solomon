@@ -13,6 +13,10 @@ export default DefaultStory.extend({
     },
     
     bars: [],
+    barSelected: false,
+    chosenBar: false,
+    chosenBarValue: null,
+    chosenBarLocation: null,
     
     onInsertElement: function () {
         this.addBarsToChart();
@@ -23,50 +27,50 @@ export default DefaultStory.extend({
         
         // console.log('addBarsToChart');
         var locations = [
-            {
+            Ember.Object.create({
                 location: 'Location 1',
                 percentage: '45%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 2',
                 percentage: '50%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 3',
                 percentage: '55%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 4',
                 percentage: '60%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 5',
                 percentage: '65%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 6',
                 percentage: '70%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 7',
                 percentage: '75%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 8',
                 percentage: '80%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 9',
                 percentage: '85%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 10',
                 percentage: '90%'
-            },
-            {
+            }),
+            Ember.Object.create({
                 location: 'Location 11',
                 percentage: '95%'
-            }
+            })
         ];
         
         _this.set('bars', locations);
@@ -79,7 +83,7 @@ export default DefaultStory.extend({
     arrangeBars: function() {
         var _this = this;
         
-        var numBars = _this.$('[spc-opc_bars]').children('[spc-opc_bar]').length,
+        var numBars = _this.$('[spc-opc_bars]').find('[spc-opc_bar]').length,
             chartHeight = _this.$('[spc-opc_bars]').outerHeight(),
             spacing = (chartHeight / numBars) / 2;
             
@@ -92,5 +96,16 @@ export default DefaultStory.extend({
                 .css('height', spacing)
                 .css('margin-bottom', spacing);
         });
-    }.observes('loaded')
+    }.observes('loaded'),
+    
+    actions: {
+        setSelectedBar: function(bar) {
+            // alert(bar);
+            if(!Ember.isEmpty(this.get('selectedBar'))) {
+                this.set('selectedBar.isSelected',false);
+            }
+            bar.set('isSelected',true);
+            this.set('selectedBar',bar);
+        }
+    }
 });
