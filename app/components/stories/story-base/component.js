@@ -56,7 +56,6 @@ export default Ember.Component.extend({
         }),
 
     ensureConfigFields: function () {
-        debugger;
         var configFields = this.get('storyConfig.editableFields');
         if (!Ember.isEmpty(configFields)) {
             var model = this.get('storyModel');
