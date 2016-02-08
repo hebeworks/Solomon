@@ -877,3 +877,10 @@
 		fill: #f7f7f7;
 	}
 }
+
+// Putting Google Chart styles in here until a better place is found
+[cpn-google-chart] {
+	text {
+		font-family: $base-font-family;
+	}
+}

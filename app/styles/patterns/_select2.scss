@@ -3,11 +3,16 @@
 	margin: 0 0 10px 0;
 	background-image: none;
 	
+	* {
+		font-family: $base-font-family !important;
+	}
+	
 	.select2-choice {
 		height: 35px;
 		background-image: none;
 		border: 0;
 		filter: none;
+		line-height: 22px;
 		
 		[cpn-bg-color="white"] & {
 			background-color: $light-grey;
@@ -36,7 +41,7 @@
 		
 		.select2-chosen {
 			height: 100%;
-			font-family: $helvneuemed;
+			font-family: $base-font-family;
 			font-size: .75rem;
 			margin-top: 6px;
 			margin-left: 4px;
@@ -128,7 +133,7 @@ a.select2-choice.select2-default {
 	background-image: none;
 	background-color: $white;
 	color: $black;
-	font-family: $helvneuemed;
+	font-family: $base-font-family;
 	font-size: .75rem;
 	border: 0;
 	
