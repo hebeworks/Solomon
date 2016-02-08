@@ -17,7 +17,6 @@ export default DS.JSONAPIAdapter.extend({
           headers['Authorization'] = 'Bearer ' + token;
         }
 
-        console.log('Compute headers', headers);
         return headers;
     }).property('session.secure.jwt')
 
