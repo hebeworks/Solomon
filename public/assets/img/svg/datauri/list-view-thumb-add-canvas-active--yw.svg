@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>Canvas-YW-icon-hover</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Yorkshire-water" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Yorkshire-Water-Copy" sketch:type="MSArtboardGroup" transform="translate(-817.000000, -3171.000000)">
+            <g id="Canvas-YW-icon-hover" sketch:type="MSLayerGroup" transform="translate(817.000000, 3171.000000)">
+                <rect id="Rectangle-81-Copy-4" fill="#1BA9E1" sketch:type="MSShapeGroup" x="-7.71465032e-14" y="-9.19546494e-14" width="150" height="150" rx="10"></rect>
+                <rect id="Rectangle-81-Copy-5" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="6" y="7" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-6" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="6" y="55" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-7" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="6" y="102" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-5" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="54" y="7" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-7" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="54" y="102" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-5" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="101" y="7" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-6" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="101" y="55" width="42" height="42" rx="7"></rect>
+                <rect id="Rectangle-81-Copy-7" stroke="#B5DDF0" sketch:type="MSShapeGroup" x="101" y="102" width="42" height="42" rx="7"></rect>
+                <path d="M84.6793793,77.5095345 L76.5095345,77.5095345 L76.5095345,85.6793793 C76.5095345,86.2451411 76.0540656,86.7006099 75.4883039,86.7006099 C74.9245846,86.7006099 74.4670733,86.2451411 74.4670733,85.6793793 L74.4670733,77.5095345 L66.2972284,77.5095345 C65.7335091,77.5095345 65.2759978,77.0540656 65.2759978,76.4883039 C65.2759978,75.926627 65.7335091,75.4670733 66.2972284,75.4670733 L74.4670733,75.4670733 L74.4670733,67.2972284 C74.4670733,66.7355516 74.9245846,66.2759978 75.4883039,66.2759978 C76.0540656,66.2759978 76.5095345,66.7355516 76.5095345,67.2972284 L76.5095345,75.4670733 L84.6793793,75.4670733 C85.2451411,75.4670733 85.7006099,75.926627 85.7006099,76.4883039 C85.7006099,77.0540656 85.2451411,77.5095345 84.6793793,77.5095345 L84.6793793,77.5095345 Z M75.4883039,53 C62.5370574,53 52,63.5370574 52,76.4883039 C52,89.4415928 62.5370574,99.9766077 75.4883039,99.9766077 C88.4415928,99.9766077 98.9766077,89.4415928 98.9766077,76.4883039 C98.9766077,63.5370574 88.4415928,53 75.4883039,53 L75.4883039,53 Z" id="Fill-5848-Copy-3" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

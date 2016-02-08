@@ -1,1 +1,31 @@
-{{stories/complete/base-value-tile color=ragRating tileShade=tileShade  storyModel=storyModel}}
+{{#stories/story-base}}
+    <div spc-val>
+        <p spc-val_previous cpn-margin="bottom-none">
+        {{#if previousValue}}
+        {{previousValue}} in {{previousPeriod}}
+        {{else}}
+        &nbsp;
+        {{/if}}
+        </p>
+        
+        {{#if currentValue}}
+        <div cpn-divide="bottom {{lineShade}}" cpn-margin="bottom-half">
+            <p cpn-margin="bottom-half" spc-val_value>{{currentValue}}{{#if trend}}<span spc-val_trend="{{trend}}" class="svg-arrow-circled" data-grunticon-embed></span>{{/if}}</p>
+        </div>
+        {{/if}}
+        
+        {{#if longText}}
+        <p spc-val_long-text cpn-margin="bottom-none">{{longText}}</p>
+        {{/if}}
+        
+        {{#if shortText}}
+        <p spc-val_short-text cpn-margin="bottom-half">{{shortText}}</p>
+        {{/if}}
+        
+        {{#if linkURL}}
+        <div cpn-divide="top {{lineShade}}" cpn-padding="top-none">
+            <a spc-val_link href="{{linkURL}}">{{linkText}}</a>
+        </div>
+        {{/if}}
+    </div>
+{{/stories/story-base}}

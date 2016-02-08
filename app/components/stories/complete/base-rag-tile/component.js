@@ -1,32 +1,40 @@
 /* global Ember, hebeutils, _ */
-import DefaultStory from './../../story-types/default-story/component';
+import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
-    tagName: 'div',
+    layoutName: 'components/stories/complete/base-rag-tile',
     loaded: false,
-    ragRating: 'lime', // lime (green), yellow (amber), -red (red)
-    tileShade: 'light',
+    currentValue: null,
+    previousValue: null,
+    previousPeriod: null,
+    trend: null, // up, down
+    longText: null,
+    shortText: null,
+    linkText: 'Press to see more',
+    linkURL: null,
+    lineShade: 'light', // light, dark
+    rating: 'neutral', // good, bad, neutral
+
     storyConfig: {
         width: '1',
         height: '1',
-        scroll: false,
         viewOnly: true,
-        editableFields: [
-            { name: 'value', type: 'text', value: '', placeholder: 'Enter a value' },
-            { name: 'description', type: 'text', value: '', placeholder: 'Enter a description' },
-            { name: 'description2', type: 'text', value: '', placeholder: 'Enter a second description' },
-            { name: 'rag', type: 'text', value: 'lime', placeholder: 'lime, yellow or red' }
-        ]
+        color: 'amber'
     },
     
-    // onRAG: function () {
-    //     alert('colour:' + colour);
-    //     var colour = this.get('storyModel.rag');
-    //     this.set('storyConfig.colour', colour);
-    // }.observes('storyModel.rag'),
-
-    onInit: function () {
-        this.get('storyModel');
-        this.get('storyModel.config');
+    onInit: function() {
+        this.get('rating');
+        this.get('loaded');
+        this.get('trend');
     }.on('init'),
+    
+    onRating: function() {
+        if (this.rating == 'good') {
+            this.set('storyConfig.color','lime');
+        } else if (this.rating == 'bad') {
+            this.set('storyConfig.color','red');
+        } else {
+            this.set('storyConfig.color','amber');
+        }
+    }.observes('rating')
 });

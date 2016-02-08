@@ -26,131 +26,10 @@ module.exports = function (environment) {
       dataMillCatAPI: 'http://leedsdatamill.org', // http://leedsdatamill.org/api (the catalogue API for package queries)
       dataMillDataAPI: 'http://api.datapress.io/api/3/',     // (the datastore API where data ends up in the 'push to datastore' case).
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW 
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
-
-      googleMapStyles: {
-        default: [
-          {
-            "featureType": "administrative",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#0c0b0b"
-              }
-            ]
-          },
-          {
-            "featureType": "landscape",
-            "elementType": "all",
-            "stylers": [
-              {
-                "color": "#f2f2f2"
-              }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "all",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "road",
-            "elementType": "all",
-            "stylers": [
-              {
-                "saturation": -100
-              },
-              {
-                "lightness": 45
-              }
-            ]
-          },
-          {
-            "featureType": "road",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#090909"
-              }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "all",
-            "stylers": [
-              {
-                "visibility": "simplified"
-              }
-            ]
-          },
-          {
-            "featureType": "road.arterial",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "transit",
-            "elementType": "all",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": [
-              {
-                "color": "#d4e4eb"
-              },
-              {
-                "visibility": "on"
-              }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "geometry.fill",
-            "stylers": [
-              {
-                "visibility": "on"
-              },
-              {
-                "color": "#fef7f7"
-              }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#9b7f7f"
-              }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#fef7f7"
-              }
-            ]
-          }
-        ]
-      }
-
+      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      hebeNodeAPI: 'http://hebenodeapi-cached.azurewebsites.net/',
+      // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
+      solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
     }
   };
 
@@ -180,13 +59,14 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy'
+    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
     // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV
     // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW 
-
     // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
     // ENV.APP.solomonAPIURL = 'http://localhost:3000';
     // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
+    // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
+    // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk'; // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
   }
 
   if (environment === 'test') {
@@ -204,6 +84,10 @@ module.exports = function (environment) {
   if (environment === 'production') {
 
   }
+  
+  ENV.googleMap = {
+    libraries: ['drawing', 'visualization']
+  };
 
   return ENV;
 };

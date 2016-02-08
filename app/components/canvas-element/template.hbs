@@ -11,12 +11,13 @@
     
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
+            {{stories/complete/lcc-free-wifi}}
+            {{stories/complete/market-occupancy}}
             {{stories/complete/base-rag-title}}
             {{stories/complete/leeds-air-quality-trends}}
             {{stories/complete/footfall-centre}}
             {{stories/complete/council-spending-year-line}}
             {{stories/complete/council-spending-directorate}}
-            {{stories/complete/market-occupancy}}
             {{stories/complete/google-charts}}
             {{stories/complete/google-charts-column}}
             {{stories/complete/google-charts-donut}}
@@ -25,9 +26,44 @@
             {{stories/complete/info-centre-visitor-numbers}}
             {{stories/complete/leeds-air-quality-trends}}
             {{stories/complete/market-occupancy}}
+            {{stories/complete/generic-twitter-feed}}
             --}}
         {{!-- END DEVELOPMENT STORIES --}}
         
+        {{!-- YORKSHIRE WATER HACK STORIES 
+            {{stories/complete/ywh/heat-map}}
+            {{stories/complete/ywh/area-info}}
+            {{stories/complete/ywh/top-dmas-by-volume}}
+            {{stories/complete/ywh/total-call-stats}}
+            {{stories/complete/ywh/contact-media-types}}
+            {{stories/complete/ywh/day-of-contact-bar}}
+            {{stories/complete/ywh/multi-chart}}
+            {{stories/complete/ywh/call-time-trends}}
+            {{stories/complete/ywh/topics-closed-duration-stacked-bar}}
+            {{stories/complete/ywh/topic-time-pie}}
+            {{stories/complete/ywh/contacts-by-property}}
+            {{stories/complete/ywh/video-player}}
+            {{stories/complete/ywh/image-gallery}}
+            {{stories/complete/ywh/small-image-gallery}}
+            {{stories/complete/ywh/yw-rss-feed}}
+        --}}
+        {{!-- UNUSED YORKSHIRE WATER HACK STORIES 
+            {{stories/complete/ywh/total-monthly-calls-year-rag}}
+            {{stories/complete/ywh/current-zone-total-rag}}
+        --}}
+        {{!-- ROAD TRAFFIC ACCIDENT STORIES
+        {{stories/complete/rta-intro-story}}
+        {{stories/complete/rta-video-story}}
+        {{stories/complete/rta-casualty-age}}
+        {{stories/complete/rta-vehicle-accidents}}
+        {{stories/complete/rta-accident-locations}}
+        {{stories/complete/rta-monthly-accidents}}
+        {{stories/complete/rta-daily-accidents}}
+        {{stories/complete/rta-pedestrians-vehicles}}
+        {{stories/complete/beta-rag}}
+        --}}
+        
+        {{stories/complete/nhs-rtt/ccg-map}}
 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
@@ -35,10 +71,9 @@
                     {{component story.componentPath storyModel=story}}
                 {{/if}}
             {{/each}}
-        {{else}}
-            <p>Sorry we couldn't load this canvas. Please try another from the Gallery.</p>
         {{/if}}
-        
+
+ 
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">
@@ -47,6 +82,7 @@
                 </div>
             </div>
         {{/ui/generic-element}}
+      
 
         </div>
     </div>

@@ -1,0 +1,26 @@
+{{#stories/story-base}}
+
+    <div spc-multi-chart_inner cpn-clearfix>
+        <div spc-multi-chart_item cpn-padding="top-double">
+            <span class="svg-house" data-grunticon-embed></span>
+            <p spc-multi-chart_label>
+                <span cpn-font="swiss-bold-rounded" cpn-display="block">Properties</span>
+                <span cpn-display="block">{{large-number-formatter summed.propertiesTotal}}</span>
+            </p>
+        </div>
+        <div spc-multi-chart_item cpn-padding="top-double">
+            <span class="svg-person" data-grunticon-embed></span>
+            <p spc-multi-chart_label>
+                <span cpn-font="swiss-bold-rounded" cpn-display="block">People</span>
+                <span cpn-display="block">{{large-number-formatter summed.population}}</span>
+            </p>
+        </div>
+        <div spc-multi-chart_item>
+            <div id="multi-pie-1"></div>
+        </div>
+        <div spc-multi-chart_item>
+            <div id="multi-pie-2"></div>
+        </div>
+    </div>
+    
+{{/stories/story-base}}

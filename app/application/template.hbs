@@ -1,8 +1,4 @@
 
 {{liquid-outlet}}
 
-{{#ui/modal-popup visible=isModalVisible effect="md-effect-7" modalTitle=modalTitle modalIntro=modalIntro}}
-    {{#if modalComponent}}
-        {{component modalComponent modalTitle=modalTitle  modalIntro=modalIntro visible=showLoginPopup}}
-    {{/if}}
-{{/ui/modal-popup}}
+{{ui/modal-popup modalOptions=modalOptions appController=appController}}

@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 
     galleryNavItems: function () {
         var items = [
-            { title: 'Back', action: 'goBack' },
+            { title: 'Back', action: 'goBack', iconName: 'back' },
             //            { title: 'Browse' },
             //            { title: 'My Collection' },
             //            { title: 'Search' }
@@ -20,8 +20,8 @@ export default Ember.Controller.extend({
             var dashed = items[i].title.dasherize();
             items[i].dashed = '-' + dashed;
             items[i].jshook = 'js-gallery-' + dashed;
-            items[i].iconclass = 'icon-' + dashed;
-            items[i].svgclass = 'svg-' + dashed;
+            items[i].iconclass = 'icon--' + items[i].iconName;
+            items[i].svgclass = 'svg-icon--' + items[i].iconName;
         }
         return items;
     }.property(),

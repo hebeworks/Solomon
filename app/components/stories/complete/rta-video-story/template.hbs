@@ -1,0 +1,31 @@
+{{#stories/story-base}}
+
+    <div>
+        {{!-- Display the video --}}
+        {{#if usableVideoSrc}}
+        <iframe
+            width="310"
+            height="174"
+            src="{{usableVideoSrc}}"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        
+        <div cpn-padding="right left">
+            <h3 spc-rta-video-story_title>In the doghouse #butalive</h3>
+            <p spc-rta-video-story_desc>This campaign shows how a second drink could double your chance of being in a fatal collision.</p>
+            <a href="https://www.youtube.com/channel/UCDnKjAhoLVQce2zOAY0JmrQ" target="_blank" cpn-button="move">Find more videos</a>
+        </div>
+        
+        {{!-- Choose a video --}}
+        {{else}}
+        <div cpn-padding="right left">
+            <p>Choose a video to display</p>
+            {{input value=videoSrcUser type="text" placeholder="YouTube share URL"}}
+            <button cpn-button="action" cpn-margin="top" {{action "addVideo"}}>Add Video</button>
+        </div>
+        {{/if}}
+        
+    </div>
+    
+{{/stories/story-base}}

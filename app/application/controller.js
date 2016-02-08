@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import SolomonConfig from 'hebe-dash/utils/solomon-utils';
 
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
-	modalComponent: 'ui/login-form',
-	solomoncConfig: null,
+	modalOptions: {
+		component: 'ui/login-form'
+	},
 
 	appController: function () {
         return this;
@@ -21,13 +21,22 @@ export default Ember.Controller.extend({
 		this.get('history').pushObject(this.get('currentPath'));
 	}.observes('currentPath'),
 
-	loadSolomonConfig: function () {
+	onErrorMessage: function () {
+		var _this = this;
+		var errorMessage = this.get('appSettings.errorMessage');
+		function clearErrorMessage() {
+			_this.set('appSettings.errorMessage', null);
+		}
+		if (!Ember.isEmpty(errorMessage)) {
+			this.showModal(null, { title: 'Oops there was a problem', intro: errorMessage, onCloseCallback: clearErrorMessage });
+		}
+	}.observes('appSettings.errorMessage'),
+
+	obSolomonConfigChange: function () {
         // Todo: get the site config from a request to Solomon API 
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
-		var config = SolomonConfig.config(window.location.hostname);
-		this.set('pageTitle', config.title);
-        this.set('solomonConfig', config);
-	},
+		this.set('pageTitle', this.get('appSettings.solomonConfig.title'));
+	}.observes('appSettings.solomonConfig'),
 
 	_pageTitle: '',
 	pageTitle: Ember.computed({
@@ -94,23 +103,60 @@ export default Ember.Controller.extend({
         });
     },
 
-	showModal: function (component, title, intro) {
-		this.set('modalComponent', component);
-		if (!Ember.isEmpty(title)) {
-			this.set('modalTitle', title);
+	showModal: function (component, options) {
+		var modalOptions = _.extend(
+			{ // default modal options
+				preventCanvasBlur: true,
+				effect: 'md-effect-1',
+				title: '',
+				component: component,
+				intro: '',
+				canvasWasBlurred: this.get('canvasBlurred')
+			},
+			options
+			);
+		this.set('modalOptions', modalOptions);
+		this.set('modalOptions.isVisible', true);
+
+		if (this.get('modalOptions.preventCanvasBlur') == false) {
+			this.set('canvasBlurred', true);
 		}
-		this.set('modalIntro', intro);
-		this.set('isModalVisible', true);
+
+		if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback'))
+			&& Ember.isEmpty(options.onCloseCallback)) {
+			// there is a on close callback function - but it wasn't just passed
+			// so clear it
+			this.get('modalOptions.onCloseCallback', null);
+		}
+		// this.set('modalEffect', modalOptions.modalEffect);
+		// this.set('modalComponent', component);
+		// if (!Ember.isEmpty(title)) {
+		// 	this.set('modalTitle', title);
+		// }
+		// if (modalOptions.preventCanvasBlur != false) {
+		// 	this.set('canvasBlurred', true);
+		// }
+		// this.set('modalIntro', intro);
+		// this.set('isModalVisible', true);
 	},
 
 	hideModal: function () {
-		this.set('modalComponent', '');
-		this.set('isModalVisible', false);
+		if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
+			this.set('canvasBlurred', false);
+		}
+		if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback')) &&
+			_.isFunction(this.get('modalOptions.onCloseCallback'))) {
+				this.get('modalOptions.onCloseCallback')();
+		}
+		this.setProperties({
+			'modalOptions.component': null,
+			'modalOptions.isVisible': false
+		});
 	},
 
 	showTutorialTimer: null,
 	shouldShowTutorial: function (force) {
-		if(Modernizr.mq('screen and (min-width: 768px)')) {
+		if (Modernizr.mq('screen and (min-width: 768px)')) {
 			if (Cookies.get('viewedTutorial')) {
 				// unauthed session has seen tutorial
 				// stop the timer & observer
@@ -133,7 +179,7 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorial: function () {
-		if(Modernizr.mq('screen and (min-width: 768px)')) {
+		if (Modernizr.mq('screen and (min-width: 768px)')) {
 			if (!this.get('isModalVisible')) {
 				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
 				Ember.run.cancel(this.get('showTutorialTimer'));
@@ -189,9 +235,7 @@ export default Ember.Controller.extend({
 		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams);
 		this.closeToolbox();
 		this.set('bottomDrawerConfig', config);
-		if(config.preventCanvasBlur != true) {
-			this.set('canvasBlurred', true);
-		}
+		this.set('canvasBlurred', true);
 		// Drawer.closeTop();
 		// Drawer.openBottomHalf();
 	},
@@ -228,7 +272,7 @@ export default Ember.Controller.extend({
         // var canvasID = canvas.get('id');
         // console.log(canvasID);
         this.get('target').transitionTo('canvas', canvasID);
-        this.closeBottomDrawer();
+        this.get('appController').closeBottomDrawer();
     },
 
 	createACanvas: function (model) {
@@ -243,25 +287,8 @@ export default Ember.Controller.extend({
 		this.openBottomDrawer(params);
 	},
 
-	editACanvas: function (model) {
-		var params = { contentType: 'stories/create-a-canvas' };
-		if (!Ember.isEmpty(model)) {
-			params.model = model;
-			params.mainTitle = 'Edit a canvas'
+	showCanvasSettings: function () {
+		this.showModal('canvas-settings', 'Canvas Settings', '', true);
 	}
-		this.openBottomDrawer(params);
-	},
-
-	editAStory: function (model) {
-		var params = { 
-			contentType: 'stories/edit-a-story',
-			preventCanvasBlur: true
-		};
-		if (!Ember.isEmpty(model)) {
-			params.model = model;
-			params.mainTitle = 'Edit a story';
-		}
-		this.openBottomDrawer(params);
-	},
 
 });

@@ -13,7 +13,11 @@ export default Ember.Component.extend({
 		// console.log('didRenderElement');
         // Canvas.init();
         // HebeDash.init();
-		this.initPackery();
+        if(!Ember.isEmpty(this.get('currentCanvas'))) {
+            this.initPackery();
+        } else {
+            this.set('appSettings.errorMessage',"Sorry we can't find the canvas you were looking for. Try find one using the Gallery link");
+        }
 	},
 
 	getNewlyAddedStoryIDs: function () {
@@ -71,7 +75,7 @@ export default Ember.Component.extend({
 				var $itemEls = $newStories.draggable({
 					cursor: 'move',
 					containment: 'body',
-					handle: '.js-cogs, .js-drag-handle',
+					handle: '.js-cogs, .js-bars, .js-drag-handle',
 					scroll: true,
 					scrollSensitivity: 100,
 					scrollSpeed: 25,
@@ -117,7 +121,7 @@ export default Ember.Component.extend({
 			var $itemEls = $allStories.draggable({
 				cursor: 'move',
 				containment: 'body',
-				handle: '.js-cogs, .js-drag-handle',
+				handle: '.js-cogs, .js-bars, .js-drag-handle',
 				scroll: true,
 				scrollSensitivity: 100,
 				scrollSpeed: 25,

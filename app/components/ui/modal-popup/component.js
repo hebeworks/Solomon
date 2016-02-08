@@ -2,9 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	// Properties
-	visible: false,
-
-	effect: 'md-effect-1',
+	// visible: false,
+	modalOptions:{},
 	perspective: false,
 
 	container: null,
@@ -12,7 +11,7 @@ export default Ember.Component.extend({
 	close: null,
 	documentEl: null,
 	overlay: null,
-	
+		
 	// Methods
 	ensureDOM: function () {
 		this.documentEl = this.$('.js-dashboard-wrapper');
@@ -23,16 +22,15 @@ export default Ember.Component.extend({
 	},
 
 	onVisibleChange: function () {
-		if (this.get('visible') == true) {
+		if (this.get('modalOptions.isVisible') == true) {
 			this.showModal();
 		} else {
 			this.hideModal();
 		}
-	}.observes('visible'),
+	}.observes('modalOptions.isVisible'),
 
 	showModal: function () {
 		this.ensureDOM();
-		this.modal.addClass('md-show');
 		if (this.perspective) {
 			this.documentEl.addClass('md-perspective');
 		}
@@ -40,19 +38,18 @@ export default Ember.Component.extend({
 
 	hideModal: function () {
 		this.ensureDOM();
-		this.modal.removeClass('md-show');
-
 		if (this.perspective) {
 			this.documentEl.removeClass('md-perspective');
 		}
 	},
 	
 	// Actions
-	actions: {
-		close: function () {
-			this.set('visible', false);
-		}
-	}
+	// actions: {
+	// 	close: function () {
+	// 		// this.set('modalOptions.isVisible', false);
+	// 		// this.set('appController.modalOptions.isVisible', false);
+	// 	}
+	// }
 	
 	
 	// isResponsive: false,

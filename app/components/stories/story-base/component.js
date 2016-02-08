@@ -36,13 +36,25 @@ export default Ember.Component.extend({
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
 
-    storyConfig: Ember.computed('target.storyConfig', function () {
-        var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
-        var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
-        Ember.merge(defaultConfig, targetConfig);
-        return defaultConfig;
-    }),
-    
+    storyConfig: Ember.computed(
+        'target.storyConfig',
+        'target.storyConfig.color',
+        'target.storyConfig.width',
+        'target.storyConfig.height',
+        'target.storyConfig.headerImage',
+        'target.storyConfig.title',
+        'target.storyConfig.subTitle',
+        'target.storyConfig.description',
+        'target.storyConfig.license',
+        'target.storyConfig.slider',
+        'target.storyConfig.scroll',
+        function () {
+            var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
+            var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
+            Ember.merge(defaultConfig, targetConfig);
+            return defaultConfig;
+        }),
+
     ensureConfigFields: function() {
         debugger;
         var configFields = this.get('storyConfig.editableFields');
@@ -57,6 +69,8 @@ export default Ember.Component.extend({
     }.observes('target.storyConfig'),
 
     // Turn the provided height and width settings into the attribute values we need.
+    // Turn the provided height and width settings
+    // into the attribute values we need.
     usableHeight: Ember.computed('storyConfig.height', function () {
         return 'height-' + this.get('storyConfig.height');
     }),
@@ -65,7 +79,8 @@ export default Ember.Component.extend({
         return 'width-' + this.get('storyConfig.width');
     }),
     
-    // Pass the width and height settings into the story component
+    // Pass the width and height settings
+    // into the story component.
     'cpn-story': Ember.computed('storyConfig.width', function () {
         return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
     }),
@@ -139,9 +154,10 @@ export default Ember.Component.extend({
             return (!Ember.isEmpty(this.get('storyModel.config')) ? this.get('storyModel.config').copy() : []);
         }
     }),
-
-    onInit: function () {
+    
+    onInit: function() {
         this.set('data-id', hebeutils.guid());
+        this.setStoryHandle();
     }.on('init'),
 
     onDidInsertElement: function () {
@@ -158,6 +174,7 @@ export default Ember.Component.extend({
     setupDragEvents: function () {
         var _this = this;
         var cog = this.$('.js-cogs');
+        var bar = this.$('.js-bars');
 
         if (Modernizr.cssanimations) {
             _this.$('.story__inner').addClass('-support-3d').attr('cpn-story_inner', 'support-3d');
@@ -168,6 +185,14 @@ export default Ember.Component.extend({
         }
 
         cog
+            .on('touchstart mousedown', function (e) {
+                _this.set('isDraggingStory', false);
+            })
+            .on('touchmove mousemove', function (e) {
+                _this.set('isDraggingStory', true);
+            });
+            
+        bar
             .on('touchstart mousedown', function (e) {
                 _this.set('isDraggingStory', false);
             })
@@ -199,6 +224,22 @@ export default Ember.Component.extend({
                     }
                 });
         }
+    },
+    
+    setStoryHandle: function() {
+        var storyHandle = this.get('appSettings.solomonConfig.storyConfig.storyHandle');
+        
+        if (storyHandle == 'dot') {
+            this.set('storyHandleIsDot', true);
+            
+        } else if (storyHandle == 'bar') {
+            this.set('storyHandleIsBar', true);
+            
+        } else if (storyHandle == 'both') {
+            this.set('storyHandleIsBoth', true);
+            
+        } else if (storyHandle == 'none') {
+            this.set('storyHandleIsNone', true);
     },
 
     actions: {

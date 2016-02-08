@@ -1,7 +1,18 @@
 <div cpn-story_inner>
     
     <div cpn-story_face="front {{support3d}} {{storyFlip}}" cpn-bg-color="{{storyConfig.color}}">
+        {{#if storyHandleIsDot}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
+        {{/if}}
+        
+        {{#if storyHandleIsBar}}
+        <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="front">Move Story</a>
+        {{/if}}
+        
+        {{#if storyHandleIsBoth}}
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
+        <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="front">Move Story</a>
+        {{/if}}
         
         <section cpn-story_content="front {{usableHeight}} {{hasHeader}} {{hasFooter}}">
             
@@ -36,12 +47,23 @@
     </div>
     
     <div cpn-story_face="back {{support3d}} {{storyFlip}}">
+        {{#if storyHandleIsDot}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
+        {{/if}}
+        
+        {{#if storyHandleIsBar}}
+        <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="back">Move Story</a>
+        {{/if}}
+        
+        {{#if storyHandleIsBoth}}
+        <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
+        <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="back">Move Story</a>
+        {{/if}}
         
         <section cpn-story_content="back {{usableHeight}}">
             {{#if storyConfig.viewOnly}}
-                <button cpn-margin="top" cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove Story</button>
-                {{#if configFields}}
+                <button cpn-margin="top" cpn-button="action" {{action 'removeAStory' storyModel}}>Remove Story</button>
+				{{#if configFields}}
                     <button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>                
                 {{/if}}
             {{else}}
@@ -62,16 +84,16 @@
                 <ul cpn-row-list>
                     {{#if storyConfig.dataSourceUrl}}
                     <li cpn-width="50%">
-                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
+                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move" target="_blank">View data source</a>
                     </li>
                     {{/if}}
                     {{#if storyConfig.feedbackEmail}}
                     <li cpn-width="50%">
-                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
+                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move" target="_blank">Contact author</a>
                     </li>
                     {{/if}}
                     <li cpn-width="100%">
-                        <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                        <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
                     </li>
                 </ul>
                 
@@ -81,7 +103,7 @@
     {{#each configFields as |field|}}
         {{input type=field.type value=field.value placeholder=field.placeholder}}
     {{/each}}
-{{/if}}
+            {{/if}}
 --}}           
             {{/if}}
         </section>

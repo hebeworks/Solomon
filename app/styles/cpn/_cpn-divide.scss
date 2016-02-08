@@ -34,6 +34,16 @@
     border-color: #fff;
 }
 
+[cpn-divide~="faded-light"],
+%cpn-divide-light {
+    border-color: rgba(255,255,255,.3);
+}
+
+[cpn-divide~="faded-dark"],
+%cpn-divide-light {
+    border-color: rgba(0,0,0,.1);
+}
+
 [cpn-divide~="solid"],
 %cpn-divide-solid {
     border-style: solid;

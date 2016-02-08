@@ -46,6 +46,7 @@ app.import(app.bowerDirectory + '/d3/d3.js');
 app.import(app.bowerDirectory + '/c3/c3.js');
 app.import(app.bowerDirectory + '/c3/c3.css');
 app.import(app.bowerDirectory + '/underscore/underscore-min.js');
+app.import(app.bowerDirectory + '/underscore.string/dist/underscore.string.min.js');
 app.import('vendor/embedsvg/grunticon.loader.js');
 app.import('vendor/embedsvg/grunticon.inline.js');
 app.import('vendor/modernizr-custom.min.js');
