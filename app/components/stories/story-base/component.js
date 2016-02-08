@@ -5,8 +5,8 @@ export default Ember.Component.extend({
     tagName: 'div',
     isDraggingStory: false,
     // 'data-id': null, //Ember.computed.alias('target.storyModel.id'),
-    'data-id': Ember.computed.alias('target.storyModel.id'),
-    'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
+    'data-id': Ember.computed.alias('storyModel.id'),
+    'data-canvas-order-index': Ember.computed.alias('storyModel.canvasOrderIndex'),
     storyModel: Ember.computed('target.storyModel', {
         get() {
             if(!Ember.isEmpty(this.get('target.storyModel'))) {
