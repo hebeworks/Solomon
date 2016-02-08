@@ -6,7 +6,14 @@ export default Ember.Component.extend({
     // 'data-id': null, //Ember.computed.alias('target.storyModel.id'),
     'data-id': Ember.computed.alias('target.storyModel.id'),
     'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
-    storyModel: Ember.computed.alias('target.storyModel'),
+    storyModel: Ember.computed('target.storyModel', {
+        get() {
+            if(!Ember.isEmpty(this.get('target.storyModel'))) {
+                return this.get('target.storyModel');
+            }
+            return this.store.createRecord('story',{});
+        }
+    }),
     classNames: 'js-story',
 
     support3d: '',
