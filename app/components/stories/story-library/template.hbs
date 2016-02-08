@@ -3,7 +3,7 @@
 			<a {{action "closeBottomDrawer"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
 			<h2 cpn-frame_heading>Add a Story</h2>
 		</div>
-		
+
 		<div cpn-divide="bottom">
 			<ul cpn-row-list spc-story-drawer-buttons>
 				<li>
@@ -16,19 +16,19 @@
 					<button cpn-button {{action "switchView" 'search' }} data-btn-type="search">Search</button>
 				</li>
 				{{!-- <button class="btn -toggle" {{action "switchView" 'official' }} data-btn-type="official">Official</button>--}}
-				{{#if isAdmin}}
+				{{#if currentUser.isAdmin}}
 					<li spc-story-drawer-create>
 						<button cpn-button="move" {{action "changeBottomDrawerContent" "stories/create-a-story"}}>Create a story</button>
 					</li>
 				{{/if}}
 			</ul>
 		</div>
-		
+
 		{{!-- <div class="js-bottom-drawer-button btn-list margin-top-no">
 			<button class="btn -toggle" {{action "switchView" 'categories' }} data-btn-type="categories">Categories</button>
 			<button class="btn -toggle" {{action "switchView" 'featured' }} data-btn-type="featured">Featured</button>
 			<button class="btn -toggle" {{action "switchView" 'search' }} data-btn-type="search">Search</button>
-			{{#if isAdmin}}
+			{{#if currentUser.isAdmin}}
 				<button class="btn -blue -create float--right" {{action "changeBottomDrawerContent" "stories/create-a-story"}}>
 					<span class="icon-conversation svg-conversation" data-grunticon-embed></span>
 					Create a story
