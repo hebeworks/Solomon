@@ -1,7 +1,7 @@
 <h3 cpn-thumb-list_heading>Suggested Canvasses</h3>
 
 <div cpn-thumb-list_wrapper cpn-divide="bottom">
-    <ul cpn-thumb-list_items>        
+    <ul cpn-thumb-list_items>
         {{#if items}}
         	{{#each items as |canvas|}}
         		{{stories/story-library/list-view-thumbnail model=canvas action="loadACanvas" thumb-icon="add-canvas"}}
@@ -14,12 +14,10 @@
     </ul>
 </div>
 
-
 <div class="table -fixed">
-	
-	{{canvas-gallery/lister-users}}
-	
-	{{yield}}
-	
-</div>
 
+	{{canvas-gallery/lister-users}}
+
+	{{yield}}
+
+</div>

@@ -8,7 +8,6 @@ export default Ember.Component.extend({
 	
 	username: '',
 	message: '',
-	appController: null,
 	hideLoginForm: false,
 	
 	// Methods

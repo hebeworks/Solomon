@@ -1,12 +1,20 @@
+/* global grunticon, Ember, $ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'div',
     isDraggingStory: false,
     // 'data-id': null, //Ember.computed.alias('target.storyModel.id'),
-    'data-id': Ember.computed.alias('target.storyModel.id'),
-    'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
-    storyModel: Ember.computed.alias('target.storyModel'),
+    'data-id': Ember.computed.alias('storyModel.id'),
+    'data-canvas-order-index': Ember.computed.alias('storyModel.canvasOrderIndex'),
+    storyModel: Ember.computed('target.storyModel', {
+        get() {
+            if(!Ember.isEmpty(this.get('target.storyModel'))) {
+                return this.get('target.storyModel');
+            }
+            return this.store.createRecord('story',{});
+        }
+    }),
     classNames: 'js-story',
 
     support3d: '',
@@ -54,6 +62,20 @@ export default Ember.Component.extend({
             return defaultConfig;
         }),
 
+    ensureConfigFields: function () {
+        debugger;
+        var configFields = this.get('storyConfig.editableFields');
+        if (!Ember.isEmpty(configFields)) {
+            var model = this.get('storyModel');
+            configFields.forEach(function (field) {
+                if (Ember.isEmpty(model.get(field.name))) {
+                    model.addConfigItem(field);
+                }
+            });
+        }
+    }.observes('target.storyConfig'),
+
+    // Turn the provided height and width settings into the attribute values we need.
     // Turn the provided height and width settings
     // into the attribute values we need.
     usableHeight: Ember.computed('storyConfig.height', function () {
@@ -139,8 +161,9 @@ export default Ember.Component.extend({
             return (!Ember.isEmpty(this.get('storyModel.config')) ? this.get('storyModel.config').copy() : []);
         }
     }),
-    
-    onInit: function() {
+
+    onInit: function () {
+        this.set('data-id', hebeutils.guid());
         this.setStoryHandle();
     }.on('init'),
 
@@ -175,7 +198,7 @@ export default Ember.Component.extend({
             .on('touchmove mousemove', function (e) {
                 _this.set('isDraggingStory', true);
             });
-            
+
         bar
             .on('touchstart mousedown', function (e) {
                 _this.set('isDraggingStory', false);
@@ -189,7 +212,6 @@ export default Ember.Component.extend({
         if (isTouchDevice) {
             cog
                 .on('touchend', function (e) {
-
                     var $el = $(this);
                     if (_this.get('isDraggingStory') == false) {
                         $el.closest('.story__inner').toggleClass('-flip');
@@ -198,11 +220,9 @@ export default Ember.Component.extend({
         } else {
             cog
                 .on('mouseup', function (e) {
-
                     var $el = $(this);
                     if (_this.get('isDraggingStory') == false) {
                         $el.closest('.story__inner').toggleClass('-flip');
-
                         if (_this.get('storyFlip') == 'not-flipped') {
                             _this.set('storyFlip', 'flipped');
                         } else {
@@ -212,21 +232,29 @@ export default Ember.Component.extend({
                 });
         }
     },
-    
-    setStoryHandle: function() {
+
+    setStoryHandle: function () {
         var storyHandle = this.get('appSettings.solomonConfig.storyConfig.storyHandle');
-        
+
         if (storyHandle == 'dot') {
             this.set('storyHandleIsDot', true);
-            
+
         } else if (storyHandle == 'bar') {
             this.set('storyHandleIsBar', true);
-            
+
         } else if (storyHandle == 'both') {
             this.set('storyHandleIsBoth', true);
-            
+
         } else if (storyHandle == 'none') {
             this.set('storyHandleIsNone', true);
+        }
+    },
+
+    actions: {
+        editAStory: function (model) {
+            this.set('storyFlip', 'not-flipped');
+            this.set('action', 'editAStory');
+            this.sendAction('action', model);
         }
     }
 });

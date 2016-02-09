@@ -3,9 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	// Properties
 	isModalVisible: false,
-	modalOptions: {
-		component: 'ui/login-form'
-	},
+	modalOptions: {},
 
 	appController: function () {
         return this;
@@ -33,7 +31,7 @@ export default Ember.Controller.extend({
 	}.observes('appSettings.errorMessage'),
 
 	obSolomonConfigChange: function () {
-        // Todo: get the site config from a request to Solomon API 
+        // Todo: get the site config from a request to Solomon API
 		// (using the response header) e.g. Solomon-Client	solomon_local_dev
 		this.set('pageTitle', this.get('appSettings.solomonConfig.title'));
 	}.observes('appSettings.solomonConfig'),
@@ -54,54 +52,6 @@ export default Ember.Controller.extend({
 	}),
 
 	// Methods
-    authLogin: function (username) {
-        var obj = this;
-		// debugger;
-		// console.log('authLogin: ' + username);
-        return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-			// obj.get('session').authenticate('authenticator:unique', 'nate')
-			obj.get('session').authenticate('authenticator:unique', username)
-                .then(
-                    function (message) {
-                        // _this.set('errorMessage', message);
-						// console.log('authLogin.then username: ' + username + ', message: ' + message);
-						var foundUserCallback = function (user) {
-							// console.log('foundUserCallback: ' + user.username)
-							// debugger;
-							obj.get('currentUser').set('content', user);
-							resolve(user);
-						};
-
-						if (!Ember.isEmpty(username)) {
-							// console.log('username is not empty');
-							// return obj.store.find('user', { username: username })
-							return obj.store.find('user', username)
-								.then(
-									foundUserCallback,
-									function () {
-										// console.log('User not found');
-										reject(new Error('User not found'));
-									});
-						} else {
-							var token = obj.get('session.content.secure.token');
-							// console.log('username IS empty token is: ' + token);
-							return obj.store.find('user', token)
-								.then(
-									foundUserCallback,
-									function () {
-										reject(new Error('User not found'));
-									});
-						}
-                    },
-                    function (message) {
-						// debugger;
-                        // _this.set('errorMessage', message);
-                        // console.log('Error authenticating: ' + message);
-                        reject(message);
-                    }
-					);
-        });
-    },
 
 	showModal: function (component, options) {
 		var modalOptions = _.extend(
@@ -155,69 +105,34 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorialTimer: null,
-	shouldShowTutorial: function (force) {
-		if (Modernizr.mq('screen and (min-width: 768px)')) {
-			if (Cookies.get('viewedTutorial')) {
-				// unauthed session has seen tutorial
-				// stop the timer & observer
-				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-				Ember.run.cancel(this.get('showTutorialTimer'));
-			} else if (!Ember.isEmpty(this.get('currentUser.content')) && this.get('currentUser.content.config.viewedTutorial') == true) {
-				// have a user and has seen tutorial
-				// stop the timer & observer
-				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-				Ember.run.cancel(this.get('showTutorialTimer'));
-			} else {
-				// show the tutorial in 5 seconds
-				var timer = Ember.run.later(this, this.showTutorial, 5000);
-				this.set('showTutorialTimer', timer);
-				// if too early for authed user - observe for it being set
-				// if it is set in the meantime, the timer will be cancelled
-				Ember.addObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-			}
+
+	shouldShowTutorial: function (force){
+		if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')){
+			this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
 		}
 	},
 
 	showTutorial: function () {
-		if (Modernizr.mq('screen and (min-width: 768px)')) {
-			if (!this.get('isModalVisible')) {
-				Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-				Ember.run.cancel(this.get('showTutorialTimer'));
-				this.showModal('ui/tutorial-intro', 'Tutorial');
-			}
+		if (!this.get('isModalVisible')){
+			Ember.run.cancel(this.get('showTutorialTimer'));
+			this.showModal('ui/tutorial-intro', 'Tutorial');
 		}
 	},
 
 	closeTutorial: function () {
-		Ember.removeObserver(this, 'currentUser.content', this, this.shouldShowTutorial);
-		var authedUser = this.get('currentUser.content');
-
-		if (!Ember.isEmpty(authedUser)) {
-			// if we have authed session user
-			// set viewed flag
-			var userConfig = authedUser.get('config');
-			userConfig.viewedTutorial = true;
-			authedUser.set('config', userConfig);
-			authedUser.save();
-		}
-		Cookies.set('viewedTutorial', true);
 		this.hideModal();
-		// this.showModal('ui/login-form');
+
+		Cookies.set('viewedTutorial', true);
 	},
 
 	openToolbox: function () {
-		// canvas.carousel.$switcher.removeClass('-blurred');
-		// Drawer.toggleTop();
-		// Drawer.closeBottom();
 		this.set('canvasBlurred', true);
 		this.set('topOpen', true);
+
 		$('.js-open-toolbox').addClass('-selected');
 	},
 
-	closeToolbox: function () {
-		// canvas.carousel.$switcher.removeClass('-blurred');
-		// Drawer.toggleTop();
-		// Drawer.closeBottom();
+	closeToolbox: function (){
 		this.set('canvasBlurred', false);
 		this.set('topOpen', false);
 		$('.js-open-toolbox').removeClass('-selected');
@@ -289,6 +204,19 @@ export default Ember.Controller.extend({
 
 	showCanvasSettings: function () {
 		this.showModal('canvas-settings', 'Canvas Settings', '', true);
-	}
+	},
+    
+    editAStory: function (model) {
+		var params = { 
+			contentType: 'stories/edit-a-story',
+			preventCanvasBlur: true
+		};
+		if (!Ember.isEmpty(model)) {
+			params.model = model;
+			params.mainTitle = 'Edit a story';
+		}
+		this.openBottomDrawer(params);
+	},
+
 
 });

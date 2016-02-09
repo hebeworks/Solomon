@@ -1,0 +1,35 @@
+body #session__embed {
+
+  #a0-lock.a0-theme-default {
+
+    a,
+    button,
+    footer,
+    form,
+    form label,
+    h1,
+    h2,
+    h3,
+    header,
+    input[type=button],
+    input[type=email],
+    input[type=password],
+    input[type=text],
+    span {
+      text-align-last: auto;
+    }
+
+    .a0-panel {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      margin: 0 auto;
+    }
+
+    .a0-header h1,
+    .a0-footer {
+      text-align: center;
+    }
+
+  }
+
+}

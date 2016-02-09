@@ -8,32 +8,40 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         // add a client-specific attr to body
         var cssClass = this.get('appSettings.solomonConfig.name');
         var bodyClientAttr = Ember.$('body').attr('solomon-app');
-        if (!Ember.isEmpty(cssClass) 
+        if (!Ember.isEmpty(cssClass)
                 && (Ember.isEmpty(bodyClientAttr) || bodyClientAttr != cssClass)) {
             Ember.$('body').attr('solomon-app', cssClass);
         }
     }.on('activate'),
-    
+
     // Methods
     setupController: function (controller, model) {
-        var obj = this;
         this.set('controller', controller);
         controller.set('model', model);
-        
-        // console.log('Application Setup Controller');
-        // todo: look in cookie/session for username
-        if (!Ember.isEmpty(this.get('session.secure.token'))) {
-            // console.log('Auth - we have a session token: ' + this.get('session.secure.token'));
-            controller.authLogin(this.get('session.secure.token'));
+    },
+
+    beforeModel: function(transition){
+        // We set the attempted transition on the session
+        // so that we can ensure the current page is persisted
+        // following the sign in process.
+        if(!this.get('session.isAuthenticated')) {
+            this.set('session.attemptedTransition', transition);
         }
     },
 
-
-    // Actions 
+    // Actions
     actions: {
-        showLoginPopup: function (intro) {
-            this.controller.showModal('ui/login-form', { title: 'Log in / Sign up', intro: intro });
+
+        showLoginPopup: function () {
+            this.controller.showModal('session-manager', {
+                title: 'My Account'
+            });
         },
+
+        // This ensures that the user stays on then same
+        // page following signing out, as most pages in
+        // the app can be accessed regardless of session state.
+        sessionInvalidationSucceeded: Ember.K,
 
         mailToFeedback: function () {
             window.location.href = "mailto:support@mysolomon.co.uk?subject=Leeds City Dashboard Help&body=Please provide your feedback here. If you are contacting us about a bug, it would help if you could provide a screenshot of the issue along with details about your operating system and browser. Thank you.";
@@ -88,6 +96,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         createACanvas: function (model) {
             this.controller.createACanvas(model);
         },
+        
+        editAStory: function(model) {
+            this.controller.editAStory(model);
+        },
 
         showAddAStory: function () {
             this.controller.openBottomDrawer({ contentType: 'stories/add-a-story', openAmount: '-full' });
@@ -99,10 +111,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
         loadACanvas: function (canvasModel) {
             this.controller.loadACanvas(canvasModel)
-        },
-
-        sessionAuthenticationSucceeded: function () {
-            console.log('Session authenticated');
         },
 
         goToHelp: function () {

@@ -14,6 +14,12 @@ export default DefaultStory.extend({
     gmapsZoom: 10,
 
     onInsertElement: function () {
+        // ref:
+       /*
+       https://developers.google.com/maps/documentation/javascript/examples/layer-kml-features
+       https://www.england.nhs.uk/resources/ccg-maps/
+       https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/rtt-data-2015-16/
+       */
         var _this = this;
         var kmlUrl = 'http://preview.mysolomon.co.uk/assets/CCG_BSC_Apr2015.kml';
         setTimeout(function () {

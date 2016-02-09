@@ -10,7 +10,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	categories: [],
 	stories: [],
 	appController: null,
-	
+
 	didInsertElement: function () {
 		var config = this.get('appController.bottomDrawerConfig');
 		if (!Ember.isEmpty(config)) {
@@ -47,61 +47,50 @@ export default Ember.Component.extend(BottomDrawerContent, {
 		}
 	}),
 
-	isValid: function () {
-		var isValid = true;
-		// todo: client-side validation
-		// try https://github.com/dockyard/ember-validations
-		// if (this.get('story') != null) {
-		// 	if (Ember.isEmpty(this.get('story.title'))) {
-		// 		var errors = this.get('story.errors');
-		// 		errors.pushObject({ "title": "please provide a title" });
-		// 		isValid = false;
-		// 	}
-		// }
-		return isValid;
+	// TODO: https://github.com/dockyard/ember-validations
+	isValid: function (){
+		return true;
 	},
 
-	saveCanvas: function () {
-		if (this.isValid()) {
-			var obj = this;
-			obj.set('message', 'Saving Canvas');
+	saveCanvas: function() {
+		if (!this.isValid())
+			return;
 
-			var appController = this.get('appController');
-			var session = appController.get('session');
-			if (session.isAuthenticated) {
-				var userID = session.get('content.secure.token');
-				if (!Ember.isEmpty(userID)) {
+		if (this.get('session.isAuthenticated')){
 
-					var canvas = obj.store.createRecord('canvas', {
-						title: obj.get('title'),
-						description: obj.get('description'),
-						stories: obj.get('stories'),
-						categories: obj.get('categories'),
-						authorName: obj.get('author'),
-						twitterName: obj.get('twitter'),
-						userID: userID
-					});
+			var canvas = this.store.createRecord('canvas', {
+				title: this.get('title'),
+				description: this.get('description'),
+				stories: this.get('stories'),
+				categories: this.get('categories'),
+				authorName: this.get('author'),
+				twitterName: this.get('twitter'),
+				userID: this.get('currentUser.id')
+			});
 
-					canvas.save()
-						.then(function (savedCanvas) {
-							if (!Ember.isEmpty(savedCanvas.get('id'))) {
-								obj.set('action', 'loadACanvas');
-								obj.sendAction('action', savedCanvas.get('id'));
-							}
-						});
+			var self = this;
+
+			canvas.save().then(function(savedCanvas){
+				if(!Ember.isEmpty(savedCanvas.get('id'))){
+					self.set('action', 'loadACanvas');
+					self.sendAction('action', savedCanvas.get('id'));
 				}
-			} else {
-				// alert('You need to login');
-				this.set('action', 'showLoginPopup');
-				this.sendAction();
-				return false;
-			}
+			});
+		}
+		else {
+			this.set('action', 'showLoginPopup');
+			this.sendAction();
+
+			return false;
 		}
 	},
 
 	actions: {
+
 		save: function () {
 			this.saveCanvas();
 		}
+
 	}
+
 });
