@@ -91,8 +91,8 @@ export default DefaultStory.extend({
             //showlegend: false,
             legend: {
                 //xanchor:"center",
-                //yanchor:"top",
-                //y:-0.5,
+                yanchor:"middle",
+                y:.5,
                 //x:0.5, 
                 traceorder: 'normal',
                 font: {
@@ -118,7 +118,21 @@ export default DefaultStory.extend({
                 showline: true,
                 //range: [0, 1],
             },
-            textposition: 'top left'
+            textposition: 'top left',
+            shapes: [
+                {
+                    type: 'line',
+                    x0: '2016-01-01',
+                    y0: 0.92,
+                    x1: '2016-12-01',
+                    y1: 0.92,
+                    line: {
+                        color: 'rgb(000, 000, 000)',
+                        width: 1,
+                        dash: 'dot'
+                    }
+                }
+            ]
         };
 
         var data = [trace1, trace2];
