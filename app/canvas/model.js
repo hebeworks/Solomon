@@ -76,19 +76,16 @@ var canvas = DS.Model.extend({
 					delete story.attributes;
 					var tmp = store.createRecord('story', story);
 
-					if(story.relationships){
-						var catIDs = story.relationships.categories.data.map(function (item) {
-							return item.id;
-						});
+					var catIDs = story.relationships.categories.data.map(function (item) {
+						return item.id;
+					});
 
-						catIDs.forEach(function(id){
-							store
-								.find('category',id)
-									.then(function(item){
-										tmp.get('categories').pushObject(item); })
-						});
-					}
-
+					catIDs.forEach(function(id){
+						store
+							.find('category',id)
+								.then(function(item){
+									tmp.get('categories').pushObject(item); })
+					});
 					stories.pushObject(tmp);
 
 				});

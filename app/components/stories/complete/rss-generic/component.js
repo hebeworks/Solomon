@@ -8,7 +8,7 @@ export default DatamillStory.extend({
         color: 'medium-blue',
         authorImage: '/assets/img/LeedsCouncilLogo.png'
     },
-    
+
     storyModel: null,
     didReceiveAttrs: function () {
         var story = this.get('storyModel');
@@ -35,12 +35,12 @@ export default DatamillStory.extend({
         if (!Ember.isEmpty(feedUrl)) {
             this.loadFeed(feedUrl);
         } else {
-            this.loadFeed('http://news.leeds.gov.uk/feed/en');            
+            this.loadFeed('http://news.leeds.gov.uk/feed/en');
         }
     },
 
     didInsertElement: function () {
-        
+
     },
 
     loadFeed: function (feedUrl) {
@@ -57,13 +57,13 @@ export default DatamillStory.extend({
                     var items = [];
                     data.rss.channel[0].item.forEach((tmpItem) => {
                         var image = '';
-                        
+
                         try {
                             image = tmpItem.enclosure[0].$.url;
                         } catch (err) {
 
                         }
-                        
+
                         var item = {
                             id: tmpItem.guid,
                             title: tmpItem.title,
