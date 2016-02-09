@@ -127,10 +127,6 @@
                 top: 0;
                 right: 0;
                 
-                [solomon-app~="yorkshire-water"] & {
-                    top: rem(5px);
-                }
-                
                 // We want the dot to look smaller but the hit area still needs to be sufficiently large
                 &::after {
                     content: '';
@@ -152,6 +148,10 @@
                 }
             }
             
+            [cpn-story_dot~="with-bar"] {
+                top: rem(5px);
+            }
+            
             [cpn-story_bar] {
                 display: block;
                 width: 100%;
@@ -166,6 +166,10 @@
                 
                 [solomon-app~="yorkshire-water"] & {
                     background-color: $yw-medium-blue;
+                }
+                
+                [solomon-app~="nhs"] & {
+                    background-color: $nhs-blue;
                 }
             }
         

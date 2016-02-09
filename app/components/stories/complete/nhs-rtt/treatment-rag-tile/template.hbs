@@ -1,16 +1,21 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
+    <h3 cpn-story_title cpn-margin="bottom-half">Trauma &amp; Orthopaedics</h3>
+    
+    <p spc-trt_value cpn-font="30px 500" cpn-margin="bottom-none">95.6%</p>
+    
+    <div cpn-clearfix>
+        <div cpn-float="left">
+            <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Top CCG</span>
+            <span spc-trt_comparison="top" cpn-bg-color="{{topColour}}">97.43%</span>
+        </div>
         
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+        <div cpn-float="right" cpn-text="right">
+            <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Low CCG</span>
+            <span spc-trt_comparison="low" cpn-bg-color="{{lowColour}}">87.2%</span>
+        </div>
+    </div>
     
-    <p>This is the nhsRttTreatmentRagTile story.</p>
+    <p cpn-font="12px 700" cpn-margin="bottom-none">Tap to view</p>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
