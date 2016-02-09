@@ -68,30 +68,33 @@ var story = DS.Model.extend({
 			// var test = this.store.createRecord('config',{title:'test config 1'});
 			if (this.get('_config') == null && !Ember.isEmpty(this.get('configJSON'))) {
 				var configJSON = this.get('configJSON');
-				configJSON = JSON.parse(configJSON);
-				var store = this.store;
-				var config = Ember.A();
+				try {                    
+                    configJSON = JSON.parse(configJSON);
+                    var store = this.store;
+                    var config = Ember.A();
 
-				configJSON.data.forEach(function (configItem) {
-					// this.store.pushPayload('config', configJSON); old method
-					// var tmp = store.push(config); // want to use this but can't due to pluralized model names in serialization
-					
-					// var tmp = store.push('config',config); // base working method - but doesn't seem to keep individual obj attributes 
-					// just points to the singular model in store 
-					// prevents adding multiple of same 
-					// config.type = config.type.singularize()
-					configItem.attributes.id = hebeutils.guid();
-					var tmp = store.createRecord('story/configItem', configItem.attributes);
+                    configJSON.data.forEach(function (configItem) {
+                        // this.store.pushPayload('config', configJSON); old method
+                        // var tmp = store.push(config); // want to use this but can't due to pluralized model names in serialization
+                        
+                        // var tmp = store.push('config',config); // base working method - but doesn't seem to keep individual obj attributes 
+                        // just points to the singular model in store 
+                        // prevents adding multiple of same 
+                        // config.type = config.type.singularize()
+                        configItem.attributes.id = hebeutils.guid();
+                        var tmp = store.createRecord('story/configItem', configItem.attributes);
 
-					config.pushObject(tmp);
-				});
-				this.set('_config', config);
-				if (Ember.isArray(config)) {
-					// sort config by canvasOrderIndex
-					var sortedConfig = config.sortBy("canvasOrderIndex");
-					return sortedConfig;
-				}
-				// return Ember.A();
+                        config.pushObject(tmp);
+                    });
+                    this.set('_config', config);
+                    if (Ember.isArray(config)) {
+                        // sort config by canvasOrderIndex
+                        var sortedConfig = config.sortBy("canvasOrderIndex");
+                        return sortedConfig;
+                    }
+                } catch(err) {
+                    return Ember.A();
+                }
 			}
 			return Ember.A();
 		},
