@@ -11,6 +11,10 @@
     -moz-transform: perspective(1000px);
     @include transform-style(preserve-3d);
     @include transition(width .5s, height .5s);
+    
+    &.ui-draggable-dragging {
+        @include transform(rotate(-1.5deg));
+    }
 }
 
 [cpn-story~="width-1"] {
@@ -52,6 +56,10 @@
         @include transform-style(preserve-3d);
         position: relative;
         border-radius: rem(5px);
+        
+        .ui-draggable-dragging & {
+            box-shadow: 0 0 5px 2px rgba(0,0,0,.15);
+        }
     }
     
         [cpn-story_face] {
