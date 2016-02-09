@@ -1,21 +1,21 @@
 {{#stories/story-base}}
 
-    <h3 cpn-story_title cpn-margin="bottom-half">Trauma &amp; Orthopaedics</h3>
+    <h3 cpn-story_title cpn-margin="bottom-half">{{treatment}}</h3>
     
-    <p spc-trt_value cpn-font="30px 500" cpn-margin="bottom-none">95.6%</p>
+    <p spc-trt_value cpn-font="30px 500" cpn-margin="bottom-none">{{value}}</p>
     
     <div cpn-clearfix>
         <div cpn-float="left">
             <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Top CCG</span>
-            <span spc-trt_comparison="top" cpn-bg-color="{{topColour}}">97.43%</span>
+            <span spc-trt_comparison="top" cpn-bg-color="{{topColour}}">{{topValue}}%</span>
         </div>
         
         <div cpn-float="right" cpn-text="right">
             <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Low CCG</span>
-            <span spc-trt_comparison="low" cpn-bg-color="{{lowColour}}">87.2%</span>
+            <span spc-trt_comparison="low" cpn-bg-color="{{lowColour}}">{{lowValue}}%</span>
         </div>
     </div>
     
-    <p cpn-font="12px 700" cpn-margin="bottom-none">Tap to view</p>
+    <a href="javascript:;" cpn-font="12px 700" cpn-margin="bottom-none" cpn-text="none">Tap to view</a>
     
 {{/stories/story-base}}

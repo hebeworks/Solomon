@@ -13,8 +13,12 @@ export default DefaultStory.extend({
         viewOnly: true
     },
     
-    valueHasDeviated: true,
-    topHasChanged: false,
+    treatment: 'Trauma & Orthopaedics',
+    value: 95.6,
+    topValue: 97.43,
+    lowValue: 87.2,
+    valueHasDeviated: false,
+    topHasChanged: true,
     lowHasChanged: false,
     topColour: 'black',
     lowColour: 'black',
