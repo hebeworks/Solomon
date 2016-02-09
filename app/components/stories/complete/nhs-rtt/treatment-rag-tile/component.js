@@ -17,8 +17,8 @@ export default DefaultStory.extend({
     value: 95.6,
     topValue: 97.43,
     lowValue: 87.2,
-    valueHasDeviated: false,
-    topHasChanged: true,
+    valueHasDeviated: true,
+    topHasChanged: false,
     lowHasChanged: false,
     topColour: 'black',
     lowColour: 'black',
@@ -30,23 +30,24 @@ export default DefaultStory.extend({
         });
     }.on('didInsertElement'),
     
-    updateTileColours: function() {
+    updateTileApperance: function() {
         var _this = this;
         
         if (_this.valueHasDeviated == true) {
-            console.log('valueHasDeviated');
+            // console.log('valueHasDeviated');
             _this.set('storyConfig.color', 'red');
             _this.set('topColour', 'white');
             _this.set('lowColour', 'white');
+            _this.set('storyConfig.customProperties', 'has-deviated');
         }
         
         if (_this.topHasChanged == true) {
-            console.log('topHasChanged');
+            // console.log('topHasChanged');
             _this.set('topColour', 'blue');
         }
         
         if (_this.lowHasChanged == true) {
-            console.log('lowHasChanged');
+            // console.log('lowHasChanged');
             _this.set('lowColour', 'red');
         }
     }.observes('loaded')

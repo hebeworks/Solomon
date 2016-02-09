@@ -21,6 +21,8 @@ export default DefaultStory.extend({
         
         // slider: false, // (Add a horizontal slider to the story)
         // scroll: true, // (Should the story vertically scroll its content?)
+        
+        // customProperties: '' // (Add custom values to the story attribute)
     },
     
     // loaded: false, // (Tell other elements that this story has loaded)

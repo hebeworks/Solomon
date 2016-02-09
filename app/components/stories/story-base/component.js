@@ -38,7 +38,8 @@ export default Ember.Component.extend({
         description: '',
         license: '',
         slider: false,
-        scroll: true
+        scroll: true,
+        customProperties: ''
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
@@ -55,6 +56,7 @@ export default Ember.Component.extend({
         'target.storyConfig.license',
         'target.storyConfig.slider',
         'target.storyConfig.scroll',
+        'target.storyConfig.customProperties',
         function () {
             var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
             var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
@@ -89,7 +91,11 @@ export default Ember.Component.extend({
     // Pass the width and height settings
     // into the story component.
     'cpn-story': Ember.computed('storyConfig.width', function () {
-        return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
+        if (this.get('storyConfig.customProperties') != '') {
+            return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height') + ' ' + this.get('storyConfig.customProperties');
+        } else {
+            return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
+        }
     }),
     
     // Tell the story component if there is a header.
