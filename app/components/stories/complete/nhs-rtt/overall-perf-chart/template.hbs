@@ -2,17 +2,17 @@
 
     <h2 cpn-story_title cpn-margin="bottom-half" cpn-font-weight="500">Regional CCG Overall RTT Performance</h2>
     
-    <div cpn-clearfix>
+    <div cpn-row-list="middle" cpn-margin="bottom-none">
         {{#if chosenBarValue}}
-        <p spc-opc_chosen-value>{{chosenBarValue}}</p>
+        <p spc-opc_chosen-value cpn-width="25%">{{chosenBarValue}}</p>
         {{else}}
-        <p spc-opc_chosen-value>--%</p>
+        <p spc-opc_chosen-value cpn-width="25%">--%</p>
         {{/if}}
         
         {{#if chosenBarLocation}}
-        <h3 cpn-overflow="hidden" spc-opc_chosen-location>{{chosenBarLocation}}</h3>
+        <h3 spc-opc_chosen-location cpn-overflow="hidden" cpn-width="75%">{{chosenBarLocation}}</h3>
         {{else}}
-        <h3 cpn-overflow="hidden" spc-opc_chosen-location>Hover over a bar to see info</h3>
+        <h3 spc-opc_chosen-location cpn-overflow="hidden" cpn-width="75%">Hover over a bar to see info</h3>
         {{/if}}
     </div>
 

@@ -3,15 +3,10 @@
     line-height: rem(38px);
     font-weight: 500;
     color: $nhs-blue;
-    padding-right: rem($spacing-base);
-    display: inline-block;
-    vertical-align: middle;
 }
 
 [spc-opc_chosen-location] {
     font-size: rem(15px);
-    display: inline-block;
-    vertical-align: middle;
 }
 
     [spc-opc_bars] {
@@ -39,9 +34,8 @@
 
         [spc-opc_bar] {
             height: 0;
-            max-height: rem(6px);
             background-color: #cfcfcf;
-            border-radius: rem(10px);
+            border-radius: 0 rem(5px) rem(5px) 0;
             font-size: 0; // hide the text
             @include transition(height 1s, background-color .25s);
             cursor: pointer;
