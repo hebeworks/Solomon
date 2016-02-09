@@ -30,7 +30,8 @@ module.exports = function (environment) {
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       hebeNodeAPI: 'http://hebenodeapi-cached.azurewebsites.net/',
       // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
-      solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
+    //   solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
+      solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net'
     }
   };
 
@@ -64,7 +65,7 @@ module.exports = function (environment) {
     // ENV.APP.solomonAPIURL = 'http://localhost:3000';
     // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
     // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
-    // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk'; // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
+    ENV.APP.mockSolomonHostname = 'nhs.preview.mysolomon.co.uk'; // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
   }
 
   if (environment === 'test') {
