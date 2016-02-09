@@ -2,7 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  loggingIn: false,
+  initAuthenticationEmbed: function(){
+    if(!this.get('session.isAuthenticated')){
+      this.send('reset');
+      this.get('session').authenticate('simple-auth-authenticator:lock', {
+        container: 'session__embed'
+      });
+    }
+
+  }.on('didRender'),
 
   actions: {
 
@@ -14,17 +22,8 @@ export default Ember.Component.extend({
       lock.hide()
     },
 
-    login(){
-      this.send('reset');
-      this.set('loggingIn', true);
-      this.get('session').authenticate('simple-auth-authenticator:lock', {
-        container: 'session__embed'
-      });
-    },
-
     logout(){
       this.get('session').invalidate();
-      this.set('loggingIn', false);
     }
 
   }
