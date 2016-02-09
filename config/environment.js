@@ -30,8 +30,8 @@ module.exports = function (environment) {
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       hebeNodeAPI: 'http://hebenodeapi-cached.azurewebsites.net/',
       // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
-      // solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
-      solomonAPIURL: 'http://localhost:3000'
+      solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
+    //   solomonAPIURL: 'http://localhost:3000'
     }
   };
 
