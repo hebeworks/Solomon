@@ -31,7 +31,9 @@
     "underscore.string": "~3.2.2",
     "pikaday": "~1.4.0",
     "moment-timezone": ">= 0.1.0",
-    "gmaps-for-apps": "~0.5.9"
+    "gmaps-for-apps": "~0.5.9",
+    "auth0-lock": "~7.7.1",
+    "jsrsasign": "~4.8.3"
   },
   "devDependencies": {
     "breakpoint-sass": "~2.6.1",
@@ -41,11 +43,7 @@
     "inuit-normalize.css": "~3.0.3"
   },
   "resolutions": {
-    "bourbon": "4.2.3",
     "d3": "~3.5.5",
-    "ember-resolver": "~0.1.15",
-    "loader.js": "ember-cli/loader.js#3.2.0",
-    "qunit": "~1.17.1",
     "jquery": "2.1.4"
   }
 }
