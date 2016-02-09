@@ -1,29 +1,29 @@
-	<div cpn-divide="bottom">
-		<h2 cpn-frame_heading>Canvas Gallery</h2>
+<div cpn-divide="bottom">
+	<h2 cpn-frame_heading>Canvas Gallery</h2>
+</div>
+
+<div cpn-divide="bottom" cpn-overflow="hidden">
+	<div class="toolbar-create-canvas">
+		<button cpn-button="move" class="" {{action 'createACanvas'}} data-btn-type="create">
+			Create a canvas
+		</button>
 	</div>
-	
-	<div cpn-divide="bottom" cpn-overflow="hidden">
-		<div class="toolbar-create-canvas">
-			<button cpn-button="move" class="" {{action 'createACanvas'}} data-btn-type="create">
-				Create a canvas
-			</button>
+
+	<div cpn-row-list id="gallery-buttons">
+		<div>
+			<button cpn-button {{action "switchView" 'featured' }} data-btn-type="featured">Browse</button>
 		</div>
-		
-		<div cpn-row-list id="gallery-buttons">
-			<div>
-				<button cpn-button {{action "switchView" 'featured' }} data-btn-type="featured">Browse</button>
-			</div>
-			<div>
-				<button cpn-button {{action "switchView" 'categories' }} data-btn-type="categories">Categories</button>
-			</div>
-			<div>
-				<button cpn-button {{action "switchView" 'search' }} data-btn-type="search">Search</button>
-			</div>
+		<div>
+			<button cpn-button {{action "switchView" 'categories' }} data-btn-type="categories">Categories</button>
+		</div>
+		<div>
+			<button cpn-button {{action "switchView" 'search' }} data-btn-type="search">Search</button>
 		</div>
 	</div>
-		
-	<div class="gallery__inner">
-		{{yield}}
-		{{!-- DISPLAY COMPONENT BASED ON CURRENT VIEW PROPERTY --}}
-		{{component currentView}}
-	</div>
+</div>
+
+<div class="gallery__inner">
+	{{yield}}
+	{{!-- DISPLAY COMPONENT BASED ON CURRENT VIEW PROPERTY --}}
+	{{component currentView}}
+</div>
