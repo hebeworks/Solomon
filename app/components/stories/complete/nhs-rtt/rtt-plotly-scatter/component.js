@@ -1,14 +1,14 @@
 /* global Ember, hebeutils, _ */
-import DefaultStory from './../../story-types/default-story/component';
+import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     storyConfig: {
-        title: 'Plotly Playground', // (Provide a story title)
-        subTitle: 'A story to experiment with Plotly charts', // (Provide a story subtitle)
-        author: 'Ste Allan',
+        title: 'RTT Scatter Plot', // (Provide a story title)
+        subTitle: 'Sample scatter plot using Plotly', // (Provide a story subtitle)
+        author: 'Simon Zimmerman',
         
         description: '', // (Provide a longer description of the story)
         license: '', // (Define which license applies to usage of the story)
@@ -39,37 +39,91 @@ export default DefaultStory.extend({
     drawChart: function() {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
 
+        var d3 = Plotly.d3;
+
+        function normal_array( mean, stddev, size ){
+            var arr = new Array(size), i;
+            // from http://bl.ocks.org/nrabinowitz/2034281
+            var generator = (function() {
+                return d3.random.normal(mean, stddev);
+            }());
+
+            for( i=0; i< arr.length; i++ ){
+                arr[i] = generator();
+            }
+            return arr;
+        };
+
+        var x0 = normal_array(.85, 0.05, 500);
+        var y0 = normal_array(.65, 0.05, 300);
+        var x1 = normal_array(.85, 0.05, 2000);
+        var y1 = normal_array(.65, 0.05, 300);
+        var x2 = normal_array(.85, 0.05, 2000);
+        var y2 = normal_array(.65, 0.05, 300);
+        var x3 = normal_array(.85, 0.05, 2000);
+        var y3 = normal_array(.65, 0.05, 300);        
+
         var trace1 = {
-            name: "2015",
+            name: "North",
             showLegend: true,
-            mode: 'lines+markers',
+            mode: 'markers',
             marker: {
                 color: colorPalette[1],
-                size: 2
+                size: 4
             },
-            line: {
-                color: colorPalette[1],
-                width: 2
-            },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            
+            x: x0,
+            y: y0,
+            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
+            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
             type: 'scatter'
         };
 
         var trace2 = {
-            name: "2016",
+            name: "Midlands",
             showLegend: true,
-            mode: 'lines+markers',
+            mode: 'markers',
             marker: {
                 color: colorPalette[2],
-                size: 2
+                size: 4
             },
-            line: {
-                color: colorPalette[2],
-                width: 2
+            
+            x: x1,
+            y: y1,
+            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
+            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            type: 'scatter'
+        };
+
+        var trace3 = {
+            name: "London",
+            showLegend: true,
+            mode: 'markers',
+            marker: {
+                color: colorPalette[3],
+                size: 4
             },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.40, .55, .64, .62, .75, .85, .73, .92, .99, .94, .67, .90],
+            
+            x: x2,
+            y: y2,
+            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
+            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            type: 'scatter'
+        };
+
+        var trace4 = {
+            name: "South",
+            showLegend: true,
+            mode: 'markers',
+            marker: {
+                //color: colorPalette[4],
+                size: 4
+            },
+            
+            x: x3,
+            y: y3,
+            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
+            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
             type: 'scatter'
         };
 
@@ -103,7 +157,7 @@ export default DefaultStory.extend({
                 showgrid: false,
                 ticklen: 2,
                 tickwidth: 1,
-                tickformat: "%b",
+                tickformat: "%",
                 showline: true,
                 line:{
                     width: 2,
@@ -133,7 +187,7 @@ export default DefaultStory.extend({
             ]
         };
 
-        var data = [trace1, trace2];
+        var data = [trace1, trace2, trace3, trace4];
 
         Plotly.newPlot(this.get('chartID'), data, layout, {
             

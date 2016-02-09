@@ -1,14 +1,14 @@
 /* global Ember, hebeutils, _ */
-import DefaultStory from './../../story-types/default-story/component';
+import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     storyConfig: {
-        title: 'Plotly Playground', // (Provide a story title)
-        subTitle: 'A story to experiment with Plotly charts', // (Provide a story subtitle)
-        author: 'Ste Allan',
+        title: 'RTT Waiting List', // (Provide a story title)
+        subTitle: 'Shape and activity', // (Provide a story subtitle)
+        author: 'Simon Zimmerman',
         
         description: '', // (Provide a longer description of the story)
         license: '', // (Define which license applies to usage of the story)
@@ -38,26 +38,37 @@ export default DefaultStory.extend({
 
     drawChart: function() {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
+        
+        var d3 = Plotly.d3;  
 
         var trace1 = {
-            name: "2015",
+            name: "Admitted",
+            //orientation: 'h',
             showLegend: true,
-            mode: 'lines+markers',
             marker: {
-                color: colorPalette[1],
-                size: 2
+                color: colorPalette[3],
+                width: 1
             },
-            line: {
-                color: colorPalette[1],
-                width: 2
-            },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-            type: 'scatter'
+            x: ['< 18w','18-26w','26-40w','40-52w','+52w'],
+            y: [17234, 1000, 7, 40, 0],
+            type: 'bar'
         };
 
         var trace2 = {
-            name: "2016",
+            name: "Non-admitted",
+            //orientation: 'h',
+            showLegend: true,
+            marker: {
+                color: colorPalette[1],
+                width: 1
+            },
+            x: ['< 18w','18-26w','26-40w','40-52w','+52w'],
+            y: [10000, 499, 600, 9, 1],
+            type: 'bar'
+        };
+
+        var trace3 = {
+            name: "Incomplete",
             showLegend: true,
             mode: 'lines+markers',
             marker: {
@@ -66,14 +77,17 @@ export default DefaultStory.extend({
             },
             line: {
                 color: colorPalette[2],
-                width: 2
+                width: 2,
+                shape: 'spline',
+                dash: 'dot'
             },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.40, .55, .64, .62, .75, .85, .73, .92, .99, .94, .67, .90],
+            x: ['< 18w','18-26w','26-40w','40-52w','+52w'],
+            y: [35000, 6000, 1750, 155, 1],
             type: 'scatter'
-        };
+        }
 
         var layout = {
+            barmode: 'stack',
             margin: {
                 l: 40,
                 r: 30,
@@ -101,9 +115,9 @@ export default DefaultStory.extend({
             },
             xaxis: {
                 showgrid: false,
+                zeroline: false,
                 ticklen: 2,
                 tickwidth: 1,
-                tickformat: "%b",
                 showline: true,
                 line:{
                     width: 2,
@@ -111,29 +125,14 @@ export default DefaultStory.extend({
                 }
             },
             yaxis: {
-                showgrid: false,
-                tickformat: "%",
+                showgrid: true,
+                zeroline: false,
                 showline: true,
-                //range: [0, 1],
             },
             textposition: 'top left',
-            shapes: [
-                {
-                    type: 'line',
-                    x0: '2016-01-01',
-                    y0: 0.92,
-                    x1: '2016-12-01',
-                    y1: 0.92,
-                    line: {
-                        color: 'rgb(000, 000, 000)',
-                        width: 1,
-                        dash: 'dot'
-                    }
-                }
-            ]
         };
 
-        var data = [trace1, trace2];
+        var data = [trace1,trace2,trace3];
 
         Plotly.newPlot(this.get('chartID'), data, layout, {
             

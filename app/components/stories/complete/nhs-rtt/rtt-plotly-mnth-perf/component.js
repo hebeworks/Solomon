@@ -1,14 +1,14 @@
 /* global Ember, hebeutils, _ */
-import DefaultStory from './../../story-types/default-story/component';
+import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     storyConfig: {
-        title: 'Plotly Playground', // (Provide a story title)
-        subTitle: 'A story to experiment with Plotly charts', // (Provide a story subtitle)
-        author: 'Ste Allan',
+        title: 'RTT Performance by Month', // (Provide a story title)
+        subTitle: 'Monthly performance against standard', // (Provide a story subtitle)
+        author: 'Simon Zimmerman',
         
         description: '', // (Provide a longer description of the story)
         license: '', // (Define which license applies to usage of the story)
