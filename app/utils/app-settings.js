@@ -36,6 +36,7 @@ export default Ember.Object.extend({
                 title: 'Solomon',
                 defaultCanvas: 'leeds-city-council',
                 tutorialBase: 'solomon_core',
+                logoType: 'svg', // svg or bitmap
                 storyConfig: {
                     storyHandle: 'dot' // can be 'dot', 'bar', 'both' or 'none,
                 }
@@ -70,6 +71,7 @@ export default Ember.Object.extend({
                     solomonConfig.name = 'nhs';
                     solomonConfig.title = 'NHS Dashboard';
                     solomonConfig.storyConfig.storyHandle = 'both';
+                    solomonConfig.logoType = 'bitmap';
                     break;
             }
             return solomonConfig;
