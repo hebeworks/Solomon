@@ -55,18 +55,6 @@ export default Ember.Component.extend({
             return defaultConfig;
         }),
 
-    ensureConfigFields: function () {
-        var configFields = this.get('storyConfig.editableFields');
-        if (!Ember.isEmpty(configFields)) {
-            var model = this.get('storyModel');
-            configFields.forEach(function (field) {
-                if (Ember.isEmpty(model.get(field.name))) {
-                    model.addConfigItem(field);
-                }
-            });
-        }
-    }.observes('target.storyConfig'),
-
     // Turn the provided height and width settings into the attribute values we need.
     // Turn the provided height and width settings
     // into the attribute values we need.
