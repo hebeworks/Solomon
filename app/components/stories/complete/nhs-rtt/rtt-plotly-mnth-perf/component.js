@@ -5,6 +5,7 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
+    chartData: null,
     storyConfig: {
         title: 'RTT Performance by Month', // (Provide a story title)
         subTitle: 'Monthly performance against standard', // (Provide a story subtitle)
@@ -23,6 +24,7 @@ export default DefaultStory.extend({
         // slider: false, (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
+	nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
 
     getPlotly: function() {
         var _this = this;
@@ -32,12 +34,24 @@ export default DefaultStory.extend({
             cache: true
         })
         .done(function() {
-            _this.drawChart();
+            _this.loadData();
         });
     }.on("init"),
 
+    loadData: function() {
+        var _this = this;
+        var regionCode = this.get('nhsFilter.selectedRegion._id');
+        var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
+        this.getData(url)
+            .then(function(data) {
+                _this.set('chartData',data);
+            });
+    }.observes('nhsFilter.selectedRegion'),
+    
     drawChart: function() {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
+
+debugger;
 
         var trace1 = {
             name: "2015",
@@ -235,5 +249,5 @@ export default DefaultStory.extend({
             // URL to topojson files used in geo charts
             //topojsonURL: 'https://cdn.plot.ly/'
         });
-    }
+    }.observes('chartData')
 });
