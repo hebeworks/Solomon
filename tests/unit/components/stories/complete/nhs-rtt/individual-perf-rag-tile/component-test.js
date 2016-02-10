@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('stories/complete/nhs-rtt/treatment-rag-tile', {
+moduleForComponent('stories/complete/nhs-rtt/individual-perf-rag-tile', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });
