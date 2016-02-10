@@ -187,14 +187,6 @@ export default Ember.Controller.extend({
                 });
 
                 obj.get('appController').createACanvas(canvas);
-
-                // canvas.save()
-                //     .then(function (savedCanvas) {
-                //         if (!Ember.isEmpty(savedCanvas.get('id'))) {
-                //             var newID = savedCanvas.get('id');
-                //             obj.get('appController').loadACanvas(newID);
-                //         }
-                //     });
             }
         }
         else {
