@@ -1,0 +1,41 @@
+{{#stories/story-base}}
+    <h3 cpn-story_title cpn-margin="bottom">Filter the canvas</h3>
+
+    <ul cpn-row-list cpn-margin="bottom-none">
+        <li cpn-width="50%">
+            <button cpn-button>National</button>
+        </li>
+        <li cpn-width="50%">
+            <button cpn-button>Regional</button>
+        </li>
+    </ul>
+
+    <p cpn-divide="bottom solid faded-dark">
+			{{ select-2
+				content=nhsFilter.regions
+				value=nhsFilter.selectedRegion
+
+				placeholder="Choose a region"
+				class="margin-bottom-no"
+			}}
+    </p>
+    
+    <ul cpn-row-list cpn-margin="bottom-none">
+        <li cpn-width="50%">
+            <button cpn-button>CCG</button>
+        </li>
+        <li cpn-width="50%">
+            <button cpn-button>Practice</button>
+        </li>
+    </ul>
+    
+    <p>
+			{{ select-2
+				content=nhsFilter.months
+				value=nhsFilter.selectedMonth
+				placeholder="Choose a month"
+				class="margin-bottom-no"
+			}}
+    </p>
+    
+{{/stories/story-base}}

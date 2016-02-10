@@ -11,6 +11,10 @@
 [cpn-bg-color="blue"] {
     background-color: $blue;
     color: #fff;
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-blue;
+    }
 }
 
 [cpn-bg-color="medium-blue"] {
@@ -26,6 +30,10 @@
 [cpn-bg-color="red"] {
     background-color: $red;
     color: #fff;
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-red;
+    }
 }
 
 [cpn-bg-color="black"] {
@@ -52,9 +60,14 @@
     }
 }
 
-[cpn-bg-color="lime"] {
+[cpn-bg-color="lime"],
+[cpn-bg-color="green"] {
     background-color: $lime;
     color: #fff;
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-green;
+    }
 }
 
 [cpn-bg-color="mint"] {

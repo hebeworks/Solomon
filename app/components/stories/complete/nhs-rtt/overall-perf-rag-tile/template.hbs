@@ -1,0 +1,16 @@
+{{#stories/story-base}}
+
+    <h3 spc-nhs-rag_title cpn-story_title cpn-margin="bottom-none">Overall RTT Performance</h3>
+    
+    <p spc-nhs-rag_value cpn-font="30px 500" cpn-margin="bottom-none">{{currentPeriodValue}}%</p>
+    
+    <div cpn-clearfix>
+        <div cpn-float="left">
+            <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Last period</span>
+            <span spc-nhs-rag_comparison="top" cpn-bg-color="white">{{previousPeriodValue}}%</span>
+        </div>
+    </div>
+    
+    <a spc-nhs-rag_link href="javascript:;" cpn-font="12px 700" cpn-margin="bottom-none" cpn-text="none">Tap to view</a>
+    
+{{/stories/story-base}}

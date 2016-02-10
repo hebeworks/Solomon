@@ -27,8 +27,8 @@ var canvas = DS.Model.extend({
 	}.observes('stories.@each'),
 
 	save: function (options) {
-		// make sure to JSON Serialize the current state of stories 
-		// in case anything has changed that wasn't picked up 
+		// make sure to JSON Serialize the current state of stories
+		// in case anything has changed that wasn't picked up
 		// by the onStoriesChanged observer
 		this.onStoriesChanged();
 		return this._super(options);
@@ -64,10 +64,10 @@ var canvas = DS.Model.extend({
 				storyJSON.data.forEach(function (story) {
 					// this.store.pushPayload('story', storyJSON); old method
 					// var tmp = store.push(story); // want to use this but can't due to pluralized model names in serialization
-					
-					// var tmp = store.push('story',story); // base working method - but doesn't seem to keep individual obj attributes 
-					// just points to the singular model in store 
-					// prevents adding multiple of same 
+
+					// var tmp = store.push('story',story); // base working method - but doesn't seem to keep individual obj attributes
+					// just points to the singular model in store
+					// prevents adding multiple of same
 					// story.type = story.type.singularize()
 					story.attributes.id = hebeutils.guid();
 					story.type = 'story';
@@ -75,11 +75,11 @@ var canvas = DS.Model.extend({
 					$.extend(story, attributes);
 					delete story.attributes;
 					var tmp = store.createRecord('story', story);
-					
+
 					var catIDs = story.relationships.categories.data.map(function (item) {
 						return item.id;
 					});
-					
+
 					catIDs.forEach(function(id){
 						store
 							.find('category',id)
@@ -87,7 +87,7 @@ var canvas = DS.Model.extend({
 									tmp.get('categories').pushObject(item); })
 					});
 					stories.pushObject(tmp);
-					
+
 				});
 				this.set('_stories', stories);
 				if (Ember.isArray(stories)) {
@@ -107,25 +107,7 @@ var canvas = DS.Model.extend({
 			}
 			return value;
 		}
-	}),
-
-	urlShortcode: Ember.computed('shortcode', {
-		get() {
-			if (this.get('shortcode') == null && Ember.isEmpty(this.get('shortcode'))) {
-				var id = this.get('id');
-				var code = hebeutils.shortcode.randomString(6);
-				this.set('shortcode', code);
-				this.save();
-			}
-			return this.get('shortcode');
-		},
-		set(key, value) {
-			if (value != this.get('shortcode')) {
-				this.set('shortcode', value);
-			}
-			return value;
-		}
-	}),
+	})
 
 });
 

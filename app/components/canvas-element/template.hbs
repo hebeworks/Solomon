@@ -7,10 +7,11 @@
 <div class="js-canvas canvas">
     <a href="javascript:;" class="js-canvas-overlay canvas__overlay"></a>
     <div class="js-stories canvas__inner">
-
-
+    
+    
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
+            {{stories/complete/plotly-playground}}
             {{stories/complete/lcc-free-wifi}}
             {{stories/complete/market-occupancy}}
             {{stories/complete/base-rag-title}}
@@ -29,8 +30,8 @@
             {{stories/complete/generic-twitter-feed}}
             --}}
         {{!-- END DEVELOPMENT STORIES --}}
-
-        {{!-- YORKSHIRE WATER HACK STORIES
+        
+        {{!-- YORKSHIRE WATER HACK STORIES 
             {{stories/complete/ywh/heat-map}}
             {{stories/complete/ywh/area-info}}
             {{stories/complete/ywh/top-dmas-by-volume}}
@@ -47,7 +48,7 @@
             {{stories/complete/ywh/small-image-gallery}}
             {{stories/complete/ywh/yw-rss-feed}}
         --}}
-        {{!-- UNUSED YORKSHIRE WATER HACK STORIES
+        {{!-- UNUSED YORKSHIRE WATER HACK STORIES 
             {{stories/complete/ywh/total-monthly-calls-year-rag}}
             {{stories/complete/ywh/current-zone-total-rag}}
         --}}
@@ -61,15 +62,17 @@
         {{stories/complete/rta-daily-accidents}}
         {{stories/complete/rta-pedestrians-vehicles}}
         {{stories/complete/beta-rag}}
-
-        --}}
-        {{!-- NHS RTT STORIES --}}
-        {{!--
+        
+        {{stories/complete/nhs-rtt/canvas-filter}}
         {{stories/complete/nhs-rtt/ccg-map}}
         --}}
-
-        {{!-- {{stories/complete/beta-rag}} --}}
-
+        {{!-- 
+        {{stories/complete/nhs-rtt/canvas-filter}}
+        {{stories/complete/nhs-rtt/rtt-plotly-mnth-perf}}
+        {{stories/complete/nhs-rtt/overall-perf-chart}}
+        {{stories/complete/nhs-rtt/treatment-rag-tile}}
+        {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
+        --}}
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -77,8 +80,7 @@
                 {{/if}}
             {{/each}}
         {{/if}}
-
-
+ 
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">
@@ -87,7 +89,7 @@
                 </div>
             </div>
         {{/ui/generic-element}}
-
+      
 
         </div>
     </div>

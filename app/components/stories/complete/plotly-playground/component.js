@@ -4,6 +4,7 @@ import DefaultStory from './../../story-types/default-story/component';
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
+    chartID: hebeutils.guid(),
     storyConfig: {
         title: 'Plotly Playground', // (Provide a story title)
         subTitle: 'A story to experiment with Plotly charts', // (Provide a story subtitle)
@@ -73,9 +74,6 @@ export default DefaultStory.extend({
         };
 
         var layout = {
-            // autosize: false,
-            // width: 290,
-            // height: 220,
             margin: {
                 l: 40,
                 r: 30,
@@ -91,8 +89,8 @@ export default DefaultStory.extend({
             //showlegend: false,
             legend: {
                 //xanchor:"center",
-                //yanchor:"top",
-                //y:-0.5,
+                yanchor:"middle",
+                y:.5,
                 //x:0.5, 
                 traceorder: 'normal',
                 font: {
@@ -118,12 +116,26 @@ export default DefaultStory.extend({
                 showline: true,
                 //range: [0, 1],
             },
-            textposition: 'top left'
+            textposition: 'top left',
+            shapes: [
+                {
+                    type: 'line',
+                    x0: '2016-01-01',
+                    y0: 0.92,
+                    x1: '2016-12-01',
+                    y1: 0.92,
+                    line: {
+                        color: 'rgb(000, 000, 000)',
+                        width: 1,
+                        dash: 'dot'
+                    }
+                }
+            ]
         };
 
         var data = [trace1, trace2];
 
-        Plotly.newPlot('plotly-chart', data, layout, {
+        Plotly.newPlot(this.get('chartID'), data, layout, {
             
             // no interactivity, for export or image generation
             //staticPlot: false,

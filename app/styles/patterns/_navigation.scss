@@ -62,11 +62,16 @@
 					color: $yw-medium-blue;
 				}
 				
+				[solomon-app~="nhs"] & {
+					color: $nhs-blue;
+				}
+				
 				.icon {
 					svg {
 						fill: $lime;
 						
-						[solomon-app~="yorkshire-water"] & {
+						[solomon-app~="yorkshire-water"] &,
+						[solomon-app~="nhs"] & {
 							fill: #000;
 						}
 					}
@@ -77,6 +82,10 @@
 					
 					[solomon-app~="yorkshire-water"] & {
 						color: $yw-medium-blue;
+					}
+					
+					[solomon-app~="nhs"] & {
+						color: $nhs-blue;
 					}
 				}
 			}
@@ -95,12 +104,20 @@
 		.icon--you-me--you {
 			rect {
 				fill: $red;
+				
+				[solomon-app~="nhs"] & {
+					fill: $nhs-red;
+				}
 			}
 		}
 		
 		.icon--you-me--me {
 			rect {
 				fill: $lime;
+				
+				[solomon-app~="nhs"] & {
+					fill: $nhs-green;
+				}
 			}
 		}
 		
