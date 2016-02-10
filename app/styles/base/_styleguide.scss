@@ -141,6 +141,19 @@ ol {
         color: #fff;
     }
     z-index: 3;
+    
+    [solomon-app~="nhs"] & {
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: rem(3px);
+            background-color: $nhs-blue;
+            z-index: 2;
+        }
+    }
 }
     .site-header__inner {
         width: 100%;
@@ -204,6 +217,10 @@ ol {
     
     [solomon-app~="yorkshire-water"] & {
         background-color: $yw-dark-blue;
+    }
+    
+    [solomon-app~="nhs"] & {
+        background-color: #e8e8e8;
     }
     
     &.add-a {

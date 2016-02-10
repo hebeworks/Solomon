@@ -7,3 +7,64 @@
 [cpn-font~="swiss-bold-rounded"] {
     font-family: $swissboldrounded;
 }
+
+// Size
+// Should probably be refactored into keywords such as 'tiny', 'large' etc
+[cpn-font~="10px"] {
+    font-size: rem(10px);
+}
+
+[cpn-font~="12px"] {
+    font-size: rem(12px);
+}
+
+[cpn-font~="30px"] {
+    font-size: rem(30px);
+}
+
+// Weight
+[cpn-font~="100"] {
+    font-weight: 100;
+}
+
+[cpn-font~="200"] {
+    font-weight: 200;
+}
+
+[cpn-font~="300"] {
+    font-weight: 300;
+}
+
+[cpn-font~="400"],
+[cpn-font~="normal"] {
+    font-weight: 400;
+}
+
+[cpn-font~="500"] {
+    font-weight: 500;
+}
+
+[cpn-font~="600"] {
+    font-weight: 600;
+}
+
+[cpn-font~="700"],
+[cpn-font~="bold"] {
+    font-weight: 700;
+}
+
+[cpn-font~="800"] {
+    font-weight: 800;
+}
+
+[cpn-font~="900"] {
+    font-weight: 900;
+}
+
+[cpn-font~="lighter"] {
+    font-weight: lighter;
+}
+
+[cpn-font~="bolder"] {
+    font-weight: bolder;
+}

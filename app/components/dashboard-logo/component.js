@@ -6,6 +6,14 @@ export default Ember.Component.extend({
     }),
 
     logoText: Ember.computed.alias('appSettings.solomonConfig.title'),
+    
+    svgLogo: Ember.computed('appSettings.logoType', function() {
+        if (this.get('appSettings.logoType') == 'svg') {
+            return true;
+        } else {
+            return false;
+        }
+    }),
 
     click: function () {
         this.sendAction('action',this.get('actionParam'));

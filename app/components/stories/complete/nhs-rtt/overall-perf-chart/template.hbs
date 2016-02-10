@@ -1,0 +1,38 @@
+{{#stories/story-base}}
+
+    <h2 cpn-story_title cpn-margin="bottom-half" cpn-font-weight="500">Regional CCG Overall RTT Performance</h2>
+    
+    <div cpn-row-list="middle" cpn-margin="bottom-none">
+        {{#if chosenBarValue}}
+        <p spc-opc_chosen-value cpn-width="25%">{{chosenBarValue}}</p>
+        {{else}}
+        <p spc-opc_chosen-value cpn-width="25%">--%</p>
+        {{/if}}
+        
+        {{#if chosenBarLocation}}
+        <h3 spc-opc_chosen-location cpn-overflow="hidden" cpn-width="75%">{{chosenBarLocation}}</h3>
+        {{else}}
+        <h3 spc-opc_chosen-location cpn-overflow="hidden" cpn-width="75%">Hover over a bar to see info</h3>
+        {{/if}}
+    </div>
+
+    <div spc-opc_chart>
+        <div spc-opc_bars cpn-margin="bottom-half">
+            {{#each bar in bars}}
+                {{stories/complete/nhs-rtt/overall-perf-chart/bar bar=bar chosenBarValue=chosenBarValue chosenBarLocation=chosenBarLocation}}
+            {{/each}}
+            <div spc-opc_avg-line="national" style="left: calc(75% - 1.5px);"></div>
+            <div spc-opc_avg-line="location" style="left: calc(65% - 1.5px);"></div>
+        </div>
+        <ul spc-opc_axis cpn-text="center" cpn-clearfix cpn-margin="bottom-none">
+            <li spc-opc_axis-label cpn-float="left">0%</li>
+            <li spc-opc_axis-label>50%</li>
+            <li spc-opc_axis-label cpn-float="right">100%</li>
+        </ul>
+    </div>
+    
+    <ul spc-opc_legend>
+        <li spc-opc_legend-label="national" cpn-margin="right">National Average</li>
+        <li spc-opc_legend-label="location">Regional Average</li>
+    </ul>
+{{/stories/story-base}}
