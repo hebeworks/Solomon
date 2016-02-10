@@ -145,6 +145,10 @@
                     [solomon-app~="yorkshire-water"] & {
                         background-color: $yw-medium-blue;
                     }
+                    
+                    [solomon-app~="nhs"] & {
+                        background-color: $nhs-blue;
+                    }
                 }
             }
             
