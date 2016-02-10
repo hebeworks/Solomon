@@ -9,19 +9,7 @@ export default Ember.Object.extend({
     errorMessage: '',
 
     canvasSettings: {
-        ywFilter: {
-            zones: [],
-            subZones: [],
-            dmas: [],
-            selectedZone: null,
-            selectedSubZone: null,
-            selectedDMA: null,
-            searchTerm: '',
-            startDate: new Date("01/01/2015"),
-            endDate: new Date(),
-            history: [],
-            initialDataLoads: 0
-        }
+
     },
 
     solomonConfig: Ember.computed({
@@ -57,10 +45,11 @@ export default Ember.Object.extend({
                     solomonConfig.title = 'Yorkshire Water';
                     solomonConfig.storyConfig.storyHandle = 'both';
                     solomonConfig.defaultCanvas = 'contact-data';
-                    solomonConfig.initMethod = function() {
-                        this.loadYWZones();
-                        this.loadDMAs();
-                    };
+                    solomonConfig.initMethod = this.ywInit;
+                    // function() {
+                    //     this.loadYWZones();
+                    //     this.loadDMAs();
+                    // };
                     break;
                 case 'findmybinday.co.uk' :
                 case 'findmybinday.com' :
@@ -70,6 +59,7 @@ export default Ember.Object.extend({
                     solomonConfig.name = 'nhs';
                     solomonConfig.title = 'NHS Dashboard';
                     solomonConfig.storyConfig.storyHandle = 'both';
+                    solomonConfig.initMethod = this.nhsInit;
                     break;
             }
             return solomonConfig;
@@ -131,6 +121,60 @@ export default Ember.Object.extend({
         });
     },
 
+/////////////////////////////////////////////////////////////////
+// NHS Canvas Filtering
+/////////////////////////////////////////////////////////////////
+    nhsInit: function() {
+        this.canvasSettings.nhsFilter = {
+            "regions" : [],
+            "selectedRegion" : null,
+            "history" : [],
+            "initialDataLoads" : 0
+        }
+        this.loadNHSRegions();
+    },
+    loadNHSRegions: function () {
+        var _this = this;
+        var url = this.get('hebeNodeAPI') + '/nhsrtt/regions';
+        this.getData(url, true).then(function (regions) {
+            if (!Ember.isEmpty(regions)) {
+                regions.forEach(function (region) {
+                    region.id = region._id;
+                    region.text = region.name;
+                });
+            }
+            regions.push({ id: 'all', text: 'All - May be slow' });
+            _this.incrementProperty('canvasSettings.nhsFilter.initialDataLoads');
+            _this.set('canvasSettings.nhsFilter.regions', regions);
+            _this.set('canvasSettings.nhsFilter.selectedRegion', regions[1]);
+        });
+    },
+
+/////////////////////////////////////////////////////////////////
+// End NHS Canvas Filtering
+/////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+// YW Canvas Filtering
+/////////////////////////////////////////////////////////////////
+    ywInit: function() {
+        this.canvasSettings.ywFilter = {
+            "zones" : [],
+            "subZones" : [],
+            "dmas" : [],
+            "selectedZone" : null,
+            "selectedSubZone" : null,
+            "selectedDMA" : null,
+            "searchTerm" : '',
+            "startDate" : new Date("01/01/2015"),
+            "endDate" : new Date(),
+            "history" : [],
+            "initialDataLoads" : 0
+        }
+        this.loadYWZones();
+        this.loadDMAs();
+    },
+    
     loadYWZones: function () {
         var _this = this;
         var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=waterSupplySystem&sortfield=waterSupplyZone';
@@ -309,10 +353,6 @@ export default Ember.Object.extend({
         }
     }.observes('canvasSettings.ywFilter.selectedDMA'),
 
-    moveArray: function (arr, from, to) {
-        arr.splice(to, 0, arr.splice(from, 1)[0]);
-        return arr;
-    },
 
     loadYWQueryData: function () {
         var _this = this;
@@ -330,6 +370,14 @@ export default Ember.Object.extend({
                 }
             });
     }.observes('canvasSettings.ywFilter.query'),
+/////////////////////////////////////////////////////////////////
+// End YW Canvas Filtering
+/////////////////////////////////////////////////////////////////
+
+    moveArray: function (arr, from, to) {
+        arr.splice(to, 0, arr.splice(from, 1)[0]);
+        return arr;
+    },
 
     groupSortCount: function (arr, prop, count, desc) {
         var grouped = _.groupBy(arr, function (obj) {

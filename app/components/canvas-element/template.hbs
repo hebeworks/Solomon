@@ -69,8 +69,9 @@
         --}}
         
         {{stories/complete/nhs-rtt/treatment-rag-tile}}
+        {{stories/complete/nhs-rtt/canvas-filter}}
         {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
-
+{{!--
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -78,7 +79,7 @@
                 {{/if}}
             {{/each}}
         {{/if}}
-
+--}}
  
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">

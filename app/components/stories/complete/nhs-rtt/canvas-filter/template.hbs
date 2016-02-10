@@ -8,11 +8,15 @@
             <button cpn-button>Regional</button>
         </li>
     </ul>
-    
+
     <p cpn-divide="bottom solid faded-dark">
-        {{
-            select-2
-        }}
+			{{ select-2
+				content=nhsFilter.regions
+				value=nhsFilter.selectedRegion
+
+				placeholder="Choose a region"
+				class="margin-bottom-no"
+			}}
     </p>
     
     <ul cpn-row-list cpn-margin="bottom-none">
