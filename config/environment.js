@@ -28,7 +28,7 @@ module.exports = function (environment) {
       dataMillDataAPI: 'http://api.datapress.io/api/3/',     // (the datastore API where data ends up in the 'push to datastore' case).
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      hebeNodeAPI: 'http://hebenodeapi-cached.azurewebsites.net/',
+      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
     //   solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
       solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net'

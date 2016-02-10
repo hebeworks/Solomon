@@ -9,19 +9,7 @@ export default Ember.Object.extend({
     errorMessage: '',
 
     canvasSettings: {
-        ywFilter: {
-            zones: [],
-            subZones: [],
-            dmas: [],
-            selectedZone: null,
-            selectedSubZone: null,
-            selectedDMA: null,
-            searchTerm: '',
-            startDate: new Date("01/01/2015"),
-            endDate: new Date(),
-            history: [],
-            initialDataLoads: 0
-        }
+
     },
 
     solomonConfig: Ember.computed({
@@ -58,10 +46,11 @@ export default Ember.Object.extend({
                     solomonConfig.title = 'Yorkshire Water';
                     solomonConfig.storyConfig.storyHandle = 'both';
                     solomonConfig.defaultCanvas = 'contact-data';
-                    solomonConfig.initMethod = function() {
-                        this.loadYWZones();
-                        this.loadDMAs();
-                    };
+                    solomonConfig.initMethod = this.ywInit;
+                    // function() {
+                    //     this.loadYWZones();
+                    //     this.loadDMAs();
+                    // };
                     break;
                 case 'findmybinday.co.uk' :
                 case 'findmybinday.com' :
@@ -72,6 +61,7 @@ export default Ember.Object.extend({
                     solomonConfig.title = 'NHS Dashboard';
                     solomonConfig.storyConfig.storyHandle = 'both';
                     solomonConfig.logoType = 'bitmap';
+                    solomonConfig.initMethod = this.nhsInit;
                     break;
             }
             return solomonConfig;
@@ -133,6 +123,92 @@ export default Ember.Object.extend({
         });
     },
 
+/////////////////////////////////////////////////////////////////
+// NHS Canvas Filtering
+/////////////////////////////////////////////////////////////////
+    nhsInit: function() {
+        this.canvasSettings.nhsFilter = {
+            "regions" : [],
+            "selectedRegion" : null,
+            "months": [],
+            "selectedMonth": null,
+            "history" : [],
+            "initialDataLoads" : 0
+        };
+        this.loadNHSRegions();
+        this.loadNHSMonths();
+    },
+    loadNHSMonths: function() {
+        var dateFormat = "MMM YYYY";
+        var months = [
+            { id: "20140331", text: moment("20140331","YYYYMMDD").format(dateFormat)},
+            { id: "20140430", text: moment("20140430","YYYYMMDD").format(dateFormat)},
+            { id: "20140531", text: moment("20140531","YYYYMMDD").format(dateFormat)},
+            { id: "20140630", text: moment("20140630","YYYYMMDD").format(dateFormat)},
+            { id: "20140731", text: moment("20140731","YYYYMMDD").format(dateFormat)},
+            { id: "20140831", text: moment("20140831","YYYYMMDD").format(dateFormat)},
+            { id: "20140930", text: moment("20140930","YYYYMMDD").format(dateFormat)},
+            { id: "20141031", text: moment("20141031","YYYYMMDD").format(dateFormat)},
+            { id: "20141130", text: moment("20141130","YYYYMMDD").format(dateFormat)},
+            { id: "20141231", text: moment("20141231","YYYYMMDD").format(dateFormat)},
+            { id: "20150131", text: moment("20150131","YYYYMMDD").format(dateFormat)},
+            { id: "20150228", text: moment("20150228","YYYYMMDD").format(dateFormat)},
+            { id: "20150331", text: moment("20150331","YYYYMMDD").format(dateFormat)},
+            { id: "20150430", text: moment("20150430","YYYYMMDD").format(dateFormat)},
+            { id: "20150531", text: moment("20150531","YYYYMMDD").format(dateFormat)},
+            { id: "20150630", text: moment("20150630","YYYYMMDD").format(dateFormat)},
+            { id: "20150731", text: moment("20150731","YYYYMMDD").format(dateFormat)},
+            { id: "20150831", text: moment("20150831","YYYYMMDD").format(dateFormat)},
+            { id: "20150930", text: moment("20150930","YYYYMMDD").format(dateFormat)},
+            { id: "20151031", text: moment("20151031","YYYYMMDD").format(dateFormat)},
+            { id: "20151130", text: moment("20151130","YYYYMMDD").format(dateFormat)}
+        ];
+        months.reverse();
+        this.set('canvasSettings.nhsFilter.months',months);
+        this.set('canvasSettings.nhsFilter.selectedMonth',months[0]);
+    },
+    loadNHSRegions: function () {
+        var _this = this;
+        var url = this.get('hebeNodeAPI') + '/nhsrtt/regions';
+        this.getData(url, true).then(function (regions) {
+            if (!Ember.isEmpty(regions)) {
+                regions.forEach(function (region) {
+                    region.id = region._id;
+                    region.text = region.name;
+                });
+            }
+            regions.push({ id: 'all', text: 'All - May be slow' });
+            _this.incrementProperty('canvasSettings.nhsFilter.initialDataLoads');
+            _this.set('canvasSettings.nhsFilter.regions', regions);
+            _this.set('canvasSettings.nhsFilter.selectedRegion', regions[1]);
+        });
+    },
+
+/////////////////////////////////////////////////////////////////
+// End NHS Canvas Filtering
+/////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+// YW Canvas Filtering
+/////////////////////////////////////////////////////////////////
+    ywInit: function() {
+        this.canvasSettings.ywFilter = {
+            "zones" : [],
+            "subZones" : [],
+            "dmas" : [],
+            "selectedZone" : null,
+            "selectedSubZone" : null,
+            "selectedDMA" : null,
+            "searchTerm" : '',
+            "startDate" : new Date("01/01/2015"),
+            "endDate" : new Date(),
+            "history" : [],
+            "initialDataLoads" : 0
+        }
+        this.loadYWZones();
+        this.loadDMAs();
+    },
+    
     loadYWZones: function () {
         var _this = this;
         var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=waterSupplySystem&sortfield=waterSupplyZone';
@@ -311,10 +387,6 @@ export default Ember.Object.extend({
         }
     }.observes('canvasSettings.ywFilter.selectedDMA'),
 
-    moveArray: function (arr, from, to) {
-        arr.splice(to, 0, arr.splice(from, 1)[0]);
-        return arr;
-    },
 
     loadYWQueryData: function () {
         var _this = this;
@@ -332,6 +404,14 @@ export default Ember.Object.extend({
                 }
             });
     }.observes('canvasSettings.ywFilter.query'),
+/////////////////////////////////////////////////////////////////
+// End YW Canvas Filtering
+/////////////////////////////////////////////////////////////////
+
+    moveArray: function (arr, from, to) {
+        arr.splice(to, 0, arr.splice(from, 1)[0]);
+        return arr;
+    },
 
     groupSortCount: function (arr, prop, count, desc) {
         var grouped = _.groupBy(arr, function (obj) {

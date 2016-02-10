@@ -10,8 +10,8 @@ export default DefaultStory.extend({
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true
     },
-    
-    onInsertElement: function () {
-        
-    }.on('didInsertElement')
+	nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
+    onInit: function() {
+        this.get('nhsFilter.regions');
+    }.on('init')
 });
