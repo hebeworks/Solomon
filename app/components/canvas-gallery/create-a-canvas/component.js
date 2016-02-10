@@ -2,14 +2,26 @@ import Ember from 'ember';
 import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
 
 export default Ember.Component.extend(BottomDrawerContent, {
+
 	canvas: null,
-	mainTitle: 'Create a Canvas',
-	title: 'Create a Canvas',
-	message: '',
+
 	model: null,
-	categories: [],
-	stories: [],
+
+	message: '',
+
+	mainTitle: 'Create a Canvas',
+
+	title: 'Create a Canvas',
+
 	appController: null,
+
+	categories: function(){
+		return [];
+	}.property('model'),
+
+	stories: function(){
+		return [];
+	}.property('model'),
 
 	didInsertElement: function () {
 		var config = this.get('appController.bottomDrawerConfig');
@@ -57,7 +69,6 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			return;
 
 		if (this.get('session.isAuthenticated')){
-
 			var canvas = this.store.createRecord('canvas', {
 				title: this.get('title'),
 				description: this.get('description'),
@@ -71,6 +82,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			var self = this;
 
 			canvas.save().then(function(savedCanvas){
+				console.log(savedCanvas.id, savedCanvas);
 				if(!Ember.isEmpty(savedCanvas.get('id'))){
 					self.set('action', 'loadACanvas');
 					self.sendAction('action', savedCanvas.get('id'));
