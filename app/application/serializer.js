@@ -34,7 +34,7 @@ export default DS.JSONAPISerializer.extend({
                     });
                 }
             }
-            
+
             arrayProps.forEach(function(prop){
                 delete item[prop];
             })
@@ -84,7 +84,7 @@ export default DS.JSONAPISerializer.extend({
         payloadTemp[type.modelName] = payload;
         return this._super(store, type, payloadTemp);
     },
-    
+
     extractSingle: function (store, type, payload, id) {
         var payloadTemp = {};
         payloadTemp[type.modelName] = [payload];
