@@ -3,6 +3,8 @@ import Ember from 'ember';
 
 export default  DS.Model.extend({
 
+  _config: null,
+
   title: DS.attr('string'),
 
   categories: DS.hasMany('category', { async: true }),
@@ -12,8 +14,6 @@ export default  DS.Model.extend({
   storyType: DS.attr('string'),
 
   configJSON: DS.attr('string'),
-
-  _config: null,
 
   config: Ember.computed({
 
@@ -82,6 +82,7 @@ export default  DS.Model.extend({
 		}
 	},
 
+  // Do we need this if we're setting it on the computed prop above?
   onConfigChanged: function (){
 		var config = this.get('config');
 		var serialized = this.serializeConfigToJSON(config);
