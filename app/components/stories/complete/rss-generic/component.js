@@ -1,7 +1,8 @@
 /* global Ember, hebeutils, _ */
 import DatamillStory from './../../story-types/datamill-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DatamillStory.extend({
+export default DatamillStory.extend(EditableFields, {
     storyConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
@@ -9,19 +10,16 @@ export default DatamillStory.extend({
         authorImage: '/assets/img/LeedsCouncilLogo.png'
     },
 
-    storyModel: null,
-    didReceiveAttrs: function () {
-        var story = this.get('storyModel');
-        if (!Ember.isEmpty(story)) {
-            this.setupEditableFields();
-            this.loadFeedFromConfig();
+    editableFields: [
+        {
+            name: 'url',
+            type: 'text',
+            value: '',
+            placeholder: 'Enter a URL'
         }
-    },
+    ],
 
-    setupEditableFields: function () {
-        var story = this.get('storyModel');
-        story.addConfigItem({ name: 'url', type: 'text', value: '', placeholder: 'Enter a URL' });
-    },
+    storyModel: null,
 
     onConfigChange: function () {
         this.loadFeedFromConfig();
@@ -30,18 +28,13 @@ export default DatamillStory.extend({
     }.observes('storyModel.config.@each.value'),
 
     loadFeedFromConfig: function() {
-        var config = this.get('storyModel.config');
-        var feedUrl = config.findBy('name', 'url').get('value');
+        var feedUrl = this.fetchEditableFieldValue('url');
         if (!Ember.isEmpty(feedUrl)) {
             this.loadFeed(feedUrl);
         } else {
             this.loadFeed('http://news.leeds.gov.uk/feed/en');
         }
-    },
-
-    didInsertElement: function () {
-
-    },
+    }.on('init'),
 
     loadFeed: function (feedUrl) {
         var obj = this;
