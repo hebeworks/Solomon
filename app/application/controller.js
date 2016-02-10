@@ -113,7 +113,7 @@ export default Ember.Controller.extend({
 	},
 
 	showTutorial: function () {
-		if (!this.get('isModalVisible')){
+		if (!this.get('modalOptions.isVisible')){
 			Ember.run.cancel(this.get('showTutorialTimer'));
 			this.showModal('ui/tutorial-intro', 'Tutorial');
 		}
