@@ -128,10 +128,42 @@ export default Ember.Object.extend({
         this.canvasSettings.nhsFilter = {
             "regions" : [],
             "selectedRegion" : null,
+            "months": [],
+            "selectedMonth": null,
             "history" : [],
             "initialDataLoads" : 0
-        }
+        };
         this.loadNHSRegions();
+        this.loadNHSMonths();
+    },
+    loadNHSMonths: function() {
+        var dateFormat = "MMM YYYY";
+        var months = [
+            { id: "20140331", text: moment("20140331","YYYYMMDD").format(dateFormat)},
+            { id: "20140430", text: moment("20140430","YYYYMMDD").format(dateFormat)},
+            { id: "20140531", text: moment("20140531","YYYYMMDD").format(dateFormat)},
+            { id: "20140630", text: moment("20140630","YYYYMMDD").format(dateFormat)},
+            { id: "20140731", text: moment("20140731","YYYYMMDD").format(dateFormat)},
+            { id: "20140831", text: moment("20140831","YYYYMMDD").format(dateFormat)},
+            { id: "20140930", text: moment("20140930","YYYYMMDD").format(dateFormat)},
+            { id: "20141031", text: moment("20141031","YYYYMMDD").format(dateFormat)},
+            { id: "20141130", text: moment("20141130","YYYYMMDD").format(dateFormat)},
+            { id: "20141231", text: moment("20141231","YYYYMMDD").format(dateFormat)},
+            { id: "20150131", text: moment("20150131","YYYYMMDD").format(dateFormat)},
+            { id: "20150228", text: moment("20150228","YYYYMMDD").format(dateFormat)},
+            { id: "20150331", text: moment("20150331","YYYYMMDD").format(dateFormat)},
+            { id: "20150430", text: moment("20150430","YYYYMMDD").format(dateFormat)},
+            { id: "20150531", text: moment("20150531","YYYYMMDD").format(dateFormat)},
+            { id: "20150630", text: moment("20150630","YYYYMMDD").format(dateFormat)},
+            { id: "20150731", text: moment("20150731","YYYYMMDD").format(dateFormat)},
+            { id: "20150831", text: moment("20150831","YYYYMMDD").format(dateFormat)},
+            { id: "20150930", text: moment("20150930","YYYYMMDD").format(dateFormat)},
+            { id: "20151031", text: moment("20151031","YYYYMMDD").format(dateFormat)},
+            { id: "20151130", text: moment("20151130","YYYYMMDD").format(dateFormat)}
+        ];
+        months.reverse();
+        this.set('canvasSettings.nhsFilter.months',months);
+        this.set('canvasSettings.nhsFilter.selectedMonth',months[0]);
     },
     loadNHSRegions: function () {
         var _this = this;

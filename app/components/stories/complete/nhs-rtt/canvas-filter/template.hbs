@@ -29,9 +29,12 @@
     </ul>
     
     <p>
-        {{
-            select-2
-        }}
+			{{ select-2
+				content=nhsFilter.months
+				value=nhsFilter.selectedMonth
+				placeholder="Choose a month"
+				class="margin-bottom-no"
+			}}
     </p>
     
 {{/stories/story-base}}
