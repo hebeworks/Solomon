@@ -130,6 +130,24 @@ export default DefaultStory.extend({
                         dash: 'dot'
                     }
                 }
+            ],
+            annotations: [
+                {
+                    text: 'Standard',
+                    x: '2016-12-01',
+                    y: 0.92,
+                    xref: 'x',
+                    yref: 'y',
+                    ax: 0,
+                    ay: -10,
+                    showarrow: true,
+                    arrowsize: 0.5,
+                    arrowhead: 6,
+                    font: {
+                        color: '#000000',
+                        font: 'Roboto',
+                    }
+                }
             ]
         };
 
