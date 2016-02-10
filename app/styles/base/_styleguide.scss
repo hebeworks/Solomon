@@ -219,6 +219,10 @@ ol {
         background-color: $yw-dark-blue;
     }
     
+    [solomon-app~="nhs"] & {
+        background-color: #e8e8e8;
+    }
+    
     &.add-a {
         top:0px;
         height:100%;

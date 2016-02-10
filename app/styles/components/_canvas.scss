@@ -14,6 +14,10 @@
 	[solomon-app~="yorkshire-water"] & {
 		background-color: $yw-dark-blue;
 	}
+	
+	[solomon-app~="nhs"] & {
+		background-color: #e8e8e8;
+	}
 
 	.heading.-switch-canvas {
 		width: 90%;
@@ -131,6 +135,10 @@
 			
 			[solomon-app~="yorkshire-water"] & {
 				background-color: $yw-dark-blue;
+			}
+			
+			[solomon-app~="nhs"] & {
+				background-color: #e8e8e8;
 			}
 		}
 			.canvas__overlay {
