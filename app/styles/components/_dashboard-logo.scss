@@ -14,7 +14,7 @@
         }
     }
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         background-image: url('./img/nhs-logo.png');
         background-size: 100% 100%;
     }
@@ -40,7 +40,7 @@
         }
     }
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         width: 73.26px;
         height: 43.623px;
     }
@@ -68,7 +68,7 @@
         }
     }
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         width: 110px;
         height: 65.5px;
     }

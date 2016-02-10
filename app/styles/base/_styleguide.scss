@@ -142,7 +142,7 @@ ol {
     }
     z-index: 3;
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         &::after {
             content: '';
             position: absolute;

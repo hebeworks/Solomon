@@ -12,7 +12,7 @@
     background-color: $blue;
     color: #fff;
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         background-color: $nhs-blue;
     }
 }
@@ -31,7 +31,7 @@
     background-color: $red;
     color: #fff;
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         background-color: $nhs-red;
     }
 }
@@ -65,7 +65,7 @@
     background-color: $lime;
     color: #fff;
     
-    [solomon-app="nhs"] & {
+    [solomon-app~="nhs"] & {
         background-color: $nhs-green;
     }
 }
