@@ -1,21 +1,21 @@
 {{#stories/story-base}}
 
-    <h3 spc-trt_treatment cpn-story_title cpn-margin="bottom-half">{{treatment}}</h3>
+    <h3 spc-nhs-rag_title cpn-story_title cpn-margin="bottom-none">{{treatment}}</h3>
     
-    <p spc-trt_value cpn-font="30px 500" cpn-margin="bottom-none">{{value}}%</p>
+    <p spc-nhs-rag_value cpn-font="30px 500" cpn-margin="bottom-none">{{value}}%</p>
     
     <div cpn-clearfix>
         <div cpn-float="left">
             <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Top CCG</span>
-            <span spc-trt_comparison="top" cpn-bg-color="{{topColour}}">{{topValue}}%</span>
+            <span spc-nhs-rag_comparison="top" cpn-bg-color="{{topColour}}">{{topValue}}%</span>
         </div>
         
         <div cpn-float="right" cpn-text="right">
             <span cpn-display="block" cpn-text="uppercase" cpn-font="10px">Low CCG</span>
-            <span spc-trt_comparison="low" cpn-bg-color="{{lowColour}}">{{lowValue}}%</span>
+            <span spc-nhs-rag_comparison="low" cpn-bg-color="{{lowColour}}">{{lowValue}}%</span>
         </div>
     </div>
     
-    <a spc-trt_link href="javascript:;" cpn-font="12px 700" cpn-margin="bottom-none" cpn-text="none">Tap to view</a>
+    <a spc-nhs-rag_link href="javascript:;" cpn-font="12px 700" cpn-margin="bottom-none" cpn-text="none">Tap to view</a>
     
 {{/stories/story-base}}
