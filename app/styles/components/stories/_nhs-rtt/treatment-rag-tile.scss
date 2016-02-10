@@ -1,7 +1,15 @@
 [solomon-story="treatment-rag-tile"] {
     [cpn-story~="has-deviated"] {
-        [cpn-story_bar] {
+        [cpn-story_bar~="front"] {
             background-color: $nhs-red;
+        }
+        
+        [cpn-story_dot~="front"]::after {
+            background-color: #fff;
+        }
+        
+        [spc-trt_link] {
+            color: #fff;
         }
     }
 }
