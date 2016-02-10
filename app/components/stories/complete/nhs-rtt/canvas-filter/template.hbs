@@ -19,7 +19,21 @@
 				class="margin-bottom-no"
 			}}
     </p>
-    
+    <p cpn-divide="bottom solid faded-dark">
+			{{ select-2
+				content=nhsFilter.providers
+				value=nhsFilter.selectedProvider
+optionLabelPath="name"
+optionValuePath="_id"
+				placeholder="Choose a Provider"
+				class="margin-bottom-no"
+			}}
+    </p>
+    {{!-- 
+    {{#each provider in nhsFilter.providers}}
+        {{provider.name}}
+    {{/each}}
+    --}}
     <ul cpn-row-list cpn-margin="bottom-none">
         <li cpn-width="50%">
             <button cpn-button>CCG</button>
@@ -30,12 +44,12 @@
     </ul>
     
     <p>
-			{{ select-2
-				content=nhsFilter.months
-				value=nhsFilter.selectedMonth
-				placeholder="Choose a month"
-				class="margin-bottom-no"
-			}}
+        {{ select-2
+            content=nhsFilter.months
+            value=nhsFilter.selectedMonth
+            placeholder="Choose a month"
+            class="margin-bottom-no"
+        }}
     </p>
     
 {{/stories/story-base}}

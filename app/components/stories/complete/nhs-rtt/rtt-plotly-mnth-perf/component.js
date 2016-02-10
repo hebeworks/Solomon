@@ -49,10 +49,32 @@ export default DefaultStory.extend({
     }.observes('nhsFilter.selectedRegion'),
     
     drawChart: function() {
+        var chartData = this.get('chartData')[0].months;
+        var months1 = [];
+        var percentages1 = [];
+        var months2 = [];
+        var percentages2 = [];
+        chartData = _.sortBy(chartData,function(obj) {
+            return obj._id;
+        });
+        _.each(chartData,function(obj){
+            // _id: "20140630"
+            // gt_00_to_18_weeks_sum: 952042
+            // gt_18_to_26_weeks_sum: 43693
+            // gt_26_to_40_weeks_sum: 17653
+            // gt_40_to_52_weeks_sum: 2877
+            // total: 1016690
+// debugger;
+            if(obj._id.indexOf(2015) == 0) {
+                months1.push(moment(obj._id,"YYYYMMDD").format("YYYY-MM-DD"));
+                percentages1.push((obj.gt_00_to_18_weeks_sum / obj.total));
+            } else if(obj._id.indexOf(2014) == 0) {
+                months2.push(moment('2015' + obj._id.substr(4),"YYYYMMDD").format("YYYY-MM-DD"));
+                percentages2.push((obj.gt_00_to_18_weeks_sum / obj.total));                
+            }
+        });
+        
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
-
-debugger;
-
         var trace1 = {
             name: "2015",
             showLegend: true,
@@ -65,13 +87,13 @@ debugger;
                 color: colorPalette[1],
                 width: 2
             },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            x: months1, //['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
+            y: percentages1, //[.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
             type: 'scatter'
         };
 
         var trace2 = {
-            name: "2016",
+            name: "2014",
             showLegend: true,
             mode: 'lines+markers',
             marker: {
@@ -82,8 +104,8 @@ debugger;
                 color: colorPalette[2],
                 width: 2
             },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.40, .55, .64, .62, .75, .85, .73, .92, .99, .94, .67, .90],
+            x: months2, //['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
+            y: percentages2,// [.40, .55, .64, .62, .75, .85, .73, .92, .99, .94, .67, .90],
             type: 'scatter'
         };
 
@@ -134,9 +156,9 @@ debugger;
             shapes: [
                 {
                     type: 'line',
-                    x0: '2016-01-01',
+                    x0: '2015-01-01',
                     y0: 0.92,
-                    x1: '2016-12-01',
+                    x1: '2015-12-01',
                     y1: 0.92,
                     line: {
                         color: 'rgb(000, 000, 000)',
@@ -148,7 +170,7 @@ debugger;
             annotations: [
                 {
                     text: 'Standard',
-                    x: '2016-12-01',
+                    x: '2015-12-01',
                     y: 0.92,
                     xref: 'x',
                     yref: 'y',

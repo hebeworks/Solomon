@@ -130,6 +130,8 @@ export default Ember.Object.extend({
         this.canvasSettings.nhsFilter = {
             "regions" : [],
             "selectedRegion" : null,
+            "providers": [],
+            "selectedProvider": null,
             "months": [],
             "selectedMonth": null,
             "history" : [],
@@ -177,12 +179,15 @@ export default Ember.Object.extend({
                     region.text = region.name;
                 });
             }
-            regions.push({ id: 'all', text: 'All - May be slow' });
+            // regions.push({ id: 'all', text: 'All - May be slow' });
             _this.incrementProperty('canvasSettings.nhsFilter.initialDataLoads');
             _this.set('canvasSettings.nhsFilter.regions', regions);
             _this.set('canvasSettings.nhsFilter.selectedRegion', regions[1]);
         });
     },
+    onNHSSelectedRegionChange: function(){
+        this.set('canvasSettings.nhsFilter.providers', this.get('canvasSettings.nhsFilter.selectedRegion.providers'));
+    }.observes('canvasSettings.nhsFilter.selectedRegion'), 
 
 /////////////////////////////////////////////////////////////////
 // End NHS Canvas Filtering
