@@ -64,7 +64,7 @@
             {{#if storyConfig.viewOnly}}
                 <button cpn-margin="top" cpn-button="action" {{action 'removeAStory' storyModel}}>Remove Story</button>
 				{{#if configFields}}
-                    <button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>                
+                <button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>                
                 {{/if}}
             {{else}}
                 {{#if storyConfig.description}}
@@ -97,7 +97,7 @@
                     </li>
                 </ul>
                 
-<button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>
+<button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>
 {{!--
 {{#if configFields}}
     {{#each configFields as |field|}}

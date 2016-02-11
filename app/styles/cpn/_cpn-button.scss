@@ -70,6 +70,18 @@
             background-color: darken($yw-red, 5%);
         }
     }
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-red;
+        
+        &:hover, &:focus {
+            background-color: lighten($nhs-red, 5%);
+        }
+        
+        &:active {
+            background-color: darken($nhs-red, 5%);
+        }
+    }
 }
 
 // Move button styles, for buttons which take the user to a different location
@@ -95,6 +107,18 @@
         
         &:active {
             background-color: darken($yw-medium-blue, 5%);
+        }
+    }
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-blue;
+        
+        &:hover, &:focus {
+            background-color: lighten($nhs-blue, 5%);
+        }
+        
+        &:active {
+            background-color: darken($nhs-blue, 5%);
         }
     }
 }
@@ -124,6 +148,10 @@
         
         [solomon-app~="yorkshire-water"] & {
             background-color: $yw-green;
+        }
+        
+        [solomon-app~="nhs"] & {
+            background-color: $nhs-green;
         }
     }
 }
