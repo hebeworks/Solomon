@@ -3,127 +3,109 @@ import Ember from 'ember';
 
 export default DS.Model.extend({
 
-	_stories: null,
+  _stories: null,
 
-	title: DS.attr('string'),
+  title: DS.attr('string'),
 
-	description: DS.attr('string'),
+  description: DS.attr('string'),
 
-	shortcode: DS.attr('string'),
+  shortcode: DS.attr('string'),
 
-	friendlyURL: DS.attr('string'),
+  friendlyURL: DS.attr('string'),
 
-	categories: DS.hasMany('category', { async: true }),
+  categories: DS.hasMany('category', { async: true }),
 
-	userID: DS.attr('string'),
+  userID: DS.attr('string'),
 
-	storiesJSON: DS.attr('string'),
+  storiesJSON: DS.attr('string'),
 
-	authorName: DS.attr('string'),
+  authorName: DS.attr('string'),
 
-	twitterName: DS.attr('string'),
+  twitterName: DS.attr('string'),
 
-	stories: Ember.computed({
+  stories: Ember.computed({
 
-		get(){
-			if (this.get('_stories') == null && !Ember.isEmpty(this.get('storiesJSON'))) {
-				var storyJSON = JSON.parse(this.get('storiesJSON'));
-				var store = this.store;
-				var stories = Ember.A();
+    get(){
+      if (this.get('_stories') == null && !Ember.isEmpty(this.get('storiesJSON'))) {
+        var storyJSON = JSON.parse(this.get('storiesJSON'));
+        var store = this.store;
+        var stories = Ember.A();
 
-				storyJSON.data.forEach(function (story) {
-					story.attributes.id = hebeutils.guid();
-					story.type = 'story';
+        storyJSON.data.forEach(function (story) {
+          story.attributes.id = hebeutils.guid();
+          story.type = 'story';
 
-					var attributes = story.attributes;
-					$.extend(story, attributes);
-					delete story.attributes;
+          var attributes = story.attributes;
+          $.extend(story, attributes);
+          delete story.attributes;
 
-					var tmp = store.createRecord('story', story);
+          var tmp = store.createRecord('story', story);
 
-					var catIDs = story.relationships.categories.data.map(function(item){
-						return item.id;
-					});
+          var catIDs = story.relationships.categories.data.map(function(item){
+            return item.id;
+          });
 
-					catIDs.forEach(function(id){
-						store
-							.find('category',id)
-							.then(function(item){
-								tmp.get('categories').pushObject(item);
-							});
-					});
+          catIDs.forEach(function(id){
+            store
+              .find('category',id)
+              .then(function(item){
+                tmp.get('categories').pushObject(item);
+              });
+          });
 
-					stories.pushObject(tmp);
-				});
+          stories.pushObject(tmp);
+        });
 
-				this.set('_stories', stories);
+        this.set('_stories', stories);
 
-				if (Ember.isArray(stories)) {
-					return stories.sortBy("canvasOrderIndex");
-				}
+        if (Ember.isArray(stories)) {
+          return stories.sortBy("canvasOrderIndex");
+        }
 
-				return Ember.A();
-			}
+        return Ember.A();
+      }
 
-			return Ember.A();
-		},
+      return Ember.A();
+    },
 
-		set(key, value){
-			this.set('_stories', value);
+    set(key, value){
+      this.set('_stories', value);
 
-			if (!Ember.isEmpty(value)){
-				this.set('storiesJSON', this.serializeStoriesToJSON(value));
-			}
+      if (!Ember.isEmpty(value)){
+        this.set('storiesJSON', this.serializeStoriesToJSON(value));
+      }
 
-			return value;
-		}
+      return value;
+    }
 
-	}),
+  }),
 
-	urlShortcode: Ember.computed('shortcode', {
-		get() {
-			if (this.get('shortcode') == null && Ember.isEmpty(this.get('shortcode'))) {
-				var id = this.get('id');
-				var code = hebeutils.shortcode.randomString(6);
-				this.set('shortcode', code);
-				this.save();
-			}
-			return this.get('shortcode');
-		},
-		set(key, value) {
-			if (value != this.get('shortcode')) {
-				this.set('shortcode', value);
-			}
-			return value;
-		}
-	}),
+  onStoriesChanged: function () {
+    var stories = this.get('stories');
 
-	onStoriesChanged: function () {
-		var stories = this.get('stories');
+    stories.forEach(function(story){
+      story.onConfigChanged();
+    });
 
-		stories.forEach(function(story){
-			story.onConfigChanged();
-		});
+    this.set('storiesJSON', this.serializeStoriesToJSON(stories));
+  }.observes('stories.@each', 'stories.@each.configJSON'),
 
-		this.set('storiesJSON', this.serializeStoriesToJSON(stories));
-	}.observes('stories.@each', 'stories.@each.configJSON'),
+  serializeStoriesToJSON: function (stories){
+    if(!stories)
+      return '';
 
-	serializeStoriesToJSON: function (stories){
-		if(!stories)
-			return '';
+    var store = this.store;
+    var items = [];
 
-		var store = this.store;
-		var items = [];
+    stories.forEach(function (story) {
+      var tmp = store.serialize(story, {
+        includeId: true
+      });
 
-		stories.forEach(function (story) {
-			var tmp = store.serialize(story, {
-				includeId: true
-			});
+      items.push(tmp.data);
+    });
 
-			items.push(tmp.data);
-		});
-
-		return JSON.stringify({ data: items });
-	}
+    return JSON.stringify({ data: items });
+  }
 
 });

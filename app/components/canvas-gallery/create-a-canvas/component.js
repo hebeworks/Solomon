@@ -82,7 +82,6 @@ export default Ember.Component.extend(BottomDrawerContent, {
 			var self = this;
 
 			canvas.save().then(function(savedCanvas){
-				console.log(savedCanvas.id, savedCanvas);
 				if(!Ember.isEmpty(savedCanvas.get('id'))){
 					self.set('action', 'loadACanvas');
 					self.sendAction('action', savedCanvas.get('id'));

@@ -71,50 +71,50 @@ export default  DS.Model.extend({
     }
   }),
 
-	addConfigItem: function (obj) {
-		var config = this.get('config');
-		var existingConfig = config.findBy('name', obj.name);
+  addConfigItem: function (obj) {
+    var config = this.get('config');
+    var existingConfig = config.findBy('name', obj.name);
 
-		if (Ember.isEmpty(existingConfig)){
-			config.push(
+    if (Ember.isEmpty(existingConfig)){
+      config.push(
         this.store.createRecord('story/configItem', obj)
       );
-		}
-	},
+    }
+  },
 
   // Do we need this if we're setting it on the computed prop above?
   onConfigChanged: function (){
-		var config = this.get('config');
-		var serialized = this.serializeConfigToJSON(config);
+    var config = this.get('config');
+    var serialized = this.serializeConfigToJSON(config);
 
-		this.set('configJSON', serialized);
+    this.set('configJSON', serialized);
 
-		config.forEach(function(item){
+    config.forEach(function(item){
       var name = item.get('name');
       var value = item.get('value');
 
-			if(this.get(name) !== value){
-				this.set(name, value);
-			}
-		}.bind(this));
-	}.observes('config.@each.value').on('ready'),
+      if(this.get(name) !== value){
+        this.set(name, value);
+      }
+    }.bind(this));
+  }.observes('config.@each.value').on('ready'),
 
-	serializeConfigToJSON: function(config){
+  serializeConfigToJSON: function(config){
     if(!config)
       return '';
 
-		var store = this.store;
+    var store = this.store;
     var items = [];
 
-		config.forEach(function (config) {
-			var tmp = store.serialize(config, {
+    config.forEach(function (config) {
+      var tmp = store.serialize(config, {
         includeId: true
       });
 
-			items.push(tmp.data);
-		});
+      items.push(tmp.data);
+    });
 
-		return JSON.stringify({ data: items });
-	}
+    return JSON.stringify({ data: items });
+  }
 
 });

@@ -5,9 +5,16 @@ export default Ember.Component.extend({
     tagName: 'div',
     isDraggingStory: false,
     // 'data-id': null, //Ember.computed.alias('target.storyModel.id'),
-    'data-id': Ember.computed.alias('target.storyModel.id'),
-    'data-canvas-order-index': Ember.computed.alias('target.storyModel.canvasOrderIndex'),
-    storyModel: Ember.computed.alias('target.storyModel'),
+    'data-id': Ember.computed.alias('storyModel.id'),
+    'data-canvas-order-index': Ember.computed.alias('storyModel.canvasOrderIndex'),
+    storyModel: Ember.computed('target.storyModel', {
+        get() {
+            if(!Ember.isEmpty(this.get('target.storyModel'))) {
+                return this.get('target.storyModel');
+            }
+            return this.store.createRecord('story',{});
+        }
+    }),
     classNames: 'js-story',
 
     support3d: '',
@@ -31,7 +38,8 @@ export default Ember.Component.extend({
         description: '',
         license: '',
         slider: false,
-        scroll: true
+        scroll: true,
+        customProperties: ''
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
@@ -48,6 +56,7 @@ export default Ember.Component.extend({
         'target.storyConfig.license',
         'target.storyConfig.slider',
         'target.storyConfig.scroll',
+        'target.storyConfig.customProperties',
         function () {
             var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
             var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
@@ -69,7 +78,11 @@ export default Ember.Component.extend({
     // Pass the width and height settings
     // into the story component.
     'cpn-story': Ember.computed('storyConfig.width', function () {
-        return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
+        if (this.get('storyConfig.customProperties') != '') {
+            return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height') + ' ' + this.get('storyConfig.customProperties');
+        } else {
+            return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
+        }
     }),
 
     // Tell the story component if there is a header.

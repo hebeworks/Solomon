@@ -1,9 +1,17 @@
 <h1 spc-dashboard-logo="compact">
+    {{#if svgLogo}}
     <span data-grunticon-embed class="svg-{{logoClass}}-compact">{{logoText}}</span>
+    {{else}}
+    {{logoText}}
+    {{/if}}
 </h1>
 
 <h1 spc-dashboard-logo="expanded">
+    {{#if svgLogo}}
     <span data-grunticon-embed class="svg-{{logoClass}}-expanded">{{logoText}}</span>
+    {{else}}
+    {{logoText}}
+    {{/if}}
 </h1>
 
 {{yield}}
