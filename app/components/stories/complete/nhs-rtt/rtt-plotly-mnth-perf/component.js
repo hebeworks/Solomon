@@ -11,8 +11,8 @@ export default DefaultStory.extend({
     allData: [],
     
     storyConfig: {
-        title: 'RTT Performance by Month', // (Provide a story title)
-        subTitle: 'Monthly performance against standard', // (Provide a story subtitle)
+        title: '', // (Provide a story title)
+        subTitle: '', // (Provide a story subtitle)
         // author: 'Simon Zimmerman',
 
         // description: '', // (Provide a longer description of the story)
@@ -27,6 +27,7 @@ export default DefaultStory.extend({
         
         // slider: false, (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
     nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
 

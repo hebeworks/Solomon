@@ -1,4 +1,6 @@
 {{#stories/story-base}}
+    <h3 cpn-story_title cpn-margin="bottom">RTT Performance by Month</h3>
+
     <ul cpn-row-list>
         <li cpn-width="25%"><button {{action "setPart" "all"}} cpn-button="{{btnAllChosen}} small">All</button></li>
         <li cpn-width="25%"><button {{action "setPart" "PART_1A"}} cpn-button="{{btnAdmittedChosen}} small">Admitted</button></li>
@@ -6,10 +8,6 @@
         <li cpn-width="25%"><button {{action "setPart" "PART_2"}} cpn-button="{{btnIncompleteChosen}} small">Incomplete</button></li>
     </ul>
     
-    
-    
-    
-
     <div id="plotly-container" style="width: 100%; height: 160px;">
       <div id={{chartID}} style="width: 100%; height: 100%;"></div>
     </div>
