@@ -3,9 +3,10 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 
 export default DefaultStory.extend({
     storyConfig: {
-        title: 'NHS England CCGs',
-        subTitle: 'Choose a CCG',
-        scroll: false
+        title: '',
+        subTitle: '',
+        scroll: false,
+        viewOnly: true
     },
     locations: [],
     gMap: null,
