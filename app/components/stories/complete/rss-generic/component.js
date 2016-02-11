@@ -6,6 +6,8 @@ export default DatamillStory.extend(EditableFields, {
 
     storyModel: null,
 
+    loading: true,
+
     storyConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
@@ -37,6 +39,9 @@ export default DatamillStory.extend(EditableFields, {
         var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         var url = hebeNodeAPI + '/apiproxy?url=' + hebeutils.Base64.encode(feedUrl) + '&toJSON=true';
 
+        this.set('items', []);
+        this.set('loading', true);
+
         this.getData(url).then(
             function(data) {
                 var items = [];
@@ -46,9 +51,7 @@ export default DatamillStory.extend(EditableFields, {
 
                     try {
                         image = tmpItem.enclosure[0].$.url;
-                    } catch (err) {
-
-                    }
+                    } catch (err) {}
 
                     var item = {
                         id: tmpItem.guid,
@@ -63,15 +66,10 @@ export default DatamillStory.extend(EditableFields, {
                 });
 
                 this.set('items', items);
-
-                setTimeout(() => {
-                    this.set('loaded', true);
-                });
-            }.bind(this),
-            function (error) {
-                this.set('items', []);
             }.bind(this)
-        );
+        ).finally(function (){
+            this.set('loading', false);
+        }.bind(this));
     }
 
 });
