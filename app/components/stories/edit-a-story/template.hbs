@@ -4,10 +4,10 @@
 </div>
 
 <div class="drawer__inner">
-	<p>{{message}}</p>
-	{{yield}}
 
-	{{!-- canvas-gallery/create-a-canvas --}}
+	<p>{{message}}</p>
+
+	{{yield}}
 
 	<div cpn-margin="bottom-double" class="create-a-story -form -admin">
 		<h2>{{title}}</h2>
@@ -30,10 +30,18 @@
 
 		{{/each}}
 
-		<p cpn-display="inline-block" cpn-margin="bottom-double">
-			<button cpn-button="action" {{action "save"}}>Save new story</button>
-		</p>
+		<div cpn-row-list>
+
+			<div>
+				<button cpn-button="action" {{action "cancel"}}>Cancel</button>
+			</div>
+
+			<div>
+				<button cpn-button="action" {{action "save"}}>Save Story</button>
+			</div>
+
+		</div>
+
 	</div>
 
-	{{!-- admin/create-a-category --}}
 </div>
