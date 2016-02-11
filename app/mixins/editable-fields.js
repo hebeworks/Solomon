@@ -19,6 +19,6 @@ export default Ember.Mixin.create({
         config.forEach(function(object){
           story.addConfigItem(object);
         });
-    }.on('init')
+    }.on('init').observes('storyModel')
 
 });
