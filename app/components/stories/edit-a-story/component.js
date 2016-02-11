@@ -23,7 +23,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	actions: {
 
 		save: function (){
-			this.save()
+			this.save();
 			this.send('close');
 		},
 
