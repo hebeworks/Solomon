@@ -1,92 +1,75 @@
 /* global Ember, hebeutils, _ */
 import DatamillStory from './../../story-types/datamill-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DatamillStory.extend({
+export default DatamillStory.extend(EditableFields, {
+
+    storyModel: null,
+
+    loading: true,
+
     storyConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
         color: 'medium-blue',
         authorImage: '/assets/img/LeedsCouncilLogo.png'
     },
-    
-    storyModel: null,
-    didReceiveAttrs: function () {
-        var story = this.get('storyModel');
-        if (!Ember.isEmpty(story)) {
-            this.setupEditableFields();
-            this.loadFeedFromConfig();
+
+    editableFields: [
+        {
+            name: 'url',
+            type: 'text',
+            value: '',
+            placeholder: 'Enter a URL'
         }
-    },
+    ],
 
-    setupEditableFields: function () {
-        var story = this.get('storyModel');
-        story.addConfigItem({ name: 'url', type: 'text', value: '', placeholder: 'Enter a URL' });
-    },
+    feedURL: function(){
+        var url = this.fetchEditableFieldValue('url');
+        var valid = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
 
-    onConfigChange: function () {
-        this.loadFeedFromConfig();
-        this.set('action','saveCanvasState');
-        this.sendAction('action');
-    }.observes('storyModel.config.@each.value'),
+        return valid ? url : 'http://news.leeds.gov.uk/feed/en';
+    }.property('storyModel.config.@each.value'),
 
-    loadFeedFromConfig: function() {
-        var config = this.get('storyModel.config');
-        var feedUrl = config.findBy('name', 'url').get('value');
-        if (!Ember.isEmpty(feedUrl)) {
-            this.loadFeed(feedUrl);
-        } else {
-            this.loadFeed('http://news.leeds.gov.uk/feed/en');            
-        }
-    },
+    setupFeed: function(){
+        this.loadFeed(this.get('feedURL'));
+    }.on('init').observes('feedURL'),
 
-    didInsertElement: function () {
-        
-    },
-
-    loadFeed: function (feedUrl) {
-        var obj = this;
-        var base64FeedUrl = hebeutils.Base64.encode(feedUrl);
+    loadFeed: function (feedUrl){
         var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
-        var url = hebeNodeAPI + '/apiproxy?url=' + base64FeedUrl + '&toJSON=true';
-        this.getData(url)
-            .then(
-                function (data) {
-                    // success
-                    console.log('rss-leeds-gov > getData > success');
-                    // data is the response Object/Array from the AJAX request
-                    var items = [];
-                    data.rss.channel[0].item.forEach((tmpItem) => {
-                        var image = '';
-                        
-                        try {
-                            image = tmpItem.enclosure[0].$.url;
-                        } catch (err) {
+        var url = hebeNodeAPI + '/apiproxy?url=' + hebeutils.Base64.encode(feedUrl) + '&toJSON=true';
 
-                        }
-                        
-                        var item = {
-                            id: tmpItem.guid,
-                            title: tmpItem.title,
-                            description: tmpItem.description,
-                            image: image,
-                            link: tmpItem.link,
-                            pubDate: tmpItem.pubDate
-                        };
+        this.set('items', []);
+        this.set('loading', true);
 
-                        items.push(item);
-                    });
-                    obj.set('items', items);
-                    setTimeout(() => {
-                        obj.set('loaded', true);
-                    });
-                },
-                function (error) {
-                    // failure
-                    console.log('rss-leeds-gov > getData > error: ' + error);
-                },
-                function () {
-                    // complete
-                }
-                )
+        this.getData(url).then(
+            function(data) {
+                var items = [];
+
+                data.rss.channel[0].item.forEach((tmpItem) => {
+                    var image = '';
+
+                    try {
+                        image = tmpItem.enclosure[0].$.url;
+                    } catch (err) {}
+
+                    var item = {
+                        id: tmpItem.guid,
+                        title: tmpItem.title,
+                        description: tmpItem.description,
+                        image: image,
+                        link: tmpItem.link,
+                        pubDate: tmpItem.pubDate
+                    };
+
+                    items.push(item);
+                });
+
+                this.set('items', items);
+            }.bind(this)
+        ).finally(function (){
+            this.set('loading', false);
+        }.bind(this));
     }
+
 });
