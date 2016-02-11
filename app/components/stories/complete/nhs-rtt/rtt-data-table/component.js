@@ -24,11 +24,11 @@ export default DefaultStory.extend({
         var _this = this;
         var regionID = this.get('nhsFilter.selectedRegion._id');
         var headings = this.get('headings');
-        this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionID)
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionID + '') // do get by parts (admitted etc) add ?parts=true
             .then(function (data) {
                 data = data[0].months;
                 data = _.sortBy(data,function(obj){
-                    return obj._id;
+                    return obj._id.date;
                 });
                 data.reverse();
                 var rows = _.map(data, function (obj) {
@@ -37,7 +37,7 @@ export default DefaultStory.extend({
                         var prop = headings[i].property;
                         var val = obj[prop];
                         if(prop === "_id") {
-                            val = moment(obj[prop],"YYYYMMDD").format("MM YYYY");
+                            val = moment(obj._id.date,"YYYYMMDD").format("MM YYYY");
                         }
                         row.push(val);
                     }

@@ -7,15 +7,18 @@ export default DefaultStory.extend({
     chartID: hebeutils.guid(),
     chartData: null,
     part: 'PART_2',
+    data:[],
+    allData: [],
+    
     storyConfig: {
         title: 'RTT Performance by Month', // (Provide a story title)
         subTitle: 'Monthly performance against standard', // (Provide a story subtitle)
-        author: 'Simon Zimmerman',
+        // author: 'Simon Zimmerman',
 
-        description: '', // (Provide a longer description of the story)
-        license: '', // (Define which license applies to usage of the story)
+        // description: '', // (Provide a longer description of the story)
+        // license: '', // (Define which license applies to usage of the story)
         // dataSourceUrl: '', (Where did the data come from?)
-        feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
+        // feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
         
         // color: 'white', (Set the story colour)
         width: '3', //(Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
@@ -44,6 +47,10 @@ export default DefaultStory.extend({
         var regionCode = this.get('nhsFilter.selectedRegion._id');
         var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
         this.getData(url)
+            .then(function (data) {
+                _this.set('allData',data);
+            });
+        this.getData(url + '?parts=true')
             .then(function (data) {
                 _this.set('data',data);
             });
@@ -77,7 +84,9 @@ export default DefaultStory.extend({
         var data = this.get('data');
         var part = this.get('part');
         var months = data[0].months;
-        if(part !== 'all') {
+        if(part === 'all') {
+            months = this.get('allData.0.months');
+        } else {
             months = _.filter(months,function(obj){
                 return obj._id.part === part;
             });
@@ -96,20 +105,6 @@ export default DefaultStory.extend({
             return obj._id.date;
         });
         _.each(chartData, function (obj) {
-            // {
-            //   "commissioner_org_code": "10N",
-            //   "months": [
-            //     {
-            //       "_id": {
-            //         "date": "20140331",
-            //         "rttpart": "PART_2"
-            //       },
-            //       "gt_00_to_18_weeks_sum": 5310,
-            //       "gt_18_to_26_weeks_sum": 268,
-            //       "gt_26_to_40_weeks_sum": 52,
-            //       "gt_40_to_52_weeks_sum": 2,
-            //       "total": 5632
-            //     },
             // remove Oct & Nov 2015 as erroneous
             if (obj._id.date.indexOf(201510) === 0 || obj._id.date.indexOf(201511) === 0) {
 
