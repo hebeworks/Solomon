@@ -6,11 +6,12 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     chartData: null,
+    part: 'PART_2',
     storyConfig: {
         title: 'RTT Performance by Month', // (Provide a story title)
         subTitle: 'Monthly performance against standard', // (Provide a story subtitle)
         author: 'Simon Zimmerman',
-        
+
         description: '', // (Provide a longer description of the story)
         license: '', // (Define which license applies to usage of the story)
         // dataSourceUrl: '', (Where did the data come from?)
@@ -24,56 +25,103 @@ export default DefaultStory.extend({
         // slider: false, (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
     },
-	nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
+    nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
 
-    getPlotly: function() {
+    getPlotly: function () {
         var _this = this;
         $.ajax({
             url: "https://cdn.plot.ly/plotly-latest.min.js",
             dataType: "script",
             cache: true
         })
-        .done(function() {
-            _this.loadData();
-        });
+            .done(function () {
+                _this.loadData();
+            });
     }.on("init"),
 
-    loadData: function() {
+    loadData: function () {
         var _this = this;
         var regionCode = this.get('nhsFilter.selectedRegion._id');
         var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
         this.getData(url)
-            .then(function(data) {
-                _this.set('chartData',data);
+            .then(function (data) {
+                _this.set('data',data);
             });
     }.observes('nhsFilter.selectedRegion'),
+
+    btnAllChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'all' ? ' chosen ' : '';
+        }
+    }),
     
-    drawChart: function() {
-        var chartData = this.get('chartData')[0].months;
+    btnAdmittedChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'PART_1A' ? ' chosen ' : '';
+        }
+    }),
+    
+    btnNonChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'PART_1B' ? ' chosen ' : '';
+        }
+    }),
+    
+    btnIncompleteChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'PART_2' ? ' chosen ' : '';
+        }
+    }),
+
+    processData: function() {
+        var data = this.get('data');
+        var part = this.get('part');
+        var months = data[0].months;
+        if(part !== 'all') {
+            months = _.filter(months,function(obj){
+                return obj._id.part === part;
+            });
+        }
+        this.set('chartData', months);
+    }.observes('data','part'),
+
+
+    drawChart: function () {
+        var chartData = this.get('chartData');
         var months1 = [];
         var percentages1 = [];
         var months2 = [];
         var percentages2 = [];
-        chartData = _.sortBy(chartData,function(obj) {
-            return obj._id;
+        chartData = _.sortBy(chartData, function (obj) {
+            return obj._id.date;
         });
-        _.each(chartData,function(obj){
-            // _id: "20140630"
-            // gt_00_to_18_weeks_sum: 952042
-            // gt_18_to_26_weeks_sum: 43693
-            // gt_26_to_40_weeks_sum: 17653
-            // gt_40_to_52_weeks_sum: 2877
-            // total: 1016690
-// debugger;
-            if(obj._id.indexOf(2015) == 0) {
-                months1.push(moment(obj._id,"YYYYMMDD").format("YYYY-MM-DD"));
+        _.each(chartData, function (obj) {
+            // {
+            //   "commissioner_org_code": "10N",
+            //   "months": [
+            //     {
+            //       "_id": {
+            //         "date": "20140331",
+            //         "rttpart": "PART_2"
+            //       },
+            //       "gt_00_to_18_weeks_sum": 5310,
+            //       "gt_18_to_26_weeks_sum": 268,
+            //       "gt_26_to_40_weeks_sum": 52,
+            //       "gt_40_to_52_weeks_sum": 2,
+            //       "total": 5632
+            //     },
+            // remove Oct & Nov 2015 as erroneous
+            if (obj._id.date.indexOf(201510) === 0 || obj._id.date.indexOf(201511) === 0) {
+
+            } else if (obj._id.date.indexOf(2015) == 0) {
+                months1.push(moment(obj._id.date, "YYYYMMDD").format("YYYY-MM-DD"));
                 percentages1.push((obj.gt_00_to_18_weeks_sum / obj.total));
-            } else if(obj._id.indexOf(2014) == 0) {
-                months2.push(moment('2015' + obj._id.substr(4),"YYYYMMDD").format("YYYY-MM-DD"));
-                percentages2.push((obj.gt_00_to_18_weeks_sum / obj.total));                
+            } else if (obj._id.date.indexOf(2014) == 0) {
+                months2.push(moment('2015' + obj._id.date.substr(4), "YYYYMMDD").format("YYYY-MM-DD"));
+                percentages2.push((obj.gt_00_to_18_weeks_sum / obj.total));
             }
         });
-        
+
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
         var trace1 = {
             name: "2015",
@@ -125,14 +173,14 @@ export default DefaultStory.extend({
             //showlegend: false,
             legend: {
                 //xanchor:"center",
-                yanchor:"middle",
-                y:.5,
+                yanchor: "middle",
+                y: .5,
                 //x:0.5, 
                 traceorder: 'normal',
                 font: {
-                  family: "Roboto, Open Sans, verdana, sans-serif",
-                  size: 12,
-                  color: '#000'
+                    family: "Roboto, Open Sans, verdana, sans-serif",
+                    size: 12,
+                    color: '#000'
                 },
             },
             xaxis: {
@@ -141,7 +189,7 @@ export default DefaultStory.extend({
                 tickwidth: 1,
                 tickformat: "%b",
                 showline: true,
-                line:{
+                line: {
                     width: 2,
                     color: '#000'
                 }
@@ -234,7 +282,7 @@ export default DefaultStory.extend({
             // (see ./components/modebar/buttons.js for the list of names)
             // (see https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js)
             modeBarButtonsToRemove: [
-                //'toImage',
+            //'toImage',
                 'sendDataToCloud',
                 'zoom2d',
                 'pan2d',
@@ -243,10 +291,10 @@ export default DefaultStory.extend({
                 'zoomIn2d',
                 'zoomOut2d',
                 'autoScale2d',
-                //'resetScale2d',
+            //'resetScale2d',
                 'hoverClosestCartesian',
                 'hoverCompareCartesian',
-                ],
+            ],
             
             // add mode bar button using config objects
             // (see ./components/modebar/buttons.js for list of arguments)
@@ -271,5 +319,11 @@ export default DefaultStory.extend({
             // URL to topojson files used in geo charts
             //topojsonURL: 'https://cdn.plot.ly/'
         });
-    }.observes('chartData')
+    }.observes('chartData'),
+
+    actions: {
+        setPart: function (part) {
+            this.set('part', part);
+        }
+    }
 });

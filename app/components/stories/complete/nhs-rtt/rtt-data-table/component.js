@@ -2,41 +2,50 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
-    // Story settings (including default values)
-    // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: '', // (Provide a story title)
-        subTitle: '', // (Provide a story subtitle)
-        height: '2', // (Set the height of the story)
-        // scroll: true, // (Should the story vertically scroll its content?)
+        title: '',
+        subTitle: '',
+        height: '2',
+        width: '3',
         viewOnly: true
     },
-    
-    title: 'Data Table',
-    columnHeadings: [''],
-    columnCells: null,
-    
-    // loaded: false, // (Tell other elements that this story has loaded)
-    //
-    
-    // Add your story-specific code here
-    data: null,
-    
-    onInsertElement: function () {
-        this.loadData();
-    }.on('didInsertElement'),
+    nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
+    headings: [
+        { title: "Month", property: "_id" },
+        { title: "Less than 18", property: "gt_00_to_18_weeks_sum" },
+        { title: "18 - 26", property: "gt_18_to_26_weeks_sum" },
+        { title: "26 - 40", property: "gt_26_to_40_weeks_sum" },
+        { title: "40 - 52", property: "gt_40_to_52_weeks_sum" },
+        { title: "Total", property: "total" }
+    ],
+    rows: [],
 
-    loadData: function () {
+    onDidInsertElement: function () {
         var _this = this;
-        var url = 'http://'; // add any API url that returns JSON
-        this.getData()
-            .then(
-                function(data){
-                    var items = data; // the JSON returned from the API call is available here
-                    this.set('items',items); // set properties on the Ember component to make them available in the template
-                    setTimeout(() => { _this.set('loaded', true); });
-                },
-                function(err){ console.log(err); }
-            )
-    }
+        var regionID = this.get('nhsFilter.selectedRegion._id');
+        var headings = this.get('headings');
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionID)
+            .then(function (data) {
+                data = data[0].months;
+                data = _.sortBy(data,function(obj){
+                    return obj._id;
+                });
+                data.reverse();
+                var rows = _.map(data, function (obj) {
+                    var row = [];
+                    for (var i = 0; i < headings.length; i++) {
+                        var prop = headings[i].property;
+                        var val = obj[prop];
+                        if(prop === "_id") {
+                            val = moment(obj[prop],"YYYYMMDD").format("MM YYYY");
+                        }
+                        row.push(val);
+                    }
+                    return row;
+                });
+                _this.set('rows', rows);
+            });
+    }.on('didInsertElement').observes('nhsFilter.selectedRegion')
+
+
 });

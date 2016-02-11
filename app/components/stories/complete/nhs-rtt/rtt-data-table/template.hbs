@@ -4,37 +4,19 @@
     <table cpn-width="100%" cpn-font="12px">
         <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
+                {{#each headings as |heading|}}
+                    <th>{{heading.title}}</th>
+                {{/each}}
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Cell 1</td>
-                <td>Cell 2</td>
-                <td>Cell 3</td>
-                <td>Cell 4</td>
-            </tr>
-            <tr>
-                <td>Cell 1</td>
-                <td>Cell 2</td>
-                <td>Cell 3</td>
-                <td>Cell 4</td>
-            </tr>
-            <tr>
-                <td>Cell 1</td>
-                <td>Cell 2</td>
-                <td>Cell 3</td>
-                <td>Cell 4</td>
-            </tr>
-            <tr>
-                <td>Cell 1</td>
-                <td>Cell 2</td>
-                <td>Cell 3</td>
-                <td>Cell 4</td>
-            </tr>
+            {{#each rows as |row|}}
+                <tr>
+                    {{#each row as |cell|}}
+                        <td>{{cell}}</td>
+                    {{/each}}
+                </tr>
+            {{/each}}
         </tbody>
     </table>
     
