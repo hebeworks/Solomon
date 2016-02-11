@@ -65,7 +65,6 @@ export default Ember.Component.extend({
         }),
 
     ensureConfigFields: function () {
-        debugger;
         var configFields = this.get('storyConfig.editableFields');
         if (!Ember.isEmpty(configFields)) {
             var model = this.get('storyModel');
@@ -87,7 +86,7 @@ export default Ember.Component.extend({
     usableWidth: Ember.computed('storyConfig.width', function () {
         return 'width-' + this.get('storyConfig.width');
     }),
-    
+
     // Pass the width and height settings
     // into the story component.
     'cpn-story': Ember.computed('storyConfig.width', function () {
@@ -97,7 +96,7 @@ export default Ember.Component.extend({
             return 'width-' + this.get('storyConfig.width') + ' ' + 'height-' + this.get('storyConfig.height');
         }
     }),
-    
+
     // Tell the story component if there is a header.
     hasHeader: Ember.computed('storyConfig.headerImage', 'storyConfig.title', function () {
         if (this.get('storyConfig.headerImage') != '' || this.get('storyConfig.title') != '') {
@@ -106,7 +105,7 @@ export default Ember.Component.extend({
             return 'no-header';
         }
     }),
-    
+
     // Tell the story component if there is a footer.
     hasFooter: Ember.computed('storyConfig.viewOnly', function () {
         if (this.get('storyConfig.viewOnly')) {
@@ -115,7 +114,7 @@ export default Ember.Component.extend({
             return 'has-footer';
         }
     }),
-    
+
     // We only want a dividing line under the header on larger stories.
     hasHeaderDivide: Ember.computed('storyConfig.height', function () {
         if (this.get('storyConfig.height') == 1) {
@@ -124,7 +123,7 @@ export default Ember.Component.extend({
             return 'cpn-divide="bottom solid ' + this.get('lineShade') + '"';
         }
     }),
-    
+
     // Allow HTML, such as links, to be passed into the description and license.
     usableDescription: Ember.computed(function () {
         return new Ember.Handlebars.SafeString(this.get('storyConfig.description'));
@@ -133,7 +132,7 @@ export default Ember.Component.extend({
     usableLicense: Ember.computed('storyConfig.license', function () {
         return new Ember.Handlebars.SafeString(this.get('storyConfig.license'));
     }),
-    
+
     // Change the shade of the dotted lines based on the story colour.
     darkColours: ['black', 'dark-grey', 'yellow', 'dark-blue', 'medium-blue', 'blue', 'light-blue', 'lighter-blue', 'lime', 'red'],
     lineShade: Ember.computed('storyConfig.color', function () {
@@ -143,7 +142,7 @@ export default Ember.Component.extend({
             return 'dark';
         }
     }),
-    
+
     // Set if the story has a slider, which will then alter the structure accordingly.
     hasSlider: Ember.computed(function () {
         if (this.get('storyConfig.slider')) {
@@ -152,7 +151,7 @@ export default Ember.Component.extend({
             return 'no-slider';
         }
     }),
-    
+
     // Set if the story can scroll its content.
     canScroll: Ember.computed('storyConfig.scroll', function () {
         if (this.get('storyConfig.scroll')) {

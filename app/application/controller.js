@@ -178,8 +178,8 @@ export default Ember.Controller.extend({
 		if (Ember.typeOf(canvas) == 'instance') {
 			if (!Ember.isEmpty(canvas.get('friendlyURL'))) {
 				canvasID = canvas.get('friendlyURL');
-			} else if (!Ember.isEmpty(canvas.get('urlShortcode'))) {
-				canvasID = canvas.get('urlShortcode');
+			} else if (!Ember.isEmpty(canvas.get('shortcode'))) {
+				canvasID = canvas.get('shortcode');
 			} else {
 				canvasID = canvas.get('id');
 			}
@@ -205,9 +205,9 @@ export default Ember.Controller.extend({
 	showCanvasSettings: function () {
 		this.showModal('canvas-settings', 'Canvas Settings', '', true);
 	},
-    
+
     editAStory: function (model) {
-		var params = { 
+		var params = {
 			contentType: 'stories/edit-a-story',
 			preventCanvasBlur: true
 		};
