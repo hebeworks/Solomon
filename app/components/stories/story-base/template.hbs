@@ -1,21 +1,21 @@
 <div cpn-story_inner>
-
+    
     <div cpn-story_face="front {{support3d}} {{storyFlip}}" cpn-bg-color="{{storyConfig.color}}">
         {{#if storyHandleIsDot}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
         {{/if}}
-
+        
         {{#if storyHandleIsBar}}
         <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="front">Move Story</a>
         {{/if}}
-
+        
         {{#if storyHandleIsBoth}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front with-bar">Flip Story</a>
         <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="front with-dot">Move Story</a>
         {{/if}}
-
+        
         <section cpn-story_content="front {{usableHeight}} {{hasHeader}} {{hasFooter}}">
-
+            
             {{#if storyConfig.headerImage}}
                 <header cpn-story_header {{hasHeaderDivide}}>
                     <img src="{{storyConfig.headerImage}}" height="24">
@@ -26,11 +26,11 @@
                     <h3 cpn-story_desc>{{storyConfig.subTitle}}</h3>
                 </header>
             {{/if}}
-
+            
             <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
                 {{yield}}
             </main>
-
+            
             {{#unless storyConfig.viewOnly}}
                 <footer cpn-story_footer cpn-clearfix cpn-divide="top solid {{lineShade}}">
                     {{#if storyConfig.author}}
@@ -40,30 +40,30 @@
                     {{/if}}
                 </footer>
             {{/unless}}
-
+            
         </section>
-
+        
     </div>
-
+    
     <div cpn-story_face="back {{support3d}} {{storyFlip}}">
         {{#if storyHandleIsDot}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back">Flip Story</a>
         {{/if}}
-
+        
         {{#if storyHandleIsBar}}
         <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="back">Move Story</a>
         {{/if}}
-
+        
         {{#if storyHandleIsBoth}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="back with-bar">Flip Story</a>
         <a href="javascript:;" class="js-bars ui-draggable-handle" cpn-story_bar="back with-dot">Move Story</a>
         {{/if}}
-
+        
         <section cpn-story_content="back {{usableHeight}}">
             {{#if storyConfig.viewOnly}}
                 <button cpn-margin="top" cpn-button="action" {{action 'removeAStory' storyModel}}>Remove Story</button>
 				{{#if configFields}}
-                    <button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>
+                <button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>                
                 {{/if}}
             {{else}}
                 {{#if storyConfig.description}}
@@ -72,14 +72,14 @@
                         <p cpn-story_desc>{{usableDescription}}</p>
                     </div>
                 {{/if}}
-
+                
                 {{#if storyConfig.license}}
                     <div cpn-divide="bottom light">
                         <h3 cpn-story_title cpn-margin="bottom-none">Licence / Attribution</h3>
                         <p cpn-story_desc>{{usableLicense}}</p>
                     </div>
                 {{/if}}
-
+                
                 <ul cpn-row-list>
                     {{#if storyConfig.dataSourceUrl}}
                     <li cpn-width="50%">
@@ -95,12 +95,11 @@
                         <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
                     </li>
                 </ul>
-
-                <button class="btn -red -half" {{action 'editAStory' storyModel}}>Edit</button>
-
+                
+				<button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>
             {{/if}}
         </section>
-
+        
     </div>
-
+    
 </div>

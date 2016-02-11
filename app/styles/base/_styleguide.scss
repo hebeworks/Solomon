@@ -296,6 +296,10 @@ thead {
         background-color: #fff;
     }
     
+    [solomon-app~="nhs"] & {
+        background-color: #f7f7f7;
+    }
+    
     .btn-list {
         .btn {
             &.-create {
