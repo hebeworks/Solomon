@@ -7,6 +7,8 @@ export default DS.Model.extend({
   value: DS.attr('string'),
 
   type: DS.attr('string'),
+  
+  contentPath: DS.attr('string'),
 
   placeholder: DS.attr('string')
 

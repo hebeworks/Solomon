@@ -13,13 +13,7 @@
 		<h2>{{title}}</h2>
 
 		{{#each editableFields as |field|}}
-
-			<div cpn-margin="bottom">
-
-				<label>{{field.placeholder}}</label>{{input type=field.type value=field.value placeholder=field.placeholder}}
-
-			</div>
-
+            {{stories/edit-a-story/editable-field field=field}}
 		{{/each}}
 
 		{{#each errors.messages as |message|}}

@@ -1,7 +1,8 @@
 /* global Ember, hebeutils, _ */
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DefaultStory.extend({
+export default DefaultStory.extend(EditableFields, {
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
@@ -12,8 +13,22 @@ export default DefaultStory.extend({
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true
     },
+
+    editableFields: [
+        {
+            name: 'treatment_type',
+            type: 'select',
+            contentPath: 'appSettings.nhsFilter.providers',
+            value: '',
+            placeholder: 'Treatment Type'
+        }
+    ],
     
-    treatment: 'Trauma & Orthopaedics',
+    treatment: function(){
+        return this.fetchEditableFieldValue('treatment_type');
+    }.property('storyModel.config.@each.value'),
+    
+    // treatment: 'Trauma & Orthopaedics',
     value: 95.6,
     topValue: 97.43,
     lowValue: 87.2,
