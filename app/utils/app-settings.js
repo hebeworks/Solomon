@@ -132,6 +132,8 @@ export default Ember.Object.extend({
             "selectedRegion" : null,
             "providers": [],
             "selectedProvider": null,
+            "ccgs": [],
+            "selectedCCG": null,
             "months": [],
             "selectedMonth": null,
             "history" : [],
@@ -187,6 +189,7 @@ export default Ember.Object.extend({
     },
     onNHSSelectedRegionChange: function(){
         this.set('canvasSettings.nhsFilter.providers', this.get('canvasSettings.nhsFilter.selectedRegion.providers'));
+        this.set('canvasSettings.nhsFilter.ccgs', this.get('canvasSettings.nhsFilter.selectedRegion.ccgs'));
     }.observes('canvasSettings.nhsFilter.selectedRegion'), 
 
 /////////////////////////////////////////////////////////////////

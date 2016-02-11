@@ -8,7 +8,8 @@ export default DefaultStory.extend({
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)
         scroll: false, // (Should the story vertically scroll its content?)
-        viewOnly: true
+        viewOnly: true,
+        width: 3
     },
 	nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
     onInit: function() {
