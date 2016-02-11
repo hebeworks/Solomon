@@ -3,14 +3,12 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
-    // Story settings (including default values)
-    // Uncomment any setting you need to change, delete any you don't need
     storyConfig: {
-        title: '', // (Provide a story title)
-        subTitle: '', // (Provide a story subtitle)
-        width: '1', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        height: '1', // (Set the height of the story)
-        scroll: false, // (Should the story vertically scroll its content?)
+        title: '',
+        subTitle: '',
+        width: '1',
+        height: '1',
+        scroll: false,
         viewOnly: true
     },
 
@@ -23,20 +21,44 @@ export default DefaultStory.extend(EditableFields, {
             placeholder: 'Treatment Type'
         }
     ],
-    
-    treatmentName: function(){
+    treatmentID: null,
+    treatmentName: function () {
         var treatmentID = this.fetchEditableFieldValue('treatment_type');
-        if(!Ember.isEmpty(treatmentID)) {
+        this.set('treatmentID', treatmentID);
+        if (!Ember.isEmpty(treatmentID)) {
             var treatments = this.get('appSettings.canvasSettings.nhsFilter.treatments');
-            var treatment = _.find(treatments,function(obj) {
+            var treatment = _.find(treatments, function (obj) {
                 return obj._id == treatmentID;
             });
             return treatment.name;
         }
         return '';
     }.property('storyModel.config.@each.value'),
-    
-    // treatment: 'Trauma & Orthopaedics',
+
+
+    loadData: function () {
+        var _this = this;
+        /*
+            treatmentID
+                topCCG  bottomCCG
+                
+                for this treatment
+                    load all CCGs   
+        */
+        var treatmentID = this.get('treatmentID');
+        var region = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion');
+        var regionID = region._id;
+        console.log('treatmentID: ' + treatmentID + ' regionID: ' + regionID);
+        if (!Ember.isEmpty(regionID) && !Ember.isEmpty(treatmentID)) {
+            this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/regions/' + treatmentID + '/' + regionID)  //430/Y55')
+                .then(function (data) {
+                    var values = data[0].regions;
+                    _this.set('value', ((values.gt_00_to_18_weeks_sum / values.total) * 100).toPrecisionDigits(1));
+                });
+        }
+    }.observes('treatmentID', 'appSettings.canvasSettings.nhsFilter.selectedRegion'),
+
+
     value: 95.6,
     topValue: 97.43,
     lowValue: 87.2,
@@ -45,17 +67,17 @@ export default DefaultStory.extend(EditableFields, {
     lowHasChanged: false,
     topColour: 'black',
     lowColour: 'black',
-    
+
     onInsertElement: function () {
         var _this = this;
-        setTimeout(function() {
+        setTimeout(function () {
             _this.set('loaded', true);
         });
     }.on('didInsertElement'),
-    
-    updateTileApperance: function() {
+
+    updateTileApperance: function () {
         var _this = this;
-        
+
         if (_this.valueHasDeviated == true) {
             // console.log('valueHasDeviated');
             _this.set('storyConfig.color', 'red');
@@ -63,12 +85,12 @@ export default DefaultStory.extend(EditableFields, {
             _this.set('lowColour', 'white');
             _this.set('storyConfig.customProperties', 'has-deviated');
         }
-        
+
         if (_this.topHasChanged == true) {
             // console.log('topHasChanged');
             _this.set('topColour', 'blue');
         }
-        
+
         if (_this.lowHasChanged == true) {
             // console.log('lowHasChanged');
             _this.set('lowColour', 'red');
