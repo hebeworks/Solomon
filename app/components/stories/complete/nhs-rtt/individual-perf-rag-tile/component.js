@@ -46,14 +46,28 @@ export default DefaultStory.extend(EditableFields, {
                     load all CCGs   
         */
         var treatmentID = this.get('treatmentID');
-        var region = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion');
-        var regionID = region._id;
-        console.log('treatmentID: ' + treatmentID + ' regionID: ' + regionID);
-        if (!Ember.isEmpty(regionID) && !Ember.isEmpty(treatmentID)) {
-            this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/regions/' + treatmentID + '/' + regionID)  //430/Y55')
-                .then(function (data) {
-                    var values = data[0].regions;
-                    _this.set('value', ((values.gt_00_to_18_weeks_sum / values.total) * 100).toPrecisionDigits(1));
+        if (!Ember.isEmpty(treatmentID)) {
+            this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/' + treatmentID)
+                .then(function (treatmentData) {
+                    var ccgs = treatmentData[0].ccgs;
+                    var weeks18 = 0;
+                    var totals = 0;
+                    for (var i = 0; i < ccgs.length; i++) {
+                        var ccg = ccgs[i];
+                        weeks18 += ccg.gt_00_to_18_weeks_sum;
+                        totals += ccg.total;
+                        var percentage = ((ccg.gt_00_to_18_weeks_sum / ccg.total) * 100);
+                        // percentage = Math.round( percentage * 10 ) / 10;
+                        ccg.percentage = percentage.toPrecisionDigits(1);
+                    }
+                    var totalPercentage = (weeks18 / totals) * 100;
+                    _this.set('value',totalPercentage.toPrecisionDigits(1));
+                    
+                    var sorted = _.sortBy(ccgs,function(ccg) {
+                        return ccg.percentage;
+                    });
+                    _this.set('lowValue',sorted.get('firstObject').percentage);
+                    _this.set('topValue',sorted.get('lastObject').percentage);
                 });
         }
     }.observes('treatmentID', 'appSettings.canvasSettings.nhsFilter.selectedRegion'),
