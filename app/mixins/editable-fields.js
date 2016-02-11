@@ -13,9 +13,12 @@ export default Ember.Mixin.create({
         var story = this.get('storyModel');
         var config = this.get('editableFields') || [];
 
+        if(story.get('config.length') > 0)
+            return;
+
         config.forEach(function(object){
           story.addConfigItem(object);
         });
-    }.on('init')
+    }.on('init').observes('storyModel')
 
 });

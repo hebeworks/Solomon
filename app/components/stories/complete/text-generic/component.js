@@ -8,20 +8,22 @@ export default DefaultStory.extend(EditableFields, {
         color: 'blue'
     },
 
-    editableFields: [
-        {
-            name: 'title',
-            type: 'text',
-            value: '',
-            placeholder: 'Title text'
-        },
-        {
-            name: 'description',
-            type: 'text',
-            value: '',
-            placeholder: 'Description text'
-        }
-    ],
+    editableFields: function(){
+        return [
+            {
+                name: 'title',
+                type: 'text',
+                value: '',
+                placeholder: 'Title text'
+            },
+            {
+                name: 'description',
+                type: 'text',
+                value: '',
+                placeholder: 'Description text'
+            }
+        ]
+    }.property('storyModel.config'),
 
     title: function(){
         return this.fetchEditableFieldValue('title');
@@ -29,10 +31,6 @@ export default DefaultStory.extend(EditableFields, {
 
     description: function(){
         return this.fetchEditableFieldValue('description');
-    }.property('storyModel.config.@each.value'),
-
-    keepTitleInSync: function(){
-        this.set('storyConfig.title', this.get('title'));
-    }.on('init').observes('title')
+    }.property('storyModel.config.@each.value')
 
 });

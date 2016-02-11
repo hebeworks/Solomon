@@ -1,6 +1,16 @@
 {{#stories/story-base}}
 
-    <main class="text-generic">
+    {{#if title}}
+
+      <header>
+
+        <h2>{{title}}</h2>
+
+      </header>
+
+    {{/if}}
+
+    <main has-header class="text-generic">
 
       {{description}}
 

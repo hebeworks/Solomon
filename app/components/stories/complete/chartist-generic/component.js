@@ -35,25 +35,27 @@ export default Ember.Component.extend(EditableFields, {
             fullWidth: true
     },
 
-    editableFields: [
-        {
-            name: 'chartSeriesData',
-            type: 'textarea',
-            value: '',
-            placeholder: 'Enter a URL'
-        },
-        {
-            name: 'chartType',
-            type: 'select',
-            value: '',
-            placeholder: 'Enter a type',
-            options: [
-                { id:'line', title:'Line'},
-                { id:'bar', title:'Bar'},
-                { id:'pie', title:'Pie'}
-            ]
-        }
-    ],
+    editableFields: function(){
+        return [
+            {
+                name: 'chartSeriesData',
+                type: 'textarea',
+                value: '',
+                placeholder: 'Enter a URL'
+            },
+            {
+                name: 'chartType',
+                type: 'select',
+                value: '',
+                placeholder: 'Enter a type',
+                options: [
+                    { id:'line', title:'Line'},
+                    { id:'bar', title:'Bar'},
+                    { id:'pie', title:'Pie'}
+                ]
+            }
+        ]
+    }.property('storyModel'),
 
     model: Ember.computed.alias('storyModel'),
 

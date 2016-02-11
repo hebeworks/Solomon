@@ -5,11 +5,13 @@ export default Ember.Component.extend(BottomDrawerContent, {
 
 	message: '',
 
-	editableFields: Ember.computed.alias('model.config'),
+	editableFields: function(){
+		return this.get('model.config');
+	}.property('model'),
 
 	editableFieldAttributes: function(){
 		return {};
-	}.property('editableFields'),
+	}.property('model'),
 
 	mainTitle: Ember.computed(function () {
 		return 'Edit a Story ' + this.get('model.title');
@@ -24,7 +26,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 		fields.forEach(function(field){
 			this.set('editableFieldAttributes.' + field.get('name'), field.get('value'))
 		}.bind(this));
-	}.on('init').observes('editableFields'),
+	}.on('init').observes('model'),
 
 	restoreEditableFieldValues: function(){
 		const fields = this.get('editableFields');
