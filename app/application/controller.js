@@ -147,18 +147,26 @@ export default Ember.Controller.extend({
 	},
 
 	openBottomDrawer: function (configParams) {
-		var config = Ember.$.extend({ open: true, openAmount: '-half' }, configParams);
+		var config = Ember.$.extend({
+			open: true,
+			openAmount: '-half',
+			blurred: true
+		}, configParams);
+
 		this.closeToolbox();
 		this.set('bottomDrawerConfig', config);
-		this.set('canvasBlurred', true);
-		// Drawer.closeTop();
-		// Drawer.openBottomHalf();
+		this.set('canvasBlurred', config.blurred);
 	},
 
 	closeBottomDrawer: function () {
-		var config = Ember.$.extend({ open: false, openAmount: '-half' })
-		this.set('canvasBlurred', false);
+		var config = Ember.$.extend({
+			open: false,
+			openAmount: '-half',
+			blurred: false
+		});
+
 		this.set('bottomDrawerConfig', config);
+		this.set('canvasBlurred', config.blurred);
 	},
 
 	goBack: function () {
@@ -206,15 +214,18 @@ export default Ember.Controller.extend({
 		this.showModal('canvas-settings', 'Canvas Settings', '', true);
 	},
 
-    editAStory: function (model) {
+  editAStory: function (model) {
 		var params = {
 			contentType: 'stories/edit-a-story',
-			preventCanvasBlur: true
+			preventCanvasBlur: true,
+			blurred: false
 		};
-		if (!Ember.isEmpty(model)) {
+
+		if (!Ember.isEmpty(model)){
 			params.model = model;
 			params.mainTitle = 'Edit a story';
 		}
+
 		this.openBottomDrawer(params);
 	},
 
