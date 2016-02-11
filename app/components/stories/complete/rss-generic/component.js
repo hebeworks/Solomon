@@ -15,14 +15,16 @@ export default DatamillStory.extend(EditableFields, {
         authorImage: '/assets/img/LeedsCouncilLogo.png'
     },
 
-    editableFields: [
-        {
-            name: 'url',
-            type: 'text',
-            value: '',
-            placeholder: 'Enter a URL'
-        }
-    ],
+    editableFields: function(){
+        return [
+            {
+                name: 'url',
+                type: 'text',
+                value: '',
+                placeholder: 'Enter a URL'
+            }
+        ]
+    }.property('storyModel'),
 
     feedURL: function(){
         var url = this.fetchEditableFieldValue('url');

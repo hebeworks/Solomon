@@ -8,20 +8,22 @@ export default DefaultStory.extend(EditableFields, {
         color: 'blue'
     },
 
-    editableFields: [
-        {
-            name: 'title',
-            type: 'text',
-            value: '',
-            placeholder: 'Title text'
-        },
-        {
-            name: 'description',
-            type: 'text',
-            value: '',
-            placeholder: 'Description text'
-        }
-    ],
+    editableFields: function(){
+        return [
+            {
+                name: 'title',
+                type: 'text',
+                value: '',
+                placeholder: 'Title text'
+            },
+            {
+                name: 'description',
+                type: 'text',
+                value: '',
+                placeholder: 'Description text'
+            }
+        ]
+    }.property('storyModel.config'),
 
     title: function(){
         return this.fetchEditableFieldValue('title');
