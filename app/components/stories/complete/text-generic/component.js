@@ -31,10 +31,6 @@ export default DefaultStory.extend(EditableFields, {
 
     description: function(){
         return this.fetchEditableFieldValue('description');
-    }.property('storyModel.config.@each.value'),
-
-    keepTitleInSync: function(){
-        this.set('storyConfig.title', this.get('title'));
-    }.on('init').observes('title')
+    }.property('storyModel.config.@each.value')
 
 });
