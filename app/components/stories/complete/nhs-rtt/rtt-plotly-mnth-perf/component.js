@@ -206,7 +206,7 @@ export default DefaultStory.extend({
                     type: 'line',
                     x0: '2015-01-01',
                     y0: 0.92,
-                    x1: '2015-12-01',
+                    x1: '2015-12-31',
                     y1: 0.92,
                     line: {
                         color: 'rgb(000, 000, 000)',
@@ -218,7 +218,7 @@ export default DefaultStory.extend({
             annotations: [
                 {
                     text: 'Standard',
-                    x: '2015-12-01',
+                    x: '2015-12-31',
                     y: 0.92,
                     xref: 'x',
                     yref: 'y',
