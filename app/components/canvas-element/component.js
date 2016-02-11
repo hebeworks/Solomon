@@ -10,14 +10,10 @@ export default Ember.Component.extend({
 	},
 
 	didRenderElement: function () {
-		// console.log('didRenderElement');
-        // Canvas.init();
-        // HebeDash.init();
-        if(!Ember.isEmpty(this.get('currentCanvas'))) {
-            this.initPackery();
-        } else {
-            this.set('appSettings.errorMessage',"Sorry we can't find the canvas you were looking for. Try find one using the Gallery link");
-        }
+		if(Ember.isEmpty(this.get('currentCanvas')))
+			return;
+
+    this.initPackery();
 	},
 
 	getNewlyAddedStoryIDs: function () {
@@ -25,7 +21,7 @@ export default Ember.Component.extend({
 		var currentIDs = this.getCurrentStoryIDs();
 		var newIDs = _.difference(currentIDs, previousIDs);
 		this.set('storyIDs', currentIDs);
-		if(currentIDs.length < previousIDs.length) { 
+		if(currentIDs.length < previousIDs.length) {
 			return -1; // stories have been removed
 		}
 		return newIDs;
@@ -57,21 +53,21 @@ export default Ember.Component.extend({
 			// $container.packery('appended', $allStories);
 			var newIDs = _this.getNewlyAddedStoryIDs();
 			console.log('newIDs: ' + newIDs);
-			
+
 			if(!Ember.isEmpty(newIDs)) { // if stories have been removed newIDs == -1 - still continue to perform packery update
 			console.log('Packery Update');
 				// var selector = '.js-story';
 				// var elems = this.$(selector);
-				var newStorySelector = (newIDs.length > 1 ? 
+				var newStorySelector = (newIDs.length > 1 ?
 						'.js-story[data-id="'+newIDs.join('"],.js-story[data-id="')+'"]'
 						: '.js-story[data-id="' + newIDs[0] + '"]');
 				console.log('newStorySelector = ' + newStorySelector);
-				
+
 				// var $newStories = $('#' + newIDs.join(',#'));
 				var $newStories = $(newStorySelector);
 				_this.$container.packery('appended', $newStories);
 				$container.packery();
-	
+
 				var $itemEls = $newStories.draggable({
 					cursor: 'move',
 					containment: 'body',
@@ -99,7 +95,7 @@ export default Ember.Component.extend({
 
 		// keep track of the current story's el IDs
 		// so we can identify newly added stories later
-		// and append to packery 
+		// and append to packery
 		this.set('storyIDs', this.getCurrentStoryIDs());
 
 		// Initialize packery
@@ -113,7 +109,7 @@ export default Ember.Component.extend({
 					// isInitLayout: false
 				});
 
-			// todo: SORTING & ORDERING 
+			// todo: SORTING & ORDERING
 			// Disable initial layout with isInitLayout: false
 			// If the sortOrder is available via localStorage, then edit pckry.items to match that order
 			// trigger pckry.layout()
@@ -158,7 +154,7 @@ export default Ember.Component.extend({
 
 		// $container.packery('on', 'layoutComplete', orderItems);
 		$container.packery('on', 'dragItemPositioned', orderItems);
-		// end item order	
+		// end item order
 	},
 
 	stretchCanvas: function () {
@@ -187,7 +183,7 @@ export default Ember.Component.extend({
 		var innerWidth = ((colCount * 170) < 340 ? 340 : (colCount * 170));
 		// need to give canvas__inner an extra class to remove padding
 		// also need to remove margin left auto
-		// also need to give .story no margin left 
+		// also need to give .story no margin left
 
 		canvas.carousel.$canvases
 			.css({
