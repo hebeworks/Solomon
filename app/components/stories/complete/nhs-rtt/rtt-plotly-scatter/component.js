@@ -6,8 +6,8 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     storyConfig: {
-        title: 'RTT Scatter Plot', // (Provide a story title)
-        subTitle: 'Sample scatter plot using Plotly', // (Provide a story subtitle)
+        title: '', // (Provide a story title)
+        subTitle: '', // (Provide a story subtitle)
         author: 'Simon Zimmerman',
         
         description: '', // (Provide a longer description of the story)
@@ -22,6 +22,7 @@ export default DefaultStory.extend({
         
         // slider: false, (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
 
     getPlotly: function() {
