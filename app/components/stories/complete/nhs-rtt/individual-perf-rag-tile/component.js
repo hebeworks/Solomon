@@ -18,14 +18,22 @@ export default DefaultStory.extend(EditableFields, {
         {
             name: 'treatment_type',
             type: 'select',
-            contentPath: 'appSettings.nhsFilter.providers',
+            contentPath: 'appSettings.canvasSettings.nhsFilter.treatments',
             value: '',
             placeholder: 'Treatment Type'
         }
     ],
     
-    treatment: function(){
-        return this.fetchEditableFieldValue('treatment_type');
+    treatmentName: function(){
+        var treatmentID = this.fetchEditableFieldValue('treatment_type');
+        if(!Ember.isEmpty(treatmentID)) {
+            var treatments = this.get('appSettings.canvasSettings.nhsFilter.treatments');
+            var treatment = _.find(treatments,function(obj) {
+                return obj._id == treatmentID;
+            });
+            return treatment.name;
+        }
+        return '';
     }.property('storyModel.config.@each.value'),
     
     // treatment: 'Trauma & Orthopaedics',

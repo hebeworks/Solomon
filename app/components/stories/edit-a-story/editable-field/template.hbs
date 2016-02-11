@@ -4,6 +4,10 @@
 {{else if isSelect}}
     {{select-2 
         content=content
+        value=field.value
+        optionLabelPath="name"
+        optionValuePath="id"
+        placeholder=field.placeholder
     }}
 {{/if}}
 </div>
