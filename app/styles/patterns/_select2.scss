@@ -172,9 +172,14 @@ a.select2-choice.select2-default {
 		
 		input {
 			height: auto;
-			background-color: $light-grey;
 			border: none;
 			font-family: $base-font-family;
+			padding: rem($spacing-base) rem($spacing-base * 4) rem($spacing-base) rem($spacing-base);
+			background-image: url('./img/svg/embed/search.svg') !important;
+			background-position: right rem($spacing-base) top rem($spacing-base) !important;
+			background-size: rem(20px) rem(20px) !important;
+			background-repeat: no-repeat !important;
+			background-color: $light-grey;
 		}
 	}
 }
