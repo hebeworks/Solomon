@@ -21,25 +21,29 @@
 			}}
     </p>
     {{#if nhsFilter.selectedRegion}}
-        <p cpn-margin="bottom-none">
-                {{ select-2
-                    content=nhsFilter.ccgs
-                    value=nhsFilter.selectedCCG
-                    optionLabelPath="name"
-                    optionValuePath="_id"
-                    placeholder="Choose a CCG"
-                }}
-        </p>
-        ...OR...
-        <p cpn-margin="bottom-none">
-                {{ select-2
-                    content=nhsFilter.providers
-                    value=nhsFilter.selectedProvider
-                    optionLabelPath="name"
-                    optionValuePath="_id"
-                    placeholder="Choose a Provider"
-                }}
-        </p>
+    <ul cpn-row-list="middle" cpn-margin="bottom-none">
+        <li cpn-width="40%">
+            {{ select-2
+                content=nhsFilter.ccgs
+                value=nhsFilter.selectedCCG
+                optionLabelPath="name"
+                optionValuePath="_id"
+                placeholder="Choose a CCG"
+                class="margin-bottom-no"
+            }}
+        </li>
+        <li cpn-width="20%" cpn-text="center" cpn-font="500">- OR -</li>
+        <li cpn-width="40%">
+            {{ select-2
+                content=nhsFilter.providers
+                value=nhsFilter.selectedProvider
+                optionLabelPath="name"
+                optionValuePath="_id"
+                placeholder="Choose a Provider"
+                class="margin-bottom-no"
+            }}
+        </li>
+    </ul>
     {{/if}}
     {{!-- 
     {{#each provider in nhsFilter.providers}}

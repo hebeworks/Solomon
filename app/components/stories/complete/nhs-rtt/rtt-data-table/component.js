@@ -19,6 +19,7 @@ export default DefaultStory.extend({
         { title: "Total", property: "total" }
     ],
     rows: [],
+    title: 'Monthly Pathway Performance',
 
     onDidInsertElement: function () {
         var _this = this;
