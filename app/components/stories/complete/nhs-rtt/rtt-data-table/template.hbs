@@ -1,16 +1,41 @@
 {{#stories/story-base}}
+    <h3 cpn-story_title cpn-margin="bottom">{{title}}</h3>
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <table cpn-width="100%" cpn-font="12px">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+            </tr>
+            <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+            </tr>
+            <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+            </tr>
+            <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+            </tr>
+        </tbody>
+    </table>
     
-    <p>This is the nhsRttRttDataTable story.</p>
-    
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
