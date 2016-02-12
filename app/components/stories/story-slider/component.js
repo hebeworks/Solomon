@@ -21,19 +21,19 @@ export default Ember.Component.extend({
     }.observes('loaded'),
 
     setupCarousel: function (){
-        var $element = this.$().find('[cpn-story_carousel-list]');
+        var $element = this.$('[cpn-story_carousel-list]');
         var $content = $element.closest('[cpn-story_content]');
-        var $storyPaginationControls = this.$().find('.js-story-pagination-controls');
+        var $storyPaginationControls = this.$('.js-story-pagination-controls');
         var $storyPaginationParent = $content.find(this.get('viewOnly') ? '[cpn-story_body]' : '[cpn-story_footer]');
         var $storyFooter = $storyPaginationControls.appendTo($storyPaginationParent);
         var $pageCounter = $storyFooter.find('.pg-of')
         var $pager = $storyFooter.find('.carousel-pager');
 
         $pageCounter.find('.pg-of__y').text($element.children('li').size());
-
         $element.caroufredsel({
             width: 310,
             height: 234,
+            auto: false,
             pagination: $pager.find('.carousel-pager__numbers'),
             prev: {
                 button: $pager.find('.carousel-pager__btn.-prev')
@@ -45,11 +45,10 @@ export default Ember.Component.extend({
                 onTouch: true,
                 onMouse: true
             },
-            auto: false,
             scroll: {
                 onBefore: function () {
                     $element.trigger('currentPosition', function (index) {
-                        $pageCounter.find('.pg-of__x').text((index + 1));
+                        $pageCounter.find('.pg-of__x').text(index + 1);
                     });
                 }
             }
@@ -57,7 +56,7 @@ export default Ember.Component.extend({
     },
 
     teardownCarousel: function(){
-        this.$().find('[cpn-story_carousel-list]').trigger("destroy");
+        this.$('[cpn-story_carousel-list]').trigger("destroy");
     }
 
 });

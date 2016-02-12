@@ -149,10 +149,20 @@
                     [solomon-app~="yorkshire-water"] & {
                         background-color: $yw-medium-blue;
                     }
-                    
+                }
+            }
+            
+            [cpn-story_dot~="front"] {
+                &::after {
                     [solomon-app~="nhs"] & {
                         background-color: $nhs-blue;
                     }
+                }
+            }
+            
+            [cpn-story_dot~="back"] {
+                &::after {
+                    background-color: #fff;
                 }
             }
             
@@ -175,10 +185,16 @@
                 [solomon-app~="yorkshire-water"] & {
                     background-color: $yw-medium-blue;
                 }
-                
+            }
+            
+            [cpn-story_bar~="front"] {
                 [solomon-app~="nhs"] & {
                     background-color: $nhs-blue;
                 }
+            }
+            
+            [cpn-story_bar~="back"] {
+                background-color: #fff;
             }
         
             [cpn-story_content] {

@@ -24,9 +24,19 @@ export default DatamillStory.extend(EditableFields, {
                 type: 'text',
                 value: '',
                 placeholder: 'Enter a URL'
+            },
+            {
+                name: 'limit',
+                type: 'text',
+                value: '',
+                placeholder: 'Enter a limit (e.g. "5")'
             }
         ]
     }.property('storyModel'),
+
+    limit: function(){
+        return this.fetchEditableFieldValue('limit');
+    }.property('storyModel.config.@each.value'),
 
     feedURL: function(){
         var url = this.fetchEditableFieldValue('url');
@@ -79,7 +89,9 @@ export default DatamillStory.extend(EditableFields, {
 
                 console.log('RSS Generic : Data loaded.', items);
 
-                this.set('items', items);
+                var limit = this.get('limit');
+
+                this.set('items', limit ? items.slice(0, Number(limit)) : items);
             }.bind(this)
         ).finally(function (){
             this.set('loading', false);
