@@ -17,68 +17,96 @@ export default DefaultStory.extend({
     chosenBar: false,
     chosenBarValue: null,
     chosenBarLocation: null,
+    /*
+    of the PART_2
+        % < 18
+    */
+    
+    loadData: function(){
+        var _this = this;
+        var url = this.get('appSettings.hebeNodeAPI') +  '/nhsrtt/incompleteperformance/?regionid=Y55&datekey=20150930&groupby=provider';
+        this.getData(url)
+            .then(function(data){
+                _this.set('data',data);
+            });
+    },
+    
     
     onInsertElement: function () {
-        this.addBarsToChart();
+        this.loadData();
     }.on('didInsertElement'),
     
     addBarsToChart: function() {
         var _this = this;
+        var data = this.get('data');
+        var locations = [];
+        for(var i = 0; i < data; i ++){
+            var obj = Ember.Object.create({
+                location: data[i].name,
+                percentage: ((data[i].gt_00_to_18_weeks_sum / data[i].total_all_sum) * 100).toPrecisionDigits(1)
+            });
+            locations.push();
+        }
+        locations = _.sortBy(locations,function(obj) {
+            return obj.percentage;
+        });
         
-        // console.log('addBarsToChart');
-        var locations = [
-            Ember.Object.create({
-                location: 'Location 1',
-                percentage: '45%'
-            }),
-            Ember.Object.create({
-                location: 'Location 2',
-                percentage: '50%'
-            }),
-            Ember.Object.create({
-                location: 'Location 3',
-                percentage: '55%'
-            }),
-            Ember.Object.create({
-                location: 'Location 4',
-                percentage: '60%'
-            }),
-            Ember.Object.create({
-                location: 'Location 5',
-                percentage: '65%'
-            }),
-            Ember.Object.create({
-                location: 'Location 6',
-                percentage: '70%'
-            }),
-            Ember.Object.create({
-                location: 'Location 7',
-                percentage: '75%'
-            }),
-            Ember.Object.create({
-                location: 'Location 8',
-                percentage: '80%'
-            }),
-            Ember.Object.create({
-                location: 'Location 9',
-                percentage: '85%'
-            }),
-            Ember.Object.create({
-                location: 'Location 10',
-                percentage: '90%'
-            }),
-            Ember.Object.create({
-                location: 'Location 11',
-                percentage: '95%'
-            })
-        ];
+        // // console.log('addBarsToChart');
+        // var locations = [
+        //     Ember.Object.create({
+        //         location: 'Location 1',
+        //         percentage: '45%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 2',
+        //         percentage: '50%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 3',
+        //         percentage: '55%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 4',
+        //         percentage: '60%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 5',
+        //         percentage: '65%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 6',
+        //         percentage: '70%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 7',
+        //         percentage: '75%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 8',
+        //         percentage: '80%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 9',
+        //         percentage: '85%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 10',
+        //         percentage: '90%'
+        //     }),
+        //     Ember.Object.create({
+        //         location: 'Location 11',
+        //         percentage: '95%'
+        //     })
+        // ];
+        
         
         _this.set('bars', locations);
+        _this.arrangeBars();
         
         setTimeout(function () {
             _this.set('loaded', true);
         });
-    },
+    }.observes('data'),
     
     arrangeBars: function() {
         var _this = this;
@@ -96,7 +124,7 @@ export default DefaultStory.extend({
                 .css('height', spacing)
                 .css('margin-bottom', spacing);
         });
-    }.observes('loaded'),
+    },
     
     actions: {
         setSelectedBar: function(bar) {
