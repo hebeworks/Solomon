@@ -107,34 +107,24 @@ export default Ember.Controller.extend({
         });
     },
 
-    addAStory: function (story) {
-        var obj = this;
-        this.checkCanvasAuth()
-            .then(
-                function () {
-                    if (story != null && obj.get('model') != null) {
-                        var model = obj.get('model');
-                        var stories = model.get('stories');
-                        story.set('id', hebeutils.guid());
-                        stories.pushObject(story);
-                        model.save();
-                        obj.get('appController').closeBottomDrawer();
-                    }
-                },
-                function (err) {
-                    var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                    if (err.notLoggedIn == true) {
-                        obj.get('appController').showModal('session-manager', {
-                            title: 'Log in / Sign up',
-                            intro: intro
-                        });
-                    } else if (err.hasPermissions == false) {
-                        intro = 'Sorry, you can only edit canvasses that belong to you';
-                        obj.get('appController').showModal('ui/modals/duplicate-canvas', {
-                            title: 'Log in / Sign up',
-                            intro: intro
-                        });
-                    }
+    addAStory: function (originalStory) {
+        this.checkCanvasAuth().then(
+            function () {
+                var canvas = this.get('model');
+
+                if(!Ember.isEmpty(originalStory) && !Ember.isEmpty(canvas)){
+                    var story = this.store.createRecord('story', {
+                        id: hebeutils.guid(),
+                        title: originalStory.get('title'),
+                        storyType: originalStory.get('storyType'),
+                        configJSON: originalStory.get('configJSON'),
+                        categories: originalStory.get('categories')
+                    });
+
+                    canvas.get('stories').pushObject(story);
+                    canvas.save();
+
+                    this.get('appController').closeBottomDrawer();
                 }
             }.bind(this),
             function (err) {
