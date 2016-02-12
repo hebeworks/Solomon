@@ -136,7 +136,23 @@ export default Ember.Controller.extend({
                         });
                     }
                 }
-                );
+            }.bind(this),
+            function (err) {
+                var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+                if (err.notLoggedIn == true) {
+                    this.get('appController').showModal('session-manager', {
+                        title: 'Log in / Sign up',
+                        intro: intro
+                    });
+                } else if (err.hasPermissions == false) {
+                    intro = 'Sorry, you can only edit canvasses that belong to you';
+                    this.get('appController').showModal('ui/modals/duplicate-canvas', {
+                        title: 'Log in / Sign up',
+                        intro: intro
+                    });
+                }
+            }.bind(this)
+        );
     },
 
     removeAStory: function (story) {
