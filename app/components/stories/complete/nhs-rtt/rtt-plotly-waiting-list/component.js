@@ -62,59 +62,59 @@ pathways: true,
                 var names = {};
                 switch(pathways) {
                     default:
-                        names["_1"] = "gt_00_to_01_weeks_sum";
-                        names["_2"] = "gt_01_to_02_weeks_sum";
-                        names["_3"] = "gt_02_to_03_weeks_sum";
-                        names["_4"] = "gt_03_to_04_weeks_sum";
-                        names["_5"] = "gt_04_to_05_weeks_sum";
-                        names["_6"] = "gt_05_to_06_weeks_sum";
-                        names["_7"] = "gt_06_to_07_weeks_sum";
-                        names["_8"] = "gt_07_to_08_weeks_sum";
-                        names["_9"] = "gt_08_to_09_weeks_sum";
-                        names["_10"] = "gt_09_to_10_weeks_sum";
-                        names["_11"] = "gt_10_to_11_weeks_sum";
-                        names["_12"] = "gt_11_to_12_weeks_sum";
-                        names["_13"] = "gt_12_to_13_weeks_sum";
-                        names["_14"] = "gt_13_to_14_weeks_sum";
-                        names["_15"] = "gt_14_to_15_weeks_sum";
-                        names["_16"] = "gt_15_to_16_weeks_sum";
-                        names["_17"] = "gt_16_to_17_weeks_sum";
-                        names["_18< 18w"] = "gt_17_to_18_weeks_sum";
-                        names["_19"] = "gt_18_to_19_weeks_sum";
-                        names["_20"] = "gt_19_to_20_weeks_sum";
-                        names["_21"] = "gt_20_to_21_weeks_sum";
-                        names["_22"] = "gt_21_to_22_weeks_sum";
-                        names["_23"] = "gt_22_to_23_weeks_sum";
-                        names["_24"] = "gt_23_to_24_weeks_sum";
-                        names["_25"] = "gt_24_to_25_weeks_sum";
-                        names["18-26w"] = "gt_25_to_26_weeks_sum";
-                        names["_27"] = "gt_26_to_27_weeks_sum";
-                        names["_28"] = "gt_27_to_28_weeks_sum";
-                        names["_29"] = "gt_28_to_29_weeks_sum";
-                        names["_30"] = "gt_29_to_30_weeks_sum";
-                        names["_31"] = "gt_30_to_31_weeks_sum";
-                        names["_32"] = "gt_31_to_32_weeks_sum";
-                        names["_33"] = "gt_32_to_33_weeks_sum";
-                        names["_34"] = "gt_33_to_34_weeks_sum";
-                        names["_35"] = "gt_34_to_35_weeks_sum";
-                        names["_36"] = "gt_35_to_36_weeks_sum";
-                        names["_37"] = "gt_36_to_37_weeks_sum";
-                        names["_38"] = "gt_37_to_38_weeks_sum";
-                        names["_39"] = "gt_38_to_39_weeks_sum";
-                        names["26-40w"] = "gt_39_to_40_weeks_sum";
-                        names["_41"] = "gt_41_to_42_weeks_sum";
-                        names["_42"] = "gt_40_to_41_weeks_sum";
-                        names["_43"] = "gt_42_to_43_weeks_sum";
-                        names["_44"] = "gt_43_to_44_weeks_sum";
-                        names["_45"] = "gt_44_to_45_weeks_sum";
-                        names["_46"] = "gt_45_to_46_weeks_sum";
-                        names["_47"] = "gt_46_to_47_weeks_sum";
-                        names["_48"] = "gt_47_to_48_weeks_sum";
-                        names["_49"] = "gt_48_to_49_weeks_sum";
-                        names["_50"] = "gt_49_to_50_weeks_sum";
-                        names["_51"] = "gt_50_to_51_weeks_sum";
-                        names["40-52w"] = "gt_51_to_52_weeks_sum";
-                        names["+52w"] = "gt_52_weeks_sum"; 
+                        names["1 Week"] = "gt_00_to_01_weeks_sum";
+                        names["2 Weeks"] = "gt_01_to_02_weeks_sum";
+                        names["3 Weeks"] = "gt_02_to_03_weeks_sum";
+                        names["4 Weeks"] = "gt_03_to_04_weeks_sum";
+                        names["5 Weeks"] = "gt_04_to_05_weeks_sum";
+                        names["6 Weeks"] = "gt_05_to_06_weeks_sum";
+                        names["7 Weeks"] = "gt_06_to_07_weeks_sum";
+                        names["8 Weeks"] = "gt_07_to_08_weeks_sum";
+                        names["9 Weeks"] = "gt_08_to_09_weeks_sum";
+                        names["10 Weeks"] = "gt_09_to_10_weeks_sum";
+                        names["11 Weeks"] = "gt_10_to_11_weeks_sum";
+                        names["12 Weeks"] = "gt_11_to_12_weeks_sum";
+                        names["13 Weeks"] = "gt_12_to_13_weeks_sum";
+                        names["14 Weeks"] = "gt_13_to_14_weeks_sum";
+                        names["15 Weeks"] = "gt_14_to_15_weeks_sum";
+                        names["16 Weeks"] = "gt_15_to_16_weeks_sum";
+                        names["17 Weeks"] = "gt_16_to_17_weeks_sum";
+                        names["18 Weeks"] = "gt_17_to_18_weeks_sum";
+                        names["19 Weeks"] = "gt_18_to_19_weeks_sum";
+                        names["20 Weeks"] = "gt_19_to_20_weeks_sum";
+                        names["21 Weeks"] = "gt_20_to_21_weeks_sum";
+                        names["22 Weeks"] = "gt_21_to_22_weeks_sum";
+                        names["23 Weeks"] = "gt_22_to_23_weeks_sum";
+                        names["24 Weeks"] = "gt_23_to_24_weeks_sum";
+                        names["25 Weeks"] = "gt_24_to_25_weeks_sum";
+                        names["26 Weeks"] = "gt_25_to_26_weeks_sum";
+                        names["27 Weeks"] = "gt_26_to_27_weeks_sum";
+                        names["28 Weeks"] = "gt_27_to_28_weeks_sum";
+                        names["29 Weeks"] = "gt_28_to_29_weeks_sum";
+                        names["30 Weeks"] = "gt_29_to_30_weeks_sum";
+                        names["31 Weeks"] = "gt_30_to_31_weeks_sum";
+                        names["32 Weeks"] = "gt_31_to_32_weeks_sum";
+                        names["33 Weeks"] = "gt_32_to_33_weeks_sum";
+                        names["34 Weeks"] = "gt_33_to_34_weeks_sum";
+                        names["35 Weeks"] = "gt_34_to_35_weeks_sum";
+                        names["36 Weeks"] = "gt_35_to_36_weeks_sum";
+                        names["37 Weeks"] = "gt_36_to_37_weeks_sum";
+                        names["38 Weeks"] = "gt_37_to_38_weeks_sum";
+                        names["39 Weeks"] = "gt_38_to_39_weeks_sum";
+                        names["40 Weeks"] = "gt_39_to_40_weeks_sum";
+                        names["41 Weeks"] = "gt_41_to_42_weeks_sum";
+                        names["42 Weeks"] = "gt_40_to_41_weeks_sum";
+                        names["43 Weeks"] = "gt_42_to_43_weeks_sum";
+                        names["44 Weeks"] = "gt_43_to_44_weeks_sum";
+                        names["45 Weeks"] = "gt_44_to_45_weeks_sum";
+                        names["46 Weeks"] = "gt_45_to_46_weeks_sum";
+                        names["47 Weeks"] = "gt_46_to_47_weeks_sum";
+                        names["48 Weeks"] = "gt_47_to_48_weeks_sum";
+                        names["49 Weeks"] = "gt_48_to_49_weeks_sum";
+                        names["50 Weeks"] = "gt_49_to_50_weeks_sum";
+                        names["51 Weeks"] = "gt_50_to_51_weeks_sum";
+                        names["52 Weeks"] = "gt_51_to_52_weeks_sum";
+                        names["+52 Weeks"] = "gt_52_weeks_sum"; 
                     break;
                     case true :
                         names['< 18w'] = "gt_00_to_18_weeks_sum";
@@ -230,8 +230,9 @@ pathways: true,
                 showgrid: false,
                 zeroline: false,
                 ticklen: 2,
-                // tickvals: trace1.x,
-                tickmode: 'auto',
+                tickvals: !pathways ? ["18 Weeks", "26 Weeks","40 Weeks","52 Weeks"] : ['< 18w','18-26w','26-40w','40-52w','+52w'],
+                ticktext: !pathways ? ['18 Weeks','26 Weeks','40 Weeks','52 Weeks'] : ['< 18w','18-26w','26-40w','40-52w','+52w'],
+                tickmode: 'array',
                 tickwidth: 1,
                 showline: true,
                 line: {
@@ -243,6 +244,7 @@ pathways: true,
                 showgrid: true,
                 zeroline: false,
                 showline: true,
+                hoverformat: ',r'
             },
             textposition: 'top left',
         };
