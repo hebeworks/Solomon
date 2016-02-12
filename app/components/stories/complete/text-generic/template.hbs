@@ -1,19 +1,25 @@
 {{#stories/story-base}}
 
-    {{#if title}}
+  {{#if image_url}}
 
-      <header>
+    <img src="{{image_url}}">
 
-        <h2>{{title}}</h2>
+  {{/if}}
 
-      </header>
+  {{#if title}}
 
-    {{/if}}
+    <header>
 
-    <main has-header class="text-generic">
+      <h2>{{title}}</h2>
 
-      {{description}}
+    </header>
 
-    </main>
+  {{/if}}
+
+  <main has-header class="text-generic">
+
+    {{description}}
+
+  </main>
 
 {{/stories/story-base}}
