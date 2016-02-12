@@ -31,19 +31,27 @@ export default DefaultStory.extend({
 
     loadData: function () {
         var _this = this;
-        var url = 'http://'; // add any API url that returns JSON
-        this.getData()
-            .then(
-                function(data){
+        var month = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth');
+        var region = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth');
+
+        // var query = 'providerid=RQM&datekey=20150930';
+        var query = 'regionid=Y56&datekey=' + month.id + '&pathways=true';
+        var month = moment(month.id).format('MMM YYYY');
+        _this.set('month', month);
+
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/waitinglist?' + query)
+            .then(function(data) {
                     var items = data; // the JSON returned from the API call is available here
-                    this.set('items',items); // set properties on the Ember component to make them available in the template
+                    _this.set('items',items); // set properties on the Ember component to make them available in the template
+                    var percentage = ((items[3].gt_00_to_18_weeks_sum / items[3].total_all_sum) *100).toPrecisionDigits(1);
+                    _this.set('percentage', percentage);
                     setTimeout(() => { _this.set('loaded', true); });
                 },
                 function(err){ console.log(err); }
             )
     },
     
-    setValues: function() {
-        this.set('percentage', 75);
-    }.observes('loaded')
+    // setValues: function() {
+    //     this.set('percentage', 92.5);
+    // }.observes('loaded')
 });

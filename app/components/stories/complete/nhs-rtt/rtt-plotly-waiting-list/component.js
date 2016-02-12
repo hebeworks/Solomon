@@ -42,7 +42,7 @@ export default DefaultStory.extend({
             this.set('pathways',show);
         }
     },
-pathways: true,
+    pathways: true,
     loadData: function () {
         var pathways = this.get('pathways')
         
@@ -136,6 +136,7 @@ pathways: true,
                 for (var i = 0; i < data.length; i++) {
                     var part = data[i];
                     var yValue = [];
+                    
                     for (var prop in names) {
                         yValue.push(part[names[prop]]);
                     }
