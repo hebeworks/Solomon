@@ -5,3 +5,11 @@
 [cpn-color="lime"] {
     color: $lime;
 }
+
+[cpn-color="blue"] {
+    color: $blue;
+    
+    [solomon-app~="nhs"] & {
+        color: $nhs-blue;
+    }
+}

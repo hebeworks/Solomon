@@ -1,16 +1,10 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <h3 spc-vtwt_title="{{trend}}" cpn-font="30px 500" cpn-divide="solid bottom faded-dark">
+        <span cpn-color="blue">900k</span>
+        <span>Patients</span>
+    </h3>
     
-    <p>This is the nhsRttValueTitleWithText story.</p>
+    <p cpn-font="12px">Are on the RTT waiting list. That’s <strong cpn-color="blue">300K</strong> more than the same time <strong cpn-color="blue">last year.</strong></p>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
