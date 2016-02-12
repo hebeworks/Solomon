@@ -22,16 +22,16 @@
                     height: 50%;
                     position: relative;
                     
-                    // &::before {
-                    //     content: 'Source';
-                    //     background-color: #fff;
-                    //     color: $nhs-blue;
-                    //     font-size: rem(10px);
-                    //     padding: rem($spacing-base / 2) rem($spacing-base);
-                    //     display: table;
-                    //     margin-bottom: rem($spacing-base);
-                    //     border-radius: rem(3px);
-                    // }
+                    &::before {
+                        content: 'NHS Choices';
+                        background-color: #fff;
+                        color: $nhs-blue;
+                        font-size: rem(10px);
+                        padding: rem($spacing-base / 2) rem($spacing-base);
+                        display: table;
+                        margin-bottom: rem($spacing-base);
+                        border-radius: rem(3px);
+                    }
                     
                     &::after {
                         content: '';
@@ -44,18 +44,23 @@
                     }
                 }
                 
-                p:first-of-type {
-                    background-color: $nhs-blue;
-                    border-radius: 0 0 rem(5px) rem(5px);
-                    padding: rem($spacing-base * 2);
-                    margin-bottom: 0;
-                    color: #fff;
-                    font-size: rem(12px);
+                div {
                     height: 50%;
-                }
-                
-                *:first-child + * ~ * {
-                    display: none;
+                    
+                    *:first-child,
+                    *:first-child + * ~ * {
+                        display: none;
+                    }
+                    
+                    *:first-child + * {
+                        background-color: $nhs-blue;
+                        border-radius: 0 0 rem(5px) rem(5px);
+                        padding: rem($spacing-base * 2);
+                        margin-bottom: 0;
+                        color: #fff;
+                        font-size: rem(12px);
+                        height: 100%;
+                    }
                 }
             }
         

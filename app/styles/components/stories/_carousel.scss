@@ -34,11 +34,19 @@
 .js-story-pagination-controls {
 	margin-top: rem(2px);
 	display: inline-block;
+	
+	[solomon-app~="nhs"] & {
+		width: 100%;
+	}
 }
 
 .carousel-pager {
 	display: inline-block;
 	vertical-align: middle;
+	
+	[solomon-app~="nhs"] & {
+		width: 100%;
+	}
 	
 	&__btn {
 		height: 11px;
@@ -81,6 +89,10 @@
 				}
 			}
 		}
+		
+		[solomon-app~="nhs"] & {
+			display: none !important;
+		}
 	}
 }
 	.carousel-pager__numbers {
@@ -88,9 +100,15 @@
 		font: {
 			size: em(12px);
 		}
+		
+		[solomon-app~="nhs"] & {
+			float: none;
+			text-align: center;
+		}
+		
 		a {
-			width: 6px;
-			height: 8px;
+			width: 10px;
+			height: 12px;
 			float: left;
 			overflow: hidden;
 			display: inline-block;
@@ -115,11 +133,21 @@
 					color: #bfbdae;
 				}
 				border-radius: 100%;
+				
+				[solomon-app~="nhs"] & {
+					width: 10px;
+					height: 10px;
+					background-color: lighten($nhs-blue, 50%);
+				}
 			}
 			&:hover {
 				&:before {
 					background: {
 						color: #000;
+					}
+					
+					[solomon-app~="nhs"] & {
+						background-color: $nhs-blue;
 					}
 				}
 			}
@@ -128,7 +156,17 @@
 					background: {
 						color: #000;
 					}
+					
+					[solomon-app~="nhs"] & {
+						background-color: $nhs-blue;
+					}
 				}
+			}
+			
+			[solomon-app~="nhs"] & {
+				float: none;
+				margin-right: 6px;
+				margin-left: 6px;
 			}
 		}
 	}
