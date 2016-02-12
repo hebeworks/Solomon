@@ -16,7 +16,7 @@ export default DefaultStory.extend({
         feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
         
         // color: 'white', (Set the story colour)
-        width: '3', //(Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
+        width: '4', //(Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         // height: '2', (Set the height of the story)
         // headerImage: '', (Provide an image to show in the story header instead of the title and subtitle)
         
@@ -36,25 +36,100 @@ export default DefaultStory.extend({
                 _this.loadData();
             });
     }.on("init"),
-
+    
+    actions: {
+        showPathways:function(show){
+            this.set('pathways',show);
+        }
+    },
+pathways: true,
     loadData: function () {
+        var pathways = this.get('pathways')
+        
         var _this = this;
         var month = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth');
+        var region = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth');
 
         // var query = 'providerid=RQM&datekey=20150930';
         var query = 'regionid=Y56&datekey=' + month.id;
+        
+        if(pathways == true) {
+            query += '&pathways=true';
+        }
         this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/waitinglist?' + query)
             .then(function (data) {
                 var traces = {};
                 var names = {};
-                names['< 18w'] = "gt_00_to_18_weeks_sum";
-                names['18-26w'] = "gt_18_to_26_weeks_sum";
-                names['26-40w'] = "gt_26_to_40_weeks_sum";
-                names['40-52w'] = "gt_40_to_52_weeks_sum";
-                names['+52w'] = "gt_52_weeks_sum";
+                switch(pathways) {
+                    default:
+                        names["_1"] = "gt_00_to_01_weeks_sum";
+                        names["_2"] = "gt_01_to_02_weeks_sum";
+                        names["_3"] = "gt_02_to_03_weeks_sum";
+                        names["_4"] = "gt_03_to_04_weeks_sum";
+                        names["_5"] = "gt_04_to_05_weeks_sum";
+                        names["_6"] = "gt_05_to_06_weeks_sum";
+                        names["_7"] = "gt_06_to_07_weeks_sum";
+                        names["_8"] = "gt_07_to_08_weeks_sum";
+                        names["_9"] = "gt_08_to_09_weeks_sum";
+                        names["_10"] = "gt_09_to_10_weeks_sum";
+                        names["_11"] = "gt_10_to_11_weeks_sum";
+                        names["_12"] = "gt_11_to_12_weeks_sum";
+                        names["_13"] = "gt_12_to_13_weeks_sum";
+                        names["_14"] = "gt_13_to_14_weeks_sum";
+                        names["_15"] = "gt_14_to_15_weeks_sum";
+                        names["_16"] = "gt_15_to_16_weeks_sum";
+                        names["_17"] = "gt_16_to_17_weeks_sum";
+                        names["_18< 18w"] = "gt_17_to_18_weeks_sum";
+                        names["_19"] = "gt_18_to_19_weeks_sum";
+                        names["_20"] = "gt_19_to_20_weeks_sum";
+                        names["_21"] = "gt_20_to_21_weeks_sum";
+                        names["_22"] = "gt_21_to_22_weeks_sum";
+                        names["_23"] = "gt_22_to_23_weeks_sum";
+                        names["_24"] = "gt_23_to_24_weeks_sum";
+                        names["_25"] = "gt_24_to_25_weeks_sum";
+                        names["18-26w"] = "gt_25_to_26_weeks_sum";
+                        names["_27"] = "gt_26_to_27_weeks_sum";
+                        names["_28"] = "gt_27_to_28_weeks_sum";
+                        names["_29"] = "gt_28_to_29_weeks_sum";
+                        names["_30"] = "gt_29_to_30_weeks_sum";
+                        names["_31"] = "gt_30_to_31_weeks_sum";
+                        names["_32"] = "gt_31_to_32_weeks_sum";
+                        names["_33"] = "gt_32_to_33_weeks_sum";
+                        names["_34"] = "gt_33_to_34_weeks_sum";
+                        names["_35"] = "gt_34_to_35_weeks_sum";
+                        names["_36"] = "gt_35_to_36_weeks_sum";
+                        names["_37"] = "gt_36_to_37_weeks_sum";
+                        names["_38"] = "gt_37_to_38_weeks_sum";
+                        names["_39"] = "gt_38_to_39_weeks_sum";
+                        names["26-40w"] = "gt_39_to_40_weeks_sum";
+                        names["_41"] = "gt_41_to_42_weeks_sum";
+                        names["_42"] = "gt_40_to_41_weeks_sum";
+                        names["_43"] = "gt_42_to_43_weeks_sum";
+                        names["_44"] = "gt_43_to_44_weeks_sum";
+                        names["_45"] = "gt_44_to_45_weeks_sum";
+                        names["_46"] = "gt_45_to_46_weeks_sum";
+                        names["_47"] = "gt_46_to_47_weeks_sum";
+                        names["_48"] = "gt_47_to_48_weeks_sum";
+                        names["_49"] = "gt_48_to_49_weeks_sum";
+                        names["_50"] = "gt_49_to_50_weeks_sum";
+                        names["_51"] = "gt_50_to_51_weeks_sum";
+                        names["40-52w"] = "gt_51_to_52_weeks_sum";
+                        names["+52w"] = "gt_52_weeks_sum"; 
+                    break;
+                    case true :
+                        names['< 18w'] = "gt_00_to_18_weeks_sum";
+                        names['18-26w'] = "gt_18_to_26_weeks_sum";
+                        names['26-40w'] = "gt_26_to_40_weeks_sum";
+                        names['40-52w'] = "gt_40_to_52_weeks_sum";
+                        names['+52w'] = "gt_52_weeks_sum";
+                    break;
+                }
+
+
 
                 var xValue = [];
                 for (var prop in names) {
+                    // xValue.push(prop.indexOf('_') == 0 ? '' : prop);
                     xValue.push(prop);
                 }
 
@@ -72,11 +147,11 @@ export default DefaultStory.extend({
                 }
                 _this.drawChart(traces);
             });
-    }.observes('appSettings.canvasSettings.nhsFilter.selectedMonth'),
+    }.observes('appSettings.canvasSettings.nhsFilter.selectedMonth','pathways'),
 
     drawChart: function (traces) {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
-
+        var pathways = this.get('pathways');
         var d3 = Plotly.d3;
 
         var trace1 = {
@@ -138,7 +213,7 @@ export default DefaultStory.extend({
                 size: 11,
                 color: colorPalette[0],
             },
-            //showlegend: false,
+            showlegend: pathways,
             legend: {
                 //xanchor:"center",
                 yanchor: "middle",
@@ -155,6 +230,8 @@ export default DefaultStory.extend({
                 showgrid: false,
                 zeroline: false,
                 ticklen: 2,
+                // tickvals: trace1.x,
+                tickmode: 'auto',
                 tickwidth: 1,
                 showline: true,
                 line: {
