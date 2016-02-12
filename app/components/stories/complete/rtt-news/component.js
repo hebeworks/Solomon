@@ -7,7 +7,7 @@ export default RSSGeneric.extend({
 
     setSliderLoadedState: function(){
       Ember.run.next(this, function(){
-        this.set('loaded', true);
+        this.set('loaded', !this.get('loading'));
       });
     }.observes('loading'),
 

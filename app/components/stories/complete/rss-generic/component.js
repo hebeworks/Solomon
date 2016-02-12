@@ -45,12 +45,20 @@ export default DatamillStory.extend(EditableFields, {
 
         this.set('items', []);
         this.set('loading', true);
+        this.set('error', null);
 
         this.getData(url).then(
             function(data) {
+                var feed = Ember.ObjectProxy.create(data);
+                var content = feed.get('rss.channel.firstObject.item');
+
+                if(Ember.isEmpty(content)){
+                    return this.set('error', "Failed to load data from " + this.get('feedURL') + ".");
+                }
+
                 var items = [];
 
-                data.rss.channel[0].item.forEach((tmpItem) => {
+                content.forEach(function(tmpItem){
                     var image = '';
 
                     try {

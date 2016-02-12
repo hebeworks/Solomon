@@ -1,5 +1,11 @@
 {{#stories/story-base}}
 
+  {{#if error}}
+
+    <div cpn-padding="all">{{error}}</div>
+
+  {{else}}
+
     {{#stories/story-slider loaded=loaded}}
 
       {{#each items as |item|}}
@@ -15,5 +21,7 @@
       {{/each}}
 
     {{/stories/story-slider}}
+
+  {{/if}}
 
 {{/stories/story-base}}
