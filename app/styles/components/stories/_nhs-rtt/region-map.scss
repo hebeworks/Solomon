@@ -1,0 +1,35 @@
+[spc-nhs-rm_map] {
+    svg {
+        width: 188px;
+        height: 242.5px;
+        
+        path {
+            fill: #fff;
+            @include transition(.3s);
+        }
+    }
+}
+
+[spc-nhs-rm_map="Y56"] {
+    #Fill-9 {
+        fill: #D0CFCF;
+    }
+}
+
+[spc-nhs-rm_map="Y57"] {
+    #Fill-4 {
+        fill: #D0CFCF;
+    }
+}
+
+[spc-nhs-rm_map="Y54"] {
+    #Fill-1 {
+        fill: #D0CFCF;
+    }
+}
+
+[spc-nhs-rm_map="Y55"] {
+    #Fill-6 {
+        fill: #D0CFCF;
+    }
+}
