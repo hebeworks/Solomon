@@ -9,7 +9,8 @@ export default DefaultStory.extend({
         subTitle: '', // (Provide a story subtitle)
         viewOnly: true,
         scroll: true, // (Should the story vertically scroll its content?)
-        height: 3
+        height: 2,
+        width: 2
     },
     
     bars: [],
@@ -24,12 +25,13 @@ export default DefaultStory.extend({
     
     loadData: function(){
         var _this = this;
-        var url = this.get('appSettings.hebeNodeAPI') +  '/nhsrtt/incompleteperformance/?regionid=Y55&datekey=20150930&groupby=provider';
+        var regionID = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion.id');
+        var url = this.get('appSettings.hebeNodeAPI') +  '/nhsrtt/incompleteperformance/?regionid='+regionID+'&datekey=20150930&groupby=treatment';
         this.getData(url)
             .then(function(data){
                 _this.set('data',data);
             });
-    },
+    }.observes('appSettings.canvasSettings.nhsFilter.selectedRegion'),
     
     
     onInsertElement: function () {
@@ -40,13 +42,22 @@ export default DefaultStory.extend({
         var _this = this;
         var data = this.get('data');
         var locations = [];
-        for(var i = 0; i < data; i ++){
+        // var avg = 0;
+        for(var i = 0; i < data.length; i ++){
             var obj = Ember.Object.create({
                 location: data[i].name,
                 percentage: ((data[i].gt_00_to_18_weeks_sum / data[i].total_all_sum) * 100).toPrecisionDigits(1)
             });
-            locations.push();
+            // avg += obj.percentage; 
+            locations.push(obj);
         }
+        
+        // avg = avg / data.length;
+        this.setProperties({
+            "national": 92,
+            // "avg": avg
+        });
+        
         locations = _.sortBy(locations,function(obj) {
             return obj.percentage;
         });
@@ -111,19 +122,27 @@ export default DefaultStory.extend({
     arrangeBars: function() {
         var _this = this;
         
-        var numBars = _this.$('[spc-opc_bars]').find('[spc-opc_bar]').length,
+        var numBars = _this.get('bars.length'), // $('[spc-opc_bars]').find('[spc-opc_bar]').length,
             chartHeight = _this.$('[spc-opc_bars]').outerHeight(),
             spacing = (chartHeight / numBars) / 2;
-            
+        spacing = (spacing < 4 ? 4 : spacing);
         // console.log('Number of bars: ' + numBars);
         // console.log('Chart height: ' + chartHeight);
         // console.log('Spacing: ' + spacing);
             
-        _this.$('[spc-opc_bar]').each(function() {
-            $(this)
-                .css('height', spacing)
-                .css('margin-bottom', spacing);
+        _this.get('bars').forEach(function(bar) {
+            bar.setProperties({
+                'height':spacing,
+                'margin-bottom':spacing,
+                'spacing':spacing + 'px'
+            });
         });
+        
+        // _this.$('[spc-opc_bar]').each(function() {
+        //     $(this)
+        //         .css('height', spacing)
+        //         .css('margin-bottom', spacing);
+        // });
     },
     
     actions: {
