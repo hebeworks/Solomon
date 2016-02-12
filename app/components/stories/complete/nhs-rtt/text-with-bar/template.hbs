@@ -1,16 +1,13 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <h3 cpn-story_title>2014</h3>
     
-    <p>This is the nhsRttTextWithBar story.</p>
+    <p cpn-font="12px">Seen in <strong>52+ week</strong> waits over the previous 12 months. The highest level of percentage growth in patient cohorts accross the region</p>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
+    <div spc-nhs-pc-bar cpn-bg-color="white">
+        <div spc-nhs-pc-bar_inner style="width: {{percentage}}%;" cpn-bg-color="green">
+            <span spc-nhs-pc-bar_value cpn-font="500">{{percentage}}%</span>
+        </div>
+    </div>
+    
 {{/stories/story-base}}
