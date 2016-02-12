@@ -56,7 +56,7 @@ export default Ember.Object.extend({
                 case 'findmybinday.com' :
                     solomonConfig.defaultCanvas = 'find-my-bin-day';
                     break;
-                case 'nhs.preview.mysolomon.co.uk':
+                case 'nhsrtt.preview.mysolomon.co.uk':
                     solomonConfig.name = 'nhs';
                     solomonConfig.title = 'NHS Dashboard';
                     solomonConfig.storyConfig.storyHandle = 'both';
