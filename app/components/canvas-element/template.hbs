@@ -66,14 +66,16 @@
         {{stories/complete/nhs-rtt/canvas-filter}}
         {{stories/complete/nhs-rtt/ccg-map}}
         --}}
-        {{!-- 
-        {{stories/complete/nhs-rtt/overall-perf-chart}}
-        {{stories/complete/nhs-rtt/treatment-rag-tile}}
-        {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
         {{stories/complete/nhs-rtt/canvas-filter}}
+        {{stories/complete/nhs-rtt/overall-perf-chart}}
+        {{stories/complete/nhs-rtt/region-map}}
+        {{stories/complete/nhs-rtt/text-with-bar}}
+        {{stories/complete/nhs-rtt/rtt-plotly-waiting-list}}
+        {{stories/complete/nhs-rtt/treatment-rag-tile}}
         {{stories/complete/nhs-rtt/rtt-plotly-mnth-perf}}
         {{stories/complete/nhs-rtt/rtt-data-table}}
-        --}}
+        {{!-- 
+        {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -81,6 +83,7 @@
                 {{/if}}
             {{/each}}
         {{/if}}
+        --}}
  
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
