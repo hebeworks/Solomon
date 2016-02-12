@@ -1,57 +1,63 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'div',
-    className: 'story__carousel-wrapper',
-    attributeBindings: 'cpn-story_carousel',
+
     'cpn-story_carousel': '',
+
+    tagName: 'div',
+
+    className: 'story__carousel-wrapper',
+
+    attributeBindings: 'cpn-story_carousel',
+
     width: 2,
+
     loaded: false,
-    loadedChanged: function () {
-        if (this.loaded) {
-            this.renderCarousel();
-        }
-    }.observes('loaded'),
+
     viewOnly: false,
-    renderCarousel: function () {
-        var _this = this;
-        var $el = Ember.$(this.get('element')).find('[cpn-story_carousel-list]');
-        var $storyPaginationControls = Ember.$(this.get('element')).find('.js-story-pagination-controls');
-        if (_this.get('viewOnly')) {
-            var $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_body]'));
-        } else {
-            var $storyFooter = $storyPaginationControls.appendTo($el.closest('[cpn-story_content]').find('[cpn-story_footer]'));
-        }
-        var $pageCounter = $storyFooter.find('.pg-of'),
-            $pager = $storyFooter.find('.carousel-pager'),
-            carouselHeight = '',
-            obj = this;
 
-        $pageCounter.find('.pg-of__y').text($el.children('li').size());
+    loadedChanged: function (){
+        this.get('loaded') ? this.setupCarousel() : this.teardownCarousel();
+    }.observes('loaded'),
 
-        $el
-            .caroufredsel({
-                width: 310,
-                height: 234,
-                prev: {
-                    button: $pager.find('.carousel-pager__btn.-prev')
-                },
-                pagination: $pager.find('.carousel-pager__numbers'),
-                next: {
-                    button: $pager.find('.carousel-pager__btn.-next')
-                },
-                swipe: {
-                    onTouch: true,
-                    onMouse: true
-                },
-                auto: false,
-                scroll: {
-                    onBefore: function () {
-                        $el.trigger('currentPosition', function (index) {
-                            $pageCounter.find('.pg-of__x').text((index + 1));
-                        });
-                    }
+    setupCarousel: function (){
+        var $element = this.$().find('[cpn-story_carousel-list]');
+        var $content = $element.closest('[cpn-story_content]');
+        var $storyPaginationControls = this.$().find('.js-story-pagination-controls');
+        var $storyPaginationParent = $content.find(this.get('viewOnly') ? '[cpn-story_body]' : '[cpn-story_footer]');
+        var $storyFooter = $storyPaginationControls.appendTo($storyPaginationParent);
+        var $pageCounter = $storyFooter.find('.pg-of')
+        var $pager = $storyFooter.find('.carousel-pager');
+
+        $pageCounter.find('.pg-of__y').text($element.children('li').size());
+
+        $element.caroufredsel({
+            width: 310,
+            height: 234,
+            pagination: $pager.find('.carousel-pager__numbers'),
+            prev: {
+                button: $pager.find('.carousel-pager__btn.-prev')
+            },
+            next: {
+                button: $pager.find('.carousel-pager__btn.-next')
+            },
+            swipe: {
+                onTouch: true,
+                onMouse: true
+            },
+            auto: false,
+            scroll: {
+                onBefore: function () {
+                    $element.trigger('currentPosition', function (index) {
+                        $pageCounter.find('.pg-of__x').text((index + 1));
+                    });
                 }
-            });
+            }
+        });
+    },
+
+    teardownCarousel: function(){
+        this.$().find('[cpn-story_carousel-list]').trigger("destroy");
     }
+
 });
