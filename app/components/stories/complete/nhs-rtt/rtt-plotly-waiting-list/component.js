@@ -9,7 +9,7 @@ export default DefaultStory.extend({
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)
         author: 'Simon Zimmerman',
-        
+
         description: '', // (Provide a longer description of the story)
         license: '', // (Define which license applies to usage of the story)
         // dataSourceUrl: '', (Where did the data come from?)
@@ -25,22 +25,59 @@ export default DefaultStory.extend({
         viewOnly: true
     },
 
-    getPlotly: function() {
+    getPlotly: function () {
         var _this = this;
         $.ajax({
             url: "https://cdn.plot.ly/plotly-latest.min.js",
             dataType: "script",
             cache: true
         })
-        .done(function() {
-            _this.drawChart();
-        });
+            .done(function () {
+                _this.loadData();
+            });
     }.on("init"),
 
-    drawChart: function() {
+    loadData: function () {
+        var _this = this;
+        var month = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth');
+
+        // var query = 'providerid=RQM&datekey=20150930';
+        var query = 'regionid=Y56&datekey=' + month.id;
+        this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/waitinglist?' + query)
+            .then(function (data) {
+                var traces = {};
+                var names = {};
+                names['< 18w'] = "gt_00_to_18_weeks_sum";
+                names['18-26w'] = "gt_18_to_26_weeks_sum";
+                names['26-40w'] = "gt_26_to_40_weeks_sum";
+                names['40-52w'] = "gt_40_to_52_weeks_sum";
+                names['+52w'] = "gt_52_weeks_sum";
+
+                var xValue = [];
+                for (var prop in names) {
+                    xValue.push(prop);
+                }
+
+                for (var i = 0; i < data.length; i++) {
+                    var part = data[i];
+                    var yValue = [];
+                    for (var prop in names) {
+                        yValue.push(part[names[prop]]);
+                    }
+                    var obj = {
+                        x: xValue,
+                        y: yValue
+                    };
+                    traces[part._id] = obj;
+                }
+                _this.drawChart(traces);
+            });
+    }.observes('appSettings.canvasSettings.nhsFilter.selectedMonth'),
+
+    drawChart: function (traces) {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
-        
-        var d3 = Plotly.d3;  
+
+        var d3 = Plotly.d3;
 
         var trace1 = {
             name: "Admitted",
@@ -50,8 +87,8 @@ export default DefaultStory.extend({
                 color: colorPalette[3],
                 width: 1
             },
-            x: ['< 18w','18-26w','26-40w','40-52w','+52w'],
-            y: [17234, 1000, 7, 40, 0],
+            x: traces["PART_1A"].x, //['< 18w','18-26w','26-40w','40-52w','+52w'],
+            y: traces["PART_1A"].y, //[17234, 1000, 7, 40, 0],
             type: 'bar'
         };
 
@@ -63,8 +100,8 @@ export default DefaultStory.extend({
                 color: colorPalette[1],
                 width: 1
             },
-            x: ['< 18w','18-26w','26-40w','40-52w','+52w'],
-            y: [10000, 499, 600, 9, 1],
+            x: traces["PART_1B"].x, //['< 18w','18-26w','26-40w','40-52w','+52w'],
+            y: traces["PART_1B"].y, //[10000, 499, 600, 9, 1],
             type: 'bar'
         };
 
@@ -82,8 +119,8 @@ export default DefaultStory.extend({
                 shape: 'spline',
                 dash: 'dot'
             },
-            x: ['< 18w','18-26w','26-40w','40-52w','+52w'],
-            y: [35000, 6000, 1750, 155, 1],
+            x: traces["PART_2"].x, // ['< 18w','18-26w','26-40w','40-52w','+52w'],
+            y: traces["PART_2"].y, // [35000, 6000, 1750, 155, 1],
             type: 'scatter'
         }
 
@@ -104,14 +141,14 @@ export default DefaultStory.extend({
             //showlegend: false,
             legend: {
                 //xanchor:"center",
-                yanchor:"middle",
-                y:.5,
+                yanchor: "middle",
+                y: .5,
                 //x:0.5, 
                 traceorder: 'normal',
                 font: {
-                  family: "Roboto, Open Sans, verdana, sans-serif",
-                  size: 12,
-                  color: '#000'
+                    family: "Roboto, Open Sans, verdana, sans-serif",
+                    size: 12,
+                    color: '#000'
                 },
             },
             xaxis: {
@@ -120,7 +157,7 @@ export default DefaultStory.extend({
                 ticklen: 2,
                 tickwidth: 1,
                 showline: true,
-                line:{
+                line: {
                     width: 2,
                     color: '#000'
                 }
@@ -133,7 +170,7 @@ export default DefaultStory.extend({
             textposition: 'top left',
         };
 
-        var data = [trace1,trace2,trace3];
+        var data = [trace1, trace2, trace3];
 
         Plotly.newPlot(this.get('chartID'), data, layout, {
             
@@ -180,7 +217,7 @@ export default DefaultStory.extend({
             // (see ./components/modebar/buttons.js for the list of names)
             // (see https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js)
             modeBarButtonsToRemove: [
-                //'toImage',
+            //'toImage',
                 'sendDataToCloud',
                 'zoom2d',
                 'pan2d',
@@ -189,10 +226,10 @@ export default DefaultStory.extend({
                 'zoomIn2d',
                 'zoomOut2d',
                 'autoScale2d',
-                //'resetScale2d',
+            //'resetScale2d',
                 'hoverClosestCartesian',
                 'hoverCompareCartesian',
-                ],
+            ],
             
             // add mode bar button using config objects
             // (see ./components/modebar/buttons.js for list of arguments)
