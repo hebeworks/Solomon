@@ -3,7 +3,7 @@ import RSSGeneric from '../rss-generic/component';
 
 export default RSSGeneric.extend({
 
-    defaultFeedURL: 'https://www.google.com/alerts/feeds/14130490369006860511/11463334997055244251',
+    defaultFeedURL: 'http://news.leeds.gov.uk/feed/en',
 
     setSliderLoadedState: function(){
       Ember.run.next(this, function(){
@@ -12,10 +12,10 @@ export default RSSGeneric.extend({
     }.observes('loading'),
 
     storyConfig: {
-        title: 'RTT News',
-        subTitle: 'Live RTT related news stories',
-        color: 'medium-blue',
-        scroll: true,
+        title: 'In the news',
+        subTitle: '',
+        color: 'white',
+        scroll: false,
         slider: true,
         width: '2',
         height: '2'
