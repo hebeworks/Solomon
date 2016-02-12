@@ -1,0 +1,14 @@
+<div cpn-margin="bottom">
+{{#if isText}}
+    <label>{{field.placeholder}}</label>{{input type=field.type value=field.value placeholder=field.placeholder}}
+{{else if isSelect}}
+    {{select-2 
+        content=content
+        value=field.value
+        optionLabelPath="name"
+        optionValuePath="id"
+        placeholder=field.placeholder
+    }}
+{{/if}}
+</div>
+{{yield}}

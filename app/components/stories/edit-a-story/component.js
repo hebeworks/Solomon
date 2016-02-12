@@ -2,43 +2,64 @@ import Ember from 'ember';
 import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
 
 export default Ember.Component.extend(BottomDrawerContent, {
+
+	message: '',
+
+	editableFields: function(){
+		return this.get('model.config');
+	}.property('model'),
+
+	editableFieldAttributes: function(){
+		return {};
+	}.property('model'),
+
 	mainTitle: Ember.computed(function () {
 		return 'Edit a Story ' + this.get('model.title');
 	}),
-	message: '',
 
-	onInit: function(){
-		this.get('model.config')
-	}.on('init'),
+	storeEditableFieldValues: function(){
+		const fields = this.get('editableFields');
 
-	editableFields: Ember.computed.alias('model.config'),
-	// _editableFields: null,
-	
-	// editableFields: Ember.computed('model.config', {
-	// 	get() {
-	// 		if (Ember.isEmpty(this.get('_editableFields'))) {
-	// 			var model = this.get('model.config');
-	// 			this.set('_editableFields', model)
-	// 			return model;
-	// 		}
-	// 		return this.get('_editableFields');
-	// 	},
-	// 	set(key, value) {
-	// 		if (this.get('_editableFields') != value) {
-	// 			this.set('_editableFields', value);
-	// 		}
-	// 		return this.get('_editableFields');
-	// 	}
-	// }),
-	
+		if(!fields)
+			return;
+
+		fields.forEach(function(field){
+			this.set('editableFieldAttributes.' + field.get('name'), field.get('value'))
+		}.bind(this));
+	}.on('init').observes('model'),
+
+	restoreEditableFieldValues: function(){
+		const fields = this.get('editableFields');
+
+		if(!fields)
+			return;
+
+		fields.forEach(function(field){
+			field.set('value', this.get('editableFieldAttributes.' + field.get('name')));
+		}.bind(this));
+	},
+
 	save: function () {
 		this.set('action', 'saveCanvasState');
 		this.sendAction('action');
 	},
 
 	actions: {
-		save: function () {
+
+		save: function (){
 			this.save();
+			this.send('close');
+		},
+
+		cancel: function (){
+			this.restoreEditableFieldValues();
+			this.send('close');
+		},
+
+		close: function(){
+			this.get('appController').closeBottomDrawer();
 		}
+
 	}
+
 });
