@@ -226,21 +226,6 @@ pathways: true,
                     color: '#000'
                 },
             },
-            // xaxis: {
-            //     showgrid: false,
-            //     zeroline: false,
-            //     ticklen: 2,
-            //     // tickvals: [0,17,53],
-            //     ticktext: traces.x,
-            //     tickmode: 'auto',
-            //     nticks: 5,
-            //     tickwidth: 1,
-            //     showline: true,
-            //     line: {
-            //         width: 2,
-            //         color: '#000'
-            //     }
-            // },
             xaxis: {
                 showgrid: false,
                 zeroline: false,
@@ -259,6 +244,7 @@ pathways: true,
                 showgrid: true,
                 zeroline: false,
                 showline: true,
+                hoverformat: ',r'
             },
             textposition: 'top left',
         };
