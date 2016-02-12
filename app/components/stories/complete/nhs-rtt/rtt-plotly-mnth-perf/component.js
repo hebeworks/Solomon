@@ -6,7 +6,7 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     chartData: null,
-    part: 'PART_2',
+    part: 'PART_1A',
     data:[],
     allData: [],
     
@@ -81,6 +81,21 @@ export default DefaultStory.extend({
         }
     }),
 
+    standard: function() {
+        var part = this.get('part');
+        var standard = 0;
+        if (part === 'all' ) {
+            standard = 0;
+        } else if (part === 'PART_1A') {
+            standard = 0.90;
+        } else if (part === 'PART_1B') {
+            standard = 0.95;
+        } else if (part === 'PART_2') {
+            standard = 0.92;
+        }
+        return standard;
+    }.property('part'),
+
     processData: function() {
         var data = this.get('data');
         var part = this.get('part');
@@ -94,7 +109,6 @@ export default DefaultStory.extend({
         }
         this.set('chartData', months);
     }.observes('data','part'),
-
 
     drawChart: function () {
         var chartData = this.get('chartData');
@@ -194,28 +208,31 @@ export default DefaultStory.extend({
                 showgrid: false,
                 tickformat: "%",
                 showline: true,
+                zeroline: false
                 //range: [0, 1],
             },
             textposition: 'top left',
-            shapes: [
-                {
+            shapes: [],
+            annotations: []
+        };
+        if (this.get('standard') != 0) {
+                layout.shapes = [{
                     type: 'line',
                     x0: '2015-01-01',
-                    y0: 0.92,
+                    y0: this.get('standard'),
                     x1: '2015-12-31',
-                    y1: 0.92,
+                    y1: this.get('standard'),
                     line: {
                         color: 'rgb(000, 000, 000)',
                         width: 1,
                         dash: 'dot'
                     }
-                }
-            ],
-            annotations: [
+                }];
+                layout.annotations = [
                 {
                     text: 'Standard',
                     x: '2015-12-31',
-                    y: 0.92,
+                    y: this.get('standard'),
                     xref: 'x',
                     yref: 'y',
                     ax: 0,
@@ -229,7 +246,7 @@ export default DefaultStory.extend({
                     }
                 }
             ]
-        };
+            }
 
         var data = [trace1, trace2];
 
