@@ -8,6 +8,8 @@ export default DatamillStory.extend(EditableFields, {
 
     loading: true,
 
+    defaultFeedURL: 'http://news.leeds.gov.uk/feed/en',
+
     storyConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
@@ -30,7 +32,7 @@ export default DatamillStory.extend(EditableFields, {
         var url = this.fetchEditableFieldValue('url');
         var valid = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
 
-        return valid ? url : 'http://news.leeds.gov.uk/feed/en';
+        return valid ? url : this.get('defaultFeedURL');
     }.property('storyModel.config.@each.value'),
 
     setupFeed: function(){
