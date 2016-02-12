@@ -67,6 +67,8 @@ export default DatamillStory.extend(EditableFields, {
                     items.push(item);
                 });
 
+                console.log('RSS Generic : Data loaded.', items);
+
                 this.set('items', items);
             }.bind(this)
         ).finally(function (){
