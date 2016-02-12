@@ -1,18 +1,25 @@
-[spc-nhs-pc-bar] {
-    padding: rem(3px);
-    border-radius: rem(3px);
+[solomon-story="text-with-bar"] {
+    [cpn-story_dot],
+    [cpn-story_bar] {
+        background-color: #fff;
+    }
 }
 
-    [spc-nhs-pc-bar_inner] {
-        height: rem(33px);
-        max-width: 100%;
-        border-radius: rem(1px);
-        width: 0;
-        @include transition(1s);
+    [spc-nhs-pc-bar] {
+        padding: rem(3px);
+        border-radius: rem(3px);
     }
-    
-        [spc-nhs-pc-bar_value] {
-            line-height: rem(33px);
-            font-size: rem(20px);
-            padding: 0 rem($spacing-base / 2);
+
+        [spc-nhs-pc-bar_inner] {
+            height: rem(33px);
+            max-width: 100%;
+            border-radius: rem(1px);
+            width: 0;
+            @include transition(1s);
         }
+        
+            [spc-nhs-pc-bar_value] {
+                line-height: rem(33px);
+                font-size: rem(20px);
+                padding: 0 rem($spacing-base / 2);
+            }

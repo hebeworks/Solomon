@@ -208,8 +208,8 @@ export default DefaultStory.extend({
                 showgrid: false,
                 tickformat: "%",
                 showline: true,
-                zeroline: false
-                //range: [0, 1],
+                zeroline: false,
+                range: [0.8, 1]
             },
             textposition: 'top left',
             shapes: [],
@@ -295,7 +295,7 @@ export default DefaultStory.extend({
             // (see ./components/modebar/buttons.js for the list of names)
             // (see https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js)
             modeBarButtonsToRemove: [
-            //'toImage',
+                'toImage',
                 'sendDataToCloud',
                 'zoom2d',
                 'pan2d',

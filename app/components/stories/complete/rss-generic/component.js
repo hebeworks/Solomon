@@ -8,6 +8,8 @@ export default DatamillStory.extend(EditableFields, {
 
     loading: true,
 
+    defaultFeedURL: 'http://news.leeds.gov.uk/feed/en',
+
     storyConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
@@ -30,7 +32,7 @@ export default DatamillStory.extend(EditableFields, {
         var url = this.fetchEditableFieldValue('url');
         var valid = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
 
-        return valid ? url : 'http://news.leeds.gov.uk/feed/en';
+        return valid ? url : this.get('defaultFeedURL');
     }.property('storyModel.config.@each.value'),
 
     setupFeed: function(){
@@ -43,12 +45,20 @@ export default DatamillStory.extend(EditableFields, {
 
         this.set('items', []);
         this.set('loading', true);
+        this.set('error', null);
 
         this.getData(url).then(
             function(data) {
+                var feed = Ember.ObjectProxy.create(data);
+                var content = feed.get('rss.channel.firstObject.item');
+
+                if(Ember.isEmpty(content)){
+                    return this.set('error', "Failed to load data from " + this.get('feedURL') + ".");
+                }
+
                 var items = [];
 
-                data.rss.channel[0].item.forEach((tmpItem) => {
+                content.forEach(function(tmpItem){
                     var image = '';
 
                     try {
@@ -66,6 +76,8 @@ export default DatamillStory.extend(EditableFields, {
 
                     items.push(item);
                 });
+
+                console.log('RSS Generic : Data loaded.', items);
 
                 this.set('items', items);
             }.bind(this)
