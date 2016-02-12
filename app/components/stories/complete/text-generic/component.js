@@ -21,6 +21,12 @@ export default DefaultStory.extend(EditableFields, {
                 type: 'text',
                 value: '',
                 placeholder: 'Description text'
+            },
+            {
+                name: 'image_url',
+                type: 'text',
+                value: '',
+                placeholder: 'Image URL'
             }
         ]
     }.property('storyModel.config'),
@@ -31,6 +37,10 @@ export default DefaultStory.extend(EditableFields, {
 
     description: function(){
         return this.fetchEditableFieldValue('description');
+    }.property('storyModel.config.@each.value'),
+
+    image_url: function(){
+        return this.fetchEditableFieldValue('image_url');
     }.property('storyModel.config.@each.value')
 
 });
