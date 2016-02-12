@@ -1,27 +1,19 @@
 {{#stories/story-base}}
 
-    {{#if loading}}
+    {{#stories/story-slider loaded=loaded}}
 
-        <p>Loading data...</p>
+      {{#each items as |item|}}
 
-    {{else}}
+        {{#stories/story-slide}}
 
-      {{#stories/story-slider loaded=true}}
+          <h3>{{item.title}}</h3>
 
-        {{#each items as |item|}}
+          {{{item.description}}}
 
-          {{#stories/story-slide}}
+        {{/stories/story-slide}}
 
-            <h3>{{item.title}}</h3>
+      {{/each}}
 
-            {{{item.description}}}
-
-          {{/stories/story-slide}}
-
-        {{/each}}
-
-      {{/stories/story-slider}}
-
-    {{/if}}
+    {{/stories/story-slider}}
 
 {{/stories/story-base}}

@@ -3,12 +3,22 @@ import RSSGeneric from '../rss-generic/component';
 
 export default RSSGeneric.extend({
 
-    // defaultFeedURL: 'https://www.google.com/alerts/feeds/14130490369006860511/11463334997055244251',
+    defaultFeedURL: 'https://www.google.com/alerts/feeds/14130490369006860511/11463334997055244251',
+
+    setSliderLoadedState: function(){
+      Ember.run.next(this, function(){
+        this.set('loaded', true);
+      });
+    }.observes('loading'),
 
     storyConfig: {
         title: 'RTT News',
         subTitle: 'Live RTT related news stories',
-        color: 'medium-blue'
+        color: 'medium-blue',
+        scroll: true,
+        slider: true,
+        width: '2',
+        height: '2'
     }
 
 });
