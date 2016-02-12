@@ -1,0 +1,27 @@
+{{#stories/story-base}}
+
+  {{#if error}}
+
+    <div cpn-padding="all">{{error}}</div>
+
+  {{else}}
+
+    {{#stories/story-slider loaded=loaded}}
+
+      {{#each items as |item|}}
+
+        {{#stories/story-slide}}
+
+          <h3>{{item.title}}</h3>
+
+          {{{item.description}}}
+
+        {{/stories/story-slide}}
+
+      {{/each}}
+
+    {{/stories/story-slider}}
+
+  {{/if}}
+
+{{/stories/story-base}}

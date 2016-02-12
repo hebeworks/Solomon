@@ -1,4 +1,11 @@
 // All
+[cpn-padding="all"] {
+    padding-top: rem($spacing-base);
+    padding-right: rem($spacing-base);
+    padding-bottom: rem($spacing-base);
+    padding-left: rem($spacing-base);
+}
+
 [cpn-padding="all-none"] {
     padding: 0;
 }
