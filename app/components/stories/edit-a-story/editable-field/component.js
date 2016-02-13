@@ -12,6 +12,11 @@ export default Ember.Component.extend({
             return this.get('field.type') === 'select';
         }
     }),
+    isMarkdown: Ember.computed('field.type',{
+        get() {
+            return this.get('field.type') === 'markdown';
+        }
+    }),
     content: Ember.computed('field.contentPath',{
         get(){
             var fieldContentPath = this.get('field.contentPath');

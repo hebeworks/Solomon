@@ -9,6 +9,8 @@
         optionValuePath="id"
         placeholder=field.placeholder
     }}
+{{else if isMarkdown}}
+    <label>{{field.placeholder}}</label>{{textarea value=field.value placeholder=field.placeholder}}
 {{/if}}
 </div>
 {{yield}}
