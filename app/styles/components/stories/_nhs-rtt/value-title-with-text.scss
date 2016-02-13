@@ -10,6 +10,9 @@
         @include transform(rotate(45deg));
         @include transition(1s);
     }
+    > .ember-view, p {
+        display: inline;
+    }
 }
 
 [spc-vtwt_title="up"] {
@@ -22,4 +25,8 @@
     &::after {
         @include transform(rotate(-180deg));
     }
+}
+
+[spc-vtwt-content] {
+    
 }
