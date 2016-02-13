@@ -17,7 +17,7 @@ export default DatamillStory.extend(EditableFields, {
         authorImage: '/assets/img/LeedsCouncilLogo.png'
     },
 
-    editableFields: function(){
+    editableFields: function () {
         return [
             {
                 name: 'url',
@@ -30,26 +30,39 @@ export default DatamillStory.extend(EditableFields, {
                 type: 'text',
                 value: '',
                 placeholder: 'Enter a limit (e.g. "5")'
+            },
+            {
+                name: 'story_colour',
+                type: 'enum',
+                sourceContent: JSON.stringify([{ text: 'white', id: 'white' }, { text: 'medium-blue', id: 'medium-blue' }]),
+                value: '',
+                placeholder: 'Choose a story colour'
             }
-        ]
+        ];
     }.property('storyModel'),
 
-    limit: function(){
+    limit: function () {
         return this.fetchEditableFieldValue('limit');
     }.property('storyModel.config.@each.value'),
 
-    feedURL: function(){
+    onColourChanged: function () {
+        var colour = this.fetchEditableFieldValue('story_colour');
+        if (!Ember.isEmpty(colour)) {
+            this.set('storyConfig.color', colour);
+        }
+    }.on('didReceiveAttrs').observes('storyModel.config.@each.value'),
+
+    feedURL: function () {
         var url = this.fetchEditableFieldValue('url');
         var valid = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
-
         return valid ? url : this.get('defaultFeedURL');
     }.property('storyModel.config.@each.value'),
 
-    setupFeed: function(){
+    setupFeed: function () {
         this.loadFeed(this.get('feedURL'));
     }.on('init').observes('feedURL'),
 
-    loadFeed: function (feedUrl){
+    loadFeed: function (feedUrl) {
         var hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
         var url = hebeNodeAPI + '/apiproxy?url=' + hebeutils.Base64.encode(feedUrl) + '&toJSON=true';
 
@@ -58,22 +71,22 @@ export default DatamillStory.extend(EditableFields, {
         this.set('error', null);
 
         this.getData(url).then(
-            function(data) {
+            function (data) {
                 var feed = Ember.ObjectProxy.create(data);
                 var content = feed.get('rss.channel.firstObject.item');
 
-                if(Ember.isEmpty(content)){
+                if (Ember.isEmpty(content)) {
                     return this.set('error', "Failed to load data from " + this.get('feedURL') + ".");
                 }
 
                 var items = [];
 
-                content.forEach(function(tmpItem){
+                content.forEach(function (tmpItem) {
                     var image = '';
 
                     try {
                         image = tmpItem.enclosure[0].$.url;
-                    } catch (err) {}
+                    } catch (err) { }
 
                     var item = {
                         id: tmpItem.guid,
@@ -93,9 +106,9 @@ export default DatamillStory.extend(EditableFields, {
 
                 this.set('items', limit ? items.slice(0, Number(limit)) : items);
             }.bind(this)
-        ).finally(function (){
-            this.set('loading', false);
-        }.bind(this));
+            ).finally(function () {
+                this.set('loading', false);
+            }.bind(this));
     }
 
 });

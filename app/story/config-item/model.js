@@ -10,6 +10,7 @@ export default DS.Model.extend({
   
   contentPath: DS.attr('string'),
 
-  placeholder: DS.attr('string')
+  sourceContent: DS.attr('string'),
 
+  placeholder: DS.attr('string')
 });
