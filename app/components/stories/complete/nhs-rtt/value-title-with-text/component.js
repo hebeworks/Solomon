@@ -1,7 +1,8 @@
 /* global Ember, hebeutils, _ */
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DefaultStory.extend({
+export default DefaultStory.extend(EditableFields, {
     storyConfig: {
         title: '',
         subTitle: '',
