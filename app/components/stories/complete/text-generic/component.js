@@ -18,19 +18,33 @@ export default DefaultStory.extend(EditableFields, {
             },
             {
                 name: 'description',
-                type: 'text',
+                type: 'markdown',
                 value: '',
-                placeholder: 'Description text'
+                placeholder: 'Description (can include markdown)'
             },
             {
                 name: 'image_url',
                 type: 'text',
                 value: '',
                 placeholder: 'Image URL'
+            },
+            {
+                name: 'story_colour',
+                type: 'enum',
+                sourceContent: JSON.stringify([{ text: 'white', id: 'white' }, { text: 'medium-blue', id: 'medium-blue' }]),
+                value: '',
+                placeholder: 'Choose a story colour'
             }
-        ]
+        ];
     }.property('storyModel.config'),
 
+    onColourChanged: function () {
+        var colour = this.fetchEditableFieldValue('story_colour');
+        if (!Ember.isEmpty(colour)) {
+            this.set('storyConfig.color', colour);
+        }
+    }.on('didReceiveAttrs').observes('storyModel.config.@each.value'),
+    
     title: function(){
         return this.fetchEditableFieldValue('title');
     }.property('storyModel.config.@each.value'),
