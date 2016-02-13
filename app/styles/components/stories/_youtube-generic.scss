@@ -1,3 +1,22 @@
 /*
 	Add story-specific styles here
 */
+
+[solomon-story="youtube-generic"] {
+    [cpn-story_face~="front"] {
+        padding-top: 0;
+    }
+    
+        [cpn-story_body] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+}
+
+    [spc-youtube-generic-story_title] {
+        font-size: rem(14px);
+    }
+    
+    [spc-youtube-generic-story_desc] {
+        font-size: rem(12px);
+    }

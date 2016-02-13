@@ -4,12 +4,10 @@ import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
     storyConfig: {
-        title: 'TITLE: youtube-generic',
-        subTitle: 'SUBTITLE: youtube-generic',
-        color: 'white',
-        width: '2',
-        height: '2',
-        scroll: true,
+        title: '',
+        subTitle: '',
+        scroll: false,
+        viewOnly: true
     },
     loaded: true,
     editableFields: Ember.computed('storyModel', {
@@ -22,23 +20,39 @@ export default DefaultStory.extend(EditableFields, {
                     placeholder:'Enter your title'
                 },
                 {
-                    name: 'content',
+                    name: 'description',
                     type:'markdown',
                     value:'',
-                    placeholder:'Enter your content using markdown'
+                    placeholder:'Enter your description'
+                },
+                {
+                    name: 'youtube_src',
+                    type:'text',
+                    value:'',
+                    placeholder:'Enter your youtube ID'
                 }
             ];
         }
     }),
+    
     title: Ember.computed('storyModel.config.@each.value',{
         get() {
             return this.fetchEditableFieldValue('title');
         }
     }),
     
-    content: Ember.computed('storyModel.config.@each.value',{
+    description: Ember.computed('storyModel.config.@each.value',{
         get() {
-            return this.fetchEditableFieldValue('content');
+            return this.fetchEditableFieldValue('description');
+        }
+    }),
+    
+    youtubeSrc: Ember.computed('storyModel.config.@each.value',{
+        get() {
+            var id = this.fetchEditableFieldValue('youtube_src');
+            if(!Ember.isEmpty(id)) {
+                return 'https://www.youtube.com/embed/' + id + '?rel=0&amp;showinfo=0';
+            }
         }
     }),
 });
