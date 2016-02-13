@@ -1,17 +1,10 @@
 {{#stories/story-base}}
 
     <h3 spc-vtwt_title="{{trend}}" cpn-font="30px 500" cpn-divide="solid bottom faded-dark">
-    {{!-- 
-        <span cpn-color="blue">900k</span>
-        <span>Patients</span>
-    --}}
         {{markdown-to-html markdown=title}}
     </h3>
     
     <p spc-vtwt-content>
-    {{markdown-to-html markdown=content}}
+        {{markdown-to-html markdown=content}}
     </p>
-    {{!-- 
-    <p cpn-font="12px">Are on the RTT waiting list. That’s <strong cpn-color="blue">300K</strong> more than the same time <strong cpn-color="blue">last year.</strong></p>
-    --}}
 {{/stories/story-base}}

@@ -13,6 +13,9 @@
     > .ember-view, p {
         display: inline;
     }
+    strong {
+        color: $nhs-blue;
+    }
 }
 
 [spc-vtwt_title="up"] {
@@ -28,5 +31,7 @@
 }
 
 [spc-vtwt-content] {
-    
+    strong {
+        color: $nhs-blue;
+    }
 }
