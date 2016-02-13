@@ -32,11 +32,12 @@ module.exports = function (environment) {
     //   solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
     
     // PREVIEW
-    //   solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net'
+      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net'
     
       // NHS
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://solomonapi-nhs.azurewebsites.net'
+    //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+    //   solomonAPIURL: 'http://solomonapi-nhs.azurewebsites.net'
     }
   };
 
