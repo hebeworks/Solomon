@@ -58,6 +58,7 @@ export default Ember.Object.extend({
                     break;
                 case 'nhsrtt.preview.mysolomon.co.uk':
                     solomonConfig.name = 'nhs';
+                    solomonConfig.defaultCanvas = 'rtt-overview';
                     solomonConfig.title = 'NHS Dashboard';
                     solomonConfig.storyConfig.storyHandle = 'both';
                     solomonConfig.logoType = 'bitmap';
