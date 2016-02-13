@@ -10,26 +10,40 @@
     }
 }
 
+[spc-nhs-rm_map] {
+    [id^="Fill"] {
+        cursor: pointer;
+        
+        &:hover {
+            fill: #D0CFCF;
+        }
+    }
+}
+
+// London
 [spc-nhs-rm_map="Y56"] {
     #Fill-9 {
-        fill: #D0CFCF;
+        fill: $nhs-green;
     }
 }
 
+// South
 [spc-nhs-rm_map="Y57"] {
     #Fill-4 {
-        fill: #D0CFCF;
+        fill: $nhs-green;
     }
 }
 
+// North
 [spc-nhs-rm_map="Y54"] {
     #Fill-1 {
-        fill: #D0CFCF;
+        fill: $nhs-green;
     }
 }
 
+// Midlands
 [spc-nhs-rm_map="Y55"] {
     #Fill-6 {
-        fill: #D0CFCF;
+        fill: $nhs-green;
     }
 }
