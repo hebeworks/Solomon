@@ -14,7 +14,8 @@ export default DatamillStory.extend(EditableFields, {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
         color: 'medium-blue',
-        authorImage: '/assets/img/LeedsCouncilLogo.png'
+        authorImage: '/assets/img/LeedsCouncilLogo.png',
+        viewOnly: true
     },
 
     editableFields: function () {
