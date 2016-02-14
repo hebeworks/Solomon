@@ -5,7 +5,7 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
-    storyConfig: {
+    initialConfig: {
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)
         author: 'Simon Zimmerman',

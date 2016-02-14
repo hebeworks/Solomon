@@ -2,7 +2,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         color: 'black',
         width: '1',
         height: '1',

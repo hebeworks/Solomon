@@ -4,7 +4,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)        
         color: 'blue', // (Set the story colour)

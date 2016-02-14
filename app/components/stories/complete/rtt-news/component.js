@@ -11,7 +11,7 @@ export default RSSGeneric.extend({
       });
     }.observes('loading'),
 
-    storyConfig: {
+    initialConfig: {
         title: 'Behind the headlines',
         subTitle: '',
         color: 'white',

@@ -2,7 +2,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Leeds Inspired',
         subTitle: 'Music & art events around Leeds',
         slider: true,

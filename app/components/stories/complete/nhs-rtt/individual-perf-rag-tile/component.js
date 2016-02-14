@@ -3,7 +3,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
-    storyConfig: {
+    initialConfig: {
         title: '',
         subTitle: '',
         width: '1',

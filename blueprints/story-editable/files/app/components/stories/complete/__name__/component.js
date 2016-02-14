@@ -3,7 +3,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
-    storyConfig: {
+    initialConfig: {
         title: 'TITLE: <%= dasherizedModuleName %>',
         subTitle: 'SUBTITLE: <%= dasherizedModuleName %>',
         color: 'white',
@@ -55,7 +55,7 @@ export default DefaultStory.extend(EditableFields, {
         if (!Ember.isEmpty(colour)) {
             this.set('storyConfig.color', colour);
         }
-    }.on('didReceiveAttrs').observes('storyModel.config.@each.value'),
+    }.on('didInsertElement').observes('storyModel.config.@each.value'),
 
 
 });

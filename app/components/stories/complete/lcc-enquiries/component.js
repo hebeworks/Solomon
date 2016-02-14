@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'LCC Contact Centre Enquiries',
         subTitle: 'Enquiries dealt with by Leeds City Council',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/customer-services-contact-enquiries',
