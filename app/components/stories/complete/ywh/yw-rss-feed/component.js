@@ -2,7 +2,7 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Yorkshire Water News',
         subTitle: 'The latest from Yorkshire Water',
         color: 'white',

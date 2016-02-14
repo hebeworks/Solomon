@@ -10,7 +10,7 @@ export default DatamillStory.extend(EditableFields, {
 
     defaultFeedURL: 'http://news.leeds.gov.uk/feed/en',
 
-    storyConfig: {
+    initialConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
         color: 'medium-blue',

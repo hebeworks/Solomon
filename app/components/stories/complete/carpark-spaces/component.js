@@ -2,7 +2,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Leeds Car Parks',
         subTitle: 'Registered spaces available in Leeds',
         color: 'blue',

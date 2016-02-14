@@ -4,7 +4,7 @@ import DefaultStory from './../../story-types/default-story/component';
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'Leeds Information Centre',
         subTitle: 'Visitor numbers over a 13-month period',
         author: 'Ste Allan',

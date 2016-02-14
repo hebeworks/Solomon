@@ -2,7 +2,7 @@
 import DataMillStory from './../../story-types/datamill-story/component';
 //https://duncan99.wordpress.com/2015/01/22/animated-paths-with-google-maps/
 export default DataMillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Eagle Weather Balloon Flight Data',
         subTitle: 'Subtitle',
     },

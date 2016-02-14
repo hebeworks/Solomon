@@ -6,7 +6,7 @@ import dashComponentBase from 'hebe-dash/mixins/dash-component-base';
 
 export default Ember.Component.extend(dashComponentBase, {
     storyModel: null,
-    storyConfig: null,
+    storyConfig: {},
     onDefaultStoryInit: function () {
         this.appendComponentNameClass();
         this.set('storyConfig', Ember.Object.create(this.get('initialConfig')));

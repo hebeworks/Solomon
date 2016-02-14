@@ -1,7 +1,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Empty Properties',
         subTitle: 'City wide vs. Wards long term empties',
         color: 'black',

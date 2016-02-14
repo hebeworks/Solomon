@@ -10,7 +10,7 @@ export default DefaultStory.extend({
     data:[],
     allData: [],
     
-    storyConfig: {
+    initialConfig: {
         title: '', // (Provide a story title)
         subTitle: '', // (Provide a story subtitle)
         // author: 'Simon Zimmerman',

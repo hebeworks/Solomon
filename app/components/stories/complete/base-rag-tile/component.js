@@ -15,7 +15,7 @@ export default DefaultStory.extend({
     lineShade: 'light', // light, dark
     rating: 'neutral', // good, bad, neutral
 
-    storyConfig: {
+    initialConfig: {
         width: '1',
         height: '1',
         viewOnly: true,

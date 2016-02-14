@@ -2,7 +2,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'FOI & EIR',
         subTitle: 'Number of FOI & EIR Requests',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/foi-and-eir-statistics',
