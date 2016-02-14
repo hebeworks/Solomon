@@ -157,6 +157,11 @@
                     [solomon-app~="nhs"] & {
                         background-color: $nhs-blue;
                     }
+                    
+                    [cpn-bg-color="blue"] &,
+                    [cpn-bg-color="medium-blue"] & {
+                        background-color: #fff;
+                    }
                 }
             }
             
@@ -190,6 +195,11 @@
             [cpn-story_bar~="front"] {
                 [solomon-app~="nhs"] & {
                     background-color: $nhs-blue;
+                }
+                
+                [cpn-bg-color="blue"] &,
+                [cpn-bg-color="medium-blue"] & {
+                    background-color: #fff;
                 }
             }
             
