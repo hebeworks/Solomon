@@ -61,10 +61,16 @@
         
         <section cpn-story_content="back {{usableHeight}}">
             {{#if storyConfig.viewOnly}}
-                <button cpn-margin="top" cpn-button="action" {{action 'removeAStory' storyModel}}>Remove Story</button>
-				{{#if configFields}}
-                    <button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>                
-                {{/if}}
+                <div cpn-padding="top">
+                    <p>
+                        <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove Story</button>
+                    </p>
+                    {{#if configFields}}
+                    <p>
+                        <button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>
+                    </p>
+                    {{/if}}
+                </div>
             {{else}}
                 {{#if storyConfig.description}}
                     <div cpn-divide="bottom light">
