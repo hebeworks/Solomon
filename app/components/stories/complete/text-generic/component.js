@@ -5,7 +5,8 @@ import EditableFields from 'hebe-dash/mixins/editable-fields';
 export default DefaultStory.extend(EditableFields, {
 
     initialConfig: {
-        color: 'blue'
+        color: 'blue',
+        viewOnly: true
     },
 
     editableFields: function(){
