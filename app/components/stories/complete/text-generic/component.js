@@ -4,7 +4,7 @@ import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
 
-    storyConfig: {
+    initialConfig: {
         color: 'blue'
     },
 
@@ -43,7 +43,7 @@ export default DefaultStory.extend(EditableFields, {
         if (!Ember.isEmpty(colour)) {
             this.set('storyConfig.color', colour);
         }
-    }.on('didReceiveAttrs').observes('storyModel.config.@each.value'),
+    }.on('didInsertElement').observes('storyModel.config.@each.value'),
     
     title: function(){
         return this.fetchEditableFieldValue('title');

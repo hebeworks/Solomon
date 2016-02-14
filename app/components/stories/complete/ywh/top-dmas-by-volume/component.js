@@ -2,7 +2,7 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'WQ Contacts Most Active DMAs', // (Provide a story title)
         subTitle: 'Which DMAs produce the most contacts?', // (Provide a story subtitle)
         viewOnly: true,

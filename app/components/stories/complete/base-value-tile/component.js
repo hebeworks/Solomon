@@ -11,7 +11,7 @@ export default DefaultStory.extend({
     tileShade: '',
     tileUrl: '',
 
-    storyConfig: {
+    initialConfig: {
         width: '1',
         height: '1',
         viewOnly: true,

@@ -2,7 +2,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-	storyConfig: {
+	initialConfig: {
 		title: 'House prices in Leeds',
 		subTitle: 'Average house price in Leeds by month',
 		slider: true,

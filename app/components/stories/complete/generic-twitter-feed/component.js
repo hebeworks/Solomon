@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Twitter Feed',
         subTitle: 'What are we tweeting about?',
         slider: false,

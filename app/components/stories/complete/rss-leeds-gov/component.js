@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Leeds Gov News',
         subTitle: 'New from Leeds',
         color: 'medium-blue',
