@@ -50,7 +50,7 @@ export default DatamillStory.extend(EditableFields, {
         if (!Ember.isEmpty(colour)) {
             this.set('storyConfig.color', colour);
         }
-    }.on('didReceiveAttrs').observes('storyModel.config.@each.value'),
+    }.on('didInsertElement').observes('storyModel.config.@each.value'),
 
     feedURL: function () {
         var url = this.fetchEditableFieldValue('url');
