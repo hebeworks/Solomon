@@ -30,7 +30,7 @@ export default DefaultStory.extend(EditableFields, {
             var treatment = _.find(treatments, function (obj) {
                 return obj._id == treatmentID;
             });
-            return treatment.name;
+            return treatment.name ? treatment.name : '';
         }
         return '';
     }.property('storyModel.config.@each.value'),
@@ -46,29 +46,54 @@ export default DefaultStory.extend(EditableFields, {
                     load all CCGs   
         */
         var treatmentID = this.get('treatmentID');
+        var regionID = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion.id');
+        var currentDate = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth.id');
+        var previousDate = moment(currentDate,"YYYYMMDD").subtract('months',1);
+            var days = previousDate.daysInMonth();
+            previousDate = previousDate.format('YYYYMM') + days;
         if (!Ember.isEmpty(treatmentID)) {
-            this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/' + treatmentID)
-                .then(function (treatmentData) {
-                    var ccgs = treatmentData[0].ccgs;
-                    var weeks18 = 0;
-                    var totals = 0;
-                    for (var i = 0; i < ccgs.length; i++) {
-                        var ccg = ccgs[i];
-                        weeks18 += ccg.gt_00_to_18_weeks_sum;
-                        totals += ccg.total;
-                        var percentage = ((ccg.gt_00_to_18_weeks_sum / ccg.total) * 100);
-                        // percentage = Math.round( percentage * 10 ) / 10;
-                        ccg.percentage = percentage.toPrecisionDigits(1);
-                    }
-                    var totalPercentage = (weeks18 / totals) * 100;
-                    _this.set('value',totalPercentage.toPrecisionDigits(1));
-                    
-                    var sorted = _.sortBy(ccgs,function(ccg) {
-                        return ccg.percentage;
+            _this.set('loaded', false);
+            var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/performance-by-treatments?' 
+            + 'treatmentid=' + treatmentID
+            + '&regionid=' + regionID
+            + '&currentdate=' + currentDate
+            + '&previousdate=' + previousDate;
+            // this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/' + treatmentID)
+            this.getData(url)
+                .then(function (data) {
+                    debugger;
+                    var current = processMonth(data[currentDate]);
+                    var previous = processMonth(data[previousDate]);
+
+                    // _this.set('lowValue', processMonth(current).get('firstObject').percentage);
+                    // _this.set('topValue', processMonth(current).get('lastObject').percentage);
+                    var _this = this;
+                    setTimeout(function () {
+                        _this.set('loaded', true);
                     });
-                    _this.set('lowValue',sorted.get('firstObject').percentage);
-                    _this.set('topValue',sorted.get('lastObject').percentage);
                 });
+        }
+        
+        function processMonth(treatmentData) {
+            var ccgs = treatmentData; //treatmentData[0].ccgs;
+            var weeks18 = 0;
+            var totals = 0;
+            for (var i = 0; i < ccgs.length; i++) {
+                var ccg = ccgs[i];
+                weeks18 += ccg.gt_00_to_18_weeks_sum;
+                totals += ccg.total_all_sum; // ccg.total;
+                var percentage = ((ccg.gt_00_to_18_weeks_sum / ccg.total_all_sum) * 100);
+                // percentage = Math.round( percentage * 10 ) / 10;
+                ccg.percentage = percentage.toPrecisionDigits(1);
+            }
+            var totalPercentage = (weeks18 / totals) * 100;
+            _this.set('value', totalPercentage.toPrecisionDigits(1));
+
+            var sorted = _.sortBy(ccgs, function (ccg) {
+                return ccg.percentage;
+            });
+            
+            return sorted;
         }
     }.observes('treatmentID', 'appSettings.canvasSettings.nhsFilter.selectedRegion'),
 
@@ -81,13 +106,6 @@ export default DefaultStory.extend(EditableFields, {
     lowHasChanged: false,
     topColour: 'black',
     lowColour: 'black',
-
-    onInsertElement: function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.set('loaded', true);
-        });
-    }.on('didInsertElement'),
 
     updateTileApperance: function () {
         var _this = this;
