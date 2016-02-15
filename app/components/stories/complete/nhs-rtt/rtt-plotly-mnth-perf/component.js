@@ -6,7 +6,7 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     chartData: null,
-    part: 'PART_1A',
+    part: 'PART_2',
     data:[],
     allData: [],
     
