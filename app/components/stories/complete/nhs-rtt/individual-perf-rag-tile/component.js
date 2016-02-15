@@ -15,9 +15,6 @@ export default DefaultStory.extend(EditableFields, {
     value: null,
     topValue: null,
     lowValue: null,
-    valueHasDeviated: false,
-    topHasChanged: false,
-    lowHasChanged: false,
     topColour: 'black',
     lowColour: 'black',
 
@@ -47,6 +44,9 @@ export default DefaultStory.extend(EditableFields, {
 
     loadData: function () {
         var _this = this;
+        var ragLevels = {
+          red: 92  
+        };
         var treatmentID = this.get('treatmentID');
         var regionID = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion.id');
         var currentDate = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth.id');
@@ -69,13 +69,15 @@ export default DefaultStory.extend(EditableFields, {
                     var totalPercentage = current.totalPercentage.toPrecisionDigits(1);
                     var currentLow = current.data[0].percentage;
                     var currentHigh = current.data[current.data.length - 1].percentage;
+                    var previousLow = previous.data[0].percentage;
+                    var previousHigh = previous.data[current.data.length - 1].percentage;
 
                     _this.set('value', totalPercentage);
                     _this.set('lowValue', currentLow);
                     _this.set('topValue', currentHigh);
                     console.log(current.totalPercentage + ' - ' + previous.totalPercentage);
                     
-                    if(current.totalPercentage < previous.totalPercentage) {
+                    if(current.totalPercentage < ragLevels.red) {
                         _this.set('storyConfig.color', 'red');
                         _this.set('topColour', 'white');
                         _this.set('lowColour', 'white');
@@ -87,12 +89,25 @@ export default DefaultStory.extend(EditableFields, {
                         _this.set('storyConfig.customProperties', '');
                     }
 
-                    if (_this.topHasChanged === true) {
-                        _this.set('topColour', 'blue');
+                    _this.set('topBorder','');
+                    _this.set('lowBorder','');
+
+                    if(currentHigh < previousHigh) {
+                        _this.setProperties({
+                            'topColour': 'red', 
+                            'topBorder': 'top right bottom left solid light'
+                        }); 
+                    } else if (currentHigh > previousHigh) {
+                        _this.set('topColour', 'blue');    
                     }
 
-                    if (_this.lowHasChanged === true) {
-                        _this.set('lowColour', 'red');
+                    if(currentLow < previousLow) {
+                        _this.setProperties({
+                            'lowColour': 'red', 
+                            'lowBorder': 'top right bottom left solid light'
+                        });       
+                    } else if (currentLow > previousLow) {
+                        _this.set('lowColour', 'blue');       
                     }
 
                     setTimeout(function () {
@@ -121,6 +136,6 @@ export default DefaultStory.extend(EditableFields, {
 
             return { totalPercentage: totalPercentage, data: sorted };
         }
-    }.observes('treatmentID', 'appSettings.canvasSettings.nhsFilter.selectedRegion'),
+    }.observes('treatmentID', 'appSettings.canvasSettings.nhsFilter.selectedRegion','appSettings.canvasSettings.nhsFilter.selectedMonth'),
 
 });
