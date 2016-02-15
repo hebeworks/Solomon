@@ -49,7 +49,8 @@ export default DefaultStory.extend(EditableFields, {
     loadData: function () {
         var _this = this;
         var ragLevels = {
-          red: 92  
+          red: 92,  
+          amber: 95  
         };
         var treatmentID = this.get('treatmentID');
         var regionID = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion.id');
@@ -74,14 +75,19 @@ export default DefaultStory.extend(EditableFields, {
                     var currentLow = current.data[0].percentage;
                     var currentHigh = current.data[current.data.length - 1].percentage;
                     var previousLow = previous.data[0].percentage;
-                    var previousHigh = previous.data[current.data.length - 1].percentage;
+                    var previousHigh = previous.data[previous.data.length - 1].percentage;
 
                     _this.set('value', totalPercentage);
                     _this.set('lowValue', currentLow);
                     _this.set('topValue', currentHigh);
                     console.log(current.totalPercentage + ' - ' + previous.totalPercentage);
                     
-                    if(current.totalPercentage < ragLevels.red) {
+                    if(current.totalPercentage < ragLevels.amber && current.totalPercentage >= ragLevels.red) {
+                        _this.set('storyConfig.color', 'amber');
+                        _this.set('topColour', 'white');
+                        _this.set('lowColour', 'white');
+                        _this.set('storyConfig.customProperties', 'could-deviate');
+                    } else if(current.totalPercentage < ragLevels.red) {
                         _this.set('storyConfig.color', 'red');
                         _this.set('topColour', 'white');
                         _this.set('lowColour', 'white');
@@ -122,8 +128,10 @@ export default DefaultStory.extend(EditableFields, {
                         _this.set('loaded', true);
                     });
                 });
+        } else {
+            _this.set('loaded', true);
         }
-
+        
         function processMonth(treatmentData) {
             var ccgs = treatmentData; //treatmentData[0].ccgs;
             var weeks18 = 0;
