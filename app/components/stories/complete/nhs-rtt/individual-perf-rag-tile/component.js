@@ -38,7 +38,10 @@ export default DefaultStory.extend(EditableFields, {
             var treatment = _.find(treatments, function (obj) {
                 return obj._id == treatmentID;
             });
-            return treatment.name ? treatment.name : '';
+            if(!Ember.isEmpty(treatment) && !Ember.isEmpty(treatment.name)) {
+                return treatment.name;
+            }
+            return '';
         }
         return '';
     }.property('storyModel.config.@each.value'),
