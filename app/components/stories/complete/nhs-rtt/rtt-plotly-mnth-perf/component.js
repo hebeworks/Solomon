@@ -27,7 +27,8 @@ export default DefaultStory.extend({
         
         // slider: false, (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
-        viewOnly: true
+        viewOnly: true,
+        showLoading: true
     },
     nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
 
@@ -331,6 +332,11 @@ export default DefaultStory.extend({
             
             // URL to topojson files used in geo charts
             //topojsonURL: 'https://cdn.plot.ly/'
+        });
+        
+        var _this = this;
+        setTimeout(function() {
+            _this.set('loaded', true);
         });
     }.observes('chartData'),
 

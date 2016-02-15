@@ -7,7 +7,8 @@ export default DefaultStory.extend({
         subTitle: '',
         height: '2',
         width: '3',
-        viewOnly: true
+        viewOnly: true,
+        showLoading: true
     },
     nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
     headings: [
@@ -45,6 +46,9 @@ export default DefaultStory.extend({
                     return row;
                 });
                 _this.set('rows', rows);
+                setTimeout(function() {
+                    _this.set('loaded', true);
+                });
             });
     }.on('didInsertElement').observes('nhsFilter.selectedRegion')
 

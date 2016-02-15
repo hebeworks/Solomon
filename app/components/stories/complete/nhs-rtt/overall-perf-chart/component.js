@@ -10,7 +10,8 @@ export default DefaultStory.extend({
         viewOnly: true,
         scroll: true, // (Should the story vertically scroll its content?)
         height: 2,
-        width: 2
+        width: 2,
+        showLoading: true
     },
     
     bars: [],

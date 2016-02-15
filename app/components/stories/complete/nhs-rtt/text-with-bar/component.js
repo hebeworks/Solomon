@@ -11,7 +11,8 @@ export default DefaultStory.extend({
         // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         height: '1', // (Set the height of the story)
         scroll: false, // (Should the story vertically scroll its content?)
-        viewOnly: true
+        viewOnly: true,
+        showLoading: true
     },
     
     // loaded: false, // (Tell other elements that this story has loaded)
@@ -23,10 +24,10 @@ export default DefaultStory.extend({
     
     onInsertElement: function () {
         this.loadData();
-        var _this = this;
-        setTimeout(function() {
-            _this.set('loaded', true);
-        });
+        // var _this = this;
+        // setTimeout(function() {
+        //     _this.set('loaded', true);
+        // });
     }.on('didInsertElement'),
 
 nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),

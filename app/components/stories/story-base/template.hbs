@@ -1,6 +1,12 @@
 <div cpn-story_inner>
     
     <div cpn-story_face="front {{support3d}} {{storyFlip}}" cpn-bg-color="{{storyConfig.color}}">
+        {{#if storyConfig.showLoading}}
+            {{#unless loaded}}
+            <div spc-story-loader cpn-bg-color="{{storyConfig.color}}">Loading</div>
+            {{/unless}}
+        {{/if}}
+    
         {{#if storyHandleIsDot}}
         <a href="javascript:;" class="js-cogs ui-draggable-handle" cpn-story_dot="front">Flip Story</a>
         {{/if}}
@@ -27,19 +33,9 @@
                 </header>
             {{/if}}
             
-            {{#if storyConfig.showLoading}}
-                {{#if loaded}}
-                <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
-                    {{yield}}
-                </main>
-                {{else}}
-                <div spc-story-loader>Loading</div>
-                {{/if}}
-            {{else}}
             <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
                 {{yield}}
             </main>
-            {{/if}}
             
             {{#unless storyConfig.viewOnly}}
                 <footer cpn-story_footer cpn-clearfix cpn-divide="top solid {{lineShade}}">
@@ -99,21 +95,21 @@
                 <ul cpn-row-list>
                     {{#if storyConfig.dataSourceUrl}}
                     <li cpn-width="50%">
-                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move" target="_blank">View data source</a>
+                        <a href="{{storyConfig.dataSourceUrl}}" cpn-button="move small" target="_blank">View data source</a>
                     </li>
                     {{/if}}
                     {{#if storyConfig.feedbackEmail}}
                     <li cpn-width="50%">
-                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move" target="_blank">Contact author</a>
+                        <a href="mailto:{{storyConfig.feedbackEmail}}" cpn-button="move small" target="_blank">Contact author</a>
                     </li>
                     {{/if}}
                     <li cpn-width="100%">
-                        <button cpn-button="action" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
+                        <button cpn-button="action small" {{action 'removeAStory' storyModel}}>Remove from canvas</button>
                     </li>
                 </ul>
                 
 				{{#if configFields}}
-                    <button cpn-button="action" {{action 'editAStory' storyModel}}>Edit</button>                
+                    <button cpn-button="action small" {{action 'editAStory' storyModel}}>Edit</button>                
                 {{/if}}
             {{/if}}
         </section>

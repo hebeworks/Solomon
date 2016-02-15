@@ -44,7 +44,7 @@ export default DefaultStory.extend(EditableFields, {
             return '';
         }
         return '';
-    }.property('storyModel.config.@each.value'),
+    }.on('didInsertElement').property('storyModel.config.@each.value'),
 
     loadData: function () {
         var _this = this;
@@ -117,7 +117,7 @@ export default DefaultStory.extend(EditableFields, {
                     } else if (currentLow > previousLow) {
                         _this.set('lowColour', 'blue');       
                     }
-
+                    
                     setTimeout(function () {
                         _this.set('loaded', true);
                     });
