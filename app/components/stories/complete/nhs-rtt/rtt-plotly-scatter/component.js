@@ -65,7 +65,7 @@ export default DefaultStory.extend({
         var y3 = normal_array(.65, 0.05, 300);        
 
         var trace1 = {
-            name: "North",
+            name: "CCGs",
             showLegend: true,
             mode: 'markers',
             marker: {
@@ -73,15 +73,16 @@ export default DefaultStory.extend({
                 size: 4
             },
             
-            x: x0,
-            y: y0,
-            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            //x: x0,
+            //y: y0,
+            text: ['CCG1','CCG2','CCG3','CCG4','CCG5'],
+            x: [.92, .97, .90, .86, .91, .925],
+            y: [.95, .94, .90, .86, .80, .74],
             type: 'scatter'
         };
 
         var trace2 = {
-            name: "Midlands",
+            name: "Providers",
             showLegend: true,
             mode: 'markers',
             marker: {
@@ -89,44 +90,45 @@ export default DefaultStory.extend({
                 size: 4
             },
             
-            x: x1,
-            y: y1,
-            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            //x: x1,
+            //y: y1,
+            text: ['CCG1','CCG2','CCG3','CCG4','CCG5'],
+            y: [.92, .97, .90, .86, .91, .925],
+            x: [.95, .94, .73, .89, .80, .74],
             type: 'scatter'
         };
 
-        var trace3 = {
-            name: "London",
-            showLegend: true,
-            mode: 'markers',
-            marker: {
-                color: colorPalette[3],
-                size: 4
-            },
+        // var trace3 = {
+        //     name: "London",
+        //     showLegend: true,
+        //     mode: 'markers',
+            // marker: {
+            //     color: colorPalette[3],
+            //     size: 4
+        //     },
             
-            x: x2,
-            y: y2,
-            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-            type: 'scatter'
-        };
+        //     x: x2,
+        //     y: y2,
+        //     //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
+        //     //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+        //     type: 'scatter'
+        // };
 
-        var trace4 = {
-            name: "South",
-            showLegend: true,
-            mode: 'markers',
-            marker: {
-                //color: colorPalette[4],
-                size: 4
-            },
+        // var trace4 = {
+        //     name: "South",
+        //     showLegend: true,
+        //     mode: 'markers',
+        //     marker: {
+        //         //color: colorPalette[4],
+        //         size: 4
+        //     },
             
-            x: x3,
-            y: y3,
-            //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-            //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-            type: 'scatter'
-        };
+        //     x: x3,
+        //     y: y3,
+        //     //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
+        //     //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+        //     type: 'scatter'
+        // };
 
         var layout = {
             margin: {
@@ -172,23 +174,23 @@ export default DefaultStory.extend({
                 //range: [0, 1],
             },
             textposition: 'top left',
-            shapes: [
-                {
-                    type: 'line',
-                    x0: '2016-01-01',
-                    y0: 0.92,
-                    x1: '2016-12-01',
-                    y1: 0.92,
-                    line: {
-                        color: 'rgb(000, 000, 000)',
-                        width: 1,
-                        dash: 'dot'
-                    }
-                }
-            ]
+            // shapes: [
+            //     {
+            //         type: 'line',
+            //         x0: '2016-01-01',
+            //         y0: 0.92,
+            //         x1: '2016-12-01',
+            //         y1: 0.92,
+            //         line: {
+            //             color: 'rgb(000, 000, 000)',
+            //             width: 1,
+            //             dash: 'dot'
+            //         }
+            //     }
+            // ]
         };
 
-        var data = [trace1, trace2, trace3, trace4];
+        var data = [trace1, trace2];
 
         Plotly.newPlot(this.get('chartID'), data, layout, {
             
