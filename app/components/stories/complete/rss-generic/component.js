@@ -132,7 +132,10 @@ export default DatamillStory.extend(EditableFields, {
             }.bind(this)
             ).finally(function () {
                 this.set('loading', false);
-                this.set('loaded', true);
+                var _this = this;
+                setTimeout(function() {
+                    _this.set('loaded', true);
+                });
             }.bind(this));
     }
 

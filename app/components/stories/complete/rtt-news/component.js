@@ -5,12 +5,6 @@ export default RSSGeneric.extend({
 
     defaultFeedURL: 'http://www.nhs.uk/NHSChoices/shared/RSSFeedGenerator/RSSFeed.aspx?site=News',
 
-    setSliderLoadedState: function(){
-      Ember.run.next(this, function(){
-        this.set('loaded', !this.get('loading'));
-      });
-    }.observes('loading'),
-
     initialConfig: {
         title: 'Behind the headlines',
         subTitle: '',
@@ -18,7 +12,8 @@ export default RSSGeneric.extend({
         scroll: false,
         slider: true,
         width: '2',
-        height: '2'
+        height: '2',
+        showLoading: true
     },
     
     truncateText: function() {
