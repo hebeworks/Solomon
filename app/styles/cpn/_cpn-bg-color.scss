@@ -78,6 +78,10 @@
 [cpn-bg-color="amber"] {
     background-color: $amber;
     color: #fff;
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-amber;
+    }
 }
 
 [cpn-bg-color="yw-dark-blue"] {

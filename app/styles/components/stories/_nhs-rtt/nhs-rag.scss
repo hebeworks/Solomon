@@ -12,6 +12,20 @@
             color: #fff;
         }
     }
+    
+    [cpn-story~="could-deviate"] {
+        [cpn-story_bar~="front"] {
+            background-color: $nhs-amber;
+        }
+        
+        [cpn-story_dot~="front"]::after {
+            background-color: #fff;
+        }
+        
+        [spc-nhs-rag_link] {
+            color: #fff;
+        }
+    }
 }
 
     [spc-nhs-rag_title] {
@@ -23,6 +37,7 @@
             word-break: break-word;
         -webkit-hyphens: auto;
            -moz-hyphens: auto;
+            -ms-hyphens: auto;
                 hyphens: auto;
     }
 
