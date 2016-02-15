@@ -27,7 +27,7 @@
                 </header>
             {{/if}}
             
-            {{#if showLoading}}
+            {{#if storyConfig.showLoading}}
                 {{#if loaded}}
                 <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
                     {{yield}}

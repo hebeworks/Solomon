@@ -387,7 +387,8 @@
     background-position: center center;
     background-repeat: no-repeat;
     font-size: 0;
-    @include animation(nhs-loader 1s linear infinite);
+    @include animation(story-loader 1s linear infinite);
+    border-radius: 50%;
 }
 
 @include keyframes(story-loader) {
