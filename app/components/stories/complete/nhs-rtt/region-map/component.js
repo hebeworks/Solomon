@@ -28,6 +28,12 @@ export default DefaultStory.extend({
         var _this = this,
             regions = this.get('regions'),
             selectedRegionObject = this.get('selectedRegionObject');
+
+        if(_this.$('#Fill-9').length == 0) {
+            setTimeout(function() {
+                _this.updateRegion();
+            }, 200);
+        }
         
         // London
         _this.$('#Fill-9').on('click', function() {
