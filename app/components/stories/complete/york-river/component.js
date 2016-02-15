@@ -1,7 +1,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Live York River Level',
         subTitle: '',
         color: 'dark-blue',

@@ -3,7 +3,7 @@ import Ember from 'ember';
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
 export default DefaultStory.extend({
-	storyConfig: {
+	initialConfig: {
 		title: 'LCC Spending',
 		subTitle: '13 months',
 		scroll: false

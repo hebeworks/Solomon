@@ -4,7 +4,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'WQ Contacts Zone Information', // (Provide a story title)
         subTitle: 'Properties, population, meters and more', // (Provide a story subtitle)
         // color: 'lime', // (Set the story colour)

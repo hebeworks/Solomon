@@ -2,7 +2,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'International Space Station',
         subTitle: 'When to catch a glimpse over Leeds',
         color: 'black',

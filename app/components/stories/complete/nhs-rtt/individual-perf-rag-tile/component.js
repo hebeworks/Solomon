@@ -1,9 +1,9 @@
-/* global Ember, hebeutils, _ */
+/* global Ember, hebeutils, moment, _ */
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
-    storyConfig: {
+    initialConfig: {
         title: '',
         subTitle: '',
         width: '1',
@@ -11,6 +11,15 @@ export default DefaultStory.extend(EditableFields, {
         scroll: false,
         viewOnly: true
     },
+
+    value: null,
+    topValue: null,
+    lowValue: null,
+    valueHasDeviated: false,
+    topHasChanged: false,
+    lowHasChanged: false,
+    topColour: 'black',
+    lowColour: 'black',
 
     editableFields: [
         {
@@ -21,6 +30,7 @@ export default DefaultStory.extend(EditableFields, {
             placeholder: 'Treatment Type'
         }
     ],
+
     treatmentID: null,
     treatmentName: function () {
         var treatmentID = this.fetchEditableFieldValue('treatment_type');
@@ -30,84 +40,87 @@ export default DefaultStory.extend(EditableFields, {
             var treatment = _.find(treatments, function (obj) {
                 return obj._id == treatmentID;
             });
-            return treatment.name;
+            return treatment.name ? treatment.name : '';
         }
         return '';
     }.property('storyModel.config.@each.value'),
 
-
     loadData: function () {
         var _this = this;
-        /*
-            treatmentID
-                topCCG  bottomCCG
-                
-                for this treatment
-                    load all CCGs   
-        */
         var treatmentID = this.get('treatmentID');
+        var regionID = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion.id');
+        var currentDate = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth.id');
+        var previousDate = moment(currentDate, "YYYYMMDD").subtract('months', 1);
+        var days = previousDate.daysInMonth();
+        previousDate = previousDate.format('YYYYMM') + days;
         if (!Ember.isEmpty(treatmentID)) {
-            this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/' + treatmentID)
-                .then(function (treatmentData) {
-                    var ccgs = treatmentData[0].ccgs;
-                    var weeks18 = 0;
-                    var totals = 0;
-                    for (var i = 0; i < ccgs.length; i++) {
-                        var ccg = ccgs[i];
-                        weeks18 += ccg.gt_00_to_18_weeks_sum;
-                        totals += ccg.total;
-                        var percentage = ((ccg.gt_00_to_18_weeks_sum / ccg.total) * 100);
-                        // percentage = Math.round( percentage * 10 ) / 10;
-                        ccg.percentage = percentage.toPrecisionDigits(1);
-                    }
-                    var totalPercentage = (weeks18 / totals) * 100;
-                    _this.set('value',totalPercentage.toPrecisionDigits(1));
+            _this.set('loaded', false);
+            var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/performance-by-treatments?'
+                + 'treatmentid=' + treatmentID
+                + '&regionid=' + regionID
+                + '&currentdate=' + currentDate
+                + '&previousdate=' + previousDate;
+            // this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/treatments/' + treatmentID)
+            this.getData(url)
+                .then(function (data) {
+                    var current = processMonth(data[currentDate]);
+                    var previous = processMonth(data[previousDate]);
+
+                    var totalPercentage = current.totalPercentage.toPrecisionDigits(1);
+                    var currentLow = current.data[0].percentage;
+                    var currentHigh = current.data[current.data.length - 1].percentage;
+
+                    _this.set('value', totalPercentage);
+                    _this.set('lowValue', currentLow);
+                    _this.set('topValue', currentHigh);
+                    console.log(current.totalPercentage + ' - ' + previous.totalPercentage);
                     
-                    var sorted = _.sortBy(ccgs,function(ccg) {
-                        return ccg.percentage;
+                    if(current.totalPercentage < previous.totalPercentage) {
+                        _this.set('storyConfig.color', 'red');
+                        _this.set('topColour', 'white');
+                        _this.set('lowColour', 'white');
+                        _this.set('storyConfig.customProperties', 'has-deviated');
+                    } else {
+                        _this.set('storyConfig.color', 'white');
+                        _this.set('topColour', 'black');
+                        _this.set('lowColour', 'black');
+                        _this.set('storyConfig.customProperties', '');
+                    }
+
+                    if (_this.topHasChanged === true) {
+                        _this.set('topColour', 'blue');
+                    }
+
+                    if (_this.lowHasChanged === true) {
+                        _this.set('lowColour', 'red');
+                    }
+
+                    setTimeout(function () {
+                        _this.set('loaded', true);
                     });
-                    _this.set('lowValue',sorted.get('firstObject').percentage);
-                    _this.set('topValue',sorted.get('lastObject').percentage);
                 });
+        }
+
+        function processMonth(treatmentData) {
+            var ccgs = treatmentData; //treatmentData[0].ccgs;
+            var weeks18 = 0;
+            var totals = 0;
+            for (var i = 0; i < ccgs.length; i++) {
+                var ccg = ccgs[i];
+                weeks18 += ccg.gt_00_to_18_weeks_sum;
+                totals += ccg.total_all_sum; // ccg.total;
+                var percentage = ((ccg.gt_00_to_18_weeks_sum / ccg.total_all_sum) * 100);
+                // percentage = Math.round( percentage * 10 ) / 10;
+                ccg.percentage = percentage.toPrecisionDigits(1);
+            }
+            var totalPercentage = (weeks18 / totals) * 100;
+
+            var sorted = _.sortBy(ccgs, function (ccg) {
+                return ccg.percentage;
+            });
+
+            return { totalPercentage: totalPercentage, data: sorted };
         }
     }.observes('treatmentID', 'appSettings.canvasSettings.nhsFilter.selectedRegion'),
 
-
-    value: 95.6,
-    topValue: 97.43,
-    lowValue: 87.2,
-    valueHasDeviated: true,
-    topHasChanged: false,
-    lowHasChanged: false,
-    topColour: 'black',
-    lowColour: 'black',
-
-    onInsertElement: function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.set('loaded', true);
-        });
-    }.on('didInsertElement'),
-
-    updateTileApperance: function () {
-        var _this = this;
-
-        if (_this.valueHasDeviated == true) {
-            // console.log('valueHasDeviated');
-            _this.set('storyConfig.color', 'red');
-            _this.set('topColour', 'white');
-            _this.set('lowColour', 'white');
-            _this.set('storyConfig.customProperties', 'has-deviated');
-        }
-
-        if (_this.topHasChanged == true) {
-            // console.log('topHasChanged');
-            _this.set('topColour', 'blue');
-        }
-
-        if (_this.lowHasChanged == true) {
-            // console.log('lowHasChanged');
-            _this.set('lowColour', 'red');
-        }
-    }.observes('loaded')
 });

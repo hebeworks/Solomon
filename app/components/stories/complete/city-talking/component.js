@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 
 export default Ember.Component.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'The City Talking',
         subTitle: 'Music & art events around Leeds',
         width: '2',

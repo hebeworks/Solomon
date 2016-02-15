@@ -28,10 +28,15 @@ module.exports = function (environment) {
       dataMillDataAPI: 'http://api.datapress.io/api/3/',     // (the datastore API where data ends up in the 'push to datastore' case).
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
     //   solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
+    
+    // PREVIEW
+      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net'
+    
+      // NHS
+    //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
     //   solomonAPIURL: 'http://solomonapi-nhs.azurewebsites.net'
     }
   };
@@ -39,19 +44,19 @@ module.exports = function (environment) {
   ENV['simple-auth'] = {
     authorizer: 'simple-auth-authorizer:jwt',
     authenticationRoute: 'sign-in'
-  }
+  };
 
+// DEV 
   ENV['auth0-ember-simple-auth'] = {
     clientID: "LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp",
     domain: "hebe-works-development.eu.auth0.com"
-  }
+  };
   
 //    NHS
 //  ENV['auth0-ember-simple-auth'] = {
-//     clientID: "PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI",
-//     domain: "solomon.eu.auth0.com"
-//   }
-
+//     clientID: "KIZhevoOIACv63g4Ibo2BPjQraXRK7GD",
+//     domain: "solomonnhs.eu.auth0.com"
+//   };
 
   ENV['contentSecurityPolicy'] = {
     'font-src': "'self' data: https://cdn.auth0.com",

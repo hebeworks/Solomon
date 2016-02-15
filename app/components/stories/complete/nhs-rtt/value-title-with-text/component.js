@@ -1,48 +1,58 @@
 /* global Ember, hebeutils, _ */
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DefaultStory.extend({
-    // Story settings (including default values)
-    // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
-        title: '', // (Provide a story title)
-        subTitle: '', // (Provide a story subtitle)
-        height: '1', // (Set the height of the story)
-        scroll: false, // (Should the story vertically scroll its content?)
+export default DefaultStory.extend(EditableFields, {
+    initialConfig: {
+        title: '',
+        subTitle: '',
+        height: '1',
+        scroll: false,
         viewOnly: true
     },
-    
-    trend: null,
-    
-    // loaded: false, // (Tell other elements that this story has loaded)
-    //
-    
-    // Add your story-specific code here
-    data: null,
-    
-    onInsertElement: function () {
-        this.loadData();
-        var _this = this;
-        setTimeout(function() {
-            _this.set('loaded', true);
-        });
-    }.on('didInsertElement'),
+    loaded: true,
 
-    loadData: function () {
-        var _this = this;
-        var url = 'http://'; // add any API url that returns JSON
-        this.getData()
-            .then(
-                function(data){
-                    var items = data; // the JSON returned from the API call is available here
-                    this.set('items',items); // set properties on the Ember component to make them available in the template
-                    setTimeout(() => { _this.set('loaded', true); });
+    editableFields: Ember.computed('storyModel', {
+        get() {
+            return [
+                {
+                    name:"title",
+                    type:"markdown",
+                    value:'',
+                    placeholder:'Enter your title using markdown'
                 },
-                function(err){ console.log(err); }
-            )
-    },
+                {
+                    name: 'content',
+                    type:'markdown',
+                    value:'',
+                    placeholder:'Enter your content using markdown'
+                },
+                {
+                    name: 'trend',
+                    type:'text',
+                    value:'',
+                    placeholder:'Enter either "up" "down" or "even"'
+                }
+            ];
+        }
+    }),
     
-    setTrend: function() {
-        this.set('trend', 'up');
-    }.observes('loaded')
+    title: Ember.computed('storyModel.config.@each.value',{
+        get() {
+            return this.fetchEditableFieldValue('title');
+        }
+    }),
+    
+    content: Ember.computed('storyModel.config.@each.value',{
+        get() {
+            return this.fetchEditableFieldValue('content');
+        }
+    }),
+    
+    trend: Ember.computed('storyModel.config.@each.value',{
+        get() {
+            return this.fetchEditableFieldValue('trend');
+        }
+    })
+
 });

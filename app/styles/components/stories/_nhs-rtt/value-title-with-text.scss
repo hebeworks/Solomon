@@ -10,6 +10,12 @@
         @include transform(rotate(45deg));
         @include transition(1s);
     }
+    > .ember-view, p {
+        display: inline;
+    }
+    strong {
+        color: $nhs-blue;
+    }
 }
 
 [spc-vtwt_title="up"] {
@@ -21,5 +27,11 @@
 [spc-vtwt_title="down"] {
     &::after {
         @include transform(rotate(-180deg));
+    }
+}
+
+[spc-vtwt-content] {
+    strong {
+        color: $nhs-blue;
     }
 }

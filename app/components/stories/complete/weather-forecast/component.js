@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Weather',
         subTitle: '5-day weather forecast for Leeds',
         color: 'mint',

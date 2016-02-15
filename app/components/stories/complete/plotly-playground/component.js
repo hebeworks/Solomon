@@ -5,7 +5,7 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
-    storyConfig: {
+    initialConfig: {
         title: 'Plotly Playground', // (Provide a story title)
         subTitle: 'A story to experiment with Plotly charts', // (Provide a story subtitle)
         author: 'Ste Allan',
