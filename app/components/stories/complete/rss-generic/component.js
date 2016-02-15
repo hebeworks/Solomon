@@ -21,6 +21,18 @@ export default DatamillStory.extend(EditableFields, {
     editableFields: function () {
         return [
             {
+                name: 'title',
+                type: 'text',
+                value: '',
+                placeholder: 'Enter a story title'
+            },
+            {
+                name: 'sub_title',
+                type: 'text',
+                value: '',
+                placeholder: 'Enter a story sub title'
+            },
+            {
                 name: 'url',
                 type: 'text',
                 value: '',
@@ -46,7 +58,17 @@ export default DatamillStory.extend(EditableFields, {
         return this.fetchEditableFieldValue('limit');
     }.property('storyModel.config.@each.value'),
 
-    onColourChanged: function () {
+    onConfigChanged: function () {
+        var title = this.fetchEditableFieldValue('title');
+        if (!Ember.isEmpty(title)) {
+            this.set('storyConfig.title', title);
+        }
+        
+        var subTitle = this.fetchEditableFieldValue('sub_title');
+        if (!Ember.isEmpty(subTitle)) {
+            this.set('storyConfig.subTitle', subTitle);
+        }
+        
         var colour = this.fetchEditableFieldValue('story_colour');
         if (!Ember.isEmpty(colour)) {
             this.set('storyConfig.color', colour);
