@@ -9,7 +9,8 @@ export default DefaultStory.extend(EditableFields, {
         width: '1',
         height: '1',
         scroll: false,
-        viewOnly: true
+        viewOnly: true,
+        showLoading: true
     },
 
     value: null,

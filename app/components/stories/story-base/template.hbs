@@ -27,9 +27,19 @@
                 </header>
             {{/if}}
             
+            {{#if showLoading}}
+                {{#if loaded}}
+                <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
+                    {{yield}}
+                </main>
+                {{else}}
+                <div spc-story-loader>Loading</div>
+                {{/if}}
+            {{else}}
             <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
                 {{yield}}
             </main>
+            {{/if}}
             
             {{#unless storyConfig.viewOnly}}
                 <footer cpn-story_footer cpn-clearfix cpn-divide="top solid {{lineShade}}">

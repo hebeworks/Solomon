@@ -371,3 +371,31 @@
                         margin-top: rem(2px);
                         float: right;
                     }
+                    
+[spc-story-loader] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    background-image: url('./img/story-loader.png');
+    background-size: 30px 30px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    font-size: 0;
+    @include animation(nhs-loader 1s linear infinite);
+}
+
+@include keyframes(story-loader) {
+    from {
+        @include transform(rotate(0deg));
+    }
+    
+    to {
+        @include transform(rotate(360deg));
+    }
+}
