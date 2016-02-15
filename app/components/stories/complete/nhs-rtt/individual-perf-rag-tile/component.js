@@ -91,11 +91,14 @@ export default DefaultStory.extend(EditableFields, {
 
                     _this.set('topBorder','');
                     _this.set('lowBorder','');
+                    _this.set('topPadding','');
+                    _this.set('lowPadding','');
 
                     if(currentHigh < previousHigh) {
                         _this.setProperties({
                             'topColour': 'red', 
-                            'topBorder': 'top right bottom left solid light'
+                            'topBorder': 'top right bottom left solid light',
+                            'topPadding': 'all-none'
                         }); 
                     } else if (currentHigh > previousHigh) {
                         _this.set('topColour', 'blue');    
@@ -104,7 +107,8 @@ export default DefaultStory.extend(EditableFields, {
                     if(currentLow < previousLow) {
                         _this.setProperties({
                             'lowColour': 'red', 
-                            'lowBorder': 'top right bottom left solid light'
+                            'lowBorder': 'top right bottom left solid light',
+                            'lowPadding': 'all-none'
                         });       
                     } else if (currentLow > previousLow) {
                         _this.set('lowColour', 'blue');       
