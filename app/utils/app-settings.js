@@ -205,8 +205,12 @@ export default Ember.Object.extend({
         });
     },
     onNHSSelectedRegionChange: function(){
-        this.set('canvasSettings.nhsFilter.providers', this.get('canvasSettings.nhsFilter.selectedRegion.providers'));
-        this.set('canvasSettings.nhsFilter.ccgs', this.get('canvasSettings.nhsFilter.selectedRegion.ccgs'));
+        this.setProperties({
+            'canvasSettings.nhsFilter.providers': this.get('canvasSettings.nhsFilter.selectedRegion.providers'),
+            'canvasSettings.nhsFilter.ccgs': this.get('canvasSettings.nhsFilter.selectedRegion.ccgs'),
+            'canvasSettings.nhsFilter.selectedProvider': null,
+            'canvasSettings.nhsFilter.selectedCCG': null
+        });
     }.observes('canvasSettings.nhsFilter.selectedRegion'), 
 
 /////////////////////////////////////////////////////////////////
