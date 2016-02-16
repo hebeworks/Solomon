@@ -246,6 +246,48 @@
             </div>
         </section>
         
+        {{!-- Forms --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Forms</h2>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Text Box</h3>
+                <input type="text" placeholder="Placeholder text">
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Text Area</h3>
+                <textarea></textarea>
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Select Box</h3>
+                {{
+                    select-2
+                    content='Option 1, Option 2, Option 3'
+                    placeholder="Choose an option"
+                }}
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Radio Buttons</h3>
+                <ul cpn-row-list="middle">
+                    <li>
+                        <input name="radios" id="radios1" type="radio">
+                        <label for="radios1">Option 1</label>
+                    </li>
+                    <li>
+                        <input name="radios" id="radios2" type="radio">
+                        <label for="radios2">Option 2</label>
+                    </li>
+                    <li>
+                        <input name="radios" id="radios3" type="radio" checked>
+                        <label for="radios3">Option 3</label>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
         {{!-- Toggles --}}
         <section spc-style-guide_section>
             <h2 spc-style-guide_section-title>Toggles</h2>
