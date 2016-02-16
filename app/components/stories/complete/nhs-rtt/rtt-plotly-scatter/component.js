@@ -24,18 +24,43 @@ export default DefaultStory.extend({
         scroll: false, // (Should the story vertically scroll its content?)
         viewOnly: true
     },
-
+plotlyLoaded: false,
     getPlotly: function() {
         var _this = this;
+        this.get('nhsFilter');
         $.ajax({
             url: "https://cdn.plot.ly/plotly-latest.min.js",
             dataType: "script",
             cache: true
         })
         .done(function() {
-            _this.drawChart();
+            _this.set('plotlyLoaded',true);
         });
     }.on("init"),
+    
+    nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
+    
+    loadData: function() {
+        if(this.get('plotlyLoaded') 
+            && !Ember.isEmpty(this.get('nhsFilter.selectedRegion')) 
+            && !Ember.isEmpty(this.get('nhsFilter.selectedMonth'))) {
+            var _this = this;
+            var regionID = this.get('nhsFilter.selectedRegion.id');
+            var month = this.get('nhsFilter.selectedMonth.id');
+            var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/region-month/ccgs'
+                + '?regionid=' + regionID
+                + '&month=' + month;
+            this.getData(url)
+                .then(function(data){
+                    _this.set('chartData',data);
+                    _this.drawChart();  
+                });
+        }
+    }.observes(
+        'plotlyLoaded',
+        'nhsFilter.selectedRegion',
+        'nhsFilter.selectedMonth'
+        ),
 
     drawChart: function() {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
@@ -55,15 +80,34 @@ export default DefaultStory.extend({
             return arr;
         };
 
-        var x0 = normal_array(.85, 0.05, 500);
-        var y0 = normal_array(.65, 0.05, 300);
-        var x1 = normal_array(.85, 0.05, 2000);
-        var y1 = normal_array(.65, 0.05, 300);
-        var x2 = normal_array(.85, 0.05, 2000);
-        var y2 = normal_array(.65, 0.05, 300);
-        var x3 = normal_array(.85, 0.05, 2000);
-        var y3 = normal_array(.65, 0.05, 300);        
-
+        
+        var ccgs = this.get('nhsFilter.ccgs');
+        var providers = this.get('nhsFilter.providers');
+        var chartData = this.get('chartData');
+        var traces = [];
+        traces.push(buildTrace(ccgs,chartData.ccgs));
+        traces.push(buildTrace(providers,chartData.providers));
+        function buildTrace(names,items){
+            var trace = {
+                x1 : [],
+                y1 : [],
+                labels : []
+            };
+            var prop = null;
+            function findCCG(item){ 
+                return item._id === prop;
+            }
+            for(prop in items) {
+                // x1.push((chartData[prop].part1.percentage * 100).toPrecisionDigits(1));
+                // y1.push((chartData[prop].part2.percentage * 100).toPrecisionDigits(1));
+                trace.x1.push((items[prop].part1.percentage));
+                trace.y1.push((items[prop].part2.percentage));
+                var ccg = _.find(names,findCCG);
+                trace.labels.push(ccg.name);
+            }
+            return trace;
+        }
+        
         var trace1 = {
             name: "CCGs",
             showLegend: true,
@@ -72,12 +116,9 @@ export default DefaultStory.extend({
                 color: colorPalette[1],
                 size: 4
             },
-            
-            //x: x0,
-            //y: y0,
-            text: ['CCG1','CCG2','CCG3','CCG4','CCG5'],
-            x: [.92, .97, .90, .86, .91, .925],
-            y: [.95, .94, .90, .86, .80, .74],
+            text: traces[0].labels, // ['CCG1','CCG2','CCG3','CCG4','CCG5'],
+            x: traces[0].x1, //[.92, .97, .90, .86, .91, .925],
+            y: traces[0].y1, // [.95, .94, .90, .86, .80, .74],
             type: 'scatter'
         };
 
@@ -90,45 +131,11 @@ export default DefaultStory.extend({
                 size: 4
             },
             
-            //x: x1,
-            //y: y1,
-            text: ['CCG1','CCG2','CCG3','CCG4','CCG5'],
-            y: [.92, .97, .90, .86, .91, .925],
-            x: [.95, .94, .73, .89, .80, .74],
+            text: traces[1].labels, //['CCG1','CCG2','CCG3','CCG4','CCG5'],
+            y: traces[1].y1, //[.92, .97, .90, .86, .91, .925],
+            x: traces[1].x1, //[.95, .94, .73, .89, .80, .74],
             type: 'scatter'
         };
-
-        // var trace3 = {
-        //     name: "London",
-        //     showLegend: true,
-        //     mode: 'markers',
-            // marker: {
-            //     color: colorPalette[3],
-            //     size: 4
-        //     },
-            
-        //     x: x2,
-        //     y: y2,
-        //     //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-        //     //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-        //     type: 'scatter'
-        // };
-
-        // var trace4 = {
-        //     name: "South",
-        //     showLegend: true,
-        //     mode: 'markers',
-        //     marker: {
-        //         //color: colorPalette[4],
-        //         size: 4
-        //     },
-            
-        //     x: x3,
-        //     y: y3,
-        //     //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-        //     //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-        //     type: 'scatter'
-        // };
 
         var layout = {
             margin: {
@@ -191,6 +198,7 @@ export default DefaultStory.extend({
         };
 
         var data = [trace1, trace2];
+        // var data = [trace2];
 
         Plotly.newPlot(this.get('chartID'), data, layout, {
             
