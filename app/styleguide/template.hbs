@@ -1,8 +1,197 @@
-<main class="site-body" cpn-padding="top right left">
+<main class="site-body" cpn-padding="top-double right-double left-double">
 
-    <h1>Solomon App Style Guide</h1>
-    <p>This page shows all elements and components within the Solomon App. This is a living page in that it can update at any time with the latest styles.</p>
-    
-    <hr>
+    <div spc-style-guide_wrapper cpn-margin="middle-h">
+        {{!-- Intro --}}
+        <section spc-style-guide_section="intro">
+            <h1>Solomon App Style Guide</h1>
+            <p>This page shows all elements and components within the Solomon App. This is a living page in that it can update at any time with the latest styles.</p>
+        </section>
+        
+        {{!-- Headings and Pragraphs --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Headings and Paragraphs</h2>
+        
+            <h1>Heading Level 1</h1>
+            <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em> elit. Proin sollicitudin tempor molestie. Fusce ut <strong>tortor ut nulla</strong> convallis luctus quis auctor lectus. Cum sociis natoque penatibus et <a href="www.mysolomon.co.uk">magnis dis parturient</a> montes, nascetur ridiculus mus.</p>
+            
+            <h2>Heading Level 2</h2>
+            <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em> elit. Proin sollicitudin tempor molestie. Fusce ut <strong>tortor ut nulla</strong> convallis luctus quis auctor lectus. Cum sociis natoque penatibus et <a href="www.mysolomon.co.uk">magnis dis parturient</a> montes, nascetur ridiculus mus.</p>
+            
+            <h3>Heading Level 3</h3>
+            <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em> elit. Proin sollicitudin tempor molestie. Fusce ut <strong>tortor ut nulla</strong> convallis luctus quis auctor lectus. Cum sociis natoque penatibus et <a href="www.mysolomon.co.uk">magnis dis parturient</a> montes, nascetur ridiculus mus.</p>
+            
+            <h4>Heading Level 4</h4>
+            <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em> elit. Proin sollicitudin tempor molestie. Fusce ut <strong>tortor ut nulla</strong> convallis luctus quis auctor lectus. Cum sociis natoque penatibus et <a href="www.mysolomon.co.uk">magnis dis parturient</a> montes, nascetur ridiculus mus.</p>
+            
+            <h5>Heading Level 5</h5>
+            <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em> elit. Proin sollicitudin tempor molestie. Fusce ut <strong>tortor ut nulla</strong> convallis luctus quis auctor lectus. Cum sociis natoque penatibus et <a href="www.mysolomon.co.uk">magnis dis parturient</a> montes, nascetur ridiculus mus.</p>
+            
+            <h6>Heading Level 6</h6>
+            <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em> elit. Proin sollicitudin tempor molestie. Fusce ut <strong>tortor ut nulla</strong> convallis luctus quis auctor lectus. Cum sociis natoque penatibus et <a href="www.mysolomon.co.uk">magnis dis parturient</a> montes, nascetur ridiculus mus.</p>
+        </section>
+        
+        {{!-- Lists --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Lists</h2>
+        
+            <h3>Unordered List</h3>
+            <ul>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>
+                    List item 3
+                    <ul>
+                        <li>Nested item 1</li>
+                        <li>
+                            Nested item 2
+                            <ul>
+                                <li>Double nest item 1</li>
+                            </ul>
+                        </li>
+                        <li>Nested item 3</li>
+                    </ul>
+                </li>
+                <li>List item 4</li>
+                <li>List item 5</li>
+            </ul>
+            
+            <h3>Ordered List</h3>
+            <ol>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>
+                    List item 3
+                    <ol>
+                        <li>Nested item 1</li>
+                        <li>
+                            Nested item 2
+                            <ol>
+                                <li>Double nest item 1</li>
+                            </ol>
+                        </li>
+                        <li>Nested item 3</li>
+                    </ol>
+                </li>
+                <li>List item 4</li>
+                <li>List item 5</li>
+            </ol>
+        </section>
+        
+        {{!-- Tables --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Tables</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Col Heading 1</th>
+                        <th>Col Heading 2</th>
+                        <th>Col Heading 3</th>
+                        <th>Col Heading 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Col Cell 1</td>
+                        <td>Col Cell 2</td>
+                        <td>Col Cell 3</td>
+                        <td>Col Cell 4</td>
+                    </tr>
+                    <tr>
+                        <td>Col Cell 1</td>
+                        <td>Col Cell 2</td>
+                        <td>Col Cell 3</td>
+                        <td>Col Cell 4</td>
+                    </tr>
+                    <tr>
+                        <td>Col Cell 1</td>
+                        <td>Col Cell 2</td>
+                        <td>Col Cell 3</td>
+                        <td>Col Cell 4</td>
+                    </tr>
+                    <tr>
+                        <td>Col Cell 1</td>
+                        <td>Col Cell 2</td>
+                        <td>Col Cell 3</td>
+                        <td>Col Cell 4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        {{!-- Buttons --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Buttons</h2>
+            
+            <ul cpn-row-list="bottom">
+                <li>
+                    <button cpn-button>Default</button>
+                </li>
+                <li>
+                    <button cpn-button="chosen">Selected</button>
+                </li>
+                <li>
+                    <button cpn-button="action">Action</button>
+                </li>
+                <li>
+                    <button cpn-button="move">Move</button>
+                </li>
+                <li>
+                    <button cpn-button="ghost">Ghost</button>
+                </li>
+                <li>
+                    <button cpn-button="bright">Bright</button>
+                </li>
+                <li>
+                    <button cpn-button="small">Small</button>
+                </li>
+            </ul>
+        </section>
+        
+        {{!-- Toggles --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Toggles</h2>
+            
+            <h3>Dark Toggle</h3>
+            <ul cpn-toggle="dark">
+                <li cpn-toggle_option="">Option 1</li>
+                <li cpn-toggle_option="">Option 2</li>
+                <li cpn-toggle_option="chosen">Option 3</li>
+                <li cpn-toggle_option="">Option 4</li>
+            </ul>
+            
+            <div cpn-bg-color="black" cpn-padding="top right left" cpn-margin="bottom">
+                <h3>Bright Toggle</h3>
+                <ul cpn-toggle="bright">
+                    <li cpn-toggle_option="">Option 1</li>
+                    <li cpn-toggle_option="">Option 2</li>
+                    <li cpn-toggle_option="chosen">Option 3</li>
+                    <li cpn-toggle_option="">Option 4</li>
+                </ul>
+            </div>
+        </section>
+        
+        {{!-- Data Strips --}}
+        <section spc-style-guide_section>
+            <h2 spc-style-guide_section-title>Data Strips</h2>
+            
+            <p cpn-data-strip>
+                <span cpn-data-strip_item>
+                    <span cpn-data-strip_label>Data Strip Label</span>
+                    <span cpn-data-strip_value>data strip value</span>
+                </span>
+                <span cpn-data-strip_slice></span>
+                <span cpn-data-strip_item>
+                    <span cpn-data-strip_label>Data Strip Label</span>
+                    <span cpn-data-strip_value>data strip value</span>
+                </span>
+                <span cpn-data-strip_slice></span>
+                <span cpn-data-strip_item>
+                    <span cpn-data-strip_label>Data Strip Label</span>
+                    <span cpn-data-strip_value>data strip value</span>
+                </span>
+            </p>
+        </section>
+    </div>
 
 </main>
