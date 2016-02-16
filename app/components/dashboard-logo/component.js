@@ -7,8 +7,8 @@ export default Ember.Component.extend({
 
     logoText: Ember.computed.alias('appSettings.solomonConfig.title'),
     
-    svgLogo: Ember.computed('appSettings.logoType', function() {
-        if (this.get('appSettings.logoType') == 'svg') {
+    svgLogo: Ember.computed('appSettings.solomonConfig.logoType', function() {
+        if (this.get('appSettings.solomonConfig.logoType') == 'svg') {
             return true;
         } else {
             return false;
