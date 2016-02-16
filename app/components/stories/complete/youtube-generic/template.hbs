@@ -1,28 +1,41 @@
 {{#stories/story-base}}
 
     <div>
-        {{!-- Display the video --}}
         {{#if youtubeSrc}}
-        <iframe
-            width="310"
-            height="174"
-            src="{{youtubeSrc}}"
-            frameborder="0"
-            allowfullscreen>
-        </iframe>
+            {{!-- Display the video --}}
+            <iframe
+                width="310"
+                height="174"
+                src="{{youtubeSrc}}"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+            
+            <div cpn-padding="right left">
+                <h3 youtube-generic_story_title>{{title}}</h3>
+                <p youtube-generic_story_desc>{{markdown-to-html markdown=description}}</p>
+            </div>
         
-        <div cpn-padding="right left">
-            <h3 youtube-generic_story_title>{{title}}</h3>
-            <p youtube-generic_story_desc>{{markdown-to-html markdown=description}}</p>
-        </div>
-        
-        {{!-- Choose a video --}}
+        {{else if userChannel}}
+            {{!-- Display the user channel --}}
+                <iframe src="{{userChannel}}" 
+                width="310"
+                height="174"
+                frameborder="0"
+                allowfullscreen></iframe> 
+
+                <div cpn-padding="right left">
+                    <h3 youtube-generic_story_title>{{title}}</h3>
+                    <p youtube-generic_story_desc>{{markdown-to-html markdown=description}}</p>
+                </div>
         {{else}}
-        <div cpn-padding="right left" cpn-margin="top">
-            <button cpn-button="action" cpn-margin="top" {{action "editAStory" storyModel}}>Add Video</button>
-        </div>
+            <div cpn-padding="right left" cpn-margin="top">
+                <button cpn-button="action" cpn-margin="top" {{action "editAStory" storyModel}}>Add Video</button>
+            </div>
         {{/if}}
         
     </div>
+    
+    
     
 {{/stories/story-base}}
