@@ -1,4 +1,4 @@
-<main class="site-body" cpn-padding="top-double right-double left-double">
+<main spc-style-guide class="site-body" cpn-padding="top-double right-double left-double">
 
     <div spc-style-guide_wrapper cpn-margin="middle-h">
         {{!-- Intro --}}
@@ -87,7 +87,6 @@
                     <li>List item 4</li>
                     <li>List item 5</li>
                 </ul>
-               <p cpn-font="italic">Note: syntax-highlighted code needs adding here</p>
             </div>
             
             <div cpn-margin="bottom">
@@ -111,7 +110,6 @@
                     <li>List item 4</li>
                     <li>List item 5</li>
                 </ol>
-                <p cpn-font="italic">Note: syntax-highlighted code needs adding here</p>
             </div>
         </section>
         
@@ -155,43 +153,104 @@
                     </tr>
                 </tbody>
             </table>
-            <p cpn-font="italic">Note: syntax-highlighted code needs adding here</p>
         </section>
         
         {{!-- Buttons --}}
         <section spc-style-guide_section>
             <h2 spc-style-guide_section-title>Buttons</h2>
             
-            <ul cpn-row-list="bottom">
-                <li>
-                    <button cpn-button>Default</button>
-                </li>
-                <li>
-                    <button cpn-button="chosen">Selected</button>
-                </li>
-                <li>
-                    <button cpn-button="action">Action</button>
-                </li>
-                <li>
-                    <button cpn-button="move">Move</button>
-                </li>
-                <li>
-                    <button cpn-button="ghost">Ghost</button>
-                </li>
-                <li>
-                    <button cpn-button="bright">Bright</button>
-                </li>
-                <li>
-                    <button cpn-button="small">Small</button>
-                </li>
-            </ul>
+            <div cpn-margin="bottom-double">
+                <h3>Default</h3>
+                <ul cpn-row-list="bottom">
+                    <li>
+                        <button cpn-button>Button</button>
+                    </li>
+                    <li>
+                        <a href="" cpn-button>Link</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Selected</h3>
+                <ul cpn-row-list="bottom">
+                    <li>
+                        <button cpn-button="chosen">Button</button>
+                    </li>
+                    <li>
+                        <a href="" cpn-button="chosen">Link</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Action</h3>
+                <ul cpn-row-list="bottom">
+                    <li>
+                        <button cpn-button="action">Button</button>
+                    </li>
+                    <li>
+                        <a href="" cpn-button="action">Link</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Move</h3>
+                <ul cpn-row-list="bottom">
+                    <li>
+                        <button cpn-button="move">Button</button>
+                    </li>
+                    <li>
+                        <a href="" cpn-button="move">Link</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Ghost</h3>
+                <ul cpn-row-list="bottom">
+                    <li>
+                        <button cpn-button="ghost">Button</button>
+                    </li>
+                    <li>
+                        <a href="" cpn-button="ghost">Link</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <h3>Bright</h3>
+                <div cpn-bg-color="black" cpn-padding="top right left">
+                    <ul cpn-row-list="bottom">
+                        <li>
+                            <button cpn-button="bright">Button</button>
+                        </li>
+                        <li>
+                            <a href="" cpn-button="bright">Link</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div cpn-margin="bottom">
+                <h3>Small</h3>
+                <ul cpn-row-list="bottom">
+                    <li>
+                        <button cpn-button="small">Button</button>
+                    </li>
+                    <li>
+                        <a href="" cpn-button="small">Link</a>
+                    </li>
+                </ul>
+            </div>
         </section>
         
         {{!-- Toggles --}}
         <section spc-style-guide_section>
             <h2 spc-style-guide_section-title>Toggles</h2>
             
-            <h3>Dark Toggle</h3>
+            <h3>Dark</h3>
             <ul cpn-toggle="dark">
                 <li cpn-toggle_option="">Option 1</li>
                 <li cpn-toggle_option="">Option 2</li>
@@ -200,7 +259,7 @@
             </ul>
             
             <div cpn-bg-color="black" cpn-padding="top right left" cpn-margin="bottom">
-                <h3>Bright Toggle</h3>
+                <h3>Bright</h3>
                 <ul cpn-toggle="bright">
                     <li cpn-toggle_option="">Option 1</li>
                     <li cpn-toggle_option="">Option 2</li>
