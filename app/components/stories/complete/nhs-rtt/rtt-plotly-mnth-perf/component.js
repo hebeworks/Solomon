@@ -31,7 +31,7 @@ export default DefaultStory.extend({
         showLoading: true
     },
     nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
-
+    plotyLoaded: false,
     getPlotly: function () {
         var _this = this;
         $.ajax({
@@ -40,22 +40,31 @@ export default DefaultStory.extend({
             cache: true
         })
             .done(function () {
+                _this.set('plotyLoaded',true);
                 _this.loadData();
             });
     }.on("init"),
 
     loadData: function () {
-        var _this = this;
-        var regionCode = this.get('nhsFilter.selectedRegion._id');
-        var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
-        this.getData(url)
-            .then(function (data) {
-                _this.set('allData',data);
-            });
-        this.getData(url + '?parts=true')
-            .then(function (data) {
-                _this.set('data',data);
-            });
+        // Clear any previous observation of plotlyLoaded
+        Ember.removeObserver(this, 'plotyLoaded', this, this.loadData);
+
+        if(this.get('plotyLoaded')) {
+            var _this = this;
+            var regionCode = this.get('nhsFilter.selectedRegion._id');
+            var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
+            this.getData(url)
+                .then(function (data) {
+                    _this.set('allData',data);
+                });
+            this.getData(url + '?parts=true')
+                .then(function (data) {
+                    _this.set('data',data);
+                });
+        } else {
+            // observe plotyLoaded then rerun loadData once
+            Ember.addObserver(this, 'plotyLoaded', this, this.loadData);
+        }
     }.observes('nhsFilter.selectedRegion'),
 
     btnAllChosen: Ember.computed('part',{
