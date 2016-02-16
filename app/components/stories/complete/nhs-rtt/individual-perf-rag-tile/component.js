@@ -72,14 +72,18 @@ export default DefaultStory.extend(EditableFields, {
                     var previous = processMonth(data[previousDate]);
 
                     var totalPercentage = current.totalPercentage.toPrecisionDigits(1);
-                    var currentLow = current.data[0].percentage;
-                    var currentHigh = current.data[current.data.length - 1].percentage;
+                    var currentLow = current.data[0];
+                        var currentLowPercentage = currentLow && currentLow.percentage ? currentLow.percentage : 0;
+                    var currentHigh = current.data[current.data.length - 1];
+                        var currentHighPercentage = currentHigh && currentHigh.percentage ? currentHigh.percentage : 0;
                     var previousLow = previous.data[0].percentage;
+                        var previousLowPercentage = previousLow && previousLow.percentage ? previousLow.percentage : 0;
                     var previousHigh = previous.data[previous.data.length - 1].percentage;
+                        var previousHighPercentage = previousHigh && previousHigh.percentage ? previousHigh.percentage : 0;
 
                     _this.set('value', totalPercentage);
-                    _this.set('lowValue', currentLow);
-                    _this.set('topValue', currentHigh);
+                    _this.set('lowValue', currentLowPercentage);
+                    _this.set('topValue', currentHighPercentage);
                     console.log(current.totalPercentage + ' - ' + previous.totalPercentage);
                     
                     if(current.totalPercentage < ragLevels.amber && current.totalPercentage >= ragLevels.red) {
@@ -104,23 +108,23 @@ export default DefaultStory.extend(EditableFields, {
                     _this.set('topPadding','');
                     _this.set('lowPadding','');
 
-                    if(currentHigh < previousHigh) {
+                    if(currentHighPercentage < previousHighPercentage) {
                         _this.setProperties({
                             'topColour': 'red', 
                             'topBorder': 'top right bottom left solid light',
                             'topPadding': 'all-none'
                         }); 
-                    } else if (currentHigh > previousHigh) {
+                    } else if (currentHighPercentage > previousHighPercentage) {
                         _this.set('topColour', 'blue');    
                     }
 
-                    if(currentLow < previousLow) {
+                    if(currentLowPercentage < previousLowPercentage) {
                         _this.setProperties({
                             'lowColour': 'red', 
                             'lowBorder': 'top right bottom left solid light',
                             'lowPadding': 'all-none'
                         });       
-                    } else if (currentLow > previousLow) {
+                    } else if (currentLowPercentage > previousLowPercentage) {
                         _this.set('lowColour', 'blue');       
                     }
                     
@@ -138,9 +142,11 @@ export default DefaultStory.extend(EditableFields, {
             var totals = 0;
             for (var i = 0; i < ccgs.length; i++) {
                 var ccg = ccgs[i];
-                weeks18 += ccg.gt_00_to_18_weeks_sum;
-                totals += ccg.total_all_sum; // ccg.total;
-                var percentage = ((ccg.gt_00_to_18_weeks_sum / ccg.total_all_sum) * 100);
+                    var total_all_sum = ccg.total_all_sum ? ccg.total_all_sum : 0;
+                    var gt_00_to_18_weeks_sum = ccg.gt_00_to_18_weeks_sum ? ccg.gt_00_to_18_weeks_sum : 0;
+                weeks18 += gt_00_to_18_weeks_sum;
+                totals += total_all_sum; // ccg.total;
+                var percentage = ((gt_00_to_18_weeks_sum / total_all_sum) * 100);
                 // percentage = Math.round( percentage * 10 ) / 10;
                 ccg.percentage = percentage.toPrecisionDigits(1);
             }
