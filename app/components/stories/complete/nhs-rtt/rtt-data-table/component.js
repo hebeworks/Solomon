@@ -28,27 +28,29 @@ export default DefaultStory.extend({
         var headings = this.get('headings');
         this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionID + '') // do get by parts (admitted etc) add ?parts=true
             .then(function (data) {
-                data = data[0].months;
-                data = _.sortBy(data,function(obj){
-                    return obj._id.date;
-                });
-                data.reverse();
-                var rows = _.map(data, function (obj) {
-                    var row = [];
-                    for (var i = 0; i < headings.length; i++) {
-                        var prop = headings[i].property;
-                        var val = obj[prop];
-                        if(prop === "_id") {
-                            val = moment(obj._id.date,"YYYYMMDD").format("MM YYYY");
+                if(data.length > 0 && data[0].months) {
+                    data = data[0].months;
+                    data = _.sortBy(data,function(obj){
+                        return obj._id.date;
+                    });
+                    data.reverse();
+                    var rows = _.map(data, function (obj) {
+                        var row = [];
+                        for (var i = 0; i < headings.length; i++) {
+                            var prop = headings[i].property;
+                            var val = obj[prop];
+                            if(prop === "_id") {
+                                val = moment(obj._id.date,"YYYYMMDD").format("MM YYYY");
+                            }
+                            row.push(val);
                         }
-                        row.push(val);
-                    }
-                    return row;
-                });
-                _this.set('rows', rows);
-                setTimeout(function() {
-                    _this.set('loaded', true);
-                });
+                        return row;
+                    });
+                    _this.set('rows', rows);
+                    setTimeout(function() {
+                        _this.set('loaded', true);
+                    });
+                }
             });
     }.on('didInsertElement').observes('nhsFilter.selectedRegion')
 
