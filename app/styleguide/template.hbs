@@ -252,16 +252,19 @@
             
             <div cpn-margin="bottom-double">
                 <h3>Text Box</h3>
+                <label for="">Label</label>
                 <input type="text" placeholder="Placeholder text">
             </div>
             
             <div cpn-margin="bottom-double">
                 <h3>Text Area</h3>
+                <label for="">Label</label>
                 <textarea></textarea>
             </div>
             
             <div cpn-margin="bottom-double">
                 <h3>Select Box</h3>
+                <label for="">Label</label>
                 {{
                     select-2
                     content='Option 1, Option 2, Option 3'
@@ -283,6 +286,24 @@
                     <li>
                         <input name="radios" id="radios3" type="radio" checked>
                         <label for="radios3">Option 3</label>
+                    </li>
+                </ul>
+            </div>
+            
+            <div cpn-margin="bottom">
+                <h3>Check Boxes</h3>
+                <ul cpn-row-list="middle">
+                    <li>
+                        <input name="checkboxes" id="checkboxes1" type="checkbox">
+                        <label for="checkboxes1">Option 1</label>
+                    </li>
+                    <li>
+                        <input name="checkboxes" id="checkboxes2" type="checkbox">
+                        <label for="checkboxes2">Option 2</label>
+                    </li>
+                    <li>
+                        <input name="checkboxes" id="checkboxes3" type="checkbox" checked>
+                        <label for="checkboxes3">Option 3</label>
                     </li>
                 </ul>
             </div>
