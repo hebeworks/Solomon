@@ -40,7 +40,8 @@ export default Ember.Component.extend({
         slider: false,
         scroll: true,
         customProperties: '',
-        showLoading: false
+        showLoading: false,
+        showHeaderBorder: true
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
@@ -59,6 +60,7 @@ export default Ember.Component.extend({
         'target.storyConfig.scroll',
         'target.storyConfig.customProperties',
         'target.storyConfig.showLoading',
+        'target.storyConfig.showHeaderBorder',
         function () {
             var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
             var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
@@ -89,10 +91,29 @@ export default Ember.Component.extend({
 
     // Tell the story component if there is a header.
     hasHeader: Ember.computed('storyConfig.headerImage', 'storyConfig.title', function () {
-        if (this.get('storyConfig.headerImage') != '' || this.get('storyConfig.title') != '') {
-            return 'has-header';
+        var headerImage = this.get('storyConfig.headerImage'),
+            title = this.get('storyConfig.title'),
+            subTitle = this.get('storyConfig.subTitle');
+        
+        if (headerImage != '' || (title != '' && subTitle != '')) {
+            return 'has-full-header';
+        } else if (title != '' && subTitle == '') {
+            return 'has-half-header';
         } else {
-            return 'no-header';
+            return 'has-no-header';
+        }
+    }),
+    
+    // Tell the story header how tall it should be.
+    headerSize: Ember.computed('storyConfig.headerImage', 'storyConfig.title', function () {
+        var headerImage = this.get('storyConfig.headerImage'),
+            title = this.get('storyConfig.title'),
+            subTitle = this.get('storyConfig.subTitle');
+        
+        if (headerImage != '' || (title != '' && subTitle != '')) {
+            return 'full';
+        } else if (title != '' && subTitle == '') {
+            return 'half';
         }
     }),
 
@@ -107,10 +128,10 @@ export default Ember.Component.extend({
 
     // We only want a dividing line under the header on larger stories.
     hasHeaderDivide: Ember.computed('storyConfig.height', function () {
-        if (this.get('storyConfig.height') == 1) {
-            return '';
+        if (this.get('storyConfig.height') == 1 || this.get('storyConfig.showHeaderBorder') == false) {
+            return false;
         } else {
-            return 'cpn-divide="bottom solid ' + this.get('lineShade') + '"';
+            return true;
         }
     }),
 

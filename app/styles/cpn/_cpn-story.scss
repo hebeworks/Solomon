@@ -214,8 +214,12 @@
                 position: relative;
             }
             
-            [cpn-story_content~="has-header"] {
+            [cpn-story_content~="has-full-header"] {
                 padding-top: rem(36px);
+            }
+            
+            [cpn-story_content~="has-half-header"] {
+                padding-top: rem(23px);
             }
             
             [cpn-story_content~="has-footer"] {
@@ -254,7 +258,6 @@
             }
             
                 [cpn-story_header] {
-                    height: rem(36px);
                     width: 100%;
                     position: absolute;
                     top: 0;
@@ -264,6 +267,14 @@
                         border-bottom: 0;
                         margin-bottom: 0;
                     }
+                }
+                
+                [cpn-story_header~="full"] {
+                    height: rem(36px);
+                }
+                
+                [cpn-story_header~="half"] {
+                    height: rem(23px);
                 }
             
                     [cpn-story_title] {
@@ -297,9 +308,11 @@
                     margin-left: rem(-$spacing-base);
                 }
                 
-                [cpn-story_body~="has-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
+                [cpn-story_body~="has-full-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]),
+                [cpn-story_body~="has-half-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
                     padding-top: rem($spacing-base);
                     
+                    &[cpn-story_body~="no-header-border"],
                     [solomon-app~="yorkshire-water"] & {
                         padding-top: 0;
                     }
@@ -344,6 +357,10 @@
                                     overflow-y: auto;
                                     -webkit-overflow-scrolling: touch;
                                     -ms-overflow-style: -ms-autohiding-scrollbar;
+                                }
+                                
+                                [cpn-story_body~="no-header-border"] & {
+                                    padding-top: 0;
                                 }
                             }
                             
