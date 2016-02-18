@@ -162,6 +162,10 @@
                     [cpn-bg-color="medium-blue"] & {
                         background-color: #fff;
                     }
+                    
+                    [solomon-app~="bid"] & {
+                        background-color: $bid-dark-blue;
+                    }
                 }
             }
             
@@ -200,6 +204,10 @@
                 [cpn-bg-color="blue"] &,
                 [cpn-bg-color="medium-blue"] & {
                     background-color: #fff;
+                }
+                
+                [solomon-app~="bid"] & {
+                    background-color: $bid-dark-blue;
                 }
             }
             
