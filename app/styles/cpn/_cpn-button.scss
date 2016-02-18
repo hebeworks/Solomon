@@ -82,6 +82,18 @@
             background-color: darken($nhs-red, 5%);
         }
     }
+    
+    [solomon-app~="bid"] & {
+        background-color: $bid-orange;
+        
+        &:hover, &:focus {
+            background-color: lighten($bid-orange, 10%);
+        }
+        
+        &:active {
+            background-color: darken($bid-orange, 10%);
+        }
+    }
 }
 
 // Move button styles, for buttons which take the user to a different location
@@ -121,6 +133,18 @@
             background-color: darken($nhs-blue, 5%);
         }
     }
+    
+    [solomon-app~="bid"] & {
+        background-color: $bid-dark-blue;
+        
+        &:hover, &:focus {
+            background-color: lighten($bid-dark-blue, 10%);
+        }
+        
+        &:active {
+            background-color: darken($bid-dark-blue, 10%);
+        }
+    }
 }
 
 // Ghost button styles. These look like buttons but are intended for static informational tags
@@ -152,6 +176,10 @@
         
         [solomon-app~="nhs"] & {
             background-color: $nhs-green;
+        }
+        
+        [solomon-app~="bid"] & {
+            background-color: $bid-green;
         }
     }
 }

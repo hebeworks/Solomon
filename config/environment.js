@@ -79,7 +79,7 @@ module.exports = function (environment) {
     // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
     // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
     // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk'; // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
-    ENV.APP.mockSolomonHostname = 'nhsrtt.preview.mysolomon.co.uk'
+    ENV.APP.mockSolomonHostname = 'bid.preview.mysolomon.co.uk'
 }
 
   if (environment === 'test') {
