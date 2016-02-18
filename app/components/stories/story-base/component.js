@@ -89,10 +89,29 @@ export default Ember.Component.extend({
 
     // Tell the story component if there is a header.
     hasHeader: Ember.computed('storyConfig.headerImage', 'storyConfig.title', function () {
-        if (this.get('storyConfig.headerImage') != '' || this.get('storyConfig.title') != '') {
-            return 'has-header';
+        var headerImage = this.get('storyConfig.headerImage'),
+            title = this.get('storyConfig.title'),
+            subTitle = this.get('storyConfig.subTitle');
+        
+        if (headerImage != '' || (title != '' && subTitle != '')) {
+            return 'has-full-header';
+        } else if (title != '' && subTitle == '') {
+            return 'has-half-header';
         } else {
-            return 'no-header';
+            return 'has-no-header';
+        }
+    }),
+    
+    // Tell the story header how tall it should be.
+    headerSize: Ember.computed('storyConfig.headerImage', 'storyConfig.title', function () {
+        var headerImage = this.get('storyConfig.headerImage'),
+            title = this.get('storyConfig.title'),
+            subTitle = this.get('storyConfig.subTitle');
+        
+        if (headerImage != '' || (title != '' && subTitle != '')) {
+            return 'full';
+        } else if (title != '' && subTitle == '') {
+            return 'half';
         }
     }),
 
