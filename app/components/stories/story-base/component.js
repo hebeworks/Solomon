@@ -40,7 +40,8 @@ export default Ember.Component.extend({
         slider: false,
         scroll: true,
         customProperties: '',
-        showLoading: false
+        showLoading: false,
+        showHeaderBorder: true
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
@@ -59,6 +60,7 @@ export default Ember.Component.extend({
         'target.storyConfig.scroll',
         'target.storyConfig.customProperties',
         'target.storyConfig.showLoading',
+        'target.storyConfig.showHeaderBorder',
         function () {
             var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
             var defaultConfig = Ember.Object.create(this.get('defaultConfig'));
@@ -126,10 +128,10 @@ export default Ember.Component.extend({
 
     // We only want a dividing line under the header on larger stories.
     hasHeaderDivide: Ember.computed('storyConfig.height', function () {
-        if (this.get('storyConfig.height') == 1) {
-            return '';
+        if (this.get('storyConfig.height') == 1 || this.get('storyConfig.showHeaderBorder') == false) {
+            return false;
         } else {
-            return 'cpn-divide="bottom solid ' + this.get('lineShade') + '"';
+            return true;
         }
     }),
 

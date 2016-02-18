@@ -312,6 +312,7 @@
                 [cpn-story_body~="has-half-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
                     padding-top: rem($spacing-base);
                     
+                    &[cpn-story_body~="no-header-border"],
                     [solomon-app~="yorkshire-water"] & {
                         padding-top: 0;
                     }
@@ -356,6 +357,10 @@
                                     overflow-y: auto;
                                     -webkit-overflow-scrolling: touch;
                                     -ms-overflow-style: -ms-autohiding-scrollbar;
+                                }
+                                
+                                [cpn-story_body~="no-header-border"] & {
+                                    padding-top: 0;
                                 }
                             }
                             
