@@ -64,6 +64,11 @@ export default Ember.Object.extend({
                     solomonConfig.logoType = 'bitmap';
                     solomonConfig.initMethod = this.nhsInit;
                     break;
+                case 'bid.preview.mysolomon.co.uk':
+                    solomonConfig.name = 'bid';
+                    solomonConfig.title = 'Business Improvement District';
+                    solomonConfig.storyConfig.storyHandle = 'both';
+                    break;
             }
             return solomonConfig;
     }}),
