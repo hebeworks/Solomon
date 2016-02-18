@@ -46,17 +46,6 @@
                 {{/if}}
             {{/if}}
             
-            {{!-- {{#if storyConfig.headerImage}}
-                <header cpn-story_header="{{headerSize}}" {{hasHeaderDivide}}>
-                    <img src="{{storyConfig.headerImage}}" height="24">
-                </header>
-            {{else if storyConfig.title}}
-                <header cpn-story_header="{{headerSize}}" {{hasHeaderDivide}}>
-                    <h2 cpn-story_title>{{storyConfig.title}}</h2>
-                    <h3 cpn-story_desc>{{storyConfig.subTitle}}</h3>
-                </header>
-            {{/if}} --}}
-            
             {{#if hasHeaderDivide}}
             <main cpn-story_body="{{hasHeader}} {{usableHeight}} {{hasSlider}} {{canScroll}}">
                 {{yield}}
