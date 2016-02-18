@@ -66,12 +66,17 @@
 					color: $nhs-blue;
 				}
 				
+				[solomon-app~="bid"] & {
+					color: $bid-green;
+				}
+				
 				.icon {
 					svg {
 						fill: $lime;
 						
 						[solomon-app~="yorkshire-water"] &,
-						[solomon-app~="nhs"] & {
+						[solomon-app~="nhs"] &,
+						[solomon-app~="bid"] & {
 							fill: #000;
 						}
 					}
@@ -86,6 +91,10 @@
 					
 					[solomon-app~="nhs"] & {
 						color: $nhs-blue;
+					}
+					
+					[solomon-app~="bid"] & {
+						color: $bid-green;
 					}
 				}
 			}
@@ -108,6 +117,10 @@
 				[solomon-app~="nhs"] & {
 					fill: $nhs-red;
 				}
+				
+				[solomon-app~="bid"] & {
+					fill: $bid-red;
+				}
 			}
 		}
 		
@@ -117,6 +130,10 @@
 				
 				[solomon-app~="nhs"] & {
 					fill: $nhs-green;
+				}
+				
+				[solomon-app~="bid"] & {
+					fill: $bid-green;
 				}
 			}
 		}
