@@ -6,15 +6,19 @@ export default DefaultStory.extend({
     // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     chartData: null,
-    storyConfig: {
-        title: 'RTT Performance by Month', // (Provide a story title)
-        subTitle: 'Monthly performance against standard', // (Provide a story subtitle)
-        author: 'Simon Zimmerman',
-        
-        description: '', // (Provide a longer description of the story)
-        license: '', // (Define which license applies to usage of the story)
+    part: 'PART_2',
+    data:[],
+    allData: [],
+    
+    initialConfig: {
+        title: '', // (Provide a story title)
+        subTitle: '', // (Provide a story subtitle)
+        // author: 'Simon Zimmerman',
+
+        // description: '', // (Provide a longer description of the story)
+        // license: '', // (Define which license applies to usage of the story)
         // dataSourceUrl: '', (Where did the data come from?)
-        feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
+        // feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
         
         // color: 'white', (Set the story colour)
         width: '3', //(Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
@@ -23,36 +27,122 @@ export default DefaultStory.extend({
         
         // slider: false, (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true,
+        showLoading: true
     },
-	nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
-
-    getPlotly: function() {
+    nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
+    plotyLoaded: false,
+    getPlotly: function () {
         var _this = this;
         $.ajax({
             url: "https://cdn.plot.ly/plotly-latest.min.js",
             dataType: "script",
             cache: true
         })
-        .done(function() {
-            _this.loadData();
-        });
+            .done(function () {
+                _this.set('plotyLoaded',true);
+                _this.loadData();
+            });
     }.on("init"),
 
-    loadData: function() {
-        var _this = this;
-        var regionCode = this.get('nhsFilter.selectedRegion._id');
-        var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
-        this.getData(url)
-            .then(function(data) {
-                _this.set('chartData',data);
-            });
+    loadData: function () {
+        // Clear any previous observation of plotlyLoaded
+        Ember.removeObserver(this, 'plotyLoaded', this, this.loadData);
+
+        if(this.get('plotyLoaded')) {
+            var _this = this;
+            var regionCode = this.get('nhsFilter.selectedRegion._id');
+            var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionCode;
+            this.getData(url)
+                .then(function (data) {
+                    _this.set('allData',data);
+                });
+            this.getData(url + '?parts=true')
+                .then(function (data) {
+                    _this.set('data',data);
+                });
+        } else {
+            // observe plotyLoaded then rerun loadData once
+            Ember.addObserver(this, 'plotyLoaded', this, this.loadData);
+        }
     }.observes('nhsFilter.selectedRegion'),
+
+    btnAllChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'all' ? ' chosen ' : '';
+        }
+    }),
     
-    drawChart: function() {
+    btnAdmittedChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'PART_1A' ? ' chosen ' : '';
+        }
+    }),
+    
+    btnNonChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'PART_1B' ? ' chosen ' : '';
+        }
+    }),
+    
+    btnIncompleteChosen: Ember.computed('part',{
+        get(){
+            return this.get('part') === 'PART_2' ? ' chosen ' : '';
+        }
+    }),
+
+    standard: function() {
+        var part = this.get('part');
+        var standard = 0;
+        if (part === 'all' ) {
+            standard = 0;
+        } else if (part === 'PART_1A') {
+            standard = 0.90;
+        } else if (part === 'PART_1B') {
+            standard = 0.95;
+        } else if (part === 'PART_2') {
+            standard = 0.92;
+        }
+        return standard;
+    }.property('part'),
+
+    processData: function() {
+        var data = this.get('data');
+        var part = this.get('part');
+        var months = data[0].months;
+        if(part === 'all') {
+            months = this.get('allData.0.months');
+        } else {
+            months = _.filter(months,function(obj){
+                return obj._id.part === part;
+            });
+        }
+        this.set('chartData', months);
+    }.observes('data','part'),
+
+    drawChart: function () {
+        var chartData = this.get('chartData');
+        var months1 = [];
+        var percentages1 = [];
+        var months2 = [];
+        var percentages2 = [];
+        chartData = _.sortBy(chartData, function (obj) {
+            return obj._id.date;
+        });
+        _.each(chartData, function (obj) {
+            // remove Oct & Nov 2015 as erroneous
+            if (obj._id.date.indexOf(201510) === 0 || obj._id.date.indexOf(201511) === 0) {
+
+            } else if (obj._id.date.indexOf(2015) == 0) {
+                months1.push(moment(obj._id.date, "YYYYMMDD").format("YYYY-MM-DD"));
+                percentages1.push((obj.gt_00_to_18_weeks_sum / obj.total));
+            } else if (obj._id.date.indexOf(2014) == 0) {
+                months2.push(moment('2015' + obj._id.date.substr(4), "YYYYMMDD").format("YYYY-MM-DD"));
+                percentages2.push((obj.gt_00_to_18_weeks_sum / obj.total));
+            }
+        });
+
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
-
-debugger;
-
         var trace1 = {
             name: "2015",
             showLegend: true,
@@ -65,13 +155,13 @@ debugger;
                 color: colorPalette[1],
                 width: 2
             },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
+            x: months1, //['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
+            y: percentages1, //[.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
             type: 'scatter'
         };
 
         var trace2 = {
-            name: "2016",
+            name: "2014",
             showLegend: true,
             mode: 'lines+markers',
             marker: {
@@ -82,8 +172,8 @@ debugger;
                 color: colorPalette[2],
                 width: 2
             },
-            x: ['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
-            y: [.40, .55, .64, .62, .75, .85, .73, .92, .99, .94, .67, .90],
+            x: months2, //['2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01', '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01'],
+            y: percentages2,// [.40, .55, .64, .62, .75, .85, .73, .92, .99, .94, .67, .90],
             type: 'scatter'
         };
 
@@ -103,14 +193,14 @@ debugger;
             //showlegend: false,
             legend: {
                 //xanchor:"center",
-                yanchor:"middle",
-                y:.5,
+                yanchor: "middle",
+                y: .5,
                 //x:0.5, 
                 traceorder: 'normal',
                 font: {
-                  family: "Roboto, Open Sans, verdana, sans-serif",
-                  size: 12,
-                  color: '#000'
+                    family: "Roboto, Open Sans, verdana, sans-serif",
+                    size: 12,
+                    color: '#000'
                 },
             },
             xaxis: {
@@ -119,7 +209,7 @@ debugger;
                 tickwidth: 1,
                 tickformat: "%b",
                 showline: true,
-                line:{
+                line: {
                     width: 2,
                     color: '#000'
                 }
@@ -128,28 +218,31 @@ debugger;
                 showgrid: false,
                 tickformat: "%",
                 showline: true,
-                //range: [0, 1],
+                zeroline: false,
+                range: [0.8, 1]
             },
             textposition: 'top left',
-            shapes: [
-                {
+            shapes: [],
+            annotations: []
+        };
+        if (this.get('standard') != 0) {
+                layout.shapes = [{
                     type: 'line',
-                    x0: '2016-01-01',
-                    y0: 0.92,
-                    x1: '2016-12-01',
-                    y1: 0.92,
+                    x0: '2015-01-01',
+                    y0: this.get('standard'),
+                    x1: '2015-12-31',
+                    y1: this.get('standard'),
                     line: {
                         color: 'rgb(000, 000, 000)',
                         width: 1,
                         dash: 'dot'
                     }
-                }
-            ],
-            annotations: [
+                }];
+                layout.annotations = [
                 {
                     text: 'Standard',
-                    x: '2016-12-01',
-                    y: 0.92,
+                    x: '2015-12-31',
+                    y: this.get('standard'),
                     xref: 'x',
                     yref: 'y',
                     ax: 0,
@@ -163,7 +256,7 @@ debugger;
                     }
                 }
             ]
-        };
+            }
 
         var data = [trace1, trace2];
 
@@ -212,7 +305,7 @@ debugger;
             // (see ./components/modebar/buttons.js for the list of names)
             // (see https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js)
             modeBarButtonsToRemove: [
-                //'toImage',
+                'toImage',
                 'sendDataToCloud',
                 'zoom2d',
                 'pan2d',
@@ -221,10 +314,10 @@ debugger;
                 'zoomIn2d',
                 'zoomOut2d',
                 'autoScale2d',
-                //'resetScale2d',
+            //'resetScale2d',
                 'hoverClosestCartesian',
                 'hoverCompareCartesian',
-                ],
+            ],
             
             // add mode bar button using config objects
             // (see ./components/modebar/buttons.js for list of arguments)
@@ -249,5 +342,16 @@ debugger;
             // URL to topojson files used in geo charts
             //topojsonURL: 'https://cdn.plot.ly/'
         });
-    }.observes('chartData')
+        
+        var _this = this;
+        setTimeout(function() {
+            _this.set('loaded', true);
+        });
+    }.observes('chartData'),
+
+    actions: {
+        setPart: function (part) {
+            this.set('part', part);
+        }
+    }
 });

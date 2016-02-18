@@ -578,6 +578,11 @@
 					background-color: darken($yw-medium-blue, 5%);
 				}
 			}
+			
+			[solomon-app~="nhs"] & {
+				background-color: #fff;
+				border: 1px solid #d9d9d9;
+			}
 		}
 		
 	}
@@ -875,6 +880,12 @@
 		height: rem(45px);
 		display: block;
 		fill: #f7f7f7;
+		
+		[solomon-app~="nhs"] & {
+			path {
+				fill: $nhs-blue;
+			}
+		}
 	}
 }
 

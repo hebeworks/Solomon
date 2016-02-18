@@ -10,7 +10,7 @@
 }
 
     [spc-opc_bars] {
-        height: rem(340px);
+        // height: rem(340px);
         position: relative;
     }
     
@@ -18,7 +18,7 @@
             border-radius: rem(5px);
             position: absolute;
             height: 100%;
-            width: rem(3px);
+            width: rem(2px);
             top: 0;
             left: 0;
             @include transition(1s);

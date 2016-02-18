@@ -2,12 +2,14 @@
     <h3 cpn-story_title cpn-margin="bottom">Filter the canvas</h3>
 
     <ul cpn-row-list cpn-margin="bottom-none">
-        <li cpn-width="50%">
+        <li cpn-width="100%">
             <button cpn-button>National</button>
         </li>
+        {{!--
         <li cpn-width="50%">
             <button cpn-button>Regional</button>
         </li>
+        --}}
     </ul>
 
     <p cpn-divide="bottom solid faded-dark">
@@ -16,10 +18,39 @@
 				value=nhsFilter.selectedRegion
 
 				placeholder="Choose a region"
-				class="margin-bottom-no"
 			}}
     </p>
-    
+    {{#if nhsFilter.selectedRegion}}
+    <ul cpn-row-list="middle" cpn-margin="bottom-none">
+        <li cpn-width="40%">
+            {{ select-2
+                content=nhsFilter.ccgs
+                value=nhsFilter.selectedCCG
+                optionLabelPath="name"
+                optionValuePath="_id"
+                placeholder="Choose a CCG"
+                class="margin-bottom-no"
+            }}
+        </li>
+        <li cpn-width="20%" cpn-text="center" cpn-font="500">- OR -</li>
+        <li cpn-width="40%">
+            {{ select-2
+                content=nhsFilter.providers
+                value=nhsFilter.selectedProvider
+                optionLabelPath="name"
+                optionValuePath="_id"
+                placeholder="Choose a Provider"
+                class="margin-bottom-no"
+            }}
+        </li>
+    </ul>
+    {{/if}}
+    {{!-- 
+    {{#each provider in nhsFilter.providers}}
+        {{provider.name}}
+    {{/each}}
+    --}}
+    {{!-- 
     <ul cpn-row-list cpn-margin="bottom-none">
         <li cpn-width="50%">
             <button cpn-button>CCG</button>
@@ -28,14 +59,15 @@
             <button cpn-button>Practice</button>
         </li>
     </ul>
+    --}}
     
     <p>
-			{{ select-2
-				content=nhsFilter.months
-				value=nhsFilter.selectedMonth
-				placeholder="Choose a month"
-				class="margin-bottom-no"
-			}}
+        {{ select-2
+            content=nhsFilter.months
+            value=nhsFilter.selectedMonth
+            placeholder="Choose a month"
+            class="margin-bottom-no"
+        }}
     </p>
     
 {{/stories/story-base}}

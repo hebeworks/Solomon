@@ -1,7 +1,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'LCC Directorate Spending',
         subTitle: 'Monthly spend for Leeds City Council directorates',
         color: 'black',

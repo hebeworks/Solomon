@@ -2,7 +2,7 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'WQ Contacts Closed on Contact',
         subTitle: 'The needs with most calls closed on contact',
         scroll: false,

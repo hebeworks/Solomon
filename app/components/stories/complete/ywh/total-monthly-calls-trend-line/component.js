@@ -4,7 +4,7 @@ import DefaultStory from './../../story-types/default-story/component';
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'TITLE: ywh/total-monthly-calls-trend-line', // (Provide a story title)
         subTitle: 'SUBTITLE: ywh/total-monthly-calls-trend-line', // (Provide a story subtitle)
         // author: '', (Provide the author of the story)

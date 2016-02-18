@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Compare Water Quality',
         subTitle: 'Choose two locations',
         color: 'dark-blue',

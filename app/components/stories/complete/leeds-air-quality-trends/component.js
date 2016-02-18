@@ -5,7 +5,7 @@ export default DefaultStory.extend({
     storyModel: null,
     chartType: 'line',
 
-    storyConfig: {
+    initialConfig: {
         title: 'Leeds Air Quality Trends',
         subTitle: "See how Leeds' air quality has changed over time",
         color: "white",

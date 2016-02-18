@@ -117,6 +117,7 @@
 @import "components/stories/leeds-air-quality-trends";
 @import "components/stories/statutory-accounts";
 @import "components/stories/base-rag-tile";
+@import "components/stories/youtube-generic";
 @import "components/stories/ywh/total-call-stats";
 @import "components/stories/ywh/contacts-by-property";
 @import "components/stories/ywh/multi-chart";
@@ -134,3 +135,8 @@
 /* END auto-generated stories */
 @import "components/stories/_nhs-rtt/overall-perf-chart";
 @import "components/stories/_nhs-rtt/nhs-rag";
+@import "components/stories/_nhs-rtt/ccg-map";
+@import "components/stories/_nhs-rtt/region-map";
+@import "components/stories/_nhs-rtt/text-with-bar";
+@import "components/stories/_nhs-rtt/value-title-with-text";
+@import "components/stories/_nhs-rtt/rtt-news";

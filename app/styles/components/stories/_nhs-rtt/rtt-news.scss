@@ -1,0 +1,70 @@
+[solomon-story="rtt-news"] {
+    [cpn-story_content] {
+        padding-top: rem(27px);
+    }
+    
+        [cpn-story_header] {
+            border-bottom: 0;
+            height: auto;
+        }
+        
+            [cpn-story_carousel-item] {
+                padding-top: 0;
+                
+                h3 {
+                    background-color: $nhs-blue;
+                    border-radius: rem(5px) rem(5px) 0 0;
+                    padding: rem($spacing-base * 2);
+                    margin-bottom: 0;
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: rem(15px);
+                    height: 50%;
+                    position: relative;
+                    
+                    &::before {
+                        content: 'NHS Choices';
+                        background-color: #fff;
+                        color: $nhs-blue;
+                        font-size: rem(10px);
+                        padding: rem($spacing-base / 2) rem($spacing-base);
+                        display: table;
+                        margin-bottom: rem($spacing-base);
+                        border-radius: rem(3px);
+                    }
+                    
+                    &::after {
+                        content: '';
+                        width: calc(100% - 40px);
+                        height: rem(1px);
+                        background-color: #fff;
+                        position: absolute;
+                        bottom: 0;
+                        left: rem($spacing-base * 2);
+                    }
+                }
+                
+                div {
+                    height: 50%;
+                    
+                    *:first-child,
+                    *:first-child + * ~ * {
+                        display: none;
+                    }
+                    
+                    *:first-child + * {
+                        background-color: $nhs-blue;
+                        border-radius: 0 0 rem(5px) rem(5px);
+                        padding: rem($spacing-base * 2);
+                        margin-bottom: 0;
+                        color: #fff;
+                        font-size: rem(12px);
+                        height: 100%;
+                    }
+                }
+            }
+        
+        [cpn-story_footer] {
+            border-top: 0;
+        }
+}

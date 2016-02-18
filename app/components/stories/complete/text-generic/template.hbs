@@ -10,15 +10,15 @@
 
     <header>
 
-      <h2>{{title}}</h2>
+      <h3 cpn-story_title cpn-margin="bottom">{{title}}</h3>
 
     </header>
 
   {{/if}}
 
-  <main has-header class="text-generic">
+  <main has-header class="text-generic" cpn-font="12px">
 
-    {{description}}
+    {{markdown-to-html markdown=description}}
 
   </main>
 

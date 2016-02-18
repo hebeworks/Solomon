@@ -102,6 +102,45 @@ ol {
     }
 }
 
+thead {
+    background-color: $medium-grey;
+}
+
+    tr {
+        &:nth-child(even) {
+            background-color: $lighter-grey;
+        }
+    }
+    
+        th, td {
+            padding: rem($spacing-base / 4) rem($spacing-base / 2);
+        }
+        
+        th {
+            &:not(:last-child) {
+                border-right: 1px solid #fff;
+            }
+        }
+        
+        td {
+            &:not(:last-child) {
+                border-right-width: 1px;
+                border-right-style: solid;
+            }
+            
+            tr:nth-child(odd) & {
+                border-right-color: $lighter-grey;
+            }
+            
+            tr:nth-child(even) & {
+                border-right-color: #fff;
+            }
+        }
+        
+img {
+    max-width: 100%;
+}
+
 /* -- Wrapper for Dashboard slide */
 .wrapper {
     width: 100%;
@@ -259,6 +298,10 @@ ol {
     
     [solomon-app~="yorkshire-water"] & {
         background-color: #fff;
+    }
+    
+    [solomon-app~="nhs"] & {
+        background-color: #f7f7f7;
     }
     
     .btn-list {

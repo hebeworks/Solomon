@@ -3,22 +3,21 @@ import RSSGeneric from '../rss-generic/component';
 
 export default RSSGeneric.extend({
 
-    defaultFeedURL: 'https://www.google.com/alerts/feeds/14130490369006860511/11463334997055244251',
+    defaultFeedURL: 'http://www.nhs.uk/NHSChoices/shared/RSSFeedGenerator/RSSFeed.aspx?site=News',
 
-    setSliderLoadedState: function(){
-      Ember.run.next(this, function(){
-        this.set('loaded', !this.get('loading'));
-      });
-    }.observes('loading'),
-
-    storyConfig: {
-        title: 'RTT News',
-        subTitle: 'Live RTT related news stories',
-        color: 'medium-blue',
-        scroll: true,
+    initialConfig: {
+        title: 'Behind the headlines',
+        subTitle: '',
+        color: 'white',
+        scroll: false,
         slider: true,
         width: '2',
-        height: '2'
-    }
+        height: '2',
+        showLoading: true
+    },
+    
+    truncateText: function() {
+        this.$('[cpn-story_carousel-item] h3, [cpn-story_carousel-item] div *:first-child + *').dotdotdot({watch: true});
+    }.observes('loaded')
 
 });

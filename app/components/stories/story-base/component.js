@@ -39,7 +39,8 @@ export default Ember.Component.extend({
         license: '',
         slider: false,
         scroll: true,
-        customProperties: ''
+        customProperties: '',
+        showLoading: false
     },
 
     attributeBindings: ['data-ss-colspan', 'data-id', 'data-canvas-order-index', 'cpn-story'],
@@ -57,6 +58,7 @@ export default Ember.Component.extend({
         'target.storyConfig.slider',
         'target.storyConfig.scroll',
         'target.storyConfig.customProperties',
+        'target.storyConfig.showLoading',
         function () {
             var targetConfig = Ember.Object.create(this.get('target.storyConfig'));
             var defaultConfig = Ember.Object.create(this.get('defaultConfig'));

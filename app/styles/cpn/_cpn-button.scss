@@ -7,7 +7,7 @@
     text-align: center;
     
     background-color: $medium-grey;
-    color: #000;
+    color: $black;
     
     border: 0;
     border-radius: rem(3px);
@@ -16,10 +16,11 @@
     cursor: pointer;
     text-decoration:none;
     
-    min-width: rem(115px);
+    // min-width: rem(115px);
     width: 100%; // wrap buttons in a container to handle any specific widths
+    max-width: 100%;
     height: auto;
-    padding: rem($spacing-base);
+    padding: rem($spacing-base) rem($spacing-base * 2);
     display: block;
     
     @include transition(.3s);
@@ -41,7 +42,7 @@
 [cpn-button~="small"],
 %cpn-button-small {
     font-size: rem(12px);
-    padding: rem($spacing-base / 2);
+    padding: rem($spacing-base / 2) rem($spacing-base);
 }
 
 // Action button style, for buttons which trigger an action, such as submit buttons
@@ -67,6 +68,18 @@
         
         &:active {
             background-color: darken($yw-red, 5%);
+        }
+    }
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-red;
+        
+        &:hover, &:focus {
+            background-color: lighten($nhs-red, 5%);
+        }
+        
+        &:active {
+            background-color: darken($nhs-red, 5%);
         }
     }
 }
@@ -96,6 +109,18 @@
             background-color: darken($yw-medium-blue, 5%);
         }
     }
+    
+    [solomon-app~="nhs"] & {
+        background-color: $nhs-blue;
+        
+        &:hover, &:focus {
+            background-color: lighten($nhs-blue, 5%);
+        }
+        
+        &:active {
+            background-color: darken($nhs-blue, 5%);
+        }
+    }
 }
 
 // Ghost button styles. These look like buttons but are intended for static informational tags
@@ -106,8 +131,7 @@
     
     border: 1px solid $dark-grey;
     
-    padding-top: rem($spacing-base - 1px);
-    padding-bottom: rem($spacing-base - 1px);
+    padding: rem($spacing-base - 1px) rem($spacing-base * 2 - 1px);
     
     cursor: default;
     
@@ -124,6 +148,10 @@
         
         [solomon-app~="yorkshire-water"] & {
             background-color: $yw-green;
+        }
+        
+        [solomon-app~="nhs"] & {
+            background-color: $nhs-green;
         }
     }
 }
