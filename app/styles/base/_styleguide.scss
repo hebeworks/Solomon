@@ -26,6 +26,10 @@ body {
         color: $yw-dark-blue;
     }
     
+    &[solomon-app~="bid"] {
+        color: $bid-dark-blue;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;

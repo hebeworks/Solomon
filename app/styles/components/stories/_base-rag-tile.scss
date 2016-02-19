@@ -41,4 +41,9 @@
         font-size: rem(12px);
         text-decoration: none;
         color: #fff;
+        
+        [solomon-story="organisation-small"] & {
+            color: $bid-dark-blue;
+            font-weight: 700;
+        }
     }

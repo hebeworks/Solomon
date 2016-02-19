@@ -10,7 +10,11 @@ export default DefaultStory.extend({
         width: '1', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         height: '1', // (Set the height of the story)
         scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
+    
+    organisationName: 'Boots UK Limited',
+    organisationCanvas: '',
     
     // loaded: false, // (Tell other elements that this story has loaded)
     //

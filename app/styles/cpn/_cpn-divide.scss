@@ -3,6 +3,10 @@
     border-color: #000;
     border-style: dotted;
     border-width: 0;
+    
+    [solomon-app~="bid"] & {
+        border-color: $bid-dark-blue;
+    }
 }
 
 [cpn-divide~="top"],
