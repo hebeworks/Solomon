@@ -5,34 +5,28 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     initialConfig: {
-        title: 'TITLE: bid/occupancy-tile', // (Provide a story title)
-        subTitle: 'SUBTITLE: bid/occupancy-tile', // (Provide a story subtitle)
-        // author: '', (Provide the author of the story)
-        
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
-        
-        // color: 'white', // (Set the story colour)
-        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
-        // scroll: true, // (Should the story vertically scroll its content?)
-        
-        // customProperties: '' // (Add custom values to the story attribute)
+        title: 'Status', // (Provide a story title)
+        subTitle: '', // (Provide a story subtitle)
+        color: 'white', // (Set the story colour)
+        width: '1', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
+        height: '1', // (Set the height of the story)
+        scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
     
-    // loaded: false, // (Tell other elements that this story has loaded)
-    //
+    loaded: false, // (Tell other elements that this story has loaded)
+    occupied: true,
+    occupancyText: null,
     
     // Add your story-specific code here
     data: null,
     
     onInsertElement: function () {
         this.loadData();
+        var _this = this;
+        setTimeout(function() {
+            _this.set('loaded', true);
+        });
     }.on('didInsertElement'),
 
     loadData: function () {
@@ -47,5 +41,15 @@ export default DefaultStory.extend({
                 },
                 function(err){ console.log(err); }
             )
-    }
+    },
+    
+    setOccupancy: function() {
+        if (this.get('occupied')) {
+            this.set('storyConfig.color', 'green');
+            this.set('occupancyText', 'Currently Occupied');
+        } else {
+            this.set('storyConfig.color', 'red');
+            this.set('occupancyText', 'Currently Empty');
+        }
+    }.observes('loaded')
 });

@@ -1,4 +1,12 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[solomon-story="occupancy-tile"] {
+    [cpn-story_title] {
+        color: $bid-dark-blue;
+    }
+}
+
+    [spc-occupancy_text] {
+        font-size: rem(20px);
+        line-height: rem(22.5px);
+        font-weight: 700;
+        color: #fff;
+    }

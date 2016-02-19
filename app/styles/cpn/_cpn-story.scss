@@ -293,6 +293,10 @@
                         [solomon-app~="yorkshire-water"] & {
                             color: $yw-medium-blue;
                         }
+                        
+                        [solomon-app~="bid"] & {
+                            font-weight: 500;
+                        }
                     }
                     
                     [cpn-story_desc] {
