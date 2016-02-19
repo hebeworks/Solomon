@@ -1,4 +1,18 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[solomon-story="levy-tile"] {
+    [cpn-story_bar~="front"],
+    [cpn-story_dot~="front"]::after {
+        background-color: #fff;
+    }
+}
+
+    [spc-levy_amount] {
+        font-size: rem(30px);
+        line-height: rem(35px);
+        font-weight: 500;
+        
+    }
+
+    [spc-levy_text] {
+        font-size: rem(12.5px);
+        line-height: rem(14.5px);
+    }

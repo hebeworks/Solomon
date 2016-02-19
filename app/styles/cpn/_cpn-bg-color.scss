@@ -25,6 +25,10 @@
 [cpn-bg-color="dark-blue"] {
     background-color: $dark-blue;
     color: #fff;
+    
+    [solomon-app~="bid"] & {
+        background-color: $bid-dark-blue;
+    }
 }
 
 [cpn-bg-color="red"] {
