@@ -1,4 +1,22 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[spc-single-person_type] {
+    position: absolute;
+    width: 25%;
+    height: rem(97px); // height of 1-height content area
+    background-color: $bid-dark-blue;
+    display: table;
+    border-radius: rem(4px);
+}
+
+    [spc-single-person_type-text] {
+        color: #fff;
+        font-size: rem(12px);
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        padding: rem($spacing-base / 2);
+    }
+    
+[spc-single-person_text] {
+    margin-left: 25%;
+    padding-left: rem($spacing-base);
+}
