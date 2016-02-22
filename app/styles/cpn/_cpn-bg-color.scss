@@ -66,6 +66,10 @@
     [solomon-app~="yorkshire-water"] & {
         color: $yw-dark-blue;
     }
+    
+    [solomon-app~="bid"] & {
+        color: $bid-dark-blue;
+    }
 }
 
 [cpn-bg-color="lime"],
