@@ -1,16 +1,31 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
+    <div cpn-font="12px">
+        <div cpn-divide="top solid faded-dark">
+            <div cpn-float="right" cpn-width="25%">
+                <a href="javascript:'" cpn-button="move">View</a>
+            </div>
+            <div cpn-overflow="hidden">
+                <h3 cpn-font="700 15px" cpn-margin="bottom-none">Boots Retail Store</h3>
+                <p cpn-font="500">Boots UK Limited</p>
+                
+                <h4 cpn-font="500 15px">Address:</h4>
+                <p>1 Street Address, Leeds Place, Leeds, West Yorkshire, LS1 1AA</p>
+                
+                <h4 cpn-font="500 15px">Telephone:</h4>
+                <p>0113 1234567</p>
+            </div>
+        </div>
         
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+        <div cpn-divide="top solid faded-dark">
+            <div cpn-float="right" cpn-width="25%">
+                <a href="javascript:'" cpn-button="move">View</a>
+            </div>
+            <div cpn-overflow="hidden">
+                <h4 cpn-font="500 15px">Store Manager:</h4>
+                <p>Jane Doe</p>
+            </div>
+        </div>
+    </div>
     
-    <p>This is the bidOccupantDetails story.</p>
-    
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
