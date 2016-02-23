@@ -1,16 +1,26 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <ol cpn-font="12px">
+        <li cpn-divide="top solid faded-dark" cpn-clearfix cpn-margin="bottom">
+            <div cpn-float="right">
+                <a href="javscript:;" cpn-button="move">View</a>
+            </div>
+            <p>Some description about this job</p>
+        </li>
+        <li cpn-divide="top solid faded-dark" cpn-clearfix cpn-margin="bottom">
+            <div cpn-float="right">
+                <a href="javscript:;" cpn-button="move">View</a>
+            </div>
+            <p>Some description about this job</p>
+        </li>
+        <li cpn-divide="top solid faded-dark" cpn-clearfix cpn-margin="bottom">
+            <div cpn-float="right">
+                <a href="javscript:;" cpn-button="move">View</a>
+            </div>
+            <p>Some description about this job</p>
+        </li>
+    </ol>
     
-    <p>This is the bidJobsList story.</p>
+    <button cpn-button="action">+ Add Job</button>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
