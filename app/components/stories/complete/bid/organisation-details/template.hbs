@@ -1,16 +1,22 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <div cpn-row-list>
+        <div cpn-width="50%" cpn-font="12px">
+            <h3 cpn-font="15px 700" cpn-margin="bottom-none">Boots UK Limited</h3>
+            <p>
+                1 Street Address
+                <br>Leeds Place
+                <br>Leeds
+                <br>LS1 1AA
+            </p>
+        </div>
+        <div cpn-width="50%" cpn-font="12px">
+            <h4 cpn-font="500 15px" cpn-margin="bottom-none">Telephone:</h4>
+            <p>0113 1234567</p>
+            
+            <h4 cpn-font="500 15px" cpn-margin="bottom-none">Primary Contact:</h4>
+            <p>Jane Doe</p>
+        </div>
+    </div>
     
-    <p>This is the bidOrganisationDetails story.</p>
-    
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
 {{/stories/story-base}}
