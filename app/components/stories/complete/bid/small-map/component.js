@@ -5,25 +5,154 @@ export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     initialConfig: {
-        title: 'TITLE: bid/small-map', // (Provide a story title)
-        subTitle: 'SUBTITLE: bid/small-map', // (Provide a story subtitle)
-        // author: '', (Provide the author of the story)
-        
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
-        
-        // color: 'white', // (Set the story colour)
-        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
-        // scroll: true, // (Should the story vertically scroll its content?)
-        
-        // customProperties: '' // (Add custom values to the story attribute)
+        title: 'Map', // (Provide a story title)
+        subTitle: 'Some dynamic description for the map', // (Provide a story subtitle)
+        scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true,
+        showHeaderBorder: false
     },
+    
+    onGMap: function () {
+        var gMap = this.get('gMap');
+        if (!Ember.isEmpty(gMap)) {
+            var mapStyles = [
+                {
+                    "featureType": "administrative",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#0c0b0b"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 45
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#090909"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#d4e4eb"
+                        },
+                        {
+                            "visibility": "on"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#fef7f7"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9b7f7f"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#fef7f7"
+                        }
+                    ]
+                }
+            ];
+            this.get('gMap').setOptions({ styles: mapStyles });
+        }
+    }.observes('gMap'),
+    
+    lat: 53.7997,
+    lng: -1.5492,
+    zoom: 14,
+    markers: Ember.A([
+        {
+            title: 'Boots Retail Store',
+            lat: 53.7971882,
+            lng: -1.5460526
+        },
+        {
+            title: 'Boots Retail Store',
+            lat: 53.7971882,
+            lng: -1.5460526
+        }
+    ]),
     
     // loaded: false, // (Tell other elements that this story has loaded)
     //
