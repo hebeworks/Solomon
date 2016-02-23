@@ -15,7 +15,7 @@ export default DefaultStory.extend({
     },
     
     loaded: false, // (Tell other elements that this story has loaded)
-    occupied: true,
+    status: 'empty', // occupied, empty, archived
     occupancyText: null,
     
     // Add your story-specific code here
@@ -44,12 +44,16 @@ export default DefaultStory.extend({
     },
     
     setOccupancy: function() {
-        if (this.get('occupied')) {
+        if (this.get('status') == 'occupied') {
             this.set('storyConfig.color', 'green');
             this.set('occupancyText', 'Currently Occupied');
-        } else {
+        } else if (this.get('status') == 'empty') {
             this.set('storyConfig.color', 'red');
             this.set('occupancyText', 'Currently Empty');
+        } else if (this.get('status') == 'archived') {
+            this.set('storyConfig.title', 'Archived');
+            this.set('storyConfig.color', 'red');
+            this.set('occupancyText', null);
         }
     }.observes('loaded')
 });

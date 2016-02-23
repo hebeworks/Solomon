@@ -1,5 +1,9 @@
 {{#stories/story-base}}
     
+    {{#if occupancyText}}
     <p spc-occupancy_text cpn-padding="top-half">{{occupancyText}}</p>
+    {{else}}
+    <div spc-occupancy_tick class="svg-circled-tick" data-grunticon-embed></div>
+    {{/if}}
     
 {{/stories/story-base}}
