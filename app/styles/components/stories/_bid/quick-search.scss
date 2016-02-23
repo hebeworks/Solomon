@@ -1,4 +1,30 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[spc-quick-search] {
+    position: relative;
+}
+
+    [spc-quick-search_input] {
+        padding-right: rem(60px);
+    }
+    
+    [spc-quick-search_submit] {
+        width: rem(40px);
+        height: rem(40px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        
+        svg {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            @include transform(rotate(90deg));
+        }
+    }
