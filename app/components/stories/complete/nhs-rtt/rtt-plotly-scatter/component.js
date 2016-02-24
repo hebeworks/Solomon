@@ -84,6 +84,7 @@ export default DefaultStory.extend({
                 color: colorPalette[1],
                 size: 5
             },
+            hoverinfo: "x+y+text",
             text: traces[0].labels,
             x: traces[0].x1,
             y: traces[0].y1,
@@ -98,7 +99,7 @@ export default DefaultStory.extend({
                 color: colorPalette[2],
                 size: 5
             },
-            
+            hoverinfo: "x+y+text",
             text: traces[1].labels,
             y: traces[1].y1,
             x: traces[1].x1,
