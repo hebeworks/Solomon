@@ -7,6 +7,11 @@
     border-radius: rem(4px);
 }
 
+[spc-single-person_type~="in-list"] {
+    position: static;
+    float: left;
+}
+
     [spc-single-person_type-text] {
         color: #fff;
         font-size: rem(12px);

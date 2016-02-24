@@ -1,16 +1,96 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
+    <div spc-search-people_form>
+        <div spc-quick-search cpn-margin="bottom">
+            <input spc-quick-search_input placeholder="Search" type="text">
+            <button cpn-button="move" spc-quick-search_submit class="svg-arrow-circled" data-grunticon-embed>Search</button>
+        </div>
         
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+        <div>
+            {{ select-2
+                content=types
+                value=type
+                placeholder="Choose type"
+                class="margin-bottom-no"
+            }}
+        </div>
+    </div>
     
-    <p>This is the bidSearchPeople story.</p>
+    {{!-- Results --}}
+    <div cpn-overflow="hidden" cpn-margin="top">
+        <div spc-single-person_type="in-list">
+            <p spc-single-person_type-text>Bill payer</p>
+        </div>
+        
+        <div spc-single-person_text>
+            <h3 cpn-font="700 15px" cpn-color="orange" cpn-margin="bottom-none">Mrs. Jane Doe</h3>
+            <p cpn-font="700 12px">Regional Manager</p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Telephone:</span> <span cpn-font="12px">0113 1234567</span>
+            </p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Email:</span> <a href="mailto:jane-doe@organisation.com" cpn-font="12px">jane-doe@organisation.com</a>
+            </p>
+        </div>
+    </div>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
+    <div cpn-overflow="hidden" cpn-margin="top">
+        <div spc-single-person_type="in-list">
+            <p spc-single-person_type-text>Voter</p>
+        </div>
+        
+        <div spc-single-person_text>
+            <h3 cpn-font="700 15px" cpn-color="orange" cpn-margin="bottom-none">Mr. John Doe</h3>
+            <p cpn-font="700 12px">Manager</p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Telephone:</span> <span cpn-font="12px">0113 1234567</span>
+            </p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Email:</span> <a href="mailto:jane-doe@organisation.com" cpn-font="12px">john-doe@organisation.com</a>
+            </p>
+        </div>
+    </div>
+    
+    <div cpn-overflow="hidden" cpn-margin="top">
+        <div spc-single-person_type="in-list">
+            <p spc-single-person_type-text>Voter</p>
+        </div>
+        
+        <div spc-single-person_text>
+            <h3 cpn-font="700 15px" cpn-color="orange" cpn-margin="bottom-none">Mr. John Doe</h3>
+            <p cpn-font="700 12px">Manager</p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Telephone:</span> <span cpn-font="12px">0113 1234567</span>
+            </p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Email:</span> <a href="mailto:jane-doe@organisation.com" cpn-font="12px">john-doe@organisation.com</a>
+            </p>
+        </div>
+    </div>
+    
+    <div cpn-overflow="hidden" cpn-margin="top">
+        <div spc-single-person_type="in-list">
+            <p spc-single-person_type-text>Voter</p>
+        </div>
+        
+        <div spc-single-person_text>
+            <h3 cpn-font="700 15px" cpn-color="orange" cpn-margin="bottom-none">Mr. John Doe</h3>
+            <p cpn-font="700 12px">Manager</p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Telephone:</span> <span cpn-font="12px">0113 1234567</span>
+            </p>
+            
+            <p cpn-margin="bottom-half">
+                <span cpn-font="500">Email:</span> <a href="mailto:jane-doe@organisation.com" cpn-font="12px">john-doe@organisation.com</a>
+            </p>
+        </div>
+    </div>
+    
 {{/stories/story-base}}
