@@ -145,12 +145,14 @@ export default DefaultStory.extend({
         {
             title: 'Boots Retail Store',
             lat: 53.7971882,
-            lng: -1.5460526
+            lng: -1.5460526,
+            icon: '/assets/img/svg/embed/bid-marker-orange-blue.svg'
         },
         {
             title: 'Boots Retail Store',
-            lat: 53.7971882,
-            lng: -1.5460526
+            lat: 53.7997,
+            lng: -1.5492,
+            icon: '/assets/img/svg/embed/bid-marker-orange-blue.svg'
         }
     ]),
     
