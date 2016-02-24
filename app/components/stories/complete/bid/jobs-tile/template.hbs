@@ -1,16 +1,19 @@
 {{#stories/story-base}}
 
-    {{!--
-        To style your newly created story, you can use the Sass file created for this story in app/styles/components/stories.
-        
-        Where possible, try and use existing styles. But if you need to write something specific to this story, then place your styles in this story's partial.
-     
-        For a more detailed workflow see https://github.com/hebeworks/Solomon/wiki/Working-with-Styles
-    --}}
+    <p spc-bid-value-tile_amount cpn-divide="bottom solid faded-light" cpn-padding="top bottom-half">
+        <span>246</span>
+        {{#if trend}}
+        <span spc-bid-value-tile_trend="{{trend}}" class="svg-circled-triangle-hollow" data-grunticon-embed></span>
+        {{/if}}
+    </p>
     
-    <p>This is the bidJobsTile story.</p>
+    <p spc-bid-value-tile_text>
+        <span cpn-font="700" cpn-display="block">Completed jobs</span>
+        <span cpn-display="block">Dolor sit amet</span>
+    </p>
     
-    {{#each item in items}}
-        <p>{{item.title}}</p>
-    {{/each}}
+    <div cpn-divide="top solid faded-light" cpn-padding="top-none">
+        <a spc-val_link cpn-font="700" href="javascript:;">Tap to view</a>
+    </div>
+    
 {{/stories/story-base}}
