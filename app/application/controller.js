@@ -168,6 +168,14 @@ export default Ember.Controller.extend({
 		this.set('bottomDrawerConfig', config);
 		this.set('canvasBlurred', config.blurred);
 	},
+	
+	openManipulationPanel: function() {
+		
+	},
+	
+	closeManipulationPanel: function() {
+		
+	},
 
 	goBack: function () {
 		// implement your own history popping that actually works ;)
