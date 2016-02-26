@@ -233,26 +233,13 @@ export default Ember.Controller.extend({
 	},
 
   editAStory: function (model) {
-		// var params = {
-		// 	contentType: 'stories/edit-a-story',
-		// 	preventCanvasBlur: true,
-		// 	blurred: false
-		// };
-
-		// if (!Ember.isEmpty(model)){
-		// 	params.model = model;
-		// 	params.mainTitle = 'Edit a story';
-		// }
-
-		// this.openBottomDrawer(params);
-		
 		var panelState = {
 			content: 'stories/edit-a-story'
 		};
 		
 		if (!Ember.isEmpty(model)){
 			panelState.model = model;
-			panelState.mainTitle = 'Edit a story';
+			panelState.title = 'Edit Story: ' + model.get('title');
 		}
 		
 		this.openManipulationPanel(panelState);

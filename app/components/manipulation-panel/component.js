@@ -4,6 +4,7 @@ import ResizeAware from 'ember-resize/mixins/resize-aware';
 export default Ember.Component.extend(ResizeAware, {
     openState: null,
     content: null,
+    title: null,
     
     onPanelStateChange: function() {
         var panelState = this.get('appController.manipulationPanelState');
@@ -11,6 +12,7 @@ export default Ember.Component.extend(ResizeAware, {
         if (panelState != null) {
             if (!Ember.isEmpty(panelState.content)) {
                 this.set('content', panelState.content);
+                this.set('title', panelState.title);
             }
             
             if (panelState.openState == 'is-open') {

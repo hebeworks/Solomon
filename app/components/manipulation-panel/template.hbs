@@ -1,7 +1,7 @@
-<div cpn-manipulation-panel="{{openState}}">
-    <div cpn-manipulation-panel_header cpn-divide="bottom solid" cpn-margin="right-double left-double">
+<div cpn-manipulation-panel="{{openState}}" cpn-padding="top-double">
+    <div cpn-manipulation-panel_header cpn-divide="bottom solid" cpn-margin="right-double bottom-double left-double" cpn-clearfix>
+        <a {{action "closePanel"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
         <h2 cpn-manipulation-panel_title>{{title}}</h2>
-        <a href="javascript:;" {{action "closePanel"}}>Close</a>
     </div>
     
     {{component content}}
