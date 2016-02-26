@@ -5,6 +5,7 @@ export default Ember.Component.extend(ResizeAware, {
     openState: null,
     content: null,
     title: null,
+    isCancelled: false,
     
     onPanelStateChange: function() {
         var panelState = this.get('appController.manipulationPanelState');
@@ -47,10 +48,12 @@ export default Ember.Component.extend(ResizeAware, {
     },
     
     openPanel: function() {
+        this.set('isCancelled', false);
         this.set('openState', 'is-open');
     },
     
     closePanel: function() {
+        this.set('isCancelled', true);        
         this.set('openState', 'is-closed');
     },
     
