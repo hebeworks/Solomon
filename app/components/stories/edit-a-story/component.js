@@ -43,6 +43,12 @@ export default Ember.Component.extend(ManipulationPanelContent, {
 		this.set('action', 'saveCanvasState');
 		this.sendAction('action');
 	},
+    
+    onIsCancelled: function() {
+        if(this.get('isCancelled')) {
+            this.restoreEditableFieldValues();
+        }
+    }.observes('isCancelled'),
 
 	actions: {
 
