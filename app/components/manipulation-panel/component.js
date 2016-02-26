@@ -5,14 +5,18 @@ export default Ember.Component.extend(ResizeAware, {
     openState: null,
     content: null,
     title: null,
+    subTitle: null,
     
     onPanelStateChange: function() {
         var panelState = this.get('appController.manipulationPanelState');
         
         if (panelState != null) {
             if (!Ember.isEmpty(panelState.content)) {
-                this.set('content', panelState.content);
-                this.set('title', panelState.title);
+                this.setProperties({
+                    content: panelState.content,
+                    title: panelState.title,
+                    subTitle: panelState.subTitle
+                });
             }
             
             if (panelState.openState == 'is-open') {

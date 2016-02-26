@@ -239,7 +239,8 @@ export default Ember.Controller.extend({
 		
 		if (!Ember.isEmpty(model)){
 			panelState.model = model;
-			panelState.title = 'Edit Story: ' + model.get('title');
+			panelState.title = "Edit a story";
+			panelState.subTitle = model.get('title');
 		}
 		
 		this.openManipulationPanel(panelState);
