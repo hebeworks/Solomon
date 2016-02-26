@@ -92,6 +92,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         closeBottomDrawer: function () {
             this.controller.closeBottomDrawer();
         },
+        
+        openManipulationPanel: function(content) {
+            this.controller.openManipulationPanel({content: content});
+        },
+        
+        closeManipulationPanel: function() {
+            this.controller.closeManipulationPanel();
+        },
 
         createACanvas: function (model) {
             this.controller.createACanvas(model);

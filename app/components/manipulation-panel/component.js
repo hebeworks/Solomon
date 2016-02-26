@@ -6,8 +6,20 @@ export default Ember.Component.extend(ResizeAware, {
     content: null,
     
     onPanelStateChange: function() {
+        var panelState = this.get('appController.manipulationPanelState');
         
-    },
+        if (panelState != null) {
+            if (!Ember.isEmpty(panelState.content)) {
+                this.set('content', panelState.content);
+            }
+            
+            if (panelState.openState == 'is-open') {
+                this.openPanel();
+            } else {
+                this.closePanel();
+            }
+        }
+    }.observes('appController.manipulationPanelState'),
     
     onInsertElement: function() {
         this.setPanelWidth();

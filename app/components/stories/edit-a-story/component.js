@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
+import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
-export default Ember.Component.extend(BottomDrawerContent, {
+export default Ember.Component.extend(BottomDrawerContent, ManipulationPanelContent, {
 
 	message: '',
 
@@ -14,7 +15,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	}.property('model'),
 
 	mainTitle: Ember.computed(function () {
-		return 'Edit a Story ' + this.get('model.title');
+		return 'Edit Story ' + this.get('model.title');
 	}),
 
 	storeEditableFieldValues: function(){
@@ -57,7 +58,8 @@ export default Ember.Component.extend(BottomDrawerContent, {
 		},
 
 		close: function(){
-			this.get('appController').closeBottomDrawer();
+			// this.get('appController').closeBottomDrawer();
+			this.get('appController').closeManipulationPanel();
 		}
 
 	}
