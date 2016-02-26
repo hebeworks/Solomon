@@ -2,153 +2,125 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
 
 export default DefaultStory.extend({
-    // Story settings (including default values)
-    // Uncomment any setting you need to change, delete any you don't need
     chartID: hebeutils.guid(),
     initialConfig: {
-        title: '', // (Provide a story title)
-        subTitle: '', // (Provide a story subtitle)
+        title: '', 
+        subTitle: '',
         author: 'Simon Zimmerman',
-        
-        description: '', // (Provide a longer description of the story)
-        license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', (Where did the data come from?)
-        feedbackEmail: 'support@hebeworks.com', // (Provide an email users can contact about this story)
-        
-        // color: 'white', (Set the story colour)
-        width: '3', //(Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', (Set the height of the story)
-        // headerImage: '', (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, (Add a horizontal slider to the story)
-        scroll: false, // (Should the story vertically scroll its content?)
+        description: '',
+        license: '',
+        feedbackEmail: 'support@hebeworks.com',
+        width: '3',
+        scroll: false,
         viewOnly: true
     },
-
+    plotlyLoaded: false,
     getPlotly: function() {
         var _this = this;
+        this.get('nhsFilter');
         $.ajax({
             url: "https://cdn.plot.ly/plotly-latest.min.js",
             dataType: "script",
             cache: true
         })
         .done(function() {
-            _this.drawChart();
+            _this.set('plotlyLoaded',true);
         });
     }.on("init"),
-
+    nhsFilter: Ember.computed.alias('appSettings.canvasSettings.nhsFilter'),
+    loadData: function() {
+        if(this.get('plotlyLoaded') 
+            && !Ember.isEmpty(this.get('nhsFilter.selectedRegion')) 
+            && !Ember.isEmpty(this.get('nhsFilter.selectedMonth'))) {
+            var _this = this;
+            var regionID = this.get('nhsFilter.selectedRegion.id');
+            var month = this.get('nhsFilter.selectedMonth.id');
+            var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/region-month/ccgs'
+                + '?regionid=' + regionID
+                + '&month=' + month;
+            this.getData(url)
+                .then(function(data){
+                    _this.set('chartData',data);
+                    _this.drawChart();  
+                });
+        }
+    }.observes(
+        'plotlyLoaded',
+        'nhsFilter.selectedRegion',
+        'nhsFilter.selectedMonth'
+        ),
     drawChart: function() {
         var colorPalette = ['rgb(0,0,0)', 'rgb(0,172,220)', 'rgb(213,56,128​)', 'rgb(255,191,71)'];
-
         var d3 = Plotly.d3;
-
-        function normal_array( mean, stddev, size ){
-            var arr = new Array(size), i;
-            // from http://bl.ocks.org/nrabinowitz/2034281
-            var generator = (function() {
-                return d3.random.normal(mean, stddev);
-            }());
-
-            for( i=0; i< arr.length; i++ ){
-                arr[i] = generator();
+        var ccgs = this.get('nhsFilter.ccgs');
+        var providers = this.get('nhsFilter.providers');
+        var chartData = this.get('chartData');
+        var traces = [];
+        traces.push(buildTrace(ccgs,chartData.ccgs));
+        traces.push(buildTrace(providers,chartData.providers));
+        function buildTrace(names,items){
+            var trace = {
+                x1 : [],
+                y1 : [],
+                labels : []
+            };
+            var prop = null;
+            function findCCG(item){ 
+                return item._id === prop;
             }
-            return arr;
+            for(prop in items) {
+                trace.x1.push((items[prop].part1.percentage));
+                trace.y1.push((items[prop].part2.percentage));
+                var ccg = _.find(names,findCCG);
+                trace.labels.push(ccg.name);
+            }
+            return trace;
         };
-
-        var x0 = normal_array(.85, 0.05, 500);
-        var y0 = normal_array(.65, 0.05, 300);
-        var x1 = normal_array(.85, 0.05, 2000);
-        var y1 = normal_array(.65, 0.05, 300);
-        var x2 = normal_array(.85, 0.05, 2000);
-        var y2 = normal_array(.65, 0.05, 300);
-        var x3 = normal_array(.85, 0.05, 2000);
-        var y3 = normal_array(.65, 0.05, 300);        
-
         var trace1 = {
             name: "CCGs",
             showLegend: true,
             mode: 'markers',
             marker: {
                 color: colorPalette[1],
-                size: 4
+                size: 5
             },
-            
-            //x: x0,
-            //y: y0,
-            text: ['CCG1','CCG2','CCG3','CCG4','CCG5'],
-            x: [.92, .97, .90, .86, .91, .925],
-            y: [.95, .94, .90, .86, .80, .74],
+            hoverinfo: "x+y+text",
+            text: traces[0].labels,
+            x: traces[0].x1,
+            y: traces[0].y1,
             type: 'scatter'
         };
-
         var trace2 = {
             name: "Providers",
             showLegend: true,
+            visible: "legendonly",
             mode: 'markers',
             marker: {
                 color: colorPalette[2],
-                size: 4
+                size: 5
             },
-            
-            //x: x1,
-            //y: y1,
-            text: ['CCG1','CCG2','CCG3','CCG4','CCG5'],
-            y: [.92, .97, .90, .86, .91, .925],
-            x: [.95, .94, .73, .89, .80, .74],
+            hoverinfo: "x+y+text",
+            text: traces[1].labels,
+            y: traces[1].y1,
+            x: traces[1].x1,
             type: 'scatter'
         };
-
-        // var trace3 = {
-        //     name: "London",
-        //     showLegend: true,
-        //     mode: 'markers',
-            // marker: {
-            //     color: colorPalette[3],
-            //     size: 4
-        //     },
-            
-        //     x: x2,
-        //     y: y2,
-        //     //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-        //     //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-        //     type: 'scatter'
-        // };
-
-        // var trace4 = {
-        //     name: "South",
-        //     showLegend: true,
-        //     mode: 'markers',
-        //     marker: {
-        //         //color: colorPalette[4],
-        //         size: 4
-        //     },
-            
-        //     x: x3,
-        //     y: y3,
-        //     //x: ['< 18 weeks','18 - 26 weeks','26-40 weeks','40 - 52 weeks','+52 weeks'],
-        //     //y: [.95, .94, .90, .86, .80, .74, .78, .75, .70, .69, .67, .60],
-        //     type: 'scatter'
-        // };
-
         var layout = {
             margin: {
-                l: 40,
+                l: 50,
                 r: 30,
-                b: 30,
+                b: 40,
                 t: 10,
-                pad: 5
+                pad: 0
             },
             font: {
                 family: "Roboto, Open Sans, verdana, sans-serif",
-                size: 11,
+                size: 10,
                 color: colorPalette[0],
             },
-            //showlegend: false,
             legend: {
-                //xanchor:"center",
                 yanchor:"middle",
                 y:.5,
-                //x:0.5, 
                 traceorder: 'normal',
                 font: {
                   family: "Roboto, Open Sans, verdana, sans-serif",
@@ -157,6 +129,12 @@ export default DefaultStory.extend({
                 },
             },
             xaxis: {
+                title: "Complete",
+                titlefont: {
+                  family: 'Roboto, Open Sans, verdana, sans-serif',
+                  size: 12,
+                  color: '#000'
+                },
                 showgrid: false,
                 ticklen: 2,
                 tickwidth: 1,
@@ -168,30 +146,40 @@ export default DefaultStory.extend({
                 }
             },
             yaxis: {
+                title: "Incomplete",
+                titlefont: {
+                  family: 'Roboto, Open Sans, verdana, sans-serif',
+                  size: 12,
+                  color: '#000'
+                },
                 showgrid: false,
+                ticklen: 2,
+                tickwidth: 1,
                 tickformat: "%",
                 showline: true,
-                //range: [0, 1],
+                line:{
+                    width: 2,
+                    color: '#000'
+                }
             },
+            hovermode: "closest",
+            //dragmode: "select",
             textposition: 'top left',
             // shapes: [
             //     {
-            //         type: 'line',
-            //         x0: '2016-01-01',
-            //         y0: 0.92,
-            //         x1: '2016-12-01',
-            //         y1: 0.92,
+            //         type: 'rect',
+            //         x0: 0.90,
+            //         x1: 1,
+            //         y0: 0.90,
+            //         y1: 1,
+            //         fillcolor: 'rgba(114, 187, 0, 0.4)',
             //         line: {
-            //             color: 'rgb(000, 000, 000)',
-            //             width: 1,
-            //             dash: 'dot'
+            //             width: 0,
             //         }
             //     }
             // ]
         };
-
-        var data = [trace1, trace2];
-
+        var data = [trace1,trace2];
         Plotly.newPlot(this.get('chartID'), data, layout, {
             
             // no interactivity, for export or image generation
@@ -210,7 +198,7 @@ export default DefaultStory.extend({
             //frameMargins: 0,
             
             // mousewheel or two-finger scroll zooms the plot
-            scrollZoom: true,
+            scrollZoom: false,
             
             // double click interaction (false, 'reset', 'autosize' or 'reset+autosize')
             //doubleClick: 'reset+autosize',
@@ -237,10 +225,10 @@ export default DefaultStory.extend({
             // (see ./components/modebar/buttons.js for the list of names)
             // (see https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js)
             modeBarButtonsToRemove: [
-                //'toImage',
+                'toImage',
                 'sendDataToCloud',
-                'zoom2d',
-                'pan2d',
+                //'zoom2d',
+                //'pan2d',
                 'select2d',
                 'lasso2d',
                 'zoomIn2d',
