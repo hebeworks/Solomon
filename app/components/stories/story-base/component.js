@@ -231,6 +231,11 @@ export default Ember.Component.extend({
                     var $el = $(this);
                     if (_this.get('isDraggingStory') == false) {
                         $el.closest('.story__inner').toggleClass('-flip');
+                        if (_this.get('storyFlip') == 'not-flipped') {
+                            _this.set('storyFlip', 'flipped');
+                        } else {
+                            _this.set('storyFlip', 'not-flipped');
+                        }
                     }
                 });
         } else {
