@@ -9,7 +9,7 @@ $panel-width: 375px;
     top: rem(100px); // takes header into account
     z-index: 3;
     left: -100%;
-    @include transition(.5s);
+    @include transition(.3s);
     
     @include breakpoint(min-width 500px) {
         width: rem($panel-width);
