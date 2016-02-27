@@ -130,6 +130,9 @@ export default Ember.Controller.extend({
 		this.set('topOpen', true);
 
 		$('.js-open-toolbox').addClass('-selected');
+		
+		this.closeBottomDrawer();
+		this.closeManipulationPanel();
 	},
 
 	closeToolbox: function (){
@@ -143,6 +146,8 @@ export default Ember.Controller.extend({
 			this.closeToolbox();
 		} else {
 			this.openToolbox();
+			this.closeBottomDrawer();
+			this.closeManipulationPanel();
 		}
 	},
 
@@ -154,6 +159,7 @@ export default Ember.Controller.extend({
 		}, configParams);
 
 		this.closeToolbox();
+		this.closeManipulationPanel();
 		this.set('bottomDrawerConfig', config);
 		this.set('canvasBlurred', config.blurred);
 	},
