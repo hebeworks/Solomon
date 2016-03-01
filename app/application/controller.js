@@ -179,7 +179,7 @@ export default Ember.Controller.extend({
 		var panelState = Ember.$.extend({
 			openState: 'is-open'
 		}, panelStateOptions);
-		
+		panelState = Ember.Object.create(panelState);
 		this.set('manipulationPanelState', panelState);
 		this.closeToolbox();
 		this.closeBottomDrawer();

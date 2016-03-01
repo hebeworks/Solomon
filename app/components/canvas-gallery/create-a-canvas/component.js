@@ -1,14 +1,10 @@
 import Ember from 'ember';
-import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
-export default Ember.Component.extend(ManipulationPanelContent, {
+export default Ember.Component.extend({
 
 	canvas: null,
-	model: null,
+	model: Ember.computed.alias('appController.manipulationPanelState.model'),
 	message: '',
-	mainTitle: 'Create a Canvas',
-	title: 'Create a Canvas',
-	appController: null,
 
 	categories: function(){
 		return [];
@@ -18,26 +14,16 @@ export default Ember.Component.extend(ManipulationPanelContent, {
 		return [];
 	}.property('model'),
 
-	didInsertElement: function () {
-		var panelState = this.get('appController.manipulationPanelState');
-		if (!Ember.isEmpty(panelState)) {
-			if (!Ember.isEmpty(panelState.model)) {
-				this.set('model', panelState.model);
-			}
-		}
-	},
-
 	onModelChanged: function () {
-		var model = this.get('model');
 		this.setProperties({
-			title: model.get('title'),
-			description: model.get('description'),
-			stories: model.get('stories'),
-			author: model.get('author'),
-			twitter: model.get('twitter')
+			title: this.get('model.title') || '',
+			description: this.get('model.description') || '',
+			stories: this.get('model.stories') || Ember.A(),
+			author: this.get('model.author') || '',
+			twitter: this.get('model.twitter') || ''
 		});
 		// categories: model.get('categories')
-	}.observes('model'),
+	}.observes('model').on('didReceiveAttrs'),
 
 	allCategories: Ember.computed({
 		get() {
@@ -87,12 +73,27 @@ export default Ember.Component.extend(ManipulationPanelContent, {
 			return false;
 		}
 	},
+	
+	clearFields: function() {
+		this.set('model',null);
+	},
+	
+	onIsCancelled: function() {
+	    if(this.get('isCancelled')) {
+	        this.clearFields();
+	    }
+	}.observes('isCancelled'),
 
 	actions: {
+		
+		cancel: function() {
+			this.clearFields();
+			this.get('appController').closeManipulationPanel();
+		},
 
 		save: function () {
-			this.get('appController').closeManipulationPanel();
 			this.saveCanvas();
+			this.get('appController').closeManipulationPanel();
 		}
 
 	}
