@@ -183,14 +183,17 @@ export default Ember.Controller.extend({
 		this.set('manipulationPanelState', panelState);
 		this.closeToolbox();
 		this.closeBottomDrawer();
+		this.set('canvasBlurred', panelState.blurCanvas);
 	},
 	
 	closeManipulationPanel: function() {
 		var panelState = Ember.$.extend({
-			openState: 'is-closed'
+			openState: 'is-closed',
+			blurCanvas: false
 		});
 		
 		this.set('manipulationPanelState', panelState);
+		this.set('canvasBlurred', panelState.blurCanvas);
 	},
 
 	goBack: function () {
@@ -225,7 +228,8 @@ export default Ember.Controller.extend({
 	createACanvas: function (model) {
 		var panelState = {
 			content: 'canvas-gallery/create-a-canvas',
-			title: 'Add a canvas'
+			title: 'Add a canvas',
+			blurCanvas: true
 		};
 		
 		if (!Ember.isEmpty(model)) {
@@ -241,7 +245,8 @@ export default Ember.Controller.extend({
 
   	editAStory: function (model) {
 		var panelState = {
-			content: 'stories/edit-a-story'
+			content: 'stories/edit-a-story',
+			blurCanvas: false
 		};
 		
 		if (!Ember.isEmpty(model)){

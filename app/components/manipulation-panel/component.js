@@ -7,6 +7,7 @@ export default Ember.Component.extend(ResizeAware, {
     title: null,
     subTitle: null,
     isCancelled: false,
+    // blurCanvas: false,
     
     onPanelStateChange: function() {
         var panelState = this.get('appController.manipulationPanelState');
@@ -59,6 +60,7 @@ export default Ember.Component.extend(ResizeAware, {
     closePanel: function() {
         this.set('isCancelled', true);        
         this.set('openState', 'is-closed');
+        this.set('appController.canvasBlurred', false);
     },
     
     changeContent: function(content) {
