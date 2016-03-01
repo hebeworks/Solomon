@@ -4,7 +4,7 @@
 
 	{{yield}}
 
-	<div cpn-margin="bottom-double" class="create-a-story -form -admin">
+	<div cpn-divide="bottom solid faded-dark" cpn-padding="bottom" cpn-margin="bottom-double" class="create-a-story -form -admin">
 		<h2>{{title}}</h2>
 
 		{{#each editableFields as |field|}}
@@ -17,18 +17,18 @@
 			</p>
 		{{/each}}
 
-		<div cpn-row-list>
-
-			<div>
-				<button cpn-button="action" {{action "cancel"}}>Cancel</button>
-			</div>
-
-			<div>
-				<button cpn-button="action" {{action "save"}}>Save Story</button>
-			</div>
-
-		</div>
-
 	</div>
+	
+	<ul cpn-row-list>
+
+		<li>
+			<button cpn-button="action" {{action "cancel"}}>Cancel</button>
+		</li>
+
+		<li>
+			<button cpn-button="action" {{action "save"}}>Save Story</button>
+		</li>
+
+	</ul>
 
 </div>
