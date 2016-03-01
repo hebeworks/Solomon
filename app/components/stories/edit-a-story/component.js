@@ -47,6 +47,7 @@ export default Ember.Component.extend(ManipulationPanelContent, {
     onIsCancelled: function() {
         if(this.get('isCancelled')) {
             this.restoreEditableFieldValues();
+            this.send('close');
         }
     }.observes('isCancelled'),
 
