@@ -223,22 +223,23 @@ export default Ember.Controller.extend({
     },
 
 	createACanvas: function (model) {
-		var params = {
-			contentType: 'canvas-gallery/create-a-canvas',
-			openAmount: '-full'
+		var panelState = {
+			content: 'canvas-gallery/create-a-canvas',
+			title: 'Add a canvas'
 		};
+		
 		if (!Ember.isEmpty(model)) {
-			params.model = model;
-			params.mainTitle = 'Duplicate a canvas'
+			panelState.model = model;
 		}
-		this.openBottomDrawer(params);
+		
+		this.openManipulationPanel(panelState);
 	},
 
 	showCanvasSettings: function () {
 		this.showModal('canvas-settings', 'Canvas Settings', '', true);
 	},
 
-  editAStory: function (model) {
+  	editAStory: function (model) {
 		var panelState = {
 			content: 'stories/edit-a-story'
 		};

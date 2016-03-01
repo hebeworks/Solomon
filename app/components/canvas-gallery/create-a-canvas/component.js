@@ -1,18 +1,13 @@
 import Ember from 'ember';
-import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
+import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
-export default Ember.Component.extend(BottomDrawerContent, {
+export default Ember.Component.extend(ManipulationPanelContent, {
 
 	canvas: null,
-
 	model: null,
-
 	message: '',
-
 	mainTitle: 'Create a Canvas',
-
 	title: 'Create a Canvas',
-
 	appController: null,
 
 	categories: function(){
@@ -24,13 +19,10 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	}.property('model'),
 
 	didInsertElement: function () {
-		var config = this.get('appController.bottomDrawerConfig');
-		if (!Ember.isEmpty(config)) {
-			if (!Ember.isEmpty(config.model)) {
-				this.set('model', config.model);
-			}
-			if (!Ember.isEmpty(config.mainTitle)) {
-				this.set('mainTitle', config.mainTitle);
+		var panelState = this.get('appController.manipulationPanelState');
+		if (!Ember.isEmpty(panelState)) {
+			if (!Ember.isEmpty(panelState.model)) {
+				this.set('model', panelState.model);
 			}
 		}
 	},
@@ -99,6 +91,7 @@ export default Ember.Component.extend(BottomDrawerContent, {
 	actions: {
 
 		save: function () {
+			this.get('appController').closeManipulationPanel();
 			this.saveCanvas();
 		}
 
