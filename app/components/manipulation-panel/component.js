@@ -2,44 +2,28 @@ import Ember from 'ember';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 
 export default Ember.Component.extend(ResizeAware, {
-    openState: null,
-    content: null,
-    title: null,
-    subTitle: null,
-    isCancelled: false,
-    // blurCanvas: false,
-    
-    onPanelStateChange: function() {
-        var panelState = this.get('appController.manipulationPanelState');
-        
-        if (panelState != null) {
-            if (!Ember.isEmpty(panelState.content)) {
-                this.setProperties({
-                    content: panelState.content,
-                    title: panelState.title,
-                    subTitle: panelState.subTitle
-                });
+    content: Ember.computed.alias('panelOptions.content'),
+
+    openState: Ember.computed('isClosing', 'isOpening', {
+        get() {
+            if (this.get('isOpening') === true) {
+                return 'is-open';
             }
-            
-            if (panelState.openState == 'is-open') {
-                this.openPanel();
-            } else {
-                this.closePanel();
-            }
+            return 'is-closed';
         }
-    }.observes('appController.manipulationPanelState'),
-    
-    onInsertElement: function() {
+    }),
+
+    onInsertElement: function () {
         this.setPanelWidth();
     }.on('didInsertElement'),
-    
+
     debouncedDidResize() {
         this.setPanelWidth();
     },
     
     // If we're on smaller screens, the panel needs to be full-width.
     // But this affects the positioning of it so we get the width of the viewport and add that as the panel's nagative left position.
-    setPanelWidth: function() {
+    setPanelWidth: function () {
         var _this = this,
             viewportWidth = _this.$(window).width(),
             panelWidth = 375,
@@ -49,27 +33,6 @@ export default Ember.Component.extend(ResizeAware, {
             _this.$('[cpn-manipulation-panel]').css('left', viewportWidth * -1);
         } else {
             _this.$('[cpn-manipulation-panel]').css('left', panelWidth * -1);
-        }
-    },
-    
-    openPanel: function() {
-        this.set('isCancelled', false);
-        this.set('openState', 'is-open');
-    },
-    
-    closePanel: function() {
-        this.set('isCancelled', true);        
-        this.set('openState', 'is-closed');
-        this.set('appController.canvasBlurred', false);
-    },
-    
-    changeContent: function(content) {
-        this.set('content', content);
-    },
-    
-    actions: {
-        closePanel: function() {
-            this.closePanel();
         }
     }
 });

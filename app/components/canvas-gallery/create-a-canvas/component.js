@@ -1,101 +1,103 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
-	canvas: null,
-	model: Ember.computed.alias('appController.manipulationPanelState.model'),
-	message: '',
+export default Ember.Component.extend(ManipulationPanelContent, {
 
-	categories: function(){
-		return [];
-	}.property('model'),
+    canvas: null,
+    message: '',
 
-	stories: function(){
-		return [];
-	}.property('model'),
+    categories: function () {
+        return [];
+    }.property('model'),
 
-	onModelChanged: function () {
-		this.setProperties({
-			title: this.get('model.title') || '',
-			description: this.get('model.description') || '',
-			stories: this.get('model.stories') || Ember.A(),
-			author: this.get('model.author') || '',
-			twitter: this.get('model.twitter') || ''
-		});
-		// categories: model.get('categories')
-	}.observes('model').on('didReceiveAttrs'),
+    stories: function () {
+        return [];
+    }.property('model'),
 
-	allCategories: Ember.computed({
-		get() {
-			return this.store.query('category', {})
-		}
-	}),
+    onModelChanged: function () {
+        this.setProperties({
+            title: this.get('model.title') || '',
+            description: this.get('model.description') || '',
+            stories: this.get('model.stories') || Ember.A(),
+            author: this.get('model.author') || '',
+            twitter: this.get('model.twitter') || ''
+        });
+        // categories: model.get('categories')
+    }.observes('model').on('didReceiveAttrs'),
 
-	allStories: Ember.computed({
-		get() {
-			return this.store.query('story', {})
-		}
-	}),
+    allCategories: Ember.computed({
+        get() {
+            return this.store.query('category', {})
+        }
+    }),
 
-	// TODO: https://github.com/dockyard/ember-validations
-	isValid: function (){
-		return true;
-	},
+    allStories: Ember.computed({
+        get() {
+            return this.store.query('story', {})
+        }
+    }),
 
-	saveCanvas: function() {
-		if (!this.isValid())
-			return;
+    // TODO: https://github.com/dockyard/ember-validations
+    isValid: function () {
+        return true;
+    },
 
-		if (this.get('session.isAuthenticated')){
-			var canvas = this.store.createRecord('canvas', {
-				title: this.get('title'),
-				description: this.get('description'),
-				stories: this.get('stories'),
-				categories: this.get('categories'),
-				authorName: this.get('author'),
-				twitterName: this.get('twitter'),
-				userID: this.get('currentUser.id')
-			});
+    saveCanvas: function () {
+        if (!this.isValid())
+            return;
 
-			var self = this;
+        if (this.get('session.isAuthenticated')) {
+            var canvas = this.store.createRecord('canvas', {
+                title: this.get('title'),
+                description: this.get('description'),
+                stories: this.get('stories'),
+                categories: this.get('categories'),
+                authorName: this.get('author'),
+                twitterName: this.get('twitter'),
+                userID: this.get('currentUser.id')
+            });
 
-			canvas.save().then(function(savedCanvas){
-				if(!Ember.isEmpty(savedCanvas.get('id'))){
-					self.set('action', 'loadACanvas');
-					self.sendAction('action', savedCanvas.get('id'));
-				}
-			});
-		}
-		else {
-			this.set('action', 'showLoginPopup');
-			this.sendAction();
+            var self = this;
 
-			return false;
-		}
-	},
-	
-	clearFields: function() {
-		this.set('model',null);
-	},
-	
-	onIsCancelled: function() {
-	    if(this.get('isCancelled')) {
-	        this.clearFields();
-	    }
-	}.observes('isCancelled'),
+            canvas.save().then(function (savedCanvas) {
+                if (!Ember.isEmpty(savedCanvas.get('id'))) {
+                    self.set('action', 'loadACanvas');
+                    self.sendAction('action', savedCanvas.get('id'));
+                }
+            });
+        }
+        else {
+            this.set('action', 'showLoginPopup');
+            this.sendAction();
 
-	actions: {
-		
-		cancel: function() {
-			this.clearFields();
-			this.get('appController').closeManipulationPanel();
-		},
+            return false;
+        }
+    },
 
-		save: function () {
-			this.saveCanvas();
-			this.get('appController').closeManipulationPanel();
-		}
+    clearFields: function () {
+        this.set('model', null);
+    },
 
-	}
+
+    onIsClosing: function () {
+        this.clearFields();
+    }.observes('isClosing'),
+
+    actions: {
+
+        cancel: function () {
+            this.clearFields();
+            this.set('action', 'closeManipulationPanel');
+            this.sendAction('action');
+        },
+
+        save: function () {
+            this.saveCanvas();
+            this.sendAction('action');
+            this.get('appController').closeManipulationPanel();
+        }
+
+    }
 
 });

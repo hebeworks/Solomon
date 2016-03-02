@@ -1,262 +1,266 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	// Properties
-	isModalVisible: false,
-	modalOptions: {},
-
-	appController: function () {
+    // Properties
+    isModalVisible: false,
+    modalOptions: {},
+    manipulationPanel: {
+        state: {},
+        options: {}
+    },
+    appController: function () {
         return this;
-	}.property(),
+    }.property(),
 
-	history: [],
-	hasHistory: function () {
-		return this.get('history.length') > 1;
-	}.property('history.length'),
+    history: [],
+    hasHistory: function () {
+        return this.get('history.length') > 1;
+    }.property('history.length'),
 
-	watchHistory: function () {
-		// console.log('adding current path: ' + this.get('currentPath') + ' to history.');
-		this.get('history').pushObject(this.get('currentPath'));
-	}.observes('currentPath'),
+    watchHistory: function () {
+        // console.log('adding current path: ' + this.get('currentPath') + ' to history.');
+        this.get('history').pushObject(this.get('currentPath'));
+    }.observes('currentPath'),
 
-	onErrorMessage: function () {
-		var _this = this;
-		var errorMessage = this.get('appSettings.errorMessage');
-		function clearErrorMessage() {
-			_this.set('appSettings.errorMessage', null);
-		}
-		if (!Ember.isEmpty(errorMessage)) {
-			this.showModal(null, { title: 'Oops there was a problem', intro: errorMessage, onCloseCallback: clearErrorMessage });
-		}
-	}.observes('appSettings.errorMessage'),
+    onErrorMessage: function () {
+        var _this = this;
+        var errorMessage = this.get('appSettings.errorMessage');
+        function clearErrorMessage() {
+            _this.set('appSettings.errorMessage', null);
+        }
+        if (!Ember.isEmpty(errorMessage)) {
+            this.showModal(null, { title: 'Oops there was a problem', intro: errorMessage, onCloseCallback: clearErrorMessage });
+        }
+    }.observes('appSettings.errorMessage'),
 
-	obSolomonConfigChange: function () {
+    obSolomonConfigChange: function () {
         // Todo: get the site config from a request to Solomon API
-		// (using the response header) e.g. Solomon-Client	solomon_local_dev
-		this.set('pageTitle', this.get('appSettings.solomonConfig.title'));
-	}.observes('appSettings.solomonConfig'),
+        // (using the response header) e.g. Solomon-Client	solomon_local_dev
+        this.set('pageTitle', this.get('appSettings.solomonConfig.title'));
+    }.observes('appSettings.solomonConfig'),
 
-	_pageTitle: '',
-	pageTitle: Ember.computed({
-		get() {
-			return this.get('_pageTite');
-		},
-		set(key, value) {
-			if (this.get('_pageTitle') != value) {
-				this.set('_pageTitle', value);
-				if (!Ember.isEmpty(value)) {
-					Ember.$(document).attr('title', value);
-				}
-			}
-		}
-	}),
+    _pageTitle: '',
+    pageTitle: Ember.computed({
+        get() {
+            return this.get('_pageTite');
+        },
+        set(key, value) {
+            if (this.get('_pageTitle') != value) {
+                this.set('_pageTitle', value);
+                if (!Ember.isEmpty(value)) {
+                    Ember.$(document).attr('title', value);
+                }
+            }
+        }
+    }),
 
-	// Methods
+    // Methods
 
-	showModal: function (component, options) {
-		var modalOptions = _.extend(
-			{ // default modal options
-				preventCanvasBlur: true,
-				effect: 'md-effect-1',
-				title: '',
-				component: component,
-				intro: '',
-				canvasWasBlurred: this.get('canvasBlurred')
-			},
-			options
-			);
-		this.set('modalOptions', modalOptions);
-		this.set('modalOptions.isVisible', true);
+    showModal: function (component, options) {
+        var modalOptions = _.extend(
+            { // default modal options
+                preventCanvasBlur: true,
+                effect: 'md-effect-1',
+                title: '',
+                component: component,
+                intro: '',
+                canvasWasBlurred: this.get('canvasBlurred')
+            },
+            options
+            );
+        this.set('modalOptions', modalOptions);
+        this.set('modalOptions.isVisible', true);
 
-		if (this.get('modalOptions.preventCanvasBlur') == false) {
-			this.set('canvasBlurred', true);
-		}
+        if (this.get('modalOptions.preventCanvasBlur') == false) {
+            this.set('canvasBlurred', true);
+        }
 
-		if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback'))
-			&& Ember.isEmpty(options.onCloseCallback)) {
-			// there is a on close callback function - but it wasn't just passed
-			// so clear it
-			this.get('modalOptions.onCloseCallback', null);
-		}
-		// this.set('modalEffect', modalOptions.modalEffect);
-		// this.set('modalComponent', component);
-		// if (!Ember.isEmpty(title)) {
-		// 	this.set('modalTitle', title);
-		// }
-		// if (modalOptions.preventCanvasBlur != false) {
-		// 	this.set('canvasBlurred', true);
-		// }
-		// this.set('modalIntro', intro);
-		// this.set('isModalVisible', true);
-	},
+        if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback'))
+            && Ember.isEmpty(options.onCloseCallback)) {
+            // there is a on close callback function - but it wasn't just passed
+            // so clear it
+            this.get('modalOptions.onCloseCallback', null);
+        }
+        // this.set('modalEffect', modalOptions.modalEffect);
+        // this.set('modalComponent', component);
+        // if (!Ember.isEmpty(title)) {
+        // 	this.set('modalTitle', title);
+        // }
+        // if (modalOptions.preventCanvasBlur != false) {
+        // 	this.set('canvasBlurred', true);
+        // }
+        // this.set('modalIntro', intro);
+        // this.set('isModalVisible', true);
+    },
 
-	hideModal: function () {
-		if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
-			this.set('canvasBlurred', false);
-		}
-		if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback')) &&
-			_.isFunction(this.get('modalOptions.onCloseCallback'))) {
-				this.get('modalOptions.onCloseCallback')();
-		}
-		this.setProperties({
-			'modalOptions.component': null,
-			'modalOptions.isVisible': false
-		});
-	},
+    hideModal: function () {
+        if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
+            this.set('canvasBlurred', false);
+        }
+        if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback')) &&
+            _.isFunction(this.get('modalOptions.onCloseCallback'))) {
+            this.get('modalOptions.onCloseCallback')();
+        }
+        this.setProperties({
+            'modalOptions.component': null,
+            'modalOptions.isVisible': false
+        });
+    },
 
-	showTutorialTimer: null,
+    showTutorialTimer: null,
 
-	shouldShowTutorial: function (force){
-		if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')){
-			this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
-		}
-	},
+    shouldShowTutorial: function (force) {
+        if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')) {
+            this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
+        }
+    },
 
-	showTutorial: function () {
-		if (!this.get('modalOptions.isVisible')){
-			Ember.run.cancel(this.get('showTutorialTimer'));
-			this.showModal('ui/tutorial-intro', 'Tutorial');
-		}
-	},
+    showTutorial: function () {
+        if (!this.get('modalOptions.isVisible')) {
+            Ember.run.cancel(this.get('showTutorialTimer'));
+            this.showModal('ui/tutorial-intro', 'Tutorial');
+        }
+    },
 
-	closeTutorial: function () {
-		this.hideModal();
+    closeTutorial: function () {
+        this.hideModal();
 
-		Cookies.set('viewedTutorial', true);
-	},
+        Cookies.set('viewedTutorial', true);
+    },
 
-	openToolbox: function () {
-		this.set('canvasBlurred', true);
-		this.set('topOpen', true);
+    openToolbox: function () {
+        this.set('canvasBlurred', true);
+        this.set('topOpen', true);
 
-		$('.js-open-toolbox').addClass('-selected');
-		
-		this.closeBottomDrawer();
-		this.closeManipulationPanel();
-	},
+        $('.js-open-toolbox').addClass('-selected');
 
-	closeToolbox: function (){
-		this.set('canvasBlurred', false);
-		this.set('topOpen', false);
-		$('.js-open-toolbox').removeClass('-selected');
-	},
+        this.closeBottomDrawer();
+        this.closeManipulationPanel();
+    },
 
-	toggleToolbox: function () {
-		if (this.get('topOpen') == true) {
-			this.closeToolbox();
-		} else {
-			this.openToolbox();
-			this.closeBottomDrawer();
-			this.closeManipulationPanel();
-		}
-	},
+    closeToolbox: function () {
+        this.set('canvasBlurred', false);
+        this.set('topOpen', false);
+        $('.js-open-toolbox').removeClass('-selected');
+    },
 
-	openBottomDrawer: function (configParams) {
-		var config = Ember.$.extend({
-			open: true,
-			openAmount: '-half',
-			blurred: true
-		}, configParams);
+    toggleToolbox: function () {
+        if (this.get('topOpen') == true) {
+            this.closeToolbox();
+        } else {
+            this.openToolbox();
+            this.closeBottomDrawer();
+            this.closeManipulationPanel();
+        }
+    },
 
-		this.closeToolbox();
-		this.closeManipulationPanel();
-		this.set('bottomDrawerConfig', config);
-		this.set('canvasBlurred', config.blurred);
-	},
+    openBottomDrawer: function (configParams) {
+        var config = Ember.$.extend({
+            open: true,
+            openAmount: '-half',
+            blurred: true
+        }, configParams);
 
-	closeBottomDrawer: function () {
-		var config = Ember.$.extend({
-			open: false,
-			openAmount: '-half',
-			blurred: false
-		});
+        this.closeToolbox();
+        this.closeManipulationPanel();
+        this.set('bottomDrawerConfig', config);
+        this.set('canvasBlurred', config.blurred);
+    },
 
-		this.set('bottomDrawerConfig', config);
-		this.set('canvasBlurred', config.blurred);
-	},
-	
-	openManipulationPanel: function(panelStateOptions) {
-		var panelState = Ember.$.extend({
-			openState: 'is-open'
-		}, panelStateOptions);
-		panelState = Ember.Object.create(panelState);
-		this.set('manipulationPanelState', panelState);
-		this.closeToolbox();
-		this.closeBottomDrawer();
-		this.set('canvasBlurred', panelState.blurCanvas);
-	},
-	
-	closeManipulationPanel: function() {
-		var panelState = Ember.$.extend({
-			openState: 'is-closed',
-			blurCanvas: false
-		});
-		
-		this.set('manipulationPanelState', panelState);
-		this.set('canvasBlurred', panelState.blurCanvas);
-	},
+    closeBottomDrawer: function () {
+        var config = Ember.$.extend({
+            open: false,
+            openAmount: '-half',
+            blurred: false
+        });
 
-	goBack: function () {
-		// implement your own history popping that actually works ;)
-		if (this.get('hasHistory')) {
-			this.get('history').popObject();
-			window.history.back();
-			this.get('history').popObject(); // get rid of route change here, don't need it
-		} else {
-			this.get('target').transitionTo('index');
-		}
-	},
+        this.set('bottomDrawerConfig', config);
+        this.set('canvasBlurred', config.blurred);
+    },
 
-	loadACanvas: function (canvas) {
-		var canvasID = canvas;
-		// use a canvases friendlyURL if it exists
-		if (Ember.typeOf(canvas) == 'instance') {
-			if (!Ember.isEmpty(canvas.get('friendlyURL'))) {
-				canvasID = canvas.get('friendlyURL');
-			} else if (!Ember.isEmpty(canvas.get('shortcode'))) {
-				canvasID = canvas.get('shortcode');
-			} else {
-				canvasID = canvas.get('id');
-			}
-		}
+    openManipulationPanel: function (panelOptions) {
+        var options = Ember.Object.create(Ember.$.extend({}, panelOptions));
+
+        this.setProperties({
+            'manipulationPanel.state.closing': false,
+            'manipulationPanel.state.opening': true
+        });
+        this.set('manipulationPanel.options', options);
+
+        this.closeToolbox();
+        this.closeBottomDrawer();
+        this.set('canvasBlurred', options.blurCanvas);
+    },
+
+    closeManipulationPanel: function () {
+        this.setProperties({
+            'manipulationPanel.state.closing': true,
+            'manipulationPanel.state.opening': false
+        });
+        this.set('canvasBlurred', false);
+    },
+
+    goBack: function () {
+        // implement your own history popping that actually works ;)
+        if (this.get('hasHistory')) {
+            this.get('history').popObject();
+            window.history.back();
+            this.get('history').popObject(); // get rid of route change here, don't need it
+        } else {
+            this.get('target').transitionTo('index');
+        }
+    },
+
+    loadACanvas: function (canvas) {
+        var canvasID = canvas;
+        // use a canvases friendlyURL if it exists
+        if (Ember.typeOf(canvas) == 'instance') {
+            if (!Ember.isEmpty(canvas.get('friendlyURL'))) {
+                canvasID = canvas.get('friendlyURL');
+            } else if (!Ember.isEmpty(canvas.get('shortcode'))) {
+                canvasID = canvas.get('shortcode');
+            } else {
+                canvasID = canvas.get('id');
+            }
+        }
         // var canvasID = canvas.get('id');
         // console.log(canvasID);
         this.get('target').transitionTo('canvas', canvasID);
         this.get('appController').closeBottomDrawer();
     },
 
-	createACanvas: function (model) {
-		var panelState = {
-			content: 'canvas-gallery/create-a-canvas',
-			title: 'Add a canvas',
-			blurCanvas: true
-		};
-		
-		if (!Ember.isEmpty(model)) {
-			panelState.model = model;
-		}
-		
-		this.openManipulationPanel(panelState);
-	},
+    createACanvas: function (model) {
+        var panelState = {
+            content: 'canvas-gallery/create-a-canvas',
+            title: 'Add a canvas',
+            blurCanvas: true
+        };
 
-	showCanvasSettings: function () {
-		this.showModal('canvas-settings', 'Canvas Settings', '', true);
-	},
+        if (!Ember.isEmpty(model)) {
+            panelState.model = model;
+        }
 
-  	editAStory: function (model) {
-		var panelState = {
-			content: 'stories/edit-a-story',
-			blurCanvas: false
-		};
-		
-		if (!Ember.isEmpty(model)){
-			panelState.model = model;
-			panelState.title = "Edit a story";
-			panelState.subTitle = model.get('title');
-		}
-		
-		this.openManipulationPanel(panelState);
-	},
+        this.openManipulationPanel(panelState);
+    },
+
+    showCanvasSettings: function () {
+        this.showModal('canvas-settings', 'Canvas Settings', '', true);
+    },
+
+    editAStory: function (model) {
+        var panelState = {
+            content: 'stories/edit-a-story',
+            blurCanvas: false
+        };
+
+        if (!Ember.isEmpty(model)) {
+            panelState.model = model;
+            panelState.title = "Edit a story";
+            panelState.subTitle = model.get('title');
+        }
+
+        this.openManipulationPanel(panelState);
+    },
 
 
 });
