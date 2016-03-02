@@ -1,11 +1,10 @@
 import Ember from 'ember';
-
 import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
 export default Ember.Component.extend(ManipulationPanelContent, {
-
     canvas: null,
     message: '',
+    title: 'Add a canvas',
 
     categories: function () {
         return [];

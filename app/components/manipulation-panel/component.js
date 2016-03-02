@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
+import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
-export default Ember.Component.extend(ResizeAware, {
+export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     content: Ember.computed.alias('panelOptions.content'),
 
     openState: Ember.computed('isClosing', 'isOpening', {

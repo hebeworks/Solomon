@@ -69,6 +69,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
         gotoRoute: function (route, model) {
             this.controller.closeToolbox();
+            this.controller.closeManipulationPanel();
             if (!Ember.isEmpty(model)) {
                 this.controller.transitionTo(route, (model || null));
             } else {
@@ -114,6 +115,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         },
 
         goBack: function () {
+            this.controller.closeManipulationPanel();
             this.controller.goBack();
         },
 
