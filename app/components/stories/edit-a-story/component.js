@@ -17,10 +17,6 @@ export default Ember.Component.extend(ManipulationPanelContent, {
         return {};
     }.property('model'),
 
-    mainTitle: Ember.computed(function () {
-        return 'Edit Story: ' + this.get('model.title');
-    }),
-
     storeEditableFieldValues: function () {
         const fields = this.get('editableFields');
 
