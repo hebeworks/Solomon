@@ -20,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "auth0-ember-simple-auth": "1.0.4",
+    "bid-leeds": "0.0.0",
     "broccoli-asset-rev": "^2.1.1",
     "broccoli-sass": "0.6.6",
     "connect-restreamer": "^1.0.2",
@@ -56,8 +57,7 @@
     "load-grunt-tasks": "^3.2.0",
     "morgan": "^1.6.1",
     "node-sass": "^3.2.0",
-    "rimraf": "2.4.2",
-    "bid-leeds":"0.0.0"
+    "rimraf": "2.4.2"
   },
   "dependencies": {
     "ember-cli-simple-auth": "^0.8.0",
