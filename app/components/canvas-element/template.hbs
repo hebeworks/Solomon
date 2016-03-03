@@ -77,22 +77,28 @@
         {{!-- 
         {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
         --}}
-        {{stories/complete/bid/levy-tile}}
-        {{stories/complete/bid/interactions-tile}}
-        {{stories/complete/bid/jobs-tile}}
-        {{stories/complete/bid/occupants-list}}
-        {{stories/complete/bid/search-people}}
-        {{stories/complete/bid/quick-search}}
-        {{stories/complete/bid/jobs-list}}
-        {{stories/complete/bid/organisation-details}}
-        {{stories/complete/bid/small-map}}
-        {{stories/complete/bid/single-person}}
-        {{stories/complete/bid/organisation-small}}
-        {{stories/complete/bid/occupancy-tile}}
+        
+        
+        {{!-- BID STORIES 
         {{stories/complete/air-table-text}}
-        {{stories/complete/bid/occupant-details}}
-        {{stories/complete/bid/interactions-list}}
-        {{stories/complete/bid/most-recent-note}}
+        --}}
+        {{bid/stories/levy-tile}}
+        {{bid/stories/interactions-tile}}
+        {{bid/stories/jobs-tile}}
+        {{bid/stories/occupants-list}}
+        {{bid/stories/search-people}}
+        {{bid/stories/quick-search}}
+        {{bid/stories/jobs-list}}
+        {{bid/stories/organisation-details}}
+        {{bid/stories/small-map}}
+        {{bid/stories/single-person}}
+        {{bid/stories/organisation-small}}
+        {{bid/stories/occupancy-tile}}
+        {{bid/stories/occupant-details}}
+        {{bid/stories/interactions-list}}
+        {{bid/stories/most-recent-note}}
+        
+        {{!-- 
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -100,7 +106,7 @@
                 {{/if}}
             {{/each}}
         {{/if}}
- 
+ --}}
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">
