@@ -155,7 +155,7 @@ export default Ember.Controller.extend({
                         var stories = model.get('stories');
                         stories.removeObject(story)
                         model.save();
-                        obj.get('appController').closeBottomDrawer();
+                        obj.get('appController').closeManipulationPanel();
                     },
                     function (err) {
                         var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
