@@ -13,6 +13,14 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
             return 'is-closed';
         }
     }),
+    
+    onIsOpening: function() {
+        console.log('isOpening has changed');
+        if (this.get('isOpening')) {
+            console.log('isOpened');
+            console.log(this.get('model'));
+        }
+    }.observes('isOpening'),
 
     onInsertElement: function () {
         this.setPanelWidth();

@@ -11,6 +11,8 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     }.on('didInsertElement'),
 
     editableFields: function () {
+        console.log('editableFields');
+        console.log(this.get('model'));
         return this.get('model.config');
     }.property('model'),
 
@@ -47,15 +49,15 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     },
     
     onIsOpening: function() {
-        console.log('Opening state has changed');
-        
         if (this.get('isOpening')) {
+            console.log('onIsOpening.model');
+            console.log(this.get('model'));
+            console.log('==========');
             this.panCanvas();
         }
-    }.on('didInsertElement').observes('isOpening'),
+    }.on('didInsertElement').observes('isOpening', 'model'),
 
     onIsClosing: function () {
-        console.log('Closing state has changed');
         if (!this.get('isSaving') && this.get('isClosing')) {
             this.restoreEditableFieldValues();
         }
@@ -72,8 +74,6 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     },
     
     panCanvas: function() {
-        console.log('panCanvas');
-        
         var canvas = $('[cpn-canvas]'),
             panelWidth = $('[cpn-manipulation-panel]').width(),
             headerHeight = 100,
@@ -114,12 +114,12 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
             // canvas
             //     .attr('cpn-canvas', '')
             //     .css('transform', 'none');
-            console.log('panCanvas: visibleCanvas >= storyWidth');
+            console.log('storyElement');
+            console.log(storyElement);
             canvas
                 .attr('cpn-canvas', 'is-panned')
                 .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
         } else {
-            console.log('panCanvas: visibleCanvas < storyWidth');
             canvas
                 .attr('cpn-canvas', '')
                 .css('transform', 'none');
