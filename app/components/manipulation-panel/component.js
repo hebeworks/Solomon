@@ -19,6 +19,7 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     }.on('didInsertElement'),
 
     debouncedDidResize() {
+        console.log('manipulation-panel.debouncedDidResize');
         this.setPanelWidth();
     },
     

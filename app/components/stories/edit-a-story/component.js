@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
+import ResizeAware from 'ember-resize/mixins/resize-aware';
 
-export default Ember.Component.extend(ManipulationPanelContent, {
+export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     message: '',
     isSaving: false,
 
@@ -44,15 +45,92 @@ export default Ember.Component.extend(ManipulationPanelContent, {
         this.set('action', 'saveCanvasState');
         this.sendAction('action');
     },
+    
+    onIsOpening: function() {
+        console.log('Opening state has changed');
+        
+        if (this.get('isOpening')) {
+            this.panCanvas();
+        }
+    }.on('didInsertElement').observes('isOpening'),
 
     onIsClosing: function () {
+        console.log('Closing state has changed');
         if (!this.get('isSaving') && this.get('isClosing')) {
             this.restoreEditableFieldValues();
         }
         if (this.get('isSaving') === true) {
             this.set('isSaving', false);
         }
+        
+        this.unpanCanvas();
     }.observes('isClosing'),
+    
+    debouncedDidResize() {
+        console.log('edit-a-story.debouncedDidResize');
+        this.panCanvas();
+    },
+    
+    panCanvas: function() {
+        console.log('panCanvas');
+        
+        var canvas = $('[cpn-canvas]'),
+            panelWidth = $('[cpn-manipulation-panel]').width(),
+            headerHeight = 100,
+            visibleCanvas = $(window).width() - panelWidth,
+            storyID = this.get('model.id'),
+            storyElement = $('[data-id="' + storyID + '"]'),
+            storyWidth = storyElement.outerWidth(),
+            storyXPosition = storyElement.offset().left,
+            storyYPosition = storyElement.offset().top,
+            panXAmount = function() {
+                if (storyXPosition > panelWidth) {
+                    return (storyXPosition - panelWidth) * -1;
+                    
+                } else if (storyXPosition < panelWidth) {
+                    return panelWidth - storyXPosition;
+                    
+                } else {
+                    return 0;
+                }
+            },
+            panYAmount = function() {
+                if (storyYPosition > headerHeight) {
+                    return (storyYPosition - headerHeight) * -1;
+                    
+                } else if (storyYPosition < headerHeight) {
+                    return storyYPosition + headerHeight;
+                    
+                } else {
+                    return 0;
+                }
+            };
+        
+        canvas
+            .attr('cpn-canvas', '')
+            .css('transform', 'none');
+        
+        if (visibleCanvas >= storyWidth) {
+            // canvas
+            //     .attr('cpn-canvas', '')
+            //     .css('transform', 'none');
+            console.log('panCanvas: visibleCanvas >= storyWidth');
+            canvas
+                .attr('cpn-canvas', 'is-panned')
+                .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
+        } else {
+            console.log('panCanvas: visibleCanvas < storyWidth');
+            canvas
+                .attr('cpn-canvas', '')
+                .css('transform', 'none');
+        }
+    },
+    
+    unpanCanvas: function() {
+        $('[cpn-canvas]')
+            .attr('cpn-canvas', '')
+            .css('transform', 'none');
+    },
 
     actions: {
         save: function () {

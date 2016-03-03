@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
         state: {},
         options: {}
     },
+    
     appController: function () {
         return this;
     }.property(),
