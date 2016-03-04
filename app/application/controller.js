@@ -5,7 +5,9 @@ export default Ember.Controller.extend({
     isModalVisible: false,
     modalOptions: {},
     manipulationPanel: {
-        state: {},
+        state: {
+            viewportWidth: null
+        },
         options: {}
     },
     
