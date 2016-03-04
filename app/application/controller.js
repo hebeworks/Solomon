@@ -196,7 +196,8 @@ export default Ember.Controller.extend({
     closeManipulationPanel: function () {
         this.setProperties({
             'manipulationPanel.state.closing': true,
-            'manipulationPanel.state.opening': false
+            'manipulationPanel.state.opening': false,
+            'manipulationPanel.options.content': null
         });
         this.set('canvasBlurred', false);
     },

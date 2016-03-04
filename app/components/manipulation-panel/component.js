@@ -15,10 +15,7 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     }),
     
     onIsOpening: function() {
-        console.log('isOpening has changed');
         if (this.get('isOpening')) {
-            console.log('isOpened');
-            console.log(this.get('model'));
         }
     }.observes('isOpening'),
 

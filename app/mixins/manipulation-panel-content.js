@@ -7,6 +7,7 @@ export default Ember.Mixin.create({
     
     panelOptions: Ember.computed.alias('appController.manipulationPanel.options'),
         model: Ember.computed.alias('panelOptions.model'),
+        content: Ember.computed.alias('panelOptions.content'),
         title: Ember.computed.alias('panelOptions.title'),
         subTitle: Ember.computed.alias('panelOptions.subTitle'),
 });

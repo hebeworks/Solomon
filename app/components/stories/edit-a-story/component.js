@@ -11,8 +11,6 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     }.on('didInsertElement'),
 
     editableFields: function () {
-        console.log('editableFields');
-        console.log(this.get('model'));
         return this.get('model.config');
     }.property('model'),
 
@@ -49,13 +47,10 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     },
     
     onIsOpening: function() {
-        if (this.get('isOpening')) {
-            console.log('onIsOpening.model');
-            console.log(this.get('model'));
-            console.log('==========');
+        if (this.get('isOpening') && (this.get('content') == 'stories/edit-a-story')) {
             this.panCanvas();
         }
-    }.on('didInsertElement').observes('isOpening', 'model'),
+    }.on('didInsertElement').observes('isOpening', 'model', 'content'),
 
     onIsClosing: function () {
         if (!this.get('isSaving') && this.get('isClosing')) {
@@ -111,11 +106,6 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
             .css('transform', 'none');
         
         if (visibleCanvas >= storyWidth) {
-            // canvas
-            //     .attr('cpn-canvas', '')
-            //     .css('transform', 'none');
-            console.log('storyElement');
-            console.log(storyElement);
             canvas
                 .attr('cpn-canvas', 'is-panned')
                 .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
