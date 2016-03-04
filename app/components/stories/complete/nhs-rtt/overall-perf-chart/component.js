@@ -13,7 +13,7 @@ export default DefaultStory.extend({
         width: 2,
         showLoading: true
     },
-    
+
     bars: [],
     barSelected: false,
     chosenBar: false,
@@ -23,28 +23,44 @@ export default DefaultStory.extend({
     of the PART_2
         % < 18
     */
-    
-    loadData: function(){
+
+    loadData: function () {
         var _this = this;
         var regionID = this.get('appSettings.canvasSettings.nhsFilter.selectedRegion.id');
-        var url = this.get('appSettings.hebeNodeAPI') +  '/nhsrtt/incompleteperformance/?regionid='+regionID+'&datekey=20150930&groupby=treatment';
+        var ccgID = this.get('appSettings.canvasSettings.nhsFilter.selectedCCG.id');
+        var providerID = this.get('appSettings.canvasSettings.nhsFilter.selectedProvider.id');
+        var month = this.get('appSettings.canvasSettings.nhsFilter.selectedMonth.id');
+        var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/incompleteperformance/?datekey=' + month + '&groupby=treatment';
+        if (providerID) {
+            url += '&providerid=' + providerID;
+        } else if (ccgID) {
+            url += '&ccgid=' + ccgID;
+        } else {
+            url += '&regionid=' + regionID;
+        }
+        this.set('loaded',false);
         this.getData(url)
-            .then(function(data){
-                _this.set('data',data);
+            .then(function (data) {
+                _this.set('data', data);
             });
-    }.observes('appSettings.canvasSettings.nhsFilter.selectedRegion'),
-    
-    
+    }.observes(
+        'appSettings.canvasSettings.nhsFilter.selectedRegion',
+        'appSettings.canvasSettings.nhsFilter.selectedCCG',
+        'appSettings.canvasSettings.nhsFilter.selectedProvider',
+        'appSettings.canvasSettings.nhsFilter.selectedMonth'
+        ),
+
+
     onInsertElement: function () {
         this.loadData();
     }.on('didInsertElement'),
-    
-    addBarsToChart: function() {
+
+    addBarsToChart: function () {
         var _this = this;
         var data = this.get('data');
         var locations = [];
         // var avg = 0;
-        for(var i = 0; i < data.length; i ++){
+        for (var i = 0; i < data.length; i++) {
             var obj = Ember.Object.create({
                 location: data[i].name,
                 percentage: ((data[i].gt_00_to_18_weeks_sum / data[i].total_all_sum) * 100).toPrecisionDigits(1)
@@ -58,8 +74,8 @@ export default DefaultStory.extend({
             "national": 92,
             // "avg": avg
         });
-        
-        locations = _.sortBy(locations,function(obj) {
+
+        locations = _.sortBy(locations, function (obj) {
             return obj.percentage;
         });
         
@@ -114,15 +130,15 @@ export default DefaultStory.extend({
         
         _this.set('bars', locations);
         _this.arrangeBars();
-        
+
         setTimeout(function () {
             _this.set('loaded', true);
         });
     }.observes('data'),
-    
-    arrangeBars: function() {
+
+    arrangeBars: function () {
         var _this = this;
-        
+
         var numBars = _this.get('bars.length'), // $('[spc-opc_bars]').find('[spc-opc_bar]').length,
             chartHeight = _this.$('[spc-opc_bars]').outerHeight(),
             spacing = (chartHeight / numBars) / 2;
@@ -131,11 +147,11 @@ export default DefaultStory.extend({
         // console.log('Chart height: ' + chartHeight);
         // console.log('Spacing: ' + spacing);
             
-        _this.get('bars').forEach(function(bar) {
+        _this.get('bars').forEach(function (bar) {
             bar.setProperties({
-                'height':spacing,
-                'margin-bottom':spacing,
-                'spacing':spacing + 'px'
+                'height': spacing,
+                'margin-bottom': spacing,
+                'spacing': spacing + 'px'
             });
         });
         
@@ -145,15 +161,15 @@ export default DefaultStory.extend({
         //         .css('margin-bottom', spacing);
         // });
     },
-    
+
     actions: {
-        setSelectedBar: function(bar) {
+        setSelectedBar: function (bar) {
             // alert(bar);
-            if(!Ember.isEmpty(this.get('selectedBar'))) {
-                this.set('selectedBar.isSelected',false);
+            if (!Ember.isEmpty(this.get('selectedBar'))) {
+                this.set('selectedBar.isSelected', false);
             }
-            bar.set('isSelected',true);
-            this.set('selectedBar',bar);
+            bar.set('isSelected', true);
+            this.set('selectedBar', bar);
         }
     }
 });
