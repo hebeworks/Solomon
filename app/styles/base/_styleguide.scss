@@ -312,6 +312,12 @@ img {
     @extend %site-body;
     padding: 30px 40px;
     overflow-y: scroll;
+    @include transition(.3s);
+    
+    &.-blurred {
+        @include filter(blur(40px) brightness(79%));
+        opacity: .16;
+    }
     
     [solomon-app~="yorkshire-water"] & {
         background-color: #fff;

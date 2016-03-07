@@ -204,15 +204,15 @@ export default DefaultStory.extend({
         var layout = {
             barmode: 'stack',
             margin: {
-                l: 40,
+                l: 45,
                 r: 30,
                 b: 30,
                 t: 10,
-                pad: 5
+                pad: 0
             },
             font: {
                 family: "Roboto, Open Sans, verdana, sans-serif",
-                size: 11,
+                size: 10,
                 color: colorPalette[0],
             },
             showlegend: pathways,
@@ -243,6 +243,12 @@ export default DefaultStory.extend({
                 }
             },
             yaxis: {
+                title: "Number of Patients",
+                titlefont: {
+                  family: 'Roboto, Open Sans, verdana, sans-serif',
+                  size: 12,
+                  color: '#000'
+                },
                 showgrid: true,
                 zeroline: false,
                 showline: true,
@@ -298,7 +304,7 @@ export default DefaultStory.extend({
             // (see ./components/modebar/buttons.js for the list of names)
             // (see https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js)
             modeBarButtonsToRemove: [
-            //'toImage',
+                'toImage',
                 'sendDataToCloud',
                 'zoom2d',
                 'pan2d',

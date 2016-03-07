@@ -1,11 +1,11 @@
 <div class="js-stat-notices-wrapper wrapper -gallery -open">
     {{header-nav navItems=galleryNavItems action="gotoRoute"}}
 
-    <main class="gallery-body">
+    <main class="gallery-body {{blurred}}">
         {{canvas-gallery}}
     </main>
     
-    {{bottom-drawer contentType="canvas-gallery/create-a-canvas"}}
+    {{manipulation-panel}}
 
     {{outlet}}
 
