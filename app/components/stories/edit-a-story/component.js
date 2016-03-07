@@ -106,26 +106,40 @@ export default Ember.Component.extend(ManipulationPanelContent, {
             console.log('isPanned' + _this.get('isPanned'));
             canvas
                 .attr('cpn-canvas', 'is-panned')
-                .attr('data-panX', panXAmount)
-                .attr('data-panY', panYAmount)
+                .attr('data-panx', panXAmount())
+                .attr('data-pany', panYAmount())
                 .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
                 
             _this.set('isPanned', true);
+            console.log('storyElement');
+            console.log(storyElement);
         }
         
         function rePan() {
             console.log('rePan');
-            var prePannedXAmount = canvas.attr('[data-panX]'),
-                prePannedYAmount = canvas.attr('[data-panY]'),
+            var prePannedXAmount = canvas.data('panx'),
+                prePannedYAmount = canvas.data('pany'),
                 rePanXAmount = function() {
                     if (storyXPosition > panelWidth) {
                         var positionXDiff = storyXPosition - panelWidth,
                             newPanXAmount = prePannedXAmount - positionXDiff;
+                        console.log('===========================');
+                        console.log('storyXPosition > panelWidth');
+                        console.log('storyXPosition: ' + storyXPosition);
+                        console.log('panelWidth: ' + panelWidth);
+                        console.log('prePannedXAmount: ' + prePannedXAmount);
+                        console.log('===========================');
                         return newPanXAmount;
                         
                     } else if (storyXPosition < panelWidth) {
                         var positionXDiff = panelWidth - storyXPosition,
                             newPanXAmount = prePannedXAmount + positionXDiff;
+                            console.log('===========================');
+                            console.log('storyXPosition < panelWidth');
+                            console.log('storyXPosition: ' + storyXPosition);
+                            console.log('panelWidth: ' + panelWidth);
+                            console.log('prePannedXAmount: ' + prePannedXAmount);
+                            console.log('===========================');
                         return newPanXAmount;
                         
                     } else {
@@ -147,7 +161,14 @@ export default Ember.Component.extend(ManipulationPanelContent, {
                         return 0;
                     }
                 };
-            canvas.css('transform', 'translateX(' + rePanXAmount() + 'px) translateY(' + rePanYAmount() + 'px)');
+            canvas
+                .data('panx', rePanXAmount())
+                .data('pany', rePanYAmount())
+                .css('transform', 'translateX(' + rePanXAmount() + 'px) translateY(' + rePanYAmount() + 'px)');
+            console.log('rePanXAmount: ' + rePanXAmount());
+            console.log('rePanYAmount: ' + rePanYAmount());
+            console.log('storyElement');
+            console.log(storyElement);
         }
         
         if (visibleCanvas >= storyWidth) {
@@ -156,12 +177,11 @@ export default Ember.Component.extend(ManipulationPanelContent, {
             } else {
                 rePan();
             }
-            // canvas
-            //     .attr('cpn-canvas', 'is-panned')
-            //     .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
         } else {
             canvas
                 .attr('cpn-canvas', '')
+                .attr('data-panx', '')
+                .attr('data-pany', '')
                 .css('transform', 'none');
             this.set('panState', false);
         }
@@ -171,6 +191,8 @@ export default Ember.Component.extend(ManipulationPanelContent, {
         this.set('panState', false);
         $('[cpn-canvas]')
             .attr('cpn-canvas', '')
+            .attr('data-panx', '')
+            .attr('data-pany', '')
             .css('transform', 'none');
     },
 
