@@ -24,17 +24,9 @@ export default Ember.Component.extend(ResizeAware, ManipulationPanelContent, {
     }.on('didInsertElement'),
 
     debouncedDidResize() {
-        console.log('manipulation-panel.debouncedDidResize');
         this.setPanelWidth();
         this.set('viewportWidth', $(window).width());
-        console.log($(window).width());
     },
-    
-    // init() {
-    //     this.get('resizeService').on('debouncedDidResize', event => {
-    //         console.log('manipulation-panel.debouncedDidResize');
-    //     })
-    // },
     
     // If we're on smaller screens, the panel needs to be full-width.
     // But this affects the positioning of it so we get the width of the viewport and add that as the panel's nagative left position.
