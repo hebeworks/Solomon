@@ -24,13 +24,28 @@ export default DefaultStory.extend({
 
     onDidInsertElement: function () {
         var _this = this;
-        var regionID = this.get('nhsFilter.selectedRegion._id');
+        var regionID = this.get('nhsFilter.selectedRegion.id');
+        var ccgID = this.get('nhsFilter.selectedCCG.id');
+        var providerID = this.get('nhsFilter.selectedProvider.id');
+        var url = this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/';
+        // regions/' + regionID + '';  // do get by parts (admitted etc) add ?parts=true
+        if (providerID) {
+            url += 'provider/' + providerID;
+        } else if (ccgID) {
+            url += 'ccgs/' + ccgID;
+        } else {
+            url += 'regions/' + regionID;
+        }
         var headings = this.get('headings');
-        this.getData(this.get('appSettings.hebeNodeAPI') + '/nhsrtt/monthly/regions/' + regionID + '') // do get by parts (admitted etc) add ?parts=true
+        this.getData(url)
             .then(function (data) {
-                if(data.length > 0 && data[0].months) {
+                if(data.months && data.months.length > 0) {
+                    data = data.months;   
+                } else if (data.length > 0 && data[0].months) {
                     data = data[0].months;
-                    data = _.sortBy(data,function(obj){
+                }
+                if(data) {
+                    data = _.sortBy(data, function (obj) {
                         return obj._id.date;
                     });
                     data.reverse();
@@ -39,20 +54,24 @@ export default DefaultStory.extend({
                         for (var i = 0; i < headings.length; i++) {
                             var prop = headings[i].property;
                             var val = obj[prop];
-                            if(prop === "_id") {
-                                val = moment(obj._id.date,"YYYYMMDD").format("MM YYYY");
+                            if (prop === "_id") {
+                                val = moment(obj._id.date, "YYYYMMDD").format("MM YYYY");
                             }
                             row.push(val);
                         }
                         return row;
                     });
                     _this.set('rows', rows);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         _this.set('loaded', true);
                     });
                 }
             });
-    }.on('didInsertElement').observes('nhsFilter.selectedRegion')
+    }.on('didInsertElement').observes(
+        'nhsFilter.selectedRegion',
+        'nhsFilter.selectedProvider',
+        'nhsFilter.selectedCCG'
+        )
 
 
 });

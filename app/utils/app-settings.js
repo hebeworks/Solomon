@@ -210,9 +210,39 @@ export default Ember.Object.extend({
         });
     },
     onNHSSelectedRegionChange: function(){
-        this.set('canvasSettings.nhsFilter.providers', this.get('canvasSettings.nhsFilter.selectedRegion.providers'));
-        this.set('canvasSettings.nhsFilter.ccgs', this.get('canvasSettings.nhsFilter.selectedRegion.ccgs'));
+        var providers = this.get('canvasSettings.nhsFilter.selectedRegion.providers');
+        var ccgs = this.get('canvasSettings.nhsFilter.selectedRegion.ccgs');
+        if (!Ember.isEmpty(providers)) {
+            providers.forEach(function (provider) {
+                provider.id = provider._id;
+                provider.text = provider.name;
+            });
+        }
+        if (!Ember.isEmpty(ccgs)) {
+            ccgs.forEach(function (ccg) {
+                ccg.id = ccg._id;
+                ccg.text = ccg.name;
+            });
+        }
+        
+        this.setProperties({
+            'canvasSettings.nhsFilter.providers': providers,
+            'canvasSettings.nhsFilter.ccgs': ccgs,
+            'canvasSettings.nhsFilter.selectedProvider': null,
+            'canvasSettings.nhsFilter.selectedCCG': null
+        });
     }.observes('canvasSettings.nhsFilter.selectedRegion'), 
+    
+    onNHSSelectedProviderChange: function(){
+        if(this.get('canvasSettings.nhsFilter.selectedProvider')) {
+            this.set('canvasSettings.nhsFilter.selectedCCG',null);
+        }
+    }.observes('canvasSettings.nhsFilter.selectedProvider'), 
+    onNHSSelectedCCGChange: function(){
+        if(this.get('canvasSettings.nhsFilter.selectedCCG')) {
+            this.set('canvasSettings.nhsFilter.selectedProvider',null);
+        }
+    }.observes('canvasSettings.nhsFilter.selectedCCG'), 
 
 /////////////////////////////////////////////////////////////////
 // End NHS Canvas Filtering

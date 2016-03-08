@@ -16,7 +16,6 @@
 			{{ select-2
 				content=nhsFilter.regions
 				value=nhsFilter.selectedRegion
-
 				placeholder="Choose a region"
 			}}
     </p>
@@ -26,8 +25,6 @@
             {{ select-2
                 content=nhsFilter.ccgs
                 value=nhsFilter.selectedCCG
-                optionLabelPath="name"
-                optionValuePath="_id"
                 placeholder="Choose a CCG"
                 class="margin-bottom-no"
             }}
@@ -37,8 +34,6 @@
             {{ select-2
                 content=nhsFilter.providers
                 value=nhsFilter.selectedProvider
-                optionLabelPath="name"
-                optionValuePath="_id"
                 placeholder="Choose a Provider"
                 class="margin-bottom-no"
             }}

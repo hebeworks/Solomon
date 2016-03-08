@@ -26,6 +26,10 @@ export default Ember.Controller.extend({
         return items;
     }.property(),
     
+    blurred: function () {
+        return (this.get('appController.canvasBlurred') ? '-blurred' : '');
+    }.property('appController.canvasBlurred'),
+    
     ////////////////////////////////////////
     // Functions
     ////////////////////////////////////////

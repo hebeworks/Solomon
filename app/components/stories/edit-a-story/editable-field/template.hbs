@@ -8,6 +8,7 @@
         optionLabelPath="name"
         optionValuePath="id"
         placeholder=field.placeholder
+        class="margin-bottom-no"
     }}
 {{else if isEnum}}
     {{select-2 
@@ -16,6 +17,7 @@
         optionValuePath="id"
         optionLabelPath="text"
         placeholder=field.placeholder
+        class="margin-bottom-no"
     }}
 {{else if isMarkdown}}
     <label>{{field.placeholder}}</label>{{textarea value=field.value placeholder=field.placeholder}}
