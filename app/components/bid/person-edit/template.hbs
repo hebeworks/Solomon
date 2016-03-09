@@ -1,7 +1,7 @@
 <section cpn-bid-edit-section>
-    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>People</h3>
+    {{#if nested}}
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>{{title}}</h3>
     <main cpn-bid-edit-section_body="{{sectionOpenState}}">
-        
         {{#if multiplePeople}}
             {{
                 select-2
@@ -13,17 +13,42 @@
         {{/if}}
         
         {{#if chosenPerson}}
-            {{#if chosenPerson.0.name}}
-            <p>{{chosenPerson.0.name}}</p>
+            {{#if chosenPerson.name}}
+            <p>{{chosenPerson.name}}</p>
             {{/if}}
             
-            {{#if chosenPerson.0.jobTitle}}
-            <p>{{chosenPerson.0.jobTitle}}</p>
+            {{#if chosenPerson.jobTitle}}
+            <p>{{chosenPerson.jobTitle}}</p>
             {{/if}}
             
-            {{#if chosenPerson.0.votingFor}}
-            <p>{{chosenPerson.0.votingFor}}</p>
+            {{#if chosenPerson.votingFor}}
+            <p>{{chosenPerson.votingFor}}</p>
             {{/if}}
         {{/if}}
     </main>
+    {{else}}
+    {{#if multiplePeople}}
+        {{
+            select-2
+            content=people
+            value=chosenPerson
+            placeholder="Person"
+            optionLabelPath="name"
+        }}
+    {{/if}}
+    
+    {{#if chosenPerson}}
+        {{#if chosenPerson.name}}
+        <p>{{chosenPerson.name}}</p>
+        {{/if}}
+        
+        {{#if chosenPerson.jobTitle}}
+        <p>{{chosenPerson.jobTitle}}</p>
+        {{/if}}
+        
+        {{#if chosenPerson.votingFor}}
+        <p>{{chosenPerson.votingFor}}</p>
+        {{/if}}
+    {{/if}}
+    {{/if}}
 </section>

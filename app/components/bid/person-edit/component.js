@@ -6,6 +6,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
     model: Ember.Object.create({
         allPeople: [
             {
+                id: 1,
                 name: 'Ste Allan',
                 firstName: 'Ste',
                 lastName: 'Allan',
@@ -22,6 +23,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
             }
         ]
     }),
+    title: 'Person Details',
     
     people: Ember.computed('model', function() {
         var model = this.get('model');
@@ -44,7 +46,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
             this.set('multiplePeople', true);
         }  else {
             this.set('multiplePeople', false);
-            this.set('chosenPerson', this.get('people'));
+            this.set('chosenPerson', this.get('people.0'));
         }
     }.on('init').observes('people')
 });

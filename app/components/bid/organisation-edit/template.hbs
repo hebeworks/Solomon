@@ -1,44 +1,44 @@
 <section cpn-bid-edit-section>
-        <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>Organisation Details</h3>
-        <main cpn-bid-edit-section_body="{{sectionOpenState}}">
-            {{#if model.tradingName}}
-            <p>{{model.tradingName}}</p>
-            {{/if}}
-            
-            {{#if model.legalName}}
-            <p>{{model.legalName}}</p>
-            {{/if}}
-            
-            {{#if model.businessName}}
-            <p>{{model.businessName}}</p>
-            {{/if}}
-            
-            {{#if model.liableParty}}
-            <p>{{model.liableParty}}</p>
-            {{/if}}
-            
-            {{#if model.website}}
-            {{#if model.businessName}}
-            <p>
-                <a href="{{model.website}}">{{model.businessName}}</a>
-            </p>
-            {{/if}}
-            {{/if}}
-            
-            {{#if model.sectors}}
-            <ul>
-                {{#each model.sectors as |sector|}}
-                <li>{{sector}}</li>
-                {{/each}}
-            </ul>
-            {{/if}}
-        </main>
-    </section>
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>Organisation Details</h3>
+    <main cpn-bid-edit-section_body="{{sectionOpenState}}">
+        {{#if model.tradingName}}
+        <p>{{model.tradingName}}</p>
+        {{/if}}
+        
+        {{#if model.legalName}}
+        <p>{{model.legalName}}</p>
+        {{/if}}
+        
+        {{#if model.businessName}}
+        <p>{{model.businessName}}</p>
+        {{/if}}
+        
+        {{#if model.liableParty}}
+        <p>{{model.liableParty}}</p>
+        {{/if}}
+        
+        {{#if model.website}}
+        {{#if model.businessName}}
+        <p>
+            <a href="{{model.website}}">{{model.businessName}}</a>
+        </p>
+        {{/if}}
+        {{/if}}
+        
+        {{#if model.sectors}}
+        <ul>
+            {{#each model.sectors as |sector|}}
+            <li>{{sector}}</li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </main>
+</section>
     
-    {{#if model.occupants}}
-        {{component "bid/occupant-edit" model=model.occupants}}
-    {{/if}}
-    
-    {{#if model.allPeople}}
-        {{component "bid/person-edit" model=model.allPeople}}
-    {{/if}}
+{{#if model.occupants}}
+    {{component "bid/occupant-edit" model=model.occupants title="Occupants"}}
+{{/if}}
+
+{{#if model.allPeople}}
+    {{component "bid/person-edit" model=model.allPeople title="People" nested=true}}
+{{/if}}

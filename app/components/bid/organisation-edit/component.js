@@ -12,6 +12,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
         sectors: ['Beauty', 'Cosmetics', 'Health'],
         occupants: [
             {
+                id: 1,
                 occupantID: '12345',
                 archived: false,
                 organisation: 'Boots',
@@ -27,6 +28,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 companyMember: 'Mark Barrett',
             },
             {
+                id: 2,
                 occupantID: '67890',
                 archived: false,
                 organisation: 'Superdrug',
@@ -44,6 +46,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
         ],
         allPeople: [
             {
+                id: 1,
                 name: 'Ste Allan',
                 firstName: 'Ste',
                 lastName: 'Allan',
@@ -59,6 +62,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 accountsDeptFor: ['Not the Mrs'],
             },
             {
+                id: 2,
                 name: 'Nate Smith',
                 firstName: 'Nate',
                 lastName: 'Smith',

@@ -1,5 +1,5 @@
 <section cpn-bid-edit-section>
-    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>Occupants</h3>
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>{{title}}</h3>
     <main cpn-bid-edit-section_body="{{sectionOpenState}}">
         
         {{#if multipleOccupants}}
@@ -13,61 +13,61 @@
         {{/if}}
         
         {{#if chosenOccupant}}
-            {{#if chosenOccupant.0.occupantID}}
-            <p>{{chosenOccupant.0.occupantID}}</p>
+            {{#if chosenOccupant.occupantID}}
+            <p>{{chosenOccupant.occupantID}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.archived}}
-            <p>{{chosenOccupant.0.archived}}</p>
+            {{#if chosenOccupant.archived}}
+            <p>{{chosenOccupant.archived}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.organisation}}
-            <p>{{chosenOccupant.0.organisation}}</p>
+            {{#if chosenOccupant.organisation}}
+            <p>{{chosenOccupant.organisation}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.property}}
-            <p>{{chosenOccupant.0.property}}</p>
+            {{#if chosenOccupant.property}}
+            <p>{{chosenOccupant.property}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.joiningDate}}
-            <p>{{chosenOccupant.0.joiningDate}}</p>
+            {{#if chosenOccupant.joiningDate}}
+            <p>{{chosenOccupant.joiningDate}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.tags}}
-            <p>{{chosenOccupant.0.tags}}</p>
+            {{#if chosenOccupant.tags}}
+            <p>{{chosenOccupant.tags}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.sector}}
-            <p>{{chosenOccupant.0.sector}}</p>
+            {{#if chosenOccupant.sector}}
+            <p>{{chosenOccupant.sector}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.businessType}}
-            <p>{{chosenOccupant.0.businessType}}</p>
+            {{#if chosenOccupant.businessType}}
+            <p>{{chosenOccupant.businessType}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.voter}}
-            <p>{{chosenOccupant.0.voter}}</p>
+            {{#if chosenOccupant.voter}}
+            <p>{{chosenOccupant.voter}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.billPayer}}
-            <p>{{chosenOccupant.0.billPayer}}</p>
+            {{#if chosenOccupant.billPayer}}
+            <p>{{chosenOccupant.billPayer}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.accountsDept}}
-            <p>{{chosenOccupant.0.accountsDept}}</p>
+            {{#if chosenOccupant.accountsDept}}
+            <p>{{chosenOccupant.accountsDept}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.localContact}}
-            <p>{{chosenOccupant.0.localContact}}</p>
+            {{#if chosenOccupant.localContact}}
+            <p>{{chosenOccupant.localContact}}</p>
             {{/if}}
             
-            {{#if chosenOccupant.0.companyMember}}
-            <p>{{chosenOccupant.0.companyMember}}</p>
+            {{#if chosenOccupant.companyMember}}
+            <p>{{chosenOccupant.companyMember}}</p>
             {{/if}}
-        {{/if}}
-        
-        {{#if model.allPeople}}
-            {{component "bid/person-edit" model=model.allPeople}}
         {{/if}}
     </main>
 </section>
+
+{{#if model.allPeople}}
+    {{component "bid/person-edit" model=model.allPeople title="People" nested=true}}
+{{/if}}

@@ -6,6 +6,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
     model: Ember.Object.create({
         occupants: [
             {
+                id: 1,
                 occupantID: '12345',
                 archived: false,
                 organisation: 'Boots',
@@ -23,6 +24,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
         ],
         allPeople: [
             {
+                id: 1,
                 name: 'Ste Allan',
                 firstName: 'Ste',
                 lastName: 'Allan',
@@ -38,6 +40,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 accountsDeptFor: ['Not the Mrs'],
             },
             {
+                id: 2,
                 name: 'Nate Smith',
                 firstName: 'Nate',
                 lastName: 'Smith',
@@ -54,6 +57,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
             }
         ]
     }),
+    title: 'Occupant Details',
     
     occupants: Ember.computed('model', function() {
         var model = this.get('model');
@@ -76,7 +80,7 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
             this.set('multipleOccupants', true);
         }  else {
             this.set('multipleOccupants', false);
-            this.set('chosenOccupant', this.get('occupants'));
+            this.set('chosenOccupant', this.get('occupants.0'));
         }
     }.on('init').observes('occupants')
 });
