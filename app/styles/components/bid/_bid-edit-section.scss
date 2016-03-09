@@ -1,0 +1,11 @@
+[cpn-bid-edit-section_body] {
+    
+}
+
+[cpn-bid-edit-section_body~="is-open"] {
+    display: block;
+}
+
+[cpn-bid-edit-section_body~="is-closed"] {
+    display: none;
+}

@@ -1,33 +1,68 @@
-<div cpn-padding="right-double bottom left-double">
-    <p>Occupant ID</p>
-    <p>Archived</p>
-    <p>Organisation</p>
-    <p>Property</p>
-    <p>Joining Date</p>
-    <ul>
-        <li>Tag 1</li>
-        <li>Tag 2</li>
-        <li>Tag 3</li>
-    </ul>
-    <p>Sector</p>
-    <p>Business type</p>
-    <ul>
-        <li>Voter</li>
-        <li>Bill payer</li>
-        <li>Accounts dept</li>
-        <li>Local contact</li>
-        <li>Company member</li>
-    </ul>
-    <p>Influencer</p>
-    <p>Empty</p>
-    <p>
-        1 Leeds Street
-        <br>Leeds Place
-        <br>Leeds
-        <br>LS1 1AA
-    </p>
-    
-    <p>
-        <a cpn-button="move" href="javascript:;">Notes</a>
-    </p>
-</div>
+<section cpn-bid-edit-section>
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>Occupants</h3>
+    <main cpn-bid-edit-section_body="{{sectionOpenState}}">
+        
+        {{#if multipleOccupants}}
+            {{
+                select-2
+                content=occupants
+                value=chosenOccupant
+                placeholder="Occupant"
+            }}
+        {{/if}}
+        
+        {{#if chosenOccupant}}
+            {{#if chosenOccupant.0.occupantID}}
+            <p>{{chosenOccupant.0.occupantID}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.archived}}
+            <p>{{chosenOccupant.0.archived}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.organisation}}
+            <p>{{chosenOccupant.0.organisation}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.property}}
+            <p>{{chosenOccupant.0.property}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.joiningDate}}
+            <p>{{chosenOccupant.0.joiningDate}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.tags}}
+            <p>{{chosenOccupant.0.tags}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.sector}}
+            <p>{{chosenOccupant.0.sector}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.businessType}}
+            <p>{{chosenOccupant.0.businessType}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.voter}}
+            <p>{{chosenOccupant.0.voter}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.billPayer}}
+            <p>{{chosenOccupant.0.billPayer}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.accountsDept}}
+            <p>{{chosenOccupant.0.accountsDept}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.localContact}}
+            <p>{{chosenOccupant.0.localContact}}</p>
+            {{/if}}
+            
+            {{#if chosenOccupant.0.companyMember}}
+            <p>{{chosenOccupant.0.companyMember}}</p>
+            {{/if}}
+        {{/if}}
+    </main>
+</section>

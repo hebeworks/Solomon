@@ -84,6 +84,8 @@
 @import "components/header";
 @import "components/dashboard-logo";
 @import "components/manipulation-panel";
+// BID component. Will be moved into addon
+@import "components/bid/bid-edit-section";
 
 // ===== Vendor ===== //
 @import "vendor/chartist/chartist-dash";
