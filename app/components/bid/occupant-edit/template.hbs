@@ -8,6 +8,7 @@
                 content=occupants
                 value=chosenOccupant
                 placeholder="Occupant"
+                optionLabelPath="property"
             }}
         {{/if}}
         
@@ -63,6 +64,10 @@
             {{#if chosenOccupant.0.companyMember}}
             <p>{{chosenOccupant.0.companyMember}}</p>
             {{/if}}
+        {{/if}}
+        
+        {{#if model.allPeople}}
+            {{component "bid/person-edit" model=model.allPeople}}
         {{/if}}
     </main>
 </section>

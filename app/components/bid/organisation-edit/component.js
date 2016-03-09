@@ -42,6 +42,37 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 companyMember: 'Mark Barrett',
             }
         ],
-        allPeople: ['person1', 'person2', 'person3', 'person4']
+        allPeople: [
+            {
+                name: 'Ste Allan',
+                firstName: 'Ste',
+                lastName: 'Allan',
+                jobTitle: 'Front end dev',
+                address1: 'Hebe Works',
+                address2: '31 The Calls',
+                address3: 'Leeds',
+                address4: '',
+                postcode: 'LS2 5EY',
+                votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
+                localContactFor: ['Superdrug', 'Five Guys'],
+                billPayerFor: ['The Mrs', 'The kids'],
+                accountsDeptFor: ['Not the Mrs'],
+            },
+            {
+                name: 'Nate Smith',
+                firstName: 'Nate',
+                lastName: 'Smith',
+                jobTitle: 'Back end dev',
+                address1: 'Hebe Works',
+                address2: '31 The Calls',
+                address3: 'Leeds',
+                address4: '',
+                postcode: 'LS2 5EY',
+                votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
+                localContactFor: ['Superdrug', 'Five Guys'],
+                billPayerFor: ['The Mrs', 'The kids'],
+                accountsDeptFor: ['Not the Mrs'],
+            }
+        ]
     })
 });

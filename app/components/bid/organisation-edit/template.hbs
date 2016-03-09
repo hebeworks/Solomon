@@ -39,8 +39,6 @@
         {{component "bid/occupant-edit" model=model.occupants}}
     {{/if}}
     
-    {{!-- {{#if model.allPeople}}
-        {{#each model.allPeople as |person|}}
-            {{component "bid/person-edit" model=person}}
-        {{/each}}
-    {{/if}} --}}
+    {{#if model.allPeople}}
+        {{component "bid/person-edit" model=model.allPeople}}
+    {{/if}}

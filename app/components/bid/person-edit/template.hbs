@@ -1,19 +1,29 @@
-<div cpn-padding="right-double bottom left-double">
-    <p>Name</p>
-    <p>First name</p>
-    <p>Last name</p>
-    <p>Job title</p>
-    <p>
-        1 Leeds Street
-        <br>Leeds Place
-        <br>Leeds
-        <br>LS1 1AA
-    </p>
-    <ul>
-        <li>Voting for</li>
-        <li>Local contact for</li>
-        <li>Bill payer for</li>
-        <li>Accounts dept. for</li>
-    </ul>
-</div>{{yield}}
-{{yield}}
+<section cpn-bid-edit-section>
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>People</h3>
+    <main cpn-bid-edit-section_body="{{sectionOpenState}}">
+        
+        {{#if multiplePeople}}
+            {{
+                select-2
+                content=people
+                value=chosenPerson
+                placeholder="Person"
+                optionLabelPath="name"
+            }}
+        {{/if}}
+        
+        {{#if chosenPerson}}
+            {{#if chosenPerson.0.name}}
+            <p>{{chosenPerson.0.name}}</p>
+            {{/if}}
+            
+            {{#if chosenPerson.0.jobTitle}}
+            <p>{{chosenPerson.0.jobTitle}}</p>
+            {{/if}}
+            
+            {{#if chosenPerson.0.votingFor}}
+            <p>{{chosenPerson.0.votingFor}}</p>
+            {{/if}}
+        {{/if}}
+    </main>
+</section>

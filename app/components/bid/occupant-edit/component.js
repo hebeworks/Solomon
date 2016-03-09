@@ -20,6 +20,38 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 localContact: 'Ste Allan',
                 companyMember: 'Mark Barrett',
             }
+        ],
+        allPeople: [
+            {
+                name: 'Ste Allan',
+                firstName: 'Ste',
+                lastName: 'Allan',
+                jobTitle: 'Front end dev',
+                address1: 'Hebe Works',
+                address2: '31 The Calls',
+                address3: 'Leeds',
+                address4: '',
+                postcode: 'LS2 5EY',
+                votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
+                localContactFor: ['Superdrug', 'Five Guys'],
+                billPayerFor: ['The Mrs', 'The kids'],
+                accountsDeptFor: ['Not the Mrs'],
+            },
+            {
+                name: 'Nate Smith',
+                firstName: 'Nate',
+                lastName: 'Smith',
+                jobTitle: 'Back end dev',
+                address1: 'Hebe Works',
+                address2: '31 The Calls',
+                address3: 'Leeds',
+                address4: '',
+                postcode: 'LS2 5EY',
+                votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
+                localContactFor: ['Superdrug', 'Five Guys'],
+                billPayerFor: ['The Mrs', 'The kids'],
+                accountsDeptFor: ['Not the Mrs'],
+            }
         ]
     }),
     
@@ -27,10 +59,8 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
         var model = this.get('model');
         
         if (model.constructor === Array) {
-            console.log('model is array');
             return model;
         } else {
-            console.log('model is not array');
             var newModel = model.occupants;
             return newModel;
         }
@@ -40,26 +70,13 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
     chosenOccupant: null, // will be set by choosing an occupant in the select2 or preset by directly editing an occupant
     
     checkModel: function() {
-        console.log('model');
-        console.log(this.get('occupants'));
         var modelSize = this.get('occupants').length;
         
         if (modelSize > 1) {
-            console.log('modelSize > 1');
             this.set('multipleOccupants', true);
         }  else {
-            console.log('modelSize <= 1');
             this.set('multipleOccupants', false);
             this.set('chosenOccupant', this.get('occupants'));
         }
-        
-        console.log('occupants');
-        console.log(this.get('occupants'));
-        
-        console.log('chosenOccupant');
-        console.log(this.get('chosenOccupant'));
-        
-        console.log('chosenOccupant.occupantID');
-        console.log(this.get('chosenOccupant.occupantID'));
     }.on('init').observes('occupants')
 });
