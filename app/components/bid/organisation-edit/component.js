@@ -109,6 +109,20 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
             }
         ]
     }),
+    sectors: [
+        {
+            id: 1,
+            sectorName: 'Beauty'
+        },
+        {
+            id: 2,
+            sectorName: 'Health'
+        },
+        {
+            id: 3,
+            sectorName: 'Cosmetics'
+        }
+    ],
     
     actions: {
         // Warn about clearing changes, clear changes, don't close the panel
