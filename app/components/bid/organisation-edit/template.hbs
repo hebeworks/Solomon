@@ -33,9 +33,14 @@
         </ul>
         {{/if}}
         
-        <p>
-            <button cpn-button="action">Save Organisation</button>
-        </p>
+        <ul cpn-row-list>
+            <li>
+                <button cpn-button="action" {{action "cancel"}}>Cancel</button>
+            </li>
+            <li>
+                <button cpn-button="action" {{action "save"}}>Save Organisation</button>
+            </li>
+        </ul>
     </main>
 </section>
     

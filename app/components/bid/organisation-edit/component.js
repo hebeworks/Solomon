@@ -78,5 +78,17 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 accountsDeptFor: ['Not the Mrs'],
             }
         ]
-    })
+    }),
+    
+    actions: {
+        // Warn about clearing changes, clear changes, don't close the panel
+        cancel: function() {
+            
+        },
+        
+        // Save the organisation but don't close the panel
+        save: function() {
+            
+        }
+    }
 });

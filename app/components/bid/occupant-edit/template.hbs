@@ -65,9 +65,14 @@
             <p>{{chosenOccupant.companyMember}}</p>
             {{/if}}
             
-            <p>
-                <button cpn-button="action">Save Occupant</button>
-            </p>
+            <ul cpn-row-list>
+                <li>
+                    <button cpn-button="action" {{action "cancel"}}>Cancel</button>
+                </li>
+                <li>
+                    <button cpn-button="action" {{action "save"}}>Save Occupant</button>
+                </li>
+            </ul>
         {{/if}}
     </main>
 </section>
