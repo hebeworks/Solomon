@@ -24,6 +24,10 @@
             {{#if chosenPerson.votingFor}}
             <p>{{chosenPerson.votingFor}}</p>
             {{/if}}
+            
+            <p>
+                <button cpn-button="action">Save Person</button>
+            </p>
         {{/if}}
     </main>
     {{else}}
@@ -49,6 +53,10 @@
         {{#if chosenPerson.votingFor}}
         <p>{{chosenPerson.votingFor}}</p>
         {{/if}}
+        
+        <p>
+            <button cpn-button="action">Save Person</button>
+        </p>
     {{/if}}
     {{/if}}
 </section>
