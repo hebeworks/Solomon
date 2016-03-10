@@ -1,28 +1,34 @@
-<section cpn-bid-edit-section cpn-padding="right-double left-double">
-    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>Organisation Details</h3>
-    <main cpn-bid-edit-section_body="{{sectionOpenState}}">
+<section cpn-bid-edit-section>
+<h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>Organisation Details<span data-grunticon-embed class="icon-chevron-down svg-chevron-down">Open Section</span></h3>
+    <main cpn-bid-edit-section_body="{{sectionOpenState}}" cpn-padding="top-double right-double bottom left-double">
         {{#if model.tradingName}}
-        <p>{{model.tradingName}}</p>
+        <p>
+            {{input value=model.tradingName autocapitalize="words"}}
+        </p>
         {{/if}}
         
         {{#if model.legalName}}
-        <p>{{model.legalName}}</p>
+        <p>
+            {{input value=model.legalName autocapitalize="words"}}
+        </p>
         {{/if}}
         
         {{#if model.businessName}}
-        <p>{{model.businessName}}</p>
+        <p>
+            {{input value=model.businessName autocapitalize="words"}}
+        </p>
         {{/if}}
         
         {{#if model.liableParty}}
-        <p>{{model.liableParty}}</p>
+        <p>
+            {{input value=model.liableParty autocapitalize="words"}}
+        </p>
         {{/if}}
         
         {{#if model.website}}
-        {{#if model.businessName}}
         <p>
-            <a href="{{model.website}}">{{model.businessName}}</a>
+            {{input value=model.website}}
         </p>
-        {{/if}}
         {{/if}}
         
         {{#if model.sectors}}
@@ -33,14 +39,16 @@
         </ul>
         {{/if}}
         
-        <ul cpn-row-list>
-            <li>
-                <button cpn-button="action" {{action "cancel"}}>Cancel</button>
-            </li>
-            <li>
-                <button cpn-button="action" {{action "save"}}>Save Organisation</button>
-            </li>
-        </ul>
+        <div cpn-divide="top solid faded-dark" cpn-padding="top-double" cpn-margin="top">
+            <ul cpn-row-list>
+                <li>
+                    <button cpn-button="action" {{action "cancel"}}>Cancel</button>
+                </li>
+                <li>
+                    <button cpn-button="action" {{action "save"}}>Save Organisation</button>
+                </li>
+            </ul>
+        </div>
     </main>
 </section>
     

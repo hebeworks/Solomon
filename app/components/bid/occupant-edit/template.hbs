@@ -1,6 +1,6 @@
-<section cpn-bid-edit-section cpn-padding="right-double left-double">
-    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>{{title}}</h3>
-    <main cpn-bid-edit-section_body="{{sectionOpenState}}">
+<section cpn-bid-edit-section>
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>{{title}}<span data-grunticon-embed class="icon-chevron-down svg-chevron-down">Open Section</span></h3>
+    <main cpn-bid-edit-section_body="{{sectionOpenState}}" cpn-padding="top-double right-double bottom left-double">
         
         {{#if multipleOccupants}}
             {{
@@ -8,71 +8,130 @@
                 content=occupants
                 value=chosenOccupant
                 placeholder="Occupant"
-                optionLabelPath="property"
+                optionLabelPath="property.description"
             }}
         {{/if}}
         
         {{#if chosenOccupant}}
-            {{#if chosenOccupant.occupantID}}
-            <p>{{chosenOccupant.occupantID}}</p>
-            {{/if}}
+            <p>
+                <label for="occupant_occupant-id">Occupant ID</label>
+                {{input value=chosenOccupant.occupantID disabled=true id="occupant_occupant-id"}}
+            </p>
             
-            {{#if chosenOccupant.archived}}
-            <p>{{chosenOccupant.archived}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.organisation}}
-            <p>{{chosenOccupant.organisation}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.property}}
-            <p>{{chosenOccupant.property}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.joiningDate}}
-            <p>{{chosenOccupant.joiningDate}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.tags}}
-            <p>{{chosenOccupant.tags}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.sector}}
-            <p>{{chosenOccupant.sector}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.businessType}}
-            <p>{{chosenOccupant.businessType}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.voter}}
-            <p>{{chosenOccupant.voter}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.billPayer}}
-            <p>{{chosenOccupant.billPayer}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.accountsDept}}
-            <p>{{chosenOccupant.accountsDept}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.localContact}}
-            <p>{{chosenOccupant.localContact}}</p>
-            {{/if}}
-            
-            {{#if chosenOccupant.companyMember}}
-            <p>{{chosenOccupant.companyMember}}</p>
-            {{/if}}
-            
-            <ul cpn-row-list>
+            <label>Archived</label>
+            <ul cpn-row-list="middle">
                 <li>
-                    <button cpn-button="action" {{action "cancel"}}>Cancel</button>
+                    {{radio-button value=true checked=chosenOccupant.archived name="archived" id="occupant_archived-true"}}
+                    <label for="occupant_archived-true">True</label>
                 </li>
                 <li>
-                    <button cpn-button="action" {{action "save"}}>Save Occupant</button>
+                    {{radio-button value=false checked=chosenOccupant.archived name="archived" id="occupant_archived-false"}}
+                    <label for="occupant_archived-false">False</label>
                 </li>
             </ul>
+            
+            <p>
+                <label for="occupant_organisation">Organisation</label>
+                {{input value=chosenOccupant.organisation autocapitalize="words" id="occupant_organisation"}}
+            </p>
+            
+            <p>
+                <label for="occupant_property">Property</label>
+                {{input value=chosenOccupant.property.description disabled=true id="occupant_property"}}
+            </p>
+            
+            <p>
+                <label for="occupant_joiningDate">Joining Date</label>
+                {{pikaday-input value=chosenOccupant.joiningDate format="DD/MM/YYYY" id="occupant_joiningDate"}}
+            </p>
+            
+            <p>
+                <label for="occupant_tags">Tags</label>
+                {{input value=chosenOccupant.tags autocapitalize="words" id="occupant_tags"}}
+            </p>
+            
+            <p>
+                <label for="occupant_sector">Sector</label>
+                {{input value=chosenOccupant.sector autocapitalize="words" id="occupant_sector"}}
+            </p>
+            
+            <p>
+                <label for="occupant_businessType">Business Type</label>
+                {{input value=chosenOccupant.businessType autocapitalize="words" id="occupant_businessType"}}
+            </p>
+            
+            <label>Voter</label>
+            {{
+                select-2
+                content=chosenOccupant.0.allPeople
+                value=chosenOccupant.voter
+                placeholder="Voter"
+                optionLabelPath="voter"
+            }}
+            
+            <label>Bill Payer</label>
+            {{
+                select-2
+                content=chosenOccupant.0.allPeople
+                value=chosenOccupant.billPayer
+                placeholder="Bill Payer"
+                optionLabelPath="billPayer"
+            }}
+            
+            <label>Accounts Department</label>
+            {{
+                select-2
+                content=chosenOccupant.0.allPeople
+                value=chosenOccupant.accountsDept
+                placeholder="Accounts Department"
+                optionLabelPath="accountsDept"
+            }}
+            
+            <label>Local Contact</label>
+            {{
+                select-2
+                content=chosenOccupant.0.allPeople
+                value=chosenOccupant.localContact
+                placeholder="Local Contact"
+                optionLabelPath="localContact"
+            }}
+            
+            <label>Company Member</label>
+            {{
+                select-2
+                content=chosenOccupant.0.allPeople
+                value=chosenOccupant.companyMember
+                placeholder="Company Member"
+                optionLabelPath="companyMember"
+            }}
+            
+            <label>Empty</label>
+            <ul cpn-row-list="middle">
+                <li>
+                    {{radio-button value=true checked=chosenOccupant.empty name="empty" id="occupant_empty-true"}}
+                    <label for="occupant_empty-true">True</label>
+                </li>
+                <li>
+                    {{radio-button value=false checked=chosenOccupant.empty name="empty" id="occupant_empty-false"}}
+                    <label for="occupant_empty-false">False</label>
+                </li>
+            </ul>
+            
+            <p>
+                <label>Address</label>
+                {{input value=chosenOccupant.address}}
+            </p>
+            
+            <div cpn-divide="top solid faded-dark" cpn-padding="top-double" cpn-margin="top">
+                <ul cpn-row-list>
+                    <li>
+                        <button cpn-button="action" {{action "cancel"}}>Cancel</button>
+                    </li>
+                    <li>
+                        <button cpn-button="action" {{action "save"}}>Save Occupant</button>
+                    </li>
+                </ul>
+            </div>
         {{/if}}
     </main>
 </section>
