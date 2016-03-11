@@ -7,16 +7,42 @@
 		font-family: $base-font-family !important;
 	}
 	
+	&.select2-dropdown-open .select2-choice {
+	    background-color: darken($medium-grey, 5%);
+	    border-radius: rem(3px) rem(3px) 0 0;
+	    
+	    .select2-arrow {
+	    	b {
+	    		@include transform(rotate(180deg));
+	    	}
+	    }
+	}
+	
 	.select2-choice {
-		height: 35px;
-		background-image: none;
+		font-size: rem(14px);
+		font-weight: 500;
+		line-height: 1.5;
+		background-color: $medium-grey;
+		color: $black;
+		border-radius: rem(3px);
 		border: 0;
 		filter: none;
-		line-height: 22px;
+		background-image: none;
+		background-color: $medium-grey;
+		cursor: pointer;
+		padding: rem($spacing-base);
+		display: block;
+		height: auto;
+		@include transition(.3s);
+		box-shadow: none !important;
 		
-		[cpn-bg-color="white"] & {
-			background-color: $light-grey;
+		&:hover, &:focus {
+		    background-color: lighten($medium-grey, 5%);
 		}
+		
+		// [cpn-bg-color="white"] & {
+		// 	background-color: $light-grey;
+		// }
 		
 		[cpn-bg-color="blue"] & {
 			background-color: $pale-blue;
@@ -40,34 +66,37 @@
 		}
 		
 		.select2-chosen {
-			height: 100%;
-			font-family: $base-font-family;
-			font-size: .75rem;
-			margin-top: 6px;
-			margin-left: 4px;
+			display: block;
+			margin: 0;
+			padding-right: rem(23px);
+			// height: 100%;
+			// font-family: $base-font-family;
+			// font-size: .75rem;
+			// margin-top: 6px;
+			// margin-left: 4px;
 			
 			[cpn-bg-color="white"] & {
-				background-color: $light-grey;
+				// background-color: $light-grey;
 				color: $black;
 			}
 			
 			[cpn-bg-color="blue"] & {
-				background-color: $pale-blue;
+				// background-color: $pale-blue;
 				color: #fff;
 			}
 			
 			[cpn-bg-color="lime"] & {
-				background-color: $dark-lime;
+				// background-color: $dark-lime;
 				color: #fff;
 			}
 			
 			[cpn-bg-color="black"] & {
-				background-color: #000;
+				// background-color: #000;
 				color: #fff;
 			}
 			
 			[cpn-bg-color="yw-medium-blue"] & {
-				background-color: #fff;
+				// background-color: #fff;
 				color: $black;
 			}
 		}
@@ -75,45 +104,51 @@
 		.select2-arrow {
 			filter: none;
 			border: none;
-			background-image: none;
-			margin: {
-				right: 8px;
-				top: 13px;
-			}
+			background: none;
+			position: absolute;
+			top: 0;
+			right: rem($spacing-base);
+			bottom: 0;
+			margin: auto;
+			width: rem(13px);
+			height: rem(10px);
 			
 			[cpn-bg-color="white"] & {
-				background-color: $light-grey;
+				// background-color: $light-grey;
 				color: $black;
 			}
 			
 			[cpn-bg-color="blue"] & {
-				background-color: $pale-blue;
+				// background-color: $pale-blue;
 				color: #fff;
 			}
 			
 			[cpn-bg-color="lime"] & {
-				background-color: $dark-lime;
+				// background-color: $dark-lime;
 				color: #fff;
 			}
 			
 			[cpn-bg-color="black"] & {
-				background-color: #000;
+				// background-color: #000;
 				color: #fff;
 			}
 			
 			[cpn-bg-color="yw-medium-blue"] & {
-				background-color: #fff;
+				// background-color: #fff;
 				color: $black;
 			}
 			
 			b {
-				width: 10px;
-				height: 8px;
+				width: rem(13px);
+				height: rem(10px);
+				@include transition(.25s);
+				@include transform(rotate(0));
 				background: none !important;
 				background: {
 					image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2212.23px%22%20height%3D%229.93px%22%20viewBox%3D%22558.85%20133.15%2012.23%209.93%22%20enable-background%3D%22new%20558.85%20133.15%2012.23%209.93%22%20%20xml%3Aspace%3D%22preserve%22%3E%3Ctitle%3EDropdown%20Triangle%3C%2Ftitle%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M564.965%2C143.08l6.115-9.93h-12.23L564.965%2C143.08L564.965%2C143.08z%22%2F%3E%3C%2Fsvg%3E') !important;
 					repeat: no-repeat !important;
-					size: cover !important;
+					position: center center !important;
+					size: rem(13px) rem(10px) !important;
 				}
 				
 				[cpn-bg-color="white"] &,
@@ -134,19 +169,27 @@ a.select2-choice.select2-default {
 	background-color: $white;
 	color: $black;
 	font-family: $base-font-family;
-	font-size: .75rem;
 	border: 0;
+	font-size: rem(12px);
+	border-radius: 0 0 rem(3px) rem(3px);
+	border-width: 0 2px 2px 2px;
+	border-style: none solid solid solid;
+	border-color: darken($medium-grey, 5%);
+	box-shadow: none;
 	
 	.select2-search {
-		height: 40px;
-		padding: {
-			top: 4px;
-		}
+		padding: rem($spacing-base / 2) rem($spacing-base / 2) 0;
 		
 		input {
-			height: 100%!important;
-			background-color: darken(white,4);
+			height: auto;
 			border: none;
+			font-family: $base-font-family;
+			padding: rem($spacing-base) rem($spacing-base * 4) rem($spacing-base) rem($spacing-base);
+			background-image: url('./img/svg/embed/search.svg') !important;
+			background-position: right rem($spacing-base) top rem($spacing-base) !important;
+			background-size: rem(20px) rem(20px) !important;
+			background-repeat: no-repeat !important;
+			background-color: $light-grey;
 		}
 	}
 }
@@ -161,23 +204,28 @@ a.select2-choice.select2-default {
 }
 
 .select2-results {
+	padding: rem($spacing-base / 2);
+	margin: 0;
+	
 	li {
-		height: 40px;
-		padding-top: 8px;
-		border-bottom: 1px dotted $black;
+		font-size: rem(12px);
+		padding: rem($spacing-base / 2);
+		margin-bottom: 0;
+		border-bottom: 1px solid $light-grey;
 		
 		&:first-child {
-			border-top: 1px dotted $black;
+			border-top: 1px solid $light-grey;
 		}
-	}
-	
-	.select2-no-results, .select2-searching {
-		padding-top: 10px;
 	}
 	
 	.select2-highlighted {
 		background-color: $light-grey;
 		color: $black;
+	}
+	
+	.select2-result-label {
+		padding: 0;
+		min-height: 0;
 	}
 }
 

@@ -4,7 +4,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'WQ Contact Trends', // (Provide a story title)
         subTitle: 'What time of day are contacts received?', // (Provide a story subtitle)
         scroll: false, // (Should the story vertically scroll its content?)

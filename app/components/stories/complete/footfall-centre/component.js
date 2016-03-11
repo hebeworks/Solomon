@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-  storyConfig: {
+  initialConfig: {
     title: 'Leeds Footfall Trends',
     subTitle: 'Weekly footfall stats for Leeds City Centre',
     color: 'black',

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Instagram',
         subTitle: 'Pictures of Leeds on Instagram',
         color: 'dark-grey',

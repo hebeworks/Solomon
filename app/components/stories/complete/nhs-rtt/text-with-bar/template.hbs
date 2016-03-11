@@ -1,0 +1,13 @@
+{{#stories/story-base}}
+
+    <h3 cpn-story_title cpn-margin="bottom">Waiting List Performance</h3>
+    
+    <p cpn-font="12px">In {{month}}, {{percentage}}% of patients on this Waiting List were waiting <strong>less than 18 weeks</strong> for treatment.</p>
+    
+    <div spc-nhs-pc-bar cpn-bg-color="white">
+        <div spc-nhs-pc-bar_inner style="width: {{percentage}}%;" cpn-bg-color="green">
+            <span spc-nhs-pc-bar_value cpn-font="500">{{percentage}}%</span>
+        </div>
+    </div>
+    
+{{/stories/story-base}}

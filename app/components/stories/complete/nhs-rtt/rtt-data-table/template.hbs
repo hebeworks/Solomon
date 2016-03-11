@@ -1,0 +1,23 @@
+{{#stories/story-base}}
+    <h3 cpn-story_title cpn-margin="bottom">{{title}}</h3>
+
+    <table cpn-width="100%" cpn-font="12px">
+        <thead>
+            <tr>
+                {{#each headings as |heading|}}
+                    <th>{{heading.title}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rows as |row|}}
+                <tr>
+                    {{#each row as |cell|}}
+                        <td>{{cell}}</td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    
+{{/stories/story-base}}

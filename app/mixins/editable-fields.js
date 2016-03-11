@@ -4,6 +4,7 @@ export default Ember.Mixin.create({
 
     fetchEditableFieldValue: function(name){
         const config = this.get('storyModel.config');
+        if(!config) return '';
         const item = config.findBy('name', name);
 
         return item ? item.get('value') : '';
@@ -11,6 +12,7 @@ export default Ember.Mixin.create({
 
     setupEditableFields: function (){
         var story = this.get('storyModel');
+        if(!story) return;
         var config = this.get('editableFields') || [];
 
         if(story.get('config.length') > 0)

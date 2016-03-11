@@ -1,6 +1,12 @@
 {{#stories/story-base}}
-
-    <div id="plotly-container" style="width: 100%; height: 100%;">
+    <h3 cpn-story_title cpn-margin="bottom">RTT Waiting List</h3>
+    
+    <ul cpn-row-list>
+        <li cpn-width="50%"><button {{action "showPathways" true}} cpn-button="{{if pathways "chosen"}} small">Pathways</button></li>
+        <li cpn-width="50%"><button {{action "showPathways" false}} cpn-button="{{unless pathways "chosen"}} small">Weeks</button></li>
+    </ul>
+    
+    <div id="plotly-container" style="width: 100%; height: 223px;">
           <div id="{{chartID}}" style="width: 100%; height: 100%;"></div>
     </div>
 

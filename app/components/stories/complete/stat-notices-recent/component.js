@@ -2,7 +2,7 @@
 import DatamillStory from '../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Statutory Notices',
         subTitle: 'Newly added in Leeds',
         color: 'lighter-blue',

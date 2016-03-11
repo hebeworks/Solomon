@@ -94,6 +94,10 @@
                     opacity: 0;
                 }
             }
+            
+            [solomon-app~="nhs"] &[cpn-bg-color="white"] {
+                border: 1px solid #d9d9d9;
+            }
         }
         
         [cpn-story_face~="back"] {
@@ -145,10 +149,25 @@
                     [solomon-app~="yorkshire-water"] & {
                         background-color: $yw-medium-blue;
                     }
-                    
+                }
+            }
+            
+            [cpn-story_dot~="front"] {
+                &::after {
                     [solomon-app~="nhs"] & {
                         background-color: $nhs-blue;
                     }
+                    
+                    [cpn-bg-color="blue"] &,
+                    [cpn-bg-color="medium-blue"] & {
+                        background-color: #fff;
+                    }
+                }
+            }
+            
+            [cpn-story_dot~="back"] {
+                &::after {
+                    background-color: #fff;
                 }
             }
             
@@ -171,10 +190,21 @@
                 [solomon-app~="yorkshire-water"] & {
                     background-color: $yw-medium-blue;
                 }
-                
+            }
+            
+            [cpn-story_bar~="front"] {
                 [solomon-app~="nhs"] & {
                     background-color: $nhs-blue;
                 }
+                
+                [cpn-bg-color="blue"] &,
+                [cpn-bg-color="medium-blue"] & {
+                    background-color: #fff;
+                }
+            }
+            
+            [cpn-story_bar~="back"] {
+                background-color: #fff;
             }
         
             [cpn-story_content] {
@@ -184,8 +214,12 @@
                 position: relative;
             }
             
-            [cpn-story_content~="has-header"] {
+            [cpn-story_content~="has-full-header"] {
                 padding-top: rem(36px);
+            }
+            
+            [cpn-story_content~="has-half-header"] {
+                padding-top: rem(23px);
             }
             
             [cpn-story_content~="has-footer"] {
@@ -224,7 +258,6 @@
             }
             
                 [cpn-story_header] {
-                    height: rem(36px);
                     width: 100%;
                     position: absolute;
                     top: 0;
@@ -234,6 +267,14 @@
                         border-bottom: 0;
                         margin-bottom: 0;
                     }
+                }
+                
+                [cpn-story_header~="full"] {
+                    height: rem(36px);
+                }
+                
+                [cpn-story_header~="half"] {
+                    height: rem(23px);
                 }
             
                     [cpn-story_title] {
@@ -267,9 +308,11 @@
                     margin-left: rem(-$spacing-base);
                 }
                 
-                [cpn-story_body~="has-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
+                [cpn-story_body~="has-full-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]),
+                [cpn-story_body~="has-half-header"][cpn-story_body~="no-slider"]:not([cpn-story_body~="height-1"]) {
                     padding-top: rem($spacing-base);
                     
+                    &[cpn-story_body~="no-header-border"],
                     [solomon-app~="yorkshire-water"] & {
                         padding-top: 0;
                     }
@@ -315,6 +358,10 @@
                                     -webkit-overflow-scrolling: touch;
                                     -ms-overflow-style: -ms-autohiding-scrollbar;
                                 }
+                                
+                                [cpn-story_body~="no-header-border"] & {
+                                    padding-top: 0;
+                                }
                             }
                             
                             [cpn-story_carousel-item~="width-1"] {
@@ -341,3 +388,46 @@
                         margin-top: rem(2px);
                         float: right;
                     }
+                    
+[spc-story-loader] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    z-index: 1;
+    background-color: #fff;
+    
+    &::after {
+        content: '';
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background-color: #fff;
+        background-image: url('./img/story-loader.png');
+        background-size: 30px 30px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        @include animation(story-loader 1s linear infinite);
+    }
+}
+
+@include keyframes(story-loader) {
+    from {
+        @include transform(rotate(0deg));
+    }
+    
+    to {
+        @include transform(rotate(360deg));
+    }
+}

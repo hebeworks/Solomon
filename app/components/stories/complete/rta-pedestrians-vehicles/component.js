@@ -4,7 +4,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'Vehicle-based Pedestrian Casualties', // (Provide a story title)
         subTitle: 'Number of pedstrian casualties caused by vehicle types', // (Provide a story subtitle)
         author: 'Liam Bolton', // (Provide the author of the story)

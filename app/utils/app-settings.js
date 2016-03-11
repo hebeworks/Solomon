@@ -56,8 +56,9 @@ export default Ember.Object.extend({
                 case 'findmybinday.com' :
                     solomonConfig.defaultCanvas = 'find-my-bin-day';
                     break;
-                case 'nhs.preview.mysolomon.co.uk':
+                case 'nhsrtt.preview.mysolomon.co.uk':
                     solomonConfig.name = 'nhs';
+                    solomonConfig.defaultCanvas = 'rtt-overview';
                     solomonConfig.title = 'NHS Dashboard';
                     solomonConfig.storyConfig.storyHandle = 'both';
                     solomonConfig.logoType = 'bitmap';
@@ -130,6 +131,11 @@ export default Ember.Object.extend({
         this.canvasSettings.nhsFilter = {
             "regions" : [],
             "selectedRegion" : null,
+            "providers": [],
+            "selectedProvider": null,
+            "ccgs": [],
+            "selectedCCG": null,
+            "treatments": [],
             "months": [],
             "selectedMonth": null,
             "history" : [],
@@ -137,6 +143,7 @@ export default Ember.Object.extend({
         };
         this.loadNHSRegions();
         this.loadNHSMonths();
+        this.loadNHSTreatments();
     },
     loadNHSMonths: function() {
         var dateFormat = "MMM YYYY";
@@ -177,12 +184,60 @@ export default Ember.Object.extend({
                     region.text = region.name;
                 });
             }
-            regions.push({ id: 'all', text: 'All - May be slow' });
+            // regions.push({ id: 'all', text: 'All - May be slow' });
             _this.incrementProperty('canvasSettings.nhsFilter.initialDataLoads');
             _this.set('canvasSettings.nhsFilter.regions', regions);
             _this.set('canvasSettings.nhsFilter.selectedRegion', regions[1]);
         });
     },
+    loadNHSTreatments: function () {
+        var _this = this;
+        var url = this.get('hebeNodeAPI') + '/nhsrtt/treatments';
+        this.getData(url, true).then(function (treatments) {
+            if (!Ember.isEmpty(treatments)) {
+                treatments.forEach(function (treatment) {
+                    treatment.id = treatment._id;
+                    treatment.text = treatment.name;
+                });
+            }
+            _this.incrementProperty('canvasSettings.nhsFilter.initialDataLoads');
+            _this.set('canvasSettings.nhsFilter.treatments', treatments);
+        });
+    },
+    onNHSSelectedRegionChange: function(){
+        var providers = this.get('canvasSettings.nhsFilter.selectedRegion.providers');
+        var ccgs = this.get('canvasSettings.nhsFilter.selectedRegion.ccgs');
+        if (!Ember.isEmpty(providers)) {
+            providers.forEach(function (provider) {
+                provider.id = provider._id;
+                provider.text = provider.name;
+            });
+        }
+        if (!Ember.isEmpty(ccgs)) {
+            ccgs.forEach(function (ccg) {
+                ccg.id = ccg._id;
+                ccg.text = ccg.name;
+            });
+        }
+        
+        this.setProperties({
+            'canvasSettings.nhsFilter.providers': providers,
+            'canvasSettings.nhsFilter.ccgs': ccgs,
+            'canvasSettings.nhsFilter.selectedProvider': null,
+            'canvasSettings.nhsFilter.selectedCCG': null
+        });
+    }.observes('canvasSettings.nhsFilter.selectedRegion'), 
+    
+    onNHSSelectedProviderChange: function(){
+        if(this.get('canvasSettings.nhsFilter.selectedProvider')) {
+            this.set('canvasSettings.nhsFilter.selectedCCG',null);
+        }
+    }.observes('canvasSettings.nhsFilter.selectedProvider'), 
+    onNHSSelectedCCGChange: function(){
+        if(this.get('canvasSettings.nhsFilter.selectedCCG')) {
+            this.set('canvasSettings.nhsFilter.selectedProvider',null);
+        }
+    }.observes('canvasSettings.nhsFilter.selectedCCG'), 
 
 /////////////////////////////////////////////////////////////////
 // End NHS Canvas Filtering

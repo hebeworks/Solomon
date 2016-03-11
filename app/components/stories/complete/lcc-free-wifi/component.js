@@ -4,7 +4,7 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'Public Access Free WiFi', // (Provide a story title)
         subTitle: 'Concentration of free public WiFi locations in Leeds',
         author: 'Simon Zimmerman', // (Provide the author of the story)

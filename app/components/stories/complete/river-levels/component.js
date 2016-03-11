@@ -1,7 +1,7 @@
 import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title:'Live Leeds River Level',
         subTitle: 'Water flowing under Crown Point Bridge',
         color: 'dark-blue',

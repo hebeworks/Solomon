@@ -2,7 +2,7 @@
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component'
 
 export default DefaultStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'WQ Contacts by Week Day', // (Provide a story title)
         subTitle: 'Which week days are most active?', // (Provide a story subtitle)
         viewOnly: true,

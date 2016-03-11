@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig:  {
+    initialConfig:  {
         title: 'Leeds City Council',
         subTitle: 'Statement of Accounts 2014/15',
         feedbackEmail: 'support@solomon.co.uk',

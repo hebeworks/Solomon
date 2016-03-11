@@ -2,7 +2,7 @@
 import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
-    storyConfig: {
+    initialConfig: {
         title: 'Bicycle Bays',
         subTitle: 'In the city centre',
         color: 'lime',

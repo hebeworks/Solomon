@@ -1,0 +1,37 @@
+[spc-vtwt_title] {
+    &::after {
+        content: '';
+        display: inline-block;
+        vertical-align: rem(-4px);
+        width:  rem(30px);
+        height: rem(30px);
+        background-image: url('./img/svg/embed/circled-triangle.svg');
+        background-size: 100% 100%;
+        @include transform(rotate(45deg));
+        @include transition(1s);
+    }
+    > .ember-view, p {
+        display: inline;
+    }
+    strong {
+        color: $nhs-blue;
+    }
+}
+
+[spc-vtwt_title="up"] {
+    &::after {
+        @include transform(rotate(360deg));
+    }
+}
+
+[spc-vtwt_title="down"] {
+    &::after {
+        @include transform(rotate(-180deg));
+    }
+}
+
+[spc-vtwt-content] {
+    strong {
+        color: $nhs-blue;
+    }
+}
