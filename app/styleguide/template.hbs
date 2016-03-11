@@ -251,29 +251,38 @@
             <h2 spc-style-guide_section-title>Forms</h2>
             
             <div cpn-margin="bottom-double">
-                <h3>Text Box</h3>
-                <label for="">Label</label>
+                <label cpn-label="above" for="">Text Input</label>
                 <input type="text" placeholder="Placeholder text">
             </div>
             
             <div cpn-margin="bottom-double">
-                <h3>Text Area</h3>
-                <label for="">Label</label>
+                <label cpn-label="above" for="">Text Area</label>
                 <textarea></textarea>
             </div>
             
             <div cpn-margin="bottom-double">
-                <h3>Select Box</h3>
-                <label for="">Label</label>
+                <label cpn-label="above" for="">Select2 Box - Single</label>
                 {{
                     select-2
-                    content='Option 1, Option 2, Option 3'
+                    value=select2Value
+                    content=select2Content
                     placeholder="Choose an option"
+                    optionLabelPath=optionName
                 }}
             </div>
             
             <div cpn-margin="bottom-double">
-                <h3>Radio Buttons</h3>
+                <label cpn-label="above" for="">Select2 Box - Multiple</label>
+                {{
+                    select-2
+                    content='Option 1, Option 2, Option 3'
+                    placeholder="Choose some options"
+                    multiple=true
+                }}
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <label cpn-label="above" for="">Radio Buttons</label>
                 <ul cpn-row-list="middle">
                     <li>
                         <input name="radios" id="radios1" type="radio">
@@ -291,7 +300,7 @@
             </div>
             
             <div cpn-margin="bottom">
-                <h3>Check Boxes</h3>
+                <label cpn-label="above" for="">Checkboxes</label>
                 <ul cpn-row-list="middle">
                     <li>
                         <input name="checkboxes" id="checkboxes1" type="checkbox">

@@ -19,26 +19,24 @@
 	}
 	
 	.select2-choice {
-		font-size: rem(14px);
-		font-weight: 500;
+		font-size: rem(15px);
 		line-height: 1.5;
-		background-color: $medium-grey;
-		color: $black;
+		background-color: $lighter-grey;
+		color: $solomon-black;
 		border-radius: rem(3px);
 		border: 0;
 		filter: none;
 		background-image: none;
-		background-color: $medium-grey;
 		cursor: pointer;
-		padding: rem($spacing-base);
+		padding: rem($spacing-base) rem($spacing-base * 1.5);
 		display: block;
 		height: auto;
 		@include transition(.3s);
 		box-shadow: none !important;
 		
-		&:hover, &:focus {
-		    background-color: lighten($medium-grey, 5%);
-		}
+		// &:hover, &:focus {
+		//     background-color: $light-grey;
+		// }
 		
 		// [cpn-bg-color="white"] & {
 		// 	background-color: $light-grey;
@@ -69,31 +67,28 @@
 			display: block;
 			margin: 0;
 			padding-right: rem(23px);
-			// height: 100%;
-			// font-family: $base-font-family;
-			// font-size: .75rem;
-			// margin-top: 6px;
-			// margin-left: 4px;
+			line-height: rem(30px);
+			color: $grey;
 			
-			[cpn-bg-color="white"] & {
-				// background-color: $light-grey;
-				color: $black;
-			}
+			// [cpn-bg-color="white"] & {
+			// 	// background-color: $light-grey;
+			// 	color: $black;
+			// }
 			
-			[cpn-bg-color="blue"] & {
-				// background-color: $pale-blue;
-				color: #fff;
-			}
+			// [cpn-bg-color="blue"] & {
+			// 	// background-color: $pale-blue;
+			// 	color: #fff;
+			// }
 			
-			[cpn-bg-color="lime"] & {
-				// background-color: $dark-lime;
-				color: #fff;
-			}
+			// [cpn-bg-color="lime"] & {
+			// 	// background-color: $dark-lime;
+			// 	color: #fff;
+			// }
 			
-			[cpn-bg-color="black"] & {
-				// background-color: #000;
-				color: #fff;
-			}
+			// [cpn-bg-color="black"] & {
+			// 	// background-color: #000;
+			// 	color: #fff;
+			// }
 			
 			[cpn-bg-color="yw-medium-blue"] & {
 				// background-color: #fff;
