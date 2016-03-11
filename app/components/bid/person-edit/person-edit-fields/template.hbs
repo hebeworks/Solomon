@@ -1,0 +1,102 @@
+{{#if multiplePeople}}
+    {{
+        select-2
+        content=people
+        value=chosenPerson
+        placeholder="Person"
+        optionLabelPath="name"
+    }}
+{{/if}}
+
+{{#if chosenPerson}}
+    <p>
+        <label for="person_firstName">First Name</label>
+        {{input value=chosenPerson.firstName autocapitalize="words" id="person_firstName"}}
+    </p>
+    
+    <p>
+        <label for="person_lastName">Last Name</label>
+        {{input value=chosenPerson.lastName autocapitalize="words" id="person_lastName"}}
+    </p>
+    
+    <p>
+        <label for="person_jobTitle">Job Title</label>
+        {{input value=chosenPerson.jobTitle autocapitalize="words" id="person_jobTitle"}}
+    </p>
+    
+    <p>
+        <label for="person_address1">Address 1</label>
+        {{input value=chosenPerson.address1 autocapitalize="words" id="person_address1"}}
+    </p>
+    
+    <p>
+        <label for="person_address2">Address 2</label>
+        {{input value=chosenPerson.address2 autocapitalize="words" id="person_address2"}}
+    </p>
+    
+    <p>
+        <label for="person_address3">Address 3</label>
+        {{input value=chosenPerson.address3 autocapitalize="words" id="person_address3"}}
+    </p>
+    
+    <p>
+        <label for="person_address4">Address 4</label>
+        {{input value=chosenPerson.address4 autocapitalize="words" id="person_address4"}}
+    </p>
+    
+    <p>
+        <label for="person_postcode">Postcode</label>
+        {{input value=chosenPerson.postcode autocapitalize="words" id="person_postcode"}}
+    </p>
+    
+    <label>Voting For</label>
+    {{
+        select-2
+        content=allOccupants
+        value=chosenPerson.votingFor
+        placeholder="Voting For"
+        optionLabelPath="property.description"
+        multiple=true
+    }}
+    
+    <label>Local Contact For</label>
+    {{
+        select-2
+        content=allOccupants
+        value=chosenPerson.localContactFor
+        placeholder="Local Contact For"
+        optionLabelPath="property.description"
+        multiple=true
+    }}
+    
+    <label>Bill Payer For</label>
+    {{
+        select-2
+        content=allOccupants
+        value=chosenPerson.billPayerFor
+        placeholder="Bill Payer For"
+        optionLabelPath="property.description"
+        multiple=true
+    }}
+    
+    <label>Accounts Department For</label>
+    {{
+        select-2
+        content=allOccupants
+        value=chosenPerson.accountsDeptFor
+        placeholder="Accounts Department For"
+        optionLabelPath="property.description"
+        multiple=true
+    }}
+    
+    <div cpn-divide="top solid faded-dark" cpn-padding="top-double" cpn-margin="top">
+        <ul cpn-row-list>
+            <li>
+                <button cpn-button="action" {{action "cancel"}}>Cancel</button>
+            </li>
+            <li>
+                <button cpn-button="action" {{action "save"}}>Save Person</button>
+            </li>
+        </ul>
+    </div>
+{{/if}}

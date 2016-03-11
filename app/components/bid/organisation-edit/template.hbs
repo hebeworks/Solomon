@@ -26,13 +26,14 @@
             {{input value=model.website id="organisation_website"}}
         </p>
         
-        <label>Sector</label>
+        <label>Sectors</label>
         {{
             select-2
-            content=sectors
-            value=model.sector
+            content=allSectors
+            value=model.sectors
             placeholder="Sector"
             optionLabelPath="sectorName"
+            multiple=true
         }}
         
         <div cpn-divide="top solid faded-dark" cpn-padding="top-double" cpn-margin="top">

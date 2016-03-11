@@ -2,71 +2,11 @@
     {{#if nested}}
     <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>{{title}}<span data-grunticon-embed class="icon-chevron-down svg-chevron-down">Open Section</span></h3>
     <main cpn-bid-edit-section_body="{{sectionOpenState}}" cpn-padding="top-double right-double bottom left-double">
-        {{#if multiplePeople}}
-            {{
-                select-2
-                content=people
-                value=chosenPerson
-                placeholder="Person"
-                optionLabelPath="name"
-            }}
-        {{/if}}
-        
-        {{#if chosenPerson}}
-            {{#if chosenPerson.name}}
-            <p>{{chosenPerson.name}}</p>
-            {{/if}}
-            
-            {{#if chosenPerson.jobTitle}}
-            <p>{{chosenPerson.jobTitle}}</p>
-            {{/if}}
-            
-            {{#if chosenPerson.votingFor}}
-            <p>{{chosenPerson.votingFor}}</p>
-            {{/if}}
-            
-            <ul cpn-row-list>
-                <li>
-                    <button cpn-button="action" {{action "cancel"}}>Cancel</button>
-                </li>
-                <li>
-                    <button cpn-button="action" {{action "save"}}>Save Person</button>
-                </li>
-            </ul>
-        {{/if}}
+        {{component "bid/person-edit/person-edit-fields"}}
     </main>
     {{else}}
-    {{#if multiplePeople}}
-        {{
-            select-2
-            content=people
-            value=chosenPerson
-            placeholder="Person"
-            optionLabelPath="name"
-        }}
-    {{/if}}
-    
-    {{#if chosenPerson}}
-        {{#if chosenPerson.name}}
-        <p>{{chosenPerson.name}}</p>
-        {{/if}}
-        
-        {{#if chosenPerson.jobTitle}}
-        <p>{{chosenPerson.jobTitle}}</p>
-        {{/if}}
-        
-        {{#if chosenPerson.votingFor}}
-        <p>{{chosenPerson.votingFor}}</p>
-        {{/if}}
-        
-        <ul cpn-row-list>
-            <li>
-                <button cpn-button="action" {{action "cancel"}}>Cancel</button>
-            </li>
-            <li>
-                <button cpn-button="action" {{action "save"}}>Save Person</button>
-            </li>
-        </ul>
-    {{/if}}
+    <main cpn-padding="right-double bottom left-double">
+        {{component "bid/person-edit/person-edit-fields"}}
+    </main>
     {{/if}}
 </section>

@@ -50,10 +50,14 @@
                 {{input value=chosenOccupant.tags autocapitalize="words" id="occupant_tags"}}
             </p>
             
-            <p>
-                <label for="occupant_sector">Sector</label>
-                {{input value=chosenOccupant.sector autocapitalize="words" id="occupant_sector"}}
-            </p>
+            <label>Sector</label>
+            {{
+                select-2
+                content=allSectors
+                value=chosenOccupant.sector
+                placeholder="Sector"
+                optionLabelPath="sectorName"
+            }}
             
             <p>
                 <label for="occupant_businessType">Business Type</label>
@@ -63,46 +67,46 @@
             <label>Voter</label>
             {{
                 select-2
-                content=chosenOccupant.0.allPeople
+                content=allPeople
                 value=chosenOccupant.voter
                 placeholder="Voter"
-                optionLabelPath="voter"
+                optionLabelPath="name"
             }}
             
             <label>Bill Payer</label>
             {{
                 select-2
-                content=chosenOccupant.0.allPeople
+                content=allPeople
                 value=chosenOccupant.billPayer
                 placeholder="Bill Payer"
-                optionLabelPath="billPayer"
+                optionLabelPath="name"
             }}
             
             <label>Accounts Department</label>
             {{
                 select-2
-                content=chosenOccupant.0.allPeople
+                content=allPeople
                 value=chosenOccupant.accountsDept
                 placeholder="Accounts Department"
-                optionLabelPath="accountsDept"
+                optionLabelPath="name"
             }}
             
             <label>Local Contact</label>
             {{
                 select-2
-                content=chosenOccupant.0.allPeople
+                content=allPeople
                 value=chosenOccupant.localContact
                 placeholder="Local Contact"
-                optionLabelPath="localContact"
+                optionLabelPath="name"
             }}
             
             <label>Company Member</label>
             {{
                 select-2
-                content=chosenOccupant.0.allPeople
+                content=allPeople
                 value=chosenOccupant.companyMember
                 placeholder="Company Member"
-                optionLabelPath="companyMember"
+                optionLabelPath="name"
             }}
             
             <label>Empty</label>
@@ -137,5 +141,5 @@
 </section>
 
 {{#if allPeople}}
-    {{component "bid/person-edit" model=allPeople title="People" nested=true}}
+    {{component "bid/person-edit" model=allPeople allOccupants=allOccupants title="People" nested=true}}
 {{/if}}
