@@ -74,41 +74,41 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
                 address: 'Crown Point Shopping Park<br>3A Junction Street<br>LeedsWest Yorkshire<br>LS10 1ET'
             }
         ],
-        allPeople: [
-            {
-                id: 1,
-                name: 'Ste Allan',
-                firstName: 'Ste',
-                lastName: 'Allan',
-                jobTitle: 'Front end dev',
-                address1: 'Hebe Works',
-                address2: '31 The Calls',
-                address3: 'Leeds',
-                address4: '',
-                postcode: 'LS2 5EY',
-                votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
-                localContactFor: ['Superdrug', 'Five Guys'],
-                billPayerFor: ['The Mrs', 'The kids'],
-                accountsDeptFor: ['Not the Mrs'],
-            },
-            {
-                id: 2,
-                name: 'Nate Smith',
-                firstName: 'Nate',
-                lastName: 'Smith',
-                jobTitle: 'Back end dev',
-                address1: 'Hebe Works',
-                address2: '31 The Calls',
-                address3: 'Leeds',
-                address4: '',
-                postcode: 'LS2 5EY',
-                votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
-                localContactFor: ['Superdrug', 'Five Guys'],
-                billPayerFor: ['The Mrs', 'The kids'],
-                accountsDeptFor: ['Not the Mrs'],
-            }
-        ]
     }),
+    allPeople: [
+        {
+            id: 1,
+            name: 'Ste Allan',
+            firstName: 'Ste',
+            lastName: 'Allan',
+            jobTitle: 'Front end dev',
+            address1: 'Hebe Works',
+            address2: '31 The Calls',
+            address3: 'Leeds',
+            address4: '',
+            postcode: 'LS2 5EY',
+            votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
+            localContactFor: ['Superdrug', 'Five Guys'],
+            billPayerFor: ['The Mrs', 'The kids'],
+            accountsDeptFor: ['Not the Mrs'],
+        },
+        {
+            id: 2,
+            name: 'Nate Smith',
+            firstName: 'Nate',
+            lastName: 'Smith',
+            jobTitle: 'Back end dev',
+            address1: 'Hebe Works',
+            address2: '31 The Calls',
+            address3: 'Leeds',
+            address4: '',
+            postcode: 'LS2 5EY',
+            votingFor: ['Boots', 'Superdrug', 'Victoria\'s Secret'],
+            localContactFor: ['Superdrug', 'Five Guys'],
+            billPayerFor: ['The Mrs', 'The kids'],
+            accountsDeptFor: ['Not the Mrs'],
+        }
+    ],
     sectors: [
         {
             id: 1,
@@ -123,6 +123,10 @@ export default Ember.Component.extend(ManipulationPanelContent, BidEditSection, 
             sectorName: 'Cosmetics'
         }
     ],
+    
+    addPeopleToModel: function() {
+        this.set('model.people', this.get('allPeople'));
+    }.on('init').observes('model', 'allPeople'),
     
     actions: {
         // Warn about clearing changes, clear changes, don't close the panel
