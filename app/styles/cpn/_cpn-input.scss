@@ -13,20 +13,22 @@ input[type="number"] {
     height: rem($input-height);
     // line-height: rem($input-height - ($input-border-width * 2));
     padding: rem(7px) rem(($spacing-base * 1.5) - $input-border-width);
-    border: rem($input-border-width) solid $lighter-grey;
+    border: rem($input-border-width) solid $light-grey;
     color: $color-app-black;
     font-size: rem($font-base);
     border-radius: rem(3px);
     outline: none;
+    box-shadow: none;
+    @include appearance(none);
     @include transition(.3s);
     
     &:focus {
-        border-color: $light-grey;
+        border-color: $grey;
     }
     
     &:disabled {
         cursor: not-allowed;
-        background-color: $lighter-grey;
+        background-color: $light-grey;
         color: $grey;
     }
     
@@ -65,4 +67,50 @@ textarea {
     height: auto;
     // padding: rem($spacing-base) rem($spacing-base * 1.5);
     @include appearance(none);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none;
+    
+    + label {
+        vertical-align: top;
+        display: inline-block;
+        
+        &::before {
+            content: '';
+            background: $light-grey;
+            width: rem(22px);
+            height: rem(22px);
+            display: inline-block;
+            @include appearance(none);
+            vertical-align: top;
+            margin-right: rem($spacing-base / 2);
+        }
+    }
+    
+    &:checked {
+        + label {
+            &::before {
+                background-color: $grey;
+                border: 6px solid $light-grey;
+            }
+        }
+    }
+}
+
+input[type="radio"] {
+    + label {
+        &::before {
+            border-radius: 50%;
+        }
+    }
+}
+
+input[type="checkbox"] {
+    + label {
+        &::before {
+            border-radius: rem(3px);
+        }
+    }
 }
