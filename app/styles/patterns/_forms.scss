@@ -1,192 +1,192 @@
-.form {
+// .form {
     
-    // Temporary styles until refactor happens
-    &.-login {
-        @include media('<phoneLarge') {
-            .-width-third,
-            .-width-two-thirds {
-                width: 100%;
-            }
+//     // Temporary styles until refactor happens
+//     &.-login {
+//         @include media('<phoneLarge') {
+//             .-width-third,
+//             .-width-two-thirds {
+//                 width: 100%;
+//             }
             
-            .-width-third {
-                padding-bottom: 10px;
-            }
+//             .-width-third {
+//                 padding-bottom: 10px;
+//             }
             
-            .-width-two-thirds {
-                &.pad-left {
-                    padding-left: 0;
-                }
-            }
+//             .-width-two-thirds {
+//                 &.pad-left {
+//                     padding-left: 0;
+//                 }
+//             }
             
-            .btn {
-                width: 100%;
+//             .btn {
+//                 width: 100%;
                 
-                & + .btn {
-                    margin: 10px 0 0;
-                }
-            }
-        }
-    }
-}
+//                 & + .btn {
+//                     margin: 10px 0 0;
+//                 }
+//             }
+//         }
+//     }
+// }
 
-    input,
-    textarea,
-    .select2-container .select2-choices {
-        border: 0;
-        font-size: rem(15px);
-        color: $solomon-black;
-        border-radius: rem(2.5px);
-        @include transition(.3s);
-        vertical-align: top; // default alignment to remove unwanted whitespace
-        box-shadow: none;
-        background-color: $lighter-grey;
+//     input,
+//     textarea,
+//     .select2-container .select2-choices {
+//         border: 0;
+//         font-size: rem(15px);
+//         color: $solomon-black;
+//         border-radius: rem(2.5px);
+//         @include transition(.3s);
+//         vertical-align: top; // default alignment to remove unwanted whitespace
+//         box-shadow: none;
+//         background-color: $lighter-grey;
         
-        &:focus {
-            outline: none;
-            background-color: $light-grey;
-        }
+//         &:focus {
+//             outline: none;
+//             background-color: $light-grey;
+//         }
         
-        &.-full {
-            width: 100%;
-        }
+//         &.-full {
+//             width: 100%;
+//         }
         
-        &.-error {
-            border-color: $red;
-            color: $red;
-            position: relative;
-            padding-right: 36px;
-            @include svg--error-icon;
-            background-position: right 14px center;
-            background-size: 9px 9px;
-        }
+//         &.-error {
+//             border-color: $red;
+//             color: $red;
+//             position: relative;
+//             padding-right: 36px;
+//             @include svg--error-icon;
+//             background-position: right 14px center;
+//             background-size: 9px 9px;
+//         }
         
-        &::-webkit-input-placeholder {
-           color: $grey;
-        }
+//         &::-webkit-input-placeholder {
+//            color: $grey;
+//         }
 
-        &::-moz-placeholder {
-           color: $grey;  
-        }
+//         &::-moz-placeholder {
+//            color: $grey;  
+//         }
 
-        &:-ms-input-placeholder {  
-           color: $grey;  
-        }
-    }
+//         &:-ms-input-placeholder {  
+//            color: $grey;  
+//         }
+//     }
     
-    input,
-    %input-text {
-    	&[type="text"],
-    	&[type="email"],
-    	&[type="password"],
-    	&[type="number"] {
-    		height: rem(50px);
-    		line-height: 1.5;
-    		padding: rem($spacing-base) rem($spacing-base * 1.5);
-    		width: 100%;
-            max-width: 100%;
-            @include appearance(none);
-    	}
+//     input,
+//     %input-text {
+//     	&[type="text"],
+//     	&[type="email"],
+//     	&[type="password"],
+//     	&[type="number"] {
+//     		height: rem(50px);
+//     		line-height: 1.5;
+//     		padding: rem($spacing-base) rem($spacing-base * 1.5);
+//     		width: 100%;
+//             max-width: 100%;
+//             @include appearance(none);
+//     	}
         
-        &:disabled {
-            cursor: not-allowed;
-        }
+//         &:disabled {
+//             cursor: not-allowed;
+//         }
         
-        &[cpn-input~="small"],
-        %cpn-input-small {
-            font-size: rem(12px);
-            height: rem(30px);
-            padding: rem($spacing-base / 2 - 1);
-        }
-    }
+//         &[cpn-input~="small"],
+//         %cpn-input-small {
+//             font-size: rem(12px);
+//             height: rem(30px);
+//             padding: rem($spacing-base / 2 - 1);
+//         }
+//     }
     
-    [cpn-input~="ghost-light"],
-    %cpn-input-ghost-light {
-        border-color: #fff;
-        background-color: transparent;
-        color: #fff;
+//     [cpn-input~="ghost-light"],
+//     %cpn-input-ghost-light {
+//         border-color: #fff;
+//         background-color: transparent;
+//         color: #fff;
         
-        &::-webkit-input-placeholder {
-           color: #fff;
-        }
+//         &::-webkit-input-placeholder {
+//            color: #fff;
+//         }
 
-        &::-moz-placeholder {
-           color: #fff;  
-        }
+//         &::-moz-placeholder {
+//            color: #fff;  
+//         }
 
-        &:-ms-input-placeholder {  
-           color: #fff;  
-        }
-    }
+//         &:-ms-input-placeholder {  
+//            color: #fff;  
+//         }
+//     }
     
-    textarea,
-    %textarea {
-    	min-height: rem(98px);
-    	height: auto;
-    	padding: rem($spacing-base) rem($spacing-base * 1.5);
-    	min-width: 255px;
-        width: 100%;
-        @include appearance(none);
-    }
+//     textarea,
+//     %textarea {
+//     	min-height: rem(98px);
+//     	height: auto;
+//     	padding: rem($spacing-base) rem($spacing-base * 1.5);
+//     	min-width: 255px;
+//         width: 100%;
+//         @include appearance(none);
+//     }
     
-    // Overriding the vendor styles
-    .select2-container {
-    	.select2-choices {
-    		height: rem(50px) !important; // overriding !important elsewhere
-    		line-height: rem(50px);
-    		padding: 0;
-    		min-width: 255px;
-    		background-image: none;
+//     // Overriding the vendor styles
+//     .select2-container {
+//     	.select2-choices {
+//     		height: rem(50px) !important; // overriding !important elsewhere
+//     		line-height: rem(50px);
+//     		padding: 0;
+//     		min-width: 255px;
+//     		background-image: none;
     		
-    		li {
-    			float: none;
-    			display: inline-block;
-    			vertical-align: middle;
-    		}
+//     		li {
+//     			float: none;
+//     			display: inline-block;
+//     			vertical-align: middle;
+//     		}
     		
-    		.select2-search-field {
-    			input {
-    				padding: 0 38px 0 9px;
-    				margin: 0;
-    				height: 38px;
-    				line-height: 38px;
-    				background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2235px%22%20height%3D%2235px%22%20viewBox%3D%220%200%2035%2035%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Asketch%3D%22http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%2Fns%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3EFill%203115%20%2B%20Fill%203116%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22UI%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20sketch%3Atype%3D%22MSPage%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%224.1-Gallery-view---My-collection---My-canvas---Edit%22%20sketch%3Atype%3D%22MSArtboardGroup%22%20transform%3D%22translate%28-531.000000%2C%20-1319.000000%29%22%20fill%3D%22%23CBCBCB%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Fill-3115-%2B-Fill-3116%22%20sketch%3Atype%3D%22MSLayerGroup%22%20transform%3D%22translate%28531.000000%2C%201319.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M17.3156098%2C21.4325203%20C17.2177236%2C21.4325203%2017.1209756%2C21.4108943%2017.0333333%2C21.3539837%20L7.07398374%2C15.6629268%20C6.80081301%2C15.5149593%206.70634146%2C15.1609756%206.86227642%2C14.8878049%20C7.01821138%2C14.6146341%207.36650407%2C14.5247154%207.63853659%2C14.6829268%20L17.3156098%2C20.203252%20L26.9926829%2C14.6829268%20C27.2658537%2C14.5247154%2027.6130081%2C14.6146341%2027.7689431%2C14.8878049%20C27.924878%2C15.1609756%2027.8304065%2C15.5149593%2027.5572358%2C15.6629268%20L17.5978862%2C21.3539837%20C17.5102439%2C21.4108943%2017.4123577%2C21.4325203%2017.3156098%2C21.4325203%22%20id%3D%22Fill-3115%22%20sketch%3Atype%3D%22MSShapeGroup%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M17.3156098%2C0.227642276%20C7.88780488%2C0.227642276%200.242439024%2C7.87642276%200.242439024%2C17.300813%20C0.242439024%2C26.7365854%207.88780488%2C34.3739837%2017.3156098%2C34.3739837%20C26.7445528%2C34.3739837%2034.3887805%2C26.7365854%2034.3887805%2C17.300813%20C34.3887805%2C7.87642276%2026.7445528%2C0.227642276%2017.3156098%2C0.227642276%20L17.3156098%2C0.227642276%20Z%20M17.3156098%2C1.36585366%20C26.1026016%2C1.36585366%2033.2505691%2C8.51382114%2033.2505691%2C17.300813%20C33.2505691%2C26.0878049%2026.1026016%2C33.2357724%2017.3156098%2C33.2357724%20C8.52861789%2C33.2357724%201.38065041%2C26.0878049%201.38065041%2C17.300813%20C1.38065041%2C8.51382114%208.52861789%2C1.36585366%2017.3156098%2C1.36585366%20L17.3156098%2C1.36585366%20Z%22%20id%3D%22Fill-3116%22%20sketch%3Atype%3D%22MSShapeGroup%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E') !important;
-    				background-size: 18px 18px !important;
-    				background-position: right 10px center !important;
-    				background-repeat: no-repeat !important;
-    			}
-    		}
-    	}
-    }
+//     		.select2-search-field {
+//     			input {
+//     				padding: 0 38px 0 9px;
+//     				margin: 0;
+//     				height: 38px;
+//     				line-height: 38px;
+//     				background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2235px%22%20height%3D%2235px%22%20viewBox%3D%220%200%2035%2035%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Asketch%3D%22http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%2Fns%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3EFill%203115%20%2B%20Fill%203116%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22UI%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20sketch%3Atype%3D%22MSPage%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%224.1-Gallery-view---My-collection---My-canvas---Edit%22%20sketch%3Atype%3D%22MSArtboardGroup%22%20transform%3D%22translate%28-531.000000%2C%20-1319.000000%29%22%20fill%3D%22%23CBCBCB%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Fill-3115-%2B-Fill-3116%22%20sketch%3Atype%3D%22MSLayerGroup%22%20transform%3D%22translate%28531.000000%2C%201319.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M17.3156098%2C21.4325203%20C17.2177236%2C21.4325203%2017.1209756%2C21.4108943%2017.0333333%2C21.3539837%20L7.07398374%2C15.6629268%20C6.80081301%2C15.5149593%206.70634146%2C15.1609756%206.86227642%2C14.8878049%20C7.01821138%2C14.6146341%207.36650407%2C14.5247154%207.63853659%2C14.6829268%20L17.3156098%2C20.203252%20L26.9926829%2C14.6829268%20C27.2658537%2C14.5247154%2027.6130081%2C14.6146341%2027.7689431%2C14.8878049%20C27.924878%2C15.1609756%2027.8304065%2C15.5149593%2027.5572358%2C15.6629268%20L17.5978862%2C21.3539837%20C17.5102439%2C21.4108943%2017.4123577%2C21.4325203%2017.3156098%2C21.4325203%22%20id%3D%22Fill-3115%22%20sketch%3Atype%3D%22MSShapeGroup%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M17.3156098%2C0.227642276%20C7.88780488%2C0.227642276%200.242439024%2C7.87642276%200.242439024%2C17.300813%20C0.242439024%2C26.7365854%207.88780488%2C34.3739837%2017.3156098%2C34.3739837%20C26.7445528%2C34.3739837%2034.3887805%2C26.7365854%2034.3887805%2C17.300813%20C34.3887805%2C7.87642276%2026.7445528%2C0.227642276%2017.3156098%2C0.227642276%20L17.3156098%2C0.227642276%20Z%20M17.3156098%2C1.36585366%20C26.1026016%2C1.36585366%2033.2505691%2C8.51382114%2033.2505691%2C17.300813%20C33.2505691%2C26.0878049%2026.1026016%2C33.2357724%2017.3156098%2C33.2357724%20C8.52861789%2C33.2357724%201.38065041%2C26.0878049%201.38065041%2C17.300813%20C1.38065041%2C8.51382114%208.52861789%2C1.36585366%2017.3156098%2C1.36585366%20L17.3156098%2C1.36585366%20Z%22%20id%3D%22Fill-3116%22%20sketch%3Atype%3D%22MSShapeGroup%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E') !important;
+//     				background-size: 18px 18px !important;
+//     				background-position: right 10px center !important;
+//     				background-repeat: no-repeat !important;
+//     			}
+//     		}
+//     	}
+//     }
     
-    .message {
-        &.-error {
-            color: $red;
+//     .message {
+//         &.-error {
+//             color: $red;
             
-            &::before {
-               content: ''; 
-               @include svg--error-icon;
-               background-size: 9px 9px;
-               width: 9px;
-               height: 9px;
-               display: inline-block;
-               margin-right: 5px;
-            }
-        }
-    }
+//             &::before {
+//                content: ''; 
+//                @include svg--error-icon;
+//                background-size: 9px 9px;
+//                width: 9px;
+//                height: 9px;
+//                display: inline-block;
+//                margin-right: 5px;
+//             }
+//         }
+//     }
     
     
-.feedback-form {
-    #doorbell form.dark {
-        box-shadow: none;
-    }
-}
+// .feedback-form {
+//     #doorbell form.dark {
+//         box-shadow: none;
+//     }
+// }
 
-label {
-    &[cpn-label~="above"] {
-        font-weight: 500;
-        font-size: rem(12px);
-        display: inline-block;
-        margin-bottom: rem($spacing-base / 2);
-        margin-left: rem($spacing-base * 1.5);
-    }
-}
+// label {
+//     &[cpn-label~="above"] {
+//         font-weight: 500;
+//         font-size: rem(12px);
+//         display: inline-block;
+//         margin-bottom: rem($spacing-base / 2);
+//         margin-left: rem($spacing-base * 1.5);
+//     }
+// }

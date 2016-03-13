@@ -1,0 +1,68 @@
+$input-height: 40px;
+$input-border-width: 2px;
+
+// Text fields (inc. password, email textarea etc.)
+[cpn-input~="text"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: rem($input-height);
+    // line-height: rem($input-height - ($input-border-width * 2));
+    padding: rem(7px) rem(($spacing-base * 1.5) - $input-border-width);
+    border: rem($input-border-width) solid $lighter-grey;
+    color: $color-app-black;
+    font-size: rem($font-base);
+    border-radius: rem(3px);
+    outline: none;
+    @include transition(.3s);
+    
+    &:focus {
+        border-color: $light-grey;
+    }
+    
+    &:disabled {
+        cursor: not-allowed;
+        background-color: $lighter-grey;
+        color: $grey;
+    }
+    
+    &::-webkit-input-placeholder {
+       color: $grey;
+    }
+
+    &::-moz-placeholder {
+       color: $grey;  
+    }
+
+    &:-ms-input-placeholder {  
+       color: $grey;  
+    }
+    
+    &[cpn-input~="is-valid"] {
+        border-color: $color-app-success;
+        background-color: lighten($color-app-success, 40%);
+    }
+    
+    &[cpn-input~="is-invalid"],
+    &:invalid {
+        border-color: $color-app-error;
+        background-color: lighten($color-app-error, 40%);
+    }
+    
+    &[cpn-input~="is-warning"] {
+        border-color: $color-app-warning;
+        background-color: lighten($color-app-warning, 40%);
+    }
+}
+
+[cpn-input~="textarea"],
+textarea {
+    min-height: rem(98px);
+    height: auto;
+    // padding: rem($spacing-base) rem($spacing-base * 1.5);
+    @include appearance(none);
+}

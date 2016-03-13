@@ -247,17 +247,42 @@
         </section>
         
         {{!-- Forms --}}
-        <section spc-style-guide_section>
+        <section spc-style-guide_section id="forms">
             <h2 spc-style-guide_section-title>Forms</h2>
             
             <div cpn-margin="bottom-double">
                 <label cpn-label="above" for="">Text Input</label>
-                <input type="text" placeholder="Placeholder text">
+                <input cpn-input="text" type="text" placeholder="Placeholder text">
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <label cpn-label="above" for="">Text Input - Disabled</label>
+                <input cpn-input="text" disabled="disabled" type="text" placeholder="Placeholder text" value="This input is disabled">
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <label cpn-label="above" for="">Text Input - Valid</label>
+                <input cpn-input="text is-valid" type="text" placeholder="Placeholder text">
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <label cpn-label="above" for="">Text Input - Warning</label>
+                <input cpn-input="text is-warning" type="text" placeholder="Placeholder text">
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <label cpn-label="above" for="">Text Input - Invalid</label>
+                <input cpn-input="text is-invalid" type="text" placeholder="Placeholder text">
+            </div>
+            
+            <div cpn-margin="bottom-double">
+                <label cpn-label="above" for="">Text Input - Password</label>
+                <input cpn-input="text password" type="password" placeholder="Placeholder text">
             </div>
             
             <div cpn-margin="bottom-double">
                 <label cpn-label="above" for="">Text Area</label>
-                <textarea></textarea>
+                <textarea cpn-input="text textarea"></textarea>
             </div>
             
             <div cpn-margin="bottom-double">
