@@ -324,3 +324,37 @@ img {
 .ember-cli-g-map {
     height: 100%;
 }
+
+[spc-style-guide] {
+    top: 0;
+    height: 100%;
+}
+
+    [spc-style-guide_wrapper] {
+        max-width: rem(700px);
+    }
+
+        [spc-style-guide_section] {
+            background-color: #fff;
+            color: #222;
+            padding: rem($spacing-base * 2) rem($spacing-base * 2) rem($spacing-base);
+            margin-bottom: rem($spacing-base * 2);
+            box-shadow: 0 0 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
+            border-radius: rem(3px);
+            @include clearfix;
+            
+            &:last-child {
+                margin-bottom: rem($spacing-base * 2);
+            }
+        }
+
+        [spc-style-guide_section~="intro"] {
+            background-color: $color-app-brand-primary;
+            color: #fff;
+        }
+        
+            [spc-style-guide_section-title] {
+                padding-bottom: rem($spacing-base);
+                border-bottom: rem(1px) solid rgba(0,0,0,.1);
+                margin-bottom: rem($spacing-base * 2);
+            }
