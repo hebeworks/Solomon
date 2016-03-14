@@ -1,243 +1,162 @@
-// .select2-container {
-// 	width: 100%;
-// 	margin: 0 0 10px 0;
-// 	background-image: none;
+$input-height: 40px;
+$input-border-width: 2px;
+
+.select2-container {
+	display: block;
+	z-index: 1;
+	position: relative;
 	
-// 	* {
-// 		font-family: $base-font-family !important;
-// 	}
-	
-// 	&.select2-dropdown-open .select2-choice {
-// 	    background-color: darken($medium-grey, 5%);
-// 	    border-radius: rem(3px) rem(3px) 0 0;
+	.select2-choice {
+		height: rem($input-height);
+		padding: rem(7px) rem(38.5px) rem(7px) rem(($spacing-base * 1.5) - $input-border-width);
+		border: rem($input-border-width) solid $light-grey;
+		color: $color-app-black !important;
+		display: block;
+		border-radius: rem(3px);
+		background-color: #fff;
+		background-image: none;
+		font-size: rem($font-base);
+		line-height: rem(22px);
+	    overflow: hidden;
+	    position: relative;
+	    white-space: nowrap;
+	    text-decoration: none;
+	    background-clip: padding-box;
+	    -webkit-touch-callout: none;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    @include transition(.3s);
 	    
-// 	    .select2-arrow {
-// 	    	b {
-// 	    		@include transform(rotate(180deg));
-// 	    	}
-// 	    }
-// 	}
-	
-// 	.select2-choice {
-// 		font-size: rem(15px);
-// 		line-height: 1.5;
-// 		background-color: $lighter-grey;
-// 		color: $solomon-black;
-// 		border-radius: rem(3px);
-// 		border: 0;
-// 		filter: none;
-// 		background-image: none;
-// 		cursor: pointer;
-// 		padding: rem($spacing-base) rem($spacing-base * 1.5);
-// 		display: block;
-// 		height: auto;
-// 		@include transition(.3s);
-// 		box-shadow: none !important;
-		
-// 		// &:hover, &:focus {
-// 		//     background-color: $light-grey;
-// 		// }
-		
-// 		// [cpn-bg-color="white"] & {
-// 		// 	background-color: $light-grey;
-// 		// }
-		
-// 		[cpn-bg-color="blue"] & {
-// 			background-color: $pale-blue;
-// 		}
-		
-// 		[cpn-bg-color="lime"] & {
-// 			background-color: $dark-lime;
-// 		}
-		
-// 		[cpn-bg-color="black"] & {
-// 			background-color: #000;
-// 			border: 1px solid #fff;
-// 		}
-		
-// 		[cpn-bg-color="yw-medium-blue"] & {
-// 			background-color: #fff;
-// 		}
-		
-// 		&:active {
-// 			border: 0;
-// 		}
-		
-// 		.select2-chosen {
-// 			display: block;
-// 			margin: 0;
-// 			padding-right: rem(23px);
-// 			line-height: rem(30px);
-// 			color: $grey;
-			
-// 			// [cpn-bg-color="white"] & {
-// 			// 	// background-color: $light-grey;
-// 			// 	color: $black;
-// 			// }
-			
-// 			// [cpn-bg-color="blue"] & {
-// 			// 	// background-color: $pale-blue;
-// 			// 	color: #fff;
-// 			// }
-			
-// 			// [cpn-bg-color="lime"] & {
-// 			// 	// background-color: $dark-lime;
-// 			// 	color: #fff;
-// 			// }
-			
-// 			// [cpn-bg-color="black"] & {
-// 			// 	// background-color: #000;
-// 			// 	color: #fff;
-// 			// }
-			
-// 			[cpn-bg-color="yw-medium-blue"] & {
-// 				// background-color: #fff;
-// 				color: $black;
-// 			}
-// 		}
-		
-// 		.select2-arrow {
-// 			filter: none;
-// 			border: none;
-// 			background: none;
-// 			position: absolute;
-// 			top: 0;
-// 			right: rem($spacing-base);
-// 			bottom: 0;
-// 			margin: auto;
-// 			width: rem(13px);
-// 			height: rem(10px);
-			
-// 			[cpn-bg-color="white"] & {
-// 				// background-color: $light-grey;
-// 				color: $black;
-// 			}
-			
-// 			[cpn-bg-color="blue"] & {
-// 				// background-color: $pale-blue;
-// 				color: #fff;
-// 			}
-			
-// 			[cpn-bg-color="lime"] & {
-// 				// background-color: $dark-lime;
-// 				color: #fff;
-// 			}
-			
-// 			[cpn-bg-color="black"] & {
-// 				// background-color: #000;
-// 				color: #fff;
-// 			}
-			
-// 			[cpn-bg-color="yw-medium-blue"] & {
-// 				// background-color: #fff;
-// 				color: $black;
-// 			}
-			
-// 			b {
-// 				width: rem(13px);
-// 				height: rem(10px);
-// 				@include transition(.25s);
-// 				@include transform(rotate(0));
-// 				background: none !important;
-// 				background: {
-// 					image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2212.23px%22%20height%3D%229.93px%22%20viewBox%3D%22558.85%20133.15%2012.23%209.93%22%20enable-background%3D%22new%20558.85%20133.15%2012.23%209.93%22%20%20xml%3Aspace%3D%22preserve%22%3E%3Ctitle%3EDropdown%20Triangle%3C%2Ftitle%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M564.965%2C143.08l6.115-9.93h-12.23L564.965%2C143.08L564.965%2C143.08z%22%2F%3E%3C%2Fsvg%3E') !important;
-// 					repeat: no-repeat !important;
-// 					position: center center !important;
-// 					size: rem(13px) rem(10px) !important;
-// 				}
-				
-// 				[cpn-bg-color="white"] &,
-// 				[cpn-bg-color="yw-medium-blue"] & {
-// 					background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2212.23px%22%20height%3D%229.93px%22%20viewBox%3D%22558.85%20133.15%2012.23%209.93%22%20enable-background%3D%22new%20558.85%20133.15%2012.23%209.93%22%20%20xml%3Aspace%3D%22preserve%22%3E%3Ctitle%3EDropdown%20Triangle%3C%2Ftitle%3E%3Cpath%20d%3D%22M564.965%2C143.08l6.115-9.93h-12.23L564.965%2C143.08L564.965%2C143.08z%22%2F%3E%3C%2Fsvg%3E') !important;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+	    > .select2-chosen {
+	    	overflow: hidden;
+    	    white-space: nowrap;
+    	    text-overflow: ellipsis;
+	    }
+	    
+	    .select2-arrow {
+	    	@include svg--chevron-down;
+	    	background-color: transparent;
+	    	background-size: 100% 100%;
+	    	position: absolute;
+	    	top: 0;
+	    	right: rem(15px);
+	    	bottom: 0;
+	    	margin: auto;
+	    	width: rem(12.5px);
+	    	height: rem(7px);
+	    	display: block;
+	    	border: 0;
+	    	border-radius: 0;
+	    	@include transform(none);
+	    	@include transition(.3s);
+	    	
+	    	b {
+	    		display: none;
+	    	}
+	    }
+	}
+}
 
-// a.select2-choice.select2-default {
-// 	box-shadow: none;
-// }
-
-// .select2-drop {
-// 	background-image: none;
-// 	background-color: $white;
-// 	color: $black;
-// 	font-family: $base-font-family;
-// 	border: 0;
-// 	font-size: rem(12px);
-// 	border-radius: 0 0 rem(3px) rem(3px);
-// 	border-width: 0 2px 2px 2px;
-// 	border-style: none solid solid solid;
-// 	border-color: darken($medium-grey, 5%);
-// 	box-shadow: none;
-	
-// 	.select2-search {
-// 		padding: rem($spacing-base / 2) rem($spacing-base / 2) 0;
+.select2-dropdown-open {
+	.select2-choice {
+		border-color: $grey;
+		border-bottom: 0;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
 		
-// 		input {
-// 			height: auto;
-// 			border: none;
-// 			font-family: $base-font-family;
-// 			padding: rem($spacing-base) rem($spacing-base * 4) rem($spacing-base) rem($spacing-base);
-// 			background-image: url('./img/svg/embed/search.svg') !important;
-// 			background-position: right rem($spacing-base) top rem($spacing-base) !important;
-// 			background-size: rem(20px) rem(20px) !important;
-// 			background-repeat: no-repeat !important;
-// 			background-color: $light-grey;
-// 		}
-// 	}
-// }
+		.select2-arrow {
+			@include transform(rotateX(180deg));
+		}
+	}
+}
 
-// .select2-drop-above {
-// 	background-color: $white;
-// 	color: $black;
-	
-// 	&:active {
-// 		background-image: none;
-// 	}
-// }
+.select2-drop {
+	width: 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    background: #fff;
+    color: $color-app-black;
+    border: $input-border-width solid $grey;
+    border-top: 0;
+    border-radius: 0 0 rem(3px) rem(3px);
+    box-shadow: none;
+    margin-top: 0;
+}
 
-// .select2-results {
-// 	padding: rem($spacing-base / 2);
-// 	margin: 0;
+.select2-drop-active {
+	border: $input-border-width solid $grey;
+	border-top: 0;
+}
+
+	.select2-search {
+		display: block;
+	    width: auto;
+	    min-height: 0;
+	    margin: 0;
+	    padding: 0;
+	    position: relative;
+	    z-index: 10000;
+	    white-space: nowrap;
+	    
+	    &::after {
+	    	content: '';
+	    	position: absolute;
+	    	top: 0;
+	    	right: rem(15px);
+	    	bottom: 0;
+	    	margin: auto;
+	    	width: rem(15px);
+	    	height: rem(15px);
+	    	@include svg--search-grey;
+	    	background-size: 100% 100%;
+	    }
+	    
+	    input[type="text"] {
+	    	&, &:focus {
+	    		border: 0;
+	    		background-color: $lighter-grey;
+	    		border-radius: 0;
+	    		background-image: none !important;
+	    		padding-right: rem(43px);
+	    	}
+	    }
+	}
 	
-// 	li {
-// 		font-size: rem(12px);
-// 		padding: rem($spacing-base / 2);
-// 		margin-bottom: 0;
-// 		border-bottom: 1px solid $light-grey;
+	.select2-results {
+		padding: 0;
+		margin: 0;
 		
-// 		&:first-child {
-// 			border-top: 1px solid $light-grey;
-// 		}
-// 	}
-	
-// 	.select2-highlighted {
-// 		background-color: $light-grey;
-// 		color: $black;
-// 	}
-	
-// 	.select2-result-label {
-// 		padding: 0;
-// 		min-height: 0;
-// 	}
-// }
+		li {
+			margin: 0;
+		}
+		
+			.select2-result-label {
+				padding: rem(7px) rem(13px);
+				min-height: 0;
+				font-size: rem(12px);
+			}
+			
+		.select2-highlighted {
+			color: $color-app-black;
+			background-color: $light-grey;
+		}
+	}
 
-// .select2-dropdown-open .select2-choice {
-// 	box-shadow: none;
-// 	border: none;
-	
-// 	.select2-arrow b {
-// 		background-position: 0 1px;
-// 	}
-// }
-
-// .select2-drop.select2-drop-above.select2-drop-active {
-// 	border: 0;
-// }
-
-// .select2-dropdown-open.select2-drop-above .select2-choice {
-// 	background-image: none;
-// 	border: 0;
-// }
+.select2-offscreen {
+	&, &:focus {
+		clip: rect(0 0 0 0) !important;
+		width: 1px !important;
+		height: 1px !important;
+		border: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		position: absolute !important;
+		outline: 0 !important;
+		left: 0px !important;
+		top: 0px !important;
+	}
+}

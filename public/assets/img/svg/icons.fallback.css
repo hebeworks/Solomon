@@ -1,5 +1,7 @@
 @mixin svg--btn-toggle-on { background-image: url('png/btn-toggle-on.png'); background-repeat: no-repeat; }
 
+@mixin svg--chevron-down { background-image: url('png/chevron-down.png'); background-repeat: no-repeat; }
+
 @mixin svg--dropdown-triangle-dark { background-image: url('png/dropdown-triangle-dark.png'); background-repeat: no-repeat; }
 
 @mixin svg--dropdown-triangle { background-image: url('png/dropdown-triangle.png'); background-repeat: no-repeat; }

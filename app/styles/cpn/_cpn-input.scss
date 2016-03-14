@@ -11,11 +11,12 @@ input[type="number"] {
     width: 100%;
     max-width: 100%;
     height: rem($input-height);
-    // line-height: rem($input-height - ($input-border-width * 2));
     padding: rem(7px) rem(($spacing-base * 1.5) - $input-border-width);
     border: rem($input-border-width) solid $light-grey;
     color: $color-app-black;
+    background-color: #fff;
     font-size: rem($font-base);
+    line-height: rem(22px);
     border-radius: rem(3px);
     outline: none;
     box-shadow: none;
