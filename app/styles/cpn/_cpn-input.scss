@@ -79,13 +79,15 @@ input[type="checkbox"] {
         
         &::before {
             content: '';
-            background: $light-grey;
+            border: 6px solid $light-grey;
+            background-color: $light-grey;
             width: rem(22px);
             height: rem(22px);
             display: inline-block;
             @include appearance(none);
             vertical-align: top;
             margin-right: rem($spacing-base / 2);
+            @include transition(.3s);
         }
     }
     
@@ -93,7 +95,6 @@ input[type="checkbox"] {
         + label {
             &::before {
                 background-color: $grey;
-                border: 6px solid $light-grey;
             }
         }
     }
