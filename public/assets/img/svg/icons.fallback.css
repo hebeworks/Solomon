@@ -2,6 +2,8 @@
 
 @mixin svg--chevron-down { background-image: url('png/chevron-down.png'); background-repeat: no-repeat; }
 
+@mixin svg--circled-cross { background-image: url('png/circled-cross.png'); background-repeat: no-repeat; }
+
 @mixin svg--dropdown-triangle-dark { background-image: url('png/dropdown-triangle-dark.png'); background-repeat: no-repeat; }
 
 @mixin svg--dropdown-triangle { background-image: url('png/dropdown-triangle.png'); background-repeat: no-repeat; }
