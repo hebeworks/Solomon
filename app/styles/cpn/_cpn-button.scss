@@ -1,9 +1,12 @@
+$button-height: $spacing-base * 4;
+
 // Base button style
 [cpn-button],
 %cpn-button {
     font-weight: 500;
     font-size: rem(14px);
-    line-height: 1.5;
+    height: rem($button-height);
+    line-height: rem($button-height);
     text-align: center;
     
     background-color: $medium-grey;
@@ -19,8 +22,7 @@
     // min-width: rem(115px);
     width: 100%; // wrap buttons in a container to handle any specific widths
     max-width: 100%;
-    height: auto;
-    padding: rem($spacing-base) rem($spacing-base * 2);
+    padding: 0 rem($spacing-base * 2);
     display: block;
     
     @include transition(.3s);
@@ -42,7 +44,10 @@
 [cpn-button~="small"],
 %cpn-button-small {
     font-size: rem(12px);
-    padding: rem($spacing-base / 2) rem($spacing-base);
+    padding-right: rem($spacing-base);
+    padding-left: rem($spacing-base);
+    height: rem($button-height * .75);
+    line-height: rem($button-height * .75);
 }
 
 // Action button style, for buttons which trigger an action, such as submit buttons
@@ -150,12 +155,16 @@
 // Ghost button styles. These look like buttons but are intended for static informational tags
 [cpn-button~="ghost"],
 %cpn-button-ghost {
+    $border-width: 2px;
+    
     background-color: transparent;
     color: $dark-grey;
     
-    border: 1px solid $dark-grey;
+    border: 2px solid $dark-grey;
     
-    padding: rem($spacing-base - 1px) rem($spacing-base * 2 - 1px);
+    padding-right: rem($spacing-base * 2 - $border-width);
+    padding-left: rem($spacing-base * 2 - $border-width);
+    line-height: rem($button-height - ($border-width * 2));
     
     cursor: default;
     
