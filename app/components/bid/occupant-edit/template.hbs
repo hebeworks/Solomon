@@ -3,22 +3,26 @@
     <main cpn-bid-edit-section_body="{{sectionOpenState}}" cpn-padding="top-double right-double bottom left-double">
         
         {{#if multipleOccupants}}
-            {{
-                select-2
-                content=occupants
-                value=chosenOccupant
-                placeholder="Occupant"
-                optionLabelPath="property.description"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_choose">Choose an occupant</label>
+                {{
+                    select-2
+                    content=occupants
+                    value=chosenOccupant
+                    placeholder="Occupant"
+                    optionLabelPath="property.description"
+                    id="occupant_choose"
+                }}
+            </p>
         {{/if}}
         
         {{#if chosenOccupant}}
             <p>
-                <label for="occupant_occupant-id">Occupant ID</label>
+                <label cpn-label="above" for="occupant_occupant-id">Occupant ID</label>
                 {{input value=chosenOccupant.occupantID disabled=true id="occupant_occupant-id"}}
             </p>
             
-            <label>Archived</label>
+            <label cpn-label="above">Archived</label>
             <ul cpn-row-list="middle">
                 <li>
                     {{radio-button value=true checked=chosenOccupant.archived name="archived" id="occupant_archived-true"}}
@@ -31,85 +35,103 @@
             </ul>
             
             <p>
-                <label for="occupant_organisation">Organisation</label>
+                <label cpn-label="above" for="occupant_organisation">Organisation</label>
                 {{input value=chosenOccupant.organisation autocapitalize="words" id="occupant_organisation"}}
             </p>
             
             <p>
-                <label for="occupant_property">Property</label>
+                <label cpn-label="above" for="occupant_property">Property</label>
                 {{input value=chosenOccupant.property.description disabled=true id="occupant_property"}}
             </p>
             
             <p>
-                <label for="occupant_joiningDate">Joining Date</label>
+                <label cpn-label="above" for="occupant_joiningDate">Joining Date</label>
                 {{pikaday-input value=chosenOccupant.joiningDate format="DD/MM/YYYY" id="occupant_joiningDate"}}
             </p>
             
             <p>
-                <label for="occupant_tags">Tags</label>
+                <label cpn-label="above" for="occupant_tags">Tags</label>
                 {{input value=chosenOccupant.tags autocapitalize="words" id="occupant_tags"}}
             </p>
             
-            <label>Sector</label>
-            {{
-                select-2
-                content=allSectors
-                value=chosenOccupant.sector
-                placeholder="Sector"
-                optionLabelPath="sectorName"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_sector">Sector</label>
+                {{
+                    select-2
+                    content=allSectors
+                    value=chosenOccupant.sector
+                    placeholder="Sector"
+                    optionLabelPath="sectorName"
+                    id="occupant_sector"
+                }}
+            </p>
             
             <p>
-                <label for="occupant_businessType">Business Type</label>
+                <label cpn-label="above" for="occupant_businessType">Business Type</label>
                 {{input value=chosenOccupant.businessType autocapitalize="words" id="occupant_businessType"}}
             </p>
             
-            <label>Voter</label>
-            {{
-                select-2
-                content=allPeople
-                value=chosenOccupant.voter
-                placeholder="Voter"
-                optionLabelPath="name"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_voter">Voter</label>
+                {{
+                    select-2
+                    content=allPeople
+                    value=chosenOccupant.voter
+                    placeholder="Voter"
+                    optionLabelPath="name"
+                    id="occupant_voter"
+                }}
+            </p>
             
-            <label>Bill Payer</label>
-            {{
-                select-2
-                content=allPeople
-                value=chosenOccupant.billPayer
-                placeholder="Bill Payer"
-                optionLabelPath="name"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_billPayer">Bill Payer</label>
+                {{
+                    select-2
+                    content=allPeople
+                    value=chosenOccupant.billPayer
+                    placeholder="Bill Payer"
+                    optionLabelPath="name"
+                    id="occupant_billPayer"
+                }}
+            </p>
             
-            <label>Accounts Department</label>
-            {{
-                select-2
-                content=allPeople
-                value=chosenOccupant.accountsDept
-                placeholder="Accounts Department"
-                optionLabelPath="name"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_accountsDept">Accounts Department</label>
+                {{
+                    select-2
+                    content=allPeople
+                    value=chosenOccupant.accountsDept
+                    placeholder="Accounts Department"
+                    optionLabelPath="name"
+                    id="occupant_accountsDept"
+                }}
+            </p>
             
-            <label>Local Contact</label>
-            {{
-                select-2
-                content=allPeople
-                value=chosenOccupant.localContact
-                placeholder="Local Contact"
-                optionLabelPath="name"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_localContact">Local Contact</label>
+                {{
+                    select-2
+                    content=allPeople
+                    value=chosenOccupant.localContact
+                    placeholder="Local Contact"
+                    optionLabelPath="name"
+                    id="occupant_localContact"
+                }}
+            </p>
             
-            <label>Company Member</label>
-            {{
-                select-2
-                content=allPeople
-                value=chosenOccupant.companyMember
-                placeholder="Company Member"
-                optionLabelPath="name"
-            }}
+            <p>
+                <label cpn-label="above" for="occupant_companyMember">Company Member</label>
+                {{
+                    select-2
+                    content=allPeople
+                    value=chosenOccupant.companyMember
+                    placeholder="Company Member"
+                    optionLabelPath="name"
+                    id="occupant_companyMember"
+                }}
+            </p>
             
-            <label>Empty</label>
+            <label cpn-label="above">Empty</label>
             <ul cpn-row-list="middle">
                 <li>
                     {{radio-button value=true checked=chosenOccupant.empty name="empty" id="occupant_empty-true"}}
@@ -121,7 +143,7 @@
                 </li>
             </ul>
             
-            <label>Address</label>
+            <label cpn-label="above">Address</label>
             <p>
                 {{{chosenOccupant.address}}}
             </p>
