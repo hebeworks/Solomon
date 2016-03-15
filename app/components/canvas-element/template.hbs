@@ -4,14 +4,13 @@
     {{/if}}
 </h1>
 
-<div class="js-canvas canvas" cpn-canvas>
+<div class="js-canvas canvas">
     <a href="javascript:;" class="js-canvas-overlay canvas__overlay"></a>
     <div class="js-stories canvas__inner">
     
     
         {{!-- PLACE YOUR DEVELOPMENT STORIES HERE --}}
             {{!--
-            {{stories/complete/plotly-playground}}
             {{stories/complete/lcc-free-wifi}}
             {{stories/complete/market-occupancy}}
             {{stories/complete/base-rag-title}}
@@ -61,22 +60,12 @@
         {{stories/complete/rta-monthly-accidents}}
         {{stories/complete/rta-daily-accidents}}
         {{stories/complete/rta-pedestrians-vehicles}}
-        {{stories/complete/beta-rag}}
+        --}}
         
-        {{stories/complete/nhs-rtt/canvas-filter}}
-        {{stories/complete/nhs-rtt/ccg-map}}
-        {{stories/complete/nhs-rtt/canvas-filter}}
-        {{stories/complete/nhs-rtt/overall-perf-chart}}
-        {{stories/complete/nhs-rtt/region-map}}
-        {{stories/complete/nhs-rtt/text-with-bar}}
-        {{stories/complete/nhs-rtt/rtt-plotly-waiting-list}}
-        {{stories/complete/nhs-rtt/treatment-rag-tile}}
-        {{stories/complete/nhs-rtt/rtt-plotly-mnth-perf}}
-        {{stories/complete/nhs-rtt/rtt-data-table}}
-        --}}
-        {{!-- 
-        {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
-        --}}
+        {{stories/complete/york/demographic-kpis}}
+        {{stories/complete/york/library-locations}}
+        {{stories/complete/york/ksi-kpis}}
+
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -84,6 +73,7 @@
                 {{/if}}
             {{/each}}
         {{/if}}
+
  
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
