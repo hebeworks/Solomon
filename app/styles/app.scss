@@ -36,7 +36,7 @@
 @import "patterns/google_maps";
 @import "patterns/bordered_area";
 @import "patterns/lists";
-@import "patterns/forms";
+// @import "patterns/forms";
 @import 'patterns/svg-class';
 @import "patterns/helper"; // import this after other patterns so the classes in here can override other styles
 
@@ -54,6 +54,8 @@
 @import 'cpn/cpn-message';
 @import 'cpn/cpn-story';
 @import 'cpn/cpn-nested-story';
+@import 'cpn/cpn-input';
+@import 'cpn/cpn-label';
 // Overriding components
 @import 'cpn/cpn-overflow';
 @import 'cpn/cpn-table';
@@ -83,6 +85,7 @@
 @import "components/canvas-settings";
 @import "components/header";
 @import "components/dashboard-logo";
+@import "components/manipulation-panel";
 
 // ===== Vendor ===== //
 @import "vendor/chartist/chartist-dash";

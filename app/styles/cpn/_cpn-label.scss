@@ -1,0 +1,7 @@
+[cpn-label~="above"] {
+    display: inline-block;
+    font-size: rem(12px);
+    font-weight: 500;
+    margin-left: rem($spacing-base * 1.5);
+    margin-bottom: rem($spacing-base / 2);
+}

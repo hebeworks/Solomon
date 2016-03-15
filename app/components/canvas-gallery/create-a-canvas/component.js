@@ -1,107 +1,102 @@
 import Ember from 'ember';
-import BottomDrawerContent from 'hebe-dash/mixins/bottom-drawer-content';
+import ManipulationPanelContent from 'hebe-dash/mixins/manipulation-panel-content';
 
-export default Ember.Component.extend(BottomDrawerContent, {
+export default Ember.Component.extend(ManipulationPanelContent, {
+    canvas: null,
+    message: '',
+    title: 'Add a canvas',
 
-	canvas: null,
+    categories: function () {
+        return [];
+    }.property('model'),
 
-	model: null,
+    stories: function () {
+        return [];
+    }.property('model'),
 
-	message: '',
+    onModelChanged: function () {
+        this.setProperties({
+            title: this.get('model.title') || '',
+            description: this.get('model.description') || '',
+            stories: this.get('model.stories') || Ember.A(),
+            author: this.get('model.author') || '',
+            twitter: this.get('model.twitter') || ''
+        });
+        // categories: model.get('categories')
+    }.observes('model').on('didReceiveAttrs'),
 
-	mainTitle: 'Create a Canvas',
+    allCategories: Ember.computed({
+        get() {
+            return this.store.query('category', {})
+        }
+    }),
 
-	title: 'Create a Canvas',
+    allStories: Ember.computed({
+        get() {
+            return this.store.query('story', {})
+        }
+    }),
 
-	appController: null,
+    // TODO: https://github.com/dockyard/ember-validations
+    isValid: function () {
+        return true;
+    },
 
-	categories: function(){
-		return [];
-	}.property('model'),
+    saveCanvas: function () {
+        if (!this.isValid())
+            return;
 
-	stories: function(){
-		return [];
-	}.property('model'),
+        if (this.get('session.isAuthenticated')) {
+            var canvas = this.store.createRecord('canvas', {
+                title: this.get('title'),
+                description: this.get('description'),
+                stories: this.get('stories'),
+                categories: this.get('categories'),
+                authorName: this.get('author'),
+                twitterName: this.get('twitter'),
+                userID: this.get('currentUser.id')
+            });
 
-	didInsertElement: function () {
-		var config = this.get('appController.bottomDrawerConfig');
-		if (!Ember.isEmpty(config)) {
-			if (!Ember.isEmpty(config.model)) {
-				this.set('model', config.model);
-			}
-			if (!Ember.isEmpty(config.mainTitle)) {
-				this.set('mainTitle', config.mainTitle);
-			}
-		}
-	},
+            var self = this;
 
-	onModelChanged: function () {
-		var model = this.get('model');
-		this.setProperties({
-			title: model.get('title'),
-			description: model.get('description'),
-			stories: model.get('stories'),
-			author: model.get('author'),
-			twitter: model.get('twitter')
-		});
-		// categories: model.get('categories')
-	}.observes('model'),
+            canvas.save().then(function (savedCanvas) {
+                if (!Ember.isEmpty(savedCanvas.get('id'))) {
+                    self.set('action', 'loadACanvas');
+                    self.sendAction('action', savedCanvas.get('id'));
+                }
+            });
+        }
+        else {
+            this.set('action', 'showLoginPopup');
+            this.sendAction();
 
-	allCategories: Ember.computed({
-		get() {
-			return this.store.query('category', {})
-		}
-	}),
+            return false;
+        }
+    },
 
-	allStories: Ember.computed({
-		get() {
-			return this.store.query('story', {})
-		}
-	}),
+    clearFields: function () {
+        this.set('model', null);
+    },
 
-	// TODO: https://github.com/dockyard/ember-validations
-	isValid: function (){
-		return true;
-	},
 
-	saveCanvas: function() {
-		if (!this.isValid())
-			return;
+    onIsClosing: function () {
+        this.clearFields();
+    }.observes('isClosing'),
 
-		if (this.get('session.isAuthenticated')){
-			var canvas = this.store.createRecord('canvas', {
-				title: this.get('title'),
-				description: this.get('description'),
-				stories: this.get('stories'),
-				categories: this.get('categories'),
-				authorName: this.get('author'),
-				twitterName: this.get('twitter'),
-				userID: this.get('currentUser.id')
-			});
+    actions: {
 
-			var self = this;
+        cancel: function () {
+            this.clearFields();
+            this.set('action', 'closeManipulationPanel');
+            this.sendAction('action');
+        },
 
-			canvas.save().then(function(savedCanvas){
-				if(!Ember.isEmpty(savedCanvas.get('id'))){
-					self.set('action', 'loadACanvas');
-					self.sendAction('action', savedCanvas.get('id'));
-				}
-			});
-		}
-		else {
-			this.set('action', 'showLoginPopup');
-			this.sendAction();
+        save: function () {
+            this.saveCanvas();
+            this.sendAction('action');
+            this.get('appController').closeManipulationPanel();
+        }
 
-			return false;
-		}
-	},
-
-	actions: {
-
-		save: function () {
-			this.saveCanvas();
-		}
-
-	}
+    }
 
 });

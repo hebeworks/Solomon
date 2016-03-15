@@ -1,0 +1,15 @@
+<div cpn-manipulation-panel="{{openState}}">
+    <header cpn-manipulation-panel_header cpn-padding="top-double" cpn-bg-color="white">
+        <div cpn-manipulation-panel_header-inner cpn-clearfix cpn-divide="bottom solid faded-dark" cpn-margin="bottom-none" cpn-padding="right-double left-double">
+            <a {{action "closeManipulationPanel"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
+            <h2 cpn-manipulation-panel_title cpn-margin="bottom-double">{{title}}</h2>
+        </div>
+    </header>
+    
+    <section cpn-manipulation-panel_body>
+        {{#if subTitle}}
+            <h3 cpn-margin="right-double left-double" cpn-font="700">{{subTitle}}</h3>
+        {{/if}}
+        {{component content}}
+    </section>
+</div>
