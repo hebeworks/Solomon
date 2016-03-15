@@ -1,25 +1,22 @@
-<div cpn-divide="bottom" cpn-cleafix>
-	<a {{action "closeBottomDrawer"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
-	<h2 cpn-frame_heading>{{mainTitle}}</h2>
-</div>
+<div cpn-padding="right-double bottom-double left-double">
+	<div cpn-divide="bottom solid faded-dark" cpn-padding="bottom" cpn-margin="bottom-double">
+		{{yield}}
 
-<div cpn-divide="bottom">
-	<p>
-		{{input value=title placeholder="Title" autocapitalize="words"}}
-		{{#if canvas.errors.title}}
-			<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.title.message}}</div>
-		{{/if}}
-	</p>
-	
-	<p>
-		{{textarea placeholder="Description" value=description autocapitalize="sentences" autocorrect="on"}}
-		{{#if canvas.errors.description}}
-			<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.description.message}}</div>
-		{{/if}}
-	</p>
-	
-	<div cpn-row-list>
-		<div>
+		<p>
+			{{input value=title placeholder="Title" autocapitalize="words"}}
+			{{#if canvas.errors.title}}
+				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.title.message}}</div>
+			{{/if}}
+		</p>
+		
+		<p>
+			{{textarea placeholder="Description" value=description autocapitalize="sentences" autocorrect="on"}}
+			{{#if canvas.errors.description}}
+				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.description.message}}</div>
+			{{/if}}
+		</p>
+		
+		<p>
 			{{ select-2
 				content=allCategories
 				value=categories
@@ -28,28 +25,33 @@
 				multiple=true
 				class="margin-bottom-no"
 			}}
-		</div>
-		<div>
+		</p>
+		
+		<p>
 			{{input value=author placeholder="Author Name" autocapitalize="words"}}
 			{{#if canvas.errors.author}}
 				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.author.message}}</div>
 			{{/if}}
-		</div>
-		<div>
+		</p>
+		
+		<p>
 			{{input value=twitter placeholder="Twitter Name"}}
 			{{#if canvas.errors.twitter}}
 				<div cpn-message="error" cpn-margin="top-half">{{canvas.errors.twitter.message}}</div>
 			{{/if}}
-		</div>
+		</p>
+		
+		{{#each canvas.errors.messages as |message|}}
+			<p cpn-message="error">{{message}}</p>
+		{{/each}}
 	</div>
 	
-	{{#each canvas.errors.messages as |message|}}
-		<p cpn-message="error">{{message}}</p>
-	{{/each}}
+	<ul cpn-row-list>
+		<li>
+			<button cpn-button="action" {{action "cancel"}}>Cancel</button>
+		</li>
+		<li>
+			<button cpn-button="action" {{action "save"}}>Save</button>
+		</li>
+	</ul>
 </div>
-
-{{yield}}
-
-<p cpn-display="inline-block">
-	<button cpn-button="action" {{action "save"}}>Save</button>
-</p>

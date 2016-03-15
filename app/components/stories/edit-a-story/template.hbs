@@ -1,17 +1,10 @@
-<div cpn-divide="bottom" cpn-cleafix>
-	<a {{action "closeBottomDrawer"}} cpn-frame_close cpn-float="right" class="svg-close-drawer"></a>
-	<h2 cpn-frame_heading>Edit a story</h2>
-</div>
-
-<div class="drawer__inner">
+<div cpn-padding="right-double bottom-double left-double">
 
 	<p>{{message}}</p>
 
 	{{yield}}
 
-	<div cpn-margin="bottom-double" class="create-a-story -form -admin">
-		<h2>{{title}}</h2>
-
+	<div cpn-divide="bottom solid faded-dark" cpn-padding="bottom" cpn-margin="bottom-double" class="create-a-story -form -admin">
 		{{#each editableFields as |field|}}
             {{stories/edit-a-story/editable-field field=field}}
 		{{/each}}
@@ -22,18 +15,18 @@
 			</p>
 		{{/each}}
 
-		<div cpn-row-list>
-
-			<div>
-				<button cpn-button="action" {{action "cancel"}}>Cancel</button>
-			</div>
-
-			<div>
-				<button cpn-button="action" {{action "save"}}>Save Story</button>
-			</div>
-
-		</div>
-
 	</div>
+	
+	<ul cpn-row-list>
+
+		<li>
+			<button cpn-button="action" {{action "cancel"}}>Cancel</button>
+		</li>
+
+		<li>
+			<button cpn-button="action" {{action "save"}}>Save</button>
+		</li>
+
+	</ul>
 
 </div>
