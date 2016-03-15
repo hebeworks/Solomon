@@ -39,7 +39,7 @@ export default BaseRAGTile.extend({
                 
                 // Remove data objects we don't need
                 fullKpis.forEach(function(item) {
-                    if (item.Total != '-' && item.Total != 'N/A') {
+                    if (item.Total != '-' && item.Total != 'N/A' && item.Total != 'NC') {
                         strippedKpis.push({
                             id: item.Id,
                             desc: item.Indicator,
