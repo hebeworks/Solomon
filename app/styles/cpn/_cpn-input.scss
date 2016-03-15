@@ -3,10 +3,12 @@ $input-border-width: 2px;
 
 // Text fields (inc. password, email textarea etc.)
 [cpn-input~="text"],
+[cpn-input~="textarea"],
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="number"] {
+input[type="number"],
+textarea {
     display: block;
     width: 100%;
     max-width: 100%;
