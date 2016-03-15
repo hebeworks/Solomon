@@ -36,5 +36,9 @@ export default DefaultStory.extend({
         } else {
             this.set('storyConfig.color','amber');
         }
-    }.observes('rating')
+    }.observes('rating'),
+    
+    onTrend: function() {
+        Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
+    }.observes('trend')
 });
