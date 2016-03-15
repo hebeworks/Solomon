@@ -52,18 +52,6 @@ export default BaseRAGTile.extend({
                 }
                 
                 _this.set('longText', 'people reported killed or seriously injured in road traffic accidents in ' + current.period);
-                
-                // console.log('Full KSIs');
-                // console.log('=========');
-                // console.log(fullKsis);
-                // console.log('=========');
-                
-                // console.log('Stripped KSIs');
-                // console.log('=========');
-                // console.log(strippedKsis);
-                // console.log('=========');
-                
-                // console.log('Rating: ' + _this.get('rating'));
             }
         });
     }
