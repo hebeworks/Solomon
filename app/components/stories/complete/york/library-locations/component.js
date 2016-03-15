@@ -4,24 +4,17 @@ import DefaultStory from 'hebe-dash/components/stories/story-types/default-story
 export default DefaultStory.extend({
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
-    storyConfig: {
+    initialConfig: {
         title: 'Libraries in York', // (Provide a story title)
         subTitle: 'The locations of registered libraries in York', // (Provide a story subtitle)
-        // author: '', (Provide the author of the story)
-        
         // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
-        
-        // color: 'white', // (Set the story colour)
+        dataSourceUrl: 'https://data.yorkopendata.org/dataset/libraries', // (Where did the data come from?)
         width: '3', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
         height: '3', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
         scroll: false, // (Should the story vertically scroll its content?)
-        viewOnly: true
+        viewOnly: true,
+        showHeaderBorder: false,
+        showLoading: true
     },
     
     loaded: false, // (Tell other elements that this story has loaded)
