@@ -33,9 +33,9 @@ export default Ember.Component.extend({
                 }
             } else if (this.get('isSelect')) {
                 var fieldContentPath = this.get('field.contentPath');
-                content = Ember.isEmpty(fieldContentPath) ? null : this.get(fieldContentPath);
+                content = Ember.isEmpty(fieldContentPath) ? null : fieldContentPath;
                 content.forEach(function (item) {
-                    item.id = item._id;
+                    item.id = item.id;
                 });
             }
             return content;
