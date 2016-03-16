@@ -1,23 +1,25 @@
 import BaseRAGTile from 'hebe-dash/components/stories/complete/base-rag-tile/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default BaseRAGTile.extend({
-    chosenKpi: 'BSC04', // will be altered by a select box when editing the story
+export default BaseRAGTile.extend(EditableFields, {
+    chosenKpi: null, // will be altered by a select box when editing the story
     usableKpis: null,
     shortenedKpis: [
-        {id: 'BSC03', description: "of residents feel it's important for them to feel part of their local community", short: false},
-        {id: 'BSC04', description: "of residents feel it's important they can influence decisions in their local area", short: false},
-        {id: 'BYS001', description: "of residents agree they can influence decisions in their local area", short: false},
-        {id: 'BYS053', description: "of residents are satisfied with their local area as a place to live", short: false},
-        {id: 'BYS079', description: "of residents agree that they belong to their local area", short: false},
-        {id: 'BYS105', description: "of residents feel people of different backgrounds get on well in their local area", short: false},
-        {id: 'BYS131', description: "of residents agree that York is a safe city to live in", short: false},
-        {id: 'BYS254', description: "of residents volunteer at least once a month", short: false},
-        {id: 'BYS300', description: "of residents agree that their local area is a safe place to live", short: false},
-        {id: 'BYS301', description: "of residents feel CYC & partners do well at reducing crime & anti-social behaviour", short: false},
-        {id: 'BYS302', description: "of residents feel CYC & partners are working well to make communities safer", short: false},
-        {id: 'PHOF15', description: "of adult social care users have as much social contact as they would like", short: false},
-        {id: 'PHOF26', description: "per 1,000 - households in temporary accommodation", short: false}
+        {id: 'BSC03', name: "of residents feel it's important for them to feel part of their local community", short: false},
+        {id: 'BSC04', name: "of residents feel it's important they can influence decisions in their local area", short: false},
+        {id: 'BYS001', name: "of residents agree they can influence decisions in their local area", short: false},
+        {id: 'BYS053', name: "of residents are satisfied with their local area as a place to live", short: false},
+        {id: 'BYS079', name: "of residents agree that they belong to their local area", short: false},
+        {id: 'BYS105', name: "of residents feel people of different backgrounds get on well in their local area", short: false},
+        {id: 'BYS131', name: "of residents agree that York is a safe city to live in", short: false},
+        {id: 'BYS254', name: "of residents volunteer at least once a month", short: false},
+        {id: 'BYS300', name: "of residents agree that their local area is a safe place to live", short: false},
+        {id: 'BYS301', name: "of residents feel CYC & partners do well at reducing crime & anti-social behaviour", short: false},
+        {id: 'BYS302', name: "of residents feel CYC & partners are working well to make communities safer", short: false},
+        {id: 'PHOF15', name: "of adult social care users have as much social contact as they would like", short: false},
+        {id: 'PHOF26', name: "per 1,000 - households in temporary accommodation", short: false}
     ], // manually curated KPI descriptions. Set short to 'true' if the description is short enough to display as larger text
+    shortText: 'Edit the story to choose a KPI to display',
     
     onInsertElement: function() {
         this.getData();
@@ -110,9 +112,11 @@ export default BaseRAGTile.extend({
                 _this.shortenedKpis.forEach(function(item) {
                     if (item.id == id) {
                         if (item.short == true) {
-                            _this.set('shortText', item.description);
+                            _this.set('shortText', item.name);
+                            _this.set('longText', null);
                         } else {
-                            _this.set('longText', item.description);
+                            _this.set('longText', item.name);
+                            _this.set('shortText', null);
                         }
                     }
                 });
@@ -156,5 +160,28 @@ export default BaseRAGTile.extend({
                 }
             }
         }
-    }.observes('loaded', 'chosenKpi')
+    }.observes('loaded', 'chosenKpi'),
+    
+    editableFields: function(){
+        var _this = this;
+        var shortenedKpis = this.get('shortenedKpis');
+        var chosenKpi = this.get('chosenKpi');
+        
+        return [
+            {
+                name: 'displayed_kpi',
+                type: 'select',
+                contentPath: shortenedKpis,
+                value: chosenKpi,
+                placeholder: 'Choose a KPI to show'
+            }
+        ];
+    }.property('storyModel.config'),
+    
+    onKpiChanged: function () {
+        var kpi = this.fetchEditableFieldValue('displayed_kpi');
+        if (!Ember.isEmpty(kpi)) {
+            this.set('chosenKpi', kpi);
+        }
+    }.on('didInsertElement').observes('storyModel.config.@each.value'),
 });
