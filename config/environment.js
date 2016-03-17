@@ -32,7 +32,7 @@ module.exports = function config(environment) {
 
     // LOCAL
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      // solomonAPIURL: 'http://localhost:3000',
+      // solomonAPIURL: 'http://localhost:4400',
       // solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
 
     // PREVIEW
@@ -59,10 +59,10 @@ module.exports = function config(environment) {
   };
 
     // DEV
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-    domain: 'hebe-works-development.eu.auth0.com',
-  };
+  // ENV['auth0-ember-simple-auth'] = {
+  //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+  //   domain: 'hebe-works-development.eu.auth0.com',
+  // };
 
     // BID
   ENV['auth0-ember-simple-auth'] = {
