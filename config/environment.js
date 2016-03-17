@@ -28,19 +28,20 @@ module.exports = function config(environment) {
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
-       // solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
+      // solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
 
     // LOCAL
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://localhost:3000',
+      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      // solomonAPIURL: 'http://localhost:3000',
+      // solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
 
     // PREVIEW
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
     //   solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net',
 
     // BID
-      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      // solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net',
+      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
 
       // NHS
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
@@ -54,10 +55,10 @@ module.exports = function config(environment) {
   };
 
     // DEV
-  // ENV['auth0-ember-simple-auth'] = {
-  //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-  //   domain: 'hebe-works-development.eu.auth0.com',
-  // };
+  ENV['auth0-ember-simple-auth'] = {
+    clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+    domain: 'hebe-works-development.eu.auth0.com',
+  };
 
     // BID
   ENV['auth0-ember-simple-auth'] = {
