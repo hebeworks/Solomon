@@ -5,6 +5,8 @@ export default Ember.Component.extend(ManipulationPanelContent, {
     message: '',
     isSaving: false,
     isPanned: false,
+    pannedXAmount: 0,
+    pannedYAmount: 0,
 
     onInserted: function () {
         this.set('isSaving', false);
@@ -78,6 +80,8 @@ export default Ember.Component.extend(ManipulationPanelContent, {
             storyWidth = storyElement.outerWidth(),
             storyXPosition = storyElement.offset().left,
             storyYPosition = storyElement.offset().top,
+            pannedXAmount = _this.get('pannedXAmount'),
+            pannedYAmount = _this.get('pannedYAmount'),
             panXAmount = function() {
                 if (storyXPosition > panelWidth) {
                     return (storyXPosition - panelWidth) * -1;
@@ -102,30 +106,27 @@ export default Ember.Component.extend(ManipulationPanelContent, {
             };
         
         function newPan() {
-            console.log('newPan');
-            console.log('isPanned' + _this.get('isPanned'));
             canvas
                 .attr('cpn-canvas', 'is-panned')
-                .attr('data-panX', panXAmount)
-                .attr('data-panY', panYAmount)
                 .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
-                
-            _this.set('isPanned', true);
+            
+            _this.setProperties({
+                isPanned: true,
+                pannedXAmount: panXAmount(),
+                pannedYAmount: panYAmount()
+            });
         }
         
         function rePan() {
-            console.log('rePan');
-            var prePannedXAmount = canvas.attr('[data-panX]'),
-                prePannedYAmount = canvas.attr('[data-panY]'),
-                rePanXAmount = function() {
+            var rePanXAmount = function() {
                     if (storyXPosition > panelWidth) {
                         var positionXDiff = storyXPosition - panelWidth,
-                            newPanXAmount = prePannedXAmount - positionXDiff;
+                            newPanXAmount = pannedXAmount - positionXDiff;
                         return newPanXAmount;
                         
                     } else if (storyXPosition < panelWidth) {
                         var positionXDiff = panelWidth - storyXPosition,
-                            newPanXAmount = prePannedXAmount + positionXDiff;
+                            newPanXAmount = pannedXAmount + positionXDiff;
                         return newPanXAmount;
                         
                     } else {
@@ -133,21 +134,24 @@ export default Ember.Component.extend(ManipulationPanelContent, {
                     }
                 },
                 rePanYAmount = function() {
-                    if (storyYPosition > headerHeight) {
+                    if (storyYPosition >= headerHeight) {
                         var positionYDiff = storyYPosition - headerHeight,
-                            newPanYAmount = prePannedYAmount - positionYDiff;
+                            newPanYAmount = pannedYAmount - positionYDiff;
                         return newPanYAmount;
                         
                     } else if (storyYPosition < headerHeight) {
                         var positionYDiff = headerHeight - storyYPosition,
-                            newPanYAmount = prePannedYAmount + positionYDiff;
+                            newPanYAmount = pannedYAmount + positionYDiff;
                         return newPanYAmount;
                         
-                    } else {
-                        return 0;
                     }
                 };
             canvas.css('transform', 'translateX(' + rePanXAmount() + 'px) translateY(' + rePanYAmount() + 'px)');
+            
+            _this.setProperties({
+                pannedXAmount: rePanXAmount(),
+                pannedYAmount: rePanYAmount()
+            });
         }
         
         if (visibleCanvas >= storyWidth) {
@@ -156,22 +160,32 @@ export default Ember.Component.extend(ManipulationPanelContent, {
             } else {
                 rePan();
             }
-            // canvas
-            //     .attr('cpn-canvas', 'is-panned')
-            //     .css('transform', 'translateX(' + panXAmount() + 'px) translateY(' + panYAmount() + 'px)');
         } else {
             canvas
                 .attr('cpn-canvas', '')
                 .css('transform', 'none');
-            this.set('panState', false);
+            
+            _this.setProperties({
+                panState: false,
+                pannedXAmount: 0,
+                pannedYAmount: 0
+            });
         }
     },
     
     unpanCanvas: function() {
-        this.set('panState', false);
-        $('[cpn-canvas]')
+        var _this = this,
+            canvas = $('[cpn-canvas]');
+        
+        canvas
             .attr('cpn-canvas', '')
             .css('transform', 'none');
+            
+        _this.setProperties({
+            panState: false,
+            pannedXAmount: 0,
+            pannedYAmount: 0
+        });
     },
 
     actions: {

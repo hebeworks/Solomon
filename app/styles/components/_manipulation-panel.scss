@@ -1,7 +1,7 @@
 $panel-width: 375px;
 
 [cpn-manipulation-panel] {
-    border-top: 3px solid $solomon-pink;
+    border-top: 3px solid $color-app-brand-primary;
     width: 100%;
     background: #FFF;
     height: calc(100% - 100px); // takes header into account
@@ -28,9 +28,13 @@ $panel-width: 375px;
         width: 100%;
     }
     
+        [cpn-manipulation-panel_title] {
+            font-size: rem(20px);
+        }
+    
     [cpn-manipulation-panel_body] {
         position: absolute;
-        height: calc(100% - 57px); // space for fixed header
+        height: calc(100% - 67px); // space for fixed header
         padding-top: rem($spacing-base * 2);
         bottom: 0;
         width: 100%;

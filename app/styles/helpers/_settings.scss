@@ -30,8 +30,16 @@ $mint: #50E3C2;
 $brown: #8B572A;
 $amber: #ffbf00;
 $gold: #f5a623;
-// Solomon colours
-$solomon-pink: #DE4B63;
+// App colours
+$color-app-pink: #DE4B63;
+$color-app-black: #222;
+$color-app-green: #7ed321;
+$color-app-red: #d0021b;
+$color-app-amber: #ffbf00;
+$color-app-brand-primary: $color-app-pink;
+$color-app-success: $color-app-green;
+$color-app-warning: $color-app-amber;
+$color-app-error: $color-app-red;
 // air rating colours
 $color-air1: #9CFF9C;
 $color-air2: #31FF00;

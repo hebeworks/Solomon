@@ -47,6 +47,10 @@ module.exports = function config(environment) {
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
     //   solomonAPIURL: 'http://solomonapi-nhs.azurewebsites.net'
     },
+    
+    resizeServiceDefaults: {
+      debounceTimeout: 750
+    }
   };
 
   ENV['simple-auth'] = {
