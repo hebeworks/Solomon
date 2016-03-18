@@ -16,9 +16,17 @@ export default DatamillStory.extend({
     },
     showDay: true,
 
-    didReceiveAttrs: function () {
+    didReceiveAttrs: function () {        
         var obj = this;
         var url = 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/352241?res=daily&key=f74b2d5f-4fd7-450a-b410-ed56d842a209';
+        
+        // If we're on the BID app, change the story colour
+        if (this.get('appSettings.solomonConfig.name') == 'bid') {
+            obj.setProperties({
+                'initialConfig.color': 'white',
+                'initialConfig.author': ''
+            });
+        }
 
         this.getData(url)
             .then(

@@ -26,6 +26,10 @@ body {
         color: $yw-dark-blue;
     }
     
+    &[solomon-app~="bid"] {
+        color: $bid-dark-blue;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;
@@ -190,6 +194,19 @@ img {
             width: 100%;
             height: rem(3px);
             background-color: $nhs-blue;
+            z-index: 2;
+        }
+    }
+    
+    [solomon-app~="bid"] & {
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: rem(3px);
+            background-color: $bid-dark-blue;
             z-index: 2;
         }
     }

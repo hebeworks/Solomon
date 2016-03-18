@@ -44,6 +44,10 @@
         width: 73.26px;
         height: 43.623px;
     }
+    
+    [solomon-app~="bid"] & {
+        display: none;
+    }
 }
 
 [spc-dashboard-logo="expanded"] {
@@ -71,5 +75,21 @@
     [solomon-app~="nhs"] & {
         width: 110px;
         height: 65.5px;
+    }
+    
+    [solomon-app~="bid"] & {
+        display: block;
+    }
+    
+    [class*=svg-bid-logo] {
+        svg {
+            width: 75px;
+            height: 20px;
+            
+            @include breakpoint(min-width 500px) {
+                height: 40px;
+                width: 151px;
+            }
+        }
     }
 }

@@ -9,7 +9,10 @@ export default Ember.Controller.extend({
         var items = [
             // { title: 'Toolbox' },//, action: 'toggleSubNav' },
             { title: 'Toolbox', action: 'toggleToolbox', iconName: 'tools' },
-            { title: 'Gallery', action: 'gotoRoute', route: 'gallery', iconName: 'gallery' }
+            { title: 'Gallery', action: 'gotoRoute', route: 'gallery', iconName: 'gallery' },
+            { title: 'Edit org', 'action': 'editOrganisation' },
+            { title: 'Edit occupant', 'action': 'editOccupant' },
+            { title: 'Edit person', 'action': 'editPerson' }
         ];
 
         for (var i = 0; i < items.length; i++) {

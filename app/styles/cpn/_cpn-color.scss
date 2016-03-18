@@ -1,5 +1,9 @@
 [cpn-color="orange"] {
     color: $orange;
+    
+    [solomon-app~="bid"] & {
+        color: $bid-orange;
+    }
 }
 
 [cpn-color="lime"] {

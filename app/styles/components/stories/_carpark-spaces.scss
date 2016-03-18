@@ -16,6 +16,11 @@
 			height: 25px;
 			padding: 5px;
 			border: solid 1px #fff;
+			
+			[solomon-app~="bid"] & {
+				border-color: $bid-dark-blue;
+			}
+			
 			float:left;
 			background: {
 				size:60%;
@@ -33,6 +38,10 @@
 				height: 13px;
 				display: block;
 				fill: #fff;
+				
+				[solomon-app~="bid"] & {
+					fill: $bid-dark-blue;
+				}
 			}
 		}
 		.heading {
@@ -57,12 +66,20 @@
 				top: dotted 1px white;
 				bottom: dotted 1px white;
 			}
+			
+			[solomon-app~="bid"] & {
+				border-color: $bid-dark-blue;
+			}
 		}
 		
 		.car-park__section {
 			float:left;
 			border: {
 				left: dotted 1px white;
+			}
+			
+			[solomon-app~="bid"] & {
+				border-left-color: $bid-dark-blue;
 			}
 			
 			padding: {

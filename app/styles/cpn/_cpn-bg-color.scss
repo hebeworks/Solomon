@@ -25,6 +25,10 @@
 [cpn-bg-color="dark-blue"] {
     background-color: $dark-blue;
     color: #fff;
+    
+    [solomon-app~="bid"] & {
+        background-color: $bid-dark-blue;
+    }
 }
 
 [cpn-bg-color="red"] {
@@ -61,6 +65,10 @@
     
     [solomon-app~="yorkshire-water"] & {
         color: $yw-dark-blue;
+    }
+    
+    [solomon-app~="bid"] & {
+        color: $bid-dark-blue;
     }
 }
 

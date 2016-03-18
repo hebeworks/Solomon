@@ -266,5 +266,39 @@ export default Ember.Controller.extend({
         this.openManipulationPanel(panelState);
     },
 
-
+    editOrganisation: function(model) {
+        var panelState = {
+            content: 'bid/organisation-edit',
+            blurCanvas: true
+        }
+        
+        panelState.model = model;
+        panelState.title = "Edit an organisation";
+        
+        this.openManipulationPanel(panelState);
+    },
+    
+    editOccupant: function(model) {
+        var panelState = {
+            content: 'bid/occupant-edit',
+            blurCanvas: true
+        }
+        
+        panelState.model = model;
+        panelState.title = "Edit an occupant";
+        
+        this.openManipulationPanel(panelState);
+    },
+    
+    editPerson: function(model) {
+        var panelState = {
+            content: 'bid/person-edit',
+            blurCanvas: true
+        }
+        
+        panelState.model = model;
+        panelState.title = "Edit a person";
+        
+        this.openManipulationPanel(panelState);
+    }
 });

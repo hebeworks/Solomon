@@ -77,6 +77,29 @@
         {{!-- 
         {{stories/complete/nhs-rtt/overall-perf-rag-tile}}
         --}}
+        
+        
+        {{!-- BID STORIES 
+        {{stories/complete/air-table-text}}
+        {{bid/stories/levy-tile}}
+        {{bid/stories/interactions-tile}}
+        {{bid/stories/jobs-tile}}
+        {{bid/stories/occupants-list}}
+        {{bid/stories/search-people}}
+        {{bid/stories/quick-search}}
+        {{bid/stories/jobs-list}}
+        {{bid/stories/organisation-details}}
+        {{bid/stories/small-map}}
+        {{bid/stories/single-person}}
+        {{bid/stories/organisation-small}}
+        {{bid/stories/occupancy-tile}}
+        {{bid/stories/occupant-details}}
+        {{bid/stories/interactions-list}}
+        {{bid/stories/most-recent-note}}
+        --}}
+        
+        {{!-- 
+ --}}
         {{#if currentCanvas}}
             {{#each currentCanvas.stories as |story|}}
                 {{#if story.componentPath}}
@@ -84,7 +107,6 @@
                 {{/if}}
             {{/each}}
         {{/if}}
- 
         {{#ui/generic-element action="showAddAStory" tagName="div" classes=""}}
             <div id="AddStory" class="ember-view js-story story -w1 -h1 story--add">
                 <div class="js-add-story story__inner">
