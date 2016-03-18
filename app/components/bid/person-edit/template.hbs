@@ -1,0 +1,12 @@
+<section cpn-bid-edit-section>
+    {{#if nested}}
+    <h3 cpn-bid-edit-section_header="{{sectionOpenState}}" {{action "toggleSection"}}>{{title}}<span data-grunticon-embed class="icon-chevron-down svg-chevron-down">Open Section</span></h3>
+    <main cpn-bid-edit-section_body="{{sectionOpenState}}" cpn-padding="top-double right-double bottom left-double">
+        {{component "bid/person-edit/person-edit-fields"}}
+    </main>
+    {{else}}
+    <main cpn-padding="right-double bottom left-double">
+        {{component "bid/person-edit/person-edit-fields"}}
+    </main>
+    {{/if}}
+</section>
