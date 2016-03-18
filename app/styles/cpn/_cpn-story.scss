@@ -162,12 +162,24 @@
                     [cpn-bg-color="medium-blue"] & {
                         background-color: #fff;
                     }
+                    
+                    [solomon-app~="bid"] & {
+                        background-color: $bid-dark-blue;
+                    }
+                    
+                    [solomon-app~="bid"] [cpn-bg-color="dark-blue"] & {
+                        background-color: $bid-orange;
+                    }
                 }
             }
             
             [cpn-story_dot~="back"] {
                 &::after {
                     background-color: #fff;
+                    
+                    [solomon-app~="bid"] & {
+                        background-color: $bid-orange;
+                    }
                 }
             }
             
@@ -201,10 +213,22 @@
                 [cpn-bg-color="medium-blue"] & {
                     background-color: #fff;
                 }
+                
+                [solomon-app~="bid"] & {
+                    background-color: $bid-dark-blue;
+                }
+                
+                [solomon-app~="bid"] [cpn-bg-color="dark-blue"] & {
+                    background-color: $bid-orange;
+                }
             }
             
             [cpn-story_bar~="back"] {
                 background-color: #fff;
+                
+                [solomon-app~="bid"] & {
+                    background-color: $bid-orange;
+                }
             }
         
             [cpn-story_content] {
@@ -284,6 +308,10 @@
                         
                         [solomon-app~="yorkshire-water"] & {
                             color: $yw-medium-blue;
+                        }
+                        
+                        [solomon-app~="bid"] & {
+                            font-weight: 500;
                         }
                     }
                     

@@ -583,6 +583,10 @@
 				background-color: #fff;
 				border: 1px solid #d9d9d9;
 			}
+			
+			[solomon-app~="bid"] & {
+				background-color: #fff;
+			}
 		}
 		
 	}
@@ -884,6 +888,12 @@
 		[solomon-app~="nhs"] & {
 			path {
 				fill: $nhs-blue;
+			}
+		}
+		
+		[solomon-app~="bid"] & {
+			path {
+				fill: $bid-dark-blue;
 			}
 		}
 	}

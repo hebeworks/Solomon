@@ -126,6 +126,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         goToHelp: function () {
             var url = "https://github.com/hebeworks/Solomon/wiki";
             window.open(url, '_blank');
+        },
+        
+        // functions for testing
+        editOrganisation: function(model) {
+            this.controller.editOrganisation(model);
+        },
+        editOccupant: function(model) {
+            this.controller.editOccupant(model);
+        },
+        editPerson: function(model) {
+            this.controller.editPerson(model);
         }
     }
 });

@@ -15,6 +15,10 @@ $panel-width: 375px;
         width: rem($panel-width);
         left: rem(-$panel-width);
     }
+    
+    [solomon-app~="bid"] & {
+        border-top-color: $bid-dark-blue;
+    }
 }
 
 [cpn-manipulation-panel~="is-open"] {

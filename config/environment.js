@@ -1,8 +1,7 @@
 /* jshint node: true */
 
-module.exports = function (environment) {
-
-  var ENV = {
+module.exports = function config(environment) {
+  const ENV = {
     modulePrefix: 'hebe-dash',
     environment: environment,
     baseURL: '/',
@@ -12,7 +11,7 @@ module.exports = function (environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-      }
+      },
     },
 
     APP: {
@@ -29,12 +28,21 @@ module.exports = function (environment) {
       statnoticeURL: 'http://statnotices-preview.azurewebsites.net', // PREVIEW
       // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
       // solomonAPIURL: 'http://testing.api.mysolomon.co.uk',
-    //   solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
-    
+      // solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
+
+    // LOCAL
+      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      // solomonAPIURL: 'http://localhost:4400',
+      // solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
+
     // PREVIEW
+    //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+    //   solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net',
+
+    // BID
       hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net'
-    
+      solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
+
       // NHS
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
     //   solomonAPIURL: 'http://solomonapi-nhs.azurewebsites.net'
@@ -47,15 +55,27 @@ module.exports = function (environment) {
 
   ENV['simple-auth'] = {
     authorizer: 'simple-auth-authorizer:jwt',
-    authenticationRoute: 'sign-in'
+    authenticationRoute: 'sign-in',
   };
 
-// DEV 
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: "LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp",
-    domain: "hebe-works-development.eu.auth0.com"
-  };
+    // DEV
+  // ENV['auth0-ember-simple-auth'] = {
+  //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+  //   domain: 'hebe-works-development.eu.auth0.com',
+  // };
   
+  // PRODUCTION
+  ENV['auth0-ember-simple-auth'] = {
+    clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+    domain: 'solomon.eu.auth0.com',
+  };
+
+    // BID
+  // ENV['auth0-ember-simple-auth'] = {
+  //   clientID: 'hM1EVxNIpGwhZ8nxVL010SIK1yIOhaPD',
+  //   domain: 'solomonbid.eu.auth0.com',
+  // };
+
 //    NHS
 //  ENV['auth0-ember-simple-auth'] = {
 //     clientID: "KIZhevoOIACv63g4Ibo2BPjQraXRK7GD",
@@ -66,24 +86,26 @@ module.exports = function (environment) {
     'font-src': "'self' data: https://cdn.auth0.com",
     'style-src': "'self' 'unsafe-inline'",
     'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com " + ENV['auth0-ember-simple-auth']['domain'],
-    'connect-src': "'self' http://localhost:* " + ENV['auth0-ember-simple-auth']['domain']
+    'connect-src': "'self' http://localhost:* " + ENV['auth0-ember-simple-auth']['domain'],
   };
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
-    // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV
-    // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW
-    // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
-    // ENV.APP.solomonAPIURL = 'http://localhost:3000';
-    // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
-    // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
-    // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk'; // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
-}
+    if (environment === 'development') {
+        // ENV.APP.LOG_RESOLVER = true;
+        // ENV.APP.LOG_ACTIVE_GENERATION = true;
+        // ENV.APP.LOG_TRANSITIONS = true;
+        // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+        // ENV.APP.LOG_VIEW_LOOKUPS = true;
+        ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
+        // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV
+        // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW
+        // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
+        // ENV.APP.solomonAPIURL = 'http://localhost:3000';
+        // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
+        // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
+        // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
+        // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk';
+        ENV.APP.mockSolomonHostname = 'bid.preview.mysolomon.co.uk'
+    }
 
   if (environment === 'test') {
     // Testem prefers this...
@@ -102,7 +124,7 @@ module.exports = function (environment) {
   }
 
   ENV.googleMap = {
-    libraries: ['drawing', 'visualization']
+    libraries: ['drawing', 'visualization'],
   };
 
   return ENV;

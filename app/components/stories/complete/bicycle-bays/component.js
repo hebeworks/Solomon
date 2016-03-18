@@ -23,6 +23,16 @@ export default DatamillStory.extend({
             markers: Ember.A([]),
             selectedItem: null
         });
+        
+        var obj = this;
+        // If we're on the BID app, change the story colour
+        if (this.get('appSettings.solomonConfig.name') == 'bid') {
+            obj.setProperties({
+                'initialConfig.color': 'white',
+                'initialConfig.author': '',
+                'initialConfig.viewOnly': true
+            });
+        }
     }.on('init'),
 
     didInsertElement: function () {

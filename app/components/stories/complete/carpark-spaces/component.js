@@ -26,6 +26,16 @@ export default DefaultStory.extend({
             markers: Ember.A([]),
             selectedCarPark: null
         });
+        
+        var obj = this;
+        // If we're on the BID app, change the story colour
+        if (this.get('appSettings.solomonConfig.name') == 'bid') {
+            obj.setProperties({
+                'initialConfig.color': 'white',
+                'initialConfig.author': '',
+                'initialConfig.viewOnly': true
+            });
+        }
     }.on('init'),
 
     didInsertElement: function () {
@@ -56,6 +66,7 @@ export default DefaultStory.extend({
 
             obj.set('items', carParks);
             obj.set('selectedCarPark', carParks[0].id);
+            Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
 
             setTimeout(function () {
                 obj.set('loaded', true);
@@ -67,6 +78,7 @@ export default DefaultStory.extend({
         if (this.get('items') != null) {
             return this.get('items').findBy('id', this.get('selectedCarPark'));
         }
+        // Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
     }.property('selectedCarPark'),
 
     setupMarkers: function () {
