@@ -64,10 +64,13 @@ export default Ember.Object.extend({
                     solomonConfig.logoType = 'bitmap';
                     solomonConfig.initMethod = this.nhsInit;
                     break;
+                case 'solomonbid.azurewebsites.net':
+                case 'bid.mysolomon.co.uk':
                 case 'bid.preview.mysolomon.co.uk':
                     solomonConfig.name = 'bid';
                     solomonConfig.title = 'Business Improvement District';
                     solomonConfig.storyConfig.storyHandle = 'both';
+                    solomonConfig.defaultCanvas = 'bid-team-home'; // TODO switch based on user role e.g. bid user / levy payer                    
                     break;
             }
             return solomonConfig;
