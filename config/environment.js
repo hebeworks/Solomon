@@ -58,16 +58,16 @@ module.exports = function config(environment) {
   };
 
     // DEV
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-    domain: 'hebe-works-development.eu.auth0.com',
-  };
+  // ENV['auth0-ember-simple-auth'] = {
+  //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+  //   domain: 'hebe-works-development.eu.auth0.com',
+  // };
   
   // PRODUCTION
-  // ENV['auth0-ember-simple-auth'] = {
-  //   clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
-  //   domain: 'solomon.eu.auth0.com',
-  // };
+  ENV['auth0-ember-simple-auth'] = {
+    clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+    domain: 'solomon.eu.auth0.com',
+  };
 
     // BID
   // ENV['auth0-ember-simple-auth'] = {
