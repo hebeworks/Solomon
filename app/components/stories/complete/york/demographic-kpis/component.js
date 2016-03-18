@@ -74,55 +74,55 @@ export default BaseRAGTile.extend(EditableFields, {
     selectableKpis: [
         {
             id: 'BSC03',
-            name: '% of residents who feel it\'s important to feel part of their community',
+            text: '% of residents who feel it\'s important to feel part of their community',
         },
         {
             id: 'BSC04',
-            name: '% of residents who feel it\'s important they can influence decisions in their local area',
+            text: '% of residents who feel it\'s important they can influence decisions in their local area',
         },
         {
             id: 'BYS001',
-            name: '% of residents agree who they can influence decisions in their local area',
+            text: '% of residents agree who they can influence decisions in their local area',
         },
         {
             id: 'BYS053',
-            name: '% of residents who are satisfied with their local area as a place to live',
+            text: '% of residents who are satisfied with their local area as a place to live',
         },
         {
             id: 'BYS079',
-            name: '% of residents who agree that they belong to their local area',
+            text: '% of residents who agree that they belong to their local area',
         },
         {
             id: 'BYS105',
-            name: '% of residents who feel people of different backgrounds get on well in their local area',
+            text: '% of residents who feel people of different backgrounds get on well in their local area',
         },
         {
             id: 'BYS131',
-            name: '% of residents who agree that York is a safe city to live in',
+            text: '% of residents who agree that York is a safe city to live in',
         },
         {
             id: 'BYS254',
-            name: '% of residents who volunteer at least once a month',
+            text: '% of residents who volunteer at least once a month',
         },
         {
             id: 'BYS300',
-            name: '% of residents who agree that their local area is a safe place to live',
+            text: '% of residents who agree that their local area is a safe place to live',
         },
         {
             id: 'BYS301',
-            name: '% of residents who feel City of York Council & partners do well at reducing crime & anti-social behaviour',
+            text: '% of residents who feel City of York Council & partners do well at reducing crime & anti-social behaviour',
         },
         {
             id: 'BYS302',
-            name: '% of residents who feel City of York Council & partners are working well to make communities safer',
+            text: '% of residents who feel City of York Council & partners are working well to make communities safer',
         },
         {
             id: 'PHOF15',
-            name: '% of adult social care users who have as much social contact as they would like',
+            text: '% of adult social care users who have as much social contact as they would like',
         },
         {
             id: 'PHOF26',
-            name: 'Households in temporary accommodation',
+            text: 'Households in temporary accommodation',
         }
     ],
     shortText: 'Edit the story to choose a KPI to display',
@@ -276,8 +276,8 @@ export default BaseRAGTile.extend(EditableFields, {
         return [
             {
                 name: 'displayed_kpi',
-                type: 'select',
-                contentPath: selectableKpis,
+                type: 'enum',
+                sourceContent: JSON.stringify(selectableKpis),
                 value: chosenKpi,
                 placeholder: 'Choose a KPI to show'
             }
