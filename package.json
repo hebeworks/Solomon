@@ -62,7 +62,6 @@
     "rimraf": "2.4.2"
   },
   "dependencies": {
-    "bid-leeds": "git+https://github.com/hebeworks/solomon-addon-bid-leeds.git",
     "ember-cli-simple-auth": "^0.8.0",
     "ember-disable-proxy-controllers": "^1.0.0"
   }
