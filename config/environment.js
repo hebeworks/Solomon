@@ -31,17 +31,16 @@ module.exports = function config(environment) {
       // solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
 
     // LOCAL
-      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      // solomonAPIURL: 'http://localhost:4400',
-      // solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
+      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
 
     // PREVIEW
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
     //   solomonAPIURL: 'http://solomonapi-auth0.azurewebsites.net',
 
     // BID
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
+      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      // solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
 
       // NHS
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
