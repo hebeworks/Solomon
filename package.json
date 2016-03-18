@@ -20,7 +20,6 @@
   "license": "MIT",
   "devDependencies": {
     "auth0-ember-simple-auth": "1.0.4",
-    "bid-leeds": "0.0.0",
     "broccoli-asset-rev": "^2.1.1",
     "broccoli-sass": "0.6.6",
     "connect-restreamer": "^1.0.2",
@@ -63,6 +62,7 @@
     "rimraf": "2.4.2"
   },
   "dependencies": {
+    "bid-leeds": "git+https://github.com/hebeworks/solomon-addon-bid-leeds.git",
     "ember-cli-simple-auth": "^0.8.0",
     "ember-disable-proxy-controllers": "^1.0.0"
   }
