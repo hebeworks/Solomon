@@ -16,6 +16,10 @@ export default DS.JSONAPIAdapter.extend({
         if(typeof token === 'string'){
           headers['Authorization'] = 'Bearer ' + token;
         }
+        
+        if(!Ember.isEmpty(config.APP.solomonClientOverride)) {
+          headers['Solomon-Client-Override'] = config.APP.solomonClientOverride;
+        }
 
         return headers;
     }).property('session.secure.jwt')
