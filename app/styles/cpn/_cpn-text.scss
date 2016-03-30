@@ -17,7 +17,7 @@
 
 // Decoration
 // Needs renaming - ambiguous when on an element
-[cpn-text~="none"] {
+[cpn-text~="no-decoration"] {
     text-decoration: none;
 }
 
@@ -46,7 +46,7 @@
     text-transform: lowercase;
 }
 
-[cpn-text~="none"] {
+[cpn-text~="no-transform"] {
     text-transform: none;
 }
 
