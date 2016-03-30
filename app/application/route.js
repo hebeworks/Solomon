@@ -136,8 +136,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             this.controller.editOccupant(model);
         },
         editPerson: function(model) {
-            console.log('edit person');
-            console.log(model);
             this.controller.editPerson(model);
         }
     }
