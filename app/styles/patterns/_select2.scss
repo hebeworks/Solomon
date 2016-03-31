@@ -210,7 +210,7 @@ $input-border-width: 2px;
 		    margin: 0 rem($spacing-base) 0 0;
 		    position: relative;
 		    font-size: rem(12px);
-		    line-height: rem(22px);
+		    line-height: rem(15px);
 		    color: $color-app-black;
 		    cursor: default;
 		    border: 0;
@@ -229,7 +229,11 @@ $input-border-width: 2px;
 		    vertical-align: middle;
 		    @include svg--circled-cross;
 		    background-size: rem(12px) rem(12px);
-		    background-position: rem(5px) rem(5px);
+		    background-position: rem(5px) rem(1px);
+		    
+		    & + .select2-search-choice {
+		    	margin-top: rem($spacing-base / 2);
+		    }
 		}
 		
 		.select2-search-field {
@@ -263,11 +267,9 @@ $input-border-width: 2px;
 		width: rem(12px);
 		height: rem(12px);
 		position: absolute;
-		top: 0;
+		top: rem(1px);
 		right: auto;
-		bottom: 0;
 		left: rem($spacing-base / 2);
-		margin: auto;
 		font-size: 0;
 		outline: none;
 		background-image: none !important;
