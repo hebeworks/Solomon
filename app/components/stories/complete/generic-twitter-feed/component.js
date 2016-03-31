@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import DefaultStory from './../../story-types/default-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DefaultStory.extend({
+export default DefaultStory.extend(EditableFields, {
     initialConfig: {
         title: 'Twitter Feed',
         subTitle: 'What are we tweeting about?',
