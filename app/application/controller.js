@@ -36,6 +36,25 @@ export default Ember.Controller.extend({
         }
     }.observes('appSettings.errorMessage'),
 
+  onGeneralMessage: function onGeneralMessage() {
+    const _this = this;
+    const message = this.get('appSettings.generalMessage');
+    function clearGeneralMessage() {
+      _this.set('appSettings.generalMessage', null);
+    }
+
+    if (!Ember.isEmpty(message)) {
+      const generalMessage = message.message || '';
+      const title = message.title || '';
+      if (!Ember.isEmpty(generalMessage)) {
+        this.showModal(null, { 
+          title, intro: generalMessage, 
+          onCloseCallback: clearGeneralMessage,
+        });
+      }
+    }
+  }.observes('appSettings.generalMessage'),
+
     obSolomonConfigChange: function () {
         // Todo: get the site config from a request to Solomon API
         // (using the response header) e.g. Solomon-Client	solomon_local_dev

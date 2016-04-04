@@ -61,7 +61,7 @@
     "morgan": "^1.6.1",
     "node-sass": "^3.2.0",
     "rimraf": "2.4.2",
-    "bid-leeds": "0.0.0"
+    "bid-leeds": "latest"
   },
   "dependencies": {
     "ember-cli-simple-auth": "^0.8.0",
