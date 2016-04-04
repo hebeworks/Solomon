@@ -49,7 +49,7 @@
 	}
 	
 	&__btn {
-		height: 11px;
+		height: rem(11px);
 		float: left;
 		overflow: hidden;
 		outline: none;
@@ -58,16 +58,13 @@
 		background-color: transparent;
 		border: 0;
 		padding: 0;
-		margin: {
-			right: 5px;
-			left: 5px;
-		}
+		margin-right: rem($spacing-base / 2);
 		display: block;
 		&:before {
 			content: '';
 			display: block;
-			width: 7px;
-			height: 10px;
+			width: rem(7px);
+			height: rem(10px);
 		}
 		&.-prev {
 			&:before {
@@ -80,6 +77,8 @@
 			}
 		}
 		&.-next {
+			margin-left: rem($spacing-base / 2);
+			
 			&:before {
 				@include triangle(10px, #bfbdae, right);
 			}
@@ -107,27 +106,24 @@
 		}
 		
 		a {
-			width: 10px;
-			height: 12px;
-			float: left;
 			overflow: hidden;
 			display: inline-block;
-			float: left;
 			margin: {
-				right: 3px;
-				left: 3px;
+				right: rem(3px);
+				left: rem(3px);
 			}
 			text: {
 				decoration: none;
-				indent: -99999px;
 			}
+			font-size: 0;
+			
 			&:before {
 				content: '';
 				display: block;
-				width: 6px;
-				height: 6px;
+				width: rem(8px);
+				height: rem(8px);
 				margin: {
-					top: 2px;
+					top: rem(1px);
 				}
 				background: {
 					color: #bfbdae;
