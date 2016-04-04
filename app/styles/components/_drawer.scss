@@ -23,12 +23,7 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		padding: {
-			top: 30px;
-			right: 40px;
-			bottom: 30px;
-			left: 40px;
-		}
+		padding: rem($spacing-base * 2) rem($spacing-base * 2) rem($spacing-base);
 		z-index: 2;
 		@include transform(translateY(100%));
 
