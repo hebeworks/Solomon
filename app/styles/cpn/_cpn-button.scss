@@ -212,3 +212,9 @@
 %cpn-button-full {
     width: 100%;
 }
+
+[cpn-button~="single-line"] {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
