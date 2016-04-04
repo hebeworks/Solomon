@@ -205,10 +205,10 @@ export default Ember.Component.extend({
 	},
 
 	actions: {
-        gotoRoute: function (route) {
-			this.set('action', 'gotoRoute');
-            this.sendAction('action', route);
-        },
+      //   gotoRoute: function (route) {
+			// this.set('action', 'gotoRoute');
+      //       this.sendAction('action', route);
+      //   },
 
 		onStoryLoaded: function () {
 			// console.log('onStoryLoaded');

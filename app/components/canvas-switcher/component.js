@@ -22,10 +22,10 @@ export default Ember.Component.extend({
 		return (this.get('appController.canvasBlurred') ? '-blurred' : '');
 	}.property('appController.canvasBlurred'),
 
-	actions: {
-        gotoRoute: function (route) {
-			this.set('action', 'gotoRoute');
-            this.sendAction('action', route);
-        }
-	}
+	// actions: {
+  //       gotoRoute: function (route) {
+	// 		this.set('action', 'gotoRoute');
+  //           this.sendAction('action', route);
+  //       }
+	// }
 });
