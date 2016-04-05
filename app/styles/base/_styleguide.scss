@@ -94,8 +94,15 @@ a {
 }
 
 ul, ol {
+    padding-left: rem($spacing-base);
+    
+    & & {
+        padding-top: rem($spacing-base / 2);
+    }
+    
     li {
         list-style-position: inside;
+        list-style-type: disc;
         margin-bottom: rem($spacing-base / 2);
     }
 }
