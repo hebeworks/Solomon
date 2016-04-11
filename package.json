@@ -62,7 +62,8 @@
     "load-grunt-tasks": "^3.2.0",
     "morgan": "^1.6.1",
     "node-sass": "3.3.3",
-    "rimraf": "2.4.2"
+    "rimraf": "2.4.2",
+    "strip-ansi": "^3.0.1"
   },
   "dependencies": {
     "ember-cli-simple-auth": "^0.8.0",
