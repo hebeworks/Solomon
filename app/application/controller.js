@@ -195,6 +195,7 @@ onGeneralMessage: function onGeneralMessage() {
 
   openBottomDrawer(configParams) {
     this.set('modal-state-bottom-drawer', 'bottom-drawer');
+    this.set('modal-state-bottom-drawer', 'bottom-drawer');
     const config = Ember.$.extend({
       open: true,
       openAmount: '-half',
@@ -208,6 +209,7 @@ onGeneralMessage: function onGeneralMessage() {
   },
 
   closeBottomDrawer() {
+    this.set('modal-state-bottom-drawer', null);
     this.set('modal-state-bottom-drawer', 'null');
     const config = Ember.$.extend({
       open: false,
@@ -220,6 +222,7 @@ onGeneralMessage: function onGeneralMessage() {
   },
 
   openManipulationPanel(panelOptions) {
+    this.set('modal-state-manipulation-panel', 'manipulation-panel');
     var options = Ember.Object.create(Ember.$.extend({}, panelOptions));
 
     this.setProperties({
