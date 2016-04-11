@@ -2,15 +2,23 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   // Properties
-  queryParams: ['modalManipulationPanel'],
-  modalManipulationPanel: null,
-  onModalManipulationPanel: function () {
-    const modalManipulationPanel = this.get('modalManipulationPanel');
-    if (!modalManipulationPanel && this.get('manipulationPanel.state.opening')) {
+  queryParams: ['modal-state-manipulation-panel', 'modal-state-bottom-drawer'],
+  'modal-state-manipulation-panel': null,
+  'modal-state-bottom-drawer': null,
+  onModalStateManipulationPanel: function onModalStateManipulationPanel() {
+    const modalStateManipulationPanel = this.get('modal-state-manipulation-panel');
+    if (!modalStateManipulationPanel && this.get('manipulationPanel.state.opening')) {
       // modalContent is null but the manipulation panel is open
       this.closeManipulationPanel();
     }
-  }.observes('modalManipulationPanel'),
+  }.observes('modal-state-manipulation-panel'),
+  onModalStateBottomDrawer: function onModalStateBottomDrawer() {
+    const modalStateBottomDrawer = this.get('modal-state-bottom-drawer');
+    if (!modalStateBottomDrawer && this.get('bottomDrawerConfig.open')) {
+      // modalContent is null but the bottom drawer is open
+      this.closeBottomDrawer();
+    }
+  }.observes('modal-state-bottom-drawer'),
   isModalVisible: false,
   modalOptions: {},
   manipulationPanel: {
@@ -87,7 +95,7 @@ onGeneralMessage: function onGeneralMessage() {
 
   // Methods
 
-  showModal: function (component, options) {
+  showModal(component, options) {
       var modalOptions = _.extend(
           { // default modal options
               preventCanvasBlur: true,
@@ -124,7 +132,7 @@ onGeneralMessage: function onGeneralMessage() {
       // this.set('isModalVisible', true);
   },
 
-  hideModal: function () {
+  hideModal() {
       if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
           this.set('canvasBlurred', false);
       }
@@ -140,26 +148,26 @@ onGeneralMessage: function onGeneralMessage() {
 
   showTutorialTimer: null,
 
-  shouldShowTutorial: function (force) {
+  shouldShowTutorial(force) {
       if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')) {
           this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
       }
   },
 
-  showTutorial: function () {
+  showTutorial() {
       if (!this.get('modalOptions.isVisible')) {
           Ember.run.cancel(this.get('showTutorialTimer'));
           this.showModal('ui/tutorial-intro', 'Tutorial');
       }
   },
 
-  closeTutorial: function () {
+  closeTutorial() {
       this.hideModal();
 
       Cookies.set('viewedTutorial', true);
   },
 
-  openToolbox: function () {
+  openToolbox() {
       this.set('canvasBlurred', true);
       this.set('topOpen', true);
 
@@ -169,13 +177,13 @@ onGeneralMessage: function onGeneralMessage() {
       this.closeManipulationPanel();
   },
 
-  closeToolbox: function () {
+  closeToolbox() {
       this.set('canvasBlurred', false);
       this.set('topOpen', false);
       $('.js-open-toolbox').removeClass('-selected');
   },
 
-  toggleToolbox: function () {
+  toggleToolbox() {
       if (this.get('topOpen') == true) {
           this.closeToolbox();
       } else {
@@ -185,56 +193,57 @@ onGeneralMessage: function onGeneralMessage() {
       }
   },
 
-  openBottomDrawer: function (configParams) {
-      var config = Ember.$.extend({
-          open: true,
-          openAmount: '-half',
-          blurred: true
-      }, configParams);
+  openBottomDrawer(configParams) {
+    this.set('modal-state-bottom-drawer', 'bottom-drawer');
+    const config = Ember.$.extend({
+      open: true,
+      openAmount: '-half',
+      blurred: true,
+    }, configParams);
 
-      this.closeToolbox();
-      this.closeManipulationPanel();
-      this.set('bottomDrawerConfig', config);
-      this.set('canvasBlurred', config.blurred);
+    this.closeToolbox();
+    this.closeManipulationPanel();
+    this.set('bottomDrawerConfig', config);
+    this.set('canvasBlurred', config.blurred);
   },
 
-  closeBottomDrawer: function () {
-      var config = Ember.$.extend({
-          open: false,
-          openAmount: '-half',
-          blurred: false
-      });
+  closeBottomDrawer() {
+    this.set('modal-state-bottom-drawer', 'null');
+    const config = Ember.$.extend({
+      open: false,
+      openAmount: '-half',
+      blurred: false,
+    });
 
-      this.set('bottomDrawerConfig', config);
-      this.set('canvasBlurred', config.blurred);
+    this.set('bottomDrawerConfig', config);
+    this.set('canvasBlurred', config.blurred);
   },
 
-  openManipulationPanel: function (panelOptions) {
-      this.set('modalManipulationPanel', 'manipulationPanel');
-      var options = Ember.Object.create(Ember.$.extend({}, panelOptions));
+  openManipulationPanel(panelOptions) {
+    var options = Ember.Object.create(Ember.$.extend({}, panelOptions));
 
-      this.setProperties({
-          'manipulationPanel.state.closing': false,
-          'manipulationPanel.state.opening': true
-      });
-      this.set('manipulationPanel.options', options);
+    this.setProperties({
+        'manipulationPanel.state.closing': false,
+        'manipulationPanel.state.opening': true
+    });
+    this.set('manipulationPanel.options', options);
 
-      this.closeToolbox();
-      this.closeBottomDrawer();
-      this.set('canvasBlurred', options.blurCanvas);
+    this.closeToolbox();
+    this.closeBottomDrawer();
+    this.set('canvasBlurred', options.blurCanvas);
   },
 
-  closeManipulationPanel: function () {
-      this.set('modalManipulationPanel', null);
-      this.setProperties({
-          'manipulationPanel.state.closing': true,
-          'manipulationPanel.state.opening': false,
-          'manipulationPanel.options.content': null
-      });
-      this.set('canvasBlurred', false);
+  closeManipulationPanel () {
+    this.set('modal-state-manipulation-panel', null);
+    this.setProperties({
+        'manipulationPanel.state.closing': true,
+        'manipulationPanel.state.opening': false,
+        'manipulationPanel.options.content': null
+    });
+    this.set('canvasBlurred', false);
   },
 
-  goBack: function () {
+  goBack () {
       // implement your own history popping that actually works ;)
       if (this.get('hasHistory')) {
           this.get('history').popObject();
@@ -245,7 +254,7 @@ onGeneralMessage: function onGeneralMessage() {
       }
   },
 
-  loadACanvas: function (canvas) {
+  loadACanvas (canvas) {
       var canvasID = canvas;
       // use a canvases friendlyURL if it exists
       if (Ember.typeOf(canvas) == 'instance') {
@@ -263,7 +272,7 @@ onGeneralMessage: function onGeneralMessage() {
       this.get('appController').closeBottomDrawer();
   },
 
-  createACanvas: function (model) {
+  createACanvas (model) {
       var panelState = {
           content: 'canvas-gallery/create-a-canvas',
           title: 'Add a canvas',
@@ -277,11 +286,11 @@ onGeneralMessage: function onGeneralMessage() {
       this.openManipulationPanel(panelState);
   },
 
-  showCanvasSettings: function () {
+  showCanvasSettings () {
       this.showModal('canvas-settings', 'Canvas Settings', '', true);
   },
 
-  editAStory: function (model) {
+  editAStory (model) {
       var panelState = {
           content: 'stories/edit-a-story',
           blurCanvas: false
@@ -296,16 +305,16 @@ onGeneralMessage: function onGeneralMessage() {
       this.openManipulationPanel(panelState);
   },
 
-  editOrganisation: function(model) {
-      var panelState = {
-          content: 'bid/organisation-edit',
-          blurCanvas: true
-      }
+  editOrganisation(model) {
+    var panelState = {
+        content: 'bid/organisation-edit',
+        blurCanvas: true
+    }
 
-      panelState.model = model;
-      panelState.title = "Edit an organisation";
+    panelState.model = model;
+    panelState.title = "Edit an organisation";
 
-      this.openManipulationPanel(panelState);
+    this.openManipulationPanel(panelState);
   },
 
   editOccupant: function(model) {
