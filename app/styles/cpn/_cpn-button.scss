@@ -28,6 +28,10 @@
         font-family: $swissboldrounded;
     }
     
+    [solomon-app~="binnovation"] &:not([cpn-button~="action"]):not([cpn-button~="move"]):not([cpn-button~="ghost"]):not([cpn-button~="chosen"]):not([cpn-button~="bright"]) {
+        color: $binnovation-black;
+    }
+    
     &:hover, &:focus {
         background-color: lighten($medium-grey, 5%);
     }
