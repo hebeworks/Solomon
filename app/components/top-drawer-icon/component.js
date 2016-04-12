@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-		click: function() {
-			this.sendAction('action');
-		}
+  click() {
+    this.sendAction('action', this.get('route'));
+  },
 });
