@@ -19,6 +19,10 @@ $panel-width: 375px;
     [solomon-app~="bid"] & {
         border-top-color: $bid-dark-blue;
     }
+    
+    [solomon-app~="binnovation"] & {
+        border-top-color: $binnovation-black;
+    }
 }
 
 [cpn-manipulation-panel~="is-open"] {
