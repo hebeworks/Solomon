@@ -95,10 +95,6 @@ strong {
 
 a {
     color: #000;
-    
-    [solomon-app~="binnovation"] & {
-        color: $binnovation-black;
-    }
 }
 
 ul, ol {
