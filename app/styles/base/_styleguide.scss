@@ -30,6 +30,10 @@ body {
         color: $bid-dark-blue;
     }
     
+    &[solomon-app~="binnovation"] {
+        color: $binnovation-black;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;
