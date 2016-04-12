@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   queryParams: ['modal-state-manipulation-panel', 'modal-state-bottom-drawer'],
   'modal-state-manipulation-panel': null,
   'modal-state-bottom-drawer': null,
+  canvasBlurred: false,
   onModalStateManipulationPanel: function onModalStateManipulationPanel() {
     const modalStateManipulationPanel = this.get('modal-state-manipulation-panel');
     if (!modalStateManipulationPanel && this.get('manipulationPanel.state.opening')) {
