@@ -107,33 +107,45 @@
 			svg {
 				width: 35px;
 				height: 35px;
-			}
-		}
-
-		.icon--you-me--you {
-			rect {
-				fill: $red;
-
-				[solomon-app~="nhs"] & {
-					fill: $nhs-red;
-				}
-
-				[solomon-app~="bid"] & {
-					fill: $bid-red;
+				
+				[solomon-app~="binnovation"] & {
+					path {
+						fill: $binnovation-black;
+					}
 				}
 			}
-		}
-
-		.icon--you-me--me {
-			rect {
-				fill: $lime;
-
-				[solomon-app~="nhs"] & {
-					fill: $nhs-green;
+			
+			&[class*="icon--you-me"] {
+				path:last-child {
+					fill: #fff;
 				}
+			}
 
-				[solomon-app~="bid"] & {
-					fill: $bid-green;
+			&.icon--you-me--you {
+				rect {
+					fill: $red;
+
+					[solomon-app~="nhs"] & {
+						fill: $nhs-red;
+					}
+
+					[solomon-app~="bid"] & {
+						fill: $bid-red;
+					}
+				}
+			}
+
+			&.icon--you-me--me {
+				rect {
+					fill: $lime;
+
+					[solomon-app~="nhs"] & {
+						fill: $nhs-green;
+					}
+
+					[solomon-app~="bid"] & {
+						fill: $bid-green;
+					}
 				}
 			}
 		}
