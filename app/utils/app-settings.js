@@ -80,6 +80,7 @@ export default Ember.Object.extend({
                     solomonConfig.name = 'binnovation';
                     solomonConfig.title = 'Binnovation';
                     solomonConfig.storyConfig.storyHandle = 'both';
+                    solomonConfig.logoType = 'bitmap';
             }
             return solomonConfig;
     }}),
