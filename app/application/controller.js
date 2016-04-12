@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   // Properties
+  canvasBlurred: false,
   queryParams: ['modal-state-manipulation-panel', 'modal-state-bottom-drawer'],
   'modal-state-manipulation-panel': null,
   'modal-state-bottom-drawer': null,
