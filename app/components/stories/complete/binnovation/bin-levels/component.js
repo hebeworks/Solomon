@@ -13,9 +13,7 @@ export default DefaultStory.extend({
         showLoading: true
     },
     
-    loaded: true,
-    
-    fillPercentage: 35,
+    fillPercentage: 0,
     fillPercentageRemaining: Ember.computed('fillPercentage', function fillPercentageRemaining() {
         const fillPercentage = this.get('fillPercentage');
         
@@ -45,4 +43,13 @@ export default DefaultStory.extend({
     previousBinDay: null,
     nextBinDay: null,
     currentDate: null,
+    
+    onInsertElement: function() {
+        const _this = this;
+        
+        setTimeout(function() {
+            _this.set('fillPercentage', 35);
+            _this.set('loaded', true);
+        });
+    }.on('didInsertElement')
 });
