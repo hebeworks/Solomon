@@ -1,4 +1,102 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+$fill-size: 170px;
+
+[spc-bin-levels-fill] {
+    position: relative;
+    display: block;
+    width: rem($fill-size);
+    height: rem($fill-size);
+    text-align: center;
+    margin: auto;
+}
+
+    [spc-bin-levels-fill_inner] {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 100%;
+    }
+    
+        [spc-bin-levels-fill_circle~="back"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $fill-size;
+            height: $fill-size;
+            background-color: $light-grey;
+        }
+        
+            [spc-bin-levels-fill_data~="back"] {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                @include transform(translateY(-50%));
+            }
+            
+            [spc-bin-levels-fill_desc] {
+                // background-color: rgba(255,255,255,.5);
+                // padding: rem($spacing-base / 2);
+                // display: inline-block;
+                font-size: rem(12px);
+                line-height: rem(14px);
+                font-weight: 500;
+                margin-bottom: rem($spacing-base * 2.5);
+                // border-radius: rem(3px);
+            }
+            
+            [spc-bin-levels-fill_desc~="front"] {
+                color: #fff;
+            }
+            
+            [spc-bin-levels-fill_label] {
+                font-weight: 500;
+                margin-bottom: 0;
+            }
+            
+            [spc-bin-levels-fill_label~="front"] {
+                color: #fff;
+            }
+            
+            [spc-bin-levels-fill_level] {
+                font-size: rem(30px);
+                line-height: rem(38px);
+                font-weight: 500;
+            }
+            
+            [spc-bin-levels-fill_level~="front"] {
+                color: #fff;
+            }
+            
+        [spc-bin-levels-fill_circle~="front"] {
+            width: rem($fill-size);
+            height: rem($fill-size);
+            position: relative;
+            overflow: hidden;
+            margin-top: 100%; // initial value to keep it out of sight
+            @include transition(margin-top 1s);
+        }
+        
+        [spc-bin-levels-fill_circle~="green"] {
+            background-color: $binnovation-green;
+        }
+        
+        [spc-bin-levels-fill_circle~="orange"] {
+            background-color: $binnovation-orange;
+        }
+                
+            [spc-bin-levels-fill_circle-inner~="front"] {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: -100%; // initial value to keep it out of sight
+                left: 0;
+                @include transition(top 1s);
+            }
+            
+                [spc-bin-levels-fill_data~="front"] {
+                    width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    @include transform(translateY(-50%));
+                }
