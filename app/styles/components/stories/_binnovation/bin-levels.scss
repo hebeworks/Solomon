@@ -8,7 +8,7 @@ $fill-size: 170px;
 [spc-bin-levels] {
     position: relative;
     text-align: center;
-    margin: auto;
+    margin: 0 auto rem($spacing-base * 1.5);
     width: rem(194px);
     height: rem(194px);
     padding: rem(12px);
@@ -20,11 +20,59 @@ $fill-size: 170px;
         left: 0;
         right: 0;
         margin: auto;
-        height: rem(10px);
+        height: rem(12px);
         width: rem(3px);
-        background-color: $binnovation-black;
+        background-color: $light-grey;
+        z-index: 1;
     }
 }
+
+    [spc-bin-levels-progress] {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 0;
+        @include transition-property(opacity);
+        @include transition-duration(.5s);
+        @include transition-delay(.5s);
+    }
+    
+    [spc-bin-levels-progress~="is-visible"] {
+        opacity: 1;
+    }
+    
+        [spc-bin-levels-progress_slice] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip: rect(0, 194px, 194px, 97px);
+        }
+        
+        [spc-bin-levels-progress_slice~=">50"] {
+            clip: rect(auto, auto, auto, auto);
+        }
+        
+            [spc-bin-levels-progress_bar],
+            [spc-bin-levels-progress_fill] {
+                position: absolute;
+                border: 2px solid $light-grey;
+                width: 100%;
+                height: 100%;
+                clip: rect(0, 97px, 194px, 0);
+                border-radius: 50%;
+                @include transform(rotate(0deg));
+                
+                // @include transition-duration(1.5s);
+                // @include transition-delay(1s);
+            }
+            
+            [spc-bin-levels-progress_fill] {
+                @include transform(rotate(180deg));
+            }
 
     [spc-bin-levels_bin-day] {
         width: rem(15.5px);
@@ -39,6 +87,7 @@ $fill-size: 170px;
         @include transition-duration(1.5s);
         @include transition-delay(1s);
         background-image: none;
+        z-index: 1;
         
         svg {
             width: 100%;
@@ -148,3 +197,51 @@ $fill-size: 170px;
                         top: 50%;
                         @include transform(translateY(-50%));
                     }
+                    
+    [spc-bin-levels-stats] {
+        background-color: $binnovation-green;
+        border: 1px solid $binnovation-green;
+        border-radius: rem(4px);
+        overflow: hidden;
+        font-size: rem(10px);
+        line-height: rem(12px);
+    }
+    
+        [spc-bin-levels-stats_icon] {
+            width: rem(17px);
+            height: rem(22px);
+            float: left;
+            margin-right: rem($spacing-base / 2);
+            
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        [spc-bin-levels-stats_update] {
+            overflow: hidden;
+            margin-bottom: 0;
+            color: #fff;
+        }
+        
+        [spc-bin-levels-stats_status] {
+            margin-bottom: 0;
+            display: inline-block;
+            vertical-align: middle;
+            
+            & + & {
+                margin-left: rem($spacing-base / 2);
+            }
+            
+            &::after {
+                content: '';
+                width: rem(12px);
+                height: rem(12px);
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: rem($spacing-base / 2);
+                background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EGroup%205%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20fill%3D%22%2300BB32%22%20cx%3D%2211.899%22%20cy%3D%2211.899%22%20r%3D%2211.899%22%2F%3E%3Cg%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M17.22%207.08l-6.684%209.503M7.207%2012.198l3.33%204.385%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+                background-size: 100% 100%;
+            }
+        }

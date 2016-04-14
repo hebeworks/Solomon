@@ -37,13 +37,15 @@ export default DefaultStory.extend({
             return 'green';
         }
     }),
-    recyclingTrend: null, // more, same, less
+    recyclingTrend: 'more', // more, same, less
+    recyclingPercentage: 6,
     // batteryStatus: null, // can't write this until we get the sensor
     // connectionStatus: null, // can't write this until we get the sensor
     previousBinDay: null,
     nextBinDay: null,
     currentDate: null,
     rotationAmount: null,
+    showProgress: false,
     
     onInsertElement: function() {
         const _this = this;
@@ -51,7 +53,11 @@ export default DefaultStory.extend({
         setTimeout(function() {
             _this.set('fillPercentage', 35);
             _this.set('loaded', true);
-            _this.set('rotationAmount', 157);
+            _this.set('rotationAmount', 329);
+            
+            // if (_this.get('rotationAmount') > 0) {
+            //     _this.set('showProgress', true);
+            // }
         });
     }.on('didInsertElement')
 });

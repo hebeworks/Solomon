@@ -10,6 +10,8 @@
 
 @mixin svg--error-icon { background-image: url('png/error-icon.png'); background-repeat: no-repeat; }
 
+@mixin svg--filled-tick { background-image: url('png/filled-tick.png'); background-repeat: no-repeat; }
+
 @mixin svg--headset { background-image: url('png/headset.png'); background-repeat: no-repeat; }
 
 @mixin svg--icon-calendar { background-image: url('png/icon-calendar.png'); background-repeat: no-repeat; }
