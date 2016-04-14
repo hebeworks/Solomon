@@ -2,6 +2,7 @@ $fill-size: 170px;
 
 [spc-bin-levels_label] {
     font-size: rem(10px);
+    font-weight: 500;
     text-align: center;
 }
 
@@ -24,6 +25,12 @@ $fill-size: 170px;
         width: rem(3px);
         background-color: $light-grey;
         z-index: 1;
+    }
+}
+
+[spc-bin-levels~="is-bin-day"] {
+    &::before {
+        background-color: $binnovation-orange;
     }
 }
 
@@ -55,22 +62,34 @@ $fill-size: 170px;
         [spc-bin-levels-progress_slice~=">50"] {
             clip: rect(auto, auto, auto, auto);
         }
-        
+            
             [spc-bin-levels-progress_bar],
-            [spc-bin-levels-progress_fill] {
+            [spc-bin-levels-progress_fill~=">50"] {
                 position: absolute;
-                border: 2px solid $light-grey;
+                border-width: 2px;
+                border-color: $light-grey;
+                border-style: solid;
+                // border: 2px solid $light-grey;
                 width: 100%;
                 height: 100%;
                 clip: rect(0, 97px, 194px, 0);
                 border-radius: 50%;
                 @include transform(rotate(0deg));
-                
-                // @include transition-duration(1.5s);
-                // @include transition-delay(1s);
             }
             
             [spc-bin-levels-progress_fill] {
+                border-color: $light-grey;
+            }
+            
+            [spc-bin-levels-progress_bar~="is-bin-day"],
+            [spc-bin-levels-progress_fill~="is-bin-day"] {
+                border-color: $binnovation-orange;
+                @include transition-property(border-color);
+                @include transition-delay(2.5s)
+                @include transition-duration(.5s);
+            }
+            
+            [spc-bin-levels-progress_fill~=">50"] {
                 @include transform(rotate(180deg));
             }
 
@@ -92,6 +111,40 @@ $fill-size: 170px;
         svg {
             width: 100%;
             height: 100%;
+        }
+    }
+    
+    [spc-bin-levels_bin-day~="is-bin-day"] {
+        @include animation-name(bin-shake);
+        @include animation-delay(4s);
+        @include animation-duration(1s);
+        @include animation-iteration-count(3);
+    }
+    
+    @include keyframes(bin-shake) {
+        0% {
+            @include transform(rotate(0deg));
+            @include transform-origin(center center);
+        }
+        
+        20% {
+            @include transform(rotate(20deg));
+            @include transform-origin(center center);
+        }
+        
+        40% {
+            @include transform(rotate(-20deg));
+            @include transform-origin(center center);
+        }
+        
+        60% {
+            @include transform(rotate(0deg));
+            @include transform-origin(center center);
+        }
+        
+        100% {
+            @include transform(rotate(0deg));
+            @include transform-origin(center center);
         }
     }
 

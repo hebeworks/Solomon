@@ -2,18 +2,18 @@
     
     <p spc-bin-levels_label>Bin day</p>
     
-    <div spc-bin-levels>
+    <div spc-bin-levels="{{if isBinDay 'is-bin-day'}}">
         <div spc-bin-levels-progress="{{if (gt rotationAmount 0) 'is-visible'}}">
             <div spc-bin-levels-progress_slice="{{if (gt rotationAmount '50') '>50'}}">
-                <div spc-bin-levels-progress_bar style="-webkit-transform: rotate({{rotationAmount}}deg); -moz-transform: rotate({{rotationAmount}}deg); transform: rotate({{rotationAmount}}deg);"></div>
+                <div spc-bin-levels-progress_bar="{{if isBinDay 'is-bin-day'}}" style="-webkit-transform: rotate({{rotationAmount}}deg); -moz-transform: rotate({{rotationAmount}}deg); transform: rotate({{rotationAmount}}deg);"></div>
                 
-                {{#if (gt rotationAmount '50')}}
-                <div spc-bin-levels-progress_fill></div>
-                {{/if}}
+                {{!-- {{#if (gt rotationAmount '50')}} --}}
+                <div spc-bin-levels-progress_fill="{{if (gt rotationAmount '50') '>50'}} {{if isBinDay 'is-bin-day'}}"></div>
+                {{!-- {{/if}} --}}
             </div>
         </div>
         
-        <div spc-bin-levels_bin-day style="-webkit-transform: rotate({{rotationAmount}}deg); -moz-transform: rotate({{rotationAmount}}deg); transform: rotate({{rotationAmount}}deg);" class="svg-bin icon-bin" data-grunticon-embed></div>
+        <div spc-bin-levels_bin-day="{{if isBinDay 'is-bin-day'}}" style="-webkit-transform: rotate({{rotationAmount}}deg); -moz-transform: rotate({{rotationAmount}}deg); transform: rotate({{rotationAmount}}deg);" class="svg-bin icon-bin" data-grunticon-embed></div>
         <div spc-bin-levels-fill>
             <div spc-bin-levels-fill_inner>
                 <div spc-bin-levels-fill_circle="back">

@@ -46,6 +46,7 @@ export default DefaultStory.extend({
     currentDate: null,
     rotationAmount: null,
     showProgress: false,
+    isBinDay: false,
     
     onInsertElement: function() {
         const _this = this;
@@ -53,11 +54,8 @@ export default DefaultStory.extend({
         setTimeout(function() {
             _this.set('fillPercentage', 35);
             _this.set('loaded', true);
-            _this.set('rotationAmount', 329);
-            
-            // if (_this.get('rotationAmount') > 0) {
-            //     _this.set('showProgress', true);
-            // }
+            _this.set('rotationAmount', 360);
+            _this.set('isBinDay', true);
         });
     }.on('didInsertElement')
 });
