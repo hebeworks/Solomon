@@ -1,20 +1,25 @@
 {{#stories/story-base}}
-
-    <div spc-bin-levels-fill>
-        <div spc-bin-levels-fill_inner>
-            <div spc-bin-levels-fill_circle="back">
-                <div spc-bin-levels-fill_data="back">
-                    <p spc-bin-levels-fill_desc="back">{{{fillText}}}</p>
-                    <p spc-bin-levels-fill_label>Fill level</p>
-                    <p spc-bin-levels-fill_level>{{fillPercentage}}%</p>
+    
+    <p spc-bin-levels_label>Bin day</p>
+    
+    <div spc-bin-levels>
+        <div spc-bin-levels_bin-day style="-webkit-transform: rotate({{rotationAmount}}deg); -moz-transform: rotate({{rotationAmount}}deg); transform: rotate({{rotationAmount}}deg);" class="svg-bin icon-bin" data-grunticon-embed></div>
+        <div spc-bin-levels-fill>
+            <div spc-bin-levels-fill_inner>
+                <div spc-bin-levels-fill_circle="back">
+                    <div spc-bin-levels-fill_data="back">
+                        <p spc-bin-levels-fill_desc="back">{{{fillText}}}</p>
+                        <p spc-bin-levels-fill_label>Fill level</p>
+                        <p spc-bin-levels-fill_level>{{fillPercentage}}%</p>
+                    </div>
                 </div>
-            </div>
-            <div spc-bin-levels-fill_circle="front {{fillColour}}" style="margin-top: {{fillPercentageRemaining}}%;">
-                <div spc-bin-levels-fill_circle-inner="front" style="top: -{{fillPercentageRemaining}}%;">
-                    <div spc-bin-levels-fill_data="front">
-                        <p spc-bin-levels-fill_desc="front">{{{fillText}}}</p>
-                        <p spc-bin-levels-fill_label="front">Fill level</p>
-                        <p spc-bin-levels-fill_level="front">{{fillPercentage}}%</p>
+                <div spc-bin-levels-fill_circle="front {{fillColour}}" style="margin-top: {{fillPercentageRemaining}}%;">
+                    <div spc-bin-levels-fill_circle-inner="front" style="top: -{{fillPercentageRemaining}}%;">
+                        <div spc-bin-levels-fill_data="front">
+                            <p spc-bin-levels-fill_desc="front">{{{fillText}}}</p>
+                            <p spc-bin-levels-fill_label="front">Fill level</p>
+                            <p spc-bin-levels-fill_level="front">{{fillPercentage}}%</p>
+                        </div>
                     </div>
                 </div>
             </div>
