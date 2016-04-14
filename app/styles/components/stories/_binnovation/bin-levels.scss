@@ -199,10 +199,6 @@ $fill-size: 170px;
                     margin-top: rem(-$spacing-base);
                 }
                 
-                [spc-bin-levels-fill_desc~="front"] {
-                    color: #fff;
-                }
-                
                 [spc-bin-levels-fill_label-level] {
                     background: rgba(255,255,255,.5);
                     display: inline-block;
