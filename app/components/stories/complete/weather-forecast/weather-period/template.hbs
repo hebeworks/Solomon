@@ -1,50 +1,16 @@
-<div cpn-divide="bottom" cpn-clearfix>
-	<div cpn-table class="margin-bottom">
-		<div cpn-table_cell="middle">
-			{{!-- To update the weather icon, replace 'heavy-rain-grey' in the below class with the weather type --}}
-			<div spc-forecast-graphic>
-				<div spc-forecast-graphic_inner class="svg-icon-weather-{{period.weatherIcon}}" data-grunticon-embed></div>
-			</div>
-		</div>
-		<div cpn-table_cell="middle">
-			<p cpn-row-list="middle" cpn-margin="bottom-none">
-				<span spc-main-weather-item cpn-row-list="middle">
-					<span>High:</span> <span spc-temperature cpn-margin="right">{{period.maxTemp}}˚</span>
-				</span>
-				<span spc-main-weather-item cpn-row-list="middle">
-					<span>Low: </span> <span spc-temperature>{{period.minTemp}}˚</span>
-				</span>
-			</p>
-			<p cpn-margin="bottom-none">{{period.weather}}</p>
-		</div>
-	</div>
-</div>
-<div cpn-clearfix>
-	<p cpn-data-strip>
-		<span cpn-data-strip_item>
-			<span cpn-data-strip_label>Chance of rain:</span>
-			<span cpn-data-strip_value>{{period.rainProb}}%</span>
-		</span>
-		<span cpn-data-strip_slice></span>
-		<span cpn-data-strip_item>
-			<span cpn-data-strip_label>UV Index:</span>
-			<span cpn-data-strip_value>{{period.uv}}<!-- - Moderate--></span>
-		</span>
-		<span cpn-data-strip_slice></span>
-		<span cpn-data-strip_item>
-			<span cpn-data-strip_label>Humidity:</span>
-			<span cpn-data-strip_value>{{period.humidity}}%</span>
-		</span>
-	</p>
-	<p cpn-data-strip>
-		<span cpn-data-strip_item>
-			{{!-- The wind direction needs updating inside both the span and the spc-compass-direction attribute --}}
-			<span cpn-data-strip_label="inline">Wind Direction:</span> <span cpn-data-strip_value="inline"><span class="svg-compass-arrow" data-grunticon-embed spc-compass-direction="{{period.windDirection}}"></span> {{period.windDirection}}</span>
-		</span>
-		<span cpn-data-strip_slice></span>
-		<span cpn-data-strip_item>
-			<span cpn-data-strip_label="inline">Wind Speed:</span> <span cpn-data-strip_value="inline">{{period.windSpeed}} mph</span>
-		</span>
-	</p>
-</div>
+<p cpn-row-list="middle" cpn-margin="bottom-none">
+	<span spc-main-weather-item cpn-row-list="middle">
+		<span>High:</span> <span spc-temperature cpn-margin="right">{{period.maxTemp}}˚</span>
+	</span>
+	<span spc-main-weather-item cpn-row-list="middle">
+		<span>Low: </span> <span spc-temperature>{{period.minTemp}}˚</span>
+	</span>
+</p>
+<p cpn-margin="bottom-none">{{period.weather}}</p>
+<p cpn-data-strip>
+	<span cpn-data-strip_item>
+		<span cpn-data-strip_label="inline">Chance of rain:</span>
+		<span cpn-data-strip_value="inline">{{period.rainProb}}%</span>
+	</span>
+</p>
 {{yield}}

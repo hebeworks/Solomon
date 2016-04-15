@@ -1,21 +1,23 @@
 {{#stories/story-base}}
-    {{#stories/story-slider loaded=loaded}}           
-        {{#each days as |day|}}
-            {{#stories/story-slide}}
-                <div cpn-divide="bottom" cpn-clearfix>
-                    <date cpn-float="right" cpn-margin="top-half">{{format-date "ddd D MMM" day.date}}</date>
-                    <ul cpn-toggle="dark">
-                        <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Day</li>
-                        <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Night</li>
-                    </ul>
-                </div>
-                {{#if showDay}}
-                    {{stories/complete/weather-forecast/weather-period period=day.day}}
-                {{else}}
-                    {{stories/complete/weather-forecast/weather-period period=day.night}}
-                {{/if}}
-                
-            {{/stories/story-slide}}
-        {{/each}}
-    {{/stories/story-slider}}
+
+    <div cpn-table="fixed">
+        <div cpn-table_cell="middle" cpn-text="center">
+            <div spc-forecast-graphic>
+                <div spc-forecast-graphic_inner class="svg-icon-weather-{{day.weatherIcon}}" data-grunticon-embed></div>
+            </div>
+        </div>
+        <div cpn-table_cell="middle">
+            <ul cpn-toggle="dark">
+                <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Today</li>
+                <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Tonight</li>
+            </ul>
+            
+            {{#if showDay}}
+                {{stories/complete/weather-forecast/weather-period period=day.day}}
+            {{else}}
+                {{stories/complete/weather-forecast/weather-period period=day.night}}
+            {{/if}}
+        </div>
+    </div>
+    
 {{/stories/story-base}}
