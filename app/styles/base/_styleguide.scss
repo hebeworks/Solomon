@@ -21,25 +21,25 @@ body {
     font-weight: 400;
     font-size: rem(15px);
     line-height: 1.5;
-    
+
     [solomon-app~="yorkshire-water"] & {
         color: $yw-dark-blue;
     }
-    
+
     &[solomon-app~="bid"] {
         color: $bid-dark-blue;
     }
-    
+
     > .ember-view {
         height:100%;
         position: relative;
         overflow: hidden;
     }
-    
+
     .liquid-container, .liquid-child {
         height:100%;
     }
-    
+
     &.-story-meta {
 
         .story-meta {
@@ -75,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     font-family: $base-font-family;
     margin-bottom: rem($spacing-base * .7);
-    
+
     [solomon-app~="yorkshire-water"] & {
         font-family: $swissboldrounded;
     }
@@ -94,13 +94,13 @@ a {
 }
 
 ul, ol {
-    padding-left: rem($spacing-base);
-    
+    // padding-left: rem($spacing-base);
+
     li {
         list-style-position: inside;
         list-style-type: disc;
         margin-bottom: rem($spacing-base / 2);
-        
+
         > ul, > ol {
             padding-top: rem($spacing-base / 2);
             margin-bottom: rem($spacing-base / 2);
@@ -123,32 +123,32 @@ thead {
             background-color: $lighter-grey;
         }
     }
-    
+
         th, td {
             padding: rem($spacing-base / 4) rem($spacing-base / 2);
         }
-        
+
         th {
             &:not(:last-child) {
                 border-right: 1px solid #fff;
             }
         }
-        
+
         td {
             &:not(:last-child) {
                 border-right-width: 1px;
                 border-right-style: solid;
             }
-            
+
             tr:nth-child(odd) & {
                 border-right-color: $lighter-grey;
             }
-            
+
             tr:nth-child(even) & {
                 border-right-color: #fff;
             }
         }
-        
+
 img {
     max-width: 100%;
 }
@@ -164,7 +164,7 @@ img {
     bottom: 0;
     overflow: hidden;
     @include transition(transform .3s);
-    
+
     &.-dashboard {
         @include transform(translateX(-100%));
         &.-open {
@@ -192,7 +192,7 @@ img {
         color: #fff;
     }
     z-index: 3;
-    
+
     [solomon-app~="nhs"] & {
         &::after {
             content: '';
@@ -205,7 +205,7 @@ img {
             z-index: 2;
         }
     }
-    
+
     [solomon-app~="bid"] & {
         &::after {
             content: '';
@@ -244,17 +244,17 @@ img {
                 height: auto;
                 display: block;
             }
-            
+
             &.-thin {
                 display:none;
                 width:60px;
             }
-            
+
             @include breakpoint(max-width 700px) {
                 &.-wide {
                     display:none;
                 }
-                
+
                 &.-thin {
                     display: block;
                     svg {
@@ -278,31 +278,31 @@ img {
     background-color: #f7f7f7;
     z-index: 1;
     // -webkit-overflow-scrolling: touch;
-    
+
     [solomon-app~="yorkshire-water"] & {
         background-color: $yw-dark-blue;
     }
-    
+
     [solomon-app~="nhs"] & {
         background-color: #e8e8e8;
     }
-    
+
     &.add-a {
         top:0px;
         height:100%;
     }
-    
+
     .content {
         &.-centered {
             margin: {
                 left:auto;
                 right:auto;
             }
-            
+
             width:40%;
         }
     }
-    
+
     &.-background__city {
         background: {
             image: url(/assets/img/gallery-body-bg-holding.jpg);
@@ -321,20 +321,20 @@ img {
     padding: 30px 40px;
     overflow-y: scroll;
     @include transition(.3s);
-    
+
     &.-blurred {
         @include filter(blur(40px) brightness(79%));
         opacity: .16;
     }
-    
+
     [solomon-app~="yorkshire-water"] & {
         background-color: #fff;
     }
-    
+
     [solomon-app~="nhs"] & {
         background-color: #f7f7f7;
     }
-    
+
     .btn-list {
         .btn {
             &.-create {
@@ -367,7 +367,7 @@ img {
             box-shadow: 0 0 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
             border-radius: rem(3px);
             @include clearfix;
-            
+
             &:last-child {
                 margin-bottom: rem($spacing-base * 2);
             }
@@ -377,7 +377,7 @@ img {
             background-color: $color-app-brand-primary;
             color: #fff;
         }
-        
+
             [spc-style-guide_section-title] {
                 padding-bottom: rem($spacing-base);
                 border-bottom: rem(1px) solid rgba(0,0,0,.1);
