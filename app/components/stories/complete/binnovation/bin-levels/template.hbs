@@ -1,6 +1,6 @@
 {{#stories/story-base}}
     
-    <p spc-bin-levels_label>Bin day</p>
+    <p spc-bin-levels_label>{{if isBinDay 'Today is bin day!' 'My next bin day'}}</p>
     
     <div spc-bin-levels="{{if isBinDay 'is-bin-day'}}">
         <div spc-bin-levels-progress="{{if (gt rotationAmount 0) 'is-visible'}}">
