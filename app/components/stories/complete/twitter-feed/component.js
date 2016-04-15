@@ -3,7 +3,7 @@ import DefaultStory from './../../story-types/default-story/component';
 
 export default DefaultStory.extend({
     initialConfig: {
-        title: 'Twitter Feed',
+        title: 'Leeds Data Mill Twitter Feed',
         subTitle: 'What are we tweeting about?',
         slider: true,
         dataSourceUrl: 'http://twitter.com/leedsdatamill',
@@ -12,7 +12,7 @@ export default DefaultStory.extend({
         author: 'Mark Barrett',
         width: '2'
     },
-    
+
     selectedMonth: '',
     tweets: [],
 

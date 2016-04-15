@@ -1,5 +1,5 @@
 {{#stories/story-base}}
-    
+  {{#if twitterUser}}
     {{#each tweet in tweets}}
         <div spc-tweet>
             <h2 spc-tweet_user>
@@ -12,5 +12,9 @@
             <time spc-tweet_time>{{tweet.friendly_date}}</time>
         </div>
     {{/each}}
-
+  {{else}}
+    <div cpn-padding="right left" cpn-margin="top">
+      <button cpn-button="action" cpn-margin="top" {{action "editAStory" storyModel}}>Add a Twitter user</button>
+    </div>
+  {{/if}}
 {{/stories/story-base}}
