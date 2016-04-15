@@ -101,6 +101,18 @@
             background-color: darken($bid-orange, 10%);
         }
     }
+    
+    [solomon-app~="binnovation"] & {
+        background-color: $binnovation-orange;
+        
+        &:hover, &:focus {
+            background-color: lighten($binnovation-orange, 10%);
+        }
+        
+        &:active {
+            background-color: darken($binnovation-orange, 10%);
+        }
+    }
 }
 
 // Move button styles, for buttons which take the user to a different location
@@ -152,6 +164,18 @@
             background-color: darken($bid-dark-blue, 10%);
         }
     }
+    
+    [solomon-app~="binnovation"] & {
+        background-color: $binnovation-dark-blue;
+        
+        &:hover, &:focus {
+            background-color: lighten($binnovation-dark-blue, 10%);
+        }
+        
+        &:active {
+            background-color: darken($binnovation-dark-blue, 10%);
+        }
+    }
 }
 
 // Ghost button styles. These look like buttons but are intended for static informational tags
@@ -192,6 +216,10 @@
         
         [solomon-app~="bid"] & {
             background-color: $bid-green;
+        }
+        
+        [solomon-app~="binnovation"] & {
+            background-color: $binnovation-green;
         }
     }
 }
