@@ -4,7 +4,8 @@
 		color: #fff;
 	}
 	position: absolute;
-	@include transition(transform .3s ease-in-out);
+	@include transition-property(transform);
+	@include transition-duration(.3s);
 
 	&.-top {
 		height: 100px;
