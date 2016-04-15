@@ -31,9 +31,12 @@ module.exports = function config(environment) {
       // solomonAPIURL: 'http://solomonapi-preview.azurewebsites.net'
 
     // LOCAL
-      hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
-      solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
-      // solomonAPIURL: 'http://localhost:3000',
+      // hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
+      // solomonAPIURL: 'http://solomonapi-testing.azurewebsites.net',
+
+    // PRODUCTION
+      hebeNodeAPI: 'http://hebenodeapi.azurewebsites.net/',
+      solomonAPIURL: 'http://api.mysolomon.co.uk',
 
     // PREVIEW
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
@@ -47,7 +50,7 @@ module.exports = function config(environment) {
     //   hebeNodeAPI: 'http://hebenodeapi-testing.azurewebsites.net/',
     //   solomonAPIURL: 'http://solomonapi-nhs.azurewebsites.net'
     },
-    
+
     resizeServiceDefaults: {
       debounceTimeout: 750
     }
@@ -58,29 +61,31 @@ module.exports = function config(environment) {
     authenticationRoute: 'sign-in',
   };
 
-    // DEV
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-    domain: 'hebe-works-development.eu.auth0.com',
-  };
-  
-  // PRODUCTION
+  // DEV
+  // localhost
   // ENV['auth0-ember-simple-auth'] = {
-  //   clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
-  //   domain: 'solomon.eu.auth0.com',
+  //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+  //   domain: 'hebe-works-development.eu.auth0.com',
   // };
 
-    // BID
+  // PRODUCTION
+  // dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk
+  ENV['auth0-ember-simple-auth'] = {
+    clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+    domain: 'solomon.eu.auth0.com',
+  };
+
+  // BID
   // ENV['auth0-ember-simple-auth'] = {
   //   clientID: 'hM1EVxNIpGwhZ8nxVL010SIK1yIOhaPD',
   //   domain: 'solomonbid.eu.auth0.com',
   // };
 
-//    NHS
-//  ENV['auth0-ember-simple-auth'] = {
-//     clientID: "KIZhevoOIACv63g4Ibo2BPjQraXRK7GD",
-//     domain: "solomonnhs.eu.auth0.com"
-//   };
+  //  NHS
+  //  ENV['auth0-ember-simple-auth'] = {
+  //    clientID: "KIZhevoOIACv63g4Ibo2BPjQraXRK7GD",
+  //    domain: "solomonnhs.eu.auth0.com"
+  //  };
 
   ENV['contentSecurityPolicy'] = {
     'font-src': "'self' data: https://cdn.auth0.com",
