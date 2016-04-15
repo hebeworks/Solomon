@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('stories/complete/motivational-messages', {
+moduleForComponent('stories/complete/binnovation/motivational-messages', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });
