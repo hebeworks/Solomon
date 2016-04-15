@@ -9,7 +9,9 @@ export default DefaultStory.extend({
         subTitle: '', // (Provide a story subtitle)
         height: '1', // (Set the height of the story)
         scroll: false, // (Should the story vertically scroll its content?)
-        showLoading: true
+        showLoading: true,
+        viewOnly: true,
+        showHeaderBorder: false
     },
     
     primaryMessage: null,
