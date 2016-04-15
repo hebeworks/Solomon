@@ -174,10 +174,6 @@ $fill-size: 170px;
                 background-color: $light-grey;
             }
             
-                [spc-bin-levels-fill_data] {
-                    white-space: pre-line;
-                }
-            
                 [spc-bin-levels-fill_data~="back"] {
                     position: absolute;
                     top: 50%;
@@ -187,24 +183,10 @@ $fill-size: 170px;
                 }
                 
                 [spc-bin-levels-fill_desc] {
-                    background: rgba(255,255,255,.5);
-                    display: inline-block;
-                    padding: rem($spacing-base / 2);
-                    border-radius: rem(3px);
                     font-size: rem(12px);
                     line-height: rem(14px);
                     font-weight: 500;
-                    margin-bottom: rem($spacing-base * 1.5);
-                    white-space: normal;
-                    margin-top: rem(-$spacing-base);
-                }
-                
-                [spc-bin-levels-fill_label-level] {
-                    background: rgba(255,255,255,.5);
-                    display: inline-block;
-                    padding: 0 rem($spacing-base / 2);
-                    border-radius: rem(3px);
-                    white-space: normal;
+                    margin-bottom: rem($spacing-base * 2);
                 }
                 
                 [spc-bin-levels-fill_label] {
@@ -214,7 +196,7 @@ $fill-size: 170px;
                 
                 [spc-bin-levels-fill_level] {
                     font-size: rem(30px);
-                    line-height: rem(38px);
+                    line-height: rem(34px);
                     font-weight: 500;
                     margin-bottom: 0;
                 }
