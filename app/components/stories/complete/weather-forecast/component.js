@@ -14,7 +14,8 @@ export default DatamillStory.extend({
         author: 'Ste Allan',
         showHeaderBorder: false,
         showLoading: true,
-        viewOnly: true
+        viewOnly: true,
+        scroll: false
     },
     day: null,
     showDay: true,
@@ -38,23 +39,24 @@ export default DatamillStory.extend({
                     var day = {
                         day: {
                             maxTemp: period.Rep[0].Dm,
-                            minTemp: period.Rep[0].Nm,
+                            minTemp: period.Rep[1].Nm,
                             weather: obj.getWeatherType(period.Rep[0].W),
                             weatherIcon: obj.getWeatherType(period.Rep[0].W, true),
                             rainProb: period.Rep[0].PPd,
                         },
                         night: {
-                            maxTemp: period.Rep[1].Dm,
+                            maxTemp: period.Rep[0].Dm,
                             minTemp: period.Rep[1].Nm,
                             weather: obj.getWeatherType(period.Rep[1].W),
                             weatherIcon: obj.getWeatherType(period.Rep[1].W, true),
-                            rainProb: period.Rep[1].PPd,
+                            rainProb: period.Rep[1].PPn,
                         }
                     };
                     
                     setTimeout(() => {
                         obj.set('loaded', true);
                         obj.set('day', day);
+                        Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
                     });
                 },
                 function (error) {
@@ -110,9 +112,16 @@ export default DatamillStory.extend({
             return weather[1];
         }
     },
+    
+    onShowDay: function() {
+        setTimeout(function() {
+            Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
+        });
+    }.observes('showDay'),
 
     actions: {
         togglePeriod(period) {
+            this.$('[spc-forecast-graphic_inner]').attr('data-grunticon-embed', '');
             this.set('showDay', (period == 'day'));
         }
     }

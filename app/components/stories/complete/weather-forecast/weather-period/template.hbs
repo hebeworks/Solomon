@@ -1,16 +1,16 @@
-<p cpn-row-list="middle" cpn-margin="bottom-none">
-	<span spc-main-weather-item cpn-row-list="middle">
+<p cpn-margin="bottom-none">
+	<span spc-main-weather-item>
 		<span>High:</span> <span spc-temperature cpn-margin="right">{{period.maxTemp}}˚</span>
 	</span>
-	<span spc-main-weather-item cpn-row-list="middle">
+	<span spc-main-weather-item>
 		<span>Low: </span> <span spc-temperature>{{period.minTemp}}˚</span>
 	</span>
 </p>
-<p cpn-margin="bottom-none">{{period.weather}}</p>
+<p cpn-margin="bottom-none" cpn-font="12px">{{period.weather}}</p>
 <p cpn-data-strip>
 	<span cpn-data-strip_item>
-		<span cpn-data-strip_label="inline">Chance of rain:</span>
-		<span cpn-data-strip_value="inline">{{period.rainProb}}%</span>
+		<span cpn-data-strip_label="inline" cpn-v-align="baseline">Chance of rain:</span>
+		<span cpn-data-strip_value="inline" cpn-v-align="baseline">{{period.rainProb}}%</span>
 	</span>
 </p>
 {{yield}}

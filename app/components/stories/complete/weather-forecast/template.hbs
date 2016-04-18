@@ -1,13 +1,13 @@
 {{#stories/story-base}}
 
     <div cpn-table="fixed">
-        <div cpn-table_cell="middle" cpn-text="center">
+        <div cpn-table_cell="middle" cpn-text="center" cpn-width="40%">
             <div spc-forecast-graphic>
-                <div spc-forecast-graphic_inner class="svg-icon-weather-{{day.weatherIcon}}" data-grunticon-embed></div>
+                <div spc-forecast-graphic_inner class="svg-icon-weather-{{if showDay day.day.weatherIcon day.night.weatherIcon}}" data-grunticon-embed></div>
             </div>
         </div>
-        <div cpn-table_cell="middle">
-            <ul cpn-toggle="dark">
+        <div cpn-table_cell="middle" cpn-width="60%">
+            <ul cpn-toggle="dark" cpn-margin="bottom-none">
                 <li cpn-toggle_option="{{if showDay "chosen"}}" {{action "togglePeriod" 'day'}}>Today</li>
                 <li cpn-toggle_option="{{unless showDay "chosen"}}" {{action "togglePeriod" 'night'}}>Tonight</li>
             </ul>
