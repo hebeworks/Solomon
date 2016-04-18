@@ -3,16 +3,19 @@ import DatamillStory from './../../story-types/datamill-story/component';
 
 export default DatamillStory.extend({
     initialConfig: {
-        title: 'Bicycle Bays',
-        subTitle: 'In the city centre',
-        color: 'lime',
+        title: 'Bicycle Bays in Leeds City Centre',
+        subTitle: '',
         width: '2',
         height: '2',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-city-centre-bike-bays',
         feedbackEmail: 'info@leedsdatamill.org',
         description: 'This Story used data from the City Centre Bike Bays dataset from Leeds Data Mill',
         license: '<a href="http://leedsdatamill.org/dataset/leeds-city-centre-bike-bays" target="_blank">Leeds City Centre bike bays</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
-        author: 'Nathan Smith'
+        author: 'Nathan Smith',
+        viewOnly: true,
+        scroll: false,
+        showHeaderBorder: false,
+        showLoading: true
     },
 
     setup: function () {

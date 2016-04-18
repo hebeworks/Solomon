@@ -1,6 +1,6 @@
 {{#stories/story-base}}
     
-    <div>
+    <div cpn-margin="bottom">
         {{
             select-2
             content=items
@@ -10,22 +10,14 @@
         }}
     </div>
     
-    <main class="bicycle-bays">
-        {{google-map 
-            lat=lat 
-            lng=lng 
-            zoom=zoom
-            markers=markers
-            gopt_styles=mapStyles
-            gopt_zoomControl=false
-            gopt_mapTypeControl=false
-            }}
-<!--          
-  gopt_zoomControl=false
-            markerInfoWindowTemplateName='app/components/stories/complete/bicycle-bays/google-map-info-window/'
-            markerInfoWindowTemplateName='google-maps/info-window'
-            }}-->
-            
-    </main>
+    {{google-map 
+        lat=lat 
+        lng=lng 
+        zoom=zoom
+        markers=markers
+        gopt_styles=mapStyles
+        gopt_zoomControl=false
+        gopt_mapTypeControl=false
+    }}
 
 {{/stories/story-base}}
