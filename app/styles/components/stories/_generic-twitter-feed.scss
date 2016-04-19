@@ -1,4 +1,112 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[solomon-story="generic-twitter-feed"] {
+    [cpn-story_face~="front"] {
+        padding-bottom: 0;
+    }
+    
+        [cpn-story_content] {
+            height: rem(300px);
+        }
+    
+            [cpn-story_body] {
+                border-top: 1px solid $light-grey;
+            }
+}
+
+    [cpn-tweets] {
+        margin-right: rem(-$spacing-base);
+        margin-left: rem(-$spacing-base);
+    }
+
+        [cpn-tweet] {
+            padding: rem($spacing-base) rem($spacing-base) 0;
+            
+            &:not(:first-child) {
+                border-top: 1px solid $light-grey;
+            }
+        }
+
+            [cpn-tweet_avatar] {
+                float: left;
+                width: rem(35px);
+                height: rem(35px);
+                margin-right: rem($spacing-base);
+                
+                img {
+                    border-radius: rem(3px);
+                }
+            }
+
+            [cpn-tweet_body] {
+                overflow: hidden;
+            }
+
+                [cpn-tweet_time] {
+                    font-size: rem(12px);
+                    line-height: rem(14px);
+                    font-weight: 300;
+                    float: right;
+                    margin-left: rem($spacing-base);
+                }
+                
+                [cpn-tweet_user-names] {
+                    font-size: rem(12px);
+                    line-height: rem(14px);
+                    
+                    a {
+                        text-decoration: none;
+                    }
+                }
+                
+                    [cpn-tweet_username] {
+                        font-size: rem(10px);
+                    }
+                    
+                [cpn-tweet_text] {
+                    font-size: rem(12px);
+                    line-height: rem(14px);
+                }
+                
+                [cpn-tweet_actions] {
+                    font-size: 0; // remove whitespace
+                    padding-left: rem($spacing-base / 2);
+                    margin-bottom: rem($spacing-base);
+                }
+                
+                    [cpn-tweet_action] {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: rem($spacing-base * 4);
+                        
+                        svg {
+                            width: 100%;
+                            height: 100%;
+                        }
+                        
+                            path {
+                                @include transition-duration(.3s);
+                                @include transition-timing-function(linear);
+                            }
+                        
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            path {
+                                fill: $color-app-black;
+                            }
+                        }
+                    }
+                    
+                    [cpn-tweet_action~="reply"] {
+                        width: rem(16px);
+                        height: rem(10.667px);
+                    }
+                    
+                    [cpn-tweet_action~="retweet"] {
+                        width: rem(19.333px);
+                        height: rem(12px);
+                    }
+                    
+                    [cpn-tweet_action~="like"] {
+                        width: rem(14px);
+                        height: rem(12.667px);
+                    }
