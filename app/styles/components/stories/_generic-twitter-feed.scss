@@ -30,6 +30,10 @@
                 width: rem(35px);
                 height: rem(35px);
                 margin-right: rem($spacing-base);
+                
+                img {
+                    border-radius: rem(3px);
+                }
             }
 
             [cpn-tweet_body] {
