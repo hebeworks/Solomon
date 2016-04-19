@@ -6,8 +6,8 @@ import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DefaultStory.extend(EditableFields, {
   initialConfig: {
-    title: 'Twitter Feed',
-    subTitle: 'What are we tweeting about?',
+    title: 'Twitter',
+    subTitle: '',
     slider: false,
     dataSourceUrl: '',
     // feedbackEmail: 'mark@hebeworks.com',
@@ -15,6 +15,8 @@ export default DefaultStory.extend(EditableFields, {
     // author: 'Nathan Smith',
     viewOnly: true,
     width: '2',
+    showHeaderBorder: false,
+    showLoading: true
   },
 
   tweets: [],
@@ -26,18 +28,6 @@ export default DefaultStory.extend(EditableFields, {
       placeholder: 'Twitter Username',
     },
     {
-      name: 'title',
-      type: 'text',
-      value: 'Twitter Feed',
-      placeholder: 'Story Title',
-    },
-    {
-      name: 'sub_title',
-      type: 'text',
-      value: 'What are we tweeting about?',
-      placeholder: 'Story Subtitle',
-    },
-    {
       name: 'description',
       type: 'text',
       value: "This is what we're tweeting.",
@@ -47,8 +37,6 @@ export default DefaultStory.extend(EditableFields, {
 
   onEditableFields: function() {
     this.setProperties({
-      'storyConfig.title': this.fetchEditableFieldValue('title'),
-      'storyConfig.subTitle': this.fetchEditableFieldValue('sub_title'),
       'storyConfig.dataSourceUrl': 'http://twitter.com/' + this.fetchEditableFieldValue('twitter_user'),
       'storyConfig.description': this.fetchEditableFieldValue('description'),
     });
@@ -72,19 +60,23 @@ export default DefaultStory.extend(EditableFields, {
           data.tweets.forEach(function (item) {
             const friendly_date = moment(item.created_at).fromNow();
             const tweet = {
-                date: item.created_at,
                 friendly_date: friendly_date,
-                id: item.id,
+                tweet_id: item.id_str,
                 text: item.text,
-                user_name: item.user.name,
-                user_description: item.user.description,
-                user_url: item.user.url
+                user_real_name: item.user.name,
+                user_username: item.user.screen_name,
+                user_avatar_url: item.user.profile_image_url,
+                user_id: item.user
             };
             tweets.push(tweet);
           });
           obj.set('tweets', tweets);
+          console.log(tweets);
 
-          setTimeout(function () { obj.set('loaded', true); });
+          setTimeout(function () {
+            obj.set('loaded', true);
+            Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
+          });
         },
         function (error) {
             // debugger;
