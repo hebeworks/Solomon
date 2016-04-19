@@ -27,18 +27,11 @@ export default DefaultStory.extend(EditableFields, {
       value: '',
       placeholder: 'Twitter Username',
     },
-    {
-      name: 'description',
-      type: 'text',
-      value: "This is what we're tweeting.",
-      placeholder: 'Story Subtitle',
-    },
   ],
 
   onEditableFields: function() {
     this.setProperties({
-      'storyConfig.dataSourceUrl': 'http://twitter.com/' + this.fetchEditableFieldValue('twitter_user'),
-      'storyConfig.description': this.fetchEditableFieldValue('description'),
+      'storyConfig.dataSourceUrl': 'http://twitter.com/' + this.fetchEditableFieldValue('twitter_user')
     });
   }.observes('storyModel.config.@each.value'),
 
