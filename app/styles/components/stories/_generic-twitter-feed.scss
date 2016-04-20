@@ -64,6 +64,11 @@
                 [cpn-tweet_text] {
                     font-size: rem(12px);
                     line-height: rem(14px);
+                    
+                    a {
+                        text-decoration: none;
+                        color: $color-app-pink;
+                    }
                 }
                 
                     [cpn-tweet_media] {
