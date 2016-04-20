@@ -71,15 +71,18 @@ export default DefaultStory.extend(EditableFields, {
                 // The URL to check the string for
                 const url = item.url;
                 
-                // The path to the image
+                // The path to the media item
                 const path = item.media_url;
+                
+                // The URL of the media item's tweet
+                const mediaTweet = item.expanded_url;
                 
                 // Check the tweet text for the url
                 if (tweetText.indexOf(url) > -1) {
                   if (item.type === 'photo') {
                     
                     // Create the image markup
-                    const img = `<img src="${path}:small" alt="">`;
+                    const img = `<a href="${mediaTweet}" target="_blank"><img src="${path}:small" alt=""></a>`;
                     
                     // Find the URL and replace with the marup
                     tweetText = tweetText.split(url).join(img);
