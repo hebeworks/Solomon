@@ -69,7 +69,7 @@
                     
                     a {
                         text-decoration: none;
-                        color: $color-app-pink;
+                        color: $color-app-brand-primary;
                     }
                 }
                 
@@ -93,6 +93,7 @@
                         display: inline-block;
                         vertical-align: middle;
                         margin-right: rem($spacing-base * 4);
+                        @include transition-duration(.3s);
                         
                         svg {
                             width: 100%;
@@ -101,14 +102,15 @@
                         
                             path {
                                 @include transition-duration(.3s);
-                                @include transition-timing-function(linear);
                             }
                         
                         &:hover,
                         &:focus,
                         &:active {
+                            @include transform(scale(1.25));
+                            
                             path {
-                                fill: $color-app-pink;
+                                fill: $color-app-brand-primary;
                             }
                         }
                     }
