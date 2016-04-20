@@ -102,7 +102,23 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any URLs
             if (!Ember.isEmpty(tweetUrls)) {
-              console.log(`tweet --${item.text}-- has urls`);
+              // console.log(`tweet --${item.text}-- has urls`);
+              
+              tweetUrls.forEach(function(item) {
+                
+                // The URL to check the string for
+                const url = item.url;
+                
+                // Check the tweet text for the url
+                if (tweetText.indexOf(url) > -1) {
+                  
+                  // Create the link markup
+                  const link = `<a href="${url}" target="_blank">${url}</a>`;
+                  
+                  // Find the URL and replace with the markup
+                  tweetText = tweetText.split(url).join(link);
+                }
+              });
             }
             
             // Check if the tweet has any hashtags
