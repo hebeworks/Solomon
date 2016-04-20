@@ -51,11 +51,64 @@ export default DefaultStory.extend(EditableFields, {
         .then(function (data) {
           const tweets = [];
           data.tweets.forEach(function (item) {
+            
+            // The tweet text with no string replacements
+            var tweetText = item.text;
+            var tweetMedia = null;
+            if (item.extended_entities) {
+              tweetMedia = item.extended_entities.media;
+            }
+            const tweetUrls = item.entities.urls;
+            const tweetHashtags = item.entities.hashtags;
+            const tweetMentions = item.entities.user_mentions;
+            
+            // Check if the tweet has any media attached
+            if (tweetMedia) {
+              console.log(`tweet --${item.text}-- has media`);
+              
+              tweetMedia.forEach(function(item) {
+                
+                // The URL to check the string for
+                const url = item.url;
+                
+                // The path to the image
+                const path = item.media_url;
+                
+                // Check the tweet text for the url
+                if (tweetText.indexOf(url) > -1) {
+                  if (item.type === 'photo') {
+                    
+                    // Create the image markup
+                    const img = `<img src="${path}:small" alt="">`;
+                    
+                    // Find the URL and replace with the marup
+                    tweetText = tweetText.split(url).join(img);
+                  }
+                }
+              });
+            }
+            
+            // Check if the tweet has any URLs
+            if (!Ember.isEmpty(tweetUrls)) {
+              console.log(`tweet --${item.text}-- has urls`);
+            }
+            
+            // Check if the tweet has any hashtags
+            if (!Ember.isEmpty(tweetHashtags)) {
+              console.log(`tweet --${item.text}-- has hashtags`);
+            }
+            
+            // Check if the tweet has any hashtags
+            if (!Ember.isEmpty(tweetMentions)) {
+              console.log(`tweet --${item.text}-- has metions`);
+            }
+            
+            
             const friendly_date = moment(item.created_at).fromNow();
             const tweet = {
                 friendly_date: friendly_date,
                 tweet_id: item.id_str,
-                text: item.text,
+                text: tweetText,
                 user_real_name: item.user.name,
                 user_username: item.user.screen_name,
                 user_avatar_url: item.user.profile_image_url,
