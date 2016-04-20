@@ -64,15 +64,12 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any media attached
             if (tweetMedia) {
-              console.log(`tweet --${item.text}-- has media`);
+              // console.log(`tweet --${item.text}-- has media`);
               
               tweetMedia.forEach(function(item) {
                 
                 // The URL to check the string for
                 const url = item.url;
-                
-                // The path to the media item
-                const path = item.media_url;
                 
                 // The URL of the media item's tweet
                 const mediaTweet = item.expanded_url;
@@ -81,11 +78,23 @@ export default DefaultStory.extend(EditableFields, {
                 if (tweetText.indexOf(url) > -1) {
                   if (item.type === 'photo') {
                     
+                    // The path to the media item
+                    const path = item.media_url;
+                    
                     // Create the image markup
                     const img = `<a cpn-tweet_media href="${mediaTweet}" target="_blank"><img src="${path}:small" alt=""></a>`;
                     
-                    // Find the URL and replace with the marup
+                    // Find the URL and replace with the markup
                     tweetText = tweetText.split(url).join(img);
+                  }
+                  
+                  if (item.type === 'video') {
+                    
+                    // Create the link markup
+                    const link = `<a href="${mediaTweet}" target="_blank">${url}</a>`;
+                    
+                    // Find the URL and replace with the markup
+                    tweetText = tweetText.split(url).join(link);
                   }
                 }
               });
