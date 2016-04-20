@@ -47,6 +47,14 @@ export default DefaultStory.extend(EditableFields, {
       return editedVal || ''; // Todo: the initial YW 'YorkshireWater' story expects this as default
     },
   }),
+  
+  onInit: function() {
+    if (this.get('twitterUser')) {
+      this.set('loaded', false);
+    } else {
+      this.set('loaded', true);
+    }
+  }.on('init'),
 
   onInsertElement: function () {
     const obj = this;
@@ -156,6 +164,12 @@ export default DefaultStory.extend(EditableFields, {
                 
                 // The username to check the string for
                 const username = `@${item.screen_name}`;
+                
+                // Convert username to lowercase for searching in tweet text
+                const lowercaseUsername = item.screen_name.toLowerCase();
+                
+                // Replace all username instances with the correctly cased version
+                tweetText = tweetText.replace(new RegExp(`@${lowercaseUsername}`, 'ig'), username);
                 
                 // Check the tweet text for the url
                 if (tweetText.indexOf(username) > -1) {
