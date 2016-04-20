@@ -140,14 +140,28 @@ export default DefaultStory.extend(EditableFields, {
                   tweetText = tweetText.split(hashtag).join(link);
                 }
               });
-
             }
             
-            // Check if the tweet has any hashtags
+            // Check if the tweet has any mentions
             if (!Ember.isEmpty(tweetMentions)) {
-              console.log(`tweet --${item.text}-- has metions`);
+              // console.log(`tweet --${item.text}-- has metions`);
+              
+              tweetMentions.forEach(function(item) {
+                
+                // The username to check the string for
+                const username = `@${item.screen_name}`;
+                
+                // Check the tweet text for the url
+                if (tweetText.indexOf(username) > -1) {
+                  
+                  // Create the link markup
+                  const link = `<a href="https://twitter.com/${item.screen_name}" target="_blank">${username}</a>`;
+                  
+                  // Find the URL and replace with the markup
+                  tweetText = tweetText.split(username).join(link);
+                }
+              });
             }
-            
             
             const friendly_date = moment(item.created_at).fromNow();
             const tweet = {
