@@ -22,18 +22,24 @@ export default DefaultStory.extend(EditableFields, {
   tweets: [],
   editableFields: [
     {
+      name: 'story_title',
+      type: 'text',
+      value: 'Twitter',
+      placeholder: 'Story title'
+    },
+    {
       name: 'twitter_user',
       type: 'text',
       value: '',
-      placeholder: 'Twitter Username',
+      placeholder: 'Twitter username',
     },
   ],
 
   onEditableFields: function() {
     this.setProperties({
-      'storyConfig.dataSourceUrl': 'http://twitter.com/' + this.fetchEditableFieldValue('twitter_user')
+      'storyConfig.title': this.fetchEditableFieldValue('story_title')
     });
-  }.observes('storyModel.config.@each.value'),
+  }.on('didInsertElement').observes('storyModel.config.@each.value'),
 
   twitterUser: Ember.computed('storyModel.config.@each.value', {
     get() {
