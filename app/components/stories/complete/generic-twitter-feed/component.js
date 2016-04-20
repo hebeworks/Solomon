@@ -123,7 +123,24 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any hashtags
             if (!Ember.isEmpty(tweetHashtags)) {
-              console.log(`tweet --${item.text}-- has hashtags`);
+              // console.log(`tweet --${item.text}-- has hashtags`);
+              
+              tweetHashtags.forEach(function(item) {
+                
+                // The hashtag to check the string for
+                const hashtag = `#${item.text}`;
+                
+                // Check the tweet text for the url
+                if (tweetText.indexOf(hashtag) > -1) {
+                  
+                  // Create the link markup
+                  const link = `<a href="https://twitter.com/hashtag/${item.text}?src=hash" target="_blank">${hashtag}</a>`;
+                  
+                  // Find the URL and replace with the markup
+                  tweetText = tweetText.split(hashtag).join(link);
+                }
+              });
+
             }
             
             // Check if the tweet has any hashtags
