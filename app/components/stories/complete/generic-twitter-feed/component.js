@@ -78,8 +78,6 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any media attached
             if (tweetMedia) {
-              // console.log(`tweet --${item.text}-- has media`);
-              
               tweetMedia.forEach(function(item) {
                 
                 // The URL to check the string for
@@ -116,8 +114,6 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any URLs
             if (!Ember.isEmpty(tweetUrls)) {
-              // console.log(`tweet --${item.text}-- has urls`);
-              
               tweetUrls.forEach(function(item) {
                 
                 // The URL to check the string for
@@ -137,8 +133,6 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any hashtags
             if (!Ember.isEmpty(tweetHashtags)) {
-              // console.log(`tweet --${item.text}-- has hashtags`);
-              
               tweetHashtags.forEach(function(item) {
                 
                 // The hashtag to check the string for
@@ -158,8 +152,6 @@ export default DefaultStory.extend(EditableFields, {
             
             // Check if the tweet has any mentions
             if (!Ember.isEmpty(tweetMentions)) {
-              // console.log(`tweet --${item.text}-- has metions`);
-              
               tweetMentions.forEach(function(item) {
                 
                 // The username to check the string for
@@ -201,16 +193,13 @@ export default DefaultStory.extend(EditableFields, {
             tweets.push(tweet);
           });
           obj.set('tweets', tweets);
-          console.log(tweets);
 
           setTimeout(function () {
             obj.set('loaded', true);
             Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
           });
         },
-        function (error) {
-            // debugger;
-        });
+        function (error) {});
     }
   }.on('didInsertElement').observes('twitterUser')
 });
