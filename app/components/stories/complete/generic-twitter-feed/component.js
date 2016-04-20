@@ -55,8 +55,16 @@ export default DefaultStory.extend(EditableFields, {
       this.set('loaded', true);
     }
   }.on('init'),
-
-  onInsertElement: function () {
+  
+  onInsertElement: function() {
+    this.setTweets();
+  }.on('didInsertElement'),
+  
+  onTwitterUser: function() {
+    Ember.run.debounce(this, this.setTweets, 500);
+  }.observes('twitterUser'),
+  
+  setTweets: function() {
     const obj = this;
     const hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
     const twitterUser = this.get('twitterUser');
@@ -201,5 +209,5 @@ export default DefaultStory.extend(EditableFields, {
         },
         function (error) {});
     }
-  }.on('didInsertElement').observes('twitterUser')
+  }
 });
