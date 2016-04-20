@@ -107,7 +107,7 @@
                         &:hover,
                         &:focus,
                         &:active {
-                            @include transform(scale(1.25));
+                            @include transform(scale(1.5));
                             
                             path {
                                 fill: $color-app-brand-primary;
