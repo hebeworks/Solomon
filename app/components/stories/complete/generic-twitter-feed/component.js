@@ -82,7 +82,7 @@ export default DefaultStory.extend(EditableFields, {
                   if (item.type === 'photo') {
                     
                     // Create the image markup
-                    const img = `<a href="${mediaTweet}" target="_blank"><img src="${path}:small" alt=""></a>`;
+                    const img = `<a cpn-tweet_media href="${mediaTweet}" target="_blank"><img src="${path}:small" alt=""></a>`;
                     
                     // Find the URL and replace with the marup
                     tweetText = tweetText.split(url).join(img);

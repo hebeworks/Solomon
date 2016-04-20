@@ -66,6 +66,16 @@
                     line-height: rem(14px);
                 }
                 
+                    [cpn-tweet_media] {
+                        display: block;
+                        margin-top: rem($spacing-base * 2);
+                        
+                        img {
+                            border-radius: rem(3px);
+                            vertical-align: top;
+                        }
+                    }
+                
                 [cpn-tweet_actions] {
                     font-size: 0; // remove whitespace
                     padding-left: rem($spacing-base / 2);
