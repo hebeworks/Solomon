@@ -163,14 +163,19 @@ export default DefaultStory.extend(EditableFields, {
               });
             }
             
+            // Get how long ago the tweet was created
             const friendly_date = moment(item.created_at).fromNow();
+            
+            // Get the larger version of the user's avatar
+            const avatar = item.user.profile_image_url.split('normal').join('bigger');
+            
             const tweet = {
                 friendly_date: friendly_date,
                 tweet_id: item.id_str,
                 text: tweetText,
                 user_real_name: item.user.name,
                 user_username: item.user.screen_name,
-                user_avatar_url: item.user.profile_image_url,
+                user_avatar_url: avatar,
                 user_id: item.user
             };
             tweets.push(tweet);
