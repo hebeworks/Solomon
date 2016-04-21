@@ -34,6 +34,9 @@ export default DefaultStory.extend(EditableFields, {
       placeholder: 'Twitter username',
     },
   ],
+  
+  showVideoPlayer: false,
+  videoSources: null,
 
   onEditableFields: function() {
     this.setProperties({
@@ -96,26 +99,9 @@ export default DefaultStory.extend(EditableFields, {
                 
                 // Check the tweet text for the url
                 if (tweetText.indexOf(url) > -1) {
-                  if (item.type === 'photo') {
-                    
-                    // The path to the media item
-                    const path = item.media_url;
-                    
-                    // Create the image markup
-                    const img = `<a cpn-tweet_media href="${mediaTweet}" target="_blank"><img src="${path}:medium" alt=""></a>`;
-                    
-                    // Find the URL and replace with the markup
-                    tweetText = tweetText.split(url).join(img);
-                  }
                   
-                  if (item.type === 'video') {
-                    
-                    // Create the link markup
-                    const link = `<a href="${mediaTweet}" target="_blank">${url}</a>`;
-                    
-                    // Find the URL and replace with the markup
-                    tweetText = tweetText.split(url).join(link);
-                  }
+                  // Find the URL and remove from the string
+                  tweetText = tweetText.split(url).join('');
                 }
               });
             }
@@ -196,11 +182,38 @@ export default DefaultStory.extend(EditableFields, {
                 user_real_name: item.user.name,
                 user_username: item.user.screen_name,
                 user_avatar_url: avatar,
-                user_id: item.user
+                user_id: item.user,
+                photos: [],
+                videos: []
             };
+            
+            if (tweetMedia) {
+              tweetMedia.forEach(function(item) {
+                if (item.type === 'photo') {
+                  const photo = {
+                    src: item.media_url_https,
+                    url: item.url
+                  }
+                  
+                  tweet.photos.push(photo);
+                }
+                
+                if (item.type === 'video') {
+                  const video = {
+                    img_src: item.media_url_https,
+                    src: item.video_info.variants.reverse(),
+                    url: item.url
+                  }
+                  
+                  tweet.videos.push(video);
+                }
+              });
+            }
+            
             tweets.push(tweet);
           });
           obj.set('tweets', tweets);
+          console.log(tweets);
 
           setTimeout(function () {
             obj.set('loaded', true);
@@ -208,6 +221,35 @@ export default DefaultStory.extend(EditableFields, {
           });
         },
         function (error) {});
+    }
+  },
+  
+  actions: {
+    playVideo: function(sources) {
+      this.set('showVideoPlayer', true);
+      
+      const renamedSources = [];
+      
+      sources.forEach(function(item) {
+        const source = {
+          src: item.url,
+          type: item.content_type
+        }
+        
+        renamedSources.push(source);
+      });
+      
+      this.set('videoSources', renamedSources);
+      this.set('storyConfig.customProperties', 'video-is-open');
+      Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
+      console.log('videos');
+      console.log(sources);
+    },
+    
+    closeVideo: function() {
+      this.set('showVideoPlayer', false);
+      this.set('videoSources', null);
+      this.set('storyConfig.customProperties', null);
     }
   }
 });

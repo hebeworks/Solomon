@@ -1,5 +1,6 @@
 {{#stories/story-base}}
   {{#if twitterUser}}
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
     <div cpn-tweets>
       {{#each tweet in tweets}}
       <div cpn-tweet>
@@ -14,8 +15,17 @@
             </a>
           </h3>
           <p cpn-tweet_text>{{{tweet.text}}}</p>
+          {{#each tweet.photos as |photo|}}
+          <a cpn-tweet_media href="{{photo.url}}" target="_blank">
+            <img src="{{photo.src}}" alt="">
+          </a>
+          {{/each}}
+          {{#each tweet.videos as |video|}}
+          <a cpn-tweet_media="video" href="javascript:;" {{action 'playVideo' video.src}}>
+            <img src="{{video.img_src}}" alt="">
+          </a>
+          {{/each}}
           <div cpn-tweet_actions>
-            <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
             <a data-grunticon-embed class="svg-twitter-reply icon-twitter-reply" cpn-tweet_action="reply" href="https://twitter.com/intent/tweet?in_reply_to={{tweet.tweet_id}}">Reply</a>
             <a data-grunticon-embed class="svg-twitter-retweet icon-twitter-retweet" cpn-tweet_action="retweet" href="https://twitter.com/intent/retweet?tweet_id={{tweet.tweet_id}}">Retweet</a>
             <a data-grunticon-embed class="svg-twitter-like icon-twitter-like" cpn-tweet_action="like" href="https://twitter.com/intent/like?tweet_id={{tweet.tweet_id}}">Like</a>
@@ -24,6 +34,10 @@
       </div>
       {{/each}}
     </div>
+    {{#if showVideoPlayer}}
+    <a cpn-tweets_close-video href="javascript:;" class="svg-close-drawer icon-close-drawer" data-grunticon-embed {{action 'closeVideo'}}></a>
+    {{video-player src=videoSources autoplay=true}}
+    {{/if}}
   {{else}}
     <div cpn-padding="right left" cpn-margin="top">
       <button cpn-button="action" cpn-margin="top" {{action "editAStory" storyModel}}>Add a Twitter user</button>

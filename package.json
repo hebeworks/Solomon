@@ -58,6 +58,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-grunticon": "^2.1.0",
     "grunt-shell": "^1.1.2",
+    "ivy-videojs": "0.6.2",
     "liquid-fire": "0.21.2",
     "load-grunt-tasks": "^3.2.0",
     "morgan": "^1.6.1",
