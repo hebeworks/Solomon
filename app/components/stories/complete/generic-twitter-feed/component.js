@@ -198,7 +198,7 @@ export default DefaultStory.extend(EditableFields, {
                   tweet.photos.push(photo);
                 }
                 
-                if (item.type === 'video') {
+                if (item.type === 'video' || item.type === 'animated_gif') {
                   const video = {
                     img_src: item.media_url_https,
                     src: item.video_info.variants.reverse(),
