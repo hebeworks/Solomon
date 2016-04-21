@@ -241,6 +241,7 @@ export default DefaultStory.extend(EditableFields, {
       
       this.set('videoSources', renamedSources);
       this.set('storyConfig.customProperties', 'video-is-open');
+      this.set('storyConfig.scroll', false);
       Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
       console.log('videos');
       console.log(sources);
@@ -250,6 +251,7 @@ export default DefaultStory.extend(EditableFields, {
       this.set('showVideoPlayer', false);
       this.set('videoSources', null);
       this.set('storyConfig.customProperties', null);
+      this.set('storyConfig.scroll', true);
     }
   }
 });
