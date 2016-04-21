@@ -46,11 +46,13 @@
                     font-weight: 300;
                     float: right;
                     margin-left: rem($spacing-base);
+                    color: $grey;
                 }
                 
                 [cpn-tweet_user-names] {
                     font-size: rem(12px);
                     line-height: rem(14px);
+                    font-weight: 500;
                     
                     a {
                         text-decoration: none;
@@ -59,12 +61,28 @@
                 
                     [cpn-tweet_username] {
                         font-size: rem(10px);
+                        font-weight: 300;
                     }
                     
                 [cpn-tweet_text] {
                     font-size: rem(12px);
                     line-height: rem(14px);
+                    
+                    a {
+                        text-decoration: none;
+                        color: $color-app-brand-primary;
+                    }
                 }
+                
+                    [cpn-tweet_media] {
+                        display: block;
+                        margin-top: rem($spacing-base * 2);
+                        
+                        img {
+                            border-radius: rem(3px);
+                            vertical-align: top;
+                        }
+                    }
                 
                 [cpn-tweet_actions] {
                     font-size: 0; // remove whitespace
@@ -76,6 +94,7 @@
                         display: inline-block;
                         vertical-align: middle;
                         margin-right: rem($spacing-base * 4);
+                        @include transition-duration(.3s);
                         
                         svg {
                             width: 100%;
@@ -84,14 +103,15 @@
                         
                             path {
                                 @include transition-duration(.3s);
-                                @include transition-timing-function(linear);
                             }
                         
                         &:hover,
                         &:focus,
                         &:active {
+                            @include transform(scale(1.5));
+                            
                             path {
-                                fill: $color-app-black;
+                                fill: $color-app-brand-primary;
                             }
                         }
                     }

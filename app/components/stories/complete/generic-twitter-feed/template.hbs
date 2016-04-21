@@ -3,7 +3,7 @@
     <div cpn-tweets>
       {{#each tweet in tweets}}
       <div cpn-tweet>
-        <a target="_blank" href="http://twitter.com/{{tweet.user_username}}" cpn-tweet_avatar>
+        <a target="_blank" href="https://twitter.com/{{tweet.user_username}}" cpn-tweet_avatar>
           <img src="{{tweet.user_avatar_url}}" alt="">
         </a>
         <div cpn-tweet_body>
@@ -13,8 +13,7 @@
               <span cpn-tweet_real-name>{{tweet.user_real_name}}</span> <span cpn-tweet_username>@{{tweet.user_username}}</span>
             </a>
           </h3>
-          <p cpn-tweet_text>{{tweet.text}}</p>
-          <div cpn-tweet_media></div>
+          <p cpn-tweet_text>{{{tweet.text}}}</p>
           <div cpn-tweet_actions>
             <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
             <a data-grunticon-embed class="svg-twitter-reply icon-twitter-reply" cpn-tweet_action="reply" href="https://twitter.com/intent/tweet?in_reply_to={{tweet.tweet_id}}">Reply</a>
