@@ -12,7 +12,9 @@
           {{#each items as |item|}}
             <li cpn-snippet>
               <a href="{{item.link}}" cpn-snippet_inner target="_blank">
-                <img cpn-snippet_img src="{{item.image}}" alt="">
+                {{#if hasImages}}
+                  <img cpn-snippet_img src="{{item.image}}" alt="">
+                {{/if}}
                 <p cpn-snippet_title>{{item.title}}</p>
               </a>
             </li>

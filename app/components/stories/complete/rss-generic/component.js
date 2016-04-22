@@ -4,7 +4,7 @@ import EditableFields from 'hebe-dash/mixins/editable-fields';
 
 export default DatamillStory.extend(EditableFields, {
   storyModel: null,
-  loading: true,
+  loading: false,
   defaultFeedURL: '',
 
   initialConfig: {
@@ -80,56 +80,67 @@ export default DatamillStory.extend(EditableFields, {
   }.property('storyModel.config.@each.value'),
 
   setupFeed: function setupFeed() {
-    this.loadFeed(this.get('feedURL'));
+    if (this.get('feedURL')) {
+      this.loadFeed(this.get('feedURL'));
+    } else {
+      this.set('loaded', true);
+    }
   }.on('init').observes('feedURL'),
 
   loadFeed: function loadFeed(feedUrl) {
-    const hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
-    const url = `${hebeNodeAPI}/apiproxy?url=${hebeutils.Base64.encode(feedUrl)}&toJSON=true`;
+    if (feedUrl) {
+      const hebeNodeAPI = this.get('appSettings.hebeNodeAPI');
+      const url = `${hebeNodeAPI}/apiproxy?url=${hebeutils.Base64.encode(feedUrl)}&toJSON=true`;
+      let hasImages = false;
 
-    this.set('items', []);
-    this.set('loading', true);
-    this.set('error', null);
+      this.set('items', []);
+      this.set('loading', true);
+      this.set('error', null);
 
-    this.getData(url).then(function getDataCB(data) {
-      const feed = Ember.ObjectProxy.create(data);
-      const content = feed.get('rss.channel.firstObject.item');
+      this.getData(url).then(function getDataCB(data) {
+        const feed = Ember.ObjectProxy.create(data);
+        const content = feed.get('rss.channel.firstObject.item');
 
-      if (Ember.isEmpty(content)) {
-        return this.set('error', `Failed to load data from ${this.get('feedURL')}.`);
-      }
-
-      const items = [];
-
-      content.forEach((tmpItem) => {
-        let image = '';
-
-        try {
-          image = tmpItem.enclosure[0].$.url;
-        } catch (err) {
-
+        if (Ember.isEmpty(content)) {
+          return this.set('error', `Failed to load data from ${this.get('feedURL')}.`);
         }
 
-        const item = {
-          id: tmpItem.guid,
-          title: tmpItem.title,
-          description: tmpItem.description,
-          image,
-          link: tmpItem.link,
-          pubDate: tmpItem.pubDate,
-        };
+        const items = [];
 
-        items.push(item);
-      });
-      const limit = this.get('limit');
-      this.set('items', limit ? items.slice(0, Number(limit)) : items);
-    }.bind(this)
-    ).finally(function finallCB() {
-      const _this = this;
-      this.set('loading', false);
-      setTimeout(() => {
-        _this.set('loaded', true);
-      });
-    }.bind(this));
+        content.forEach((tmpItem) => {
+          let image = '';
+
+          try {
+            image = tmpItem.enclosure[0].$.url;
+            if (!Ember.isEmpty(image)) {
+              hasImages = true;
+            }
+          } catch (err) {
+
+          }
+
+          const item = {
+            id: tmpItem.guid,
+            title: tmpItem.title,
+            description: tmpItem.description,
+            image,
+            link: tmpItem.link,
+            pubDate: tmpItem.pubDate,
+          };
+
+          items.push(item);
+        });
+        const limit = this.get('limit');
+        this.set('items', limit ? items.slice(0, Number(limit)) : items);
+        this.set('hasImages', hasImages);
+      }.bind(this)
+      ).finally(function finallCB() {
+        const _this = this;
+        this.set('loading', false);
+        setTimeout(() => {
+          _this.set('loaded', true);
+        });
+      }.bind(this));
+    }
   },
 });
