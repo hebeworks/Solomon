@@ -63,17 +63,17 @@ module.exports = function config(environment) {
 
   // DEV
   // localhost
-  // ENV['auth0-ember-simple-auth'] = {
-  //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-  //   domain: 'hebe-works-development.eu.auth0.com',
-  // };
+  ENV['auth0-ember-simple-auth'] = {
+    clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+    domain: 'hebe-works-development.eu.auth0.com',
+  };
 
   // PRODUCTION
   // dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
-    domain: 'solomon.eu.auth0.com',
-  };
+  // ENV['auth0-ember-simple-auth'] = {
+  //   clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+  //   domain: 'solomon.eu.auth0.com',
+  // };
 
   // BID
   // ENV['auth0-ember-simple-auth'] = {
@@ -110,7 +110,7 @@ module.exports = function config(environment) {
         // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
         // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk';
         // ENV.APP.mockSolomonHostname = 'bid.preview.mysolomon.co.uk';
-        ENV.APP.solomonClientOverride = 'solomon_production';
+        // ENV.APP.solomonClientOverride = 'solomon_production';
     }
 
   if (environment === 'test') {
