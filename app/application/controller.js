@@ -131,6 +131,7 @@ onGeneralMessage: function onGeneralMessage() {
       // }
       // this.set('modalIntro', intro);
       // this.set('isModalVisible', true);
+      this.closeToolbox();
   },
 
   hideModal() {
