@@ -4,15 +4,17 @@ import DefaultStory from './../../story-types/default-story/component';
 export default DefaultStory.extend({
     initialConfig: {
         title: 'Leeds Car Parks',
-        subTitle: 'Registered spaces available in Leeds',
-        color: 'blue',
+        subTitle: '',
         width: '2',
         height: '2',
         dataSourceUrl: 'http://leedsdatamill.org/dataset/live-car-park-spaces-api',
         feedbackEmail: 'info@leedsdatamill.org',
         description: "This Story used data from Leeds City Council's Live Car Park Spaces API",
         license: '<a href="http://leedsdatamill.org/dataset/live-car-park-spaces-api" target="_blank">Live car park spaces api</a>, © Leeds City Council, 2015. This information is licensed under the terms of the Open Government Licence',
-        author: 'Nathan Smith'
+        viewOnly: true,
+        showHeaderBorder: false,
+        showLoading: true,
+        scroll: false
     },
 
     loaded: false,

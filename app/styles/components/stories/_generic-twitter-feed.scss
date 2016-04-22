@@ -1,4 +1,207 @@
-/*
-	Ste
-		Add any instructions / links / example in here
-*/
+[solomon-story="generic-twitter-feed"] {
+    [cpn-story~="video-is-open"] {
+        [cpn-story_dot~="front"] {
+            display: none;
+        }
+    }
+    
+        [cpn-story_face~="front"] {
+            padding-bottom: 0;
+        }
+        
+            [cpn-story_content] {
+                height: rem(300px);
+            }
+        
+                [cpn-story_body] {
+                    border-top: 1px solid $light-grey;
+                }
+            
+    [cpn-video-player] {
+        position: absolute;
+        top: rem(23px);
+        left: rem(-$spacing-base);
+        height: rem(277px);
+        width: rem(310px);
+        
+        > .ember-view,
+        .video-js {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+    [cpn-tweets] {
+        margin-right: rem(-$spacing-base);
+        margin-left: rem(-$spacing-base);
+    }
+
+        [cpn-tweet] {
+            padding: rem($spacing-base) rem($spacing-base) 0;
+            
+            &:not(:first-child) {
+                border-top: 1px solid $light-grey;
+            }
+        }
+
+            [cpn-tweet_avatar] {
+                float: left;
+                width: rem(35px);
+                height: rem(35px);
+                margin-right: rem($spacing-base);
+                
+                img {
+                    border-radius: rem(3px);
+                }
+            }
+
+            [cpn-tweet_body] {
+                overflow: hidden;
+            }
+
+                [cpn-tweet_time] {
+                    font-size: rem(12px);
+                    line-height: rem(14px);
+                    font-weight: 300;
+                    float: right;
+                    margin-left: rem($spacing-base);
+                    color: $grey;
+                }
+                
+                [cpn-tweet_user-names] {
+                    font-size: rem(12px);
+                    line-height: rem(14px);
+                    font-weight: 500;
+                    
+                    a {
+                        text-decoration: none;
+                    }
+                }
+                
+                    [cpn-tweet_username] {
+                        font-size: rem(10px);
+                        font-weight: 300;
+                    }
+                    
+                [cpn-tweet_text] {
+                    font-size: rem(12px);
+                    line-height: rem(14px);
+                    
+                    a {
+                        text-decoration: none;
+                        color: $color-app-brand-primary;
+                    }
+                }
+                
+                    [cpn-tweet_media] {
+                        display: block;
+                        margin-bottom: rem($spacing-base);
+                        position: relative;
+                        
+                        img {
+                            border-radius: rem(3px);
+                            vertical-align: top;
+                        }
+                    }
+                    
+                    [cpn-tweet_media="video"] {
+                        &::before, &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            margin: auto;
+                            @include transition-duration(.3s);
+                        }
+                        
+                        &::before {
+                            width: rem($spacing-base * 4);
+                            height: rem($spacing-base * 4);
+                            background-color: $color-app-brand-primary;
+                            border-radius: 50%;
+                        }
+                        
+                        &::after {
+                            @include triangle(($spacing-base * 2), #fff, right);
+                        }
+                        
+                        &:hover, &:focus {
+                            &::before, &::after {
+                                @include transform(scale(1.2));
+                            }
+                        }
+                    }
+                
+                [cpn-tweet_actions] {
+                    font-size: 0; // remove whitespace
+                    padding-left: rem($spacing-base / 2);
+                    margin-bottom: rem($spacing-base);
+                }
+                
+                    [cpn-tweet_action] {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: rem($spacing-base * 4);
+                        @include transition-duration(.3s);
+                        
+                        svg {
+                            width: 100%;
+                            height: 100%;
+                        }
+                        
+                            path {
+                                @include transition-duration(.3s);
+                            }
+                        
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            @include transform(scale(1.5));
+                            
+                            path {
+                                fill: $color-app-brand-primary;
+                            }
+                        }
+                    }
+                    
+                    [cpn-tweet_action~="reply"] {
+                        width: rem(16px);
+                        height: rem(10.667px);
+                    }
+                    
+                    [cpn-tweet_action~="retweet"] {
+                        width: rem(19.333px);
+                        height: rem(12px);
+                    }
+                    
+                    [cpn-tweet_action~="like"] {
+                        width: rem(14px);
+                        height: rem(12.667px);
+                    }
+                    
+    [cpn-tweets_close-video] {
+        position: absolute;
+        top: rem(-$spacing-base);
+        right: rem(-$spacing-base);
+        height: rem(33px);
+        width: rem(33px);
+        background: $color-app-brand-primary;
+        
+        svg {
+            width: rem(15px);
+            height: rem(15px);
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            
+            path {
+                fill: #fff;
+            }
+        }
+    }

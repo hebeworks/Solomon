@@ -46,22 +46,22 @@ export default Ember.Component.extend({
 	updatePackery: function () {
 		var _this = this;
 		if(!Ember.isEmpty(this.$container)){
-			console.log('updatePackery: $container exists');
+			// console.log('updatePackery: $container exists');
 			Ember.run.cancel(this.get('updatePackeryTimer'));
 			// var $allStories = this.$('.js-story');
 			var $container = this.$('.js-stories');
 			// $container.packery('appended', $allStories);
 			var newIDs = _this.getNewlyAddedStoryIDs();
-			console.log('newIDs: ' + newIDs);
+			// console.log('newIDs: ' + newIDs);
 
 			if(!Ember.isEmpty(newIDs)) { // if stories have been removed newIDs == -1 - still continue to perform packery update
-			console.log('Packery Update');
+			// console.log('Packery Update');
 				// var selector = '.js-story';
 				// var elems = this.$(selector);
 				var newStorySelector = (newIDs.length > 1 ?
 						'.js-story[data-id="'+newIDs.join('"],.js-story[data-id="')+'"]'
 						: '.js-story[data-id="' + newIDs[0] + '"]');
-				console.log('newStorySelector = ' + newStorySelector);
+				// console.log('newStorySelector = ' + newStorySelector);
 
 				// var $newStories = $('#' + newIDs.join(',#'));
 				var $newStories = $(newStorySelector);
@@ -80,7 +80,7 @@ export default Ember.Component.extend({
 				$container.packery('bindUIDraggableEvents', $itemEls);
 			}
 		} else {
-			console.log('updatePackery: $container doesnt exist');
+			// console.log('updatePackery: $container doesnt exist');
 			var timer = Ember.run.later(this, this.updatePackery, 200);
 			this.set('updatePackeryTimer', timer);
 		}

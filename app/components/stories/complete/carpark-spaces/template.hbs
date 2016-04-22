@@ -1,5 +1,4 @@
 {{#stories/story-base}}
-<main class="carpark-spaces">
     <div cpn-margin="bottom">
         {{
             select-2
@@ -9,43 +8,24 @@
             optionLabelPath="title"
             placeholder="Choose a Car Park"
         }}
-
-        <!--optionDescriptionPath="title"-->
-        <!--optionLabelPath="title"-->
     </div>
 
     {{#if selectedCarPark}}
-        <div class="car-park">
-            <i class="icon-parking-icon svg-parking-icon" data-grunticon-embed>Parking Icon</i>
-            <h2 class="heading alpha">
-                {{currentCarPark.title}}
-            </h2>
-            <div class="car-park__wrapper">
-                <div class="car-park__section">
-                    <div class="-value">{{currentCarPark.available}}</div>
-                    <div class="-label">Spaces available</div>
-                </div>
-                <div class="car-park__section">
-                    <div class="-value">{{currentCarPark.occupiedSpaces}}</div>
-                    <div class="-label">Occupied spaces</div>
-                </div>
-                <div class="car-park__section">
-                    <div class="-value">{{currentCarPark.totalCapacity}}</div>
-                    <div class="-label">Park Capacity</div>
-                </div>
-            </div>
-        </div>
-        {{google-map 
-            lat=lat 
-            lng=lng 
-            zoom=zoom
-            markers=markers
-            gopt_styles=mapStyles
-            gopt_zoomControl=false
-            gopt_mapTypeControl=false
-            }}
+    <p>
+        <span spc-carpark-spaces_available-number>{{currentCarPark.available}}</span>
+        <span cpn-v-align="middle">spaces available</span>
+    </p>
+
+    {{google-map 
+        lat=lat 
+        lng=lng 
+        zoom=zoom
+        markers=markers
+        gopt_styles=mapStyles
+        gopt_zoomControl=false
+        gopt_mapTypeControl=false
+    }}
     {{else}}
         {{loading-icon}}
     {{/if}}
-</main>
 {{/stories/story-base}}
