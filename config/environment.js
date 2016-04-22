@@ -110,7 +110,7 @@ module.exports = function config(environment) {
         // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
         // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk';
         // ENV.APP.mockSolomonHostname = 'bid.preview.mysolomon.co.uk';
-        // ENV.APP.solomonClientOverride = "solomon_leeds";
+        ENV.APP.solomonClientOverride = 'solomon_production';
     }
 
   if (environment === 'test') {
