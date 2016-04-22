@@ -9,16 +9,16 @@ export default DatamillStory.extend({
         hideFooter: 'true',
         author: 'Nathan Smith'
     },
-    
+
     loaded: false,
-    
+
     didInsertElement: function() {
         this.getDataByPostcode('result1','LS1 5NS');
     },
-    
+
     result1: null,
     result2: null,
-    
+
     _postcode1: null,
     postcode1: Ember.computed("_postcode1", {
         get: function() {
@@ -29,7 +29,7 @@ export default DatamillStory.extend({
             return newVal;
         }
     }),
-    
+
     _postcode2: null,
     postcode2: Ember.computed("_postcode2", {
         get: function() {
@@ -40,11 +40,11 @@ export default DatamillStory.extend({
             return newVal;
         }
     }),
-    
+
     updateResult1: function(){
         this.getDataByPostcode('result1', this.get('postcode1'));
     }.observes('postcode1'),
-    
+
     updateResult2: function(){
         this.getDataByPostcode('result2', this.get('postcode2'));
     }.observes('postcode2'),
@@ -59,7 +59,7 @@ export default DatamillStory.extend({
             .then(
                 function(data){
                     // success
-                    console.log('compare-water-quality > getData > success');
+                    // console.log('compare-water-quality > getData > success');
                     // data is the response Object/Array from the AJAX request
                     var propsToInclude = [
                         'TotalHardness',
@@ -67,7 +67,7 @@ export default DatamillStory.extend({
                         'Calcium',
                         'Iron'
                     ];
-                    
+
                     var values = data.PC_LOOKUP.RESULTS[0].LIST[0].ITEM[0];
                     var props = {};
                     for(var prop in values) {
@@ -81,7 +81,7 @@ export default DatamillStory.extend({
                         }
                     };
                     props["hardnessDescription"] = values["HARDNESS"][0].DESCRIPTION;
-                    
+
                     var result = {
                         location: {
                             postcode: postcode,
@@ -93,7 +93,7 @@ export default DatamillStory.extend({
                 },
                 function(error) {
                     // failure
-                    console.log('compare-water-quality > getData > error: ' + error);
+                    // console.log('compare-water-quality > getData > error: ' + error);
                 },
                 function(){
                     // complete

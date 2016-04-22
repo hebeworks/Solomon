@@ -228,11 +228,11 @@ export default Ember.Controller.extend({
                     }
                     model.set('stories', stories);
                     model.save().then(function (response) {
-                        console.log('saved canvas order');
+                        // console.log('saved canvas order');
                     })
                 },
                 function (err) {
-                    console.log('Not saving canvas order due to permissions');
+                    // console.log('Not saving canvas order due to permissions');
                     // if (err.notLoggedIn == true) {
                     //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
                     //     obj.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
@@ -251,13 +251,13 @@ export default Ember.Controller.extend({
                     var model = obj.get('model');
 
                     model.save().then(function (response) {
-                        console.log('saved canvas state');
+                        // console.log('saved canvas state');
                         // todo callback function
                         // e.g. close edit a story bottom drawer
                     })
                 },
                 function (err) {
-                    console.log('Not saving canvas state due to permissions');
+                    // console.log('Not saving canvas state due to permissions');
                     // if (err.notLoggedIn == true) {
                     //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
                     //     obj.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
