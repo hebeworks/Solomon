@@ -29,7 +29,11 @@ body {
     &[solomon-app~="bid"] {
         color: $bid-dark-blue;
     }
-
+    
+    &[solomon-app~="binnovation"] {
+        color: $binnovation-black;
+    }
+    
     > .ember-view {
         height:100%;
         position: relative;
@@ -215,6 +219,19 @@ img {
             width: 100%;
             height: rem(3px);
             background-color: $bid-dark-blue;
+            z-index: 2;
+        }
+    }
+    
+    [solomon-app~="binnovation"] & {
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: rem(3px);
+            background-color: $binnovation-black;
             z-index: 2;
         }
     }

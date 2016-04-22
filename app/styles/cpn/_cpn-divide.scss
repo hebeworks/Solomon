@@ -3,6 +3,10 @@
     border-color: #000;
     border-style: dotted;
     border-width: 0;
+    
+    [solomon-app~="binnovation"] &:not([cpn-divide~="light"]):not([cpn-divide~="faded-light"]):not([cpn-divide~="faded-dark"]) {
+        border-color: $binnovation-black;
+    }
 }
 
 [cpn-divide~="top"],

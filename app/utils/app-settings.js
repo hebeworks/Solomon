@@ -75,6 +75,12 @@ export default Ember.Object.extend({
                     solomonConfig.storyConfig.storyHandle = 'both';
                     solomonConfig.defaultCanvas = 'bid-team-home'; // TODO switch based on user role e.g. bid user / levy payer                    
                     break;
+                case 'binnovation.mysolomon.co.uk':
+                case 'binnovation.preview.mysolomon.co.uk':
+                    solomonConfig.name = 'binnovation';
+                    solomonConfig.title = 'Binnovation';
+                    solomonConfig.storyConfig.storyHandle = 'both';
+                    solomonConfig.logoType = 'bitmap';
             }
             return solomonConfig;
     }}),

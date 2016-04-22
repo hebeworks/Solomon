@@ -1,0 +1,39 @@
+[spc-mot-msg] {
+    padding-top: rem($spacing-base * 1.5);
+}
+
+    [spc-mot-msg_graphic-outer] {
+        float: left;
+        margin-right: rem($spacing-base * 2);
+        background-color: $light-grey;
+        border-radius: 100%;
+        width: rem(100px);
+        height: rem(100px);
+        position: relative;
+    }
+
+        [spc-mot-msg_graphic] {
+            width: rem(50px);
+            height: rem(67px);
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        [spc-mot-msg_pri] {
+            margin-bottom: rem($spacing-base * 1.5);
+            line-height: rem(17.5px);
+        }
+        
+        [spc-mot-msg_sec] {
+            font-size: rem(10px);
+            line-height: rem(12px);
+        }

@@ -18,6 +18,11 @@
         background-image: url('./img/nhs-logo.png');
         background-size: 100% 100%;
     }
+    
+    [solomon-app~="binnovation"] & {
+        background-image: url('./img/binnovation/bradford-logo.png');
+        background-size: 100% 100%;
+    }
 }
 
 [spc-dashboard-logo="compact"] {
@@ -47,6 +52,11 @@
     
     [solomon-app~="bid"] & {
         display: none;
+    }
+    
+    [solomon-app~="binnovation"] & {
+        width: 96.25px;
+        height: 27.5px;
     }
 }
 
@@ -91,5 +101,10 @@
                 width: 151px;
             }
         }
+    }
+    
+    [solomon-app~="binnovation"] & {
+        width: 192.5px;
+        height: 55px;
     }
 }
