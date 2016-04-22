@@ -97,9 +97,11 @@ onGeneralMessage: function onGeneralMessage() {
   // Methods
 
   showModal(component, options) {
+      this.closeToolbox();
+    
       var modalOptions = _.extend(
           { // default modal options
-              preventCanvasBlur: true,
+              preventCanvasBlur: false,
               effect: 'md-effect-1',
               title: '',
               component: component,
@@ -111,9 +113,9 @@ onGeneralMessage: function onGeneralMessage() {
       this.set('modalOptions', modalOptions);
       this.set('modalOptions.isVisible', true);
 
-      if (this.get('modalOptions.preventCanvasBlur') == false) {
+      // if (this.get('modalOptions.preventCanvasBlur') === false) {
           this.set('canvasBlurred', true);
-      }
+      // }
 
       if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback'))
           && Ember.isEmpty(options.onCloseCallback)) {
@@ -134,9 +136,9 @@ onGeneralMessage: function onGeneralMessage() {
   },
 
   hideModal() {
-      if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
+      // if (this.get('canvasBlurred') == true && this.get('modalOptions.canvasWasBlurred') == false) {
           this.set('canvasBlurred', false);
-      }
+      // }
       if (!Ember.isEmpty(this.get('modalOptions.onCloseCallback')) &&
           _.isFunction(this.get('modalOptions.onCloseCallback'))) {
           this.get('modalOptions.onCloseCallback')();
@@ -169,13 +171,13 @@ onGeneralMessage: function onGeneralMessage() {
   },
 
   openToolbox() {
+      this.closeBottomDrawer();
+      this.closeManipulationPanel();
+    
       this.set('canvasBlurred', true);
       this.set('topOpen', true);
 
       $('.js-open-toolbox').addClass('-selected');
-
-      this.closeBottomDrawer();
-      this.closeManipulationPanel();
   },
 
   closeToolbox() {
@@ -188,9 +190,9 @@ onGeneralMessage: function onGeneralMessage() {
       if (this.get('topOpen') == true) {
           this.closeToolbox();
       } else {
-          this.openToolbox();
           this.closeBottomDrawer();
           this.closeManipulationPanel();
+          this.openToolbox();
       }
   },
 
