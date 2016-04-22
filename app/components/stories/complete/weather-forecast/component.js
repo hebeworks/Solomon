@@ -72,7 +72,7 @@ export default DatamillStory.extend({
     getWeatherType: function (weatherIndex, icon) {
         // weatherIndex = weatherIndex - 1;
         var types = [
-            ['default', 'Clear night'],
+            ['clear-night', 'Clear night'],
             ['sunny', 'Sunny day'],
             ['cloudy', 'Partly cloudy (night)'],
             ['cloudy', 'Partly cloudy (day)'],
