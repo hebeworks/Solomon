@@ -1,26 +1,35 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
+  fetchEditableFieldValue(name) {
+    const config = this.get('storyModel.config');
+    if (!config) return '';
+    const item = config.findBy('name', name);
 
-    fetchEditableFieldValue: function(name){
-        const config = this.get('storyModel.config');
-        if(!config) return '';
-        const item = config.findBy('name', name);
+    return item ? item.get('value') : '';
+  },
 
-        return item ? item.get('value') : '';
-    },
+  saveEditableFieldValue(name, value) {
+    const config = this.get('storyModel.config');
+    if (!config) return null;
+    const item = config.findBy('name', name);
+    if (item) {
+      item.set('value', value);
+      this.set('action', 'saveCanvasState');
+      this.sendAction('action');
+    }
+    return item ? item.get('value') : null;
+  },
 
-    setupEditableFields: function (){
-        var story = this.get('storyModel');
-        if(!story) return;
-        var config = this.get('editableFields') || [];
+  setupEditableFields: function setupEditableFields() {
+    const story = this.get('storyModel');
+    if (!story) return;
 
-        if(story.get('config.length') > 0)
-            return;
+    const config = this.get('editableFields') || [];
+    if (story.get('config.length') > 0) return;
 
-        config.forEach(function(object){
-          story.addConfigItem(object);
-        });
-    }.on('init').observes('storyModel')
-
+    config.forEach((object) => {
+      story.addConfigItem(object);
+    });
+  }.on('init').observes('storyModel'),
 });

@@ -3,7 +3,7 @@
 module.exports = function config(environment) {
   const ENV = {
     modulePrefix: 'hebe-dash',
-    environment: environment,
+    environment,
     baseURL: '/',
     locationType: 'auto',
 
@@ -19,9 +19,7 @@ module.exports = function config(environment) {
       // when it is created
       // dataMillUrl: 'http://api.leedsdatamill.org/',
       // statnoticeURL: 'http://statnotices.azurewebsites.net', // LIVE
-      // solomonAPIURL: 'http://localhost:8080',
-      // solomonAPIURL: 'http://hebedashapi-preview.azurewebsites.net',
-      // solomonAPIURL: 'http://hebedashapi.azurewebsites.net',
+      // solomonAPIURL: 'http://localhost:8080', // 'http://hebedashapi-preview.azurewebsites.net', // 'http://hebedashapi.azurewebsites.net',
 
       dataMillCatAPI: 'http://leedsdatamill.org', // http://leedsdatamill.org/api (the catalogue API for package queries)
       dataMillDataAPI: 'http://api.datapress.io/api/3/',     // (the datastore API where data ends up in the 'push to datastore' case).
@@ -52,8 +50,8 @@ module.exports = function config(environment) {
     },
 
     resizeServiceDefaults: {
-      debounceTimeout: 750
-    }
+      debounceTimeout: 750,
+    },
   };
 
   ENV['simple-auth'] = {
@@ -61,57 +59,43 @@ module.exports = function config(environment) {
     authenticationRoute: 'sign-in',
   };
 
-  // DEV
-  // localhost
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-    domain: 'hebe-works-development.eu.auth0.com',
+  // AUTH0 Configs
+  const auth0Configs = {
+    development: {
+      clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+      domain: 'hebe-works-development.eu.auth0.com',
+    },
+    production: {
+      clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+      domain: 'solomon.eu.auth0.com',
+      '// sites': 'dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk'
+    },
+    bid: {
+      clientID: 'hM1EVxNIpGwhZ8nxVL010SIK1yIOhaPD',
+      domain: 'solomonbid.eu.auth0.com',
+    },
+    nhsrtt: {
+      clientID: 'KIZhevoOIACv63g4Ibo2BPjQraXRK7GD',
+      domain: 'solomonnhs.eu.auth0.com',
+    },
   };
 
-  // PRODUCTION
-  // dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk
-  // ENV['auth0-ember-simple-auth'] = {
-  //   clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
-  //   domain: 'solomon.eu.auth0.com',
-  // };
+  ENV['auth0-ember-simple-auth'] = auth0Configs.development;
 
-  // BID
-  // ENV['auth0-ember-simple-auth'] = {
-  //   clientID: 'hM1EVxNIpGwhZ8nxVL010SIK1yIOhaPD',
-  //   domain: 'solomonbid.eu.auth0.com',
-  // };
-
-  //  NHS
-  //  ENV['auth0-ember-simple-auth'] = {
-  //    clientID: "KIZhevoOIACv63g4Ibo2BPjQraXRK7GD",
-  //    domain: "solomonnhs.eu.auth0.com"
-  //  };
-
-  ENV['contentSecurityPolicy'] = {
-    'font-src': "'self' data: https://cdn.auth0.com",
-    'style-src': "'self' 'unsafe-inline'",
-    'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com " + ENV['auth0-ember-simple-auth']['domain'],
-    'connect-src': "'self' http://localhost:* " + ENV['auth0-ember-simple-auth']['domain'],
-  };
-
-    if (environment === 'development') {
-        // ENV.APP.LOG_RESOLVER = true;
-        // ENV.APP.LOG_ACTIVE_GENERATION = true;
-        // ENV.APP.LOG_TRANSITIONS = true;
-        // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-        // ENV.APP.LOG_VIEW_LOOKUPS = true;
-        ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
-        // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV
-        // ENV.APP.statnoticeURL =  'http://statnotices-preview.azurewebsites.net'; // PREVIEW
-        // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net';
-        // ENV.APP.solomonAPIURL = 'http://localhost:3000';
-        // ENV.APP.hebeNodeAPI = 'http://localhost:3000';
-        // ENV.APP.hebeNodeAPI = 'http://hebenodeapi-cached.azurewebsites.net';
-        // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
-        // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk';
-        // ENV.APP.mockSolomonHostname = 'bid.preview.mysolomon.co.uk';
-        // ENV.APP.solomonClientOverride = 'solomon_production';
-    }
+  if (environment === 'development') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
+    // ENV.APP.statnoticeURL = 'http://localhost:8080'; // DEV 'http://statnotices-preview.azurewebsites.net'; // PREVIEW
+    // ENV.APP.solomonAPIURL = 'http://hebedashapi-dev.azurewebsites.net'; // 'http://localhost:3000';
+    // ENV.APP.hebeNodeAPI = 'http://localhost:3000'; // 'http://hebenodeapi-cached.azurewebsites.net';
+    // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
+    // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk'; 'bid.preview.mysolomon.co.uk';
+    // ENV.APP.solomonClientOverride = 'solomon_production';
+  }
 
   if (environment === 'test') {
     // Testem prefers this...
@@ -126,12 +110,20 @@ module.exports = function config(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV['auth0-ember-simple-auth'] = auth0Configs.production;
   }
 
   ENV.googleMap = {
     libraries: ['drawing', 'visualization'],
   };
+
+  ENV['contentSecurityPolicy'] = {
+    'font-src': "'self' data: https://cdn.auth0.com",
+    'style-src': "'self' 'unsafe-inline'",
+    'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com " + ENV['auth0-ember-simple-auth']['domain'],
+    'connect-src': "'self' http://localhost:* " + ENV['auth0-ember-simple-auth']['domain'],
+  };
+
 
   return ENV;
 };
