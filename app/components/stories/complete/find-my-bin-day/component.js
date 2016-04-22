@@ -6,14 +6,14 @@ export default DatamillStory.extend({
         title: 'Find My Bin Day',
         subTitle: 'Find your next Leeds bin day'
     },
-    
+
     addresses: [],
     selectedAddress: null,
     currentAddress: null,
     showCalendarButton: false,
     storyModel: null,
-    minCheckTimer: null, 
-    
+    minCheckTimer: null,
+
     didReceiveAttrs: function () {
         this.set('title', 'find-my-bin-day TITLE');
         this.set('subTitle', 'find-my-bin-day SUB TITLE');
@@ -104,7 +104,7 @@ export default DatamillStory.extend({
                     obj.set('orderedDates', orderedDates);
 
                     obj.saveThisEvent();
-                    
+
                     // address.routes.forEach(function (route) {
                     //     route.orderedDates = route.dates.sort().slice(0, 2);
                     // })
@@ -138,7 +138,7 @@ export default DatamillStory.extend({
         if (query != null && query.term != null && query.term.length >= 3) {
             var hebeNodeAPI = obj.get('appSettings.hebeNodeAPI');
             var url = hebeNodeAPI + '/bins/?q="' + query.term + '"&fields=address postcode';
-            console.log(url);
+            // console.log(url);
             this.getData(url)
                 .then(
                     function (data) {
@@ -149,7 +149,7 @@ export default DatamillStory.extend({
                                 item.address.toString().substr(0, item.address.toString().indexOf(','))
                                 : item.address);
                             item.shortAddress = item.streetAddress + (!Ember.isEmpty(item.postcode) ? ', ' + item.postcode : '');
-                            
+
                             // 	var tmp = Ember.Object.create(item);
                             // 	items.push(tmp);
                         });
