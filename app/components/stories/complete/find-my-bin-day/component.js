@@ -108,7 +108,7 @@ export default DefaultStory.extend(EditableFields, {
 
     const selectedJSON = JSON.stringify(selectedAddress);
     const savedAddress = this.fetchEditableFieldValue('current_address');
-    if (selectedAddress && savedAddress && selectedJSON !== savedAddress) {
+    if (selectedAddress && selectedJSON !== savedAddress) {
       this.saveEditableFieldValue('current_address', selectedJSON);
     }
 
