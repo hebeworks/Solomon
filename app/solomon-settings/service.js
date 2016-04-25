@@ -107,23 +107,36 @@ export default Ember.Service.extend({
     },
   }),
 
-  getData: function getData(url, cache, requestType, data, authenticated) {
+  getData: function getData(url, cache, requestType, data, authenticated, requestHeaders) {
     const _this = this;
+
     return new Ember.RSVP.Promise((resolve, reject) => {
       try {
         const useCache = (Ember.isEmpty(cache) ||
           cache === true ? true : false); //(cache != null && cache === true ? true : false);
         const requestMethod = requestType || 'GET';
         const postData = data || null;
+        const headers = requestHeaders || [];
 
+        // Add auth0 authentication if requested
         const authenticatedRequest = authenticated || false;
         const token = (authenticatedRequest ?
             _this.get('authToken') :
             null);
+        if (authenticatedRequest && token) {
+          headers.push({ key: 'Authorization', value: `Bearer ${token}` });
+        }
 
-        const beforeFunc = authenticatedRequest && token ?
-          function authedBeforeFunc(xhr) {
-            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        // if we have any headers append them to the request
+        const beforeFunc = !_.isEmpty(headers) && _.isArray(headers) ?
+          function beforeFuncAddHeaders(xhr) {
+            for (let i = 0; i < headers.length; i ++) {
+              const key = headers[i].key;
+              const value = headers[i].value;
+              if (key && value) {
+                xhr.setRequestHeader(key, value);
+              }
+            }
           } :
           function blankBeforeFunc() {};
 
