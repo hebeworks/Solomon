@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Config from 'hebe-dash/config/environment';
 
 export default Ember.Controller.extend({
     appController: function () {
@@ -93,22 +94,44 @@ export default Ember.Controller.extend({
         return items;
     }.property('currentUser.email'),
 
-    checkCanvasAuth: function () {
-        var obj = this;
-        return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-            if (!obj.get('session.isAuthenticated')) {
-                reject({ notLoggedIn: true })
-            }
-            else if (obj.get('currentUser.id') != obj.get('model.userID')) {
-                reject({ hasPermissions: false });
-            } else {
-                resolve();
-            }
-            if (Ember.typeOf(complete) == 'function') {
-                complete();
-            }
-        });
-    },
+  checkCanvasAuth() {
+    const _this = this;
+    return new Ember.RSVP.Promise((resolve, reject, complete) => {
+      debugger;
+      const canvas = _this.get('model');
+      const userID = _this.get('currentUser.id');
+      const solomonAPIURL = 'http://localhost:3000'; // Config.APP.solomonAPIURL;
+      const postData = {
+        action: 'edit',
+        modelType: 'canvas',
+        userID,
+        scope: canvas.get('id'),
+      };
+      debugger;
+      _this.get('appSettings').getData(`${solomonAPIURL}/users`, false, 'POST', postData, true)
+        .then(
+        (response) => {
+          console.log(response);
+          debugger;
+        },
+        (err) => {
+          console.log(err);
+          debugger;
+        }
+      );
+
+      if (!_this.get('session.isAuthenticated')) {
+        reject({ notLoggedIn: true });
+      } else if (_this.get('currentUser.id') !== _this.get('model.userID')) {
+        reject({ hasPermissions: false });
+      } else {
+        resolve();
+      }
+      if (Ember.typeOf(complete) === 'function') {
+        complete();
+      }
+    });
+  },
 
     addAStory: function (originalStory) {
         this.checkCanvasAuth().then(
@@ -244,27 +267,26 @@ export default Ember.Controller.extend({
     },
 
     saveCanvasState: function () {
-        var obj = this;
-        this.checkCanvasAuth()
-            .then(
-                function () {
-                    var model = obj.get('model');
-
-                    model.save().then(function (response) {
-                        // console.log('saved canvas state');
-                        // todo callback function
-                        // e.g. close edit a story bottom drawer
-                    })
-                },
-                function (err) {
-                    // console.log('Not saving canvas state due to permissions');
-                    // if (err.notLoggedIn == true) {
-                    //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                    //     obj.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
-                    // } else if (err.hasPermissions == false) {
-                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
-                    // }
-                }
-            );
+      var obj = this;
+      this.checkCanvasAuth()
+        .then(
+          function () {
+            var model = obj.get('model');
+            model.save().then(function (response) {
+              // console.log('saved canvas state');
+              // todo callback function
+              // e.g. close edit a story bottom drawer
+            })
+          },
+          function (err) {
+            // console.log('Not saving canvas state due to permissions');
+            // if (err.notLoggedIn == true) {
+            //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+            //     obj.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
+            // } else if (err.hasPermissions == false) {
+            //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
+            // }
+          }
+        );
     }
 });
