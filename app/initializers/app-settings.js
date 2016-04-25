@@ -1,4 +1,5 @@
-import AppSettings from 'hebe-dash/utils/app-settings';
+// import AppSettings from 'hebe-dash/utils/app-settings';
+import AppSettings from 'hebe-dash/solomon-settings/service';
 
 export function initialize(container, app) {
   // application.inject('route', 'foo', 'service:foo');
