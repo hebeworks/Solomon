@@ -1,51 +1,81 @@
 /* global Ember, hebeutils, _ */
 import DefaultStory from 'hebe-dash/components/stories/story-types/default-story/component';
+import EditableFields from 'hebe-dash/mixins/editable-fields';
 
-export default DefaultStory.extend({
+export default DefaultStory.extend(EditableFields, {
     // Story settings (including default values)
     // Uncomment any setting you need to change, delete any you don't need
     initialConfig: {
-        title: 'TITLE: image-link-tile', // (Provide a story title)
-        subTitle: 'SUBTITLE: image-link-tile', // (Provide a story subtitle)
-        // author: '', (Provide the author of the story)
-        
-        // description: '', // (Provide a longer description of the story)
-        // license: '', // (Define which license applies to usage of the story)
-        // dataSourceUrl: '', // (Where did the data come from?)
-        // feedbackEmail: '', // (Provide an email users can contact about this story)
-        
-        // color: 'white', // (Set the story colour)
-        // width: '2', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
-        // height: '2', // (Set the height of the story)
-        // headerImage: '', // (Provide an image to show in the story header instead of the title and subtitle)
-        
-        // slider: false, // (Add a horizontal slider to the story)
-        // scroll: true, // (Should the story vertically scroll its content?)
-        
-        // customProperties: '' // (Add custom values to the story attribute)
+        title: '',
+        subTitle: '', // (Provide a story subtitle)
+        width: '1', // (Set the width of the story. If your story contains a slider, you must define the width, even if it is the same as the default.)
+        height: '1', // (Set the height of the story)
+        scroll: false, // (Should the story vertically scroll its content?)
+        viewOnly: true
     },
     
-    // loaded: false, // (Tell other elements that this story has loaded)
-    //
+    editableFields: function(){
+        return [
+            {
+                name: 'title',
+                type: 'text',
+                value: '',
+                placeholder: 'Title text'
+            },
+            {
+                name: 'image_url',
+                type: 'text',
+                value: '',
+                placeholder: 'Image URL'
+            },
+            {
+                name: 'image_desc',
+                type: 'text',
+                value: '',
+                placeholder: 'Image description'
+            },
+            {
+                name: 'link_url',
+                type: 'text',
+                value: '',
+                placeholder: 'Link URL'
+            },
+            {
+                name: 'story_colour',
+                type: 'enum',
+                sourceContent: JSON.stringify([
+                    { text: 'White', id: 'white' },
+                    { text: 'Medium blue', id: 'medium-blue' },
+                    { text: 'Dark blue', id: 'dark-blue' },
+                    { text: 'Green', id: 'lime' },
+                    { text: 'Yellow', id: 'yellow' },
+                    { text: 'Black', id: 'black' }
+                ]),
+                value: '',
+                placeholder: 'Choose a story colour'
+            }
+        ];
+    }.property('storyModel.config'),
     
-    // Add your story-specific code here
-    data: null,
+    onColourChanged: function () {
+        const colour = this.fetchEditableFieldValue('story_colour');
+        if (!Ember.isEmpty(colour)) {
+            this.set('storyConfig.color', colour);
+        }
+    }.on('didInsertElement').observes('storyModel.config.@each.value'),
     
-    onInsertElement: function () {
-        this.loadData();
-    }.on('didInsertElement'),
-
-    loadData: function () {
-        var _this = this;
-        var url = 'http://'; // add any API url that returns JSON
-        this.getData()
-            .then(
-                function(data){
-                    var items = data; // the JSON returned from the API call is available here
-                    this.set('items',items); // set properties on the Ember component to make them available in the template
-                    setTimeout(() => { _this.set('loaded', true); });
-                },
-                function(err){ console.log(err); }
-            )
-    }
+    onTitleChanged: function() {
+        const title = this.fetchEditableFieldValue('title');
+        if (!Ember.isEmpty(title)) {
+            this.set('storyConfig.title', title);
+        }
+    }.on('didInsertElement').observes('storyModel.config.@each.value'),
+    
+    image_url: function(){
+        return this.fetchEditableFieldValue('image_url');
+    }.property('storyModel.config.@each.value'),
+    
+    link_url: function(){
+        return this.fetchEditableFieldValue('link_url');
+    }.property('storyModel.config.@each.value')
 });
