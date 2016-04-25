@@ -7,15 +7,15 @@
                     {{!-- <p spc-fmbd-logo_desc>Looking for a grit bin?</p> --}}
                 </div>
             </div>
-        
+
             <div cpn-margin="bottom-double">
                 {{
                     select-2
-                    
+
                     content=addresses
                     optionLabelPath="shortAddress"
                     value=selectedAddress
-                    
+
                     placeholder="Search for a place"
                     typeaheadSearchingText="Searching places"
                     typeaheadNoMatchesText="No places found for '%@'"
@@ -24,17 +24,17 @@
                     query="findPlaces"
                 }}
             </div>
-            
+
             <h3 cpn-text="center" spc-fmbd-tct-logo>
                 <a href="http://www.thecitytalking.com/" target="_blank">The City Talking</a>
             </h3>
         {{else}}
-        
+
             <div spc-fmbd-address>
                 <h3 spc-fmbd-address_location>{{currentAddress.streetAddress}}</h3>
                 <a spc-fmbd-address_change {{action 'changeAddress'}}>Change Address</a>
             </div>
-            
+
             <ul spc-fmbd-results>
                 {{#each orderedDates as |date index|}}
                     {{stories/complete/find-my-bin-day/bin-date date=date currentAddress=currentAddress showCalendarButton=showCalendarButton}}

@@ -6,7 +6,8 @@ export default DefaultStory.extend({
         color: 'black',
         width: '1',
         height: '1',
-        viewOnly: true
+        viewOnly: true,
+        scroll: false
     },
     
     loaded: false,

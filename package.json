@@ -67,6 +67,7 @@
   },
   "dependencies": {
     "ember-cli-simple-auth": "^0.8.0",
-    "ember-disable-proxy-controllers": "^1.0.0"
+    "ember-disable-proxy-controllers": "^1.0.0",
+    "ivy-videojs": "git+https://github.com/hebeworks/ivy-videojs.git"
   }
 }

@@ -73,7 +73,7 @@ export default Ember.Object.extend({
                     solomonConfig.name = 'bid';
                     solomonConfig.title = 'Business Improvement District';
                     solomonConfig.storyConfig.storyHandle = 'both';
-                    solomonConfig.defaultCanvas = 'bid-team-home'; // TODO switch based on user role e.g. bid user / levy payer                    
+                    solomonConfig.defaultCanvas = 'bid-team-home'; // TODO switch based on user role e.g. bid user / levy payer
                     break;
             }
             return solomonConfig;
@@ -100,39 +100,57 @@ export default Ember.Object.extend({
         }
     },
 
-    getData: function (url, cache) {
-        var obj = this;
-        return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-            try {
-                var useCache = (Ember.isEmpty(cache) || cache == true ? true : false); //(cache != null && cache === true ? true : false);
-                $.support.cors = true;
-                $.ajax({
-                    url: url,
-                    cache: useCache,
-                    dataType: 'json',
-                    crossOrigin: true,
-                    type: 'GET',
-                    // async: false //false, // must be set to false ?????? NS
-                })
-                    .done(resolve)
-                    .fail(reject)
-                    .always(complete);
-                //Ember.$.ajax({
-                //	url: url
-                //})
-                //.done(resolve)
-                //.fail(reject)
-                //.always(complete);
+    getData: function getData(url, cache, requestType, data, authenticated) {
+      var obj = this;
+      return new Ember.RSVP.Promise(function (resolve, reject, complete) {
+        try {
+debugger;
+          const useCache = (Ember.isEmpty(cache) || cache === true ? true : false); //(cache != null && cache === true ? true : false);
+          const requestMethod = requestType || 'GET';
+          const postData = data || null;
+
+          const authenticatedRequest = authenticated || false;
+          const token = (authenticatedRequest ?
+              this.get('session.secure.jwt') :
+              null);
+
+
+          const beforeFunc = authenticatedRequest && token ?
+            function authedBeforeFunc(xhr) {
+              xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+            } :
+            function blankBeforeFunc() {};
+
+          $.support.cors = true;
+          $.ajax({
+            url,
+            cache: useCache,
+            dataType: 'json',
+            crossOrigin: true,
+            type: requestMethod,
+            data: postData,
+            beforeSend: beforeFunc,
+            // async: false //false, // must be set to false ?????? NS
+          })
+            .done(resolve)
+            .fail(reject)
+            .always(complete);
+          //Ember.$.ajax({
+          //	url: url
+          //})
+          //.done(resolve)
+          //.fail(reject)
+          //.always(complete);
+        }
+        catch (err) {
+            reject(err);
+        }
+        finally {
+            if (complete != null) {
+                complete();
             }
-            catch (err) {
-                reject(err);
-            }
-            finally {
-                if (complete != null) {
-                    complete();
-                }
-            }
-        });
+        }
+      });
     },
 
 /////////////////////////////////////////////////////////////////
@@ -230,25 +248,25 @@ export default Ember.Object.extend({
                 ccg.text = ccg.name;
             });
         }
-        
+
         this.setProperties({
             'canvasSettings.nhsFilter.providers': providers,
             'canvasSettings.nhsFilter.ccgs': ccgs,
             'canvasSettings.nhsFilter.selectedProvider': null,
             'canvasSettings.nhsFilter.selectedCCG': null
         });
-    }.observes('canvasSettings.nhsFilter.selectedRegion'), 
-    
+    }.observes('canvasSettings.nhsFilter.selectedRegion'),
+
     onNHSSelectedProviderChange: function(){
         if(this.get('canvasSettings.nhsFilter.selectedProvider')) {
             this.set('canvasSettings.nhsFilter.selectedCCG',null);
         }
-    }.observes('canvasSettings.nhsFilter.selectedProvider'), 
+    }.observes('canvasSettings.nhsFilter.selectedProvider'),
     onNHSSelectedCCGChange: function(){
         if(this.get('canvasSettings.nhsFilter.selectedCCG')) {
             this.set('canvasSettings.nhsFilter.selectedProvider',null);
         }
-    }.observes('canvasSettings.nhsFilter.selectedCCG'), 
+    }.observes('canvasSettings.nhsFilter.selectedCCG'),
 
 /////////////////////////////////////////////////////////////////
 // End NHS Canvas Filtering
@@ -274,7 +292,7 @@ export default Ember.Object.extend({
         this.loadYWZones();
         this.loadDMAs();
     },
-    
+
     loadYWZones: function () {
         var _this = this;
         var url = this.get('hebeNodeAPI') + '/yw-zones?distinctfield=waterSupplySystem&sortfield=waterSupplyZone';
@@ -356,7 +374,7 @@ export default Ember.Object.extend({
             var selectedDMA = this.get('canvasSettings.ywFilter.selectedDMA');
             var startDate = this.get('canvasSettings.ywFilter.startDate');
             var endDate = this.get('canvasSettings.ywFilter.endDate');
-		
+
             // Sub DMAS
             if (!Ember.isEmpty(selectedDMA) && selectedDMA.id != 'all') {
                 queryTitle += selectedDMA.text;
@@ -449,7 +467,7 @@ export default Ember.Object.extend({
     onSelectedDMAChanged: function () {
         if(!Ember.isEmpty(this.get('canvasSettings.ywFilter.selectedDMA'))) {
             this.set('canvasSettings.ywFilter.selectedSubZone', null);
-            this.set('canvasSettings.ywFilter.selectedZone', null);            
+            this.set('canvasSettings.ywFilter.selectedZone', null);
         }
     }.observes('canvasSettings.ywFilter.selectedDMA'),
 
@@ -681,9 +699,9 @@ export default Ember.Object.extend({
                 }
             ]
         };
-        
+
         if(Ember.isEmpty(style) || Ember.isEmpty(styles[style])) {
-           style = 'default'; 
+           style = 'default';
         }
         return styles[style];
     }

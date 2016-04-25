@@ -4,16 +4,20 @@ import DatamillStory from './../../story-types/datamill-story/component';
 export default DatamillStory.extend({
     initialConfig: {
         title: 'Weather',
-        subTitle: '5-day weather forecast for Leeds',
-        color: 'mint',
-        slider: true,
+        subTitle: '',
         width: '2',
+        height: '1',
         dataSourceUrl: 'http://datapoint.metoffice.gov.uk',
         feedbackEmail: 'support@hebeworks.com',
         description: 'This Story uses Met Office data via the Data Point service',
         license: 'This information is licensed under the terms of the Open Government Licence',
-        author: 'Ste Allan'
+        author: 'Ste Allan',
+        showHeaderBorder: false,
+        showLoading: true,
+        viewOnly: true,
+        scroll: false
     },
+    day: null,
     showDay: true,
 
     didReceiveAttrs: function () {        
@@ -31,50 +35,28 @@ export default DatamillStory.extend({
         this.getData(url)
             .then(
                 function (data) {
-                    var days = [];
-
-                    data.SiteRep.DV.Location.Period.forEach((tmpItem) => {
-                        var id = hebeutils.guid();
-                        var day = {
-                            day: {
-                                windDirection: tmpItem.Rep[0].D,
-                                //windDirectionSVG: obj.getCompassSVG(tmpItem.Rep[0].D),
-                                windGust: tmpItem.Rep[0].Gn,
-                                windSpeed: tmpItem.Rep[0].S,
-                                maxTemp: tmpItem.Rep[0].Dm,
-                                minTemp: tmpItem.Rep[1].Nm,
-                                feelsLike: tmpItem.Rep[0].Fdm,
-                                humidity: tmpItem.Rep[0].Hn,
-                                visibility: tmpItem.Rep[0].V,
-                                rainProb: tmpItem.Rep[0].PPd,
-                                uv: tmpItem.Rep[0].U,
-                                weather: obj.getWeatherType(tmpItem.Rep[0].W),
-                                weatherIcon: obj.getWeatherType(tmpItem.Rep[0].W, true)
-                                //weatherDescription: obj.getWeatherTypes(tmpItem.Rep[0].W)
-                            },
-                            night: {
-                                windDirection: tmpItem.Rep[1].D,
-                                //windDirectionSVG: obj.getCompassSVG(tmpItem.Rep[1].D),
-                                windGust: tmpItem.Rep[1].Gm,
-                                windSpeed: tmpItem.Rep[1].S,
-                                maxTemp: tmpItem.Rep[0].Dm,
-                                minTemp: tmpItem.Rep[1].Nm,
-                                feelsLike: tmpItem.Rep[1].Fnm,
-                                humidity: tmpItem.Rep[1].Hm,
-                                visibility: tmpItem.Rep[1].V,
-                                rainProb: tmpItem.Rep[1].PPn,
-                                uv: tmpItem.Rep[0].U,
-                                weather: obj.getWeatherType(tmpItem.Rep[1].W),
-                                weatherIcon: obj.getWeatherType(tmpItem.Rep[1].W, true)
-                            },
-                            date: tmpItem.value.toString().ensureNoEndingString('Z')
-                        };
-                        days.push(day);
-                    });
-                    obj.set('days', days);
-                    obj.set('today', days[0]);
+                    const period = data.SiteRep.DV.Location.Period[0];
+                    var day = {
+                        day: {
+                            maxTemp: period.Rep[0].Dm,
+                            minTemp: period.Rep[1].Nm,
+                            weather: obj.getWeatherType(period.Rep[0].W),
+                            weatherIcon: obj.getWeatherType(period.Rep[0].W, true),
+                            rainProb: period.Rep[0].PPd,
+                        },
+                        night: {
+                            maxTemp: period.Rep[0].Dm,
+                            minTemp: period.Rep[1].Nm,
+                            weather: obj.getWeatherType(period.Rep[1].W),
+                            weatherIcon: obj.getWeatherType(period.Rep[1].W, true),
+                            rainProb: period.Rep[1].PPn,
+                        }
+                    };
+                    
                     setTimeout(() => {
                         obj.set('loaded', true);
+                        obj.set('day', day);
+                        Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
                     });
                 },
                 function (error) {
@@ -84,26 +66,13 @@ export default DatamillStory.extend({
                 function () {
                     // complete
                 }
-                )
+            )
     },
-
-    // compassSVG: function(windDirection) {
-    //   //   var points = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-    //   //   var svg = '';
-    //   // for (i = 0; i < points.length; i++) {
-    //   //   if (windDirection === points[i]) {
-    //   //     console.log('success, direction = ' + points[i]);
-    //       // svg = 'svg-compass-' + wind[i];
-    //       return 'svg-compass-' + windDirection;
-    //       // var weatherSVG = 'svg-weather-' + i;
-    //     // }
-    //   // };
-    // }
 
     getWeatherType: function (weatherIndex, icon) {
         // weatherIndex = weatherIndex - 1;
         var types = [
-            ['default', 'Clear night'],
+            ['clear-night', 'Clear night'],
             ['sunny', 'Sunny day'],
             ['cloudy', 'Partly cloudy (night)'],
             ['cloudy', 'Partly cloudy (day)'],
@@ -142,12 +111,17 @@ export default DatamillStory.extend({
         } else {
             return weather[1];
         }
-
-        console.log(weather[0]);
     },
+    
+    onShowDay: function() {
+        setTimeout(function() {
+            Ember.run.scheduleOnce('afterRender', this, grunticon.embedSVG);
+        });
+    }.observes('showDay'),
 
     actions: {
         togglePeriod(period) {
+            this.$('[spc-forecast-graphic_inner]').attr('data-grunticon-embed', '');
             this.set('showDay', (period == 'day'));
         }
     }
