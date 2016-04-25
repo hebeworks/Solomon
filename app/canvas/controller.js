@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Config from 'hebe-dash/config/environment';
+import config from 'hebe-dash/config/environment';
 
 export default Ember.Controller.extend({
     appController: function () {
@@ -100,15 +100,19 @@ export default Ember.Controller.extend({
       debugger;
       const canvas = _this.get('model');
       const userID = _this.get('currentUser.id');
-      const solomonAPIURL = 'http://localhost:3000'; // Config.APP.solomonAPIURL;
+      let solomonAPIURL = config.APP.solomonAPIURL;
+      solomonAPIURL = 'http://localhost:3000';
       const postData = {
         action: 'edit',
         modelType: 'canvas',
         userID,
         scope: canvas.get('id'),
       };
+
+      const headers = [{ key: 'Solomon-Client-Override', value: config.APP.solomonClientOverride }];
+
       debugger;
-      _this.get('appSettings').getData(`${solomonAPIURL}/users`, false, 'POST', postData, true)
+      _this.get('appSettings').getData(`${solomonAPIURL}/api/users/isallowed`, false, 'POST', postData, true, headers)
         .then(
         (response) => {
           console.log(response);
