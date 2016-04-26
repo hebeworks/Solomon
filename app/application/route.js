@@ -137,6 +137,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         },
         editPerson: function(model) {
             this.controller.editPerson(model);
+        },
+        leaveFeedback: function(content) {
+            this.controller.leaveFeedback(content);
         }
     }
 });
