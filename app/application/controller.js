@@ -345,15 +345,5 @@ onGeneralMessage: function onGeneralMessage() {
       panelState.title = "Edit a person";
 
       this.openManipulationPanel(panelState);
-  },
-  
-  leaveFeedback(content) {
-    var panelState = {
-        content: content,
-        blurCanvas: true,
-        title: 'Leave feedback for the BID'
-    }
-
-    this.openManipulationPanel(panelState);
-  },
+  }
 });
