@@ -110,7 +110,7 @@ export default Ember.Service.extend({
   getData: function getData(url, cache, requestType, data, authenticated, requestHeaders) {
     const _this = this;
 
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Ember.RSVP.Promise((resolve, reject, complete) => {
       try {
         const useCache = (Ember.isEmpty(cache) ||
           cache === true ? true : false); //(cache != null && cache === true ? true : false);
@@ -152,13 +152,12 @@ export default Ember.Service.extend({
           // async: false //false, // must be set to false ?????? NS
         })
           .done(resolve)
-          .fail(reject);
-        //Ember.$.ajax({
-        //	url: url
-        //})
-        //.done(resolve)
-        //.fail(reject)
-        //.always(complete);
+          .fail(reject)
+          .always(() => {
+            if (complete && Ember.typeOf(complete) === 'function') {
+              complete();
+            }
+          });
       } catch (err) {
         reject(err);
       }
