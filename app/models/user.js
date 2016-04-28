@@ -22,6 +22,10 @@ export default Ember.Object.extend({
 
   logins_count: null,
 
+  metaData: null,
+
+  permissions: null,
+
   username: function(){
     var email = this.get('email');
     var name = '';
