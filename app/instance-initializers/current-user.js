@@ -10,8 +10,35 @@ export default {
     const session = registry.lookup('simple-auth-session:main');
     const appSettings = registry.lookup('service:solomon-settings');
     const solomonAPIURL = config.APP.solomonAPIURL;
-
     let user = User.create(session.get('secure.profile'));
+
+    function loadUser(baseUser) {
+      if (baseUser) {
+        const userID = baseUser.user_id;
+        if (userID) {
+          // load the user from the solomon api
+          const headers = [{ key: 'Solomon-Client-Override',
+                              value: config.APP.solomonClientOverride }];
+          appSettings.getData(`${solomonAPIURL}/api/users/${userID}`,
+                                  false, 'get', null, true, headers)
+          .then(
+            (foundUser) => {
+              user.setProperties(foundUser);
+            },
+            (/* err */) => {
+              user.setProperties(baseUser);
+              // appSettings.set('errorMessage',
+              //   'Sorry, your user was not loaded correctly, please try log out and back in.')
+            }
+          );
+        }
+      }
+    }
+
+    if (user) {
+      loadUser(user);
+    }
+
     const proxy = Ember.ObjectProxy.create({
       isServiceFactory: true,
       content: user,
@@ -24,24 +51,7 @@ export default {
         user = User.create();
         proxy.set('content', user);
       } else {
-        const userID = profile.user_id;
-        if (userID) {
-          // load the user from the solomon api
-          const headers = [{ key: 'Solomon-Client-Override',
-                              value: config.APP.solomonClientOverride }];
-          appSettings.getData(`${solomonAPIURL}/api/users/${userID}`,
-                                  false, 'get', null, true, headers)
-          .then(
-            (foundUser) => {
-              user.setProperties(foundUser);
-            },
-            (/* err */) => {
-              user.setProperties(profile);
-              // appSettings.set('errorMessage',
-              //   'Sorry, your user was not loaded correctly, please try log out and back in.')
-            }
-          );
-        }
+        loadUser(profile);
       }
     }
 
