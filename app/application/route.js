@@ -4,6 +4,13 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
   onActivate: function () {
     this.controllerFor('application').shouldShowTutorial();
+    
+    // hide the loading screen
+    Ember.$('[cpn-loading-screen]').attr('cpn-loading-screen', 'app-is-loading');
+    
+    setTimeout(function() {
+      Ember.$('[cpn-loading-screen]').attr('cpn-loading-screen', 'app-has-loaded');
+    }, 1000);
 
     // add a client-specific attr to body
     const cssClass = this.get('appSettings.solomonConfig.name');
