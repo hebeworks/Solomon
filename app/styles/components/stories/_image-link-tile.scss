@@ -1,7 +1,18 @@
-[cpn-ilt_image] {
-    vertical-align: top;
-    max-width: rem(120px);
-    max-height: rem(97px);
-    display: block;
-    margin: auto;
+[solomon-story="image-link-tile"] {
+    [cpn-story_body] {
+        position: relative;
+    }
 }
+
+    [cpn-ilt_image] {
+        vertical-align: top;
+        max-width: rem(120px);
+        max-height: rem(97px);
+        display: block;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
