@@ -27,7 +27,7 @@ export default Base.extend({
         const userID = data.profile.user_id;
         const appSettings = this.get('appSettings');
         const solomonAPIURL = config.APP.solomonAPIURL;
-debugger;
+
         if (userID) {
           // load the user from the solomon api
           const headers = [

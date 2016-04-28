@@ -4,10 +4,10 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
   onActivate: function () {
     this.controllerFor('application').shouldShowTutorial();
-    
+
     // hide the loading screen
     Ember.$('[cpn-loading-screen]').attr('cpn-loading-screen', 'app-is-loading');
-    
+
     setTimeout(function() {
       Ember.$('[cpn-loading-screen]').attr('cpn-loading-screen', 'app-has-loaded');
     }, 1000);
@@ -35,6 +35,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.set('session.attemptedTransition', transition);
     }
   },
+
+
+
+  loggedIn: Ember.observer('session.isAuthenticated', function() {
+    function loginAction() {
+      const defaultCanvas = this.get('currentUser.metaData.defaultCanvas');
+      if (defaultCanvas) {
+        this.send('gotoRoute', defaultCanvas);
+      }
+    }
+
+    if (this.get('session.isAuthenticated') === true) {
+      const currentUser = this.get('currentUser');
+      Ember.addObserver(currentUser, 'metaData', this, loginAction);
+    }
+  }),
 
   // Actions
   actions: {
