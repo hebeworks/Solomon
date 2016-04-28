@@ -6,7 +6,6 @@ import config from 'hebe-dash/config/environment';
 export default {
   name: 'current-user',
   initialize({ registry }) {
-
     const session = registry.lookup('simple-auth-session:main');
     const appSettings = registry.lookup('service:solomon-settings');
     const solomonAPIURL = config.APP.solomonAPIURL;
@@ -18,12 +17,12 @@ export default {
         if (userID) {
           // load the user from the solomon api
           const headers = [{ key: 'Solomon-Client-Override',
-                              value: config.APP.solomonClientOverride }];
+                            value: config.APP.solomonClientOverride }];
           appSettings.getData(`${solomonAPIURL}/api/users/${userID}`,
-                                  false, 'get', null, true, headers)
+                                false, 'get', null, true, headers)
           .then(
             (foundUser) => {
-              user.setProperties(foundUser);
+              user.set('metaData', foundUser.metaData);
             },
             (/* err */) => {
               user.setProperties(baseUser);
