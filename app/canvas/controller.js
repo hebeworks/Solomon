@@ -104,7 +104,6 @@ export default Ember.Controller.extend({
         const canvas = _this.get('model');
         const userID = _this.get('currentUser.id');
         let solomonAPIURL = config.APP.solomonAPIURL;
-        solomonAPIURL = 'http://localhost:3000';
         const postData = {
           action: 'write',
           modelType: 'canvas',
@@ -185,7 +184,7 @@ export default Ember.Controller.extend({
             () => {
               const model = _this.get('model');
               const stories = model.get('stories');
-              stories.remove_thisect(story);
+              stories.removeObject(story);
               model.save();
               _this.get('appController').closeManipulationPanel();
             },

@@ -4,7 +4,8 @@ export default Ember.Component.extend({
 
   lock: function lock(){
     const container = this.get('session.container');
-    const authenticator = container.lookup('simple-auth-authenticator:lock');
+    // const authenticator = container.lookup('simple-auth-authenticator:lock');
+    const authenticator = container.lookup('authenticator:solomon-api-authenticator');
     return authenticator.get('lock');
   }.property(),
 
@@ -19,10 +20,10 @@ export default Ember.Component.extend({
   }.on('didRender'),
 
   actions: {
-    reset(){
+    reset() {
       this.get('lock').hide();
     },
-    logout(){
+    logout() {
       this.get('session').invalidate();
     },
   },
