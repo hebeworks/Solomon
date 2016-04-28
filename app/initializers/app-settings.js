@@ -7,7 +7,7 @@ export function initialize(container, app) {
   container.register('service:solomon-settings', AppSettings, { singleton: true, instantiate: true });
 
   // Util
-  ['controller', 'route', 'component', 'adapter', 'transform', 'model', 'serializer'].forEach(function (type) {
+  ['authenticator', 'controller', 'route', 'component', 'adapter', 'transform', 'model', 'serializer'].forEach(function (type) {
     // app.inject(type, 'appSettings', 'utility:settings');
     app.inject(type, 'appSettings', 'service:solomon-settings');
   });
