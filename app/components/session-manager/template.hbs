@@ -14,13 +14,10 @@
 
   {{/if}}
 
-  {{#if currentUser.permissions}}
-    <h3>Permissions</h3>
-    <p>{{currentUser.permissions}}</p>
-  {{/if}}
-  {{#if currentUser.metaData}}
-    <h3>Settings</h3>
-    <p>{{currentUser.metaData}}</p>
+  {{#if currentUser.profileContent}}
+    <div>
+      {{currentUser.profileContent}}
+    </div>
   {{/if}}
 
   <button cpn-button="move" cpn-margin="top bottom" {{action 'logout'}}>Logout</button>
