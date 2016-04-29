@@ -63,7 +63,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   // Actions
   actions: {
-
+sessionAuthenticated() {
+  alert('sessionAuthenticated');
+},
+sessionInvalidated() {
+  alert('sessionInvalidated');
+},
     // sessionInvalidationSucceeded: function () {
     // },
 
