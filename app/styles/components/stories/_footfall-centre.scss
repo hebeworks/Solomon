@@ -1,3 +1,32 @@
+[solomon-story="footfall-centre"] {	
+	.circle-indicator-ring {
+		border-color: #222;
+		background-color: $color-app-brand-primary;
+		
+		[solomon-app~="bid"] & {
+			background-color: $bid-orange;
+		}
+		
+		h2, h4 {
+			color: #fff;
+		}
+	}
+	
+	.circle-indicator-stat__text {
+		font-weight: 500;
+	}
+	
+	.svg-circle-indicator {
+		svg {
+			fill: $color-app-brand-primary;
+			
+			[solomon-app~="bid"] & {
+				fill: $bid-orange;
+			}
+		}
+	}
+}
+
 .footfall-centre {
 	.dotted-area {
 		margin-bottom: 8px;
