@@ -99,6 +99,7 @@ module.exports = function config(environment) {
     ENV.APP.solomonClientOverride = 'solomon_bid_leeds'; // solomon_production solomon_leeds
     ENV['auth0-ember-simple-auth'] = auth0Configs.bid;
     ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
+    // ENV.APP.solomonAPIURL = 'http://localhost:3000';
   }
 
   if (environment === 'test') {

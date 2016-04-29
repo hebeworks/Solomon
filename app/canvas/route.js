@@ -8,9 +8,15 @@ export default Ember.Route.extend({
                 return canvas;
             },
             function(error){
-                const controller = this.container.lookup('controller:application');
-
+              const controller = this.container.lookup('controller:application');
+              if (error && Ember.isArray(error.errors) && !Ember.isEmpty(error.errors[0])) {
+                const firstError = error.errors[0];
+                const statusCode = firstError.status;
+                const errorDetail = firstError.detail;
+                controller.set('appSettings.errorMessage', errorDetail);
+              } else {
                 controller.set('appSettings.errorMessage', "Sorry we can't find the canvas you were looking for. Try find one using the Gallery link");
+              }
             }.bind(this)
         );
     },
