@@ -30,4 +30,8 @@ export default Ember.Object.extend({
   defaultCanvas: function defaultCanvas() {
     return this.get('metaData.defaultCanvas');
   }.property('metaData', 'metaData.defaultCanvas'),
+
+  isAllowed(scope, modelType, action) {
+    return true;
+  },
 });
