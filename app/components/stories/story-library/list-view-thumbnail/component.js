@@ -7,5 +7,12 @@ export default Ember.Component.extend({
 	
 	click: function() {
 		this.sendAction('action', this.model);
-	}
+	},
+    
+    actions: {
+        deleteCanvas(model) {
+            // this.set('action', 'deleteCanvas');
+            // this.send('action', model);
+        }
+    }
 });

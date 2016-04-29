@@ -5,5 +5,11 @@
         {{cat.title}}
     {{/each}}
 </p>
+
+{{#if (eq modelType 'canvas')}}
+<p cpn-margin="top-half">
+    <button {{action 'deleteCanvas' model}} cpn-button="small action">Delete</button>
+</p>
+{{/if}}
     
 {{yield}}
