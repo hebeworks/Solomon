@@ -2,33 +2,29 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  lock: function(){
+  lock: function lock(){
     const container = this.get('session.container');
-    const authenticator = container.lookup('simple-auth-authenticator:lock');
-
+    // const authenticator = container.lookup('simple-auth-authenticator:lock');
+    const authenticator = container.lookup('authenticator:solomon-api-authenticator');
     return authenticator.get('lock');
   }.property(),
 
-  setupAuthentication: function(){
-    if(!this.get('session.isAuthenticated')){
+  setupAuthentication: function setupAuthentication(){
+    if (!this.get('session.isAuthenticated')){
       this.get('lock').$dicts.en['signin']['action'] = 'Log in';
       this.send('reset');
-      this.get('session').authenticate('simple-auth-authenticator:lock', {
-        container: 'session__embed'
-      });
+      const lockOptions = { container: 'session__embed' };
+      // this.get('session').authenticate('simple-auth-authenticator:lock', lockOptions);
+      this.get('session').authenticate('authenticator:solomon-api-authenticator', lockOptions);
     }
   }.on('didRender'),
 
   actions: {
-
-    reset(){
+    reset() {
       this.get('lock').hide();
     },
-
-    logout(){
+    logout() {
       this.get('session').invalidate();
-    }
-
-  }
-
+    },
+  },
 });

@@ -95,6 +95,10 @@ module.exports = function config(environment) {
     // lets you simulate a particular site e.g. 'leeds.preview.mysolomon.co.uk' core etc
     // ENV.APP.mockSolomonHostname = 'leeds.preview.mysolomon.co.uk'; 'bid.preview.mysolomon.co.uk';
     // ENV.APP.solomonClientOverride = 'solomon_production';
+    ENV.APP.mockSolomonHostname = 'bid.preview.mysolomon.co.uk'; //'leeds.preview.mysolomon.co.uk';
+    ENV.APP.solomonClientOverride = 'solomon_bid_leeds'; // solomon_production solomon_leeds
+    ENV['auth0-ember-simple-auth'] = auth0Configs.bid;
+    // ENV.APP.solomonAPIURL = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
@@ -110,7 +114,8 @@ module.exports = function config(environment) {
   }
 
   if (environment === 'production') {
-    ENV['auth0-ember-simple-auth'] = auth0Configs.production;
+    ENV['auth0-ember-simple-auth'] = auth0Configs.bid;
+    ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
   }
 
   ENV.googleMap = {

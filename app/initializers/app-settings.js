@@ -1,4 +1,5 @@
-import AppSettings from 'hebe-dash/utils/app-settings';
+// import AppSettings from 'hebe-dash/utils/app-settings';
+import AppSettings from 'hebe-dash/solomon-settings/service';
 
 export function initialize(container, app) {
   // application.inject('route', 'foo', 'service:foo');
@@ -6,7 +7,7 @@ export function initialize(container, app) {
   container.register('service:solomon-settings', AppSettings, { singleton: true, instantiate: true });
 
   // Util
-  ['controller', 'route', 'component', 'adapter', 'transform', 'model', 'serializer'].forEach(function (type) {
+  ['authenticator', 'controller', 'route', 'component', 'adapter', 'transform', 'model', 'serializer'].forEach(function (type) {
     // app.inject(type, 'appSettings', 'utility:settings');
     app.inject(type, 'appSettings', 'service:solomon-settings');
   });
