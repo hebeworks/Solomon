@@ -5,7 +5,6 @@ export default DatamillStory.extend({
   initialConfig: {
     title: 'Leeds Footfall Trends',
     subTitle: 'Weekly footfall stats for Leeds City Centre',
-    color: 'black',
     dataSourceUrl: 'http://leedsdatamill.org/dataset/leeds-city-centre-footfall-data',
     feedbackEmail: 'simon@hebeworks.com',
     description: 'This Story uses City Centre Footfall data from Leeds Data Mill',
