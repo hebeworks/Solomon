@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from 'hebe-dash/config/environment';
 
 export default Ember.Controller.extend({
     appController: function () {
@@ -93,22 +94,49 @@ export default Ember.Controller.extend({
         return items;
     }.property('currentUser.email'),
 
-    checkCanvasAuth: function () {
-        var obj = this;
-        return new Ember.RSVP.Promise(function (resolve, reject, complete) {
-            if (!obj.get('session.isAuthenticated')) {
-                reject({ notLoggedIn: true })
-            }
-            else if (obj.get('currentUser.id') != obj.get('model.userID')) {
-                reject({ hasPermissions: false });
-            } else {
+  checkCanvasAuth() {
+    const _this = this;
+    return new Ember.RSVP.Promise((resolve, reject, complete) => {
+      if (!_this.get('session.isAuthenticated')) {
+        reject({ notLoggedIn: true });
+      } else {
+        // construct request to Solomon API to check if current user is allowed to edit this canvas
+        const canvas = _this.get('model');
+        const userID = _this.get('currentUser.id');
+        let solomonAPIURL = config.APP.solomonAPIURL;
+        const postData = {
+          action: 'write',
+          modelType: 'canvas',
+          userID,
+          scope: canvas.get('id'),
+        };
+        const headers = [{ key: 'Solomon-Client-Override', value: config.APP.solomonClientOverride }];
+        _this.get('appSettings').getData(`${solomonAPIURL}/api/users/isallowed`, false, 'POST', postData, true, headers)
+          .then(
+            (isAllowed) => {
+              if (isAllowed === true) {
+                // TODO RESOLVE
                 resolve();
+              } else {
+                // TODO REJECT WITH CONSISTANT ERROR
+                reject({ hasPermissions: false });
+                // this.set('appSettings.errorMessage', 'Sorry you need to have permission to edit a canvas');
+                // TODO provide options to login/duplicate
+              }
+            },
+            (/* err */) => {
+              // TODO REJECT WITH CONSISTANT ERROR
+              reject({ hasPermissions: false });
             }
-            if (Ember.typeOf(complete) == 'function') {
-                complete();
-            }
+        )
+        .finally(() => {
+          if (Ember.typeOf(complete) === 'function') {
+            complete();
+          }
         });
-    },
+      }
+    });
+  },
 
     addAStory: function (originalStory) {
         this.checkCanvasAuth().then(
@@ -148,123 +176,107 @@ export default Ember.Controller.extend({
         );
     },
 
-    removeAStory: function (story) {
-        if (story != null && this.get('model') != null) {
-            var obj = this;
-            this.checkCanvasAuth()
-                .then(
-                    function () {
-                        var model = obj.get('model');
-                        var stories = model.get('stories');
-                        stories.removeObject(story)
-                        model.save();
-                        obj.get('appController').closeManipulationPanel();
-                    },
-                    function (err) {
-                        var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                        if (err.notLoggedIn == true) {
-                            obj.get('appController').showModal('session-manager', {
-                                title: 'Log in / Sign up',
-                                intro: intro
-                            });
-                        } else if (err.hasPermissions == false) {
-                            intro = 'Sorry, you can only edit canvasses that belong to you';
-                            obj.get('appController').showModal('ui/modals/duplicate-canvas', {
-                                title: 'Log in / Sign up',
-                                intro: intro
-                            });
-                        }
-                    }
-                    );
-        }
-    },
-
-    duplicateCanvas: function () {
-        var obj = this;
-        var currentCanvas = this.get('model');
-        if (this.get('session.isAuthenticated')) {
-            var userID = this.get('currentUser.id');
-            if (!Ember.isEmpty(userID)) {
-                var canvas = obj.store.createRecord('canvas', {
-                    title: currentCanvas.get('title'),
-                    description: currentCanvas.get('description'),
-                    stories: currentCanvas.get('stories'),
-                    categories: currentCanvas.get('categories'),
-                    // authorName: currentCanvas.get('author'),
-                    // twitterName: currentCanvas.get('twitter'),
-                    userID: userID
+  removeAStory(story) {
+    if (story && this.get('model')) {
+      const _this = this;
+      this.checkCanvasAuth()
+        .then(
+            () => {
+              const model = _this.get('model');
+              const stories = model.get('stories');
+              stories.removeObject(story);
+              model.save();
+              _this.get('appController').closeManipulationPanel();
+            },
+            (err) => {
+              let intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+              if (err.notLoggedIn === true) {
+                _this.get('appController').showModal('session-manager', {
+                  title: 'Log in / Sign up',
+                  intro,
                 });
-
-                obj.get('appController').createACanvas(canvas);
+              } else if (err.hasPermissions === false) {
+                intro = 'Sorry, you can only edit canvasses that belong to you';
+                _this.get('appController').showModal('ui/modals/duplicate-canvas', {
+                  title: 'Log in / Sign up',
+                  intro,
+                });
+              }
             }
-        }
-        else {
-            this.set('action', 'showLoginPopup');
-            this.sendAction();
-
-            return false;
-        }
-
-    },
-
-    saveCurrentOrder: function (orderArr) {
-        var obj = this;
-        this.checkCanvasAuth()
-            .then(
-                function () {
-                    var model = obj.get('model');
-                    var stories = model.get('stories');
-                    // debugger;
-                    for (var id in orderArr) {
-                        if (orderArr.hasOwnProperty(id)) {
-                            var order = orderArr[id];
-                            // debugger;
-
-                            var story = stories.find(function (item) {
-                                return item.get('id') == id;
-                            });
-                            story.set('canvasOrderIndex', order);
-                        }
-                    }
-                    model.set('stories', stories);
-                    model.save().then(function (response) {
-                        // console.log('saved canvas order');
-                    })
-                },
-                function (err) {
-                    // console.log('Not saving canvas order due to permissions');
-                    // if (err.notLoggedIn == true) {
-                    //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                    //     obj.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
-                    // } else if (err.hasPermissions == false) {
-                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
-                    // }
-                }
-                );
-    },
-
-    saveCanvasState: function () {
-        var obj = this;
-        this.checkCanvasAuth()
-            .then(
-                function () {
-                    var model = obj.get('model');
-
-                    model.save().then(function (response) {
-                        // console.log('saved canvas state');
-                        // todo callback function
-                        // e.g. close edit a story bottom drawer
-                    })
-                },
-                function (err) {
-                    // console.log('Not saving canvas state due to permissions');
-                    // if (err.notLoggedIn == true) {
-                    //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
-                    //     obj.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
-                    // } else if (err.hasPermissions == false) {
-                    //     obj.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
-                    // }
-                }
-            );
+        );
     }
+  },
+
+  duplicateCanvas() {
+    const _this = this;
+    const currentCanvas = this.get('model');
+    if (this.get('session.isAuthenticated')) {
+      const userID = this.get('currentUser.id');
+      if (!Ember.isEmpty(userID)) {
+        const canvas = _this.store.createRecord('canvas', {
+          title: currentCanvas.get('title'),
+          description: currentCanvas.get('description'),
+          stories: currentCanvas.get('stories'),
+          categories: currentCanvas.get('categories'),
+          // authorName: currentCanvas.get('author'),
+          // twitterName: currentCanvas.get('twitter'),
+          userID,
+        });
+        _this.get('appController').createACanvas(canvas);
+      }
+    } else {
+      this.set('action', 'showLoginPopup');
+      this.sendAction();
+      return false;
+    }
+  },
+
+  saveCurrentOrder(orderArr) {
+    const _this = this;
+    this.checkCanvasAuth()
+      .then(() => {
+        const model = _this.get('model');
+        const stories = model.get('stories');
+        for (const id in orderArr) {
+          if (orderArr.hasOwnProperty(id)) {
+            const order = orderArr[id];
+            const story = stories.find((item) => item.get('id') === id);
+            story.set('canvasOrderIndex', order);
+          }
+        }
+        model.set('stories', stories);
+        model.save().then((/* response */) => {
+            // console.log('saved canvas order');
+        });
+      },
+      (/* err */) => {
+        // TODO what UX should we implement when not saving canvas order due to permissions?
+      }
+    );
+  },
+
+  saveCanvasState() {
+    const _this = this;
+    this.checkCanvasAuth()
+      .then(
+        (/* isAllowed */) => {
+          const model = _this.get('model');
+          model.save()
+            .then((/* savedResponse */) => {
+              // console.log('saved canvas state');
+              // todo callback function
+              // e.g. close edit a story bottom drawer
+            });
+        },
+        (/* err */) => {
+          // console.log('Not saving canvas state due to permissions');
+          // if (err.notLoggedIn == true) {
+          //     var intro = 'To edit a canvas, you need to be logged in. All you need is a nickname...';
+          //     _this.get('appController').showModal('session-manager', { title: 'Log in / Sign up', intro: intro });
+          // } else if (err.hasPermissions == false) {
+          //     _this.get('appController').showModal('ui/modals/duplicate-canvas', 'Log in / Sign up', intro);
+          // }
+        }
+      );
+  },
 });
