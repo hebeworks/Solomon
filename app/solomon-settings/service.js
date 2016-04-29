@@ -13,6 +13,54 @@ export default Ember.Service.extend({
 
   },
 
+  isAllowed(scope, modelType, action) {
+    const _this = this;
+    const session = this.container.lookup('simple-auth-session:main');
+    const isAuthenticated = session.get('isAuthenticated');
+    const user = session.get('content.secure.profile');
+
+    return new Ember.RSVP.Promise((resolve, reject, complete) => {
+      if (!isAuthenticated || !user) {
+        reject(false);
+      } else {
+        // construct request to Solomon API to check if current user is allowed to edit this canvas
+        const solomonAPIURL = config.APP.solomonAPIURL;
+        const headers = [{ key: 'Solomon-Client-Override', value: config.APP.solomonClientOverride }];
+        const userID = user.user_id;
+        const postData = {
+          action,
+          modelType,
+          userID,
+          scope,
+        };
+        _this.getData(`${solomonAPIURL}/api/users/isallowed`, false, 'POST', postData, true, headers)
+          .then(
+            (isAllowed) => {
+              if (isAllowed === true) {
+                // TODO RESOLVE
+                resolve(true);
+              } else {
+                // TODO REJECT WITH CONSISTANT ERROR
+                reject(false);
+                // this.set('appSettings.errorMessage', 'Sorry you need to have permission to edit a canvas');
+                // TODO provide options to login/duplicate
+              }
+            },
+            (/* err */) => {
+              // TODO REJECT WITH CONSISTANT ERROR
+              reject(false);
+            }
+        )
+        .finally(() => {
+          if (Ember.typeOf(complete) === 'function') {
+            complete();
+          }
+        });
+      }
+    });
+  },
+
+
   solomonConfig: Ember.computed({
     get() {
       let hostname = window.location.hostname;
