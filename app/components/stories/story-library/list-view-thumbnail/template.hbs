@@ -6,7 +6,7 @@
     {{/each}}
 </p>
 
-{{#if (eq modelType 'canvas')}}
+{{#if canDelete}}
 <p cpn-margin="top-half">
     <button {{action 'deleteCanvas' model}} cpn-button="small action">Delete</button>
 </p>
