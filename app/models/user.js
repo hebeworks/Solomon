@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from 'hebe-dash/config/environment';
 
 export default Ember.Object.extend({
   id: Ember.computed.oneWay('user_id'),
@@ -30,8 +31,4 @@ export default Ember.Object.extend({
   defaultCanvas: function defaultCanvas() {
     return this.get('metaData.defaultCanvas');
   }.property('metaData', 'metaData.defaultCanvas'),
-
-  isAllowed(scope, modelType, action) {
-    return true;
-  },
 });
