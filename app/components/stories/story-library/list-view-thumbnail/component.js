@@ -28,15 +28,4 @@ export default Ember.Component.extend({
       }
     }
   }.on('didReceiveAttrs').observes('model'),
-
-  click() {
-    this.sendAction('action', this.model);
-  },
-
-  actions: {
-    deleteCanvas(model) {
-        // this.set('action', 'deleteCanvas');
-        // this.send('action', model);
-    }
-  }
 });
