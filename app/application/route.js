@@ -47,11 +47,24 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     if (this.get('session.isAuthenticated') === true) {
       const currentUser = this.get('currentUser');
       Ember.addObserver(currentUser, 'metaData', this, loginAction);
+    } else if (this.get('session.isAuthenticated') === false) {
+      // refresh page to check permissions after logout
+      // TODO get proper post - login / logout events working
+      // var currentRoute = this.controllerFor('application').get('currentRouteName');
+      // if (currentRoute === 'stay-on-this-route') {
+        window.location.reload();
+      // } else {
+        // this._super();
+      // }
     }
   }),
 
   // Actions
   actions: {
+
+    // sessionInvalidationSucceeded: function () {
+    // },
+
     showLoginPopup() {
       this.controller.showModal('session-manager', {
         title: 'My Account',

@@ -162,6 +162,8 @@
 
 .svg-input-clear { background-image: url('png/input-clear.png'); background-repeat: no-repeat; }
 
+.svg-issue-triangle { background-image: url('png/issue-triangle.png'); background-repeat: no-repeat; }
+
 .svg-lcd-logo-compact { background-image: url('png/lcd-logo-compact.png'); background-repeat: no-repeat; }
 
 .svg-lcd-logo-expanded { background-image: url('png/lcd-logo-expanded.png'); background-repeat: no-repeat; }
@@ -177,6 +179,8 @@
 .svg-modal-close { background-image: url('png/modal-close.png'); background-repeat: no-repeat; }
 
 .svg-my-collection { background-image: url('png/my-collection.png'); background-repeat: no-repeat; }
+
+.svg-news-promo-icon { background-image: url('png/news-promo-icon.png'); background-repeat: no-repeat; }
 
 .svg-nhs-logo-expanded { background-image: url('png/nhs-logo-expanded.png'); background-repeat: no-repeat; }
 
