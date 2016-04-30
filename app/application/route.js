@@ -36,8 +36,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
   },
 
-
-
   loggedIn: Ember.observer('session.isAuthenticated', function() {
     function loginAction() {
       const defaultCanvas = this.get('currentUser.metaData.defaultCanvas');
@@ -128,6 +126,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     createACanvas(model) {
       this.controller.createACanvas(model);
+    },
+
+    deleteACanvas(model) {
+      this.controller.deleteACanvas(model);
     },
 
     editAStory(model) {
