@@ -7,7 +7,7 @@
 </p>
 
 {{#if canDelete}}
-    <button {{action 'deleteACanvas' model}} cpn-button="small action" cpn-thumb-list_button="delete">Delete</button>
+    <button {{action 'showDeleteCanvasModal' model}} cpn-button="small action" cpn-thumb-list_button="delete">Delete</button>
 {{/if}}
 
 {{yield}}
