@@ -19,13 +19,22 @@ export default Ember.Component.extend({
           .isAllowed(allowedScope, allowedModelType, allowedAction)
             .then(
               (isAllowed) => {
+                _this.set('cpn-thumb-list_item', 'can-delete');
                 _this.set('canDelete', isAllowed);
               },
               (/* err */) => {
+                _this.set('cpn-thumb-list_item', '');
                 _this.set('canDelete', false);
               }
             );
       }
     }
   }.on('didReceiveAttrs').observes('model'),
+  
+  // Match the heights of items with delete buttons
+  onCanDelete: function onCanDelete() {
+    setTimeout(function() {
+      this.$.fn.matchHeight._apply(this.$('[cpn-thumb-list_item~="can-delete"]'));
+    });
+  }.observes('canDelete')
 });

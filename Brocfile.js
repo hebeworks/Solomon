@@ -53,5 +53,6 @@ app.import('vendor/modernizr-custom.min.js');
 app.import(app.bowerDirectory + '/jQuery.XDomainRequest/jquery.xdomainrequest.min.js');
 app.import(app.bowerDirectory + '/js-cookie/src/js.cookie.js');
 app.import(app.bowerDirectory + '/jQuery.dotdotdot/src/jquery.dotdotdot.min.js');
+app.import(app.bowerDirectory + '/matchheight/jquery.matchHeight-min.js');
 
 module.exports = app.toTree();
