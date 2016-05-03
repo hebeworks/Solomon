@@ -39,6 +39,12 @@
             width: rem(170px);
         }
         
+        // Add space for the absolutely-positioned delete button
+        [cpn-thumb-list_item~="can-delete"] {
+            position: relative;
+            padding-bottom: rem(26px + ($spacing-base / 2));
+        }
+        
             // List thumbnail
             [cpn-thumb-list_icon] {
                 padding-top: 100%;
@@ -88,6 +94,11 @@
                 color: $grey;
                 font-size: rem(10px);
                 margin: 0;
+            }
+            
+            [cpn-thumb-list_button~="delete"] {
+                position: absolute;
+                bottom: 0;
             }
             
             

@@ -1,0 +1,10 @@
+    <p>You're about to delete <strong>{{model.title}}</strong>. Are you sure?</p>
+{{yield}}
+<div cpn-row-list="middle">
+    <div>
+        <button cpn-button="action" {{action "hideModal"}}>Cancel</button>
+    </div>
+    <div>
+        <button cpn-button="action" {{action "deleteACanvas" model}}>Yes</button>
+    </div>
+</div>

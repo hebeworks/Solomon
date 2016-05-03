@@ -70,6 +70,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         title: 'My Account',
       });
     },
+    
+    showDeleteCanvasModal(model) {
+      this.controller.showModal('ui/modals/delete-canvas', {
+        model: model,
+        title: 'Delete a Canvas'
+      });
+    },
 
     // This ensures that the user stays on then same
     // page following signing out, as most pages in
