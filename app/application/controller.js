@@ -152,7 +152,8 @@ export default Ember.Controller.extend({
   showTutorialTimer: null,
 
   shouldShowTutorial(force) {
-      if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')) {
+      const solomonConfigShouldShowTutorial = this.get('appSettings.solomonConfig.shouldShowTutorial') || true;
+      if (solomonConfigShouldShowTutorial !== false && Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')) {
           this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
       }
   },
