@@ -345,5 +345,28 @@ onGeneralMessage: function onGeneralMessage() {
       panelState.title = "Edit a person";
 
       this.openManipulationPanel(panelState);
+  },
+  
+  addJobNoteInteraction: function addJobNoteInteraction(entityType) {
+    var panelState = {
+      content: 'bid/add-job-note-interaction',
+      blurCanvas: true
+    }
+    
+    panelState.entityType = entityType;
+    
+    if (entityType === 'job') {
+      panelState.title = 'Edit a Job';
+    }
+    
+    if (entityType === 'note') {
+      panelState.title = 'Edit a Note';
+    }
+    
+    if (entityType === 'interaction') {
+      panelState.title = 'Edit a Interaction';
+    }
+    
+    this.openManipulationPanel(panelState);
   }
 });
