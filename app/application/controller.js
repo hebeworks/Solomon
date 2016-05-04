@@ -364,7 +364,7 @@ onGeneralMessage: function onGeneralMessage() {
     }
     
     if (entityType === 'interaction') {
-      panelState.title = 'Edit a Interaction';
+      panelState.title = 'Edit an Interaction';
     }
     
     this.openManipulationPanel(panelState);
