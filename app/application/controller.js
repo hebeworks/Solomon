@@ -356,15 +356,15 @@ onGeneralMessage: function onGeneralMessage() {
     panelState.entityType = entityType;
     
     if (entityType === 'job') {
-      panelState.title = 'Edit a Job';
+      panelState.title = 'Add a Job';
     }
     
     if (entityType === 'note') {
-      panelState.title = 'Edit a Note';
+      panelState.title = 'Add a Note';
     }
     
     if (entityType === 'interaction') {
-      panelState.title = 'Edit an Interaction';
+      panelState.title = 'Add an Interaction';
     }
     
     this.openManipulationPanel(panelState);
