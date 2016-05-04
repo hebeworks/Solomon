@@ -301,7 +301,11 @@ export default Ember.Controller.extend({
             if (isAllowed === true) {
               model.destroyRecord()
                 .then((response) => {
-                  _this.set('appSettings.generalMessage', { title: 'Success', message: 'The Canvas has been deleted.' });
+                  _this.set('appSettings.generalMessage', {
+                    title: 'Success',
+                    message: 'The Canvas has been deleted.',
+                    messageReason: 'canvas-deleted'
+                  });
                 },
                 (err) => {
                   _this.set('appSettings.errorMessage', 'There was a problem deleting the Canvas from the server.');

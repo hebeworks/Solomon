@@ -33,8 +33,20 @@ export default Ember.Component.extend({
   
   // Match the heights of items with delete buttons
   onCanDelete: function onCanDelete() {
+    this.matchItemHeights();
+  }.observes('canDelete'),
+  
+  onCanvasDeleted: function onCanvasDeleted() {
+    const reason = this.get('appSettings.generalMessage.messageReason');
+    
+    if (reason === 'canvas-deleted') {
+      this.matchItemHeights();
+    }
+  }.observes('appSettings.generalMessage.messageReason'),
+  
+  matchItemHeights: function matchItemHeights() {
     setTimeout(function() {
       this.$.fn.matchHeight._apply(this.$('[cpn-thumb-list_item~="can-delete"]'));
     });
-  }.observes('canDelete')
+  }
 });
