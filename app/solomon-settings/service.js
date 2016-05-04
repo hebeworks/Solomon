@@ -121,6 +121,7 @@ export default Ember.Service.extend({
           solomonConfig.title = 'Business Improvement District';
           solomonConfig.storyConfig.storyHandle = 'both';
           solomonConfig.defaultCanvas = 'bid-team-home';
+          solomonConfig.shouldShowTutorial = false;
           // TODO switch based on user role e.g. bid user / levy payer
           break;
       }
