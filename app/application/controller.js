@@ -54,24 +54,24 @@ export default Ember.Controller.extend({
       }
   }.observes('appSettings.errorMessage'),
 
-onGeneralMessage: function onGeneralMessage() {
-  const _this = this;
-  const message = this.get('appSettings.generalMessage');
-  function clearGeneralMessage() {
-    _this.set('appSettings.generalMessage', null);
-  }
-
-  if (!Ember.isEmpty(message)) {
-    const generalMessage = message.message || '';
-    const title = message.title || '';
-    if (!Ember.isEmpty(generalMessage)) {
-      this.showModal(null, {
-        title, intro: generalMessage,
-        onCloseCallback: clearGeneralMessage,
-      });
+  onGeneralMessage: function onGeneralMessage() {
+    const _this = this;
+    const message = this.get('appSettings.generalMessage');
+    function clearGeneralMessage() {
+      _this.set('appSettings.generalMessage', null);
     }
-  }
-}.observes('appSettings.generalMessage'),
+
+    if (!Ember.isEmpty(message)) {
+      const generalMessage = message.message || '';
+      const title = message.title || '';
+      if (!Ember.isEmpty(generalMessage)) {
+        this.showModal(null, {
+          title, intro: generalMessage,
+          onCloseCallback: clearGeneralMessage,
+        });
+      }
+    }
+  }.observes('appSettings.generalMessage'),
 
   obSolomonConfigChange: function () {
       // Todo: get the site config from a request to Solomon API
@@ -98,7 +98,7 @@ onGeneralMessage: function onGeneralMessage() {
 
   showModal(component, options) {
       this.closeToolbox();
-    
+
       var modalOptions = _.extend(
           { // default modal options
               preventCanvasBlur: false,
@@ -152,7 +152,8 @@ onGeneralMessage: function onGeneralMessage() {
   showTutorialTimer: null,
 
   shouldShowTutorial(force) {
-      if (Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')) {
+      const solomonConfigShouldShowTutorial = this.get('appSettings.solomonConfig.shouldShowTutorial') || true;
+      if (solomonConfigShouldShowTutorial !== false && Modernizr.mq('screen and (min-width: 768px)') && !Cookies.get('viewedTutorial')) {
           this.set('showTutorialTimer', Ember.run.later(this, this.showTutorial, 5000));
       }
   },
@@ -173,7 +174,7 @@ onGeneralMessage: function onGeneralMessage() {
   openToolbox() {
       this.closeBottomDrawer();
       this.closeManipulationPanel();
-    
+
       this.set('canvasBlurred', true);
       this.set('topOpen', true);
 
@@ -279,17 +280,46 @@ onGeneralMessage: function onGeneralMessage() {
   },
 
   createACanvas (model) {
-      var panelState = {
-          content: 'canvas-gallery/create-a-canvas',
-          title: 'Add a canvas',
-          blurCanvas: true
-      };
+    var panelState = {
+        content: 'canvas-gallery/create-a-canvas',
+        title: 'Add a canvas',
+        blurCanvas: true
+    };
 
-      if (!Ember.isEmpty(model)) {
-          panelState.model = model;
-      }
+    if (!Ember.isEmpty(model)) {
+        panelState.model = model;
+    }
 
-      this.openManipulationPanel(panelState);
+    this.openManipulationPanel(panelState);
+  },
+
+  deleteACanvas(model) {
+    if (!Ember.isEmpty(model)) {
+      const _this = this;
+      this.get('appSettings').isAllowed(model.get('id'), 'canvas', 'delete')
+        .then(
+          (isAllowed) => {
+            if (isAllowed === true) {
+              model.destroyRecord()
+                .then((response) => {
+                  _this.set('appSettings.generalMessage', {
+                    title: 'Success',
+                    message: 'The Canvas has been deleted.',
+                    messageReason: 'canvas-deleted'
+                  });
+                },
+                (err) => {
+                  _this.set('appSettings.errorMessage', 'There was a problem deleting the Canvas from the server.');
+                })
+            }
+          },
+          (isAllowed) => {
+            // not allowed
+            _this.set('appSettings.errorMessage', 'You do not have permission to delete this Canvas.');
+          }
+        );
+    }
+
   },
 
   showCanvasSettings () {
