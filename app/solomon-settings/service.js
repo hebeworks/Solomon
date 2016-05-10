@@ -75,6 +75,11 @@ export default Ember.Service.extend({
           solomonConfig.defaultCanvas = 'bid-team-home';
           // TODO switch based on user role e.g. bid user / levy payer
           break;
+        case 'aware.mysolomon.co.uk':
+          solomonConfig.name = 'aware';
+          solomonConfig.title = 'Aware Technologies';
+          solomonConfig.storyConfig.storyHandle = 'both';
+          break;
       }
       return solomonConfig;
     },
