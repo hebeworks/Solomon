@@ -48,6 +48,13 @@
     [solomon-app~="bid"] & {
         display: none;
     }
+    
+    [class*="svg-aware-logo"] {
+        svg {
+            width: 39.8px;
+            height: 40.5px;
+        }
+    }
 }
 
 [spc-dashboard-logo="expanded"] {
@@ -90,6 +97,13 @@
                 height: 40px;
                 width: 151px;
             }
+        }
+    }
+    
+    [class*="svg-aware-logo"] {
+        svg {
+            width: 175px;
+            height: 40.5px;
         }
     }
 }
