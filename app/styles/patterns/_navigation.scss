@@ -69,6 +69,10 @@
 				[solomon-app~="bid"] & {
 					color: $bid-green;
 				}
+				
+				[solomon-app~="aware"] & {
+					color: $aware-green;
+				}
 
 				.icon {
 					svg {
@@ -95,6 +99,10 @@
 
 					[solomon-app~="bid"] & {
 						color: $bid-green;
+					}
+					
+					[solomon-app~="aware"] & {
+						color: $aware-green;
 					}
 				}
 			}

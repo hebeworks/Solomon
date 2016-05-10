@@ -189,6 +189,10 @@
         [solomon-app~="bid"] & {
             background-color: $bid-green;
         }
+        
+        [solomon-app~="aware"] & {
+            background-color: $aware-green;
+        }
     }
 }
 
