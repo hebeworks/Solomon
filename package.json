@@ -21,6 +21,7 @@
   "devDependencies": {
     "auth0-ember-simple-auth": "1.0.4",
     "bid-leeds": "latest",
+    "solomon-addon-aware": "latest",
     "broccoli-asset-rev": "^2.1.1",
     "broccoli-sass": "0.x.x",
     "connect-restreamer": "^1.0.2",
