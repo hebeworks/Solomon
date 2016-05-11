@@ -1,6 +1,6 @@
 [spc-cwq] {
 	input {
-		@extend %cpn-input-ghost-light;
+		// @extend %cpn-input-ghost-light; // selector to extend does not exist
 		height: rem(35px);
 		font-size: rem(12px);
 	}
