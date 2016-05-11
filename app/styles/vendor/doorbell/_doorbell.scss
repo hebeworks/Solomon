@@ -23,7 +23,7 @@
         }
         
         textarea {
-            @extend %textarea;
+            // @extend %textarea; // selector to extend does not exist
             box-sizing: border-box;
             width: 100%;
         }
@@ -34,7 +34,7 @@
             }
             
             &[type="email"] {
-                @extend %input-text;
+                // @extend %input-text; // selector to extend does not exist
                 box-sizing: border-box;
             }
         }

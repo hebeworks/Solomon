@@ -20,7 +20,7 @@
 		}
 		
 		&-item {
-			@extend .dashed-area.bottom;
+			// @extend .dashed-area.bottom; // selector to extend does not exist
 			
 			&.-full-width {
 				width:100%;
