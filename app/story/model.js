@@ -62,10 +62,11 @@ export default  DS.Model.extend({
 
     componentPath: Ember.computed('storyType', {
         get() {
-            if (!Ember.isEmpty(this.get('storyType'))) {
-                var path = (this.get('storyType').toString().indexOf('bid/') > -1 ?
-                    this.get('storyType') : // Todo: change all database stories to contain the full path so we don't have to do path logic here
-                    this.get('storyType').toString().ensureStartingString('stories/complete/')
+          const storyType = this.get('storyType').toString();
+            if (!Ember.isEmpty(storyType)) {
+                var path = (_.any(['bid/','aware/'], (item) => storyType.indexOf(item) > -1) ?
+                    storyType : // Todo: change all database stories to contain the full path so we don't have to do path logic here
+                    storyType.toString().ensureStartingString('stories/complete/')
                 );
                 return path;
             }

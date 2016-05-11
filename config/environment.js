@@ -61,9 +61,14 @@ module.exports = function config(environment) {
 
   // AUTH0 Configs
   const auth0Configs = {
+    // development: {
+    //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+    //   domain: 'hebe-works-development.eu.auth0.com',
+    // },
     development: {
-      clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-      domain: 'hebe-works-development.eu.auth0.com',
+      clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+      domain: 'solomon.eu.auth0.com',
+      '// sites': 'dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk'
     },
     production: {
       clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
