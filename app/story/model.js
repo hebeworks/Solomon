@@ -62,8 +62,9 @@ export default  DS.Model.extend({
 
     componentPath: Ember.computed('storyType', {
         get() {
-          const storyType = this.get('storyType').toString();
+          let storyType = this.get('storyType');
             if (!Ember.isEmpty(storyType)) {
+              storyType = storyType.toString();
                 var path = (_.any(['bid/','aware/'], (item) => storyType.indexOf(item) > -1) ?
                     storyType : // Todo: change all database stories to contain the full path so we don't have to do path logic here
                     storyType.toString().ensureStartingString('stories/complete/')
