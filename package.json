@@ -50,6 +50,7 @@
     "ember-websockets": "3.0.0",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.3.0",
     "express": "^4.13.3",
     "glob": "^5.0.14",
     "grunt": "^0.4.5",
@@ -61,9 +62,9 @@
     "liquid-fire": "0.21.2",
     "load-grunt-tasks": "^3.2.0",
     "morgan": "^1.6.1",
-    "node-sass": "^3.4.2",
-    "rimraf": "2.4.2",
+    "node-sass": "^3.7.0",
     "solomon-addon-aware": "latest",
+    "rimraf": "2.4.2",
     "strip-ansi": "^3.0.1"
   },
   "dependencies": {
