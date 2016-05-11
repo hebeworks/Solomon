@@ -1,5 +1,5 @@
 .btn {
-    @extend %delta;
+    // @extend %delta; // selector to extend does not exist
     border: 0;
     border-radius: 3px;
     cursor: pointer;
