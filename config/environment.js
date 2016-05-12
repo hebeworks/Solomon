@@ -61,15 +61,15 @@ module.exports = function config(environment) {
 
   // AUTH0 Configs
   const auth0Configs = {
-    development: {
-      clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
-      domain: 'hebe-works-development.eu.auth0.com',
-    },
     // development: {
-    //   clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
-    //   domain: 'solomon.eu.auth0.com',
-    //   '// sites': 'dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk'
+    //   clientID: 'LpUos8eQbMfgRVqVhZkt5k4IGX0ngknp',
+    //   domain: 'hebe-works-development.eu.auth0.com',
     // },
+    development: {
+      clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
+      domain: 'solomon.eu.auth0.com',
+      '// sites': 'dashboard.leedsdatamill.org & dashboard.mysolomon.co.uk'
+    },
     production: {
       clientID: 'PD0dK4nnC2JDWDbkMxHVEPIRtYJV39zI',
       domain: 'solomon.eu.auth0.com',
@@ -103,8 +103,8 @@ module.exports = function config(environment) {
     ENV.APP.mockSolomonHostname = 'aware.mysolomon.co.uk'; //'leeds.preview.mysolomon.co.uk';
     // ENV.APP.solomonClientOverride = 'solomon_bid_leeds'; // solomon_production solomon_leeds
     ENV['auth0-ember-simple-auth'] = auth0Configs.development;
-    ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
-    // ENV.APP.solomonAPIURL = 'http://localhost:3000';
+    // ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
+    ENV.APP.solomonAPIURL = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
