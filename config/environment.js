@@ -103,8 +103,8 @@ module.exports = function config(environment) {
     ENV.APP.mockSolomonHostname = 'aware.mysolomon.co.uk'; //'leeds.preview.mysolomon.co.uk';
     // ENV.APP.solomonClientOverride = 'solomon_bid_leeds'; // solomon_production solomon_leeds
     ENV['auth0-ember-simple-auth'] = auth0Configs.development;
-    // ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
-    ENV.APP.solomonAPIURL = 'http://localhost:3000';
+    ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
+    // ENV.APP.solomonAPIURL = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
