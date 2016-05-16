@@ -56,21 +56,6 @@
 @import 'cpn/cpn-nested-story';
 @import 'cpn/cpn-input';
 @import 'cpn/cpn-label';
-// Overriding components
-@import 'cpn/cpn-overflow';
-@import 'cpn/cpn-table';
-@import 'cpn/cpn-margin';
-@import 'cpn/cpn-font-weight';
-@import 'cpn/cpn-font';
-@import 'cpn/cpn-display';
-@import 'cpn/cpn-text';
-@import 'cpn/cpn-padding';
-@import 'cpn/cpn-width';
-@import 'cpn/cpn-float';
-@import 'cpn/cpn-clearfix';
-@import 'cpn/cpn-bg-color';
-@import 'cpn/cpn-v-align';
-@import 'cpn/cpn-color';
 
 // ===== Components ===== //
 @import "components/story";
@@ -158,3 +143,19 @@
 @import "components/stories/_bid/search-people";
 @import "components/stories/_bid/bid-value-tile";
 */
+
+// Overriding components
+@import 'cpn/cpn-overflow';
+@import 'cpn/cpn-table';
+@import 'cpn/cpn-margin';
+@import 'cpn/cpn-font-weight';
+@import 'cpn/cpn-font';
+@import 'cpn/cpn-display';
+@import 'cpn/cpn-text';
+@import 'cpn/cpn-padding';
+@import 'cpn/cpn-width';
+@import 'cpn/cpn-float';
+@import 'cpn/cpn-clearfix';
+@import 'cpn/cpn-bg-color';
+@import 'cpn/cpn-v-align';
+@import 'cpn/cpn-color';
