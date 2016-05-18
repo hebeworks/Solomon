@@ -175,8 +175,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     editPerson(model) {
       this.controller.editPerson(model);
     },
-    addJobNoteInteraction(entityType) {
-      this.controller.addJobNoteInteraction(entityType);
+    addJobNoteInteraction(entityType, maxJobLocations) {
+      this.controller.addJobNoteInteraction(entityType, maxJobLocations);
     }
   },
 });

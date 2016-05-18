@@ -347,13 +347,14 @@ onGeneralMessage: function onGeneralMessage() {
       this.openManipulationPanel(panelState);
   },
   
-  addJobNoteInteraction: function addJobNoteInteraction(entityType) {
+  addJobNoteInteraction: function addJobNoteInteraction(entityType, maxJobLocations) {
     var panelState = {
       content: 'bid/add-job-note-interaction',
       blurCanvas: true
     }
     
     panelState.entityType = entityType;
+    panelState.maxJobLocations = maxJobLocations;
     
     if (entityType === 'job') {
       panelState.title = 'Add a Job';
