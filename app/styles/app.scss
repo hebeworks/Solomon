@@ -13,12 +13,13 @@
 @import "helpers/functions";
 @import "helpers/mixins";
 
+@import "patterns/svg-datauri";
+
 // ===== Base ===== //
 // @import "base/reset";
 @import "base/styleguide";
 
 // ===== Patterns (these are being replaced by CPN) ===== //
-@import "patterns/svg-datauri";
 @import "patterns/custom_fonts";
 @import "patterns/headings";
 @import "patterns/typography";
