@@ -153,6 +153,79 @@ img {
     max-width: 100%;
 }
 
+select {
+    $input-height: 40px;
+    $input-border-width: 2px;
+    
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: rem($input-height);
+    padding: rem(7px) rem(39px) rem(7px) rem(($spacing-base * 1.5) - $input-border-width);
+    border: rem($input-border-width) solid $light-grey;
+    color: $color-app-black;
+    background-color: #fff;
+    font-size: rem($font-base);
+    line-height: rem(22px);
+    border-radius: rem(3px);
+    outline: none;
+    box-shadow: none;
+    @include appearance(none);
+    @include svg--chevron-down;
+    background-size: rem(12.5px) rem(7px);
+    background-position: right rem($spacing-base * 1.5) center;
+    
+    &:focus {
+        outline: none;
+        border-color: $grey;
+    }
+    
+    &:disabled {
+        cursor: not-allowed;
+        background-color: $light-grey;
+        color: $grey;
+        
+        &::-ms-value {
+            background-color: $light-grey;
+            color: $grey;
+        }
+    }
+    
+    &::-webkit-input-placeholder {
+       color: $grey;
+    }
+
+    &::-moz-placeholder {
+       color: $grey;  
+    }
+
+    &:-ms-input-placeholder {  
+       color: $grey;  
+    }
+    
+    &:invalid {
+        border-color: $color-app-error;
+        background-color: lighten($color-app-error, 40%);
+    }
+    
+    // Removes the default arrow in IE
+    &::-ms-expand {
+        display: none;
+    }
+    
+    // Removes the blue background in IE
+    &::-ms-value {
+        background-color: #fff;
+        color: $color-app-black;
+    }
+    
+    // Removes the dotted border in Firefox
+    &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 $color-app-black;
+    }
+}
+
 /* -- Wrapper for Dashboard slide */
 .wrapper {
     width: 100%;
