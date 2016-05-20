@@ -19,10 +19,6 @@ $panel-width: 375px;
     [solomon-app~="bid"] & {
         border-top-color: $bid-dark-blue;
     }
-    
-    [solomon-app~="aware"] & {
-        border-top-color: $aware-green;
-    }
 }
 
 [cpn-manipulation-panel~="is-open"] {
