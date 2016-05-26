@@ -1,9 +1,13 @@
-<div cpn-thumb-list_icon="{{thumb-icon}}"></div>
-<h4 cpn-thumb-list_title>{{model.title}}</h4>
-<p cpn-thumb-list_meta>
-    {{#each model.categories as |cat|}}
-        {{cat.title}}
-    {{/each}}
+<div {{action action model}} cpn-thumb-list_icon="{{thumb-icon}}"></div>
+<h4 {{action action model}} cpn-thumb-list_title>{{model.title}}</h4>
+<p {{action action model}} cpn-thumb-list_meta>
+  {{#each model.categories as |cat|}}
+    {{cat.title}}
+  {{/each}}
 </p>
-    
+
+{{#if canDelete}}
+    <button {{action 'showDeleteCanvasModal' model}} cpn-button="small action" cpn-thumb-list_button="delete">Delete</button>
+{{/if}}
+
 {{yield}}

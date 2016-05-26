@@ -36,7 +36,10 @@
     "jsrsasign": "~4.8.3",
     "jQuery.dotdotdot": "^1.8.1",
     "showdown": "~1.3.0",
-    "video.js": "^5.0.0"
+    "video.js": "^5.0.0",
+    "matchheight": "^0.7.0",
+    "uri.js": "~1.18.0",
+    "socket.io-client": "~1.4.6"
   },
   "devDependencies": {
     "breakpoint-sass": "~2.6.1",

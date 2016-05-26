@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import config from 'hebe-dash/config/environment';
 
 export default Ember.Controller.extend({
     appController: function () {
@@ -95,54 +94,15 @@ export default Ember.Controller.extend({
     }.property('currentUser.email'),
 
   checkCanvasAuth() {
-    const _this = this;
-    return new Ember.RSVP.Promise((resolve, reject, complete) => {
-      if (!_this.get('session.isAuthenticated')) {
-        reject({ notLoggedIn: true });
-      } else {
-        // construct request to Solomon API to check if current user is allowed to edit this canvas
-        const canvas = _this.get('model');
-        const userID = _this.get('currentUser.id');
-        let solomonAPIURL = config.APP.solomonAPIURL;
-        const postData = {
-          action: 'write',
-          modelType: 'canvas',
-          userID,
-          scope: canvas.get('id'),
-        };
-        const headers = [{ key: 'Solomon-Client-Override', value: config.APP.solomonClientOverride }];
-        _this.get('appSettings').getData(`${solomonAPIURL}/api/users/isallowed`, false, 'POST', postData, true, headers)
-          .then(
-            (isAllowed) => {
-              if (isAllowed === true) {
-                // TODO RESOLVE
-                resolve();
-              } else {
-                // TODO REJECT WITH CONSISTANT ERROR
-                reject({ hasPermissions: false });
-                // this.set('appSettings.errorMessage', 'Sorry you need to have permission to edit a canvas');
-                // TODO provide options to login/duplicate
-              }
-            },
-            (/* err */) => {
-              // TODO REJECT WITH CONSISTANT ERROR
-              reject({ hasPermissions: false });
-            }
-        )
-        .finally(() => {
-          if (Ember.typeOf(complete) === 'function') {
-            complete();
-          }
-        });
-      }
-    });
+    const canvasID = this.get('model.id');
+    return this.get('appSettings').isAllowed(canvasID, 'canvas', 'write');
   },
 
     addAStory: function (originalStory) {
-        this.checkCanvasAuth().then(
+        this.checkCanvasAuth()
+          .then(
             function () {
                 var canvas = this.get('model');
-
                 if(!Ember.isEmpty(originalStory) && !Ember.isEmpty(canvas)){
                     var story = this.store.createRecord('story', {
                         id: hebeutils.guid(),
