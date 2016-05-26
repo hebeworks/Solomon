@@ -123,6 +123,7 @@ module.exports = function config(environment) {
 
   if (environment === 'production') {
     // ENV['auth0-ember-simple-auth'] = auth0Configs.bid;
+    ENV['auth0-ember-simple-auth'] = auth0Configs.production;
     ENV.APP.solomonAPIURL = 'http://testing.api.mysolomon.co.uk';
   }
 
