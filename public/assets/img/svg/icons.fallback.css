@@ -70,6 +70,8 @@
 
 @mixin svg--ldm-logo-white { background-image: url('png/ldm-logo-white.png'); background-repeat: no-repeat; }
 
+@mixin svg--list-view-thumb-add-canvas-active--bid { background-image: url('png/list-view-thumb-add-canvas-active--bid.png'); background-repeat: no-repeat; }
+
 @mixin svg--list-view-thumb-add-canvas-active--yw { background-image: url('png/list-view-thumb-add-canvas-active--yw.png'); background-repeat: no-repeat; }
 
 @mixin svg--list-view-thumb-add-canvas-active { background-image: url('png/list-view-thumb-add-canvas-active.png'); background-repeat: no-repeat; }

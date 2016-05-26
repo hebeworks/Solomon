@@ -79,6 +79,7 @@ input[type="checkbox"] {
     + label {
         vertical-align: top;
         display: inline-block;
+        cursor: pointer;
         
         &::before {
             content: '';
@@ -91,6 +92,7 @@ input[type="checkbox"] {
             vertical-align: top;
             margin-right: rem($spacing-base / 2);
             @include transition(.3s);
+            cursor: pointer;
         }
     }
     
